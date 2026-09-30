@@ -8,7 +8,7 @@ const pages=[['Gids: complete tuin aanleggen met bestrating','GEPUBLICEERD'],['W
 export default function AppScreenshotSlot({ label }: AppScreenshotSlotProps) {
  const [elapsed,setElapsed]=useState(0)
  const [visible,setVisible]=useState(false)
- const ref=useRef<HTMLFigureElement>(null)
+ const ref=useRef<HTMLElement>(null)
  useEffect(()=>{const observer=new IntersectionObserver(([entry])=>{if(entry.isIntersecting){setVisible(true);observer.disconnect()}},{threshold:.35});if(ref.current)observer.observe(ref.current);return()=>observer.disconnect()},[])
  useEffect(()=>{if(!visible)return;const start=performance.now();let id=0;const frame=(now:number)=>{setElapsed(now-start);if(now-start<19000)id=requestAnimationFrame(frame)};id=requestAnimationFrame(frame);return()=>cancelAnimationFrame(id)},[visible])
  const value=(target:number)=>Math.round(target*Math.min(elapsed/(target===92?3500:18000),1))
