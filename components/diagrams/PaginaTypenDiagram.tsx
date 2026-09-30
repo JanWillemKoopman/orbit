@@ -1,0 +1,3 @@
+import {DiagramFrame,Node} from './DiagramFrame'
+const types=[['Dienstpagina','verkoopt een dienst of product'],['Artikel','legt een onderwerp uit'],['Gids','helpt stap voor stap'],['Veelgestelde vragen','kort antwoord per vraag'],['Vergelijking','helpt kiezen tussen opties']]
+export default function PaginaTypenDiagram(){return <DiagramFrame number="3" caption="Elke kans krijgt de soort pagina die past bij wat de lezer zoekt."><Node title="Kans uit de meting" detail="gemiste vragen, lezer, kernvraag" accent/><div className="my-3 grid grid-cols-2 gap-2 sm:grid-cols-5">{types.map(([t,d])=><Node key={t} title={t} detail={d}/>)}</div><Node title="Eén schrijfketen voor alle soorten" detail="elke soort met een eigen beeld van wat de lezer wil"/></DiagramFrame>}
