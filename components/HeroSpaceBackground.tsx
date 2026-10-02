@@ -1,1 +1,0 @@
-export default function HeroSpaceBackground(){return <div className="hero-space" aria-hidden="true"><div className="hero-nebula hero-nebula--deep"/><div className="hero-nebula hero-nebula--violet"/><div className="hero-nebula hero-nebula--texture"/><div className="hero-lime-haze"/><div className="hero-space__veil"/></div>}
