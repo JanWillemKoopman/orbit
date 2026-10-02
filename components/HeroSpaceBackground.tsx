@@ -17,7 +17,7 @@ export default function HeroSpaceBackground(){
    for(let index=0;index<count;index++){const layer=(index<count*.28?0:index<count*.86?1:2) as 0|1|2;const clustered=random(seed)<.72;let x=random(seed),y=random(seed)
     if(clustered){x=Math.min(1,Math.max(0,.62+(random(seed)+random(seed)-1)*.43));y=Math.min(1,Math.max(0,.03+(random(seed)+random(seed))*.43))}
     const sizeRoll=random(seed);const r=sizeRoll<.7?.2+random(seed)*.25:sizeRoll<.9?.45+random(seed)*.25:sizeRoll<.98?.7+random(seed)*.3:1+random(seed)*.5
-    stars.push({x,y,r,alpha:.09+random(seed)*(layer===0?.16:layer===1?.27:.34),tint:random(seed),twinkle:index%37===0,phase:random(seed)*Math.PI*2,speed:8+random(seed)*17,layer})
+    stars.push({x,y,r,alpha:.14+random(seed)*(layer===0?.2:layer===1?.34:.44),tint:random(seed),twinkle:index%37===0,phase:random(seed)*Math.PI*2,speed:8+random(seed)*17,layer})
    }}
   const resize=()=>{const rect=root.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);const dpr=Math.min(window.devicePixelRatio||1,1.5);for(const [canvas,context] of [[back,backContext],[front,frontContext]] as const){canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);canvas.style.width=`${width}px`;canvas.style.height=`${height}px`;context.setTransform(dpr,0,0,dpr,0,0)}makeStars()}
   const draw=(time:number)=>{if(!visible){frame=0;return}if(time-last<32){frame=requestAnimationFrame(draw);return}last=time
