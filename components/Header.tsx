@@ -1,0 +1,3 @@
+const CalendarIcon = () => <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 2v3M14 2v3M3.5 7.5h13M5 4h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>
+
+export default function Header(){return <header className="site-header"><div className="site-header__inner"><a href="/" className="brand" aria-label="ORBIT ENGINE home"><span className="brand-mark">◒</span><span>ORBIT ENGINE</span></a><nav className="site-nav" aria-label="Hoofdnavigatie"><a href="/product">Product</a><a href="/prijs">Prijs</a><a href="/nieuws">Nieuws</a><a href="/over-ons">Over ons</a></nav><a className="header-cta" href="mailto:hello@outerorbit.nl?subject=Gratis%20demo%20plannen"><CalendarIcon/><span>Plan een gratis demo</span></a></div></header>}
