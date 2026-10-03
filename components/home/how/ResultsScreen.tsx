@@ -58,8 +58,8 @@ export default function ResultsScreen({ active }: ScreenProps) {
             <div className="nv-pt"><b>Zichtbaarheid</b><span className="nv-toggle"><i className="on">Google</i><i>AI</i><i>Samen</i></span></div>
             <svg className="r-graph" viewBox="0 0 440 200" aria-hidden="true">
               <defs>
-                <linearGradient id="rgStroke" x1="0" x2="1"><stop stopColor="#b6ff18" /><stop offset="1" stopColor="#8b5cf6" /></linearGradient>
-                <linearGradient id="rgFill" x1="0" x2="0" y1="0" y2="1"><stop stopColor="#b6ff18" stopOpacity=".2" /><stop offset="1" stopColor="#b6ff18" stopOpacity="0" /></linearGradient>
+                
+                <linearGradient id="rgFill" x1="0" x2="0" y1="0" y2="1"><stop stopColor="#ffffff" stopOpacity=".07" /><stop offset="1" stopColor="#ffffff" stopOpacity="0" /></linearGradient>
               </defs>
               {[50, 100, 150].map(y => <line className="rg-grid" key={y} x1="0" x2="440" y1={y} y2={y} />)}
               <path className="rg-area" d={`${line} L440 200 L0 200 Z`} />

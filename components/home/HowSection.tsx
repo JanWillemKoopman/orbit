@@ -1,7 +1,6 @@
 'use client'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { steps } from './data'
-import { Floater } from './visuals'
 import { gsap, prefersReducedMotion } from './gsap'
 import BrandScreen from './how/BrandScreen'
 import StrategyScreen from './how/StrategyScreen'
@@ -10,7 +9,7 @@ import PublishScreen from './how/PublishScreen'
 import RadarScreen from './how/RadarScreen'
 import ResultsScreen from './how/ResultsScreen'
 
-const DURATION = 7
+const DURATION = 10
 
 /* SaaS stepper, as on inspace: auto-advancing with a progress bar under the active step,
    clickable (a click hands control to the visitor), paused while off-screen. */
@@ -51,16 +50,11 @@ export default function HowSection({ market }: { market: number }) {
   const choose = useCallback((index: number) => { setAuto(false); setCurrent(index) }, [])
 
   return <section className="hs-section how4" id="werking" ref={ref}>
-    <span className="wm" aria-hidden="true">Engine</span>
-    <span className="amb" style={{ ['--amb-c' as string]: 'rgba(139,92,246,.10)', top: '18%' }} aria-hidden="true" />
-    <Floater kind="orb" speed={0.12} size={42} rotate={-8} duration={10} style={{ right: '7%', top: '9%' }} className="fl-acc" />
-    <Floater kind="diamond" speed={0.16} size={32} rotate={10} duration={9} style={{ left: '4.5%', bottom: '10%' }} className="fl-acc" />
-
     <div className="hs-wrap">
       <div className="thead reveal">
         <span className="eyebrow">Hoe het werkt</span>
-        <h2>Van jouw bedrijfskennis naar zichtbaar resultaat. <span className="grad">Volledig verbonden.</span></h2>
-        <p>Zes stappen, één doorlopende motor. Kijk hoe ORBIT ze zelfstandig doorloopt, of klik op een stap om zelf te kijken.</p>
+        <h2>Van jouw bedrijfskennis naar zichtbaar resultaat. <span className="tone">Volledig verbonden.</span></h2>
+        <p>Zes stappen, één doorlopende motor. Klik op een stap om hem te bekijken.</p>
       </div>
 
       <div className="how4-grid reveal">

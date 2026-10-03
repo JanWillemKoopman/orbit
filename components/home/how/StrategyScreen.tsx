@@ -5,7 +5,7 @@ import { countTo, gsap, prefersReducedMotion, useIsoLayoutEffect } from '../gsap
 import type { ScreenProps } from './shared'
 
 const SUBS = ['gidsen', 'vergelijkingen', 'prijzen', 'how-to', 'reviews', 'lokaal', 'alternatieven', 'vragen']
-const LIME = '182,255,24', VIOLET = '139,92,246'
+const NODE = '245,245,245', SOFT = '150,150,150'
 const cells: Array<[number, string]> = [[238, 'Zoekvragen'], [14, 'Clusters'], [46, 'Pagina’s gepland'], [9, 'Snelle kansen']]
 
 type Node = { tx: number; ty: number; px?: number; py?: number; ring: number; delay: number; r: number; ph: number; label?: string; violet?: boolean }
@@ -100,13 +100,13 @@ export default function StrategyScreen({ active, market }: ScreenProps) {
         const s = pt.p >= 1 ? 1 : back(pt.p)
         if (n.ring === 0) {
           const glow = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, 60)
-          glow.addColorStop(0, `rgba(${VIOLET},.32)`); glow.addColorStop(1, `rgba(${VIOLET},0)`)
+          glow.addColorStop(0, 'rgba(255,255,255,.08)'); glow.addColorStop(1, 'rgba(255,255,255,0)')
           ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(pt.x, pt.y, 60, 0, 7); ctx.fill()
           const R = 26 * s * (1 + Math.sin(t * 1.6) * 0.07)
           const body = ctx.createRadialGradient(pt.x - R * 0.36, pt.y - R * 0.42, R * 0.05, pt.x, pt.y, R)
-          body.addColorStop(0, '#f2ffd2'); body.addColorStop(0.22, '#b6ff18'); body.addColorStop(0.55, '#5b8f3a'); body.addColorStop(0.82, '#4c1d95'); body.addColorStop(1, '#1d0d3a')
+          body.addColorStop(0, '#fafafa'); body.addColorStop(0.2, '#cfcfcf'); body.addColorStop(0.55, '#6e6e6e'); body.addColorStop(0.85, '#262626'); body.addColorStop(1, '#111')
           ctx.fillStyle = body; ctx.beginPath(); ctx.arc(pt.x, pt.y, R, 0, 7); ctx.fill()
-          ctx.strokeStyle = `rgba(${LIME},.45)`; ctx.lineWidth = 1.2
+          ctx.strokeStyle = 'rgba(255,255,255,.25)'; ctx.lineWidth = 1
           ctx.beginPath(); ctx.ellipse(pt.x, pt.y, R * 1.65, R * 0.46, -0.28, 0, 7); ctx.stroke()
           ctx.font = `600 10px ${mono}`
           const label = topic.toUpperCase(), bw = ctx.measureText(label).width + 22, bh = 22, bx = pt.x - bw / 2, by = pt.y + R + 12
@@ -115,8 +115,8 @@ export default function StrategyScreen({ active, market }: ScreenProps) {
           ctx.fillStyle = '#f5f5f5'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
           ctx.fillText(label, pt.x, by + bh / 2 + 0.5)
         } else if (n.ring === 1) {
-          ctx.fillStyle = `rgb(${LIME})`; ctx.beginPath(); ctx.arc(pt.x, pt.y, n.r * s, 0, 7); ctx.fill()
-          ctx.strokeStyle = `rgba(${LIME},.28)`; ctx.lineWidth = 1
+          ctx.fillStyle = `rgb(${NODE})`; ctx.beginPath(); ctx.arc(pt.x, pt.y, n.r * s, 0, 7); ctx.fill()
+          ctx.strokeStyle = 'rgba(255,255,255,.14)'; ctx.lineWidth = 1
           ctx.beginPath(); ctx.arc(pt.x, pt.y, n.r * s + 3.5, 0, 7); ctx.stroke()
           if (pt.p > 0.5 && n.label) {
             ctx.font = `600 9px ${mono}`; ctx.fillStyle = `rgba(245,245,245,${0.66 * Math.min(1, (pt.p - 0.5) * 2)})`
@@ -124,7 +124,7 @@ export default function StrategyScreen({ active, market }: ScreenProps) {
             ctx.fillText(n.label.toUpperCase(), pt.x, pt.y + (n.ty > CY ? 16 : -14))
           }
         } else if (n.ring === 2) {
-          ctx.fillStyle = n.violet ? `rgba(${VIOLET},.9)` : `rgba(${LIME},.8)`
+          ctx.fillStyle = n.violet ? `rgba(${SOFT},.8)` : `rgba(${NODE},.7)`
           ctx.beginPath(); ctx.arc(pt.x, pt.y, n.r * s, 0, 7); ctx.fill()
         } else {
           ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.beginPath(); ctx.arc(pt.x, pt.y, n.r * s, 0, 7); ctx.fill()

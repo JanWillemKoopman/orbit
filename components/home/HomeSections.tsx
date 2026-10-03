@@ -16,7 +16,7 @@ export default function HomeSections() {
   /* Lenis smooth scroll, driven by GSAP's ticker so ScrollTrigger stays in sync */
   useEffect(() => {
     if (prefersReducedMotion()) return
-    const lenis = new Lenis({ lerp: 0.11, smoothWheel: true, anchors: { offset: -72 } })
+    const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, anchors: { offset: -72 } })
     ;(window as unknown as { lenis?: Lenis }).lenis = lenis
     lenis.on('scroll', ScrollTrigger.update)
     const raf = (time: number) => lenis.raf(time * 1000)
@@ -28,19 +28,14 @@ export default function HomeSections() {
   useIsoLayoutEffect(() => {
     if (prefersReducedMotion() || !ref.current) return
     const ctx = gsap.context(() => {
-      /* reveals: hidden inline first, then eased in when they cross 86% of the viewport */
+      /* reveals: one short, soft fade-up when an element enters, then it stays still */
       gsap.utils.toArray<HTMLElement>('.reveal').forEach(el => {
-        gsap.set(el, { opacity: 0, y: 30 })
-        gsap.to(el, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 86%' } })
+        gsap.set(el, { opacity: 0, y: 16 })
+        gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%' } })
       })
       /* count-ups */
       gsap.utils.toArray<HTMLElement>('[data-count]').forEach(el => {
         ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => countTo(el, Number(el.dataset.count), { duration: 1.6 }) })
-      })
-      /* floating brand assets: scroll parallax at their own speed */
-      gsap.utils.toArray<HTMLElement>('.fl').forEach(el => {
-        const k = parseFloat(el.dataset.speed ?? '1') || 1
-        gsap.fromTo(el, { y: 160 * k }, { y: -160 * k, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } })
       })
     }, ref)
     return () => ctx.revert()

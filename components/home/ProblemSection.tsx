@@ -2,7 +2,6 @@
 import { useRef } from 'react'
 import { markets } from './data'
 import { aiEngines, ArrowRight, ChatGPT, ChevronDown, GoogleColor, LinkIcon, Mic, Search, searchEngines, User } from './icons'
-import { Floater } from './visuals'
 import { gsap, prefersReducedMotion, ScrollTrigger, useIsoLayoutEffect } from './gsap'
 
 const Lines = ({ kind }: { kind: 'google' | 'answer' | 'answer-short' }) => <div className="c2-ln">
@@ -37,17 +36,11 @@ export default function ProblemSection({ market }: { market: number }) {
   }, [market])
 
   return <section className="hs-section shift" id="probleem">
-    <span className="wm" aria-hidden="true">Shift</span>
-    <Floater kind="planet" speed={0.09} size={150} rotate={6} duration={11} style={{ right: '7%', top: '7%' }} className="fl-acc" />
-    <Floater kind="diamond" speed={-0.1} size={38} rotate={9} duration={8} style={{ right: '27%', top: '11%' }} className="fl-acc" />
-    <Floater kind="spark" speed={0.13} size={52} rotate={-8} duration={9.5} style={{ right: '25%', top: '23%' }} className="fl-acc" />
-    <Floater kind="orb" speed={0.11} size={24} duration={8} style={{ right: '15%', top: '25%' }} className="fl-acc" />
-
     <div className="hs-wrap">
       <div className="thead reveal" style={{ maxWidth: 900 }}>
         <span className="eyebrow">Het probleem · de nieuwe realiteit</span>
-        <h2>Zoeken is veranderd. Niet genoemd worden <span className="grad">kost klanten.</span></h2>
-        <p>25 jaar lang betekende zoeken een lijst met links. Nu geven Google en AI-platforms direct antwoord. ORBIT zorgt dat jouw merk onderdeel wordt van dat antwoord.</p>
+        <h2>Zoeken is veranderd. <span className="tone">Niet genoemd worden kost klanten.</span></h2>
+        <p>Google en AI-platforms geven direct antwoord. ORBIT zorgt dat jouw merk in dat antwoord staat.</p>
       </div>
 
       <div className="cmp2 reveal" ref={ref}>
@@ -72,7 +65,7 @@ export default function ProblemSection({ market }: { market: number }) {
             <div className="c2-user"><b key={`q1-${market}`} className="swap">{m.chat[1]}</b><span className="c2-ava"><User /></span></div>
             <div className="c2-ai bub"><span className="c2-gpt av"><ChatGPT /></span><Lines kind="answer-short" /></div>
             <div className="c2-user"><b key={`q2-${market}`} className="swap">{m.chat[2]}</b><span className="c2-ava"><User /></span></div>
-            <div className="c2-erow">{aiEngines.map(([name, Logo]) => <span className="c2-eng" key={name} title={name}><Logo aria-label={name} /></span>)}</div>
+            <div className="c2-erow">{aiEngines.slice(0, 4).map(([name, Logo]) => <span className="c2-eng" key={name} title={name}><Logo aria-label={name} /></span>)}</div>
             <div className="c2-foot"><span className="ic"><Mic /></span>Draait om genoemd én aanbevolen worden</div>
           </div>
         </div>
