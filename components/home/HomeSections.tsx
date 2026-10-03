@@ -17,11 +17,12 @@ export default function HomeSections() {
   useEffect(() => {
     if (prefersReducedMotion()) return
     const lenis = new Lenis({ lerp: 0.11, smoothWheel: true, anchors: { offset: -72 } })
+    ;(window as unknown as { lenis?: Lenis }).lenis = lenis
     lenis.on('scroll', ScrollTrigger.update)
     const raf = (time: number) => lenis.raf(time * 1000)
     gsap.ticker.add(raf)
     gsap.ticker.lagSmoothing(0)
-    return () => { gsap.ticker.remove(raf); lenis.destroy() }
+    return () => { gsap.ticker.remove(raf); lenis.destroy(); delete (window as unknown as { lenis?: Lenis }).lenis }
   }, [])
 
   useIsoLayoutEffect(() => {
