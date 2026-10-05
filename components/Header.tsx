@@ -1,46 +1,66 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
 
-const CalendarIcon = () => <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 2v3M14 2v3M3.5 7.5h13M5 4h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>
-const ArrowUpRight = () => <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 13 13 5M7 5h6v6"/></svg>
-const links: Array<[string, string]> = [['Product', '/product'], ['Prijs', '/prijs'], ['Nieuws', '/nieuws'], ['Over ons', '/over-ons']]
-const demo = 'mailto:hello@outerorbit.nl?subject=Gratis%20demo%20plannen'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { mainNav, site } from '@/lib/site'
+import { Logo } from './Logo'
 
-type LenisLike = { stop: () => void; start: () => void }
+const isActive = (pathname: string, href: string) =>
+  href === '/' ? pathname === '/' || pathname.startsWith('/blog') : pathname.startsWith(href)
 
-export default function Header() {
+export function Header() {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
-  const toggle = useRef<HTMLButtonElement>(null)
-  const panel = useRef<HTMLDivElement>(null)
 
-  /* lock page scroll (native and Lenis) while the menu is open, close on Escape,
-     and close automatically when the viewport grows back to desktop */
+  useEffect(() => setOpen(false), [pathname])
   useEffect(() => {
-    const lenis = (window as unknown as { lenis?: LenisLike }).lenis
-    document.documentElement.classList.toggle('menu-open', open)
-    if (open) { lenis?.stop(); panel.current?.querySelector<HTMLElement>('a')?.focus() }
-    else lenis?.start()
-    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape' && open) { setOpen(false); toggle.current?.focus() } }
-    const desktop = window.matchMedia('(min-width: 901px)')
-    const onResize = () => { if (desktop.matches) setOpen(false) }
-    window.addEventListener('keydown', onKey)
-    desktop.addEventListener('change', onResize)
-    return () => { window.removeEventListener('keydown', onKey); desktop.removeEventListener('change', onResize) }
+    document.documentElement.style.overflow = open ? 'hidden' : ''
   }, [open])
 
-  return <header className={`site-header${open ? ' is-open' : ''}`}>
-    <div className="site-header__inner">
-      <a href="/" className="brand" aria-label="ORBIT ENGINE home"><span className="brand-mark">◒</span><span>ORBIT ENGINE</span></a>
-      <nav className="site-nav" aria-label="Hoofdnavigatie">{links.map(([label, href]) => <a href={href} key={href}>{label}</a>)}</nav>
-      <a className="header-cta" href={demo}><CalendarIcon/><span>Plan een gratis demo</span></a>
-      <button ref={toggle} type="button" className="menu-toggle" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Menu sluiten' : 'Menu openen'} onClick={() => setOpen(value => !value)}>
-        <span aria-hidden="true" /><span aria-hidden="true" />
-      </button>
-    </div>
-    <div id="mobile-menu" ref={panel} className="mobile-menu" hidden={!open}>
-      <nav aria-label="Mobiele navigatie">{links.map(([label, href], index) => <a href={href} key={href} style={{ ['--i' as string]: index }} onClick={() => setOpen(false)}>{label}<ArrowUpRight/></a>)}</nav>
-      <a className="mobile-menu__cta" href={demo} onClick={() => setOpen(false)}><CalendarIcon/>Plan een gratis demo</a>
-      <p className="mobile-menu__note">Autonome groei in Google én AI-antwoorden.</p>
-    </div>
-  </header>
+  return (
+    <header className="site-header">
+      <div className="container">
+        <Link href="/" className="logo-link" aria-label={`${site.name} – home`}>
+          <Logo name={site.name} />
+        </Link>
+
+        <nav className="header-right" aria-label="Hoofdmenu">
+          <ul className="nav-list">
+            {mainNav.map((item) => (
+              <li key={item.label}>
+                <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) && item.href === '/' ? 'page' : undefined}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="nav-divider" />
+          <div className="header-actions">
+            <Link href="/contact" className="btn btn-sm btn-invert">Contact</Link>
+            <button className="menu-toggle" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                {open ? (
+                  <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                ) : (
+                  <path d="M2 5.25h12M2 10.75h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                )}
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      <div className="mobile-menu" data-open={open}>
+        <ul>
+          {mainNav.map((item) => (
+            <li key={item.label}>
+              <Link href={item.href} aria-current={isActive(pathname, item.href) ? 'page' : undefined}>{item.label}</Link>
+            </li>
+          ))}
+          <li><Link href="/contact">Contact</Link></li>
+        </ul>
+      </div>
+    </header>
+  )
 }
