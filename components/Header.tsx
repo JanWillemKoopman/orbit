@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 const CalendarIcon = () => <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 2v3M14 2v3M3.5 7.5h13M5 4h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>
 const ArrowUpRight = () => <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 13 13 5M7 5h6v6"/></svg>
 const links: Array<[string, string]> = [['Product', '/product'], ['Prijs', '/prijs'], ['Nieuws', '/nieuws'], ['Over ons', '/over-ons']]
-const demo = 'mailto:hello@outerorbit.nl?subject=Gratis%20demo%20plannen'
+const demo = 'mailto:hello@outerorbit.nl?subject=Kennismaken%20met%20ORBIT%20ENGINE'
 
 type LenisLike = { stop: () => void; start: () => void }
 
@@ -32,15 +32,15 @@ export default function Header() {
     <div className="site-header__inner">
       <a href="/" className="brand" aria-label="ORBIT ENGINE home"><span className="brand-mark">◒</span><span>ORBIT ENGINE</span></a>
       <nav className="site-nav" aria-label="Hoofdnavigatie">{links.map(([label, href]) => <a href={href} key={href}>{label}</a>)}</nav>
-      <a className="header-cta" href={demo}><CalendarIcon/><span>Plan een gratis demo</span></a>
+      <a className="header-cta" href={demo}><CalendarIcon/><span>Plan een kennismaking</span></a>
       <button ref={toggle} type="button" className="menu-toggle" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Menu sluiten' : 'Menu openen'} onClick={() => setOpen(value => !value)}>
         <span aria-hidden="true" /><span aria-hidden="true" />
       </button>
     </div>
     <div id="mobile-menu" ref={panel} className="mobile-menu" hidden={!open}>
       <nav aria-label="Mobiele navigatie">{links.map(([label, href], index) => <a href={href} key={href} style={{ ['--i' as string]: index }} onClick={() => setOpen(false)}>{label}<ArrowUpRight/></a>)}</nav>
-      <a className="mobile-menu__cta" href={demo} onClick={() => setOpen(false)}><CalendarIcon/>Plan een gratis demo</a>
-      <p className="mobile-menu__note">Autonome groei in Google én AI-antwoorden.</p>
+      <a className="mobile-menu__cta" href={demo} onClick={() => setOpen(false)}><CalendarIcon/>Plan een kennismaking</a>
+      <p className="mobile-menu__note">Zichtbaarheid in Google én AI, persoonlijk begeleid.</p>
     </div>
   </header>
 }
