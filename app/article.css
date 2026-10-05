@@ -1,7 +1,7 @@
 /* ==========================================================================
    Article page
    ========================================================================== */
-.article { max-width: calc(1024px + var(--page-padding) * 2); margin: 0 auto; padding: 80px var(--page-padding) 0; }
+.article { max-width: 1024px; margin: 0 auto; padding: 80px 24px 0; }
 .breadcrumbs { display: flex; justify-content: center; }
 .breadcrumbs ol { display: flex; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; font-size: 13px; line-height: 1.5; font-weight: var(--weight-medium); letter-spacing: -0.01em; color: var(--text-tertiary); }
 .breadcrumbs li + li::before { content: '/'; margin-right: 8px; color: var(--text-quaternary); font-weight: var(--weight-normal); }
@@ -16,7 +16,6 @@
   aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; position: relative;
   pointer-events: none; user-select: none;
 }
-.article-hero::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border-translucent); border-radius: inherit; }
 .article-hero img { width: 100%; height: 100%; object-fit: cover; }
 .article-meta {
   display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
@@ -24,10 +23,12 @@
 }
 .article-meta .meta-dot { margin: 0 10px; }
 
-@media (max-width: 639px) {
-  .article { padding-top: 48px; }
-  .article-title { font-size: 34px; line-height: 1.08; }
-  .article-hero { margin-top: 32px; border-radius: 10px; }
+@media (max-width: 640px) {
+  .article-title { font-size: 32px; line-height: 1.125; }
+  .article-hero { max-width: none; margin-top: 32px; }
+  .article-meta { flex-direction: column; gap: 4px; font-size: 14px; line-height: 21px; letter-spacing: -0.013em; }
+  .article-meta .meta-dot { display: none; }
+  .article-meta { align-items: center; }
 }
 
 /* ==========================================================================
@@ -102,7 +103,7 @@
 .prose figure > img { aspect-ratio: auto; }
 .prose figcaption {
   max-width: var(--measure); margin: 13px auto 0;
-  text-align: center; font-size: 12px; line-height: 1.4; color: var(--text-tertiary);
+  text-align: center; font-size: 12px; line-height: 1.4; letter-spacing: normal; color: var(--text-tertiary);
 }
 
 .prose .table-wrap { overflow-x: auto; margin-top: 32px; }
@@ -111,9 +112,14 @@
 .prose td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--border-translucent); }
 .prose th:last-child, .prose td:last-child { padding-right: 0; }
 
-@media (max-width: 639px) {
-  .prose { margin-top: 56px; font-size: 16px; }
+@media (max-width: 1024px) {
   .prose figure { margin-top: 32px; margin-bottom: 32px; }
+}
+@media (max-width: 768px) {
+  .prose { font-size: 15px; line-height: 24px; letter-spacing: -0.011em; }
+  .prose h2 { font-size: 20px; }
+  .prose h3 { font-size: 16px; }
+  .prose blockquote { font-size: 17px; }
 }
 
 /* ==========================================================================

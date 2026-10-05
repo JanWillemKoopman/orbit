@@ -40,6 +40,18 @@ export const footerNav = [
       { href: '/categorie/productlanceringen', label: 'Productlanceringen' },
       { href: '/categorie/van-het-team', label: 'Van het team' },
       { href: '/categorie/community', label: 'Uit de community' },
+      { href: '/#archief', label: 'Archief' },
+    ],
+  },
+  {
+    title: 'Onderwerpen',
+    links: [
+      { href: '/blog/zichtbaarheid-meten', label: 'Meten' },
+      { href: '/blog/schrijven-voor-modellen', label: 'Schrijven' },
+      { href: '/blog/postgres-keuze', label: 'Techniek' },
+      { href: '/blog/toegankelijkheid', label: 'Ontwerp' },
+      { href: '/blog/woordenlijst-geo', label: 'Woordenlijst' },
+      { href: '/categorie/community', label: 'Klantverhalen' },
     ],
   },
   {
@@ -47,7 +59,6 @@ export const footerNav = [
     links: [
       { href: '/changelog', label: 'Changelog' },
       { href: '/pers', label: 'Pers' },
-      { href: '/#archief', label: 'Archief' },
       { href: '/rss.xml', label: 'RSS-feed' },
     ],
   },
@@ -56,7 +67,8 @@ export const footerNav = [
     links: [
       { href: '/contact', label: 'Contact' },
       { href: '/categorie/van-het-team', label: 'Team' },
-      { href: '/contact', label: 'Werken bij' },
+      { href: '/blog/onboarding', label: 'Werken bij' },
+      { href: '/pers', label: 'Persmap' },
     ],
   },
   {
@@ -66,6 +78,14 @@ export const footerNav = [
       { href: 'https://x.com', label: 'X (Twitter)' },
       { href: 'https://github.com', label: 'GitHub' },
       { href: 'https://www.youtube.com', label: 'YouTube' },
+    ],
+  },
+  {
+    title: 'Juridisch',
+    links: [
+      { href: '/contact', label: 'Privacy' },
+      { href: '/contact', label: 'Voorwaarden' },
+      { href: '/contact', label: 'Cookies' },
     ],
   },
 ]

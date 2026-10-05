@@ -29,7 +29,6 @@ export function Footer() {
         ))}
       </div>
       <div className="container footer-legal">
-        <span>© {new Date().getFullYear()} {site.name}</span>
         {legalNav.map((l) => (
           <Link key={l.label} href={l.href}>{l.label}</Link>
         ))}

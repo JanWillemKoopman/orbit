@@ -1,13 +1,12 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import '@fontsource-variable/inter/opsz.css'
+import '@fontsource-variable/inter/opsz-italic.css'
+import '@fontsource-variable/jetbrains-mono/wght.css'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { site } from '@/lib/site'
 import './globals.css'
 import './article.css'
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
-const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono-family', display: 'swap' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -21,7 +20,7 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1, view
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nl" data-theme="dark" className={`${inter.variable} ${mono.variable}`}>
+    <html lang="nl" data-theme="dark">
       <body>
         <Header />
         <main>{children}</main>

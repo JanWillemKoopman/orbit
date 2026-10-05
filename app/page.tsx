@@ -20,14 +20,14 @@ export default function HomePage() {
           <CardGrid posts={first} priority />
         </div>
 
-        <section className="home-section" aria-labelledby="changelog-title">
+        <section className="home-section section-changelog" aria-labelledby="changelog-title">
           <div className="section-header"><h2 id="changelog-title" className="section-title">Changelog</h2></div>
           <ChangelogTimeline entries={changelog.slice(0, 4)} />
           <Link href="/changelog" className="view-all">Bekijk alles <span aria-hidden="true">→</span></Link>
           <CardGrid posts={second} className="after-block" />
         </section>
 
-        <section className="home-section" aria-labelledby="press-title">
+        <section className="home-section section-press" aria-labelledby="press-title">
           <div className="section-header"><h2 id="press-title" className="section-title">Pers</h2></div>
           <div className="press-row">
             {press.slice(0, 4).map((item) => <PressCard key={item.title} item={item} />)}
@@ -36,8 +36,8 @@ export default function HomePage() {
           <CardGrid posts={third} className="after-block" />
         </section>
 
-        <section className="home-section" id="archief" aria-labelledby="archive-title">
-          <div className="section-header"><h2 id="archive-title" className="section-title">Archief</h2></div>
+        <section className="home-section section-archive" id="archief" aria-labelledby="archive-title">
+          <div className="section-header"><h2 id="archive-title" className="section-title section-title-fixed">Archief</h2></div>
           <Archive posts={archive} />
         </section>
       </div>
