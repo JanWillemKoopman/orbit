@@ -18,7 +18,7 @@
   --border-translucent: rgba(255, 255, 255, 0.08);
   --border-strong: #34343a;
 
-  --accent: #828fff;
+  --accent: #bcff2f;
   --red: #eb5757;
   --button-invert-bg: #e5e5e6;
   --button-invert-bg-hover: #ffffff;
@@ -75,7 +75,7 @@ a { color: inherit; text-decoration: none; }
 button, input, textarea, select { font-feature-settings: inherit; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 img, svg { display: block; max-width: 100%; }
-::selection { background: rgba(130, 143, 255, 0.35); }
+::selection { background: rgba(188, 255, 47, 0.3); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
 .sr-only {
@@ -318,8 +318,8 @@ img, svg { display: block; max-width: 100%; }
 }
 .changelog-indicator::before { width: 20px; height: 20px; opacity: 0.2; }
 .changelog-indicator::after { width: 6px; height: 6px; }
-.changelog-item:first-child .changelog-indicator::before { background: var(--red); opacity: 0.12; }
-.changelog-item:first-child .changelog-indicator::after { background: var(--red); }
+.changelog-item:first-child .changelog-indicator::before { background: var(--accent); opacity: 0.16; }
+.changelog-item:first-child .changelog-indicator::after { background: var(--accent); }
 .changelog-item a { display: flex; flex-direction: column; border-radius: 4px; }
 .changelog-title { font-size: 15px; line-height: 24px; font-weight: var(--weight-medium); color: var(--text-secondary); transition: color var(--speed-quick); }
 .changelog-item a:hover .changelog-title { color: var(--text-primary); }
