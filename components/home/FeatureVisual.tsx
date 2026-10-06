@@ -30,8 +30,8 @@ function Plan() {
   const months = ['okt', 'nov', 'dec', 'jan']
   const bars = [
     { label: 'E-bike onderhoud', start: 4, len: 30, tone: 'accent' },
-    { label: 'Bakfiets leasen', start: 22, len: 34, tone: 'orange' },
-    { label: 'Haal- en brengservice', start: 46, len: 26, tone: 'green' },
+    { label: 'Bakfiets leasen', start: 22, len: 34, tone: 'accent' },
+    { label: 'Haal- en brengservice', start: 46, len: 26, tone: 'muted' },
     { label: 'Fietsverzekering', start: 64, len: 30, tone: 'muted' },
   ]
   return (

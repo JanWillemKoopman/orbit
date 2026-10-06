@@ -67,16 +67,16 @@ function Chart() {
     <svg className="af-chart" viewBox={`0 0 ${w} ${h + 22}`} preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <linearGradient id="af-fill" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#828fff" stopOpacity=".22" />
-          <stop offset="1" stopColor="#828fff" stopOpacity="0" />
+          <stop offset="0" stopColor="#bcff2f" stopOpacity=".22" />
+          <stop offset="1" stopColor="#bcff2f" stopOpacity="0" />
         </linearGradient>
       </defs>
       {[0, 1, 2, 3].map((i) => <line key={i} x1="0" x2={w} y1={(h / 3) * i} y2={(h / 3) * i} stroke="#ffffff0d" />)}
       <path d={`${own} L${w} ${h} L0 ${h} Z`} fill="url(#af-fill)" />
       <path d={linePath(series.a, w, h)} stroke="#62666d" strokeWidth="1.25" fill="none" strokeDasharray="3 3" />
       <path d={linePath(series.b, w, h)} stroke="#3e4147" strokeWidth="1.25" fill="none" strokeDasharray="3 3" />
-      <path d={own} stroke="#828fff" strokeWidth="1.75" fill="none" />
-      <circle cx={w} cy={h - (38 / 45) * h} r="3.5" fill="#828fff" />
+      <path d={own} stroke="#bcff2f" strokeWidth="1.75" fill="none" />
+      <circle cx={w} cy={h - (38 / 45) * h} r="3.5" fill="#bcff2f" />
       {['jul', 'aug', 'sep', 'okt'].map((m, i) => (
         <text key={m} x={(w / 3) * i + (i === 0 ? 0 : i === 3 ? -18 : -8)} y={h + 18} fill="#62666d" fontSize="11" fontFamily="inherit">{m}</text>
       ))}
@@ -141,7 +141,7 @@ export function AppFrame() {
               <div className="af-card-head">
                 <span>Genoemd in antwoorden</span>
                 <span className="af-legend">
-                  <span><i style={{ background: '#828fff' }} />Jij</span>
+                  <span><i style={{ background: '#bcff2f' }} />Jij</span>
                   <span><i style={{ background: '#62666d' }} />Stella</span>
                   <span><i style={{ background: '#3e4147' }} />Fietsdokter</span>
                 </span>
