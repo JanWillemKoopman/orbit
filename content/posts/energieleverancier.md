@@ -5,7 +5,7 @@ date: 2026-09-25
 author: Lisa Jansen
 category: community
 label: Klantverhaal
-cover: "art:waves:4"
+cover: "/images/cover-energie.webp"
 featured: true
 ---
 

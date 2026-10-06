@@ -4,7 +4,7 @@ description: "Eén werkruimte, meerdere markten. Meet per land en per taal, en v
 date: 2026-09-29
 author: Thomas Bakker
 category: productlanceringen
-cover: "art:orb:3"
+cover: "/images/cover-markten.webp"
 featured: true
 ---
 

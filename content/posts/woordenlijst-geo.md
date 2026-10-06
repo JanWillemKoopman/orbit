@@ -4,7 +4,7 @@ description: "Van vermeldingskans tot bronpositie: de begrippen die we dagelijks
 date: 2026-09-22
 author: Julia Peters
 category: van-het-team
-cover: "art:grid:6"
+cover: "/images/cover-woordenlijst.webp"
 featured: true
 ---
 
