@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
-import { hero, loop, prefooter, result, statement } from '@/content/home'
+import { hero, loop, prefooter, result, statement, story } from '@/content/home'
 import { ChangelogTimeline } from '@/components/Changelog'
 import { CardGrid } from '@/components/PostCard'
 import { AppFrame } from '@/components/home/AppFrame'
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, changelog, blog en een afsluiter.
+// het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, changelog, blog en een afsluiter.
 export default function HomePage() {
   const latest = changelog[0]
   const posts = getPostMetas().slice(0, 3)
@@ -100,6 +100,21 @@ export default function HomePage() {
             <div className="sc-caption-block">
               <h3>{result.captionTitle}</h3>
               <p>{result.caption}</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="feature story" aria-labelledby="home-story">
+          <div className="keyline" />
+          <div className="feature-header">
+            <h2 id="home-story" className="feature-title">{story.title}</h2>
+            <div className="feature-description story-body">
+              {story.paragraphs.map((p) => <p key={p}>{p}</p>)}
+              <div className="home-quote-author story-author">
+                <img src={statement.author.photo} alt="" width={48} height={48} />
+                <span>{statement.author.name}</span>
+              </div>
+              <Link href={story.link.href} className="home-link story-link">{story.link.label} <span aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>

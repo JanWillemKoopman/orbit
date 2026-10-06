@@ -339,6 +339,12 @@
 .rs-article p { max-width: 760px; font-size: 14px; line-height: 1.7; color: var(--text-secondary); }
 .rs-article h4 { margin-top: 18px; margin-bottom: 6px; font-size: 15px; font-weight: var(--weight-medium); color: var(--text-primary); }
 
+/* Persoonlijke introductie met link naar het volledige artikel ------------- */
+.story .feature-header { padding-bottom: 128px; }
+.story-body p + p { margin-top: 24px; }
+.story-author { margin-top: 40px; }
+.story-link { margin-top: 24px; }
+
 /* Changelog en blog ------------------------------------------------------ */
 .home-block { margin-top: 0; }
 .home-block-title { padding-top: 168px; font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary); margin-left: -2px; }
@@ -386,6 +392,9 @@
   .home-prefooter { margin-block: 64px 128px; }
 }
 @media (max-width: 640px) {
+  .story .feature-header { padding-bottom: 72px; }
+  .story-body p + p { margin-top: 16px; }
+  .story-author { margin-top: 24px; }
   .result { padding-bottom: 72px; }
   .rs-stage { height: 680px; padding: 40px 0 0 16px; }
   .rs-frame { grid-template-columns: minmax(0, 1fr); width: 440px; }
