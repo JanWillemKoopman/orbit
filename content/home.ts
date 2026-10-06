@@ -64,6 +64,15 @@ export const showcase = {
   description: 'Je clusters, de vragen die de schrijver nog aan je heeft en de planning van je content staan bij elkaar. Zo zie je in één oogopslag wat er loopt en wat er van jou nodig is.',
 }
 
+// Het blok met het eindresultaat onder de drie schermen: kop en uitleg, daaronder één pagina uit de
+// Bibliotheek met een bijschrift linksonder.
+export const result = {
+  title: 'Het eindresultaat',
+  description: 'Een complete pagina in jouw toon, gebouwd op de antwoorden die je gaf. Jij keurt hem goed en zet hem op je site.',
+  captionTitle: 'Klaar voor je site',
+  caption: 'De bedragen op deze pagina komen uit het antwoord dat je bij Openstaande vragen gaf. Na publicatie meet ORBIT ENGINE of AI-assistenten je merk vaker noemen.',
+}
+
 export type FeatureLink = { label: string; href: string }
 export type Feature = {
   /** Titel links; gebruik \n voor een regelafbreking zoals op linear.app. */
