@@ -4,7 +4,7 @@ description: Een AI-assistent geeft op dezelfde vraag zelden twee keer hetzelfde
 date: 2026-10-02
 author: Sanne de Vries
 category: van-het-team
-cover: art:dots:7
+cover: "/images/cover-meten.webp"
 featured: true
 ---
 

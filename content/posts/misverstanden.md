@@ -4,7 +4,7 @@ description: "Nee, je hoeft niet elke week honderd artikelen te publiceren. En n
 date: 2026-09-18
 author: Sanne de Vries
 category: van-het-team
-cover: "art:prism:5"
+cover: "/images/cover-misverstanden.webp"
 featured: true
 ---
 
