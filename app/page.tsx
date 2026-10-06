@@ -2,11 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
-import { features, hero, loop, prefooter, result, statement } from '@/content/home'
+import { hero, loop, prefooter, result, statement } from '@/content/home'
 import { ChangelogTimeline } from '@/components/Changelog'
 import { CardGrid } from '@/components/PostCard'
 import { AppFrame } from '@/components/home/AppFrame'
-import { FeatureVisual } from '@/components/home/FeatureVisual'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
 import { getPostMetas } from '@/lib/posts'
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// het procesblok met de stappen naast elkaar, twee blokken met titel links en tekst rechts, changelog, blog en een afsluiter.
+// het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, changelog, blog en een afsluiter.
 export default function HomePage() {
   const latest = changelog[0]
   const posts = getPostMetas().slice(0, 3)
@@ -104,30 +103,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {features.map((f) => (
-          <section className="feature" key={f.title}>
-            <div className="keyline" />
-            <div className="feature-header">
-              <h2 className="feature-title">
-                {f.title.split('\n').map((line, i) => <span key={i}>{i > 0 && <br />}{line}</span>)}
-              </h2>
-              <div className="feature-description">
-                <p>{f.description}</p>
-                <Link href={f.href} className="home-link">Lees meer <span aria-hidden="true">→</span></Link>
-              </div>
-            </div>
-            <FeatureVisual type={f.visual} />
-            <div className="feature-footer">
-              <span className="feature-footer-label">Functies</span>
-              <ul className="feature-links">
-                {f.links.map((l) => (
-                  <li key={l.label}><Link href={l.href}>{l.label} <span className="feature-plus" aria-hidden="true">→</span></Link></li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        ))}
 
         <section className="home-block" aria-labelledby="home-changelog">
           <div className="keyline" />

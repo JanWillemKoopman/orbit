@@ -1,5 +1,4 @@
 // Teksten van de homepage (/). Alles hieronder mag je vrij aanpassen; de opmaak volgt vanzelf.
-// De blokken in `features` zijn placeholders: vervang titel, tekst en links door je eigen verhaal.
 
 export const hero = {
   title: ['Open source SEO & GEO software', 'voor marketeers.'],
@@ -74,41 +73,6 @@ export const result = {
 }
 
 export type FeatureLink = { label: string; href: string }
-export type Feature = {
-  /** Titel links; gebruik \n voor een regelafbreking zoals op linear.app. */
-  title: string
-  description: string
-  href: string
-  visual: 'measure' | 'plan' | 'write'
-  links: FeatureLink[]
-}
-
-export const features: Feature[] = [
-  {
-    title: 'Plannen\nen prioriteren',
-    description: 'Placeholder: ORBIT ENGINE bundelt de vragen van je klanten in onderwerpen en zet de kansen op volgorde, zodat je weet waar je eerste pagina over moet gaan.',
-    href: '/blog/een-prompt-is-geen-zoekwoord',
-    visual: 'plan',
-    links: [
-      { label: 'Onderwerpen', href: '/blog/een-prompt-is-geen-zoekwoord' },
-      { label: 'Contentplan', href: '/blog/briefings-uit-klantvragen' },
-      { label: 'Briefings', href: '/blog/wat-een-goede-briefing-bevat' },
-      { label: 'Woordenlijst', href: '/blog/woordenlijst-geo' },
-    ],
-  },
-  {
-    title: 'Schrijven\nen publiceren',
-    description: 'Placeholder: van briefing tot concept in je eigen tone of voice, met de feiten uit je merkdossier. Jij leest mee en beslist wat er live gaat.',
-    href: '/blog/schrijven-voor-modellen',
-    visual: 'write',
-    links: [
-      { label: 'Schrijven voor modellen', href: '/blog/schrijven-voor-modellen' },
-      { label: 'Gestructureerde data', href: '/blog/gestructureerde-data-in-vijf-minuten' },
-      { label: 'CMS-koppelingen', href: '/blog/cms-integraties' },
-    ],
-  },
-]
-
 export const prefooter = {
   title: 'Built for the future. Available today.',
 }
