@@ -409,9 +409,15 @@
   .sc-screen[data-pos='front'] { left: 16px; right: 16px; width: auto; top: 48px; height: 450px; padding: 20px; }
   .sc-caption-block { padding: 0 20px 28px; }
   .sc-caption-block h3, .sc-caption-block p { font-size: 15px; }
-  .process-steps { grid-template-columns: 1fr; row-gap: 40px; }
-  .process-step { padding: 0; border-left: 0; }
-  .process-link { padding-top: 16px; }
+  /* Op mobiel staat het nummer links naast de stap in plaats van erboven: scheelt per stap
+     een regel van ruim 40px, over vijf stappen ruim 200px scrollen. */
+  .process-steps { grid-template-columns: 1fr; row-gap: 32px; }
+  .process-step { display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 16px; align-items: start; padding: 0; border-left: 0; }
+  .process-number { grid-row: 1 / span 3; margin-top: 1px; }
+  .process-title, .process-description, .process-link { grid-column: 2; }
+  .process-title { margin-top: 0; font-size: 18px; }
+  .process-description { margin-top: 4px; }
+  .process-link { padding-top: 10px; width: fit-content; }
   .home-hero { padding-top: 132px; }
   .home-quote-mark { position: static; transform: none; }
   .home-quote-author { margin-top: 24px; }
