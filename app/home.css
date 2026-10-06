@@ -291,6 +291,7 @@
 .sc-planned { display: flex; flex-direction: column; }
 .sc-planned-row { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255, 255, 255, 0.06); }
 .sc-planned-title { font-size: 13px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sc-dots { display: none; }
 .sc-caption-block { position: relative; padding: 0 40px 40px; max-width: 760px; }
 .sc-caption-block h3 { font-size: 17px; line-height: 1.5; font-weight: var(--weight-medium); letter-spacing: -0.011em; color: var(--text-primary); }
 .sc-caption-block p { margin-top: 4px; font-size: 17px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
@@ -404,9 +405,17 @@
   .rs-step-label { font-size: 10px; }
   .process { padding-bottom: 72px; }
   .sc-root { margin-top: 56px; margin-inline: -8px; }
-  .sc-stage { height: 520px; }
-  .sc-screen[data-pos='back'], .sc-screen[data-pos='mid'] { display: none; }
-  .sc-screen[data-pos='front'] { left: 16px; right: 16px; width: auto; top: 48px; height: 450px; padding: 20px; }
+  /* Op mobiel een veegbare rij: elk scherm 86% breed, zodat het volgende net in beeld piept. */
+  .sc-stage {
+    height: auto; display: flex; gap: 12px; padding: 40px 16px 0; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-inline: 16px; scrollbar-width: none;
+    mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  }
+  .sc-stage::-webkit-scrollbar { display: none; }
+  .sc-screen[data-pos] { position: relative; inset: auto; flex: 0 0 86%; width: auto; height: 440px; padding: 20px; filter: none; scroll-snap-align: start; }
+  .sc-dots { display: flex; justify-content: center; gap: 6px; padding: 4px 0 20px; }
+  .sc-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); transition: background var(--speed-quick), width var(--speed-quick); }
+  .sc-dots span[data-active] { width: 16px; border-radius: 3px; background: var(--text-secondary); }
   .sc-caption-block { padding: 0 20px 28px; }
   .sc-caption-block h3, .sc-caption-block p { font-size: 15px; }
   /* Op mobiel staat het nummer links naast de stap in plaats van erboven: scheelt per stap

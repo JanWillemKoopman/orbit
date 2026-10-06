@@ -3,6 +3,7 @@
 // (strategie/vragen) en de kalender van het Contentplan (strategie/plan). Statusnamen en knoppen
 // zijn letterlijk die uit de app; namen en cijfers zijn voorbeelddata van het verzonnen merk uit de hero.
 import { showcase } from '@/content/home'
+import { ShowcaseSlider } from './ShowcaseSlider'
 
 type Tone = 'wacht' | 'loopt' | 'klaar'
 
@@ -155,11 +156,11 @@ function Kalender() {
 export function Showcase() {
   return (
     <div className="sc-root">
-      <div className="sc-stage" aria-hidden="true">
+      <ShowcaseSlider>
         <div className="sc-screen" data-pos="back"><Clusters /></div>
         <div className="sc-screen" data-pos="mid"><Vragen /></div>
         <div className="sc-screen" data-pos="front"><Kalender /></div>
-      </div>
+      </ShowcaseSlider>
       <div className="sc-caption-block">
         <h3>{showcase.title}</h3>
         <p>{showcase.description}</p>
