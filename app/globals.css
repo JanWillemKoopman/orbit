@@ -157,6 +157,9 @@ img, svg { display: block; max-width: 100%; }
 .nav-link[aria-current='page'] { color: var(--text-primary); }
 .nav-divider { width: 1px; height: 16px; margin: 0 8px; background: var(--border-primary); }
 .header-actions { display: flex; align-items: center; gap: 8px; }
+/* Zoals "Log in" naast "Sign up" op linear.app: een tekstlink naast de witte knop, ook op mobiel */
+.header-contact { padding: 0 8px; }
+.btn-github { gap: 6px; }
 
 .menu-toggle { display: none; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 8px; color: var(--text-primary); }
 .menu-toggle:hover { background: var(--bg-hover); }

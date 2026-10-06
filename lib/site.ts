@@ -5,6 +5,10 @@ export const site = {
   description: 'Verhalen, productnieuws en inzichten van het Orbit-team.',
   url: 'https://orbit.example.com',
   contactEmail: 'hallo@orbit.example.com',
+  // Rechtsboven in de header: de witte knop "GitHub" en de link "Contact". Beide gaan voorlopig
+  // naar LinkedIn; zet githubUrl op de repository zodra ORBIT ENGINE open source online staat.
+  githubUrl: 'https://www.linkedin.com/in/janwillemkoopman/',
+  contactUrl: 'https://www.linkedin.com/in/janwillemkoopman/',
   locale: 'nl-NL',
 }
 
