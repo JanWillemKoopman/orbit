@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
-import { features, hero, loop, prefooter, statement } from '@/content/home'
+import { features, hero, loop, prefooter, result, statement } from '@/content/home'
 import { ChangelogTimeline } from '@/components/Changelog'
 import { CardGrid } from '@/components/PostCard'
 import { AppFrame } from '@/components/home/AppFrame'
 import { FeatureVisual } from '@/components/home/FeatureVisual'
 import { Showcase } from '@/components/home/Showcase'
+import { ResultFrame } from '@/components/home/ResultFrame'
 import { getPostMetas } from '@/lib/posts'
 
 export const metadata: Metadata = {
@@ -85,6 +86,23 @@ export default function HomePage() {
             ))}
           </ol>
           <Showcase />
+        </section>
+
+        <section className="feature result" aria-labelledby="home-result">
+          <div className="keyline" />
+          <div className="feature-header">
+            <h2 id="home-result" className="feature-title">{result.title}</h2>
+            <div className="feature-description">
+              <p>{result.description}</p>
+            </div>
+          </div>
+          <div className="sc-root rs-root">
+            <div className="rs-stage"><ResultFrame /></div>
+            <div className="sc-caption-block">
+              <h3>{result.captionTitle}</h3>
+              <p>{result.caption}</p>
+            </div>
+          </div>
         </section>
 
         {features.map((f) => (

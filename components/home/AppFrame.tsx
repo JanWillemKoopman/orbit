@@ -3,9 +3,9 @@
 // Alle cijfers en namen hieronder zijn voorbeelddata van een verzonnen merk.
 import { LogoMark } from '@/components/Logo'
 
-type IconName = 'inbox' | 'chart' | 'search' | 'compass' | 'stack' | 'doc' | 'question' | 'book' | 'brand' | 'facts' | 'chevron' | 'plus' | 'sliders' | 'sparkle'
+export type IconName = 'inbox' | 'chart' | 'search' | 'compass' | 'stack' | 'doc' | 'question' | 'book' | 'brand' | 'facts' | 'chevron' | 'plus' | 'sliders' | 'sparkle'
 
-function Icon({ name }: { name: IconName }) {
+export function Icon({ name }: { name: IconName }) {
   const p = { stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, fill: 'none' }
   const paths: Record<IconName, React.ReactNode> = {
     inbox: <><path {...p} d="M2.5 9.5h3l1 2h3l1-2h3" /><path {...p} d="M3.5 4h9l1 5.5v3a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-3Z" /></>,
