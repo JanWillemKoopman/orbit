@@ -31,7 +31,7 @@ export default async function ArticlePage({ params }: Props) {
     <article className="article">
       <nav className="breadcrumbs" aria-label="Kruimelpad">
         <ol>
-          <li><Link href="/" className="dimmed">{site.blogTitle}</Link></li>
+          <li><Link href="/blog" className="dimmed">{site.blogTitle}</Link></li>
           <li><Link href={`/categorie/${post.category}`} className="dimmed">{post.categoryLabel}</Link></li>
         </ol>
       </nav>
