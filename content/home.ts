@@ -1,5 +1,5 @@
 // Teksten van de homepage (/). Alles hieronder mag je vrij aanpassen; de opmaak volgt vanzelf.
-// De drie blokken in `features` zijn placeholders: vervang titel, tekst en links door je eigen verhaal.
+// De blokken in `features` zijn placeholders: vervang titel, tekst en links door je eigen verhaal.
 
 export const hero = {
   title: ['Open source SEO & GEO software', 'voor marketeers.'],
@@ -14,6 +14,50 @@ export const statement = {
   author: { name: 'Jan-Willem Koopman', photo: '/images/jan-willem-koopman.jpg' },
 }
 
+// Het procesblok direct onder de quote: titel en uitleg, daarna de stappen naast elkaar.
+// De stappen met `number` zijn het stappenplan; de laatste stap zonder nummer sluit de loop.
+// Alle links wijzen voorlopig naar dezelfde blogpost die nog geschreven wordt. Zolang die er
+// niet is, geeft de link een 404. Maak hem aan als content/posts/zo-werkt-orbit-engine.md.
+export type ProcessStep = { number?: number; title: string; description: string; link: FeatureLink }
+
+const processPost = '/blog/zo-werkt-orbit-engine'
+
+export const loop: { title: string; description: string; steps: ProcessStep[] } = {
+  title: 'Jouw Brand Intelligence Brain',
+  description: 'Het combineert wat jij het vertelt met wat het online vindt, en gaat vervolgens aan de slag, meet de resultaten en wordt steeds slimmer, in één doorlopende loop.',
+  steps: [
+    {
+      number: 1,
+      title: 'Ontdek kansen',
+      description: 'Welke vragen stellen je klanten aan AI, en waar ontbreekt jouw merk nog in het antwoord?',
+      link: { label: 'Kansen vinden', href: processPost },
+    },
+    {
+      number: 2,
+      title: 'Genereer content',
+      description: 'Pagina\'s in je eigen toon, gebouwd op de feiten die jij aanlevert.',
+      link: { label: 'Content maken', href: processPost },
+    },
+    {
+      number: 3,
+      title: 'Publiceren',
+      description: 'Jij leest mee en beslist wat er live gaat op je eigen site.',
+      link: { label: 'Publiceren', href: processPost },
+    },
+    {
+      number: 4,
+      title: 'Impact meten',
+      description: 'Zie of AI-assistenten je merk na publicatie vaker noemen.',
+      link: { label: 'Resultaten meten', href: processPost },
+    },
+    {
+      title: 'Steeds slimmer',
+      description: 'Elke meting voedt de volgende ronde kansen. Zo begint de loop opnieuw, met meer kennis.',
+      link: { label: 'De loop', href: processPost },
+    },
+  ],
+}
+
 export type FeatureLink = { label: string; href: string }
 export type Feature = {
   /** Titel links; gebruik \n voor een regelafbreking zoals op linear.app. */
@@ -25,18 +69,6 @@ export type Feature = {
 }
 
 export const features: Feature[] = [
-  {
-    title: 'Meten\nin AI-antwoorden',
-    description: 'Placeholder: zie per vraag of ChatGPT, Gemini en Google AI Overview jouw merk noemen, en welke concurrent de plek inneemt als dat niet zo is.',
-    href: '/blog/zichtbaarheid-meten',
-    visual: 'measure',
-    links: [
-      { label: 'Zichtbaarheid meten', href: '/blog/zichtbaarheid-meten' },
-      { label: 'Concurrentieradar', href: '/blog/concurrentieradar' },
-      { label: 'Bronvermeldingen', href: '/blog/wat-betekent-een-bronvermelding-eigenlijk' },
-      { label: 'Meerdere markten', href: '/blog/meerdere-markten' },
-    ],
-  },
   {
     title: 'Plannen\nen prioriteren',
     description: 'Placeholder: ORBIT ENGINE bundelt de vragen van je klanten in onderwerpen en zet de kansen op volgorde, zodat je weet waar je eerste pagina over moet gaan.',
