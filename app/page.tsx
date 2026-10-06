@@ -51,9 +51,17 @@ export default function HomePage() {
       </div>
 
       <div className="container">
-        <h2 className="home-statement">
-          <strong>{statement.strong}</strong> {statement.rest}
-        </h2>
+        <figure className="home-quote">
+          <blockquote className="home-statement">
+            <p>
+              <strong><span className="home-quote-mark" aria-hidden="true">“</span>{statement.strong}</strong> {statement.rest}<span aria-hidden="true">”</span>
+            </p>
+          </blockquote>
+          <figcaption className="home-quote-author">
+            <img src={statement.author.photo} alt="" width={48} height={48} />
+            <span>{statement.author.name}</span>
+          </figcaption>
+        </figure>
 
         {features.map((f) => (
           <section className="feature" key={f.title}>

@@ -6,10 +6,12 @@ export const hero = {
   description: 'ORBIT ENGINE is gratis te gebruiken voor marketeers die voorop willen lopen met AI.',
 }
 
-// Grote tussenzin onder het dashboard. Het vetgedrukte deel staat in het wit, de rest in grijs.
+// Grote quote onder het dashboard. Het vetgedrukte deel staat in het wit, de rest in grijs.
 export const statement = {
   strong: 'Een nieuw soort marketingsoftware.',
   rest: 'Gemaakt voor een tijd waarin klanten hun antwoord aan AI vragen. ORBIT ENGINE laat zien of je merk genoemd wordt en wat je eraan kunt doen.',
+  // Staat als quote met foto en naam eronder. Foto in public/images/, vierkant werkt het best.
+  author: { name: 'Jan-Willem Koopman', photo: '/images/jan-willem-koopman.jpg' },
 }
 
 export type FeatureLink = { label: string; href: string }
