@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
-import { features, hero, prefooter, statement } from '@/content/home'
+import { features, hero, loop, prefooter, statement } from '@/content/home'
 import { ChangelogTimeline } from '@/components/Changelog'
 import { CardGrid } from '@/components/PostCard'
 import { AppFrame } from '@/components/home/AppFrame'
 import { FeatureVisual } from '@/components/home/FeatureVisual'
+import { Showcase } from '@/components/home/Showcase'
 import { getPostMetas } from '@/lib/posts'
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// drie blokken met titel links en tekst rechts, changelog, blog en een afsluiter.
+// het procesblok met de stappen naast elkaar, twee blokken met titel links en tekst rechts, changelog, blog en een afsluiter.
 export default function HomePage() {
   const latest = changelog[0]
   const posts = getPostMetas().slice(0, 3)
@@ -51,9 +52,40 @@ export default function HomePage() {
       </div>
 
       <div className="container">
-        <h2 className="home-statement">
-          <strong>{statement.strong}</strong> {statement.rest}
-        </h2>
+        <figure className="home-quote">
+          <blockquote className="home-statement">
+            <p>
+              <strong><span className="home-quote-mark" aria-hidden="true">“</span>{statement.strong}</strong> {statement.rest}<span aria-hidden="true">”</span>
+            </p>
+          </blockquote>
+          <figcaption className="home-quote-author">
+            <img src={statement.author.photo} alt="" width={48} height={48} />
+            <span>{statement.author.name}</span>
+          </figcaption>
+        </figure>
+
+        <section className="feature process" aria-labelledby="home-process">
+          <div className="keyline" />
+          <div className="feature-header">
+            <h2 id="home-process" className="feature-title">{loop.title}</h2>
+            <div className="feature-description">
+              <p>{loop.description}</p>
+            </div>
+          </div>
+          <ol className="process-steps">
+            {loop.steps.map((step) => (
+              <li className="process-step" key={step.title}>
+                <span className="process-number" aria-hidden="true">
+                  {step.number ?? <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9" /><path d="M13.5 2.5v3h-3" /></svg>}
+                </span>
+                <h3 className="process-title">{step.title}</h3>
+                <p className="process-description">{step.description}</p>
+                <Link href={step.link.href} className="process-link">{step.link.label} <span className="feature-plus" aria-hidden="true">→</span></Link>
+              </li>
+            ))}
+          </ol>
+          <Showcase />
+        </section>
 
         {features.map((f) => (
           <section className="feature" key={f.title}>
