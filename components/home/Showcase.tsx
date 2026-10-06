@@ -99,14 +99,16 @@ function Vragen() {
 // November 2026: de 1e valt op een zondag. Per dag de kleur van de
 // status die in de app voorgaat (wachten op jou gaat voor klaar, klaar voor gepland).
 const dagen: Record<number, { tone: Tone }> = {
-  3: { tone: 'klaar' },
-  6: { tone: 'klaar' },
+  2: { tone: 'klaar' },
+  4: { tone: 'klaar' },
   10: { tone: 'wacht' },
+  12: { tone: 'loopt' },
   13: { tone: 'loopt' },
   17: { tone: 'loopt' },
-  20: { tone: 'loopt' },
-  24: { tone: 'loopt' },
-  27: { tone: 'loopt' },
+  19: { tone: 'loopt' },
+  23: { tone: 'loopt' },
+  25: { tone: 'loopt' },
+  26: { tone: 'loopt' },
 }
 
 const ingepland: { dag: string; title: string; status: string; tone: Tone }[] = [
