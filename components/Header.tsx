@@ -6,8 +6,7 @@ import { useEffect, useState } from 'react'
 import { mainNav, site } from '@/lib/site'
 import { Logo } from './Logo'
 
-const isActive = (pathname: string, href: string) =>
-  href === '/' ? pathname === '/' || pathname.startsWith('/blog') : pathname.startsWith(href)
+const isActive = (pathname: string, href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
 
 export function Header() {
   const pathname = usePathname()
@@ -29,7 +28,7 @@ export function Header() {
           <ul className="nav-list">
             {mainNav.map((item) => (
               <li key={item.label}>
-                <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) && item.href === '/' ? 'page' : undefined}>
+                <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) && item.href === '/blog' ? 'page' : undefined}>
                   {item.label}
                 </Link>
               </li>

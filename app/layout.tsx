@@ -7,6 +7,7 @@ import { Header } from '@/components/Header'
 import { site } from '@/lib/site'
 import './globals.css'
 import './article.css'
+import './home.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

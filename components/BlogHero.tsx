@@ -7,7 +7,7 @@ export function BlogHero({ active, title = site.blogTitle }: { active: string; t
   const items = getPostMetas().map((p) => ({ slug: p.slug, title: p.title, description: p.description, byline: byline(p), date: p.date, category: p.categoryLabel }))
   return (
     <div className="blog-hero">
-      <h1 className="page-title"><Link href="/">{title}</Link></h1>
+      <h1 className="page-title"><Link href="/blog">{title}</Link></h1>
       <div className="tab-row">
         <nav className="tabs" aria-label="Categorieën">
           {tabs.map((t) => (

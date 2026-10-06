@@ -16,9 +16,9 @@ export const categories = [
 
 export type CategorySlug = (typeof categories)[number]['slug']
 
-// Tabs boven het overzicht. "Changelog" en "Pers" hebben een eigen pagina.
+// Tabs boven het blogoverzicht (/blog). "Changelog" en "Pers" hebben een eigen pagina.
 export const tabs = [
-  { href: '/', label: 'Alles' },
+  { href: '/blog', label: 'Alles' },
   { href: '/changelog', label: 'Changelog' },
   ...categories.map((c) => ({ href: `/categorie/${c.slug}`, label: c.label })),
   { href: '/pers', label: 'Pers' },
@@ -29,18 +29,18 @@ export const mainNav = [
   { href: '/categorie/community', label: 'Klanten' },
   { href: '/changelog', label: 'Changelog' },
   { href: '/pers', label: 'Pers' },
-  { href: '/', label: 'Nu' },
+  { href: '/blog', label: 'Nu' },
 ]
 
 export const footerNav = [
   {
     title: 'Blog',
     links: [
-      { href: '/', label: 'Alles' },
+      { href: '/blog', label: 'Alles' },
       { href: '/categorie/productlanceringen', label: 'Productlanceringen' },
       { href: '/categorie/van-het-team', label: 'Van het team' },
       { href: '/categorie/community', label: 'Uit de community' },
-      { href: '/#archief', label: 'Archief' },
+      { href: '/blog#archief', label: 'Archief' },
     ],
   },
   {
