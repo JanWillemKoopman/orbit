@@ -1,5 +1,4 @@
 // Teksten van de homepage (/). Alles hieronder mag je vrij aanpassen; de opmaak volgt vanzelf.
-// De blokken in `features` zijn placeholders: vervang titel, tekst en links door je eigen verhaal.
 
 export const hero = {
   title: ['Open source SEO & GEO software', 'voor marketeers.'],
@@ -73,42 +72,20 @@ export const result = {
   caption: 'De bedragen op deze pagina komen uit het antwoord dat je bij Openstaande vragen gaf. Na publicatie meet ORBIT ENGINE of AI-assistenten je merk vaker noemen.',
 }
 
-export type FeatureLink = { label: string; href: string }
-export type Feature = {
-  /** Titel links; gebruik \n voor een regelafbreking zoals op linear.app. */
-  title: string
-  description: string
-  href: string
-  visual: 'measure' | 'plan' | 'write'
-  links: FeatureLink[]
+// Het persoonlijke blok onder het eindresultaat: een korte introductie met een link naar het
+// volledige blogartikel. Concepttekst, vervang hem door je eigen woorden. Het artikel staat als
+// concept in content/posts/_waarom-ik-orbit-engine-bouw.md; zolang de bestandsnaam met _ begint,
+// is het niet online en geeft de link een 404. Haal de _ weg zodra het artikel af is.
+export const story = {
+  title: 'Waarom ik ORBIT ENGINE bouw',
+  paragraphs: [
+    'Steeds meer mensen stellen hun vraag niet meer aan Google, maar aan ChatGPT of Gemini. Ze krijgen één antwoord, met een paar namen erin. Een bedrijf dat daar niet tussen staat, bestaat voor die klant niet.',
+    'Grote merken hebben teams die dat bijhouden. Een MKB-bedrijf heeft die meestal niet. Daarom bouw ik ORBIT ENGINE: software die laat zien waar je merk ontbreekt, de pagina schrijft die daar verandering in brengt en meet of het werkt.',
+  ],
+  link: { label: 'Lees het hele verhaal', href: '/blog/waarom-ik-orbit-engine-bouw' },
 }
 
-export const features: Feature[] = [
-  {
-    title: 'Plannen\nen prioriteren',
-    description: 'Placeholder: ORBIT ENGINE bundelt de vragen van je klanten in onderwerpen en zet de kansen op volgorde, zodat je weet waar je eerste pagina over moet gaan.',
-    href: '/blog/een-prompt-is-geen-zoekwoord',
-    visual: 'plan',
-    links: [
-      { label: 'Onderwerpen', href: '/blog/een-prompt-is-geen-zoekwoord' },
-      { label: 'Contentplan', href: '/blog/briefings-uit-klantvragen' },
-      { label: 'Briefings', href: '/blog/wat-een-goede-briefing-bevat' },
-      { label: 'Woordenlijst', href: '/blog/woordenlijst-geo' },
-    ],
-  },
-  {
-    title: 'Schrijven\nen publiceren',
-    description: 'Placeholder: van briefing tot concept in je eigen tone of voice, met de feiten uit je merkdossier. Jij leest mee en beslist wat er live gaat.',
-    href: '/blog/schrijven-voor-modellen',
-    visual: 'write',
-    links: [
-      { label: 'Schrijven voor modellen', href: '/blog/schrijven-voor-modellen' },
-      { label: 'Gestructureerde data', href: '/blog/gestructureerde-data-in-vijf-minuten' },
-      { label: 'CMS-koppelingen', href: '/blog/cms-integraties' },
-    ],
-  },
-]
-
+export type FeatureLink = { label: string; href: string }
 export const prefooter = {
   title: 'Built for the future. Available today.',
 }
