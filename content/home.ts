@@ -58,6 +58,12 @@ export const loop: { title: string; description: string; steps: ProcessStep[] } 
   ],
 }
 
+// Het blok met drie nagebouwde schermen onder het procesblok: alleen het bijschrift linksonder.
+export const showcase = {
+  title: 'Van kans tot ingeplande pagina',
+  description: 'Je clusters, de vragen die de schrijver nog aan je heeft en de planning van je content staan bij elkaar. Zo zie je in één oogopslag wat er loopt en wat er van jou nodig is.',
+}
+
 export type FeatureLink = { label: string; href: string }
 export type Feature = {
   /** Titel links; gebruik \n voor een regelafbreking zoals op linear.app. */

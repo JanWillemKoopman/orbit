@@ -7,6 +7,7 @@ import { ChangelogTimeline } from '@/components/Changelog'
 import { CardGrid } from '@/components/PostCard'
 import { AppFrame } from '@/components/home/AppFrame'
 import { FeatureVisual } from '@/components/home/FeatureVisual'
+import { Showcase } from '@/components/home/Showcase'
 import { getPostMetas } from '@/lib/posts'
 
 export const metadata: Metadata = {
@@ -83,6 +84,7 @@ export default function HomePage() {
               </li>
             ))}
           </ol>
+          <Showcase />
         </section>
 
         {features.map((f) => (
