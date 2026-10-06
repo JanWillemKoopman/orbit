@@ -96,17 +96,17 @@ function Vragen() {
   )
 }
 
-// November 2026: de 1e valt op een zondag. Per dag het aantal pagina's en de kleur van de
+// November 2026: de 1e valt op een zondag. Per dag de kleur van de
 // status die in de app voorgaat (wachten op jou gaat voor klaar, klaar voor gepland).
-const dagen: Record<number, { n: number; tone: Tone }> = {
-  3: { n: 1, tone: 'klaar' },
-  6: { n: 1, tone: 'klaar' },
-  10: { n: 2, tone: 'wacht' },
-  13: { n: 1, tone: 'loopt' },
-  17: { n: 1, tone: 'loopt' },
-  20: { n: 2, tone: 'loopt' },
-  24: { n: 1, tone: 'loopt' },
-  27: { n: 1, tone: 'loopt' },
+const dagen: Record<number, { tone: Tone }> = {
+  3: { tone: 'klaar' },
+  6: { tone: 'klaar' },
+  10: { tone: 'wacht' },
+  13: { tone: 'loopt' },
+  17: { tone: 'loopt' },
+  20: { tone: 'loopt' },
+  24: { tone: 'loopt' },
+  27: { tone: 'loopt' },
 }
 
 const ingepland: { dag: string; title: string; status: string; tone: Tone }[] = [
@@ -132,10 +132,7 @@ function Kalender() {
             const dag = i + 1
             const d = dagen[dag]
             return (
-              <span key={dag} data-tone={d?.tone}>
-                {dag}
-                {d && <b>{d.n}</b>}
-              </span>
+              <span key={dag} data-tone={d?.tone}>{dag}</span>
             )
           })}
         </div>

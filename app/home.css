@@ -330,7 +330,6 @@
 .sc-days span[data-tone] { font-weight: var(--weight-medium); color: var(--text-primary); background: rgba(255, 255, 255, 0.08); }
 .sc-days span[data-tone='wacht'] { background: rgba(242, 153, 74, 0.16); color: #f2a65a; }
 .sc-days span[data-tone='klaar'] { background: rgba(188, 255, 47, 0.12); color: var(--accent); }
-.sc-days b { position: absolute; top: -5px; right: -5px; min-width: 15px; height: 15px; padding: 0 3px; border-radius: 9999px; background: #e2e4e7; color: #08090a; font-size: 9px; font-weight: var(--weight-medium); line-height: 15px; text-align: center; }
 .sc-planned { display: flex; flex-direction: column; }
 .sc-planned-row { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255, 255, 255, 0.06); }
 .sc-planned-title { font-size: 13px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
