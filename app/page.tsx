@@ -106,15 +106,16 @@ export default function HomePage() {
 
         <section className="feature story" aria-labelledby="home-story">
           <div className="keyline" />
-          <div className="feature-header">
-            <h2 id="home-story" className="feature-title">{story.title}</h2>
-            <div className="feature-description story-body">
-              {story.paragraphs.map((p) => <p key={p}>{p}</p>)}
-              <div className="home-quote-author story-author">
-                <img src={statement.author.photo} alt="" width={48} height={48} />
-                <span>{statement.author.name}</span>
+          <div className="story-header">
+            <h2 id="home-story" className="feature-title story-title">{story.title}</h2>
+            <div className="story-columns">
+              <div className="feature-description story-column">
+                <p>{story.paragraphs[0]}</p>
               </div>
-              <Link href={story.link.href} className="home-link story-link">{story.link.label} <span aria-hidden="true">→</span></Link>
+              <div className="feature-description story-column">
+                <p>{story.paragraphs[1]}</p>
+                <Link href={story.link.href} className="home-link story-link">{story.link.label} <span aria-hidden="true">→</span></Link>
+              </div>
             </div>
           </div>
         </section>
