@@ -29,11 +29,11 @@ export const tabs = [
 ]
 
 export const mainNav = [
-  { href: '/categorie/productlanceringen', label: 'Product' },
-  { href: '/categorie/community', label: 'Klanten' },
-  { href: '/changelog', label: 'Changelog' },
-  { href: '/pers', label: 'Pers' },
-  { href: '/blog', label: 'Nu' },
+  { href: '/product', label: 'Product' },
+  { href: '/installatiegids', label: 'Installatiegids' },
+  { href: '/documentatie', label: 'Documentatie' },
+  { href: '/over', label: 'Over' },
+  { href: '/blog', label: 'Blog' },
 ]
 
 export const footerNav = [

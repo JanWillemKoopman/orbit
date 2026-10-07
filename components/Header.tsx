@@ -28,7 +28,7 @@ export function Header() {
           <ul className="nav-list">
             {mainNav.map((item) => (
               <li key={item.label}>
-                <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) && item.href === '/blog' ? 'page' : undefined}>
+                <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) ? 'page' : undefined}>
                   {item.label}
                 </Link>
               </li>
