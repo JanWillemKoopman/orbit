@@ -2,13 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
-import { hero, loop, prefooter, result, statement, story } from '@/content/home'
-import { ChangelogTimeline } from '@/components/Changelog'
-import { CardGrid } from '@/components/PostCard'
+import { faq, hero, loop, prefooter, result, statement, story } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
-import { getPostMetas } from '@/lib/posts'
+import { Faq } from '@/components/home/Faq'
 
 export const metadata: Metadata = {
   title: { absolute: 'ORBIT ENGINE – Open source SEO & GEO software voor marketeers' },
@@ -17,10 +15,9 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, changelog, blog en een afsluiter.
+// het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
   const latest = changelog[0]
-  const posts = getPostMetas().slice(0, 3)
 
   return (
     <div className="home">
@@ -120,18 +117,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="home-block" aria-labelledby="home-changelog">
+        <section className="home-block" aria-labelledby="home-faq">
           <div className="keyline" />
-          <h2 id="home-changelog" className="home-block-title">Changelog</h2>
-          <ChangelogTimeline entries={changelog.slice(0, 4)} />
-          <Link href="/changelog" className="home-link home-block-link">Bekijk alles <span aria-hidden="true">→</span></Link>
-        </section>
-
-        <section className="home-block" aria-labelledby="home-blog">
-          <div className="keyline" />
-          <h2 id="home-blog" className="home-block-title">Van de blog</h2>
-          <CardGrid posts={posts} />
-          <Link href="/blog" className="home-link home-block-link">Alle artikelen <span aria-hidden="true">→</span></Link>
+          <h2 id="home-faq" className="home-block-title">{faq.title}</h2>
+          <Faq items={faq.items} />
         </section>
       </div>
 

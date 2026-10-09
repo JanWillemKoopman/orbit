@@ -89,3 +89,40 @@ export type FeatureLink = { label: string; href: string }
 export const prefooter = {
   title: 'Built for the future. Available today.',
 }
+
+// Het vragenblok onderaan de homepage. Elke vraag klapt open; de volgorde hier is de volgorde op
+// de pagina. De antwoorden noemen alleen wat ORBIT ENGINE nu al doet.
+export type FaqItem = { question: string; answer: string }
+export const faq: { title: string; items: FaqItem[] } = {
+  title: 'Veelgestelde vragen',
+  items: [
+    {
+      question: 'Wat doet ORBIT ENGINE?',
+      answer: 'ORBIT ENGINE meet hoe vaak AI-assistenten zoals ChatGPT je merk noemen. Het laat zien waar je ontbreekt, schrijft de pagina\'s die daar verandering in brengen en meet daarna of het gewerkt heeft.',
+    },
+    {
+      question: 'Wat is GEO, en wat is het verschil met SEO?',
+      answer: 'SEO zorgt dat je gevonden wordt in de zoekresultaten van Google. GEO, Generative Engine Optimization, zorgt dat je merk genoemd wordt in het antwoord dat een AI-assistent geeft. Wie zijn vraag aan ChatGPT stelt, ziet geen tien links maar één antwoord met een paar namen erin.',
+    },
+    {
+      question: 'Welke AI-assistenten meet ORBIT ENGINE?',
+      answer: 'ChatGPT is de basis. Per onderwerp kun je Gemini en het AI-overzicht bovenaan Google erbij zetten. Bij elk cijfer staat een onzekerheidsmarge, zodat je ziet hoe zeker een uitkomst is.',
+    },
+    {
+      question: 'Is ORBIT ENGINE echt gratis?',
+      answer: 'De software is open source en kost niets. Het meten en schrijven gebeurt met betaalde diensten zoals OpenAI. Die kosten betaal je zelf, rechtstreeks bij die diensten en zonder opslag. Je stelt een maandlimiet in, zodat je nooit voor een verrassing komt te staan.',
+    },
+    {
+      question: 'Zet ORBIT ENGINE zelf pagina\'s op mijn website?',
+      answer: 'Nee. ORBIT ENGINE schrijft de pagina in jouw toon, op basis van de feiten die jij aanlevert. Jij leest hem, past aan wat nodig is en beslist zelf wat er live gaat op je site.',
+    },
+    {
+      question: 'Hoe weet ik of het werkt?',
+      answer: 'Na publicatie meet ORBIT ENGINE opnieuw of AI-assistenten je merk vaker noemen. Elke meting voedt de volgende ronde kansen, zodat je ziet wat werkt en daarop verder bouwt.',
+    },
+    {
+      question: 'Voor wie is ORBIT ENGINE bedoeld?',
+      answer: 'Voor marketeers en bureaus die willen weten hoe hun merk of dat van hun opdrachtgevers in AI-antwoorden staat. Juist ook voor een MKB-bedrijf dat geen eigen team heeft om dit bij te houden.',
+    },
+  ],
+}

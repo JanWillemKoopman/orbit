@@ -346,12 +346,19 @@
 .story-columns { display: grid; grid-template-columns: 1fr 1fr; align-items: start; margin-top: 64px; }
 .story-link { margin-top: 24px; }
 
-/* Changelog en blog ------------------------------------------------------ */
+/* Veelgestelde vragen ---------------------------------------------------- */
 .home-block { margin-top: 0; }
 .home-block-title { padding-top: 168px; font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary); margin-left: -2px; }
 .home-block-title + * { margin-top: 72px; }
-.home-block-link { margin-top: 64px; padding-bottom: 128px; }
-.home-block .changelog-item:first-child .changelog-indicator { transform: translateX(-12px); }
+.faq { max-width: 880px; padding-bottom: 128px; border-top: 1px solid var(--border-translucent); }
+.faq-item { border-bottom: 1px solid var(--border-translucent); }
+.faq-question { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; cursor: pointer; list-style: none; font-size: 20px; line-height: 1.4; letter-spacing: -0.012em; font-weight: var(--weight-medium); color: var(--text-primary); transition: color 0.16s var(--ease-out-quad); }
+.faq-question::-webkit-details-marker { display: none; }
+.faq-question:hover { color: var(--text-secondary); }
+.faq-question:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.faq-icon { flex-shrink: 0; color: var(--text-tertiary); transition: transform var(--speed-regular) var(--ease-out-quad); }
+.faq-item[open] .faq-icon { transform: rotate(45deg); }
+.faq-answer { max-width: 720px; padding-bottom: 28px; font-size: 16px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
 
 /* Afsluiter -------------------------------------------------------------- */
 .home-prefooter { display: flex; flex-direction: column; align-items: center; gap: 40px; margin-block: 96px 224px; }
@@ -446,7 +453,9 @@
   .feature-description p { font-size: 15px; line-height: 1.6; color: var(--text-tertiary); }
   .home-block-title { padding-top: 72px; font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
   .home-block-title + * { margin-top: 40px; }
-  .home-block-link { margin-top: 40px; padding-bottom: 72px; }
+  .faq { padding-bottom: 72px; }
+  .faq-question { padding-block: 20px; font-size: 16px; }
+  .faq-answer { padding-bottom: 24px; font-size: 15px; }
   .home-prefooter { margin-block: 24px 96px; }
   .home-prefooter h2 { font-size: 38px; }
 }
