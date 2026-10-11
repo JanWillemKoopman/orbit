@@ -44,7 +44,7 @@ De homepage (`/`) presenteert ORBIT ENGINE en volgt de opbouw van linear.app: ee
 
 ## Productpagina
 
-De productpagina (`/product`) laat ORBIT ENGINE zien met 18 echte schermen uit de app, gevuld met fictieve voorbeeldgegevens. Teksten en beelden staan in `content/product.ts`, de opmaak in `app/product/product.css`. De beelden staan in `public/images/product/`; hoe je ze opnieuw maakt staat in `scripts/product-screenshots/README.md`.
+De productpagina (`/product`) laat ORBIT ENGINE zien met nagebouwde schermen in de vormgeving van de app, gevuld met fictieve voorbeeldgegevens (Lindeman Warmte, Bureau Noordwind). Teksten staan in `content/product.ts`, de beelden zijn HTML-componenten in `components/product/Visuals.tsx` en de opmaak staat in `app/product/product.css`.
 
 ## Overige content
 

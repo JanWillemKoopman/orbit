@@ -1,43 +1,15 @@
-// Teksten en beelden van de productpagina (/product). De beelden zijn echte schermen van
-// ORBIT ENGINE met fictieve voorbeeldgegevens; ze worden opnieuw gemaakt met de scripts in
-// scripts/product-screenshots (zie de README daar).
-import type { StaticImageData } from 'next/image'
-import taken from '@/public/images/product/product-01-openstaande-taken.webp'
-import takenMobiel from '@/public/images/product/product-01-openstaande-taken-mobiel.webp'
-import zichtbaarheid from '@/public/images/product/product-02-ai-zichtbaarheid.webp'
-import zichtbaarheidMobiel from '@/public/images/product/product-02-ai-zichtbaarheid-mobiel.webp'
-import antwoord from '@/public/images/product/product-03-ai-antwoord.webp'
-import merkdossier from '@/public/images/product/product-04-merkdossier.webp'
-import feiten from '@/public/images/product/product-05-feiten-en-kennis.webp'
-import idee from '@/public/images/product/product-06-pagina-idee.webp'
-import contentplan from '@/public/images/product/product-07-contentplan.webp'
-import vragen from '@/public/images/product/product-08-openstaande-vragen.webp'
-import klantweergave from '@/public/images/product/product-09-klantweergave.webp'
-import tekst from '@/public/images/product/product-10-bibliotheek-tekst.webp'
-import zinnen from '@/public/images/product/product-11-zinnen-nalopen.webp'
-import goedgekeurd from '@/public/images/product/product-12-goedgekeurd.webp'
-import hermeting from '@/public/images/product/product-13-hermeting.webp'
-import zoekverkeer from '@/public/images/product/product-14-zoekverkeer.webp'
-import verslag from '@/public/images/product/product-15-maandverslag.webp'
-import werkoverzicht from '@/public/images/product/product-16-werkoverzicht.webp'
-import werkoverzichtMobiel from '@/public/images/product/product-16-werkoverzicht-mobiel.webp'
-import toegang from '@/public/images/product/product-17-toegang.webp'
-import kosten from '@/public/images/product/product-18-kosten.webp'
-
-export type Shot = {
-  src: StaticImageData
-  /** Een gerichte uitsnede voor telefoons, als het hele scherm daar te klein wordt. */
-  mobiel?: StaticImageData
-  alt: string
-}
+// Teksten van de productpagina (/product). De beelden zijn nagebouwde schermen van ORBIT ENGINE
+// (components/product/Visuals.tsx) met de fictieve voorbeeldcase Lindeman Warmte.
 
 export const meta = {
   title: 'Product',
   description:
-    'Zie hoe ORBIT ENGINE werkt: AI-zichtbaarheid meten, contentkansen plannen, klantkennis ophalen, pagina\'s schrijven en beoordelen, en het resultaat volgen. Voor marketingbureaus met meerdere klanten.',
+    "Zie hoe ORBIT ENGINE werkt: AI-zichtbaarheid meten, contentkansen plannen, klantkennis ophalen, pagina's schrijven en beoordelen, en het resultaat volgen. Voor marketingbureaus met meerdere klanten.",
 }
 
 export const demoHref = '/contact?onderwerp=demo'
+
+export type Bijschrift = { titel: string; tekst: string; label?: string }
 
 export const hero = {
   eyebrow: 'ORBIT ENGINE voor bureaus',
@@ -47,14 +19,9 @@ export const hero = {
   cta: 'Demo aanvragen',
   secondary: 'Bekijk hoe het werkt',
   note: 'Productbeelden met fictieve voorbeeldgegevens',
-  shot: {
-    src: taken,
-    mobiel: takenMobiel,
-    alt: 'Het scherm Openstaande taken van Lindeman Warmte. Bovenaan de maand oktober met de stappen Meten, Plannen, Schrijven, Publiceren en Hermeten. Daaronder wat er wacht: november van het contentplan starten, twee vragen over het bedrijf, een briefing invullen, een pagina nakijken en een pagina publiceren.',
-  } satisfies Shot,
+  beeld: { titel: 'Elke maand één overzicht per klant', tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Je ziet per klant welke stap loopt en wat er nu op jou wacht.' },
 }
 
-// De vijf stappen van een maand, zoals de app ze toont. Elke stap linkt naar zijn sectie.
 export const ronde = [
   { label: 'Meten', href: '#zichtbaarheid' },
   { label: 'Plannen', href: '#planning' },
@@ -63,165 +30,94 @@ export const ronde = [
   { label: 'Hermeten', href: '#opvolging' },
 ]
 
-export const zichtbaarheidSectie = {
-  id: 'zichtbaarheid',
-  title: 'Zie bij welke vragen je klant wordt genoemd.',
-  description:
-    'Stel per onderwerp een meetplan samen met relevante AI-vragen. Bekijk in de gemeten antwoorden welke bedrijven worden genoemd, welke bronnen worden aangehaald en waar je klant ontbreekt.',
-  overzicht: {
-    src: zichtbaarheid,
-    mobiel: zichtbaarheidMobiel,
-    alt: 'Zichtbaarheid in AI voor Lindeman Warmte: 49 procent over alle clusters met een marge van 3 punten, drie clusters met een stijgende lijn, en een tabel per cluster met marge, een stijging van 9 tot 10 punten, gemeten AI-vragen en de kolom Telt mee.',
-  } satisfies Shot,
-  detail: {
-    src: antwoord,
-    alt: 'Een opengeklapt AI-antwoord op de vraag "Welke installateur in Utrecht is goed in hybride warmtepompen?". Lindeman Warmte is gemist; genoemd worden Warmtewerk Utrecht, Domstad Installaties en KlimaatPro, met de aangehaalde bronnen eronder.',
-  } satisfies Shot,
-  detailTitle: 'Elk antwoord na te lezen',
-  detailText:
-    'Klap een vraag open en lees wat de AI-assistent antwoordde: wie er genoemd wordt, in welke volgorde en op welke bronnen dat leunt. Hier zie je precies waar je klant nog ontbreekt.',
-  note: 'Metingen op basis van een vaste vragenset per onderwerp, elke maand opnieuw.',
-}
-
-export const kennisSectie = {
-  id: 'kennis',
-  title: 'Elke klant een eigen kennisbasis.',
-  description:
-    'Breng aanbod, doelgroep, merkstem en bedrijfsfeiten samen in een merkdossier. Vul het aan met klantkennis en documenten, zodat volgende schrijfopdrachten voortbouwen op wat al is vastgelegd.',
-  shots: [
-    {
-      src: merkdossier,
-      alt: 'Het merkdossier van Lindeman Warmte bij de stap Je klant: voor wie het bedrijf het vooral doet, waarom klanten voor hen kiezen en met wie ze vergeleken worden.',
-      title: 'Merkdossier',
-      caption: 'Aanbod, doelgroep en merkstem op één plek.',
-    },
-    {
-      src: feiten,
-      alt: 'Feiten en kennis van Lindeman Warmte: aanbod, prijzen en werkwijze, elk met de bron (antwoord, gesprek, website), de datum en of het gebruikt wordt bij het schrijven.',
-      title: 'Feiten en kennis',
-      caption: 'Zie waar bedrijfsinformatie vandaan komt.',
-    },
-  ],
-}
-
-export const planningSectie = {
-  id: 'planning',
-  title: 'Geef inzichten een plek in je contentplan.',
-  description:
-    'Bekijk voorstellen voor nieuwe pagina\'s en verbeteringen aan bestaande content, met de vragen die ze moeten helpen beantwoorden. Bepaal de prioriteit, voeg eigen ideeën toe en plan het werk per maand.',
-  idee: {
-    src: idee,
-    alt: 'Het pagina-idee "Hybride warmtepomp laten installeren in Utrecht" met potentie 78, raakt 8 van de 30 gemeten vragen, de onderbouwing en het bewijs per bron: ChatGPT noemt Lindeman Warmte bij 0 van de 8 vragen en drie concurrenten wel.',
-  } satisfies Shot,
-  ideeTitle: 'Van gemist antwoord naar paginavoorstel',
-  ideeText:
-    'De vraag waarbij ChatGPT drie concurrenten noemt, wordt een concreet voorstel: een pagina over hybride warmtepompen in Utrecht. Met de onderbouwing, het aantal vragen dat hij raakt en het bewijs per bron. Eén klik en hij staat in oktober.',
-  plan: {
-    src: contentplan,
-    alt: 'Het contentplan van Lindeman Warmte in de weergave Plannen: de ideeënlijst links, rechts oktober met vijf pagina\'s in verschillende stappen en november dat klaarstaat om te starten.',
-  } satisfies Shot,
-  planCaption: 'Per maand zie je welke pagina op antwoorden, akkoord of publicatie wacht.',
-}
-
-export const inputSectie = {
-  id: 'klantinput',
-  title: 'Haal de kennis op die alleen je klant heeft.',
-  description:
-    'ORBIT ENGINE bereidt pagina\'s voor en stelt gerichte vragen over ontbrekende informatie. Je klant beantwoordt die in de app of via een deellink, zonder account. De antwoorden worden vastgelegd voor het schrijven.',
-  team: {
-    src: vragen,
-    alt: 'Openstaande vragen voor de pagina "Hybride warmtepomp laten installeren in Utrecht": hoe lang het plaatsen duurt en uit welke onderdelen de prijs bestaat, elk met de reden waarom de vraag gesteld wordt.',
-    label: 'Voor je team',
-    caption: 'Alle open vragen per pagina, met de reden erbij en een link om te delen.',
+export const secties = {
+  zichtbaarheid: {
+    id: 'zichtbaarheid',
+    title: 'Zie bij welke vragen je klant wordt genoemd.',
+    description:
+      'Stel per onderwerp een meetplan samen met relevante AI-vragen. Bekijk in de gemeten antwoorden welke bedrijven worden genoemd, welke bronnen worden aangehaald en waar je klant ontbreekt.',
+    paneel: { titel: 'Zichtbaarheid die je kunt uitleggen', tekst: 'Eén cijfer per klant en per onderwerp, met de marge erbij. Elke maand gemeten op een vaste vragenset, zodat je ontwikkeling echt vergelijkt.' },
+    cellen: [
+      { titel: 'Lees elk antwoord terug', tekst: 'Zie welke bedrijven de AI-assistent noemt, in welke volgorde, en op welke bronnen dat leunt.' },
+      { titel: 'Weet wie je voor is', tekst: 'Per onderwerp zie je hoe vaak je klant genoemd wordt, naast de concurrenten die AI het vaakst aanbeveelt.', label: 'Voorbeeldgegevens' },
+    ] as Bijschrift[],
   },
-  klant: {
-    src: klantweergave,
-    alt: 'De klantweergave op een telefoon: Vragen voor Lindeman Warmte, graag beantwoord vóór 12 oktober, met het antwoord over de prijsopbouw al ingevuld.',
-    label: 'Voor je klant',
-    caption: 'Je klant opent de link en antwoordt, zonder account.',
+  kennis: {
+    id: 'kennis',
+    title: 'Elke klant een eigen kennisbasis.',
+    description:
+      'Breng aanbod, doelgroep, merkstem en bedrijfsfeiten samen in een merkdossier. Vul het aan met klantkennis en documenten, zodat volgende schrijfopdrachten voortbouwen op wat al is vastgelegd.',
+    cellen: [
+      { titel: 'Merkdossier', tekst: 'Aanbod, doelgroep en merkstem op één plek. Elke tekst begint hier.' },
+      { titel: 'Feiten en kennis', tekst: 'Zie waar bedrijfsinformatie vandaan komt: website, gesprek, document of de klant zelf.' },
+    ] as Bijschrift[],
   },
-}
-
-export const schrijfSectie = {
-  id: 'schrijven',
-  title: 'Schrijf vanuit bedrijfskennis. Beoordeel met context.',
-  description:
-    'Laat pagina\'s voorbereiden, schrijven en redigeren op basis van het merkdossier en de aangeleverde antwoorden. Harde beweringen zonder voldoende onderbouwing worden gemarkeerd, zodat je team gericht kan controleren.',
-  tekst: {
-    src: tekst,
-    alt: 'De geschreven pagina "Hybride warmtepomp laten installeren in Utrecht" in de Bibliotheek, met de introductie en de tussenkoppen Hoe de installatie verloopt, Wat er in de prijs zit, Voor welke woningen het werkt en Garantie en service.',
-  } satisfies Shot,
-  zinnen: {
-    src: zinnen,
-    alt: 'Het blok Loop deze zinnen na met één gemarkeerde zin over een installatietermijn van twee weken, de reden dat hij geel is, en de knoppen Klopt, Pas aan en Vraag het bedrijf.',
-  } satisfies Shot,
-  zinnenTitle: 'Controleer wat ertoe doet',
-  zinnenText:
-    'Het antwoord van de klant staat letterlijk in de tekst: de installatie duurt één werkdag. Een termijn die nergens is vastgelegd, wordt geel gemarkeerd met de reden erbij. Bevestig hem, pas hem aan of leg hem met één klik aan je klant voor.',
-}
-
-export const publicerenSectie = {
-  id: 'publiceren',
-  title: 'Jullie geven het akkoord.',
-  description:
-    'Pas teksten aan, vraag een nieuwe versie aan en keur de inhoud goed. Kopieer de goedgekeurde tekst als HTML, Markdown of platte tekst en plaats die in het CMS van je klant. Meld daarna het live-adres voor de opvolging.',
-  punten: ['Zelf bewerken of een aanpassing vragen', 'Kopiëren als HTML, Markdown of platte tekst', 'Titel, omschrijving en interne links erbij', 'Live melden start de opvolging'],
-  shot: {
-    src: goedgekeurd,
-    alt: 'Een goedgekeurde pagina in de stap Live met de knop Meld dat hij live staat, en het blok Op je site zetten met Kopieer als HTML, Kopieer als platte tekst, Kopieer als Markdown en de downloads.',
-  } satisfies Shot,
-}
-
-export const opvolgingSectie = {
-  id: 'opvolging',
-  title: 'Volg wat er na publicatie verandert.',
-  description:
-    'Laat de doelvragen van een pagina na 14 en 28 dagen opnieuw meten. Bekijk daarnaast met Google Search Console de vertoningen en klikken van gepubliceerde ORBIT ENGINE-pagina\'s.',
-  note: 'Per pagina zie je de stand vóór en na publicatie, met de aantallen en de marge erbij.',
-  ai: {
-    src: hermeting,
-    alt: 'De bewijsladder van de voorbeeldpagina: gepubliceerd, zichtbaar in Google, genoemd door AI bij 5 van de 8 doelvragen tegen 0 vóór publicatie, geciteerd door AI en 262 klikken sinds publicatie.',
-    label: 'AI-vermeldingen',
+  planning: {
+    id: 'planning',
+    title: 'Geef inzichten een plek in je contentplan.',
+    description:
+      "Bekijk voorstellen voor nieuwe pagina's en verbeteringen aan bestaande content, met de vragen die ze moeten helpen beantwoorden. Bepaal de prioriteit, voeg eigen ideeën toe en plan het werk per maand.",
+    cellen: [
+      { titel: 'Van gemist antwoord naar paginavoorstel', tekst: 'Een vraag waarbij AI concurrenten noemt, en zoekverkeer dat nog niet landt, worden samen één kans.' },
+      { titel: 'Onderbouwd en klaar om in te plannen', tekst: 'Elk idee met potentie, doelvragen en de reden erachter. Eén klik en hij staat in de maand.' },
+    ] as Bijschrift[],
+    paneel: { titel: 'Plan het werk per maand', tekst: 'Per maand zie je welke pagina op antwoorden, akkoord of publicatie wacht. Open maanden vullen zich met de sterkste kansen.' },
   },
-  google: {
-    src: zoekverkeer,
-    alt: 'Zoekverkeer van de pagina\'s van ORBIT ENGINE: 2.944 klikken, 37.304 vertoningen, 7,9 procent doorklikratio en positie 6,4, met een grafiek van de klikken per dag en gestreepte lijnen op de dagen dat een pagina live ging.',
-    label: 'Google-zoekverkeer',
+  klantinput: {
+    id: 'klantinput',
+    title: 'Haal de kennis op die alleen je klant heeft.',
+    description:
+      "ORBIT ENGINE bereidt pagina's voor en stelt gerichte vragen over ontbrekende informatie. Je klant beantwoordt die in de app of via een deellink, zonder account. De antwoorden worden vastgelegd voor het schrijven.",
+    cellen: [
+      { titel: 'Gerichte vragen per pagina', tekst: 'Alle open vragen op één plek, met de reden erbij en een link om te delen.', label: 'Voor je team' },
+      { titel: 'Antwoorden zonder account', tekst: 'Je klant opent de link op zijn telefoon en antwoordt. Het antwoord gaat direct mee naar de schrijver.', label: 'Voor je klant' },
+    ] as Bijschrift[],
   },
-}
-
-export const verslagSectie = {
-  id: 'rapportage',
-  title: 'Maak je werk bespreekbaar.',
-  description:
-    'Bundel de gemeten zichtbaarheid, gepubliceerde pagina\'s en planning in een maandverslag met jullie bureaunaam. Gebruik het in het klantgesprek of bewaar het als pdf om te delen.',
-  shot: {
-    src: verslag,
-    alt: 'Het verslag van september 2026 van Lindeman Warmte, door Bureau Noordwind: zichtbaarheid in AI-assistenten 39 procent, tegen 32 procent de maand ervoor, wat er gemeten is, de pagina\'s die live gingen met hun effect, en de pagina\'s voor volgende maand.',
-  } satisfies Shot,
-}
-
-export const bureauSectie = {
-  id: 'bureau',
-  title: 'Houd het werk voor al je klanten bij.',
-  description:
-    'Zie waar antwoorden, beoordeling of publicatie op wachten. Start werkzaamheden voor meerdere bedrijven tegelijk, bepaal wie mag meekijken en volg het geregistreerde gebruik per klant.',
-  overzicht: {
-    src: werkoverzicht,
-    mobiel: werkoverzichtMobiel,
-    alt: 'Het werkoverzicht Merken van Bureau Noordwind met zes bedrijven, hun zichtbaarheid, maandmeting, wat op het bureau wacht, hoe lang al, en de kosten van de laatste 30 dagen.',
-  } satisfies Shot,
-  toegang: {
-    src: toegang,
-    alt: 'Wie er toegang heeft: twee beheerders van Bureau Noordwind en twee kijkers, elk met de bedrijven die ze mogen zien.',
-    label: 'Toegang',
-    caption: 'Beheerders en kijkers, per kijker de bedrijven die hij ziet.',
+  schrijven: {
+    id: 'schrijven',
+    title: 'Schrijf vanuit bedrijfskennis. Beoordeel met context.',
+    description:
+      'Laat pagina\'s voorbereiden, schrijven en redigeren op basis van het merkdossier en de aangeleverde antwoorden. Harde beweringen zonder voldoende onderbouwing worden gemarkeerd, zodat je team gericht kan controleren.',
+    paneel: { titel: 'Teksten die klinken als je klant', tekst: 'Het antwoord van de klant staat letterlijk in de tekst, en je ziet waar elke bewering op rust.' },
+    cellen: [
+      { titel: 'Controleer wat ertoe doet', tekst: 'Een termijn, bedrag of garantie zonder vastgelegde bron wordt gemarkeerd. Bevestig hem, pas hem aan of leg hem aan de klant voor.' },
+      { titel: 'Eindredactie voor je akkoord', tekst: 'Bronnen, merkstem, verboden woorden en zoekmachinegegevens worden gecontroleerd voordat je de tekst leest.' },
+    ] as Bijschrift[],
   },
-  kosten: {
-    src: kosten,
-    alt: 'Kosten: de maandlimiet van 250 euro met het verbruik van oktober, een schatting voor volgende maand en het verbruik per maand, per soort werk en per bedrijf.',
-    label: 'Kosten',
-    caption: 'Inzicht in gebruikskosten en een instelbare rem op nieuw betaald werk.',
+  publiceren: {
+    id: 'publiceren',
+    title: 'Jullie geven het akkoord.',
+    description:
+      'Pas teksten aan, vraag een nieuwe versie aan en keur de inhoud goed. Kopieer de goedgekeurde tekst als HTML, Markdown of platte tekst en plaats die in het CMS van je klant. Meld daarna het live-adres voor de opvolging.',
+    punten: ['Zelf bewerken of een aanpassing vragen', 'Kopiëren als HTML, Markdown of platte tekst', 'Titel, omschrijving en veelgestelde vragen erbij', 'Live melden start de opvolging'],
+  },
+  opvolging: {
+    id: 'opvolging',
+    title: 'Volg wat er na publicatie verandert.',
+    description:
+      "Laat de doelvragen van een pagina na 14 en 28 dagen opnieuw meten. Bekijk daarnaast met Google Search Console de vertoningen en klikken van gepubliceerde ORBIT ENGINE-pagina's.",
+    cellen: [
+      { titel: 'Hermeting van de doelvragen', tekst: 'Per pagina de stand vóór publicatie en na 14 en 28 dagen, op dezelfde vragen.', label: 'AI-vermeldingen' },
+      { titel: 'Klikken uit Google', tekst: 'Vertoningen, klikken en positie per gepubliceerde pagina, vanaf de dag dat hij live ging.', label: 'Google-zoekverkeer' },
+    ] as Bijschrift[],
+  },
+  rapportage: {
+    id: 'rapportage',
+    title: 'Maak je werk bespreekbaar.',
+    description:
+      'Bundel de gemeten zichtbaarheid, gepubliceerde pagina\'s en planning in een maandverslag met jullie bureaunaam. Gebruik het in het klantgesprek of bewaar het als pdf om te delen.',
+    paneel: { titel: 'Een verslag dat het gesprek voert', tekst: 'Zichtbaarheid, wat er live ging en wat het deed, en wat volgende maand op de planning staat. Met jullie naam erboven.' },
+  },
+  bureau: {
+    id: 'bureau',
+    title: 'Houd het werk voor al je klanten bij.',
+    description:
+      'Zie waar antwoorden, beoordeling of publicatie op wachten. Start werkzaamheden voor meerdere bedrijven tegelijk, bepaal wie mag meekijken en volg het geregistreerde gebruik per klant.',
+    paneel: { titel: 'Al je klanten in één werkoverzicht', tekst: 'Bovenaan staat waar het langst iets op je wacht. Selecteer bedrijven en start hun maand in één keer.' },
+    cellen: [
+      { titel: 'Bepaal wie meekijkt', tekst: 'Beheerders zien alles. Een kijker ziet alleen zijn eigen bedrijf, en doet alleen wat jij toestaat.', label: 'Toegang' },
+      { titel: 'Grip op de kosten', tekst: 'Inzicht in gebruikskosten en een instelbare rem op nieuw betaald werk.', label: 'Kosten' },
+    ] as Bijschrift[],
   },
 }
 
