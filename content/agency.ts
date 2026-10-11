@@ -6,7 +6,7 @@
 import type { Bijschrift } from '@/components/product/Blokken'
 
 export const meta = {
-  title: 'Voor bureaus',
+  title: 'Account en beheer',
   description:
     'ORBIT ENGINE voor marketingbureaus: al je klanten in één overzicht, collega’s en klanten met de juiste rol, en grip op wat de AI kost. Je betaalt alleen je eigen gebruik, met je eigen sleutels.',
 }

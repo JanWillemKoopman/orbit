@@ -48,7 +48,7 @@ De productpagina (`/product`) laat ORBIT ENGINE zien met nagebouwde schermen in 
 
 ## Bureaupagina
 
-De bureaupagina (`/agency`, in het menu "Voor bureaus") heeft dezelfde opbouw en vormgeving als `/product`, met de nadruk op het account van een bureau: het werkoverzicht, klanten toevoegen, collega's en kijkers, kosten, eigen sleutels en het archiveren of verwijderen van gegevens. Teksten staan in `content/agency.ts`, de beelden in `components/agency/Visuals.tsx` en de aanvullende opmaak in `app/agency/agency.css`. De gedeelde bouwblokken (kop, paneel, cel) staan in `components/product/Blokken.tsx`.
+De bureaupagina (`/agency`, in het menu "Account en beheer") heeft dezelfde opbouw en vormgeving als `/product`, met de nadruk op het account van een bureau: het werkoverzicht, klanten toevoegen, collega's en kijkers, kosten, eigen sleutels en het archiveren of verwijderen van gegevens. Teksten staan in `content/agency.ts`, de beelden in `components/agency/Visuals.tsx` en de aanvullende opmaak in `app/agency/agency.css`. De gedeelde bouwblokken (kop, paneel, cel) staan in `components/product/Blokken.tsx`.
 
 ## Overige content
 
