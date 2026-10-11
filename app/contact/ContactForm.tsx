@@ -1,10 +1,18 @@
 'use client'
 
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 // Er is nog geen backend: het formulier opent het e-mailprogramma met een ingevuld bericht.
 // Koppel later eenvoudig een formulierdienst of API-route door onSubmit aan te passen.
-export function ContactForm({ email }: { email: string }) {
+// De knoppen "Demo aanvragen" op /product linken naar /contact?onderwerp=demo; dan staat dat
+// onderwerp al gekozen.
+export function ContactFormUitAdres({ email }: { email: string }) {
+  const demo = useSearchParams().get('onderwerp') === 'demo'
+  return <ContactForm key={demo ? 'demo' : 'algemeen'} email={email} onderwerp={demo ? 'Demo aanvragen' : 'Algemeen'} />
+}
+
+export function ContactForm({ email, onderwerp = 'Algemeen' }: { email: string; onderwerp?: string }) {
   const [sent, setSent] = useState(false)
 
   return (
@@ -36,8 +44,9 @@ export function ContactForm({ email }: { email: string }) {
         </div>
         <div className="field">
           <label htmlFor="topic">Onderwerp</label>
-          <select id="topic" name="topic" defaultValue="Algemeen">
+          <select id="topic" name="topic" defaultValue={onderwerp}>
             <option>Algemeen</option>
+            <option>Demo aanvragen</option>
             <option>Samenwerking</option>
             <option>Pers</option>
             <option>Artikelidee</option>

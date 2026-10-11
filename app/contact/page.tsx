@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { ContactForm } from './ContactForm'
+import { Suspense } from 'react'
+import { ContactForm, ContactFormUitAdres } from './ContactForm'
 import { site } from '@/lib/site'
 
 export const metadata: Metadata = { title: 'Contact', description: `Neem contact op met ${site.name}.` }
@@ -9,7 +10,7 @@ export default function ContactPage() {
     <div className="container">
       <div className="blog-hero">
         <h1 className="page-title">Contact</h1>
-        <p className="page-intro">Een vraag, een idee voor een artikel of interesse in een samenwerking? Laat een bericht achter, dan reageren we binnen één werkdag.</p>
+        <p className="page-intro">Een demo aanvragen, een vraag stellen of een samenwerking bespreken? Laat een bericht achter, dan reageren we binnen één werkdag.</p>
       </div>
       <div className="contact-layout">
         <aside className="contact-aside">
@@ -28,7 +29,10 @@ export default function ContactPage() {
             </div>
           </dl>
         </aside>
-        <ContactForm email={site.contactEmail} />
+        {/* De knoppen "Demo aanvragen" op /product sturen hierheen met ?onderwerp=demo. */}
+        <Suspense fallback={<ContactForm email={site.contactEmail} />}>
+          <ContactFormUitAdres email={site.contactEmail} />
+        </Suspense>
       </div>
     </div>
   )
