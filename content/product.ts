@@ -19,7 +19,7 @@ export const hero = {
   cta: 'Demo aanvragen',
   secondary: 'Bekijk hoe het werkt',
   note: 'Productbeelden met fictieve voorbeeldgegevens',
-  beeld: { titel: 'Elke maand één overzicht per klant', tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Je ziet per klant welke stap loopt en wat er nu op jou wacht.' },
+  beeld: { titel: 'Elke klant een vaste maand', tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Je ziet welke stap loopt en wat er nu op jou wacht.' },
 }
 
 export const ronde = [
@@ -36,7 +36,7 @@ export const secties = {
     title: 'Zie bij welke vragen je klant wordt genoemd.',
     description:
       'Stel per onderwerp een meetplan samen met relevante AI-vragen. Bekijk in de gemeten antwoorden welke bedrijven worden genoemd, welke bronnen worden aangehaald en waar je klant ontbreekt.',
-    paneel: { titel: 'Zichtbaarheid die je kunt uitleggen', tekst: 'Eén cijfer per klant en per onderwerp, met de marge erbij. Elke maand gemeten op een vaste vragenset, zodat je ontwikkeling echt vergelijkt.' },
+    paneel: { titel: 'Zichtbaarheid die je kunt laten zien', tekst: 'Elke maand gemeten op dezelfde vragen, zodat je groei per onderwerp echt vergelijkt.', label: 'Voorbeeldgegevens' },
     cellen: [
       { titel: 'Lees elk antwoord terug', tekst: 'Zie welke bedrijven de AI-assistent noemt, in welke volgorde, en op welke bronnen dat leunt.' },
       { titel: 'Weet wie je voor is', tekst: 'Per onderwerp zie je hoe vaak je klant genoemd wordt, naast de concurrenten die AI het vaakst aanbeveelt.', label: 'Voorbeeldgegevens' },
@@ -58,8 +58,8 @@ export const secties = {
     description:
       "Bekijk voorstellen voor nieuwe pagina's en verbeteringen aan bestaande content, met de vragen die ze moeten helpen beantwoorden. Bepaal de prioriteit, voeg eigen ideeën toe en plan het werk per maand.",
     cellen: [
-      { titel: 'Van gemist antwoord naar paginavoorstel', tekst: 'Een vraag waarbij AI concurrenten noemt, en zoekverkeer dat nog niet landt, worden samen één kans.' },
-      { titel: 'Onderbouwd en klaar om in te plannen', tekst: 'Elk idee met potentie, doelvragen en de reden erachter. Eén klik en hij staat in de maand.' },
+      { titel: 'Van gemist antwoord naar pagina', tekst: 'Een vraag waarbij AI concurrenten noemt, wordt een kans en daarna een pagina.' },
+      { titel: 'Klaar om in te plannen', tekst: 'Elk idee met zijn potentie en de vragen die het raakt. Eén klik en het staat in de maand.' },
     ] as Bijschrift[],
     paneel: { titel: 'Plan het werk per maand', tekst: 'Per maand zie je welke pagina op antwoorden, akkoord of publicatie wacht. Open maanden vullen zich met de sterkste kansen.' },
   },
@@ -78,7 +78,7 @@ export const secties = {
     title: 'Schrijf vanuit bedrijfskennis. Beoordeel met context.',
     description:
       'Laat pagina\'s voorbereiden, schrijven en redigeren op basis van het merkdossier en de aangeleverde antwoorden. Harde beweringen zonder voldoende onderbouwing worden gemarkeerd, zodat je team gericht kan controleren.',
-    paneel: { titel: 'Teksten die klinken als je klant', tekst: 'Het antwoord van de klant staat letterlijk in de tekst, en je ziet waar elke bewering op rust.' },
+    paneel: { titel: 'Teksten die klinken als je klant', tekst: 'Het antwoord van de klant staat in de tekst. Een bewering zonder bron valt op.' },
     cellen: [
       { titel: 'Controleer wat ertoe doet', tekst: 'Een termijn, bedrag of garantie zonder vastgelegde bron wordt gemarkeerd. Bevestig hem, pas hem aan of leg hem aan de klant voor.' },
       { titel: 'Eindredactie voor je akkoord', tekst: 'Bronnen, merkstem, verboden woorden en zoekmachinegegevens worden gecontroleerd voordat je de tekst leest.' },
@@ -113,7 +113,7 @@ export const secties = {
     title: 'Houd het werk voor al je klanten bij.',
     description:
       'Zie waar antwoorden, beoordeling of publicatie op wachten. Start werkzaamheden voor meerdere bedrijven tegelijk, bepaal wie mag meekijken en volg het geregistreerde gebruik per klant.',
-    paneel: { titel: 'Al je klanten in één werkoverzicht', tekst: 'Bovenaan staat waar het langst iets op je wacht. Selecteer bedrijven en start hun maand in één keer.' },
+    paneel: { titel: 'Al je klanten in één overzicht', tekst: 'Per klant de zichtbaarheid en wat er nu op je wacht. Start de maand voor meerdere klanten tegelijk.' },
     cellen: [
       { titel: 'Bepaal wie meekijkt', tekst: 'Beheerders zien alles. Een kijker ziet alleen zijn eigen bedrijf, en doet alleen wat jij toestaat.', label: 'Toegang' },
       { titel: 'Grip op de kosten', tekst: 'Inzicht in gebruikskosten en een instelbare rem op nieuw betaald werk.', label: 'Kosten' },

@@ -75,8 +75,8 @@ export default function ProductPage() {
       </section>
 
       <div className="container pd-hero-visual">
-        <Paneel b={hero.beeld} variant="hero" alt="Het scherm Openstaande taken van Lindeman Warmte: oktober met de stappen meten, plannen, schrijven, publiceren en hermeten, en vier taken die op het bureau wachten.">
-          <V.HeroTaken />
+        <Paneel b={hero.beeld} variant="hero" alt="De maand van Lindeman Warmte: meten en plannen zijn klaar, schrijven loopt, en er wachten twee vragen op de klant.">
+          <V.HeroMaand />
         </Paneel>
         <p className="pd-note">{hero.note}</p>
         <nav className="pd-ronde" aria-label="Een maand in ORBIT ENGINE">
@@ -95,14 +95,14 @@ export default function ProductPage() {
         <section id={s.zichtbaarheid.id} className="feature pd-section" aria-labelledby={`${s.zichtbaarheid.id}-titel`}>
           <div className="keyline" />
           <Kop {...s.zichtbaarheid} />
-          <Paneel b={s.zichtbaarheid.paneel} alt="Zichtbaarheid in AI: 49 procent over alle clusters, 17 punten hoger dan in juni, met een lijn per cluster en een tabel met verandering en de kolom Telt mee.">
-            <V.ZichtbaarheidVenster />
+          <Paneel b={s.zichtbaarheid.paneel} variant="chart" alt="Grafiek van de zichtbaarheid in AI voor hybride warmtepompen: van 17 procent in juni naar 47 procent in oktober.">
+            <V.ZichtbaarheidGrafiek />
           </Paneel>
           <div className="pd-grid">
-            <Cel b={s.zichtbaarheid.cellen[0]} alt="Een AI-antwoord op de vraag welke installateur in Utrecht goed is in hybride warmtepompen, met drie genoemde concurrenten en de bronnen.">
+            <Cel b={s.zichtbaarheid.cellen[0]} alt="ChatGPT noemt bij de vraag welke installateur in Utrecht goed is in hybride warmtepompen drie concurrenten, en Lindeman Warmte niet.">
               <V.AiAntwoord />
             </Cel>
-            <Cel b={s.zichtbaarheid.cellen[1]} alt="Hoe vaak elk bedrijf genoemd wordt bij hybride warmtepompen: Lindeman Warmte steeg van 17 naar 47 procent.">
+            <Cel b={s.zichtbaarheid.cellen[1]} alt="Hoe vaak elk bedrijf genoemd wordt: Warmtewerk Utrecht 58 procent, Lindeman Warmte 47 procent, Domstad Installaties 41 procent, KlimaatPro 29 procent.">
               <V.AandeelGenoemd />
             </Cel>
           </div>
@@ -112,12 +112,12 @@ export default function ProductPage() {
         <section id={s.kennis.id} className="feature pd-section" aria-labelledby={`${s.kennis.id}-titel`}>
           <div className="keyline" />
           <Kop {...s.kennis} />
-          <div className="pd-grid pd-grid-tall">
-            <Cel b={s.kennis.cellen[0]} alt="Het merkdossier met doelgroep, positionering, aanspreekvorm je en jij, merkstem en woorden die nooit gebruikt worden.">
-              <V.Merkdossier />
+          <div className="pd-grid">
+            <Cel b={s.kennis.cellen[0]} alt="De merkstem: aanspreekvorm je en jij, toon nuchter, vakkundig en persoonlijk, en woorden die nooit gebruikt worden.">
+              <V.Merkstem />
             </Cel>
-            <Cel b={s.kennis.cellen[1]} alt="Feiten en kennis: vijf bedrijfsfeiten, elk met de bron waar ze vandaan komen.">
-              <V.FeitenKennis />
+            <Cel b={s.kennis.cellen[1]} alt="Drie bedrijfsfeiten, elk met de bron: twee van de klant en één uit een document.">
+              <V.Feiten />
             </Cel>
           </div>
         </section>
@@ -126,15 +126,15 @@ export default function ProductPage() {
         <section id={s.planning.id} className="feature pd-section" aria-labelledby={`${s.planning.id}-titel`}>
           <div className="keyline" />
           <Kop {...s.planning} />
-          <div className="pd-grid pd-grid-tall">
-            <Cel b={s.planning.cellen[0]} variant="flow" alt="Een AI-vraag en een Google-zoekopdracht komen samen in een kans met potentie 78, die de pagina Hybride warmtepomp laten installeren in Utrecht wordt.">
+          <div className="pd-grid">
+            <Cel b={s.planning.cellen[0]} variant="flow" alt="Een AI-vraag wordt een kans met potentie 78, en die kans wordt een pagina.">
               <V.VanVraagNaarPagina />
             </Cel>
-            <Cel b={s.planning.cellen[1]} alt="Het pagina-idee met potentie 78, de onderbouwing, drie doelvragen en de knop Plan in oktober.">
+            <Cel b={s.planning.cellen[1]} alt="Het pagina-idee Hybride warmtepomp laten installeren in Utrecht met potentie 78 en de knop Plan in oktober.">
               <V.PaginaIdee />
             </Cel>
           </div>
-          <Paneel b={s.planning.paneel} alt="Het contentplan met oktober, november en december als kolommen en per pagina de stand.">
+          <Paneel b={s.planning.paneel} variant="board" alt="Het contentplan met een kolom per maand en per pagina een gekleurde stip voor de stand.">
             <V.ContentplanBord />
           </Paneel>
         </section>
@@ -143,11 +143,11 @@ export default function ProductPage() {
         <section id={s.klantinput.id} className="feature pd-section" aria-labelledby={`${s.klantinput.id}-titel`}>
           <div className="keyline" />
           <Kop {...s.klantinput} />
-          <div className="pd-grid pd-grid-tall">
-            <Cel b={s.klantinput.cellen[0]} alt="Openstaande vragen voor de pagina over hybride warmtepompen: twee van vier beantwoord, met de knop Deel deze vragen.">
+          <div className="pd-grid">
+            <Cel b={s.klantinput.cellen[0]} alt="Twee van vier vragen beantwoord, met een knop om de vragen te delen.">
               <V.VragenTeam />
             </Cel>
-            <Cel b={s.klantinput.cellen[1]} variant="phone" alt="De klant beantwoordt op zijn telefoon de vraag over de prijsopbouw, zonder account.">
+            <Cel b={s.klantinput.cellen[1]} variant="phone" alt="Op een telefoon beantwoordt de klant de vraag over de prijsopbouw, zonder account.">
               <V.VragenKlant />
             </Cel>
           </div>
@@ -157,14 +157,14 @@ export default function ProductPage() {
         <section id={s.schrijven.id} className="feature pd-section" aria-labelledby={`${s.schrijven.id}-titel`}>
           <div className="keyline" />
           <Kop {...s.schrijven} />
-          <Paneel b={s.schrijven.paneel} alt="De geschreven pagina met het antwoord van de klant gemarkeerd, één geel gemarkeerde zin, en rechts waar de tekst op gebouwd is.">
-            <V.TekstEditor />
+          <Paneel b={s.schrijven.paneel} variant="doc" alt="Een alinea uit de geschreven pagina: het antwoord van de klant is groen gemarkeerd, een termijn zonder bron geel.">
+            <V.TekstFragment />
           </Paneel>
           <div className="pd-grid">
-            <Cel b={s.schrijven.cellen[0]} alt="Een gemarkeerde zin over een installatietermijn van twee weken met de knoppen Klopt, Pas aan en Vraag het bedrijf.">
+            <Cel b={s.schrijven.cellen[0]} alt="Een gemarkeerde zin over een installatietermijn van twee weken met de knoppen Klopt en Vraag het bedrijf.">
               <V.ZinNalopen />
             </Cel>
-            <Cel b={s.schrijven.cellen[1]} alt="De eindredactie: vier controles geslaagd en één zin om na te lopen.">
+            <Cel b={s.schrijven.cellen[1]} alt="De eindredactie: drie controles geslaagd en één zin om na te lopen.">
               <V.Eindredactie />
             </Cel>
           </div>
@@ -187,7 +187,7 @@ export default function ProductPage() {
               </ul>
             </div>
             <div className="pd-cell pd-cell-solo">
-              <div className="pd-cell-stage" role="img" aria-label="Een goedgekeurde pagina met de knop Meld dat hij live staat en een menu om de tekst te kopiëren als HTML, Markdown of platte tekst.">
+              <div className="pd-cell-stage" role="img" aria-label="Het kopieermenu van een goedgekeurde pagina: kopieer als HTML, Markdown of platte tekst, en meld dat hij live staat.">
                 <div className="pd-cell-inner" aria-hidden="true"><V.Publiceren /></div>
               </div>
             </div>
@@ -199,10 +199,10 @@ export default function ProductPage() {
           <div className="keyline" />
           <Kop {...s.opvolging} />
           <div className="pd-grid">
-            <Cel b={s.opvolging.cellen[0]} alt="Hermeting van de acht doelvragen: vóór publicatie 0, na 14 dagen 3 en na 28 dagen 5 keer genoemd.">
+            <Cel b={s.opvolging.cellen[0]} alt="Van de acht doelvragen werd de klant vóór publicatie bij geen genoemd, na 14 dagen bij 3 en na 28 dagen bij 5.">
               <V.Hermeting />
             </Cel>
-            <Cel b={s.opvolging.cellen[1]} alt="Zoekverkeer van de pagina sinds publicatie op 3 september: 262 klikken en 3.940 vertoningen.">
+            <Cel b={s.opvolging.cellen[1]} alt="Klikken per dag vanaf de dag dat de pagina live ging, oplopend tot 262 klikken.">
               <V.Zoekverkeer />
             </Cel>
           </div>
@@ -213,7 +213,7 @@ export default function ProductPage() {
         <section id={s.rapportage.id} className="feature pd-section" aria-labelledby={`${s.rapportage.id}-titel`}>
           <div className="keyline" />
           <Kop {...s.rapportage} />
-          <Paneel b={s.rapportage.paneel} variant="report" alt="Het verslag van september 2026 van Bureau Noordwind voor Lindeman Warmte: zichtbaarheid 39 procent, vijf pagina's live, 1.204 klikken, wat er live ging en de planning voor volgende maand.">
+          <Paneel b={s.rapportage.paneel} variant="report" alt="Het verslag van september van Bureau Noordwind voor Lindeman Warmte: zichtbaarheid 39 procent, vijf pagina's live en 1.204 klikken uit Google.">
             <V.Maandverslag />
           </Paneel>
         </section>
@@ -222,14 +222,14 @@ export default function ProductPage() {
         <section id={s.bureau.id} className="feature pd-section" aria-labelledby={`${s.bureau.id}-titel`}>
           <div className="keyline" />
           <Kop {...s.bureau} />
-          <Paneel b={s.bureau.paneel} alt="Het werkoverzicht Merken met zes bedrijven, hun zichtbaarheid, waar ze op wachten en de kosten, met drie bedrijven geselecteerd om de maand te starten.">
+          <Paneel b={s.bureau.paneel} variant="list" alt="Vier bedrijven met hun zichtbaarheid en waar ze op wachten.">
             <V.Werkoverzicht />
           </Paneel>
           <div className="pd-grid">
-            <Cel b={s.bureau.cellen[0]} alt="Wie er toegang heeft: twee beheerders en twee kijkers, en de rechten van kijker Pieter Lindeman.">
+            <Cel b={s.bureau.cellen[0]} alt="Kijker Pieter Lindeman mag vragen beantwoorden en teksten goedkeuren, maar geen teksten bewerken.">
               <V.Toegang />
             </Cel>
-            <Cel b={s.bureau.cellen[1]} alt="Kosten van oktober: 46,39 euro van een limiet van 250 euro, met het verbruik per bedrijf.">
+            <Cel b={s.bureau.cellen[1]} alt="Kosten van oktober: 46 euro van een limiet van 250 euro.">
               <V.Kosten />
             </Cel>
           </div>
