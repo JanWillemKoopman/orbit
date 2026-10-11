@@ -161,23 +161,35 @@ img, svg { display: block; max-width: 100%; }
 .header-contact { padding: 0 8px; }
 .btn-github { gap: 6px; }
 
-.menu-toggle { display: none; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 8px; color: var(--text-primary); }
-.menu-toggle:hover { background: var(--bg-hover); }
+.menu-toggle { display: none; width: 32px; height: 32px; margin-right: -6px; align-items: center; justify-content: center; border-radius: 8px; color: var(--text-primary); }
+@media (hover: hover) { .menu-toggle:hover { background: var(--bg-hover); } }
 .mobile-menu { display: none; }
 
 @media (max-width: 768px) {
   .nav-list, .nav-divider { display: none; }
   .menu-toggle { display: inline-flex; }
+  /* Met open menu een dichte header, zodat er niets van de pagina doorheen schemert */
+  .site-header[data-menu-open='true'] { background: var(--bg-primary); }
   .mobile-menu[data-open='true'] {
     display: block; position: fixed; inset: var(--header-height) 0 0 0; z-index: 49;
-    background: var(--bg-primary);
-    padding: 16px var(--page-padding) 32px;
+    overflow-y: auto; overscroll-behavior: contain;
+    background:
+      radial-gradient(60% 40% at 15% 12%, rgba(255, 255, 255, 0.035), transparent 70%),
+      radial-gradient(70% 45% at 55% 55%, rgba(255, 255, 255, 0.025), transparent 70%),
+      var(--bg-primary);
+    padding: 32px var(--page-padding) 48px;
     animation: fade-in 0.2s var(--ease-out-quad);
   }
+  .mobile-menu-group + .mobile-menu-group { margin-top: 40px; }
+  .mobile-menu-title { margin: 0 0 14px; font-size: 13px; font-weight: var(--weight-medium); color: var(--text-tertiary); }
   .mobile-menu ul { list-style: none; margin: 0; padding: 0; }
-  .mobile-menu li + li { border-top: 1px solid var(--border-translucent); }
-  .mobile-menu a { display: flex; align-items: center; height: 52px; font-size: 17px; font-weight: var(--weight-medium); color: var(--text-secondary); }
-  .mobile-menu a[aria-current='page'] { color: var(--text-primary); }
+  .mobile-menu a {
+    display: flex; align-items: center; height: 40px;
+    font-size: 22px; font-weight: var(--weight-medium); letter-spacing: -0.012em; color: var(--text-primary);
+    transition: color var(--speed-quick) var(--ease-out-quad);
+  }
+  .mobile-menu a:active { color: var(--text-tertiary); }
+  @media (hover: hover) { .mobile-menu a:hover { color: var(--text-tertiary); } }
 }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 

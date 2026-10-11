@@ -36,6 +36,33 @@ export const mainNav = [
   { href: '/blog', label: 'Blog' },
 ]
 
+// Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
+export const mobileNav = [
+  {
+    title: 'Orbit',
+    links: [
+      { href: '/product', label: 'Product' },
+      { href: '/installatiegids', label: 'Installatiegids' },
+      { href: '/documentatie', label: 'Documentatie' },
+    ],
+  },
+  {
+    title: 'Bronnen',
+    links: [
+      { href: '/blog', label: 'Blog' },
+      { href: '/changelog', label: 'Changelog' },
+      { href: '/pers', label: 'Pers' },
+    ],
+  },
+  {
+    title: 'Bedrijf',
+    links: [
+      { href: '/over', label: 'Over' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+]
+
 export const footerNav = [
   {
     title: 'Blog',
