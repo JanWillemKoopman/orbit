@@ -71,7 +71,7 @@ export const zichtbaarheidSectie = {
   overzicht: {
     src: zichtbaarheid,
     mobiel: zichtbaarheidMobiel,
-    alt: 'Zichtbaarheid in AI voor Lindeman Warmte: 32 procent over alle clusters met een marge van 11 punten, drie clusters met een eigen lijn, en een tabel per cluster met marge, verandering, gemeten AI-vragen en de kolom Telt mee.',
+    alt: 'Zichtbaarheid in AI voor Lindeman Warmte: 49 procent over alle clusters met een marge van 3 punten, drie clusters met een stijgende lijn, en een tabel per cluster met marge, een stijging van 9 tot 10 punten, gemeten AI-vragen en de kolom Telt mee.',
   } satisfies Shot,
   detail: {
     src: antwoord,
@@ -180,12 +180,12 @@ export const opvolgingSectie = {
   note: 'Per pagina zie je de stand vóór en na publicatie, met de aantallen en de marge erbij.',
   ai: {
     src: hermeting,
-    alt: 'De bewijsladder van de voorbeeldpagina: gepubliceerd, zichtbaar in Google, genoemd door AI bij 4 van de 8 doelvragen tegen 0 vóór publicatie, geciteerd door AI en 63 klikken sinds publicatie.',
+    alt: 'De bewijsladder van de voorbeeldpagina: gepubliceerd, zichtbaar in Google, genoemd door AI bij 5 van de 8 doelvragen tegen 0 vóór publicatie, geciteerd door AI en 262 klikken sinds publicatie.',
     label: 'AI-vermeldingen',
   },
   google: {
     src: zoekverkeer,
-    alt: 'Zoekverkeer van de pagina\'s van ORBIT ENGINE: 240 klikken, 4.613 vertoningen, 5,2 procent doorklikratio en positie 11,2, met een grafiek van de klikken per dag en gestreepte lijnen op de dagen dat een pagina live ging.',
+    alt: 'Zoekverkeer van de pagina\'s van ORBIT ENGINE: 2.944 klikken, 37.304 vertoningen, 7,9 procent doorklikratio en positie 6,4, met een grafiek van de klikken per dag en gestreepte lijnen op de dagen dat een pagina live ging.',
     label: 'Google-zoekverkeer',
   },
 }
@@ -197,7 +197,7 @@ export const verslagSectie = {
     'Bundel de gemeten zichtbaarheid, gepubliceerde pagina\'s en planning in een maandverslag met jullie bureaunaam. Gebruik het in het klantgesprek of bewaar het als pdf om te delen.',
   shot: {
     src: verslag,
-    alt: 'Het verslag van september 2026 van Lindeman Warmte, door Bureau Noordwind: zichtbaarheid in AI-assistenten 26 procent, wat er gemeten is, de pagina\'s die live gingen met hun effect, en de pagina\'s voor volgende maand.',
+    alt: 'Het verslag van september 2026 van Lindeman Warmte, door Bureau Noordwind: zichtbaarheid in AI-assistenten 39 procent, tegen 32 procent de maand ervoor, wat er gemeten is, de pagina\'s die live gingen met hun effect, en de pagina\'s voor volgende maand.',
   } satisfies Shot,
 }
 

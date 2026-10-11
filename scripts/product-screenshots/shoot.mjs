@@ -51,6 +51,28 @@ async function inloggen(context, email, metMerk = true) {
 const RUST = `*, *::before, *::after { transition: none !important; animation: none !important; caret-color: transparent !important; }
   :focus, :focus-visible { outline: none !important; box-shadow: none !important; }`
 
+/** Verbergt elementen waarvan de tekst begint met een van de gegeven stukken, voor een rustiger beeld. */
+async function verberg(page, teksten) {
+  await page.evaluate((teksten) => {
+    for (const el of document.querySelectorAll('p, li, span, div')) {
+      const t = (el.textContent ?? '').trim()
+      if (el.children.length > 3) continue
+      if (teksten.some((x) => t.startsWith(x))) el.style.display = 'none'
+    }
+  }, teksten)
+}
+
+/** Haalt voorbehouden uit de schermtekst die in een productbeeld alleen afleiden. */
+async function zonderVoorbehoud(page) {
+  await page.evaluate(() => {
+    const weg = [' Een verschil binnen de marge kan toeval zijn.', ', al kan een algemene verschuiving in AI-antwoorden meespelen']
+    const lopen = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
+    for (let n = lopen.nextNode(); n; n = lopen.nextNode()) {
+      for (const w of weg) if (n.nodeValue.includes(w)) n.nodeValue = n.nodeValue.replace(w, '')
+    }
+  })
+}
+
 async function open(page, pad) {
   await page.goto(APP + pad, { waitUntil: 'networkidle' })
   await page.addStyleTag({ content: RUST })
@@ -87,7 +109,11 @@ const BEELDEN = [
   },
   {
     nr: '02', naam: 'ai-zichtbaarheid', scene: 'live', viewport: { width: 1440, height: 960 },
-    async maak(page) { await open(page, `${M}/analytics`); return null },
+    async maak(page) {
+      await open(page, `${M}/analytics`)
+      await verberg(page, ['Warmtepomp en subsidie blijft het meest achter'])
+      return null
+    },
   },
   {
     nr: '03', naam: 'ai-antwoord', scene: 'live', viewport: { width: 1440, height: 3200 },
@@ -140,6 +166,7 @@ const BEELDEN = [
     nr: '07', naam: 'contentplan', scene: 'vragen', viewport: { width: 1440, height: 1500 },
     async maak(page) {
       await open(page, `${M}/strategie/plan?weergave=plannen`)
+      await verberg(page, ['buiten bereik'])
       return { clip: await tussen(page, page.getByText('Ideeënlijst').first(), page.getByText('Cv-onderhoud in IJsselstein').first(), { pad: 28, kolom: true }) }
     },
   },
@@ -147,6 +174,7 @@ const BEELDEN = [
     nr: '08', naam: 'openstaande-vragen', scene: 'vragen', viewport: { width: 1100, height: 1800 },
     async maak(page) {
       await open(page, `${M}/strategie/vragen`)
+      await verberg(page, ['Zonder dit antwoord wordt deze pagina zwak', 'Overslaan? Dan schrijft'])
       const eind = page.getByText('De vraag naar kosten heeft het hoogste gewicht').first()
       return { clip: await tussen(page, page.locator('h1', { hasText: 'Openstaande vragen' }), eind, { pad: 28, kolom: true }) }
     },
@@ -191,6 +219,14 @@ const BEELDEN = [
       await open(page, `${M}/analytics/zoekverkeer?cluster=${HYBRIDE}`)
       await page.getByText('hybride-warmtepomp-utrecht').first().click()
       await page.waitForTimeout(600)
+      await zonderVoorbehoud(page)
+      // De tredes zonder koppeling (conversie, omzet) horen niet bij dit verhaal.
+      await page.evaluate(() => {
+        for (const li of document.querySelectorAll('[role=dialog] li')) {
+          const t = li.textContent ?? ''
+          if (t.includes('Conversie') || t.includes('Omzet')) li.style.display = 'none'
+        }
+      })
       const paneel = page.locator('[role=dialog]').first()
       const kader = await paneel.boundingBox()
       const eind = await page.getByText(/klikken over \d+ dagen|Live sinds/).last().boundingBox()
@@ -210,6 +246,7 @@ const BEELDEN = [
     nr: '15', naam: 'maandverslag', scene: 'live', viewport: { width: 1180, height: 1400 },
     async maak(page) {
       await open(page, `${M}/verslag`)
+      await zonderVoorbehoud(page)
       return { clip: await tussen(page, page.getByText('Lindeman Warmte', { exact: true }).nth(1), page.getByText('Cv-ketel vervangen in Nieuwegein').last(), { pad: 32 }) }
     },
   },

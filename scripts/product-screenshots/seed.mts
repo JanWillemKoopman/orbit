@@ -2,7 +2,7 @@
 // Alles is verzonnen. Domeinen eindigen op .example, e-mailadressen ook.
 import type { Client } from 'pg'
 import { createHash } from 'node:crypto'
-import { binomialStderr, weightedScoreStderr } from '@/lib/stats/uncertainty'
+import { binomialStderr } from '@/lib/stats/uncertainty'
 import { CLUSTERS, RONDES, HOOFDANTWOORD, antwoordVoor, CONCURRENTEN } from './data-metingen.mts'
 import { content } from './seed-content.mts'
 import { bureau } from './seed-bureau.mts'
@@ -70,7 +70,7 @@ export function uid(sleutel: string): string {
 }
 
 /** Beslisvragen uit het cluster Hybride warmtepomp die na publicatie wel een vermelding opleveren. */
-export const NA_PUBLICATIE = [0, 8, 10, 16]
+export const NA_PUBLICATIE = [0, 8, 10, 16, 20]
 /** De doelvragen van de voorbeeldpagina. */
 export const DOELVRAGEN = [0, 8, 10, 16, 20, 25, 1, 29]
 
@@ -92,7 +92,7 @@ async function metingen(db: Client): Promise<void> {
     // Volgorde waarin vragen "gewonnen" worden: eerst de orienterende, de beslisvragen het laatst.
     // De hoofdvraag van het voorbeeld (index 0) wordt in de periodieke metingen nooit gewonnen.
     const volgorde = c.vragen.map((v, i) => ({ i, r: (v.fase === 'Oriëntatie' ? 0 : v.fase === 'Overweging' ? 1 : 2) * 100 + ((i * 7) % 13) }))
-      .filter((x) => x.i !== 0).sort((a, b) => a.r - b.r).map((x) => x.i)
+      .filter((x) => x.i !== 0 && !(c.key === 'hybride' && DOELVRAGEN.includes(x.i))).sort((a, b) => a.r - b.r).map((x) => x.i)
     for (const [ronde, procent] of c.reeks.entries()) {
       const weekNo = ronde + 1
       const n = c.vragen.length
@@ -101,7 +101,6 @@ async function metingen(db: Client): Promise<void> {
       // de beslisvragen genoemd; die vervangen vier orienterende vragen, zodat het percentage gelijk blijft.
       const extra = c.key === 'hybride' && weekNo === 5 ? NA_PUBLICATIE : []
       const genoemd = new Set([...extra, ...volgorde.filter((i) => !extra.includes(i)).slice(0, aantal - extra.length)])
-      const uitkomsten: { weight: number; mentioned: boolean }[] = []
       for (const [i, v] of c.vragen.entries()) {
         const runId = uid(`run:${c.key}:${weekNo}:${i}`)
         const eigen = genoemd.has(i)
@@ -119,16 +118,18 @@ async function metingen(db: Client): Promise<void> {
           await ins(db, 'tracking_run_mentions', { tracking_run_id: runId, entity_name: naam, is_own_brand: false, mentioned: true, position: k + 1,
             sentiment: 'neutral', cited_sources: k === 0 ? a.bronnen : [], mention_role: k === 0 ? 'eerste_aanbeveling' : 'een_van_meerdere' })
         }
-        uitkomsten.push({ weight: v.gewicht, mentioned: eigen })
       }
-      const sumW = uitkomsten.reduce((s, o) => s + o.weight, 0)
-      const gewogen = Math.round((uitkomsten.reduce((s, o) => s + (o.mentioned ? o.weight : 0), 0) / sumW) * 100)
+      // Voor de productbeelden een smallere marge dan één meting per vraag geeft, alsof elke vraag
+      // twaalf keer gemeten is. Zo laat het beeld een duidelijke ontwikkeling zien.
+      const se = (x: number) => Math.round((x / Math.sqrt(12)) * 100) / 100
       const score = Math.round((aantal / n) * 100)
+      // Gewogen en ongewogen gelijk, zodat kaart en tabel hetzelfde cijfer tonen.
+      const gewogen = score
       await ins(db, 'visibility_scores', { analysis_id: analysisId, week_no: weekNo, score, weighted_score: gewogen,
-        score_stderr: binomialStderr(aantal, n), weighted_stderr: weightedScoreStderr(uitkomsten), judged_runs: n, winnable_runs: n, brandless_runs: 0,
-        share_of_voice: Math.round((aantal / (aantal + n * 2.6)) * 100), share_basis_count: CONCURRENTEN.length + 1, avg_position: 2.4,
+        score_stderr: se(binomialStderr(aantal, n)), weighted_stderr: se(binomialStderr(aantal, n)), judged_runs: n, winnable_runs: n, brandless_runs: 0,
+        share_of_voice: Math.round((aantal / (aantal + n * 1.6)) * 100), share_basis_count: CONCURRENTEN.length + 1, avg_position: 2.4,
         citation_count: Math.round(aantal / 2), first_mention_count: Math.round(aantal / 5), computed_at: new Date(new Date(RONDES[ronde]).getTime() + 3_600_000).toISOString(),
-        per_engine_json: { openai: { score, weighted_score: gewogen, stderr: binomialStderr(aantal, n), weighted_stderr: weightedScoreStderr(uitkomsten), judged_runs: n, winnable_runs: n } }, teststand: false })
+        per_engine_json: { openai: { score, weighted_score: gewogen, stderr: se(binomialStderr(aantal, n)), weighted_stderr: se(binomialStderr(aantal, n)), judged_runs: n, winnable_runs: n } }, teststand: false })
     }
   }
 }

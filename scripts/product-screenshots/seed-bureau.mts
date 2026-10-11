@@ -17,11 +17,11 @@ interface Bedrijf {
 }
 
 export const BEDRIJVEN: Bedrijf[] = [
-  { key: 'brink', naam: 'Brink & Mulder Advocaten', url: 'https://www.brinkmulder.example', branche: 'Advocatuur', cluster: 'Arbeidsrecht voor werkgevers', reeks: [22, 25, 27], vragen: 24, open: 3, paginas: ['live', 'live', 'nakijken', 'briefing'], kosten: [0, 9.8, 14.2, 12.6, 15.1, 8.4] },
-  { key: 'tandarts', naam: 'Tandartspraktijk Lunetten', url: 'https://www.tandartslunetten.example', branche: 'Mondzorg', cluster: 'Implantaten en kronen', reeks: [31, 34, 33, 37], vragen: 20, open: 0, paginas: ['live', 'live', 'live', 'akkoord'], kosten: [7.2, 11.5, 10.9, 12.3, 13.4, 6.1] },
-  { key: 'hoveniers', naam: 'Groenrijk Hoveniers', url: 'https://www.groenrijkhoveniers.example', branche: 'Tuinaanleg', cluster: 'Tuinontwerp en aanleg', reeks: [12, 14], vragen: 22, open: 5, paginas: ['briefing', 'briefing', 'schrijven'], kosten: [0, 0, 0, 8.7, 16.9, 11.8] },
-  { key: 'verbeek', naam: 'Verbeek Bouw & Renovatie', url: 'https://www.verbeekbouw.example', branche: 'Aannemer', cluster: 'Aanbouw en dakkapel', reeks: [18, 21, 26, 28], vragen: 26, open: 1, paginas: ['live', 'live', 'akkoord', 'akkoord', 'nakijken'], kosten: [6.4, 12.8, 13.1, 14.9, 12.2, 7.3] },
-  { key: 'fysio', naam: 'Fysio Oudwijk', url: 'https://www.fysiooudwijk.example', branche: 'Fysiotherapie', cluster: 'Sportblessures en herstel', reeks: [40, 43, 41], vragen: 18, open: 2, paginas: ['live', 'nakijken', 'briefing'], kosten: [0, 0, 9.1, 10.4, 11.7, 5.2] },
+  { key: 'brink', naam: 'Brink & Mulder Advocaten', url: 'https://www.brinkmulder.example', branche: 'Advocatuur', cluster: 'Arbeidsrecht voor werkgevers', reeks: [24, 31, 38], vragen: 24, open: 3, paginas: ['live', 'live', 'nakijken', 'briefing'], kosten: [0, 9.8, 14.2, 12.6, 15.1, 8.4] },
+  { key: 'tandarts', naam: 'Tandartspraktijk Lunetten', url: 'https://www.tandartslunetten.example', branche: 'Mondzorg', cluster: 'Implantaten en kronen', reeks: [35, 40, 45, 55], vragen: 20, open: 0, paginas: ['live', 'live', 'live', 'akkoord'], kosten: [7.2, 11.5, 10.9, 12.3, 13.4, 6.1] },
+  { key: 'hoveniers', naam: 'Groenrijk Hoveniers', url: 'https://www.groenrijkhoveniers.example', branche: 'Tuinaanleg', cluster: 'Tuinontwerp en aanleg', reeks: [14, 23], vragen: 22, open: 5, paginas: ['briefing', 'briefing', 'schrijven'], kosten: [0, 0, 0, 8.7, 16.9, 11.8] },
+  { key: 'verbeek', naam: 'Verbeek Bouw & Renovatie', url: 'https://www.verbeekbouw.example', branche: 'Aannemer', cluster: 'Aanbouw en dakkapel', reeks: [19, 27, 35, 42], vragen: 26, open: 1, paginas: ['live', 'live', 'akkoord', 'akkoord', 'nakijken'], kosten: [6.4, 12.8, 13.1, 14.9, 12.2, 7.3] },
+  { key: 'fysio', naam: 'Fysio Oudwijk', url: 'https://www.fysiooudwijk.example', branche: 'Fysiotherapie', cluster: 'Sportblessures en herstel', reeks: [44, 50, 61], vragen: 18, open: 2, paginas: ['live', 'nakijken', 'briefing'], kosten: [0, 0, 9.1, 10.4, 11.7, 5.2] },
 ]
 
 const TITELS: Record<string, string[]> = {
@@ -46,8 +46,8 @@ export async function bureau(db: Client): Promise<void> {
     for (const [r, procent] of b.reeks.entries()) {
       const genoemd = Math.round((procent / 100) * b.vragen)
       const op = `${MAANDEN[start + r]}-0${1 + (bi % 3)}T07:00:00Z`
-      await ins(db, 'visibility_scores', { analysis_id: aid, week_no: r + 1, score: procent, weighted_score: procent, score_stderr: binomialStderr(genoemd, b.vragen),
-        weighted_stderr: binomialStderr(genoemd, b.vragen), judged_runs: b.vragen, winnable_runs: b.vragen, brandless_runs: 0, computed_at: op, teststand: false,
+      await ins(db, 'visibility_scores', { analysis_id: aid, week_no: r + 1, score: procent, weighted_score: procent, score_stderr: binomialStderr(genoemd, b.vragen) / 1.8,
+        weighted_stderr: binomialStderr(genoemd, b.vragen) / 1.8, judged_runs: b.vragen, winnable_runs: b.vragen, brandless_runs: 0, computed_at: op, teststand: false,
         per_engine_json: { openai: { score: procent, weighted_score: procent, stderr: binomialStderr(genoemd, b.vragen), judged_runs: b.vragen, winnable_runs: b.vragen } } })
     }
     for (const [i, stand] of b.paginas.entries()) {
@@ -56,11 +56,11 @@ export async function bureau(db: Client): Promise<void> {
       await ins(db, 'content_pieces', { id: uid(`stuk:${b.key}:${i}`), analysis_id: aid, type: 'landing', title: titel, status: live ? 'published' : stand === 'briefing' ? 'briefing' : stand === 'schrijven' ? 'draft' : 'ready',
         body_markdown: stand === 'briefing' || stand === 'schrijven' ? null : `${titel}\n\nVoorbeeldtekst.`, needs_review: stand === 'nakijken', is_current: true, version: 1, action: 'nieuw',
         brief_json: { opzet: 'klaar' }, published_at: live ? `2026-0${7 + (i % 3)}-1${i}T09:00:00Z` : null, published_url: live ? `${b.url}/pagina-${i + 1}` : null,
-        created_at: `2026-${stand === 'live' ? '08' : '10'}-0${1 + i}T09:00:00Z` })
+        created_at: stand === 'live' ? `2026-08-0${1 + i}T09:00:00Z` : `2026-10-${String(8 + (i % 3)).padStart(2, '0')}T09:00:00Z` })
     }
     for (let v = 0; v < b.open; v++) {
       await ins(db, 'fact_requests', { profile_id: pid, analysis_id: aid, question: `Vraag ${v + 1} aan ${b.naam}`, scope: 'merk', kind: 'aanvulling', answer_type: 'tekst_kort', status: 'open',
-        created_at: new Date(Date.UTC(2026, 9, 9 - bi * 4 - v)).toISOString() })
+        created_at: new Date(Date.UTC(2026, 9, 10 - (bi % 3) - v, 9)).toISOString() })
     }
     await kosten(db, pid, aid, b.paginas.map((_, i) => uid(`stuk:${b.key}:${i}`)), b.kosten)
   }

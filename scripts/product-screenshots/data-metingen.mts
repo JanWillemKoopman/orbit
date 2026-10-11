@@ -26,8 +26,8 @@ export const CLUSTERS = [
     key: 'hybride',
     naam: 'Hybride warmtepomp',
     topic: 'Hybride warmtepompen laten installeren in Utrecht en omgeving',
-    // Zichtbaarheid per meetronde, in procenten van het aantal vragen. Rustige groei.
-    reeks: [17, 20, 23, 30, 33],
+    // Zichtbaarheid per meetronde, in procenten van het aantal vragen.
+    reeks: [17, 23, 30, 37, 47],
     vragen: [
       { tekst: 'Welke installateur in Utrecht is goed in hybride warmtepompen?', fase: 'Beslissing', gewicht: 0.62 },
       { tekst: 'Wat kost een hybride warmtepomp inclusief installatie?', fase: 'Overweging', gewicht: 0.55 },
@@ -65,7 +65,7 @@ export const CLUSTERS = [
     key: 'cv',
     naam: 'Cv-ketel onderhoud en storing',
     topic: 'Onderhoud en storingsdienst voor cv-ketels in Utrecht',
-    reeks: [42, 42, 46, 46, 50],
+    reeks: [38, 42, 46, 54, 63],
     vragen: [
       { tekst: 'Hoe vaak moet een cv-ketel onderhouden worden?', fase: 'Oriëntatie', gewicht: 0.3 },
       { tekst: 'Wat kost een onderhoudsbeurt voor een cv-ketel in Utrecht?', fase: 'Overweging', gewicht: 0.48 },
@@ -97,7 +97,7 @@ export const CLUSTERS = [
     key: 'subsidie',
     naam: 'Warmtepomp en subsidie',
     topic: 'Subsidie en financiering bij een warmtepomp',
-    reeks: [10, 15, 15, 20, 20],
+    reeks: [10, 15, 20, 25, 35],
     vragen: [
       { tekst: 'Hoeveel subsidie krijg ik voor een hybride warmtepomp?', fase: 'Oriëntatie', gewicht: 0.46 },
       { tekst: 'Hoe vraag ik ISDE-subsidie aan voor een warmtepomp?', fase: 'Oriëntatie', gewicht: 0.42 },

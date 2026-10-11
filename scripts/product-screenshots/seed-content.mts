@@ -188,7 +188,7 @@ async function piece(db: Client, p: Pagina, pieceId: string, status: Pagina['sta
   const body = voorbeeld ? TEKST_VOORBEELD : `${p.waarom}\n\n## Wat je moet weten\n\nLindeman Warmte legt in deze pagina uit wat je kunt verwachten.\n\n## Onze aanpak\n\nEerst een opname bij je thuis, daarna een advies op maat.`
   const geschreven = status === 'live' || status === 'nakijken' || status === 'goedgekeurd'
   const dbStatus = status === 'live' ? 'published' : geschreven ? 'ready' : status === 'schrijven' ? 'draft' : 'briefing'
-  const created = voorbeeld && scene !== 'live' ? '2026-10-06T08:10:00Z' : new Date(new Date(`${p.dag}T08:00:00Z`).getTime() - 14 * 86_400_000).toISOString()
+  const created = voorbeeld && scene !== 'live' ? '2026-10-06T08:10:00Z' : status === 'live' ? new Date(new Date(`${p.dag}T08:00:00Z`).getTime() - 14 * 86_400_000).toISOString() : '2026-10-08T08:00:00Z'
   const controle = geschreven
     ? {
         ongedekt: voorbeeld ? [GELE_ZIN] : [],
@@ -239,7 +239,7 @@ async function nameting(db: Client): Promise<void> {
   const analysisId = uid('cluster:hybride')
   const voor = new Map(DOELVRAGEN.map((i) => [String(i), false]))
   const golven = [
-    { wave: 1, op: '2026-09-17T07:30:00Z', genoemd: [10, 16] },
+    { wave: 1, op: '2026-09-17T07:30:00Z', genoemd: [10, 16, 8] },
     { wave: 2, op: '2026-10-01T07:30:00Z', genoemd: NA_PUBLICATIE },
   ]
   const controleVoor = new Map([['c1', true], ['c2', true], ['c3', false], ['c4', false], ['c5', false], ['c6', false]])
@@ -262,12 +262,26 @@ async function nameting(db: Client): Promise<void> {
     bronnen: ['openai'], regio: 'Utrecht', vastgelegd_op: '2026-09-02T09:00:00Z', gepubliceerd_op: '2026-09-03T09:30:00Z',
   })
   // Eerdere live pagina's kregen ook hun hermeting.
-  for (const [k, golf] of [['cv-onderhoud', [2, 3, 3]], ['storingsdienst', [1, 2, 2]], ['abonnement', [2, 2, 2]], ['hybride-vs-elektrisch', [1, 3, 2]]] as const) {
-    const total = golf[2] + 3
-    const doel = { total, beforeMentioned: golf[0], afterMentioned: golf[1] }
-    await ins(db, 'content_impact', { content_piece_id: uid(`piece:${k}`), analysis_id: uid(`cluster:${PAGINAS.find((p) => p.key === k)!.cluster}`), wave: 2, target_total: total,
-      target_before_mentioned: golf[0], target_after_mentioned: golf[1], control_total: 6, control_before_mentioned: 2, control_after_mentioned: 2,
-      target_delta: Math.round(deltaOf(doel) * 100) / 100, control_delta: 0, delta_threshold: thresholdOf(doel), verdict: verdictOf(doel), computed_at: '2026-09-20T07:30:00Z', target_cited_own_page: false })
+  const eerder: [string, number, number, number][] = [
+    ['cv-onderhoud', 8, 1, 5], ['storingsdienst', 8, 0, 5], ['abonnement', 6, 1, 4], ['hybride-vs-elektrisch', 8, 1, 5],
+    ['hybride-uitleg', 6, 1, 4], ['ketel-vervangen-kosten', 6, 0, 3], ['tussenwoning', 8, 1, 5], ['isde-2026', 6, 0, 4],
+    ['onderhoud-nieuwegein', 6, 1, 4], ['zonnepanelen', 6, 0, 4],
+  ]
+  // Eerste hermeting (na 14 dagen) van twee pagina's uit eind september.
+  for (const [k, total, voorN, naN, op] of [['storing-warmtepomp', 6, 0, 4, '2026-10-01T07:30:00Z'], ['subsidie-aanvragen', 6, 0, 4, '2026-10-08T07:30:00Z']] as const) {
+    const doel = { total, beforeMentioned: voorN, afterMentioned: naN }
+    const live = PAGINAS.find((p) => p.key === k)!
+    await ins(db, 'content_impact', { content_piece_id: uid(`piece:${k}`), analysis_id: uid(`cluster:${live.cluster}`), wave: 1, target_total: total,
+      target_before_mentioned: voorN, target_after_mentioned: naN, control_total: 6, control_before_mentioned: 2, control_after_mentioned: 2,
+      target_delta: Math.round(deltaOf(doel) * 100) / 100, control_delta: 0, delta_threshold: thresholdOf(doel), verdict: verdictOf(doel), computed_at: op, target_cited_own_page: true })
+  }
+  for (const [k, total, voorN, naN] of eerder) {
+    const doel = { total, beforeMentioned: voorN, afterMentioned: naN }
+    const live = PAGINAS.find((p) => p.key === k)!
+    await ins(db, 'content_impact', { content_piece_id: uid(`piece:${k}`), analysis_id: uid(`cluster:${live.cluster}`), wave: 2, target_total: total,
+      target_before_mentioned: voorN, target_after_mentioned: naN, control_total: 6, control_before_mentioned: 2, control_after_mentioned: 2,
+      target_delta: Math.round(deltaOf(doel) * 100) / 100, control_delta: 0, delta_threshold: thresholdOf(doel), verdict: verdictOf(doel),
+      computed_at: new Date(new Date(live.live!).getTime() + 28 * 86_400_000).toISOString(), target_cited_own_page: naN >= 4 })
   }
 }
 
@@ -283,9 +297,9 @@ async function zoekverkeer(db: Client, scene: Scene): Promise<void> {
     for (let d = new Date(start), n = 0; d <= tot; d.setUTCDate(d.getUTCDate() + 1), n++) {
       const golf = 1 + 0.25 * Math.sin((n + i) * 1.3) + 0.15 * Math.cos(n * 0.7 + i)
       const weekend = [0, 6].includes(d.getUTCDay()) ? 0.7 : 1
-      const vertoningen = Math.max(0, Math.round((4 + Math.min(n, 30) * 1.2) * schaal * golf * weekend))
-      const klikken = Math.max(0, Math.round(vertoningen * (0.03 + Math.min(n, 30) * 0.0008) * (1 + 0.4 * Math.sin(n * 2.1 + i))))
-      const positie = Math.max(6.5, 24 - Math.min(n, 35) * 0.42 + Math.sin(n) * 1.2)
+      const vertoningen = Math.max(0, Math.round((10 + Math.min(n, 45) * 3.4) * schaal * golf * weekend))
+      const klikken = Math.max(0, Math.round(vertoningen * (0.04 + Math.min(n, 40) * 0.0011) * (1 + 0.3 * Math.sin(n * 2.1 + i))))
+      const positie = Math.max(3.8, 19 - Math.min(n, 40) * 0.36 + Math.sin(n) * 0.9)
       rijen.push([P(), d.toISOString().slice(0, 10), SITE + p.pad, klikken, vertoningen, Math.round(positie * 10) / 10])
     }
   }
