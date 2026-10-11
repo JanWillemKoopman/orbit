@@ -46,6 +46,10 @@ De homepage (`/`) presenteert ORBIT ENGINE en volgt de opbouw van linear.app: ee
 
 De productpagina (`/product`) laat ORBIT ENGINE zien met nagebouwde schermen in de vormgeving van de app, gevuld met fictieve voorbeeldgegevens (Lindeman Warmte, Bureau Noordwind). Teksten staan in `content/product.ts`, de beelden zijn HTML-componenten in `components/product/Visuals.tsx` en de opmaak staat in `app/product/product.css`.
 
+## Bureaupagina
+
+De bureaupagina (`/agency`, in het menu "Account en beheer") heeft dezelfde opbouw en vormgeving als `/product`, met de nadruk op het account van een bureau: het werkoverzicht, klanten toevoegen, collega's en kijkers, kosten, eigen sleutels en het archiveren of verwijderen van gegevens. Teksten staan in `content/agency.ts`, de beelden in `components/agency/Visuals.tsx` en de aanvullende opmaak in `app/agency/agency.css`. De gedeelde bouwblokken (kop, paneel, cel) staan in `components/product/Blokken.tsx`.
+
 ## Overige content
 
 - `content/changelog.ts`: changelog-items (de nieuwste vier staan op de homepage en het blogoverzicht)

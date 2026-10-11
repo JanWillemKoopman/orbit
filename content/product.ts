@@ -9,7 +9,9 @@ export const meta = {
 
 export const demoHref = '/contact?onderwerp=demo'
 
-export type Bijschrift = { titel: string; tekst: string; label?: string }
+import type { Bijschrift } from '@/components/product/Blokken'
+
+export type { Bijschrift }
 
 export const hero = {
   eyebrow: 'ORBIT ENGINE voor bureaus',

@@ -30,6 +30,7 @@ export const tabs = [
 
 export const mainNav = [
   { href: '/product', label: 'Product' },
+  { href: '/agency', label: 'Account en beheer' },
   { href: '/installatiegids', label: 'Installatiegids' },
   { href: '/documentatie', label: 'Documentatie' },
   { href: '/over', label: 'Over' },
@@ -42,6 +43,7 @@ export const mobileNav = [
     title: 'Orbit',
     links: [
       { href: '/product', label: 'Product' },
+      { href: '/agency', label: 'Account en beheer' },
       { href: '/installatiegids', label: 'Installatiegids' },
       { href: '/documentatie', label: 'Documentatie' },
     ],

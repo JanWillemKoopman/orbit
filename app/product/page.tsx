@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { afsluiter, demoHref, hero, meta, ronde, secties, type Bijschrift } from '@/content/product'
+import { afsluiter, demoHref, hero, meta, ronde, secties } from '@/content/product'
+import { Cel, Kop, Paneel, Splitsing } from '@/components/product/Blokken'
 import * as V from '@/components/product/Visuals'
 import './product.css'
 
@@ -11,51 +12,8 @@ export const metadata: Metadata = {
   openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/product', images: [{ url: '/images/product/og-product.png', width: 1200, height: 630 }] },
 }
 
-// Opbouw naar linear.app: per sectie een kop met uitleg, daarna een groot paneel waarin een appvenster
-// over de rand loopt, of een raster van cellen die elk één functie van dichtbij tonen, met het
-// bijschrift in het vlak zelf. De beelden zijn nagebouwd (components/product/Visuals.tsx).
-
-function Kop({ id, title, description }: { id: string; title: string; description: string }) {
-  return (
-    <div className="feature-header pd-header">
-      <h2 id={`${id}-titel`} className="feature-title">{title}</h2>
-      <div className="feature-description"><p>{description}</p></div>
-    </div>
-  )
-}
-
-function Tekst({ b }: { b: Bijschrift }) {
-  return (
-    <figcaption className="pd-caption">
-      <h3>{b.titel}{b.label && <span className="pd-label">{b.label}</span>}</h3>
-      <p>{b.tekst}</p>
-    </figcaption>
-  )
-}
-
-/** Een groot vlak met lichtval van boven; het venster loopt rechts en onder uit beeld. */
-function Paneel({ b, alt, children, variant }: { b: Bijschrift; alt: string; children: React.ReactNode; variant?: string }) {
-  return (
-    <figure className={`pd-panel${variant ? ` pd-panel-${variant}` : ''}`}>
-      <div className="pd-panel-stage" role="img" aria-label={alt}>
-        <div className="pd-panel-inner" aria-hidden="true">{children}</div>
-      </div>
-      <Tekst b={b} />
-    </figure>
-  )
-}
-
-/** Een cel uit een raster: één onderdeel van dichtbij, met het bijschrift eronder. */
-function Cel({ b, alt, children, variant }: { b: Bijschrift; alt: string; children: React.ReactNode; variant?: string }) {
-  return (
-    <figure className={`pd-cell${variant ? ` pd-cell-${variant}` : ''}`}>
-      <div className="pd-cell-stage" role="img" aria-label={alt}>
-        <div className="pd-cell-inner" aria-hidden="true">{children}</div>
-      </div>
-      <Tekst b={b} />
-    </figure>
-  )
-}
+// Opbouw naar linear.app met de bouwblokken uit components/product/Blokken.tsx. De beelden zijn
+// nagebouwd (components/product/Visuals.tsx).
 
 export default function ProductPage() {
   const s = secties
@@ -173,25 +131,9 @@ export default function ProductPage() {
         {/* 7. Goedkeuren en publiceren */}
         <section id={s.publiceren.id} className="feature pd-section" aria-labelledby={`${s.publiceren.id}-titel`}>
           <div className="keyline" />
-          <div className="pd-split">
-            <div className="pd-split-text">
-              <h2 id={`${s.publiceren.id}-titel`} className="feature-title">{s.publiceren.title}</h2>
-              <p className="pd-lead">{s.publiceren.description}</p>
-              <ul className="pd-checks">
-                {s.publiceren.punten.map((p) => (
-                  <li key={p}>
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7" /></svg>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="pd-cell pd-cell-solo">
-              <div className="pd-cell-stage" role="img" aria-label="Het kopieermenu van een goedgekeurde pagina: kopieer als HTML, Markdown of platte tekst, en meld dat hij live staat.">
-                <div className="pd-cell-inner" aria-hidden="true"><V.Publiceren /></div>
-              </div>
-            </div>
-          </div>
+          <Splitsing {...s.publiceren} alt="Het kopieermenu van een goedgekeurde pagina: kopieer als HTML, Markdown of platte tekst, en meld dat hij live staat.">
+            <V.Publiceren />
+          </Splitsing>
         </section>
 
         {/* 8. Opvolging */}
