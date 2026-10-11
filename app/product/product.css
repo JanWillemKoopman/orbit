@@ -1,0 +1,203 @@
+/* ==========================================================================
+   Productpagina (/product). Bouwt voort op de homepage (home.css): dezelfde koppen, keylines en
+   maten. Nieuw zijn de panelen waarin de productbeelden staan: een rustig vlak met een zachte
+   lichtval van boven, zodat het scherm zelf de aandacht krijgt.
+   ========================================================================== */
+
+/* Hero ------------------------------------------------------------------ */
+.pd-hero { padding-top: 168px; }
+.pd-eyebrow {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.pd-title { max-width: 980px; margin-top: 20px; text-wrap: balance; }
+.pd-hero-description { max-width: 620px; margin-top: 28px; font-size: 17px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+.pd-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+
+.pd-stage { margin-top: 80px; padding-bottom: 72px; }
+.pd-hero-figure { position: relative; }
+.pd-hero-figure .pd-frame { box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.6); }
+
+.pd-note { margin-top: 0; font-size: 13px; line-height: 1.5; color: var(--text-quaternary); text-align: center; }
+.pd-note-left { text-align: left; }
+
+/* De vijf stappen van een maand, als inhoudsopgave onder de hero */
+.pd-ronde { margin-top: 28px; }
+.pd-ronde ol { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.pd-ronde li { display: flex; align-items: center; }
+.pd-ronde li + li::before { content: ''; width: 24px; height: 1px; margin-right: 8px; background: var(--border-strong); }
+.pd-ronde a {
+  display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 8px;
+  border-radius: var(--radius-pill); border: 1px solid var(--border-translucent);
+  font-size: 14px; color: var(--text-secondary);
+  transition: background var(--speed-quick), color var(--speed-quick), border-color var(--speed-quick);
+}
+.pd-ronde a:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--border-strong); }
+.pd-ronde-nr {
+  display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(188, 255, 47, 0.12); color: var(--accent); font-family: var(--font-mono); font-size: 11px;
+}
+
+/* Secties --------------------------------------------------------------- */
+.pd-section { padding-bottom: 32px; scroll-margin-top: var(--header-height); }
+.pd-section .pd-header { padding-top: 144px; padding-bottom: 72px; }
+
+/* Het paneel: een rustig vlak met lichtval van boven, het beeld erin met lucht eromheen. */
+.pd-panel {
+  position: relative; display: flex; align-items: flex-start; justify-content: center;
+  padding: 64px 64px 0; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background:
+    radial-gradient(80% 70% at 50% 0%, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.025) 55%, rgba(255, 255, 255, 0) 85%),
+    var(--bg-level-1);
+}
+.pd-panel-wide { padding: 72px 72px 0; }
+.pd-panel-wide .pd-frame { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 0; }
+.pd-panel-card { height: 100%; padding: 40px; align-items: flex-start; }
+.pd-panel-tight { padding: 40px; align-items: center; }
+.pd-panel-report { padding: 96px 120px 0; }
+.pd-panel-report .pd-frame { max-width: 920px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 0; }
+.pd-panel-idee { padding: 48px; }
+.pd-panel-idee .pd-frame { max-width: 380px; }
+.pd-panel-phone .pd-frame { max-width: 320px; }
+.pd-panel-drawer .pd-frame { max-width: 400px; }
+/* Een lange tekst loopt onderaan weg, zoals een pagina die doorloopt. */
+.pd-panel-fade .pd-frame {
+  max-height: 760px;
+  mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+}
+.pd-panel-fade .pd-frame img { object-fit: cover; object-position: top; }
+.pd-panel-fade .pd-zoom { opacity: 1; }
+
+/* Het kader om een productbeeld */
+.pd-frame {
+  position: relative; width: 100%; overflow: hidden;
+  border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0f1011;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.6);
+}
+.pd-frame img { display: block; width: 100%; height: auto; aspect-ratio: var(--ar); }
+.pd-frame-phone { border-radius: 28px; border-width: 6px; border-color: #1d1e20; }
+
+.pd-zoom {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px;
+  border-radius: var(--radius-pill); font-size: 12px; font-weight: var(--weight-medium);
+  color: var(--text-primary); background: rgba(15, 16, 17, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity var(--speed-regular) var(--ease-out-quad), background var(--speed-quick);
+}
+.pd-frame:hover .pd-zoom, .pd-zoom:focus-visible { opacity: 1; }
+.pd-zoom:hover { background: rgba(30, 31, 33, 0.92); }
+@media (hover: none) { .pd-zoom { opacity: 1; } }
+
+/* Twee naast elkaar */
+.pd-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.pd-pair + .pd-note { margin-top: 24px; }
+.pd-panel + .pd-pair { margin-top: 24px; }
+.pd-pair-input { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.pd-pair-opvolging { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.pd-card { display: flex; flex-direction: column; }
+.pd-card .pd-panel { flex: 1; }
+.pd-card figcaption { padding: 20px 4px 0; }
+.pd-card h3, .pd-text h3 { font-size: 17px; line-height: 1.5; font-weight: var(--weight-medium); letter-spacing: -0.011em; color: var(--text-primary); }
+.pd-card p, .pd-text p { margin-top: 4px; max-width: 52ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+.pd-card-wide { margin-top: 24px; }
+
+.pd-labels { display: flex; flex-wrap: wrap; gap: 8px; }
+.pd-label {
+  display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: var(--weight-medium); color: var(--text-primary);
+  background: rgba(188, 255, 47, 0.1); box-shadow: inset 0 0 0 1px rgba(188, 255, 47, 0.25);
+}
+.pd-label-muted { color: var(--text-tertiary); background: var(--bg-translucent); box-shadow: inset 0 0 0 1px var(--border-translucent); font-weight: var(--weight-normal); }
+.pd-labels + p { margin-top: 10px; }
+
+/* Tekst naast een beeld */
+.pd-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: stretch; margin-top: 24px; }
+.pd-split .pd-text { display: flex; flex-direction: column; justify-content: center; padding: 32px 40px 32px 4px; }
+.pd-split-idee { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); margin-top: 0; }
+.pd-split-idee .pd-text { padding: 32px 4px 32px 40px; }
+.pd-split-publiceren { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-top: 0; padding-top: 144px; align-items: center; }
+.pd-text-large .feature-title { padding-right: 0; }
+.pd-lead { margin-top: 32px !important; font-size: 20px !important; line-height: 1.4 !important; color: var(--text-secondary) !important; letter-spacing: -0.012em; max-width: 40ch !important; }
+.pd-checks { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; padding: 0; list-style: none; }
+.pd-checks li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--text-secondary); }
+.pd-checks svg { flex-shrink: 0; color: var(--accent); }
+
+/* Afsluiter */
+.pd-afsluiter { margin-block: 160px 200px; gap: 24px; }
+.pd-afsluiter p { max-width: 560px; text-align: center; font-size: 17px; line-height: 1.6; color: var(--text-tertiary); }
+.pd-afsluiter .home-prefooter-actions { margin-top: 16px; }
+
+/* Beeldviewer ----------------------------------------------------------- */
+.pd-lightbox {
+  width: 100vw; max-width: 100vw; height: 100vh; max-height: 100vh; margin: 0; padding: 0; border: 0;
+  background: transparent; color: var(--text-primary);
+}
+.pd-lightbox::backdrop { background: rgba(4, 5, 6, 0.88); backdrop-filter: blur(6px); }
+.pd-lightbox[open] { animation: fade-in 0.2s var(--ease-out-quad); }
+.pd-lightbox-inner { min-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 24px; }
+.pd-lightbox-inner img { width: auto; max-width: min(100%, 1440px); height: auto; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.12); }
+.pd-lightbox-close { position: sticky; top: 0; align-self: flex-end; z-index: 1; }
+.pd-lightbox-close span { color: var(--text-quaternary); font-family: var(--font-mono); font-size: 11px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-lightbox[open] { animation: none; }
+  .pd-zoom { transition: none; }
+}
+
+/* Breekpunten ------------------------------------------------------------ */
+@media (max-width: 1280px) {
+  .pd-hero { padding-top: 124px; }
+  .pd-panel-report { padding: 72px 64px 0; }
+}
+@media (max-width: 1024px) {
+  .pd-hero { padding-top: 96px; }
+  .pd-section .pd-header { padding-top: 112px; padding-bottom: 56px; }
+  .pd-panel, .pd-panel-wide { padding: 40px 40px 0; }
+  .pd-panel-card, .pd-panel-tight, .pd-panel-idee { padding: 32px; }
+  .pd-split, .pd-split-idee, .pd-split-publiceren { grid-template-columns: 1fr; }
+  .pd-split .pd-text, .pd-split-idee .pd-text { padding: 8px 4px 0; }
+  .pd-split-detail .pd-text { order: 2; }
+  .pd-split-publiceren { padding-top: 112px; gap: 48px; }
+  .pd-lead { font-size: 18px !important; }
+}
+@media (max-width: 900px) {
+  .pd-pair, .pd-pair-input, .pd-pair-opvolging { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 768px) {
+  .pd-stage { margin-top: 56px; padding-bottom: 40px; }
+  .pd-afsluiter { margin-block: 96px 128px; }
+}
+@media (max-width: 640px) {
+  .pd-hero { padding-top: 64px; }
+  .pd-title { margin-top: 14px; font-size: 34px; line-height: 1.12; }
+  .pd-hero-description { margin-top: 20px; font-size: 15px; }
+  .pd-actions { margin-top: 28px; }
+  .pd-actions .btn { flex: 1 1 auto; }
+  .pd-stage { height: auto; display: block; padding: 0 0 24px; margin-top: 40px; }
+  .pd-frame img { aspect-ratio: var(--ar-mobiel); }
+  .pd-hero-figure .pd-frame { border-radius: 10px; }
+  .pd-ronde li + li::before { display: none; }
+  .pd-ronde a { height: 32px; font-size: 13px; }
+  .pd-section .pd-header { padding-top: 40px; padding-bottom: 32px; }
+  .pd-panel, .pd-panel-wide, .pd-panel-report { padding: 20px 16px 0; border-radius: 12px; margin-inline: -8px; }
+  .pd-panel-card, .pd-panel-tight, .pd-panel-idee { padding: 20px 16px; }
+  .pd-panel-fade .pd-frame { max-height: 520px; }
+  .pd-frame { border-radius: 8px; }
+  .pd-frame-phone { border-radius: 22px; border-width: 4px; }
+  .pd-pair { gap: 40px; }
+  .pd-card figcaption { padding-top: 14px; }
+  .pd-split-publiceren { padding-top: 40px; gap: 32px; }
+  .pd-lead { margin-top: 20px !important; font-size: 15px !important; color: var(--text-tertiary) !important; }
+  .pd-afsluiter { margin-block: 72px 96px; }
+  .pd-afsluiter p { font-size: 15px; }
+  .pd-lightbox-inner { padding: 12px; }
+}
+@media (max-width: 640px) {
+  /* Op een telefoon alleen het icoon, zodat de knop het beeld niet afdekt. */
+  .pd-zoom { top: 8px; right: 8px; width: 30px; padding: 0; justify-content: center; }
+  .pd-zoom span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+}

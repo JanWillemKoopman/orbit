@@ -42,6 +42,10 @@ Het blogoverzicht (`/blog`) toont de nieuwste 18 `featured`-posts in drie blokke
 
 De homepage (`/`) presenteert ORBIT ENGINE en volgt de opbouw van linear.app: een hero met een nagebouwd dashboard (`components/home/AppFrame.tsx`, HTML in plaats van een afbeelding), een grote tussenzin, drie blokken met tekst, de laatste vier changelog-items, de laatste drie blogposts en een afsluiter. Alle teksten staan in `content/home.ts`; de drie blokken daar zijn placeholders.
 
+## Productpagina
+
+De productpagina (`/product`) laat ORBIT ENGINE zien met 18 echte schermen uit de app, gevuld met fictieve voorbeeldgegevens. Teksten en beelden staan in `content/product.ts`, de opmaak in `app/product/product.css`. De beelden staan in `public/images/product/`; hoe je ze opnieuw maakt staat in `scripts/product-screenshots/README.md`.
+
 ## Overige content
 
 - `content/changelog.ts`: changelog-items (de nieuwste vier staan op de homepage en het blogoverzicht)
