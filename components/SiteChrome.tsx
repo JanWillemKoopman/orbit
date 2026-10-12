@@ -5,7 +5,7 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 
 // Pagina's zonder header en footer (volledig gecentreerde schermen).
-const kaal = ['/aanmelden']
+const kaal = ['/demo']
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { mainNav, mobileNav, site } from '@/lib/site'
+import { DemoDialog } from './DemoDialog'
 import { Logo } from './Logo'
 import { NavMenu } from './NavMenu'
 
@@ -12,6 +13,7 @@ const isActive = (pathname: string, href: string) => (href === '/' ? pathname ==
 export function Header() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [demoOpen, setDemoOpen] = useState(false)
 
   useEffect(() => setOpen(false), [pathname])
   useEffect(() => {
@@ -43,7 +45,13 @@ export function Header() {
             <div className="nav-divider" />
             <div className="header-actions">
               <a href={site.loginUrl} className="nav-link header-contact">Inloggen</a>
-              <Link href="/aanmelden" className="btn btn-sm btn-invert">Aanmelden</Link>
+              <button type="button" className="btn btn-sm btn-invert header-demo" onClick={() => setDemoOpen(true)}>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M2 6.75h12M5.25 1.75v2.5M10.75 1.75v2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                Plan een gratis demo
+              </button>
               <button className="menu-toggle" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   {open ? (
@@ -57,6 +65,7 @@ export function Header() {
           </nav>
         </div>
       </header>
+      <DemoDialog open={demoOpen} onClose={() => setDemoOpen(false)} />
 
       {/* Buiten de header: de backdrop-filter van de header zou dit fixed menu anders insluiten */}
       <nav className="mobile-menu" data-open={open} aria-label="Mobiel menu" hidden={!open}>

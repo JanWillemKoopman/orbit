@@ -528,18 +528,41 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 960px) { .nav-menu-grid { grid-auto-columns: 210px; } .nav-menu-description { white-space: normal; } }
 
 /* ==========================================================================
-   Aanmelden (/aanmelden): geen header/footer, blok gecentreerd
+   Demo (/demo): geen header/footer, blok gecentreerd
    ========================================================================== */
 .signup { min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 32px 16px; }
 .signup-card { width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: stretch; text-align: center; }
 .signup-card h1 { margin: 24px 0 8px; font-size: 20px; font-weight: var(--weight-medium); letter-spacing: -0.012em; }
 .signup-card > p { margin: 0 0 32px; font-size: 15px; color: var(--text-tertiary); }
-.signup-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
-.signup-form .field input { height: 44px; }
-.signup-form .field label { color: #7e858f; }
-.signup-form .btn { margin-top: 12px; --h: 44px; width: 100%; background: var(--accent); border: 1px solid var(--accent); color: var(--bg-primary); }
-.signup-form .btn:hover { filter: brightness(1.08); }
 .signup-card .signup-login { margin-top: 24px; font-size: 14px; color: #7e858f; }
 .signup-card .signup-login:hover { color: var(--text-primary); }
-.signup-success { font-size: 14px; color: var(--accent); text-align: center; }
 .logo-mark-lg { display: flex; justify-content: center; color: var(--text-primary); }
+
+/* Demo-formulier (popup en /demo) */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.demo-form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+.demo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.demo-form .field input { height: 48px; }
+.demo-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.demo-submit { --h: 52px; width: 100%; margin-top: 8px; background: var(--accent); border: 1px solid var(--accent); color: var(--bg-primary); }
+.demo-submit:hover { filter: brightness(1.08); }
+.demo-submit:disabled { opacity: 0.6; cursor: default; }
+.demo-success { margin: 0; padding: 20px; border-radius: 12px; background: var(--bg-level-2); font-size: 15px; line-height: 1.5; color: var(--accent); text-align: left; }
+.demo-error { margin: 0; font-size: 13px; color: #ff8a80; }
+.demo-dialog {
+  width: min(520px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; overflow: auto;
+  border: 1px solid var(--border-translucent); border-radius: 20px; background: var(--bg-level-1); color: var(--text-primary);
+}
+.demo-dialog::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.demo-dialog[open] { animation: fade-in 0.18s var(--ease-out-quad); }
+.demo-dialog-body { position: relative; padding: 32px 30px 30px; }
+.demo-eyebrow { margin: 0 0 8px; font: 500 11px/1 'JetBrains Mono Variable', monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.demo-dialog h2 { margin: 0 0 12px; padding-right: 48px; font-size: 26px; line-height: 1.15; font-weight: var(--weight-semibold); letter-spacing: -0.02em; }
+.demo-intro { margin: 0 0 24px; font-size: 15px; line-height: 1.6; color: var(--text-tertiary); }
+.demo-close {
+  position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--bg-translucent); color: var(--text-secondary); transition: background var(--speed-quick), color var(--speed-quick);
+}
+.demo-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+@media (max-width: 539px) { .demo-dialog-body { padding: 24px 20px 20px; } .demo-row { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .header-contact { display: none; } }

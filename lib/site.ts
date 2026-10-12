@@ -47,7 +47,7 @@ export const informatieMenu: NavMenuItem[] = [
 export const overOnsMenu: NavMenuItem[] = [
   { href: '/over', label: 'Over Orbit Engine', description: ['Wie we zijn en waar', 'we voor staan'] },
   { href: '/contact', label: 'Contact opnemen', description: ['Een vraag of een demo?', 'We reageren binnen één werkdag'] },
-  { href: '/aanmelden', label: 'Account aanvragen', description: ['Vraag kostenloos', 'een account aan'] },
+  { href: '/demo', label: 'Plan een gratis demo', description: ['Een sessie van 15 of 45 minuten,', 'wanneer het jou uitkomt'] },
 ]
 
 export const mainNav: NavItem[] = [
@@ -64,6 +64,7 @@ export const mobileNav = [
   { title: 'Prijzen', links: [{ href: '/prijzen', label: 'Prijzen' }] },
   { title: 'Informatie', links: links(informatieMenu) },
   { title: 'Over ons', links: links(overOnsMenu) },
+  { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
 
 export const footerNav = [
