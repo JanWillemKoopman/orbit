@@ -11,7 +11,7 @@ export default function AanmeldenPage() {
       <div className="signup-card">
         <div className="logo-mark-lg"><LogoMark size={44} /></div>
         <h1>Account aanvragen</h1>
-        <p>Laat je gegevens achter, dan nemen we contact met je op.</p>
+        <p>Vraag kostenloos een account aan.</p>
         <AanmeldForm email={site.contactEmail} />
         <a href="https://www.nogoptegevenurl.nl" className="signup-login">Naar inloggen</a>
       </div>

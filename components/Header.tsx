@@ -30,7 +30,7 @@ export function Header() {
             <ul className="nav-list">
               {mainNav.map((item) =>
                 'items' in item ? (
-                  <NavMenu key={item.label} label={item.label} items={item.items} actief={item.items.some((i) => isActive(pathname, i.href))} />
+                  <NavMenu key={item.label} label={item.label} items={item.items} toonNieuw={item.label === 'Product'} actief={item.items.some((i) => isActive(pathname, i.href))} />
                 ) : (
                   <li key={item.label}>
                     <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) ? 'page' : undefined}>
@@ -42,7 +42,7 @@ export function Header() {
             </ul>
             <div className="nav-divider" />
             <div className="header-actions">
-              <a href={site.contactUrl} className="nav-link header-contact" target="_blank" rel="noopener noreferrer">Contact</a>
+              <a href={site.loginUrl} className="nav-link header-contact">Inloggen</a>
               <Link href="/aanmelden" className="btn btn-sm btn-invert">Aanmelden</Link>
               <button className="menu-toggle" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">

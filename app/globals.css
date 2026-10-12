@@ -135,7 +135,7 @@ img, svg { display: block; max-width: 100%; }
   position: sticky; top: 0; z-index: 50;
   height: var(--header-height);
   border-bottom: 1px solid var(--border-translucent);
-  background: linear-gradient(180deg, rgba(8, 9, 10, 0.86) 0%, rgba(8, 9, 10, 0.8) 100%);
+  background: rgba(8, 9, 10, 0.5);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   user-select: none;
@@ -214,14 +214,12 @@ img, svg { display: block; max-width: 100%; }
   .nav-list, .nav-divider { display: none; }
   .menu-toggle { display: inline-flex; }
   /* Met open menu een dichte header, zodat er niets van de pagina doorheen schemert */
-  .site-header[data-menu-open='true'] { background: var(--bg-primary); }
+  .site-header { background: linear-gradient(180deg, rgba(8, 9, 10, 0.86) 0%, rgba(8, 9, 10, 0.8) 100%); }
+  .site-header[data-menu-open='true'] { background: #000; }
   .mobile-menu[data-open='true'] {
     display: block; position: fixed; inset: var(--header-height) 0 0 0; z-index: 49;
     overflow-y: auto; overscroll-behavior: contain;
-    background:
-      radial-gradient(60% 40% at 15% 12%, rgba(255, 255, 255, 0.035), transparent 70%),
-      radial-gradient(70% 45% at 55% 55%, rgba(255, 255, 255, 0.025), transparent 70%),
-      var(--bg-primary);
+    background: #000;
     padding: 32px var(--page-padding) 48px;
     animation: fade-in 0.2s var(--ease-out-quad);
   }
@@ -538,9 +536,10 @@ img, svg { display: block; max-width: 100%; }
 .signup-card > p { margin: 0 0 32px; font-size: 15px; color: var(--text-tertiary); }
 .signup-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
 .signup-form .field input { height: 44px; }
+.signup-form .field label { color: #7e858f; }
 .signup-form .btn { margin-top: 12px; --h: 44px; width: 100%; background: var(--accent); border: 1px solid var(--accent); color: var(--bg-primary); }
 .signup-form .btn:hover { filter: brightness(1.08); }
-.signup-card .signup-login { margin-top: 24px; font-size: 14px; color: var(--text-secondary); }
+.signup-card .signup-login { margin-top: 24px; font-size: 14px; color: #7e858f; }
 .signup-card .signup-login:hover { color: var(--text-primary); }
 .signup-success { font-size: 14px; color: var(--accent); text-align: center; }
 .logo-mark-lg { display: flex; justify-content: center; color: var(--text-primary); }

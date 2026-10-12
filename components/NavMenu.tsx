@@ -11,7 +11,7 @@ import type { NavMenuItem } from '@/lib/site'
 
 const SLUIT_NA = 120
 
-export function NavMenu({ label, items, actief }: { label: string; items: NavMenuItem[]; actief: boolean }) {
+export function NavMenu({ label, items, actief, toonNieuw = false }: { label: string; items: NavMenuItem[]; actief: boolean; toonNieuw?: boolean }) {
   const [open, setOpen] = useState(false)
   const root = useRef<HTMLLIElement>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -76,7 +76,7 @@ export function NavMenu({ label, items, actief }: { label: string; items: NavMen
               </li>
             ))}
           </ul>
-          {nieuw && (
+          {toonNieuw && nieuw && (
             <Link href={`/changelog#${nieuw.slug}`} className="nav-menu-footer" onClick={() => setOpen(false)}>
               <span className="nav-menu-footer-label">
                 <span className="nav-menu-footer-new">Nieuw</span>

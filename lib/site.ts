@@ -5,10 +5,8 @@ export const site = {
   description: 'Verhalen, productnieuws en inzichten van het Orbit-team.',
   url: 'https://orbit.example.com',
   contactEmail: 'hallo@orbit.example.com',
-  // Rechtsboven in de header: de witte knop "GitHub" en de link "Contact". Beide gaan voorlopig
-  // naar LinkedIn; zet githubUrl op de repository zodra ORBIT ENGINE open source online staat.
-  githubUrl: 'https://www.linkedin.com/in/janwillemkoopman/',
-  contactUrl: 'https://www.linkedin.com/in/janwillemkoopman/',
+  // Rechtsboven in de header: de link "Inloggen". Tijdelijke URL, vervang door de definitieve.
+  loginUrl: 'https://www.nogoptegevenurl.nl',
   locale: 'nl-NL',
 }
 
@@ -40,42 +38,32 @@ export const productMenu: NavMenuItem[] = [
   { href: '/agency', label: 'Account en beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
 ]
 
+export const informatieMenu: NavMenuItem[] = [
+  { href: '/kennisbank', label: 'Kennisbank', description: ['Antwoorden en achtergronden', 'van het team'] },
+  { href: '/product-updates', label: 'Product updates', description: ['Wat er nieuw is en wat we', 'hebben verbeterd'] },
+  { href: '/blog', label: 'Blog', description: ['Verhalen, nieuws en inzichten', 'van het Orbit-team'] },
+]
+
+export const overOnsMenu: NavMenuItem[] = [
+  { href: '/over', label: 'Over Orbit Engine', description: ['Wie we zijn en waar', 'we voor staan'] },
+  { href: '/contact', label: 'Contact opnemen', description: ['Een vraag of een demo?', 'We reageren binnen één werkdag'] },
+  { href: '/aanmelden', label: 'Account aanvragen', description: ['Vraag kostenloos', 'een account aan'] },
+]
+
 export const mainNav: NavItem[] = [
   { label: 'Product', items: productMenu },
-  { href: '/installatiegids', label: 'Installatiegids' },
-  { href: '/documentatie', label: 'Documentatie' },
-  { href: '/over', label: 'Over' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/prijzen', label: 'Prijzen' },
+  { label: 'Informatie', items: informatieMenu },
+  { label: 'Over ons', items: overOnsMenu },
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
+const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
 export const mobileNav = [
-  {
-    title: 'Product',
-    links: productMenu.map(({ href, label }) => ({ href, label })),
-  },
-  {
-    title: 'Orbit',
-    links: [
-      { href: '/installatiegids', label: 'Installatiegids' },
-      { href: '/documentatie', label: 'Documentatie' },
-    ],
-  },
-  {
-    title: 'Bronnen',
-    links: [
-      { href: '/blog', label: 'Blog' },
-      { href: '/changelog', label: 'Changelog' },
-      { href: '/pers', label: 'Pers' },
-    ],
-  },
-  {
-    title: 'Bedrijf',
-    links: [
-      { href: '/over', label: 'Over' },
-      { href: '/contact', label: 'Contact' },
-    ],
-  },
+  { title: 'Product', links: links(productMenu) },
+  { title: 'Prijzen', links: [{ href: '/prijzen', label: 'Prijzen' }] },
+  { title: 'Informatie', links: links(informatieMenu) },
+  { title: 'Over ons', links: links(overOnsMenu) },
 ]
 
 export const footerNav = [
