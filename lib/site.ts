@@ -42,8 +42,8 @@ export const productMenu: NavMenuItem[] = [
 
 export const informatieMenu: NavMenuItem[] = [
   { href: '/kennisbank', label: 'Kennisbank', description: ['Antwoorden en achtergronden', 'van het team'] },
-  { href: '/product-updates', label: 'Product updates', description: ['Wat er nieuw is en wat we', 'hebben verbeterd'] },
   { href: '/blog', label: 'Blog', description: ['Verhalen, nieuws en inzichten', 'van het Orbit-team'] },
+  { href: '/product-updates', label: 'Product updates', description: ['Wat er nieuw is en wat we', 'hebben verbeterd'] },
 ]
 
 export const overOnsMenu: NavMenuItem[] = [
