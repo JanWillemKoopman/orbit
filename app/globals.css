@@ -155,6 +155,52 @@ img, svg { display: block; max-width: 100%; }
 }
 .nav-link:hover { color: var(--text-primary); background: var(--bg-hover); }
 .nav-link[aria-current='page'] { color: var(--text-primary); }
+
+/* Uitklapmenu, maten en kleuren van "Product" op linear.app */
+.site-header .container { position: relative; }
+.nav-menu { position: static; }
+.nav-menu-trigger { font: inherit; font-size: 13px; cursor: default; }
+.nav-menu-trigger[data-actief] { color: var(--text-primary); }
+.nav-menu-trigger[aria-expanded='true'] { color: var(--text-primary); background: rgba(255, 255, 255, 0.08); }
+.nav-menu-popup {
+  /* Zoals op linear.app: onder de header, rechts gelijk met de rand van de inhoud */
+  position: absolute; top: calc(100% - 8px); right: var(--page-padding); z-index: 60;
+  border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 9, 10, 0.9); box-shadow: 0 8px 32px #08090a;
+  backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
+  overflow: hidden; user-select: none;
+}
+.nav-menu-popup[data-open] { animation: nav-menu-in 0.18s var(--ease-out-quad); }
+/* Een onzichtbare brug over de ruimte tussen knop en paneel, zodat het menu bij het oversteken openblijft */
+.nav-menu-popup::before { content: ''; position: absolute; inset: -14px 0 auto 0; height: 14px; }
+.nav-menu-content { padding: 8px 10px 10px 8px; }
+.nav-menu-grid {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 256px; column-gap: 24px; margin: 0; padding: 12px; list-style: none;
+  border-radius: 6px; background: rgba(255, 255, 255, 0.05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.nav-menu-column { position: relative; display: flex; flex-direction: column; gap: 1px; }
+.nav-menu-column + .nav-menu-column::before { content: ''; position: absolute; top: 0; bottom: 0; left: -12.5px; width: 1px; background: rgba(255, 255, 255, 0.05); }
+.nav-menu-link {
+  display: flex; flex-direction: column; gap: 4px; padding: 14px 24px 14px 16px; border-radius: 6px;
+  transition: background 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.nav-menu-link:hover, .nav-menu-link:focus-visible { background: rgba(255, 255, 255, 0.04); }
+.nav-menu-title { font-size: 13px; line-height: 19.5px; font-weight: 510; letter-spacing: -0.13px; color: #d0d6e0; }
+.nav-menu-description { font-size: 13px; line-height: 19.5px; letter-spacing: -0.13px; color: #8a8f98; opacity: 0.8; white-space: nowrap; transition: color 0.25s; }
+.nav-menu-footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 8px; padding: 14px 28px; border-radius: 6px;
+  font-size: 13px; line-height: 19.5px; letter-spacing: -0.13px;
+  transition: background 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.nav-menu-footer:hover, .nav-menu-footer:focus-visible { background: rgba(255, 255, 255, 0.04); }
+.nav-menu-footer-label { display: flex; gap: 6px; min-width: 0; }
+.nav-menu-footer-new { font-weight: 510; color: #d0d6e0; }
+.nav-menu-footer-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #8a8f98; }
+.nav-menu-footer-cta { display: flex; gap: 6px; flex-shrink: 0; color: #8a8f98; }
+.nav-menu-footer-arrow { color: #62666d; transition: transform 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.nav-menu-footer:hover .nav-menu-footer-arrow { transform: translateX(2px); }
+@keyframes nav-menu-in { from { opacity: 0; transform: translateY(-4px) scale(0.99); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .nav-menu-popup[data-open] { animation: none; } }
 .nav-divider { width: 1px; height: 16px; margin: 0 8px; background: var(--border-primary); }
 .header-actions { display: flex; align-items: center; gap: 8px; }
 /* Zoals "Log in" naast "Sign up" op linear.app: een tekstlink naast de witte knop, ook op mobiel */
@@ -482,3 +528,4 @@ img, svg { display: block; max-width: 100%; }
 .search-results .r-meta { font-size: 13px; color: var(--text-tertiary); }
 .search-empty { padding: 32px 20px; text-align: center; font-size: 14px; color: var(--text-tertiary); }
 .search-esc { font-family: var(--font-mono); font-size: 11px; padding: 2px 6px; border-radius: 4px; background: var(--bg-hover); color: var(--text-tertiary); }
+@media (max-width: 960px) { .nav-menu-grid { grid-auto-columns: 210px; } .nav-menu-description { white-space: normal; } }

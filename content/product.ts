@@ -2,7 +2,7 @@
 // (components/product/Visuals.tsx) met de fictieve voorbeeldcase Lindeman Warmte.
 
 export const meta = {
-  title: 'Product',
+  title: 'Fases en werkwijze',
   description:
     "Zie hoe ORBIT ENGINE werkt: AI-zichtbaarheid meten, contentkansen plannen, klantkennis ophalen, pagina's schrijven en beoordelen, en het resultaat volgen. Voor marketingbureaus met meerdere klanten.",
 }

@@ -28,9 +28,20 @@ export const tabs = [
   { href: '/pers', label: 'Pers' },
 ]
 
-export const mainNav = [
-  { href: '/product', label: 'Product' },
-  { href: '/agency', label: 'Account en beheer' },
+// Hoofdmenu. Een item met `items` is een uitklapmenu zonder eigen pagina, zoals "Product" op
+// linear.app: de knop opent het menu, de pagina's staan erin met een korte omschrijving.
+export type NavLink = { href: string; label: string }
+export type NavMenuItem = { href: string; label: string; description: string[] }
+export type NavItem = NavLink | { label: string; items: NavMenuItem[] }
+
+export const productMenu: NavMenuItem[] = [
+  { href: '/product', label: 'Fases en werkwijze', description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
+  { href: '/kennis', label: 'Kennis en feiten', description: ['Alleen feiten met een bron,', 'nooit een verzonnen belofte'] },
+  { href: '/agency', label: 'Account en beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
+]
+
+export const mainNav: NavItem[] = [
+  { label: 'Product', items: productMenu },
   { href: '/installatiegids', label: 'Installatiegids' },
   { href: '/documentatie', label: 'Documentatie' },
   { href: '/over', label: 'Over' },
@@ -40,10 +51,12 @@ export const mainNav = [
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
 export const mobileNav = [
   {
+    title: 'Product',
+    links: productMenu.map(({ href, label }) => ({ href, label })),
+  },
+  {
     title: 'Orbit',
     links: [
-      { href: '/product', label: 'Product' },
-      { href: '/agency', label: 'Account en beheer' },
       { href: '/installatiegids', label: 'Installatiegids' },
       { href: '/documentatie', label: 'Documentatie' },
     ],
