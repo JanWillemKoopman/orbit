@@ -2,8 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import '@fontsource-variable/inter/opsz.css'
 import '@fontsource-variable/inter/opsz-italic.css'
 import '@fontsource-variable/jetbrains-mono/wght.css'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { SiteChrome } from '@/components/SiteChrome'
 import { site } from '@/lib/site'
 import './globals.css'
 import './article.css'
@@ -23,9 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="nl" data-theme="dark">
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   )

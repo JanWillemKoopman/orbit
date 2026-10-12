@@ -205,7 +205,6 @@ img, svg { display: block; max-width: 100%; }
 .header-actions { display: flex; align-items: center; gap: 8px; }
 /* Zoals "Log in" naast "Sign up" op linear.app: een tekstlink naast de witte knop, ook op mobiel */
 .header-contact { padding: 0 8px; }
-.btn-github { gap: 6px; }
 
 .menu-toggle { display: none; width: 32px; height: 32px; margin-right: -6px; align-items: center; justify-content: center; border-radius: 8px; color: var(--text-primary); }
 @media (hover: hover) { .menu-toggle:hover { background: var(--bg-hover); } }
@@ -529,3 +528,19 @@ img, svg { display: block; max-width: 100%; }
 .search-empty { padding: 32px 20px; text-align: center; font-size: 14px; color: var(--text-tertiary); }
 .search-esc { font-family: var(--font-mono); font-size: 11px; padding: 2px 6px; border-radius: 4px; background: var(--bg-hover); color: var(--text-tertiary); }
 @media (max-width: 960px) { .nav-menu-grid { grid-auto-columns: 210px; } .nav-menu-description { white-space: normal; } }
+
+/* ==========================================================================
+   Aanmelden (/aanmelden): geen header/footer, blok gecentreerd
+   ========================================================================== */
+.signup { min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 32px 16px; }
+.signup-card { width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: stretch; text-align: center; }
+.signup-card h1 { margin: 24px 0 8px; font-size: 20px; font-weight: var(--weight-medium); letter-spacing: -0.012em; }
+.signup-card > p { margin: 0 0 32px; font-size: 15px; color: var(--text-tertiary); }
+.signup-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
+.signup-form .field input { height: 44px; }
+.signup-form .btn { margin-top: 12px; --h: 44px; width: 100%; background: var(--accent); border: 1px solid var(--accent); color: var(--bg-primary); }
+.signup-form .btn:hover { filter: brightness(1.08); }
+.signup-card .signup-login { margin-top: 24px; font-size: 14px; color: var(--text-secondary); }
+.signup-card .signup-login:hover { color: var(--text-primary); }
+.signup-success { font-size: 14px; color: var(--accent); text-align: center; }
+.logo-mark-lg { display: flex; justify-content: center; color: var(--text-primary); }
