@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
+import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { faq, hero, loop, prefooter, result, statement, story } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
@@ -127,8 +128,7 @@ export default function HomePage() {
       <section className="home-prefooter container">
         <h2>{prefooter.title}</h2>
         <div className="home-prefooter-actions">
-          <Link href="/contact" className="btn btn-lg btn-invert">Neem contact op</Link>
-          <Link href="/blog" className="btn btn-lg btn-secondary">Lees de blog</Link>
+          <PrefooterKnoppen />
         </div>
       </section>
     </div>

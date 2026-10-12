@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, demoHref, hero, meta, ronde, secties, usps } from '@/content/agency'
 import { Cel, Kop, Paneel, Splitsing } from '@/components/product/Blokken'
 import * as V from '@/components/agency/Visuals'
@@ -152,7 +153,7 @@ export default function AgencyPage() {
         <h2 id="pd-afsluiter">{afsluiter.title}</h2>
         <p>{afsluiter.description}</p>
         <div className="home-prefooter-actions">
-          <Link href={demoHref} className="btn btn-lg btn-invert">{afsluiter.cta}</Link>
+          <PrefooterKnoppen />
         </div>
       </section>
     </div>
