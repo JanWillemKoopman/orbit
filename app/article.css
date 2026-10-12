@@ -248,3 +248,8 @@
   .kb-grid { grid-template-columns: 1fr; }
   .kb-card { padding: 24px; }
 }
+
+/* Blog (/blog): kop zoals /kennisbank, met een langere subtekst */
+.kb-hero .blog-subline { max-width: 720px; margin: 24px auto 0; font-size: 20px; line-height: 1.5; }
+.blog-overzicht { margin-top: 80px; }
+@media (max-width: 639px) { .kb-hero .blog-subline { font-size: 17px; } .blog-overzicht { margin-top: 48px; } }
