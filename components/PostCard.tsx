@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { formatShortDate } from '@/lib/format'
-import { byline, type PostMeta } from '@/lib/posts'
+import type { PostMeta } from '@/lib/posts'
 import { Art } from './Art'
 
 export function PostCard({ post, priority }: { post: PostMeta; priority?: boolean }) {
@@ -11,12 +10,6 @@ export function PostCard({ post, priority }: { post: PostMeta; priority?: boolea
       </div>
       <h3 className="card-title">{post.title}</h3>
       <span className="card-description">{post.description}</span>
-      <span className="card-meta">
-        {byline(post)}
-        <span className="meta-dot">·</span>
-        <time dateTime={post.date}>{formatShortDate(post.date)}</time>
-        <span className="arrow" aria-hidden="true">→</span>
-      </span>
     </Link>
   )
 }

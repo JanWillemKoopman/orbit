@@ -22,5 +22,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function KennisbankArtikelPage({ params }: Props) {
   const post = await kennisbankPost(params)
   if (!post) notFound()
-  return <ArticleView post={post} crumbs={[{ href: '/kennisbank', label: 'Kennisbank' }]} />
+  return <ArticleView post={post} terug={{ href: '/kennisbank', label: 'de kennisbank' }} />
 }
