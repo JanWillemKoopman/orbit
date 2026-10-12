@@ -7,7 +7,7 @@ export const meta = {
     "Zie hoe ORBIT ENGINE werkt: AI-zichtbaarheid meten, contentkansen plannen, klantkennis ophalen, pagina's schrijven en beoordelen, en het resultaat volgen. Voor marketingbureaus met meerdere klanten.",
 }
 
-export const demoHref = '/contact?onderwerp=demo'
+export const demoHref = '/demo'
 
 import type { Bijschrift } from '@/components/product/Blokken'
 

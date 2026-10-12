@@ -11,7 +11,7 @@ export const meta = {
     'ORBIT ENGINE voor marketingbureaus: al je klanten in één overzicht, collega’s en klanten met de juiste rol, en grip op wat de AI kost. Je betaalt alleen je eigen gebruik, met je eigen sleutels.',
 }
 
-export const demoHref = '/contact?onderwerp=demo'
+export const demoHref = '/demo'
 
 export const hero = {
   eyebrow: 'ORBIT ENGINE voor marketingbureaus',

@@ -10,7 +10,7 @@ export const meta = {
     'AI-teksten klinken overtuigend, ook als ze iets verzinnen. ORBIT ENGINE schrijft alleen met feiten die ergens vandaan komen, en laat je zien waarvandaan.',
 }
 
-export const demoHref = '/contact?onderwerp=demo'
+export const demoHref = '/demo'
 
 export const hero = {
   eyebrow: 'Kennis en feiten',
