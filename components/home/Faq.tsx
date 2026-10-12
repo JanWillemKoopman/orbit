@@ -1,11 +1,14 @@
 import type { FaqItem } from '@/content/home'
 
 // Gewone details-elementen: elke vraag klapt open zonder JavaScript, met het toetsenbord en voor
-// een schermlezer. Meerdere vragen mogen tegelijk open staan.
+// een schermlezer. Meerdere vragen mogen tegelijk open staan. Op desktop staan ze in twee kolommen
+// naast elkaar (de eerste helft links, de rest rechts); op mobiel onder elkaar.
 export function Faq({ items }: { items: FaqItem[] }) {
   return (
     <div className="faq">
-      {items.map((item) => (
+      {[items.slice(0, Math.ceil(items.length / 2)), items.slice(Math.ceil(items.length / 2))].map((kolom, i) => (
+        <div className="faq-column" key={i}>
+      {kolom.map((item) => (
         <details className="faq-item" key={item.question}>
           <summary className="faq-question">
             <span>{item.question}</span>
@@ -16,6 +19,8 @@ export function Faq({ items }: { items: FaqItem[] }) {
           </summary>
           <p className="faq-answer">{item.answer}</p>
         </details>
+      ))}
+        </div>
       ))}
     </div>
   )

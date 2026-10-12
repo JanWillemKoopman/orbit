@@ -109,10 +109,6 @@ export const faq: { title: string; items: FaqItem[] } = {
       answer: 'ChatGPT is de basis. Per onderwerp kun je Gemini en het AI-overzicht bovenaan Google erbij zetten. Bij elk cijfer staat een onzekerheidsmarge, zodat je ziet hoe zeker een uitkomst is.',
     },
     {
-      question: 'Is ORBIT ENGINE echt gratis?',
-      answer: 'De software is open source en kost niets. Het meten en schrijven gebeurt met betaalde diensten zoals OpenAI. Die kosten betaal je zelf, rechtstreeks bij die diensten en zonder opslag. Je stelt een maandlimiet in, zodat je nooit voor een verrassing komt te staan.',
-    },
-    {
       question: 'Zet ORBIT ENGINE zelf pagina\'s op mijn website?',
       answer: 'Nee. ORBIT ENGINE schrijft de pagina in jouw toon, op basis van de feiten die jij aanlevert. Jij leest hem, past aan wat nodig is en beslist zelf wat er live gaat op je site.',
     },
