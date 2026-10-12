@@ -32,7 +32,7 @@ export function Header() {
             <ul className="nav-list">
               {mainNav.map((item) =>
                 'items' in item ? (
-                  <NavMenu key={item.label} label={item.label} items={item.items} toonNieuw={item.label === 'Product'} actief={item.items.some((i) => isActive(pathname, i.href))} />
+                  <NavMenu key={item.label} label={item.label} items={item.items} actief={item.items.some((i) => isActive(pathname, i.href))} />
                 ) : (
                   <li key={item.label}>
                     <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) ? 'page' : undefined}>

@@ -2,22 +2,20 @@
 
 import Link from 'next/link'
 import { useEffect, useId, useRef, useState } from 'react'
-import { changelog } from '@/content/changelog'
 import type { NavMenuItem } from '@/lib/site'
 
 // Uitklapmenu in de header, nagebouwd naar "Product" op linear.app: de knop zelf is geen pagina en
 // opent bij aanwijzen of klikken een zwevend paneel. Daarin een kaart met een kolom per pagina
-// (titel met omschrijving eronder) en onderaan een regel met het nieuwste changelog-item.
+// (titel met omschrijving eronder).
 
 const SLUIT_NA = 120
 
-export function NavMenu({ label, items, actief, toonNieuw = false }: { label: string; items: NavMenuItem[]; actief: boolean; toonNieuw?: boolean }) {
+export function NavMenu({ label, items, actief }: { label: string; items: NavMenuItem[]; actief: boolean }) {
   const [open, setOpen] = useState(false)
   const root = useRef<HTMLLIElement>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const aanwijzer = useRef<string>('')
   const id = useId()
-  const nieuw = changelog[0]
 
   const stopTimer = () => { if (timer.current) clearTimeout(timer.current) }
   const openNu = () => { stopTimer(); setOpen(true) }
@@ -76,18 +74,6 @@ export function NavMenu({ label, items, actief, toonNieuw = false }: { label: st
               </li>
             ))}
           </ul>
-          {toonNieuw && nieuw && (
-            <Link href={`/changelog#${nieuw.slug}`} className="nav-menu-footer" onClick={() => setOpen(false)}>
-              <span className="nav-menu-footer-label">
-                <span className="nav-menu-footer-new">Nieuw</span>
-                <span className="nav-menu-footer-text">{nieuw.title}</span>
-              </span>
-              <span className="nav-menu-footer-cta">
-                <span>Lees meer</span>
-                <span className="nav-menu-footer-arrow" aria-hidden="true">→</span>
-              </span>
-            </Link>
-          )}
         </div>
       </div>
     </li>
