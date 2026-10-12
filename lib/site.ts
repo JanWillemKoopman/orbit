@@ -36,6 +36,7 @@ export type NavItem = NavLink | { label: string; items: NavMenuItem[] }
 
 export const productMenu: NavMenuItem[] = [
   { href: '/product', label: 'Fases en werkwijze', description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
+  { href: '/kennis', label: 'Kennis en feiten', description: ['Alleen feiten met een bron,', 'nooit een verzonnen belofte'] },
   { href: '/agency', label: 'Account en beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
 ]
 

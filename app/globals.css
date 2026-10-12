@@ -157,12 +157,14 @@ img, svg { display: block; max-width: 100%; }
 .nav-link[aria-current='page'] { color: var(--text-primary); }
 
 /* Uitklapmenu, maten en kleuren van "Product" op linear.app */
-.nav-menu { position: relative; }
+.site-header .container { position: relative; }
+.nav-menu { position: static; }
 .nav-menu-trigger { font: inherit; font-size: 13px; cursor: default; }
 .nav-menu-trigger[data-actief] { color: var(--text-primary); }
 .nav-menu-trigger[aria-expanded='true'] { color: var(--text-primary); background: rgba(255, 255, 255, 0.08); }
 .nav-menu-popup {
-  position: absolute; top: calc(100% + 12px); left: -8px; z-index: 60;
+  /* Zoals op linear.app: onder de header, rechts gelijk met de rand van de inhoud */
+  position: absolute; top: calc(100% - 8px); right: var(--page-padding); z-index: 60;
   border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(8, 9, 10, 0.9); box-shadow: 0 8px 32px #08090a;
   backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
@@ -526,3 +528,4 @@ img, svg { display: block; max-width: 100%; }
 .search-results .r-meta { font-size: 13px; color: var(--text-tertiary); }
 .search-empty { padding: 32px 20px; text-align: center; font-size: 14px; color: var(--text-tertiary); }
 .search-esc { font-family: var(--font-mono); font-size: 11px; padding: 2px 6px; border-radius: 4px; background: var(--bg-hover); color: var(--text-tertiary); }
+@media (max-width: 960px) { .nav-menu-grid { grid-auto-columns: 210px; } .nav-menu-description { white-space: normal; } }

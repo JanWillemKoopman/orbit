@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Kennis en feiten (/kennis). Bouwt op product.css (opbouw, panelen, cellen) en agency.css (het
+   appvenster en de tabel). Hier alleen de beelden die bij deze pagina horen.
+   ========================================================================== */
+
+/* Extra kleuren voor chips */
+.fv-chip[data-tone='groen'] { background: rgba(76, 183, 130, 0.14); color: #68cc9a; }
+.fv-chip[data-tone='rood'] { background: rgba(235, 87, 87, 0.14); color: #f07a7a; }
+
+/* Panelen */
+.pd-panel-kf-hero .pd-panel-stage { height: 470px; }
+.pd-panel-kf-hero .pd-panel-inner { top: 96px; width: 900px; left: 50%; transform: translateX(-50%); zoom: 1.12; }
+.pd-panel-kf-hero .pd-panel-stage::after, .pd-panel-kf-schema .pd-panel-stage::after { display: none; }
+.pd-panel-kf-schema .pd-panel-stage { height: 560px; }
+.pd-panel-kf-schema .pd-panel-inner { top: 72px; left: 50%; width: 1040px; transform: translateX(-50%); zoom: 1; }
+
+/* Hero: tekst met herkomst */
+.kf-hero { gap: 22px; padding: 32px 36px 28px; }
+.kf-hero p { font-size: 18px; line-height: 1.9; color: var(--text-secondary); }
+.kf-claim { position: relative; padding: 2px 4px; border-radius: 5px; color: var(--text-primary); background: rgba(188, 255, 47, 0.1); box-shadow: inset 0 -2px 0 rgba(188, 255, 47, 0.7); white-space: nowrap; }
+.kf-claim sup { margin-left: 3px; font-size: 10px; font-weight: var(--weight-semibold); color: var(--accent); }
+.kf-claim[data-n='1'] { background: rgba(188, 255, 47, 0.18); }
+.kf-tip { bottom: calc(100% + 12px); }
+.kf-bronnen { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.kf-bronnen span { display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 10px; font-size: 13.5px; color: var(--text-primary); }
+.kf-bronnen b { grid-row: span 2; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(188, 255, 47, 0.12); color: var(--accent); font-size: 11px; }
+.kf-bronnen em { font-style: normal; font-size: 12.5px; color: var(--text-tertiary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Het probleem */
+.kf-vs { gap: 16px; }
+.kf-vs-head { display: flex; align-items: center; gap: 10px; }
+.kf-bot { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 5px; background: #3a3d42; color: var(--text-primary); font-size: 9px; font-weight: var(--weight-semibold); }
+.kf-vs p { font-size: 15.5px; line-height: 1.8; color: var(--text-secondary); }
+.kf-fout { padding: 1px 3px; color: var(--text-primary); text-decoration: underline wavy rgba(235, 87, 87, 0.85); text-underline-offset: 4px; }
+.kf-goed { padding: 1px 3px; border-radius: 4px; color: var(--text-primary); background: rgba(188, 255, 47, 0.12); box-shadow: inset 0 -2px 0 rgba(188, 255, 47, 0.6); }
+.kf-vs-foot { display: inline-flex; align-items: center; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.07); font-size: 13px; color: var(--accent); }
+.kf-rood { color: #f07a7a; }
+
+/* Het brein: schema */
+.kf-schema { display: grid; grid-template-columns: 300px 120px 1fr 120px 300px; align-items: center; height: 360px; }
+/* Vaste maten, zodat de lijnen precies op het midden van elke kaart uitkomen */
+.kf-col { display: flex; flex-direction: column; gap: 12px; }
+.kf-col > .fv-mono { height: 20px; line-height: 20px; padding: 0 4px; }
+.kf-src { display: flex; align-items: center; gap: 12px; height: 64px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; background: #131416; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); }
+.kf-src-t { display: flex; flex-direction: column; min-width: 0; }
+.kf-src-t strong { font-weight: var(--weight-medium); color: var(--text-primary); }
+.kf-src-t em { font-style: normal; font-size: 12.5px; color: var(--text-tertiary); }
+.kf-lines { width: 100%; height: 360px; }
+.kf-brain {
+  display: flex; flex-direction: column; align-items: center; gap: 4px; justify-self: center; width: 200px; padding: 26px 16px 22px; border-radius: 20px;
+  background: radial-gradient(80% 80% at 50% 0%, rgba(188, 255, 47, 0.12), rgba(188, 255, 47, 0) 70%), #121314;
+  border: 1px solid rgba(188, 255, 47, 0.35); box-shadow: 0 0 0 8px rgba(188, 255, 47, 0.04), 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.kf-brain-ring { display: inline-flex; padding: 10px; margin-bottom: 10px; border-radius: 16px; background: rgba(188, 255, 47, 0.08); }
+.kf-brain strong { font-size: 18px; font-weight: var(--weight-semibold); color: var(--text-primary); }
+.kf-brain-n { margin-top: 10px; padding: 4px 10px; border-radius: 9999px; background: rgba(255, 255, 255, 0.05); font-size: 12.5px; color: var(--text-secondary); }
+.kf-brain-n b { color: var(--accent); font-weight: var(--weight-semibold); }
+
+.kf-quote { gap: 14px; }
+.kf-quote blockquote { margin: 0; font-size: 16px; line-height: 1.5; color: var(--text-primary); }
+.kf-arrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--accent); }
+.kf-fact { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); color: var(--text-primary); }
+.kf-market { gap: 0; padding: 8px 22px; }
+.kf-market-row { display: flex; flex-direction: column; gap: 4px; padding: 14px 0; }
+.kf-market-row + .kf-market-row { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.kf-market-t { color: var(--text-primary); }
+.kf-market-s { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #a3adff; }
+
+/* Het brein als tabel */
+.pd-panel-screen .pd-panel-inner:has(.kf-window) { width: 1000px; }
+.kf-count { font-size: 13px; color: var(--text-tertiary); }
+.kf-table .ag-tr { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr) 110px; min-height: 58px; }
+.kf-table .ag-tr[data-uit] strong { color: var(--text-tertiary); }
+.kf-table .ag-li-t > span { color: var(--text-primary); }
+.kf-mag, .kf-niet { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+.kf-mag { color: var(--accent); }
+.kf-niet { color: var(--text-quaternary); }
+
+.kf-guess { gap: 14px; }
+.kf-proof { gap: 14px; }
+.kf-url { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); }
+.kf-proof p { font-size: 15.5px; line-height: 1.7; color: var(--text-tertiary); }
+.kf-proof mark, .kf-link mark { padding: 1px 3px; border-radius: 4px; background: rgba(188, 255, 47, 0.16); color: var(--text-primary); }
+.kf-found { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--accent); }
+
+/* Schrijven: van feit naar zin */
+.kf-link { display: flex; flex-direction: column; align-items: stretch; width: 100%; max-width: 440px; }
+.kf-link .fv-surface { gap: 10px; }
+.kf-link-zin p { font-size: 16px; line-height: 1.6; color: var(--text-primary); }
+.kf-link-mid { display: flex; flex-direction: column; align-items: center; }
+.kf-link-mid > span { width: 1.5px; height: 18px; background: rgba(188, 255, 47, 0.5); }
+.kf-link-mid .fv-chip { margin: 2px 0; }
+
+/* Het vangnet */
+.kf-answer { gap: 16px; }
+.kf-answer-q { display: flex; flex-direction: column; gap: 6px; }
+.kf-answer-q span { color: var(--text-primary); }
+.kf-answer-a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); }
+
+/* Bijblijven */
+.kf-conflict { gap: 10px; }
+.kf-conflict-h { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 4px; font-weight: var(--weight-medium); color: #f2c94c; }
+.kf-expire { gap: 14px; }
+
+/* Eerlijk: twee kolommen */
+.kf-honest { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 12px; overflow: hidden; background: #0b0c0d; }
+.kf-honest-col { padding: 36px 40px 40px; }
+.kf-honest-col + .kf-honest-col { border-left: 1px solid rgba(255, 255, 255, 0.07); }
+.kf-honest h3 { font-size: 15px; font-weight: var(--weight-medium); color: var(--text-primary); }
+.kf-honest ul { display: flex; flex-direction: column; gap: 14px; margin: 20px 0 0; padding: 0; list-style: none; }
+.kf-honest li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--text-secondary); }
+.kf-honest svg { flex-shrink: 0; color: var(--accent); }
+.kf-dot { width: 7px; height: 7px; margin: 0 3.5px; flex-shrink: 0; border-radius: 50%; background: var(--text-quaternary); }
+
+/* Breekpunten ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .pd-panel-kf-hero .pd-panel-inner { zoom: 1; }
+  .pd-panel-kf-schema .pd-panel-inner { zoom: 0.8; }
+}
+@media (max-width: 900px) {
+  .kf-honest { grid-template-columns: 1fr; }
+  .kf-honest-col + .kf-honest-col { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+}
+@media (max-width: 640px) {
+  .pd-panel-kf-hero .pd-panel-stage { height: auto; padding: 56px 16px 32px; }
+  .pd-panel-kf-hero .pd-panel-inner { position: static; width: auto; transform: none; zoom: 1; }
+  .kf-hero { padding: 22px 20px; }
+  .kf-hero p { font-size: 15px; line-height: 1.85; }
+  .kf-claim { white-space: normal; }
+  .kf-bronnen { grid-template-columns: 1fr; }
+  .kf-tip { display: none; }
+  /* Op een telefoon onder elkaar: van binnen, het brein, van buiten */
+  .pd-panel-kf-schema .pd-panel-stage { height: auto; padding: 40px 16px 28px; }
+  .pd-panel-kf-schema .pd-panel-inner { position: static; width: auto; transform: none; zoom: 1; }
+  .kf-schema { grid-template-columns: 1fr; gap: 20px; height: auto; }
+  .kf-lines { display: none; }
+  .kf-brain { width: 100%; box-sizing: border-box; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 10px; padding: 18px; }
+  .kf-brain-ring { margin-bottom: 0; padding: 6px; }
+  .kf-brain-n { margin-top: 0; }
+  .kf-honest-col { padding: 28px 24px; }
+  .kf-honest li { font-size: 14px; }
+}
