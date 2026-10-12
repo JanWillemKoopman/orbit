@@ -23,7 +23,7 @@ export const KENNISBANK = 'kennisbank'
 // Tabs boven het blogoverzicht (/blog). "Changelog" en "Pers" hebben een eigen pagina.
 export const tabs = [
   { href: '/blog', label: 'Alles' },
-  { href: '/changelog', label: 'Changelog' },
+  { href: '/product-updates', label: 'Product updates' },
   ...categories.map((c) => ({ href: `/categorie/${c.slug}`, label: c.label })),
   { href: '/pers', label: 'Pers' },
 ]
@@ -93,7 +93,7 @@ export const footerNav = [
   {
     title: 'Updates',
     links: [
-      { href: '/changelog', label: 'Changelog' },
+      { href: '/product-updates', label: 'Product updates' },
       { href: '/pers', label: 'Pers' },
       { href: '/rss.xml', label: 'RSS-feed' },
     ],

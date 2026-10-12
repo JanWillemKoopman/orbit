@@ -33,7 +33,7 @@ export default function HomePage() {
         </h1>
         <div className="home-hero-row">
           <p className="home-hero-description blur-in" style={{ '--i': 2 } as React.CSSProperties}>{hero.description}</p>
-          <Link href={`/changelog#${latest.slug}`} className="home-new-link">
+          <Link href={`/product-updates#${latest.slug}`} className="home-new-link">
             <span className="home-new blur-in" style={{ '--i': 3 } as React.CSSProperties}>
               <span className="home-new-label">Nieuw</span>
               <span className="home-new-title">{latest.title} →</span>

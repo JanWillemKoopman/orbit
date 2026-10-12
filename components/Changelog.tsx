@@ -8,7 +8,7 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
       {entries.map((e) => (
         <div className="changelog-item" key={e.slug}>
           <div className="changelog-indicator" aria-hidden="true" />
-          <Link href={`/changelog#${e.slug}`}>
+          <Link href={`/product-updates#${e.slug}`}>
             <span className="changelog-title">{e.title}</span>
             <span className="changelog-text">{e.description}</span>
             <span className="changelog-date">{formatShortDate(e.date)}</span>

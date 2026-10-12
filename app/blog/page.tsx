@@ -26,7 +26,7 @@ export default function BlogPage() {
         <section className="home-section section-changelog" aria-labelledby="changelog-title">
           <div className="section-header"><h2 id="changelog-title" className="section-title">Changelog</h2></div>
           <ChangelogTimeline entries={changelog.slice(0, 4)} />
-          <Link href="/changelog" className="view-all">Bekijk alles <span aria-hidden="true">→</span></Link>
+          <Link href="/product-updates" className="view-all">Bekijk alles <span aria-hidden="true">→</span></Link>
           <CardGrid posts={second} className="after-block" />
         </section>
 
