@@ -3,7 +3,7 @@ title: "Hallo, wij zijn Orbit"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2025-10-30
 author: Thomas Bakker, Eva Mulder
-category: van-het-team
+category: kennisbank
 cover: "art:rings:40"
 featured: false
 ---

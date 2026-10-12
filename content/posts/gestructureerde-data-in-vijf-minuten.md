@@ -3,7 +3,7 @@ title: "Gestructureerde data in vijf minuten"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-05-11
 author: Daan Smit
-category: van-het-team
+category: kennisbank
 cover: "art:arcs:27"
 featured: false
 ---

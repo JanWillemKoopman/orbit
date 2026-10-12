@@ -3,7 +3,7 @@ title: "Waarom ik ORBIT ENGINE bouw"
 description: "Steeds meer klanten stellen hun vraag aan AI. Waarom ik software bouw die MKB-bedrijven daarin zichtbaar maakt."
 date: 2026-10-06
 author: Jan-Willem Koopman
-category: van-het-team
+category: kennisbank
 cover: "art:orb:7"
 featured: true
 ---

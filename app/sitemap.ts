@@ -6,6 +6,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ['', '/product', '/kennis', '/agency', '/installatiegids', '/documentatie', '/over', '/blog', '/changelog', '/kennisbank', '/product-updates', '/prijzen', '/pers', '/contact', ...categories.map((c) => `/categorie/${c.slug}`)]
   return [
     ...pages.map((p) => ({ url: `${site.url}${p}` })),
-    ...getPostMetas().map((p) => ({ url: `${site.url}/blog/${p.slug}`, lastModified: p.date })),
+    ...getPostMetas().map((p) => ({ url: `${site.url}/${p.category === 'kennisbank' ? 'kennisbank' : 'blog'}/${p.slug}`, lastModified: p.date })),
   ]
 }

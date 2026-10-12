@@ -3,7 +3,7 @@ title: "Feedback verzamelen zonder enquêtes"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2025-12-18
 author: Fleur de Boer
-category: van-het-team
+category: kennisbank
 cover: "art:prism:38"
 featured: false
 ---

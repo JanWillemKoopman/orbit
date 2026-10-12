@@ -3,7 +3,7 @@ title: "Toegankelijkheid is ons vertrekpunt"
 description: "Waarom we toegankelijkheid niet achteraf testen, maar meenemen vanaf het eerste ontwerp."
 date: 2026-07-31
 author: Noah Visser
-category: van-het-team
+category: kennisbank
 cover: "art:rings:13"
 featured: true
 ---

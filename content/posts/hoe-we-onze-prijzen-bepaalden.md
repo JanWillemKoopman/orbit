@@ -3,7 +3,7 @@ title: "Hoe we onze prijzen bepaalden"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-05-20
 author: Thomas Bakker
-category: van-het-team
+category: kennisbank
 cover: "art:dots:26"
 featured: false
 ---

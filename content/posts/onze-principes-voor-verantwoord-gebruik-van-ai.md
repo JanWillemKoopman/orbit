@@ -3,7 +3,7 @@ title: "Onze principes voor verantwoord gebruik van AI"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-07-03
 author: Eva Mulder
-category: van-het-team
+category: kennisbank
 cover: "art:lines:21"
 featured: false
 ---

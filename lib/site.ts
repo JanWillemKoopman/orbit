@@ -12,11 +12,13 @@ export const site = {
 
 export const categories = [
   { slug: 'productlanceringen', label: 'Productlanceringen' },
-  { slug: 'van-het-team', label: 'Van het team' },
   { slug: 'community', label: 'Uit de community' },
 ] as const
 
 export type CategorySlug = (typeof categories)[number]['slug']
+
+// De kennisbank staat los van de blog: eigen pagina (/kennisbank) en eigen artikelen (/kennisbank/<slug>).
+export const KENNISBANK = 'kennisbank'
 
 // Tabs boven het blogoverzicht (/blog). "Changelog" en "Pers" hebben een eigen pagina.
 export const tabs = [
@@ -72,7 +74,7 @@ export const footerNav = [
     links: [
       { href: '/blog', label: 'Alles' },
       { href: '/categorie/productlanceringen', label: 'Productlanceringen' },
-      { href: '/categorie/van-het-team', label: 'Van het team' },
+      { href: '/kennisbank', label: 'Kennisbank' },
       { href: '/categorie/community', label: 'Uit de community' },
       { href: '/blog#archief', label: 'Archief' },
     ],
@@ -80,10 +82,10 @@ export const footerNav = [
   {
     title: 'Onderwerpen',
     links: [
-      { href: '/blog/zichtbaarheid-meten', label: 'Meten' },
-      { href: '/blog/schrijven-voor-modellen', label: 'Schrijven' },
-      { href: '/blog/postgres-keuze', label: 'Techniek' },
-      { href: '/blog/toegankelijkheid', label: 'Ontwerp' },
+      { href: '/kennisbank/zichtbaarheid-meten', label: 'Meten' },
+      { href: '/kennisbank/schrijven-voor-modellen', label: 'Schrijven' },
+      { href: '/kennisbank/postgres-keuze', label: 'Techniek' },
+      { href: '/kennisbank/toegankelijkheid', label: 'Ontwerp' },
       { href: '/blog/woordenlijst-geo', label: 'Woordenlijst' },
       { href: '/categorie/community', label: 'Klantverhalen' },
     ],
@@ -100,8 +102,8 @@ export const footerNav = [
     title: 'Bedrijf',
     links: [
       { href: '/contact', label: 'Contact' },
-      { href: '/categorie/van-het-team', label: 'Team' },
-      { href: '/blog/onboarding', label: 'Werken bij' },
+      { href: '/over', label: 'Team' },
+      { href: '/kennisbank/onboarding', label: 'Werken bij' },
       { href: '/pers', label: 'Persmap' },
     ],
   },

@@ -3,7 +3,7 @@ title: "Een dag in de week zonder vergaderingen"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-04-30
 author: Eva Mulder
-category: van-het-team
+category: kennisbank
 cover: "art:prism:28"
 featured: false
 ---

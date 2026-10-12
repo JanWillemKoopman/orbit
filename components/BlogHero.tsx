@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { getPostMetas, byline } from '@/lib/posts'
+import { getBlogMetas, byline } from '@/lib/posts'
 import { site, tabs } from '@/lib/site'
 import { SearchButton } from './Search'
 
 export function BlogHero({ active, title = site.blogTitle }: { active: string; title?: string }) {
-  const items = getPostMetas().map((p) => ({ slug: p.slug, title: p.title, description: p.description, byline: byline(p), date: p.date, category: p.categoryLabel }))
+  const items = getBlogMetas().map((p) => ({ slug: p.slug, title: p.title, description: p.description, byline: byline(p), date: p.date, category: p.categoryLabel }))
   return (
     <div className="blog-hero">
       <h1 className="page-title"><Link href="/blog">{title}</Link></h1>

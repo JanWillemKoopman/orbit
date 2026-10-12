@@ -3,7 +3,7 @@ title: "Waarom we een kantoor aanhouden"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-02-12
 author: Thomas Bakker
-category: van-het-team
+category: kennisbank
 cover: "art:bars:35"
 featured: false
 ---

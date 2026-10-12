@@ -3,7 +3,7 @@ import path from 'node:path'
 import matter from 'gray-matter'
 import { Marked, type Tokens } from 'marked'
 import { renderArt } from './art'
-import { categories, type CategorySlug } from './site'
+import { categories, KENNISBANK, type CategorySlug } from './site'
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts')
 
@@ -13,7 +13,7 @@ export type PostMeta = {
   description: string
   date: string
   author: string
-  category: CategorySlug
+  category: CategorySlug | typeof KENNISBANK
   categoryLabel: string
   /** Vervangt de auteursnaam in kaarten en het archief, bijv. "Klantverhaal". */
   label?: string
@@ -85,7 +85,7 @@ function createMarkdown() {
 }
 
 const markdown = createMarkdown()
-const categoryLabel = (slug: string) => categories.find((c) => c.slug === slug)?.label ?? slug
+const categoryLabel = (slug: string) => (slug === KENNISBANK ? 'Kennisbank' : categories.find((c) => c.slug === slug)?.label ?? slug)
 
 function readPost(file: string): Post {
   const slug = file.replace(/\.md$/, '')
@@ -98,7 +98,7 @@ function readPost(file: string): Post {
     description: String(data.description ?? ''),
     date,
     author: String(data.author ?? ''),
-    category: data.category as CategorySlug,
+    category: data.category as CategorySlug | typeof KENNISBANK,
     categoryLabel: categoryLabel(String(data.category)),
     label: data.label ? String(data.label) : undefined,
     cover: String(data.cover ?? `art:lines:${slug.length}`),
@@ -124,13 +124,18 @@ export const toMeta = ({ html: _html, ...meta }: Post): PostMeta => meta
 
 export const getPostMetas = () => getAllPosts().map(toMeta)
 
+/** Alleen de blogartikelen; de kennisbank staat los daarvan. */
+export const getBlogMetas = () => getPostMetas().filter((p) => p.category !== KENNISBANK)
+
+export const getKennisbankMetas = () => getPostMetas().filter((p) => p.category === KENNISBANK)
+
 export const getPost = (slug: string) => getAllPosts().find((p) => p.slug === slug)
 
-export const getPostsByCategory = (category: string) => getPostMetas().filter((p) => p.category === category)
+export const getPostsByCategory = (category: string) => getBlogMetas().filter((p) => p.category === category)
 
 /** Verdeelt posts over de homepage: drie kaartrijen van zes en daarna het archief. */
 export function getHomepageSections() {
-  const all = getPostMetas()
+  const all = getBlogMetas()
   const featured = all.filter((p) => p.featured)
   const used = new Set(featured.slice(0, 18).map((p) => p.slug))
   return {

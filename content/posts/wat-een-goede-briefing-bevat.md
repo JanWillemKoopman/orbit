@@ -3,7 +3,7 @@ title: "Wat een goede briefing bevat"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-06-26
 author: Fleur de Boer
-category: van-het-team
+category: kennisbank
 cover: "art:grid:22"
 featured: false
 ---

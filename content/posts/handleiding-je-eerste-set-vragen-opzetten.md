@@ -3,7 +3,7 @@ title: "Handleiding: je eerste set vragen opzetten"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-04-09
 author: Sophie Hendriks
-category: van-het-team
+category: kennisbank
 cover: "art:rings:30"
 featured: false
 ---

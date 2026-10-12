@@ -3,7 +3,7 @@ title: "Waarom we voor Postgres kozen"
 description: "Iedereen verwachtte een gespecialiseerde database. We kozen voor saai, en daar hebben we geen spijt van."
 date: 2026-09-04
 author: Daan Smit
-category: van-het-team
+category: kennisbank
 cover: "art:bars:5"
 featured: true
 ---

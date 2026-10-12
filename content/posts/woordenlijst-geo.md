@@ -3,7 +3,7 @@ title: "Een woordenlijst voor zichtbaarheid in AI"
 description: "Van vermeldingskans tot bronpositie: de begrippen die we dagelijks gebruiken, kort uitgelegd."
 date: 2026-09-22
 author: Julia Peters
-category: van-het-team
+category: kennisbank
 cover: "/images/cover-woordenlijst.webp"
 featured: true
 ---

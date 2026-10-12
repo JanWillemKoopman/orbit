@@ -3,7 +3,7 @@ title: "Een week meelopen met klantsucces"
 description: "Wat doet een klantsuccesmanager eigenlijk de hele dag? Een dagboek van vijf werkdagen."
 date: 2026-09-11
 author: Sophie Hendriks
-category: van-het-team
+category: kennisbank
 cover: "art:arcs:3"
 featured: true
 ---

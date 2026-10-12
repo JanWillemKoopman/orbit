@@ -3,7 +3,7 @@ title: "Onboarding in tien dagen"
 description: "Hoe nieuwe collega's bij Orbit binnen twee weken hun eerste eigen project opleveren."
 date: 2026-08-07
 author: Eva Mulder
-category: van-het-team
+category: kennisbank
 cover: "art:prism:7"
 featured: true
 ---

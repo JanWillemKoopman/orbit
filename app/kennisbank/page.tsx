@@ -1,20 +1,16 @@
 import type { Metadata } from 'next'
-import { BlogHero } from '@/components/BlogHero'
-import { CardGrid } from '@/components/PostCard'
+import { KennisbankOverzicht } from '@/components/KennisbankOverzicht'
 import { Prefooter } from '@/components/Prefooter'
-import { getPostsByCategory } from '@/lib/posts'
+import { getKennisbankMetas } from '@/lib/posts'
 
-export const metadata: Metadata = { title: 'Kennisbank' }
+export const metadata: Metadata = { title: 'Kennisbank', description: 'Antwoorden en achtergronden van het Orbit-team.', alternates: { canonical: '/kennisbank' } }
 
-// Toont de berichten van de categorie "Van het team" onder de URL /kennisbank.
 export default function KennisbankPage() {
+  const items = getKennisbankMetas().map((p) => ({ slug: p.slug, title: p.title, description: p.description }))
   return (
     <>
       <div className="container">
-        <BlogHero active="/categorie/van-het-team" />
-        <div style={{ marginTop: 40 }}>
-          <CardGrid posts={getPostsByCategory('van-het-team')} priority />
-        </div>
+        <KennisbankOverzicht items={items} />
       </div>
       <Prefooter />
     </>

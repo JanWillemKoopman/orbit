@@ -3,7 +3,7 @@ title: Eén antwoord is geen meting
 description: Een AI-assistent geeft op dezelfde vraag zelden twee keer hetzelfde antwoord. Zo meten wij toch betrouwbaar of je merk wordt genoemd.
 date: 2026-10-02
 author: Sanne de Vries
-category: van-het-team
+category: kennisbank
 cover: "/images/cover-meten.webp"
 featured: true
 ---

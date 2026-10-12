@@ -3,7 +3,7 @@ title: "Vijf misverstanden over zichtbaarheid in AI"
 description: "Nee, je hoeft niet elke week honderd artikelen te publiceren. En nee, één screenshot zegt niets."
 date: 2026-09-18
 author: Sanne de Vries
-category: van-het-team
+category: kennisbank
 cover: "/images/cover-misverstanden.webp"
 featured: true
 ---

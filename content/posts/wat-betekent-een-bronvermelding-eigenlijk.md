@@ -3,7 +3,7 @@ title: "Wat betekent een bronvermelding eigenlijk?"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-03-10
 author: Julia Peters
-category: van-het-team
+category: kennisbank
 cover: "art:orb:33"
 featured: false
 ---

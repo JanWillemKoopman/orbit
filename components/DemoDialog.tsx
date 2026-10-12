@@ -1,19 +1,25 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { DemoForm } from './DemoForm'
 
 export function DemoDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null)
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
 
   useEffect(() => {
     const d = ref.current
     if (!d) return
     if (open && !d.open) d.showModal()
     if (!open && d.open) d.close()
-  }, [open])
+  }, [open, mounted])
 
-  return (
+  // Via een portal in <body>, zodat koppen en teksten van de sectie waarin de knop staat
+  // (bijv. .home-prefooter h2) niet doorwerken in de popup.
+  if (!mounted) return null
+  return createPortal(
     <dialog
       ref={ref}
       className="demo-dialog"
@@ -32,6 +38,7 @@ export function DemoDialog({ open, onClose }: { open: boolean; onClose: () => vo
           <DemoForm />
         </div>
       )}
-    </dialog>
+    </dialog>,
+    document.body,
   )
 }

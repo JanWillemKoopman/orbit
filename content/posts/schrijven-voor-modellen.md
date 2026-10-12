@@ -3,7 +3,7 @@ title: "Schrijven voor mensen, gelezen door modellen"
 description: "Praktische schrijfregels voor content die zowel lezers als AI-assistenten helpt."
 date: 2026-08-24
 author: Fleur de Boer
-category: van-het-team
+category: kennisbank
 cover: "art:waves:3"
 featured: true
 ---

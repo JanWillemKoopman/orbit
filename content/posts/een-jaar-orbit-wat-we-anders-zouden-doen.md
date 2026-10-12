@@ -3,7 +3,7 @@ title: "Een jaar Orbit: wat we anders zouden doen"
 description: "Een voorbeeldartikel uit het archief. Vervang deze samenvatting door je eigen intro van één of twee zinnen."
 date: 2026-01-29
 author: Thomas Bakker, Eva Mulder
-category: van-het-team
+category: kennisbank
 cover: "art:dots:36"
 featured: false
 ---
