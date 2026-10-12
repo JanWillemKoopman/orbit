@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { mainNav, mobileNav, site } from '@/lib/site'
 import { Logo } from './Logo'
+import { NavMenu } from './NavMenu'
 
 const isActive = (pathname: string, href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
 
@@ -27,13 +28,17 @@ export function Header() {
 
           <nav className="header-right" aria-label="Hoofdmenu">
             <ul className="nav-list">
-              {mainNav.map((item) => (
-                <li key={item.label}>
-                  <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) ? 'page' : undefined}>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {mainNav.map((item) =>
+                'items' in item ? (
+                  <NavMenu key={item.label} label={item.label} items={item.items} actief={item.items.some((i) => isActive(pathname, i.href))} />
+                ) : (
+                  <li key={item.label}>
+                    <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) ? 'page' : undefined}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
             <div className="nav-divider" />
             <div className="header-actions">
