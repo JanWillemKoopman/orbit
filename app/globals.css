@@ -135,7 +135,7 @@ img, svg { display: block; max-width: 100%; }
   position: sticky; top: 0; z-index: 50;
   height: var(--header-height);
   border-bottom: 1px solid var(--border-translucent);
-  background: rgba(8, 9, 10, 0.5);
+  background: rgba(8, 9, 10, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   user-select: none;
