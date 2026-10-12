@@ -166,8 +166,7 @@ img, svg { display: block; max-width: 100%; }
   /* Zoals op linear.app: onder de header, rechts gelijk met de rand van de inhoud */
   position: absolute; top: calc(100% - 8px); right: var(--page-padding); z-index: 60;
   border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(8, 9, 10, 0.9); box-shadow: 0 8px 32px #08090a;
-  backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
+  background: #08090a; box-shadow: 0 8px 32px #08090a;
   overflow: hidden; user-select: none;
 }
 .nav-menu-popup[data-open] { animation: nav-menu-in 0.18s var(--ease-out-quad); }
@@ -566,3 +565,10 @@ img, svg { display: block; max-width: 100%; }
 .demo-close:hover { background: var(--bg-hover); color: var(--text-primary); }
 @media (max-width: 539px) { .demo-dialog-body { padding: 24px 20px 20px; } .demo-row { grid-template-columns: 1fr; } }
 @media (max-width: 480px) { .header-contact { display: none; } }
+
+/* Succesmelding na versturen van een formulier */
+.succes-dialog { width: min(440px, calc(100vw - 32px)); }
+.succes-body { text-align: center; padding: 44px 30px 30px; }
+.succes-icoon { width: 56px; height: 56px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--accent); color: var(--bg-primary); }
+.succes-dialog h2 { padding-right: 0; margin-bottom: 8px; }
+.succes-dialog .demo-intro { margin-bottom: 24px; }

@@ -50,7 +50,7 @@ export function Header() {
                   <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M2 6.75h12M5.25 1.75v2.5M10.75 1.75v2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
-                Plan een gratis demo
+                Gratis demo
               </button>
               <button className="menu-toggle" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
