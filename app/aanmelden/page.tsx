@@ -13,7 +13,7 @@ export default function AanmeldenPage() {
         <h1>Account aanvragen</h1>
         <p>Laat je gegevens achter, dan nemen we contact met je op.</p>
         <AanmeldForm email={site.contactEmail} />
-        <a href="/inloggen" className="signup-login">Naar inloggen</a>
+        <a href="https://www.nogoptegevenurl.nl" className="signup-login">Naar inloggen</a>
       </div>
     </div>
   )
