@@ -118,9 +118,9 @@ Een FAQ is alleen zinvol bij resterende lezersvragen. Begin elk antwoord direct 
 
 ## 11. Merk, product en slot
 
-De inhoud moet ook nuttig zijn zonder productvermelding. Voeg de afzender of het product toe wanneer de aansluiting op het besproken probleem concreet is (zie Vaste uitgangspunten). Beschrijf uitsluitend bevestigde mogelijkheden.
+De inhoud moet ook nuttig zijn zonder productvermelding. Voeg de afzender of het product toe wanneer de aansluiting op het besproken probleem concreet is (zie Vaste uitgangspunten).
 
-Bij Outer Orbit of ORBIT ENGINE komen productfeiten uit de actuele briefing of gecontroleerde projectdocumentatie. Leid ze nooit af uit wat InSpace of NOVA zegt te kunnen. Claim geen automatische publicatie, integratie, functionaliteit of resultaat zonder bevestiging.
+Productinformatie over ORBIT ENGINE haal je uit de repo `janwillemkoopman/orbit-engine`, waarin de app zelf staat: `docs/ORBIT_ENGINE_PROCESDOCUMENTATIE.md` voor de werking en de functies, `docs/ORBIT_ENGINE_WAAROM.md` voor de USP’s, en de code zelf. Spreken documentatie en code elkaar tegen, dan is de code leidend. Plan- en analysedocumenten (`docs/PLAN_*.md`, `docs/ANALYSE_*.md`) beschrijven voornemens en tellen niet als bron. Beschrijf geen functies die niet in de app staan.
 
 Een CTA is een logische vervolgstap voor deze lezer. Vermijd een algemene demo-oproep aan het einde van ieder onderwerp. Als geen commerciële stap nodig is, sluit af met een concreet advies, besliscriterium of consequentie.
 
