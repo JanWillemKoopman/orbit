@@ -203,6 +203,8 @@
 .hu-stage-account::after { content: ''; position: absolute; inset: 0 0 0 auto; width: 22%; background: linear-gradient(90deg, rgba(11, 12, 13, 0), #0b0c0d); pointer-events: none; }
 .hu-stage-ronde .hu-inner { width: 640px; max-width: calc(100% - 64px); zoom: 0.9; }
 .hu-cell .hu-inner .fv-surface { width: 100%; max-width: none; }
+/* Zonder het logo linksboven in de bar; op /agency en /product blijft het staan. */
+.hu-cell .hu-inner .fv-logo { display: none; }
 .hu-cell .hu-caption { position: static; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; max-width: none; }
 .hu-cell .hu-caption > div { max-width: 440px; }
 .hu-link { flex-shrink: 0; white-space: nowrap; }
