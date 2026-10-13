@@ -68,66 +68,11 @@ export const mobileNav = [
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
 
-export const footerNav = [
-  {
-    title: 'Blog',
-    links: [
-      { href: '/blog', label: 'Alles' },
-      { href: '/categorie/productlanceringen', label: 'Productlanceringen' },
-      { href: '/kennisbank', label: 'Kennisbank' },
-      { href: '/categorie/community', label: 'Uit de community' },
-      { href: '/blog#archief', label: 'Archief' },
-    ],
-  },
-  {
-    title: 'Onderwerpen',
-    links: [
-      { href: '/kennisbank/wat-is-geo', label: 'GEO' },
-      { href: '/kennisbank/hoe-meet-je-ai-zichtbaarheid', label: 'Meten' },
-      { href: '/kennisbank/hoe-maak-je-content-begrijpelijk-voor-ai', label: 'Schrijven' },
-      { href: '/kennisbank/wat-is-technische-seo', label: 'Techniek' },
-      { href: '/kennisbank', label: 'Kennisbank' },
-      { href: '/categorie/community', label: 'Klantverhalen' },
-    ],
-  },
-  {
-    title: 'Updates',
-    links: [
-      { href: '/product-updates', label: 'Product updates' },
-      { href: '/pers', label: 'Pers' },
-      { href: '/rss.xml', label: 'RSS-feed' },
-    ],
-  },
-  {
-    title: 'Bedrijf',
-    links: [
-      { href: '/contact', label: 'Contact' },
-      { href: '/over', label: 'Team' },
-      { href: '/over', label: 'Werken bij' },
-      { href: '/pers', label: 'Persmap' },
-    ],
-  },
-  {
-    title: 'Volg ons',
-    links: [
-      { href: 'https://www.linkedin.com', label: 'LinkedIn' },
-      { href: 'https://x.com', label: 'X (Twitter)' },
-      { href: 'https://github.com', label: 'GitHub' },
-      { href: 'https://www.youtube.com', label: 'YouTube' },
-    ],
-  },
-  {
-    title: 'Juridisch',
-    links: [
-      { href: '/contact', label: 'Privacy' },
-      { href: '/contact', label: 'Voorwaarden' },
-      { href: '/contact', label: 'Cookies' },
-    ],
-  },
-]
+// Footer: dezelfde groepen als het hoofdmenu (mobileNav), met rechts een kolom met contactgegevens.
+export const footerNav = mobileNav
 
-export const legalNav = [
-  { href: '/contact', label: 'Privacy' },
-  { href: '/contact', label: 'Voorwaarden' },
-  { href: '/contact', label: 'Cookies' },
-]
+export const footerContact = {
+  company: 'Outer Orbit',
+  email: 'go@outerorbit.nl',
+  phone: '0612345678',
+}

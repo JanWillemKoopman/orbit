@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { footerNav, legalNav, site } from '@/lib/site'
+import { footerContact, footerNav, site } from '@/lib/site'
 import { LogoMark } from './Logo'
 
 export function Footer() {
@@ -27,11 +27,16 @@ export function Footer() {
             </ul>
           </div>
         ))}
+        <div className="footer-col footer-contact">
+          <h3>{footerContact.company}</h3>
+          <ul>
+            <li><a className="dimmed" href={`mailto:${footerContact.email}`}>{footerContact.email}</a></li>
+            <li><a className="dimmed" href={`tel:${footerContact.phone}`}>{footerContact.phone}</a></li>
+          </ul>
+        </div>
       </div>
       <div className="container footer-legal">
-        {legalNav.map((l) => (
-          <Link key={l.label} href={l.href}>{l.label}</Link>
-        ))}
+        <p>© {new Date().getFullYear()} {footerContact.company} · All rights reserved.</p>
       </div>
     </footer>
   )
