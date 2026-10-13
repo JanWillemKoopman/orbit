@@ -69,9 +69,14 @@ export const mobileNav = [
 ]
 
 // Footer: dezelfde groepen als het hoofdmenu (mobileNav), met rechts een kolom met contactgegevens.
-export const footerNav = mobileNav.map((group) =>
-  group.title === 'Account' ? { ...group, links: [...group.links, { href: '/demo', label: 'Demo aanvragen' }] } : group,
-)
+// De labels in de footer wijken af van het hoofdmenu: korter, en met extra links naar /contact.
+const footerLabels: Record<string, string> = { '/product': 'Werkwijze', '/kennis': 'Kwaliteit', '/agency': 'Beheer', '/contact': 'Contact' }
+export const footerNav = mobileNav.map((group) => {
+  const renamed = group.links.map((l) => ({ href: l.href, label: footerLabels[l.href] ?? l.label }))
+  if (group.title === 'Over ons') return { ...group, links: [...renamed, { href: '/contact', label: 'Samenwerking' }, { href: '/contact', label: 'Plan gesprek' }] }
+  if (group.title === 'Account') return { ...group, links: [...renamed, { href: '/demo', label: 'Demo aanvragen' }] }
+  return { ...group, links: renamed }
+})
 
 export const footerContact = {
   company: 'Outer Orbit',
