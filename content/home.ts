@@ -13,6 +13,25 @@ export const statement = {
   author: { name: 'Jan-Willem Koopman', photo: '/images/jan-willem-koopman.jpg' },
 }
 
+// Twee beelden direct onder de quote, elk met een titel, een korte uitleg en een link. Links het
+// account van het bureau (/agency), rechts de maand van één klant van meten tot hermeten (/product).
+export type Uitgelicht = { titel: string; tekst: string; href: string; alt: string }
+
+export const uitgelicht: Uitgelicht[] = [
+  {
+    titel: 'Al je klanten in één account',
+    tekst: 'Per klant de zichtbaarheid, wat er op je wacht en wat het kost. Start de maand voor meerdere klanten tegelijk.',
+    href: '/agency',
+    alt: 'Het werkoverzicht van Bureau Noordwind: bedrijven onder elkaar met hun zichtbaarheid in AI, de maandmeting en wat er klaarstaat om te starten.',
+  },
+  {
+    titel: 'Van meten tot hermeten',
+    tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Elke klant doorloopt elke maand dezelfde ronde, en je ziet welke stap loopt.',
+    href: '/product',
+    alt: 'De maand van Lindeman Warmte: meten en plannen zijn klaar, schrijven loopt, publiceren en hermeten volgen. Er wachten twee vragen op de klant.',
+  },
+]
+
 // Het procesblok direct onder de quote: titel en uitleg, daarna de stappen naast elkaar.
 // De stappen met `number` zijn het stappenplan; de laatste stap zonder nummer sluit de loop.
 // Alle links wijzen voorlopig naar dezelfde blogpost die nog geschreven wordt. Zolang die er

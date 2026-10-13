@@ -192,6 +192,26 @@
 .home-quote-author { display: flex; align-items: center; gap: 12px; margin-top: 40px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-secondary); }
 .home-quote-author img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
 
+/* Twee beelden onder de quote ------------------------------------------- */
+/* Raster van /kennis en /product (product.css); de hele kaart is klikbaar via de link in het bijschrift. */
+.home-uitgelicht { margin-top: 120px; }
+.hu-cell { position: relative; transition: background-color var(--speed-quick); }
+.hu-cell:hover { background-color: rgba(255, 255, 255, 0.015); }
+.hu-cell .hu-stage { height: 420px; mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); }
+.hu-cell .hu-stage-account { display: block; }
+.hu-stage-account .hu-inner { position: absolute; top: 56px; left: 40px; width: 1180px; zoom: 0.8; }
+.hu-stage-account::after { content: ''; position: absolute; inset: 0 0 0 auto; width: 22%; background: linear-gradient(90deg, rgba(11, 12, 13, 0), #0b0c0d); pointer-events: none; }
+.hu-stage-ronde .hu-inner { width: 640px; max-width: calc(100% - 64px); zoom: 0.9; }
+.hu-cell .hu-inner .fv-surface { width: 100%; max-width: none; }
+.hu-cell .hu-caption { position: static; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; max-width: none; }
+.hu-cell .hu-caption > div { max-width: 440px; }
+.hu-link { flex-shrink: 0; white-space: nowrap; }
+.hu-link::after { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: inherit; }
+.hu-cell:hover .hu-link { color: var(--text-primary); }
+.hu-cell:hover .hu-link .feature-plus { transform: translateX(2px); }
+.hu-link:focus-visible { outline: none; }
+.hu-cell:has(.hu-link:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
+
 /* Drie blokken ----------------------------------------------------------- */
 .keyline { position: relative; left: 50%; width: 100vw; transform: translateX(-50%); height: 1px; background: rgba(255, 255, 255, 0.08); box-shadow: 0 -1px 0 #000; }
 .feature { margin-top: 160px; }
@@ -412,6 +432,12 @@
   .rs-title { font-size: 20px; }
   .rs-step-label { font-size: 10px; }
   .process { padding-bottom: 72px; }
+  .home-uitgelicht { margin-top: 72px; }
+  .hu-cell .hu-stage { height: 340px; min-height: 0; }
+  .hu-stage-account .hu-inner { top: 36px; left: 20px; zoom: 0.6; }
+  .hu-cell .hu-stage-ronde { height: 260px; }
+  .hu-stage-ronde .hu-inner { width: 600px; max-width: none; zoom: 0.52; }
+  .hu-cell .hu-caption { flex-direction: column; gap: 12px; }
   .sc-root { margin-top: 56px; margin-inline: -8px; }
   /* Op mobiel een veegbare rij: elk scherm 86% breed, zodat het volgende net in beeld piept. */
   .sc-stage {

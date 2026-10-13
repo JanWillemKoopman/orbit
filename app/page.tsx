@@ -3,11 +3,15 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, loop, prefooter, result, statement, story } from '@/content/home'
+import { faq, hero, loop, prefooter, result, statement, story, uitgelicht } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
 import { Faq } from '@/components/home/Faq'
+import { HeroWerkoverzicht } from '@/components/agency/Visuals'
+import { HeroMaand } from '@/components/product/Visuals'
+import './product/product.css'
+import './agency/agency.css'
 
 export const metadata: Metadata = {
   title: { absolute: 'ORBIT ENGINE – Open source SEO & GEO software voor marketeers' },
@@ -16,7 +20,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, veelgestelde vragen en een afsluiter.
+// twee beelden met een link naar /agency en /product, het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
   const latest = changelog[0]
 
@@ -61,6 +65,27 @@ export default function HomePage() {
             <span>{statement.author.name}</span>
           </figcaption>
         </figure>
+
+        <section className="home-uitgelicht" aria-label="ORBIT ENGINE voor bureaus">
+          <div className="pd-grid">
+            {uitgelicht.map((u, i) => (
+              <figure className="pd-cell hu-cell" key={u.href}>
+                <div className={`pd-cell-stage hu-stage hu-stage-${i === 0 ? 'account' : 'ronde'}`} role="img" aria-label={u.alt}>
+                  <div className="hu-inner" aria-hidden="true">{i === 0 ? <HeroWerkoverzicht /> : <HeroMaand />}</div>
+                </div>
+                <figcaption className="pd-caption hu-caption">
+                  <div>
+                    <h3>{u.titel}</h3>
+                    <p>{u.tekst}</p>
+                  </div>
+                  <Link href={u.href} className="home-link hu-link">
+                    Lees meer<span className="sr-only"> over {u.titel.toLowerCase()}</span> <span className="feature-plus" aria-hidden="true">→</span>
+                  </Link>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
 
         <section className="feature process" aria-labelledby="home-process">
           <div className="keyline" />
