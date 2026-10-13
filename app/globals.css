@@ -142,6 +142,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .site-header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .logo-link { display: inline-flex; align-items: center; height: 32px; padding: 0 8px; margin-left: -8px; border-radius: 6px; }
+.logo-image { display: block; height: 24px; width: auto; }
 .logo { display: flex; align-items: center; gap: 9px; color: var(--text-primary); }
 .logo-word { font-size: 19px; font-weight: var(--weight-semibold); letter-spacing: -0.03em; line-height: 1; }
 

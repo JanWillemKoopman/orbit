@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { mainNav, mobileNav, site } from '@/lib/site'
 import { DemoDialog } from './DemoDialog'
-import { Logo } from './Logo'
 import { NavMenu } from './NavMenu'
 
 const isActive = (pathname: string, href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
@@ -25,7 +24,8 @@ export function Header() {
       <header className="site-header" data-menu-open={open}>
         <div className="container">
           <Link href="/" className="logo-link" aria-label={`${site.name} – home`}>
-            <Logo name={site.name} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/outer-orbit-logo.png" alt="" width={1666} height={433} className="logo-image" />
           </Link>
 
           <nav className="header-right" aria-label="Hoofdmenu">
