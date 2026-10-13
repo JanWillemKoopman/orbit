@@ -541,7 +541,6 @@ img, svg { display: block; max-width: 100%; }
 /* Demo-formulier (popup en /demo) */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .demo-form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
-.demo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .demo-form .field input { height: 48px; }
 .demo-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .demo-submit { --h: 52px; width: 100%; margin-top: 8px; background: var(--accent); border: 1px solid var(--accent); color: var(--bg-primary); }
@@ -564,7 +563,8 @@ img, svg { display: block; max-width: 100%; }
   border-radius: 50%; background: var(--bg-translucent); color: var(--text-secondary); transition: background var(--speed-quick), color var(--speed-quick);
 }
 .demo-close:hover { background: var(--bg-hover); color: var(--text-primary); }
-@media (max-width: 539px) { .demo-dialog-body { padding: 24px 20px 20px; } .demo-row { grid-template-columns: 1fr; } }
+.demo-close:focus-visible { outline: none; }
+@media (max-width: 539px) { .demo-dialog-body { padding: 24px 20px 20px; } }
 @media (max-width: 480px) { .header-contact { display: none; } }
 
 /* Succesmelding na versturen van een formulier */
