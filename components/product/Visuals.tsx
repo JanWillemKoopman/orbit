@@ -4,7 +4,9 @@ import { Chip, Icon, Knop, Logo, Mono } from './ui'
 
 /* ── Hero: de maand van één klant ─────────────────────────────────────────── */
 
-const STAPPEN = [
+export type MaandStap = { l: string; s: string; st: 'done' | 'now' | 'todo' }
+
+const STAPPEN: MaandStap[] = [
   { l: 'Meten', s: '1 okt', st: 'done' },
   { l: 'Plannen', s: "5 pagina's", st: 'done' },
   { l: 'Schrijven', s: '3 van 5', st: 'now' },
@@ -12,7 +14,8 @@ const STAPPEN = [
   { l: 'Hermeten', s: '', st: 'todo' },
 ]
 
-export function HeroMaand() {
+/** De homepage geeft eigen stappen mee; /product gebruikt de standaard hierboven. */
+export function HeroMaand({ stappen = STAPPEN }: { stappen?: MaandStap[] }) {
   return (
     <div className="fv-surface fv-hero">
       <div className="fv-hero-top">
@@ -20,7 +23,7 @@ export function HeroMaand() {
         <span className="fv-muted">Oktober 2026</span>
       </div>
       <div className="fv-cycle">
-        {STAPPEN.map((s) => (
+        {stappen.map((s) => (
           <div key={s.l} className="fv-cycle-step" data-state={s.st}>
             <span className="fv-cycle-dot">{s.st === 'done' && <Icon naam="check" size={12} />}</span>
             <span className="fv-cycle-l">{s.l}</span>

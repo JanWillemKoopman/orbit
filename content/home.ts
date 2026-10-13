@@ -1,4 +1,5 @@
 // Teksten van de homepage (/). Alles hieronder mag je vrij aanpassen; de opmaak volgt vanzelf.
+import type { MaandStap } from '@/components/product/Visuals'
 
 export const hero = {
   title: ['Open source SEO & GEO software', 'voor marketeers.'],
@@ -28,8 +29,18 @@ export const uitgelicht: Uitgelicht[] = [
     titel: 'Van meten tot hermeten',
     tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Elke klant doorloopt elke maand dezelfde ronde, en je ziet welke stap loopt.',
     href: '/product',
-    alt: 'De maand van Lindeman Warmte: meten en plannen zijn klaar, schrijven loopt, publiceren en hermeten volgen. Er wachten twee vragen op de klant.',
+    alt: "De maand van een klant: meten is klaar, twintig pagina's zijn gepland, elf zijn geschreven en zeven gepubliceerd. Hermeten volgt. Er wachten twee vragen op de klant.",
   },
+]
+
+// De stappen in het rechterbeeld: hoe ver de maand van de klant is. Publiceren loopt al terwijl er
+// nog geschreven wordt, daarom staan beide stappen op 'now'.
+export const uitgelichtStappen: MaandStap[] = [
+  { l: 'Meten', s: '1 okt', st: 'done' },
+  { l: 'Plannen', s: "20 pagina's", st: 'done' },
+  { l: 'Schrijven', s: '11 van 20', st: 'now' },
+  { l: 'Publiceren', s: '7 van 20', st: 'now' },
+  { l: 'Hermeten', s: '', st: 'todo' },
 ]
 
 // Het procesblok direct onder de quote: titel en uitleg, daarna de stappen naast elkaar.

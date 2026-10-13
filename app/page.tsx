@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, loop, prefooter, result, statement, story, uitgelicht } from '@/content/home'
+import { faq, hero, loop, prefooter, result, statement, story, uitgelicht, uitgelichtStappen } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
@@ -71,7 +71,7 @@ export default function HomePage() {
             {uitgelicht.map((u, i) => (
               <figure className="pd-cell hu-cell" key={u.href}>
                 <div className={`pd-cell-stage hu-stage hu-stage-${i === 0 ? 'account' : 'ronde'}`} role="img" aria-label={u.alt}>
-                  <div className="hu-inner" aria-hidden="true">{i === 0 ? <HeroWerkoverzicht /> : <HeroMaand />}</div>
+                  <div className="hu-inner" aria-hidden="true">{i === 0 ? <HeroWerkoverzicht /> : <HeroMaand stappen={uitgelichtStappen} />}</div>
                 </div>
                 <figcaption className="pd-caption hu-caption">
                   <div>
