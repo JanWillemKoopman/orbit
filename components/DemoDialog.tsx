@@ -25,7 +25,8 @@ export function DemoDialog({ open, onClose }: { open: boolean; onClose: () => vo
       className="demo-dialog"
       aria-labelledby="demo-titel"
       onClose={onClose}
-      onClick={(e) => { if (e.target === ref.current) onClose() }}
+      // Alleen het kruisje sluit de popup: niet via de achtergrond en niet via Escape.
+      onCancel={(e) => e.preventDefault()}
     >
       {open && (
         <div className="demo-dialog-body">
