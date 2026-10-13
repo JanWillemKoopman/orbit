@@ -44,7 +44,7 @@ export function Header() {
             </ul>
             <div className="nav-divider" />
             <div className="header-actions">
-              <a href={site.loginUrl} className="nav-link header-contact">Inloggen</a>
+              <a href={site.loginUrl} className="nav-link header-contact">Log in</a>
               <button type="button" className="btn btn-sm btn-invert header-demo" onClick={() => setDemoOpen(true)}>
                 Gratis demo
               </button>
