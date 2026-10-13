@@ -32,6 +32,7 @@
 .article-meta .meta-dot { margin: 0 10px; }
 
 @media (max-width: 640px) {
+  .article-back { display: none; }
   .article-title { font-size: 32px; line-height: 1.125; }
   .article-hero { max-width: none; margin-top: 32px; }
   .article-title + .prose { margin-top: 32px; }
