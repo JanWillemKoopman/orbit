@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ArticleView } from '@/components/ArticleView'
+import { Prefooter } from '@/components/Prefooter'
 import { getKennisbankMetas, getPost } from '@/lib/posts'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -22,5 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function KennisbankArtikelPage({ params }: Props) {
   const post = await kennisbankPost(params)
   if (!post) notFound()
-  return <ArticleView post={post} terug={{ href: '/kennisbank', label: 'de kennisbank' }} />
+  return (
+    <>
+      <ArticleView post={post} terug={{ href: '/kennisbank', label: 'de kennisbank' }} hero={false} />
+      <Prefooter />
+    </>
+  )
 }

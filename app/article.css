@@ -23,6 +23,8 @@
   pointer-events: none; user-select: none;
 }
 .article-hero img { width: 100%; height: 100%; object-fit: cover; }
+/* Zonder headerafbeelding (kennisbank) begint de tekst direct onder de titel. */
+.article-title + .prose { margin-top: 48px; }
 .article-meta {
   display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
   font-size: 15px; line-height: 24px; letter-spacing: -0.011em; color: var(--text-tertiary);
@@ -32,6 +34,7 @@
 @media (max-width: 640px) {
   .article-title { font-size: 32px; line-height: 1.125; }
   .article-hero { max-width: none; margin-top: 32px; }
+  .article-title + .prose { margin-top: 32px; }
   .article-meta { flex-direction: column; gap: 4px; font-size: 14px; line-height: 21px; letter-spacing: -0.013em; }
   .article-meta .meta-dot { display: none; }
   .article-meta { align-items: center; }
@@ -132,6 +135,8 @@
    Article footer
    ========================================================================== */
 .article-end { max-width: 624px; margin: 56px auto 0; padding-bottom: 128px; }
+/* Volgt er een CTA (prefooter), dan bepaalt die de ruimte tot de footer. */
+.article:has(+ .prefooter) .article-end { padding-bottom: 0; }
 .article-end-line { height: 1px; background: var(--border-primary); margin-bottom: 24px; }
 .article-end-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 15px; line-height: 24px; letter-spacing: -0.011em; color: var(--text-tertiary); }
 .copy-button { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 8px; margin-right: -8px; border-radius: var(--radius-pill); font-size: 15px; color: var(--text-tertiary); transition: color var(--speed-quick), background var(--speed-quick); }

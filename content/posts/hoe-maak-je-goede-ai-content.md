@@ -5,7 +5,6 @@ date: 2026-10-13
 author: Redactie Orbit
 category: kennisbank
 order: 16
-cover: "art:bars:36"
 featured: false
 ---
 

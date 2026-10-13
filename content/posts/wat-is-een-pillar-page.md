@@ -5,7 +5,6 @@ date: 2026-10-13
 author: Redactie Orbit
 category: kennisbank
 order: 21
-cover: "art:rings:41"
 featured: false
 ---
 
