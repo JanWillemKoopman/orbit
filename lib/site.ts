@@ -82,11 +82,11 @@ export const footerNav = [
   {
     title: 'Onderwerpen',
     links: [
-      { href: '/kennisbank/zichtbaarheid-meten', label: 'Meten' },
-      { href: '/kennisbank/schrijven-voor-modellen', label: 'Schrijven' },
-      { href: '/kennisbank/postgres-keuze', label: 'Techniek' },
-      { href: '/kennisbank/toegankelijkheid', label: 'Ontwerp' },
-      { href: '/blog/woordenlijst-geo', label: 'Woordenlijst' },
+      { href: '/kennisbank/wat-is-geo', label: 'GEO' },
+      { href: '/kennisbank/hoe-meet-je-ai-zichtbaarheid', label: 'Meten' },
+      { href: '/kennisbank/hoe-maak-je-content-begrijpelijk-voor-ai', label: 'Schrijven' },
+      { href: '/kennisbank/wat-is-technische-seo', label: 'Techniek' },
+      { href: '/kennisbank', label: 'Kennisbank' },
       { href: '/categorie/community', label: 'Klantverhalen' },
     ],
   },
@@ -103,7 +103,7 @@ export const footerNav = [
     links: [
       { href: '/contact', label: 'Contact' },
       { href: '/over', label: 'Team' },
-      { href: '/kennisbank/onboarding', label: 'Werken bij' },
+      { href: '/over', label: 'Werken bij' },
       { href: '/pers', label: 'Persmap' },
     ],
   },

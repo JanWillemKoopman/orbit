@@ -21,6 +21,8 @@ export type PostMeta = {
   cover: string
   /** Toon de post als kaart op de homepage (anders alleen in het archief). */
   featured: boolean
+  /** Volgorde in de kennisbank (oplopend); zonder volgorde komt een artikel achteraan. */
+  order?: number
 }
 
 export type Post = PostMeta & { html: string }
@@ -103,6 +105,7 @@ function readPost(file: string): Post {
     label: data.label ? String(data.label) : undefined,
     cover: String(data.cover ?? `art:lines:${slug.length}`),
     featured: Boolean(data.featured),
+    order: typeof data.order === 'number' ? data.order : undefined,
     html: markdown.parse(content) as string,
   }
 }
@@ -127,7 +130,11 @@ export const getPostMetas = () => getAllPosts().map(toMeta)
 /** Alleen de blogartikelen; de kennisbank staat los daarvan. */
 export const getBlogMetas = () => getPostMetas().filter((p) => p.category !== KENNISBANK)
 
-export const getKennisbankMetas = () => getPostMetas().filter((p) => p.category === KENNISBANK)
+/** De kennisbankartikelen, in de vaste volgorde uit het veld `order`. */
+export const getKennisbankMetas = () =>
+  getPostMetas()
+    .filter((p) => p.category === KENNISBANK)
+    .sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity))
 
 export const getPost = (slug: string) => getAllPosts().find((p) => p.slug === slug)
 
