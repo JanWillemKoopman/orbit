@@ -46,10 +46,6 @@ export function Header() {
             <div className="header-actions">
               <a href={site.loginUrl} className="nav-link header-contact">Inloggen</a>
               <button type="button" className="btn btn-sm btn-invert header-demo" onClick={() => setDemoOpen(true)}>
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M2 6.75h12M5.25 1.75v2.5M10.75 1.75v2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
                 Gratis demo
               </button>
               <button className="menu-toggle" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
