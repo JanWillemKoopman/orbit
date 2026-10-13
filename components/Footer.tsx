@@ -29,9 +29,14 @@ export function Footer() {
         ))}
         <div className="footer-col footer-contact">
           <h3>{footerContact.company}</h3>
+          <address className="footer-address">
+            {footerContact.address.map((regel) => (
+              <span key={regel}>{regel}</span>
+            ))}
+          </address>
           <ul>
             <li><a className="dimmed" href={`mailto:${footerContact.email}`}>{footerContact.email}</a></li>
-            <li><a className="dimmed" href={`tel:${footerContact.phone}`}>{footerContact.phone}</a></li>
+            <li><a className="dimmed" href={`tel:${footerContact.phone.replace(/[^+\d]/g, '')}`}>{footerContact.phone}</a></li>
           </ul>
         </div>
       </div>

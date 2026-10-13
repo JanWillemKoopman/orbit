@@ -69,10 +69,13 @@ export const mobileNav = [
 ]
 
 // Footer: dezelfde groepen als het hoofdmenu (mobileNav), met rechts een kolom met contactgegevens.
-export const footerNav = mobileNav
+export const footerNav = mobileNav.map((group) =>
+  group.title === 'Account' ? { ...group, links: [...group.links, { href: '/demo', label: 'Demo aanvragen' }] } : group,
+)
 
 export const footerContact = {
   company: 'Outer Orbit',
   email: 'go@outerorbit.nl',
-  phone: '0612345678',
+  address: ['Pastoor van Liesstraat 7', '5089PN, Haghorst', 'Noord-Brabant, Nederland'],
+  phone: '+31-(0)6234567',
 }
