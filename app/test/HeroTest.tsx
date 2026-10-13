@@ -10,6 +10,10 @@ const varianten = [
   { href: '/test2', label: 'test2' },
   { href: '/test3', label: 'test3' },
   { href: '/test4', label: 'test4' },
+  { href: '/test5', label: 'test5' },
+  { href: '/test6', label: 'test6' },
+  { href: '/test7', label: 'test7' },
+  { href: '/test8', label: 'test8' },
 ]
 
 // Hero met achtergrondvideo, opgebouwd zoals de bovenkant van linear.app/intake:
