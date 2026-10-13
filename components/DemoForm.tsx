@@ -26,15 +26,9 @@ export function DemoForm() {
         }
       }}
     >
-      <div className="demo-row">
-        <div className="field">
-          <label htmlFor="demo-voornaam" className="sr-only">Voornaam</label>
-          <input id="demo-voornaam" name="voornaam" autoComplete="given-name" placeholder="Voornaam" />
-        </div>
-        <div className="field">
-          <label htmlFor="demo-achternaam" className="sr-only">Achternaam</label>
-          <input id="demo-achternaam" name="achternaam" autoComplete="family-name" placeholder="Achternaam" />
-        </div>
+      <div className="field">
+        <label htmlFor="demo-voornaam" className="sr-only">Voornaam</label>
+        <input id="demo-voornaam" name="voornaam" autoComplete="given-name" placeholder="Voornaam" />
       </div>
       <div className="field">
         <label htmlFor="demo-email" className="sr-only">Zakelijk e-mailadres</label>
