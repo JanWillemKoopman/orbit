@@ -489,7 +489,7 @@
   .faq-answer { padding-bottom: 24px; font-size: 15px; }
   .home-prefooter, .home-prefooter.pd-afsluiter { margin-block: 96px 128px; }
   .home-prefooter h2 { font-size: 38px; }
-  .home-prefooter-actions { flex-direction: column; align-items: stretch; width: 100%; }
+  .home-prefooter-actions { flex-direction: column; align-items: center; }
 }
 
 @media (max-width: 899px) { .faq { grid-template-columns: 1fr; row-gap: 0; } .faq-column + .faq-column { border-top: 0; } }
