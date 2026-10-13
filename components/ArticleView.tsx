@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { Art } from '@/components/Art'
-import { CopyLink } from '@/components/CopyLink'
 import type { Post } from '@/lib/posts'
 
 // Het artikel zelf (zonder auteur of datum), gedeeld door de blog (/blog/<slug>) en de kennisbank (/kennisbank/<slug>).
@@ -18,13 +17,6 @@ export function ArticleView({ post, terug, hero = true }: { post: Post; terug: {
         </div>
       )}
       <div className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
-
-      <footer className="article-end">
-        <div className="article-end-line" />
-        <div className="article-end-row" style={{ justifyContent: 'flex-end' }}>
-          <CopyLink />
-        </div>
-      </footer>
     </article>
   )
 }

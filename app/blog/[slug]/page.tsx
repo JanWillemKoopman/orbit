@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
 import { ArticleView } from '@/components/ArticleView'
+import { Prefooter } from '@/components/Prefooter'
 import { getAllPosts, getPost } from '@/lib/posts'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -25,5 +26,10 @@ export default async function ArticlePage({ params }: Props) {
   // Kennisbankartikelen horen onder /kennisbank; oude blog-links sturen we daarheen door.
   if (post.category === 'kennisbank') permanentRedirect(`/kennisbank/${post.slug}`)
 
-  return <ArticleView post={post} terug={{ href: '/blog', label: 'de blog' }} />
+  return (
+    <>
+      <ArticleView post={post} terug={{ href: '/blog', label: 'de blog' }} />
+      <Prefooter />
+    </>
+  )
 }

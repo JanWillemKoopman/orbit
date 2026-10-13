@@ -132,18 +132,6 @@
 }
 
 /* ==========================================================================
-   Article footer
-   ========================================================================== */
-.article-end { max-width: 624px; margin: 56px auto 0; padding-bottom: 128px; }
-/* Volgt er een CTA (prefooter), dan bepaalt die de ruimte tot de footer. */
-.article:has(+ .prefooter) .article-end { padding-bottom: 0; }
-.article-end-line { height: 1px; background: var(--border-primary); margin-bottom: 24px; }
-.article-end-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 15px; line-height: 24px; letter-spacing: -0.011em; color: var(--text-tertiary); }
-.copy-button { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 8px; margin-right: -8px; border-radius: var(--radius-pill); font-size: 15px; color: var(--text-tertiary); transition: color var(--speed-quick), background var(--speed-quick); }
-.copy-button:hover { color: var(--text-primary); background: var(--bg-translucent); }
-.copy-button[data-copied='true'] { color: var(--accent); }
-
-/* ==========================================================================
    Simple pages (contact, changelog, press, 404)
    ========================================================================== */
 .page-intro { margin-top: 16px; max-width: 560px; font-size: 17px; line-height: 1.6; color: var(--text-tertiary); }
