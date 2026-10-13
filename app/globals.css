@@ -456,7 +456,7 @@ img, svg { display: block; max-width: 100%; }
   .prefooter { margin: 168px auto 128px; }
 }
 @media (max-width: 640px) {
-  .prefooter { margin: 160px auto 128px; }
+  .prefooter { margin: 190px auto 158px; }
   .prefooter h2 { font-size: 38px; }
   .prefooter-actions { flex-direction: column; align-items: center; }
 }
