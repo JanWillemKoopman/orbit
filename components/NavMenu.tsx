@@ -6,7 +6,7 @@ import type { NavMenuItem } from '@/lib/site'
 
 // Uitklapmenu in de header, nagebouwd naar "Product" op linear.app: de knop zelf is geen pagina en
 // opent bij aanwijzen of klikken een zwevend paneel. Daarin een kaart met een kolom per pagina
-// (titel met omschrijving eronder).
+// (titel met omschrijving eronder). Vier pagina's staan in twee rijen van twee.
 
 const SLUIT_NA = 120
 
@@ -60,7 +60,7 @@ export function NavMenu({ label, items, actief }: { label: string; items: NavMen
       </button>
       <div id={id} className="nav-menu-popup" data-open={open || undefined} hidden={!open}>
         <div className="nav-menu-content">
-          <ul className="nav-menu-grid">
+          <ul className="nav-menu-grid" data-raster={items.length === 4 || undefined}>
             {items.map((item) => (
               <li key={item.href} className="nav-menu-column">
                 <Link href={item.href} className="nav-menu-link" onClick={() => setOpen(false)}>
