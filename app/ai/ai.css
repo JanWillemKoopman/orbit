@@ -1,0 +1,91 @@
+/* Bovenkant van /ai, opgebouwd naar linear.app/ai (zie AiPagina.tsx) */
+
+/* Hero: video over de volle breedte en achter de transparante header, zoals op linear.app.
+   De inhoud staat verticaal gecentreerd: evenveel ruimte onder de header als onder de titel. */
+.ai-hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; align-items: center;
+  min-height: clamp(560px, 76svh, 780px);
+  border-bottom: 1px solid var(--border-translucent);
+}
+.ai-media {
+  position: absolute; z-index: -1;
+  top: calc(-1 * var(--header-height)); bottom: 0; left: 50%;
+  width: 100vw; transform: translateX(-50%);
+  overflow: hidden; background: var(--bg-primary) center / cover no-repeat;
+  pointer-events: none;
+}
+.ai-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+.ai-mask { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+/* Laatste kwart van de hero loopt over in de paginakleur */
+.ai-hero::after {
+  content: ''; position: absolute; inset: 0; top: calc(-1 * var(--header-height)); pointer-events: none;
+  background: linear-gradient(to bottom, rgba(8, 9, 10, 0) 0%, rgba(8, 9, 10, 0) 75%, var(--bg-primary) 100%);
+}
+
+.ai-hero-inner { position: relative; z-index: 1; width: 100%; padding-block: 64px; }
+.ai-eyebrow { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
+.ai-title {
+  margin-top: 16px; margin-left: -2px; max-width: 100%;
+  font-size: 72px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
+  color: var(--text-primary); text-wrap: balance;
+}
+
+/* Intro: titel links, tekst rechts, uitgelijnd op een grid van twee kolommen */
+.ai-intro { padding-block: 128px; }
+.ai-intro-kop { display: grid; grid-template-columns: 1fr 1fr; align-items: start; }
+.ai-intro-label { display: none; margin-bottom: 16px; font-size: 13px; line-height: 20px; color: var(--text-tertiary); }
+.ai-intro-titel { padding-right: 32px; }
+.ai-intro-titel h2 {
+  max-width: 18ch; margin-left: -2px;
+  font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary);
+  text-wrap: balance; text-box: trim-both cap alphabetic;
+}
+.ai-intro-tekst { padding-left: 32px; }
+.ai-intro-tekst p {
+  max-width: 38ch; font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; color: var(--text-secondary);
+  text-wrap: pretty; text-box: trim-both cap alphabetic;
+}
+.ai-intro-actie {
+  display: inline-flex; align-items: center; margin-top: 48px; padding: 0;
+  font: inherit; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary);
+  background: none; border: 0; cursor: pointer; transition: color var(--speed-quick) var(--ease-out-quad);
+}
+.ai-intro-actie:hover { color: var(--text-primary); }
+.ai-intro-plus { margin-left: 6px; }
+
+@media (max-width: 1280px) { .ai-hero { min-height: clamp(560px, 70svh, 720px); } }
+@media (max-width: 1024px) {
+  .ai-title { font-size: 56px; line-height: 1.1; }
+  .ai-intro-kop { grid-template-columns: 1fr; row-gap: 32px; }
+  .ai-intro-titel { padding-right: 0; }
+  .ai-intro-titel h2 { font-size: 40px; line-height: 1.1; }
+  .ai-intro-tekst { padding-left: 0; }
+  .ai-intro-tekst p { font-size: 20px; }
+}
+@media (max-width: 768px) {
+  .ai-hero { min-height: 520px; }
+  .ai-title { font-size: 40px; }
+  .ai-intro { padding-block: 48px 96px; }
+  .ai-intro-label { display: block; }
+  .ai-intro-actie { display: none; }
+}
+@media (max-width: 480px) {
+  .ai-title { font-size: 36px; margin-left: -1px; }
+  .ai-br { display: none; }
+  .ai-intro { padding-block: 40px 48px; }
+  .ai-intro-tekst p { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
+}
+
+/* Zonder bewegende beelden: alleen het stilstaande frame */
+@media (prefers-reduced-motion: reduce) { .ai-video { display: none; } }
+
+/* Wisselen tussen de videovarianten */
+.ai-switch { display: flex; flex-wrap: wrap; gap: 4px; padding-bottom: 96px; }
+.ai-switch-link {
+  height: 28px; padding: 0 12px; display: inline-flex; align-items: center; border-radius: var(--radius-pill);
+  font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-quaternary);
+  transition: color var(--speed-quick) var(--ease-out-quad), background var(--speed-quick) var(--ease-out-quad);
+}
+.ai-switch-link:hover { color: var(--text-primary); background: var(--bg-hover); }
+.ai-switch-link[aria-current='page'] { color: var(--text-primary); background: var(--bg-translucent); }
