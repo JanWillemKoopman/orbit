@@ -184,6 +184,10 @@ img, svg { display: block; max-width: 100%; }
 }
 .nav-menu-column { position: relative; display: flex; flex-direction: column; gap: 1px; }
 .nav-menu-column + .nav-menu-column::before { content: ''; position: absolute; top: 0; bottom: 0; left: -12.5px; width: 1px; background: rgba(255, 255, 255, 0.05); }
+/* Vier pagina's: twee rijen van twee, met een lijn tussen de kolommen en tussen de rijen */
+.nav-menu-grid[data-raster] { grid-auto-flow: row; grid-template-columns: repeat(2, 256px); row-gap: 24px; }
+.nav-menu-grid[data-raster] .nav-menu-column:nth-child(odd)::before { content: none; }
+.nav-menu-grid[data-raster] .nav-menu-column:nth-child(n + 3)::after { content: ''; position: absolute; top: -12.5px; left: 0; right: 0; height: 1px; background: rgba(255, 255, 255, 0.05); }
 .nav-menu-link {
   display: flex; flex-direction: column; gap: 4px; padding: 14px 24px 14px 16px; border-radius: 6px;
   transition: background 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -532,7 +536,7 @@ img, svg { display: block; max-width: 100%; }
 .search-results .r-meta { font-size: 13px; color: var(--text-tertiary); }
 .search-empty { padding: 32px 20px; text-align: center; font-size: 14px; color: var(--text-tertiary); }
 .search-esc { font-family: var(--font-mono); font-size: 11px; padding: 2px 6px; border-radius: 4px; background: var(--bg-hover); color: var(--text-tertiary); }
-@media (max-width: 960px) { .nav-menu-grid { grid-auto-columns: 210px; } .nav-menu-description { white-space: normal; } }
+@media (max-width: 960px) { .nav-menu-grid { grid-auto-columns: 210px; } .nav-menu-grid[data-raster] { grid-template-columns: repeat(2, 210px); } .nav-menu-description { white-space: normal; } }
 
 /* ==========================================================================
    Demo (/demo): geen header/footer, blok gecentreerd

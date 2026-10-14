@@ -35,9 +35,10 @@ export type NavMenuItem = { href: string; label: string; description: string[] }
 export type NavItem = NavLink | { label: string; items: NavMenuItem[] }
 
 export const productMenu: NavMenuItem[] = [
-  { href: '/product', label: 'Fases en werkwijze', description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
-  { href: '/kennis', label: 'Kennis en feiten', description: ['Alleen feiten met een bron,', 'nooit een verzonnen belofte'] },
-  { href: '/agency', label: 'Account en beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
+  { href: '/ai', label: 'AI', description: ['Hoe ORBIT ENGINE AI inzet', 'in elke stap van het werk'] },
+  { href: '/product', label: 'Werkwijze', description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
+  { href: '/kennis', label: 'Kwaliteit', description: ['Alleen feiten met een bron,', 'nooit een verzonnen belofte'] },
+  { href: '/agency', label: 'Beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
 ]
 
 export const informatieMenu: NavMenuItem[] = [
@@ -59,19 +60,25 @@ export const mainNav: NavItem[] = [
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
+// Op mobiel valt Prijzen onder Product; op desktop staat het los in de header.
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
+const prijzen = { href: '/prijzen', label: 'Prijzen' }
 export const mobileNav = [
-  { title: 'Product', links: links(productMenu) },
-  { title: 'Prijzen', links: [{ href: '/prijzen', label: 'Prijzen' }] },
+  { title: 'Product', links: [...links(productMenu), prijzen] },
   { title: 'Informatie', links: links(informatieMenu) },
   { title: 'Over ons', links: links(overOnsMenu) },
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
 
-// Footer: dezelfde groepen als het hoofdmenu (mobileNav), met rechts een kolom met contactgegevens.
-// De labels in de footer wijken af van het hoofdmenu: korter, en met extra links naar /contact.
-const footerLabels: Record<string, string> = { '/product': 'Werkwijze', '/kennis': 'Kwaliteit', '/agency': 'Beheer', '/contact': 'Contact' }
-export const footerNav = mobileNav.map((group) => {
+// Footer: dezelfde groepen als het hoofdmenu, met Prijzen als eigen kolom en rechts een kolom met
+// contactgegevens. De labels in de footer wijken af van het hoofdmenu: korter, en met extra links naar /contact.
+const footerLabels: Record<string, string> = { '/contact': 'Contact' }
+const footerGroepen = [
+  { title: 'Product', links: links(productMenu) },
+  { title: 'Prijzen', links: [prijzen] },
+  ...mobileNav.slice(1),
+]
+export const footerNav = footerGroepen.map((group) => {
   const renamed = group.links.map((l) => ({ href: l.href, label: footerLabels[l.href] ?? l.label }))
   if (group.title === 'Over ons') return { ...group, links: [...renamed, { href: '/contact', label: 'Samenwerking' }, { href: '/contact', label: 'Plan gesprek' }] }
   if (group.title === 'Account') return { ...group, links: [...renamed, { href: '/demo', label: 'Demo aanvragen' }] }
