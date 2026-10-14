@@ -34,12 +34,12 @@ export function GlobeMark({ size = 22 }: { size?: number }) {
   )
 }
 
-// Woordmerk in de opmaak van het Linear-logo (Inter, 590, krappe spatiëring); "try" net iets dunner.
+// Woordmerk in de opmaak van het Linear-logo (Inter, 590, krappe spatiëring).
 export function Logo() {
   return (
     <span className="logo">
       <GlobeMark />
-      <span className="logo-word"><span className="logo-try">try</span>Orbit</span>
+      <span className="logo-word">Orbit</span>
     </span>
   )
 }
