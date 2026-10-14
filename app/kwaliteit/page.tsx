@@ -4,15 +4,15 @@ import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, demoHref, hero, meta, ronde, secties } from '@/content/kennis'
 import { Cel, Kop, Paneel, Splitsing } from '@/components/product/Blokken'
 import * as V from '@/components/kennis/Visuals'
-import '../product/product.css'
-import '../agency/agency.css'
-import './kennis.css'
+import '../werkwijze/werkwijze.css'
+import '../beheer/beheer.css'
+import './kwaliteit.css'
 
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
-  alternates: { canonical: '/kennis' },
-  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/kennis', images: [{ url: '/images/product/og-kennis.png', width: 1200, height: 630 }] },
+  alternates: { canonical: '/kwaliteit' },
+  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/kwaliteit', images: [{ url: '/images/product/og-kennis.png', width: 1200, height: 630 }] },
 }
 
 // Zelfde opbouw en vormgeving als /product en /agency. Het verhaal in vier stappen: AI verzint, het
@@ -40,7 +40,7 @@ export default function KennisPage() {
       </section>
 
       <div className="container pd-hero-visual">
-        <Paneel b={hero.beeld} variant="kf-hero" alt="Een alinea over een hybride warmtepomp. Elke bewering heeft een nummer met de bron: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina.">
+        <Paneel b={hero.beeld} variant="kf-hero" alt="Een alinea over een hybride warmtepomp. Elke harde bewering heeft een nummer met de bron: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina.">
           <V.HeroHerkomst />
         </Paneel>
         <p className="pd-note">{hero.note}</p>

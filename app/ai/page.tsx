@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import '../product/product.css'
+import '../werkwijze/werkwijze.css'
 
 export const metadata: Metadata = {
   title: 'AI',

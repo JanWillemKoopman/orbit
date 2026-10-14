@@ -1,4 +1,4 @@
-// Teksten van de pagina Kennis en feiten (/kennis). Voor een lezer die ORBIT ENGINE nog niet kent:
+// Teksten van de pagina Kwaliteit (/kwaliteit). Voor een lezer die ORBIT ENGINE nog niet kent:
 // het probleem (AI verzint), het brein (wat ORBIT ENGINE over een bedrijf weet, met de bron erbij) en
 // het vangnet (een zin zonder bron wordt geel). De beelden staan in components/kennis/Visuals.tsx.
 
@@ -17,10 +17,10 @@ export const hero = {
   title: 'AI die schrijft wat klopt. Niet wat goed klinkt.',
   description:
     'AI-teksten klinken overtuigend, ook als ze iets verzinnen. ORBIT ENGINE schrijft alleen met feiten over je klant die ergens vandaan komen, en laat je precies zien waarvandaan.',
-  cta: 'Demo aanvragen',
+  cta: 'Plan een gratis demo',
   secondary: 'Zo werkt het',
   note: 'Productbeelden met fictieve voorbeeldgegevens',
-  beeld: { titel: 'Elke bewering heeft een herkomst', tekst: 'Van de website, van de klant zelf of uit een document. Je ziet het bij elke zin.' },
+  beeld: { titel: 'Elke harde bewering heeft een bron', tekst: 'Een bedrag, termijn of garantie komt van de website, van de klant zelf of uit een document. Staat er geen bron bij, dan wordt de zin geel.' },
 }
 
 export const ronde = [
@@ -67,10 +67,10 @@ export const secties = {
     id: 'schrijven',
     title: 'De schrijver krijgt alleen wat klopt.',
     description:
-      'De AI die de pagina schrijft, krijgt alleen de feiten die mogen. Bij elke bewering moet hij aangeven op welk feit die rust, en ORBIT ENGINE controleert of dat ook echt zo is.',
+      'De AI die de pagina schrijft, krijgt alleen de feiten die mogen. Bij elke zin geeft hij aan waarop die rust, en ORBIT ENGINE controleert dat voor bedragen, getallen, termijnen, garanties en keurmerken.',
     punten: [
       'Alleen feiten met een bron gaan mee',
-      'Elke bewering wijst naar een feit in het brein',
+      'Elke harde bewering wijst naar een feit in het brein',
       'Een getal moet ook echt in de bron staan',
       'Namen van concurrenten en verboden woorden blijven eruit',
     ],
@@ -107,5 +107,5 @@ export const secties = {
 export const afsluiter = {
   title: 'Laat AI schrijven. Zonder je reputatie op het spel te zetten.',
   description: 'Bekijk in een demo hoe het brein van een van je klanten eruit zou zien.',
-  cta: 'Demo aanvragen',
+  cta: 'Plan een gratis demo',
 }

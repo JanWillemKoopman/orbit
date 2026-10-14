@@ -36,9 +36,9 @@ export type NavItem = NavLink | { label: string; items: NavMenuItem[] }
 
 export const productMenu: NavMenuItem[] = [
   { href: '/ai', label: 'AI', description: ['Hoe ORBIT ENGINE AI inzet', 'in elke stap van het werk'] },
-  { href: '/product', label: 'Werkwijze', description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
-  { href: '/kennis', label: 'Kwaliteit', description: ['Alleen feiten met een bron,', 'nooit een verzonnen belofte'] },
-  { href: '/agency', label: 'Beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
+  { href: '/werkwijze', label: 'Werkwijze', description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
+  { href: '/kwaliteit', label: 'Kwaliteit', description: ['Alleen feiten met een bron,', 'nooit een verzonnen belofte'] },
+  { href: '/beheer', label: 'Beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
 ]
 
 export const informatieMenu: NavMenuItem[] = [

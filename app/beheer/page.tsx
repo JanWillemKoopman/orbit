@@ -4,14 +4,14 @@ import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, demoHref, hero, meta, ronde, secties, usps } from '@/content/agency'
 import { Cel, Kop, Paneel, Splitsing } from '@/components/product/Blokken'
 import * as V from '@/components/agency/Visuals'
-import '../product/product.css'
-import './agency.css'
+import '../werkwijze/werkwijze.css'
+import './beheer.css'
 
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
-  alternates: { canonical: '/agency' },
-  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/agency', images: [{ url: '/images/product/og-agency.png', width: 1200, height: 630 }] },
+  alternates: { canonical: '/beheer' },
+  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/beheer', images: [{ url: '/images/product/og-agency.png', width: 1200, height: 630 }] },
 }
 
 // Zelfde opbouw en vormgeving als /product, met de nadruk op het account van het bureau: het

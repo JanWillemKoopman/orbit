@@ -251,7 +251,7 @@ export function ZinNalopen() {
 }
 
 export function Eindredactie() {
-  const regels = [['Elke bewering heeft een bron', true], ['Merkstem klopt', true], ['Geen verboden woorden', true], ['1 zin om na te lopen', false]] as const
+  const regels = [['Elke harde bewering heeft een bron', true], ['Merkstem klopt', true], ['Geen verboden woorden', true], ['1 zin om na te lopen', false]] as const
   return (
     <div className="fv-surface fv-review">
       {regels.map(([t, ok]) => (

@@ -10,8 +10,8 @@ import { ResultFrame } from '@/components/home/ResultFrame'
 import { Faq } from '@/components/home/Faq'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
 import { HeroMaand } from '@/components/product/Visuals'
-import './product/product.css'
-import './agency/agency.css'
+import './werkwijze/werkwijze.css'
+import './beheer/beheer.css'
 
 export const metadata: Metadata = {
   title: { absolute: 'ORBIT ENGINE – Open source SEO & GEO software voor marketeers' },

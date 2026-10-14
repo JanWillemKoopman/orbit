@@ -27,12 +27,16 @@ const vervangenKennisbank = {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // De productbeelden (/product) bevatten kleine schermtekst; 85 houdt die scherp.
+  // De productbeelden (/werkwijze) bevatten kleine schermtekst; 85 houdt die scherp.
   images: { qualities: [75, 85], formats: ['image/avif', 'image/webp'] },
   async redirects() {
     return [
       { source: '/categorie/van-het-team', destination: '/kennisbank', permanent: true },
       { source: '/changelog', destination: '/product-updates', permanent: true },
+      // De vier productpagina's hebben nieuwe adressen: Werkwijze, Kwaliteit en Beheer.
+      { source: '/product', destination: '/werkwijze', permanent: true },
+      { source: '/kennis', destination: '/kwaliteit', permanent: true },
+      { source: '/agency', destination: '/beheer', permanent: true },
       ...Object.entries(vervangenKennisbank).flatMap(([slug, destination]) => [
         { source: `/kennisbank/${slug}`, destination, permanent: true },
         { source: `/blog/${slug}`, destination, permanent: true },

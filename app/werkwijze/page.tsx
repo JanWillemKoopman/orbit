@@ -4,13 +4,13 @@ import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, demoHref, hero, meta, ronde, secties } from '@/content/product'
 import { Cel, Kop, Paneel, Splitsing } from '@/components/product/Blokken'
 import * as V from '@/components/product/Visuals'
-import './product.css'
+import './werkwijze.css'
 
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
-  alternates: { canonical: '/product' },
-  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/product', images: [{ url: '/images/product/og-product.png', width: 1200, height: 630 }] },
+  alternates: { canonical: '/werkwijze' },
+  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/werkwijze', images: [{ url: '/images/product/og-product.png', width: 1200, height: 630 }] },
 }
 
 // Opbouw naar linear.app met de bouwblokken uit components/product/Blokken.tsx. De beelden zijn

@@ -281,7 +281,7 @@ export function KijkerRechten() {
           ))}
         </div>
       ))}
-      <span className="ag-lock"><Icon naam="slot" size={12} />Wat geld kost, blijft altijd bij een beheerder.</span>
+      <span className="ag-lock"><Icon naam="slot" size={12} />Alles wat een meting, tekst of onderzoek start, blijft bij een beheerder.</span>
     </div>
   )
 }

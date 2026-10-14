@@ -1,10 +1,10 @@
-// Teksten van de productpagina (/product). De beelden zijn nagebouwde schermen van ORBIT ENGINE
+// Teksten van de pagina Werkwijze (/werkwijze). De beelden zijn nagebouwde schermen van ORBIT ENGINE
 // (components/product/Visuals.tsx) met de fictieve voorbeeldcase Lindeman Warmte.
 
 export const meta = {
   title: 'Fases en werkwijze',
   description:
-    "Zie hoe ORBIT ENGINE werkt: AI-zichtbaarheid meten, contentkansen plannen, klantkennis ophalen, pagina's schrijven en beoordelen, en het resultaat volgen. Voor marketingbureaus met meerdere klanten.",
+    "Zie hoe ORBIT ENGINE werkt: AI-zichtbaarheid meten, contentkansen plannen, klantkennis ophalen, pagina's schrijven en beoordelen, en het resultaat volgen. Voor online marketingbureaus met meerdere klanten.",
 }
 
 export const demoHref = '/demo'
@@ -14,11 +14,11 @@ import type { Bijschrift } from '@/components/product/Blokken'
 export type { Bijschrift }
 
 export const hero = {
-  eyebrow: 'ORBIT ENGINE voor bureaus',
+  eyebrow: 'ORBIT ENGINE voor online marketingbureaus',
   title: 'Van AI-zichtbaarheid naar content die je kunt publiceren.',
   description:
     'Onderzoek waar je klanten worden genoemd, vertaal inzichten naar een contentplan en schrijf met hun bedrijfskennis als basis. ORBIT ENGINE brengt onderzoek, klantinput, beoordeling en opvolging samen voor jouw bureau.',
-  cta: 'Demo aanvragen',
+  cta: 'Plan een gratis demo',
   secondary: 'Bekijk hoe het werkt',
   note: 'Productbeelden met fictieve voorbeeldgegevens',
   beeld: { titel: 'Elke klant een vaste maand', tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Je ziet welke stap loopt en wat er nu op jou wacht.' },
@@ -37,8 +37,8 @@ export const secties = {
     id: 'zichtbaarheid',
     title: 'Zie bij welke vragen je klant wordt genoemd.',
     description:
-      'Stel per onderwerp een meetplan samen met relevante AI-vragen. Bekijk in de gemeten antwoorden welke bedrijven worden genoemd, welke bronnen worden aangehaald en waar je klant ontbreekt.',
-    paneel: { titel: 'Zichtbaarheid die je kunt laten zien', tekst: 'Elke maand gemeten op dezelfde vragen, zodat je groei per onderwerp echt vergelijkt.', label: 'Voorbeeldgegevens' },
+      'Stel per onderwerp een meetplan samen met relevante AI-vragen en meet ze in ChatGPT, Gemini en Google AI Overview. Bekijk in de gemeten antwoorden welke bedrijven worden genoemd, welke bronnen worden aangehaald en waar je klant ontbreekt.',
+    paneel: { titel: 'Zichtbaarheid die je kunt laten zien', tekst: 'Elke maand meten, steeds op dezelfde vragen, zodat je groei per onderwerp echt vergelijkt.', label: 'Voorbeeldgegevens' },
     cellen: [
       { titel: 'Lees elk antwoord terug', tekst: 'Zie welke bedrijven de AI-assistent noemt, in welke volgorde, en op welke bronnen dat leunt.' },
       { titel: 'Weet wie je voor is', tekst: 'Per onderwerp zie je hoe vaak je klant genoemd wordt, naast de concurrenten die AI het vaakst aanbeveelt.', label: 'Voorbeeldgegevens' },
@@ -88,7 +88,7 @@ export const secties = {
   },
   publiceren: {
     id: 'publiceren',
-    title: 'Jullie geven het akkoord.',
+    title: 'Jij geeft het akkoord.',
     description:
       'Pas teksten aan, vraag een nieuwe versie aan en keur de inhoud goed. Kopieer de goedgekeurde tekst als HTML, Markdown of platte tekst en plaats die in het CMS van je klant. Meld daarna het live-adres voor de opvolging.',
     punten: ['Zelf bewerken of een aanpassing vragen', 'Kopiëren als HTML, Markdown of platte tekst', 'Titel, omschrijving en veelgestelde vragen erbij', 'Live melden start de opvolging'],
@@ -107,8 +107,8 @@ export const secties = {
     id: 'rapportage',
     title: 'Maak je werk bespreekbaar.',
     description:
-      'Bundel de gemeten zichtbaarheid, gepubliceerde pagina\'s en planning in een maandverslag met jullie bureaunaam. Gebruik het in het klantgesprek of bewaar het als pdf om te delen.',
-    paneel: { titel: 'Een verslag dat het gesprek voert', tekst: 'Zichtbaarheid, wat er live ging en wat het deed, en wat volgende maand op de planning staat. Met jullie naam erboven.' },
+      'Bundel de gemeten zichtbaarheid, gepubliceerde pagina\'s en planning in een maandverslag met de naam van je bureau. Gebruik het in het klantgesprek of bewaar het als pdf om te delen.',
+    paneel: { titel: 'Een verslag dat het gesprek voert', tekst: 'Zichtbaarheid, wat er live ging en wat het deed, en wat volgende maand op de planning staat. Met de naam van je bureau erboven.' },
   },
   bureau: {
     id: 'bureau',
@@ -124,7 +124,7 @@ export const secties = {
 }
 
 export const afsluiter = {
-  title: 'Bekijk hoe ORBIT ENGINE in jullie bureau past.',
+  title: 'Bekijk hoe ORBIT ENGINE in je bureau past.',
   description: 'Ontdek de werkwijze in een demo en bespreek welke klant geschikt is voor een eerste toepassing.',
-  cta: 'Demo aanvragen',
+  cta: 'Plan een gratis demo',
 }

@@ -1,4 +1,4 @@
-// Teksten van de bureaupagina (/agency). Waar /product de werkwijze per bedrijf laat zien, gaat deze
+// Teksten van de pagina Beheer (/beheer). Waar /werkwijze de werkwijze per bedrijf laat zien, gaat deze
 // pagina over het account van het bureau: al je klanten in één overzicht, klanten toevoegen, je team
 // en je klanten met de juiste rol, en grip op wat de AI kost. De beelden zijn nagebouwde schermen
 // (components/agency/Visuals.tsx) met het fictieve Bureau Noordwind.
@@ -8,17 +8,17 @@ import type { Bijschrift } from '@/components/product/Blokken'
 export const meta = {
   title: 'Account en beheer',
   description:
-    'ORBIT ENGINE voor marketingbureaus: al je klanten in één overzicht, collega’s en klanten met de juiste rol, en grip op wat de AI kost. Je betaalt alleen je eigen gebruik, met je eigen sleutels.',
+    'ORBIT ENGINE voor online marketingbureaus: al je klanten in één overzicht, collega’s en klanten met de juiste rol, en grip op wat de AI kost. Je betaalt alleen je eigen gebruik, met je eigen sleutels.',
 }
 
 export const demoHref = '/demo'
 
 export const hero = {
-  eyebrow: 'ORBIT ENGINE voor marketingbureaus',
+  eyebrow: 'ORBIT ENGINE voor online marketingbureaus',
   title: 'Al je klanten in één account. Jij houdt de regie.',
   description:
     'Eén werkoverzicht voor al je klanten, collega’s en klanten die precies zien wat ze moeten zien, en kosten die je vooraf kent. Je bureau betaalt alleen voor het eigen gebruik van de AI, met je eigen sleutels.',
-  cta: 'Demo aanvragen',
+  cta: 'Plan een gratis demo',
   secondary: 'Bekijk het overzicht',
   note: 'Productbeelden met fictieve voorbeeldgegevens',
   beeld: { titel: 'Het werkoverzicht van je bureau', tekst: 'Per klant de zichtbaarheid, wat er op je wacht en wat het de afgelopen dertig dagen kostte. Wat het langst wacht, staat bovenaan.' },
@@ -37,7 +37,7 @@ export const usps = [
   { titel: 'Onbeperkt klanten', tekst: 'Voeg zoveel bedrijven toe als je bureau bedient. Elk bedrijf krijgt zijn eigen dossier, metingen en contentplan.' },
   { titel: 'Rollen per persoon', tekst: 'Beheerders doen alles. Kijkers zien alleen hun eigen bedrijf, en doen alleen wat jij toestaat.' },
   { titel: 'Eigen sleutels', tekst: 'Je bureau betaalt OpenAI, Gemini en DataForSEO rechtstreeks. Geen gedeelde rekening, geen verborgen verbruik.' },
-  { titel: 'Een harde maandlimiet', tekst: 'Stel een bovengrens in. Is die bereikt, dan start er geen nieuw betaald werk meer tot de volgende maand.' },
+  { titel: 'Maandlimiet', tekst: 'Stel een bovengrens in. Is die bereikt, dan start er geen nieuw betaald werk meer tot de volgende maand.' },
 ]
 
 export const secties = {
@@ -66,7 +66,7 @@ export const secties = {
     id: 'team',
     title: 'Je team en je klant, elk met de juiste rol.',
     description:
-      'Nodig collega’s uit als beheerder en laat je klant meekijken als kijker. Een kijker ziet alleen de bedrijven die jij toewijst, en doet daar alleen wat jij aanzet. Wat geld kost, blijft altijd bij een beheerder.',
+      'Nodig collega’s uit als beheerder en laat je klant meekijken als kijker. Een kijker ziet alleen de bedrijven die jij toewijst, en doet daar alleen wat jij aanzet. Alles wat een meting, een tekst of een onderzoek start, blijft bij een beheerder.',
     paneel: { titel: 'Iedereen in je bureau op één plek', tekst: 'Wie beheerder is, wie meekijkt, welk bedrijf een kijker ziet en wanneer iemand voor het laatst inlogde. Openstaande uitnodigingen staan erbij.' },
     cellen: [
       { titel: 'Uitnodigen met een rol', tekst: 'Kies beheerder of kijker, en bij een kijker meteen de bedrijven. De uitnodiging gaat per mail en werkt veertien dagen.', label: 'Toegang' },
@@ -88,7 +88,7 @@ export const secties = {
     id: 'sleutels',
     title: 'Jouw sleutels, jouw rekening.',
     description:
-      'Je bureau vult zijn eigen sleutels van OpenAI, Gemini en DataForSEO in. De kosten komen rechtstreeks bij jouw bureau terecht, en je betaalt alleen wat je zelf gebruikt.',
+      'Je bureau vult zijn eigen sleutel van OpenAI in voor het basiswerk, en die van Gemini en DataForSEO voor de extra meetkanalen en zoekdata. De kosten komen rechtstreeks bij jouw bureau terecht, en je betaalt alleen wat je zelf gebruikt.',
     punten: [
       'Versleuteld opgeslagen, daarna alleen de laatste vier tekens zichtbaar',
       'Een testknop per sleutel',
@@ -111,5 +111,5 @@ export const secties = {
 export const afsluiter = {
   title: 'Zet je bureau in ORBIT ENGINE.',
   description: 'Bekijk in een demo hoe het werkoverzicht, de rollen en de kosten werken voor een bureau met jouw aantal klanten.',
-  cta: 'Demo aanvragen',
+  cta: 'Plan een gratis demo',
 }
