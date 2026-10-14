@@ -62,7 +62,9 @@ Een CTA-sectie met twee knoppen:
 
 Boven die knoppen staat per pagina een kop en een korte tekst die bij de pagina past.
 
+Het menu in de header blijft ongewijzigd: de knop heet daar "Gratis demo". De knop in de CTA-secties op de vier pagina's heet "Gratis demo aanvragen". De huidige gedeelde knop heet "Plan een gratis demo" en blijft op alle andere pagina's zoals hij is.
+
 ## Nog open
 
-- De exacte knoptekst en of de wijziging alleen voor de vier pagina's geldt (de knop wordt nu op meer pagina's gebruikt).
-- Of we, voor de nieuwe adressen, het menu (`lib/site.ts`), de doorverwijzingen (`next.config.mjs`) en de sitemap (`app/sitemap.ts`) mogen aanpassen. Dat zijn bestanden buiten de vier pagina's.
+- Of we, voor de nieuwe adressen, het menu (`lib/site.ts`), de doorverwijzingen (`next.config.mjs`) en de sitemap (`app/sitemap.ts`) mogen aanpassen. Dat zijn bestanden buiten de vier pagina's. Het menu verandert alleen in de adressen, niet in de knop "Gratis demo".
+- De knop bovenin elke pagina heet nu "Demo aanvragen". Voorstel: ook "Gratis demo aanvragen".
