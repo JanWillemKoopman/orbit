@@ -12,7 +12,7 @@
   position: absolute; z-index: -1;
   top: calc(-1 * var(--header-height)); bottom: 0; left: 50%;
   width: 100vw; transform: translateX(-50%);
-  overflow: hidden; background: var(--bg-primary) center / cover no-repeat;
+  overflow: hidden; background: var(--bg-primary);
   pointer-events: none;
 }
 .ai-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
@@ -77,8 +77,12 @@
   .ai-intro-tekst p { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
 }
 
-/* Zonder bewegende beelden: alleen het stilstaande frame */
-@media (prefers-reduced-motion: reduce) { .ai-video { display: none; } }
+/* Zonder bewegende beelden: alleen het stilstaande frame, even gedimd als de video.
+   Alleen dan als achtergrond, anders schemert de poster door de video heen. */
+@media (prefers-reduced-motion: reduce) {
+  .ai-video { display: none; }
+  .ai-media::before { content: ''; position: absolute; inset: 0; background: var(--poster) center / cover no-repeat; opacity: 0.6; }
+}
 
 /* Wisselen tussen de videovarianten */
 .ai-switch { display: flex; flex-wrap: wrap; gap: 4px; padding-bottom: 96px; }

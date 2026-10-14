@@ -4,7 +4,7 @@ import './ai.css'
 
 type Props = { video: string; actief: string }
 
-const varianten = ['/ai1', '/ai2', '/ai3', '/ai4', '/ai5']
+const varianten = ['/ai1', '/ai2']
 
 // Bovenkant van linear.app/ai: hero met achtergrondvideo, daarna de introsectie met titel links en tekst rechts.
 export function AiPagina({ video, actief }: Props) {
@@ -12,7 +12,7 @@ export function AiPagina({ video, actief }: Props) {
   return (
     <>
       <section className="ai-hero">
-        <div className="ai-media" aria-hidden="true" style={{ backgroundImage: `url(/video/${video}-poster.jpg)` }}>
+        <div className="ai-media" aria-hidden="true" style={{ '--poster': `url(/video/${video}-poster.jpg)` } as React.CSSProperties}>
           <video className="ai-video" autoPlay muted loop playsInline disablePictureInPicture disableRemotePlayback preload="auto" poster={`/video/${video}-poster.jpg`} tabIndex={-1} {...{ inert: true }}>
             <source src={`/video/${video}.av1.mp4`} type="video/mp4; codecs=av01.0.05M.08" />
             <source src={`/video/${video}.vp9.webm`} type="video/webm; codecs=vp9" />
