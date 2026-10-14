@@ -8,7 +8,7 @@ import { DemoDialog } from './DemoDialog'
 import { Logo } from './Logo'
 import { NavMenu } from './NavMenu'
 
-const isActive = (pathname: string, href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
+const isActive = (pathname: string, href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`))
 
 export function Header() {
   const pathname = usePathname()
