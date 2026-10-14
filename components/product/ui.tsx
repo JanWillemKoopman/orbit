@@ -1,5 +1,6 @@
 // Bouwstenen voor de productbeelden op /product: een appvenster, chips, iconen en knoppen in de
 // vormgeving van ORBIT ENGINE. De beelden zijn nagebouwd in HTML, zodat ze op elk scherm scherp zijn.
+import { LogoMark } from '@/components/Logo'
 
 type Tone = 'lime' | 'groen' | 'oranje' | 'geel' | 'rood' | 'grijs' | 'blauw'
 
@@ -56,7 +57,7 @@ export function Icon({ naam, size = 14 }: { naam: keyof typeof PADEN | string; s
 export function Logo({ size = 18 }: { size?: number }) {
   return (
     <span className="fv-logo" style={{ width: size, height: size }} aria-hidden="true">
-      <svg width={size * 0.62} height={size * 0.62} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2"><circle cx="8" cy="8" r="5" /></svg>
+      <LogoMark size={size * 0.62} />
     </span>
   )
 }

@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container footer-inner">
         <div className="footer-brand">
           <Link href="/" className="footer-logo" aria-label={site.name}>
-            <LogoMark size={20} />
+            <LogoMark size={22} />
           </Link>
         </div>
         {footerNav.map((col) => (

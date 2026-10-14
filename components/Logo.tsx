@@ -1,17 +1,6 @@
 import { useId } from 'react'
 
-// Eigen Orbit-beeldmerk: een planeet met een schuine baan en een satelliet.
-export function LogoMark({ size = 22 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="6.25" fill="currentColor" />
-      <ellipse cx="12" cy="12" rx="11" ry="4.25" transform="rotate(-28 12 12)" stroke="currentColor" strokeWidth="1.5" strokeOpacity=".55" />
-      <circle cx="21.1" cy="6.9" r="1.6" fill="currentColor" />
-    </svg>
-  )
-}
-
-// Beeldmerk van de header: een bol met drie spleten langs breedtegraden, 7° van boven gezien en 25° scheef.
+// Officieel beeldmerk van Orbit: een bol met drie spleten langs breedtegraden, 7° van boven gezien en 25° scheef.
 // De banden zijn berekend met een orthografische projectie, zodat kromming en dikte kloppen met een echte bol.
 const globeBands = [
   'M21.7 4.15L20.55 5.1L20.55 5.15L20.55 5.2L20.5 5.25L20.45 5.3L20.4 5.35L20.25 5.4L20.15 5.45L20 5.5L19.8 5.55L19.65 5.6L19.4 5.65L19.2 5.7L18.95 5.75L18.65 5.8L18.35 5.85L18.05 5.9L17.75 5.9L17.4 5.95L17.05 6L16.65 6L16.3 6.05L15.9 6.1L15.5 6.1L15.05 6.1L14.65 6.15L14.2 6.15L13.8 6.15L13.35 6.2L12.9 6.2L12.45 6.2L12 6.2L11.55 6.2L11.1 6.2L10.65 6.2L10.2 6.15L9.8 6.15L9.35 6.15L8.95 6.1L8.5 6.1L8.1 6.1L7.7 6.05L7.35 6L6.95 6L6.6 5.95L6.25 5.9L5.95 5.9L5.65 5.85L5.35 5.8L5.05 5.75L4.8 5.7L4.6 5.65L4.35 5.6L4.2 5.55L4 5.5L3.85 5.45L3.75 5.4L3.6 5.35L3.55 5.3L3.5 5.25L3.45 5.2L3.45 5.15L3.45 5.1L2.3 4.15L0.65 6.75L2 7.4L2 7.45L2 7.55L2.05 7.6L2.1 7.65L2.2 7.7L2.35 7.8L2.5 7.85L2.65 7.9L2.85 7.95L3.1 8L3.35 8.05L3.6 8.15L3.9 8.2L4.2 8.25L4.55 8.3L4.95 8.35L5.3 8.35L5.7 8.4L6.1 8.45L6.55 8.5L7 8.5L7.45 8.55L7.95 8.6L8.4 8.6L8.9 8.6L9.4 8.65L9.9 8.65L10.45 8.65L10.95 8.7L11.5 8.7L12 8.7L12.5 8.7L13.05 8.7L13.55 8.65L14.1 8.65L14.6 8.65L15.1 8.6L15.6 8.6L16.05 8.6L16.55 8.55L17 8.5L17.45 8.5L17.9 8.45L18.3 8.4L18.7 8.35L19.05 8.35L19.45 8.3L19.8 8.25L20.1 8.2L20.4 8.15L20.65 8.05L20.9 8L21.15 7.95L21.35 7.9L21.5 7.85L21.65 7.8L21.8 7.7L21.9 7.65L21.95 7.6L22 7.55L22 7.45L22 7.4L23.35 6.75Z',
@@ -19,7 +8,8 @@ const globeBands = [
   'M24.3 14.35L22.8 14.05L22.75 14.15L22.7 14.2L22.6 14.25L22.45 14.35L22.3 14.4L22.1 14.45L21.9 14.55L21.65 14.6L21.35 14.65L21.05 14.7L20.75 14.75L20.4 14.85L20.05 14.9L19.65 14.95L19.25 15L18.8 15L18.35 15.05L17.9 15.1L17.4 15.15L16.9 15.15L16.4 15.2L15.9 15.25L15.35 15.25L14.8 15.25L14.25 15.3L13.7 15.3L13.15 15.3L12.55 15.3L12 15.3L11.45 15.3L10.85 15.3L10.3 15.3L9.75 15.3L9.2 15.25L8.65 15.25L8.1 15.25L7.6 15.2L7.1 15.15L6.6 15.15L6.1 15.1L5.65 15.05L5.2 15L4.75 15L4.35 14.95L3.95 14.9L3.6 14.85L3.25 14.75L2.95 14.7L2.65 14.65L2.35 14.6L2.1 14.55L1.9 14.45L1.7 14.4L1.55 14.35L1.4 14.25L1.3 14.2L1.25 14.15L1.2 14.05L-0.3 14.35L0.7 17.35L2.1 16.7L2.15 16.8L2.25 16.85L2.35 16.9L2.5 16.95L2.7 17.05L2.9 17.1L3.1 17.15L3.35 17.2L3.65 17.25L3.95 17.3L4.25 17.35L4.6 17.4L4.95 17.45L5.3 17.5L5.7 17.55L6.15 17.6L6.55 17.6L7 17.65L7.45 17.7L7.95 17.7L8.4 17.75L8.9 17.75L9.4 17.75L9.95 17.8L10.45 17.8L10.95 17.8L11.5 17.8L12 17.8L12.5 17.8L13.05 17.8L13.55 17.8L14.05 17.8L14.6 17.75L15.1 17.75L15.6 17.75L16.05 17.7L16.55 17.7L17 17.65L17.45 17.6L17.85 17.6L18.3 17.55L18.7 17.5L19.05 17.45L19.4 17.4L19.75 17.35L20.05 17.3L20.35 17.25L20.65 17.2L20.9 17.15L21.1 17.1L21.3 17.05L21.5 16.95L21.65 16.9L21.75 16.85L21.85 16.8L21.9 16.7L23.3 17.35Z',
 ]
 
-export function GlobeMark({ size = 22 }: { size?: number }) {
+// size is de doorsnede van de bol in px.
+export function LogoMark({ size = 22 }: { size?: number }) {
   const id = 'globe' + useId().replace(/[^a-zA-Z0-9]/g, '')
   return (
     <svg width={size} height={size} viewBox="1 1 22 22" aria-hidden="true">
@@ -38,7 +28,7 @@ export function GlobeMark({ size = 22 }: { size?: number }) {
 export function Logo() {
   return (
     <span className="logo">
-      <GlobeMark />
+      <LogoMark />
       <span className="logo-word">Orbit</span>
     </span>
   )
