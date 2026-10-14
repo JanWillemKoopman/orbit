@@ -146,7 +146,6 @@ img, svg { display: block; max-width: 100%; }
 .logo { display: flex; align-items: center; gap: 10px; color: var(--text-primary); }
 .logo svg { flex: none; }
 .logo-word { font-size: 20.5px; font-weight: var(--weight-semibold); letter-spacing: -0.022em; line-height: 1; white-space: nowrap; }
-.logo-try { font-weight: var(--weight-medium); }
 
 .header-right { display: flex; align-items: center; }
 .nav-list { display: flex; align-items: center; gap: 0; list-style: none; margin: 0; padding: 0; }
