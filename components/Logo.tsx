@@ -22,7 +22,7 @@ const globeBands = [
 export function GlobeMark({ size = 22 }: { size?: number }) {
   const id = 'globe' + useId().replace(/[^a-zA-Z0-9]/g, '')
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+    <svg width={size} height={size} viewBox="1 1 22 22" aria-hidden="true">
       <mask id={id}>
         <rect x="-6" y="-6" width="36" height="36" fill="#fff" />
         <g transform="rotate(-25 12 12)">
