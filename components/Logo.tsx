@@ -9,11 +9,7 @@ export function LogoMark({ size = 22 }: { size?: number }) {
   )
 }
 
-export function Logo({ name }: { name: string }) {
-  return (
-    <span className="logo">
-      <LogoMark />
-      <span className="logo-word">{name}</span>
-    </span>
-  )
+// Woordmerk in de opmaak van het Linear-logo (Inter, 590, krappe spatiëring).
+export function Logo() {
+  return <span className="logo">tryOrbit</span>
 }

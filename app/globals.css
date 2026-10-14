@@ -142,8 +142,8 @@ img, svg { display: block; max-width: 100%; }
 }
 .site-header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .logo-link { display: inline-flex; align-items: center; height: 32px; padding: 0 8px; margin-left: -8px; border-radius: 6px; }
-.logo { display: flex; align-items: center; gap: 9px; color: var(--text-primary); }
-.logo-word { font-size: 19px; font-weight: var(--weight-semibold); letter-spacing: -0.03em; line-height: 1; }
+/* Afgestemd op het Linear-woordmerk (22px hoog logo): kaphoogte ±15.5px, gewicht 590, spatiëring -0.022em. */
+.logo { display: block; color: var(--text-primary); font-size: 20.5px; font-weight: var(--weight-semibold); letter-spacing: -0.022em; line-height: 1; white-space: nowrap; }
 
 .header-right { display: flex; align-items: center; }
 .nav-list { display: flex; align-items: center; gap: 0; list-style: none; margin: 0; padding: 0; }
