@@ -4,7 +4,7 @@ import './ai.css'
 
 type Props = { video: string; actief: string }
 
-const varianten = ['/ai1', '/ai2']
+const varianten = ['/ai1', '/ai2', '/ai3', '/ai4']
 
 // Bovenkant van linear.app/ai: hero met achtergrondvideo, daarna de introsectie met titel links en tekst rechts.
 export function AiPagina({ video, actief }: Props) {
