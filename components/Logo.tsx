@@ -11,5 +11,9 @@ export function LogoMark({ size = 22 }: { size?: number }) {
 
 // Woordmerk in de opmaak van het Linear-logo (Inter, 590, krappe spatiëring).
 export function Logo() {
-  return <span className="logo">outerOrbit</span>
+  return (
+    <span className="logo">
+      <span className="logo-cap">O</span>uter <span className="logo-cap">O</span>rbit
+    </span>
+  )
 }
