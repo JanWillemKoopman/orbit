@@ -57,14 +57,20 @@ Verder gelden de woordenlijst en de schrijfstijl van de site: "je", AI-vragen, g
 
 Een CTA-sectie met twee knoppen:
 
-1. **Gratis demo aanvragen** (de belangrijkste knop, opent het demoformulier).
+1. **Plan een gratis demo** (de belangrijkste knop, opent het demoformulier). Dit is de bestaande gedeelde knop en die verandert niet.
 2. **Contact opnemen** (naar `/contact`).
 
 Boven die knoppen staat per pagina een kop en een korte tekst die bij de pagina past.
 
-Het menu in de header blijft ongewijzigd: de knop heet daar "Gratis demo". De knop in de CTA-secties op de vier pagina's heet "Gratis demo aanvragen". De huidige gedeelde knop heet "Plan een gratis demo" en blijft op alle andere pagina's zoals hij is.
+## Demoknoppen overal
 
-## Nog open
+- Overal op de vier pagina's heet de demoknop "Plan een gratis demo", ook de knop bovenin elke pagina (die heet nu "Demo aanvragen").
+- Alleen in het menu in de header heet de knop "Gratis demo". Die verandert niet.
 
-- Of we, voor de nieuwe adressen, het menu (`lib/site.ts`), de doorverwijzingen (`next.config.mjs`) en de sitemap (`app/sitemap.ts`) mogen aanpassen. Dat zijn bestanden buiten de vier pagina's. Het menu verandert alleen in de adressen, niet in de knop "Gratis demo".
-- De knop bovenin elke pagina heet nu "Demo aanvragen". Voorstel: ook "Gratis demo aanvragen".
+## Bestanden buiten de vier pagina's
+
+Toegestaan, uitsluitend voor de nieuwe adressen: het menu (`lib/site.ts`, alleen de adressen), de doorverwijzingen (`next.config.mjs`) en de sitemap (`app/sitemap.ts`).
+
+## Status
+
+Stap 0 is afgerond.
