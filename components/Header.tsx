@@ -25,7 +25,7 @@ export function Header() {
       <header className="site-header" data-menu-open={open}>
         <div className="container">
           <Link href="/" className="logo-link" aria-label={`${site.name} – home`}>
-            <Logo name={site.name} />
+            <Logo />
           </Link>
 
           <nav className="header-right" aria-label="Hoofdmenu">
