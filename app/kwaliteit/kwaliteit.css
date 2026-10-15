@@ -7,13 +7,6 @@
 .fv-chip[data-tone='groen'] { background: rgba(76, 183, 130, 0.14); color: #68cc9a; }
 .fv-chip[data-tone='rood'] { background: rgba(235, 87, 87, 0.14); color: #f07a7a; }
 
-/* Panelen */
-.pd-panel-kf-hero .pd-panel-stage { height: 470px; }
-.pd-panel-kf-hero .pd-panel-inner { top: 96px; width: 900px; left: 50%; transform: translateX(-50%); zoom: 1.12; }
-.pd-panel-kf-hero .pd-panel-stage::after, .pd-panel-kf-schema .pd-panel-stage::after { display: none; }
-.pd-panel-kf-schema .pd-panel-stage { height: 560px; }
-.pd-panel-kf-schema .pd-panel-inner { top: 72px; left: 50%; width: 1040px; transform: translateX(-50%); zoom: 1; }
-
 /* Hero: tekst met herkomst */
 .kf-hero { gap: 22px; padding: 32px 36px 28px; }
 .kf-hero p { font-size: 18px; line-height: 1.9; color: var(--text-secondary); }
@@ -67,7 +60,6 @@
 .kf-market-s { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #a3adff; }
 
 /* Het brein als tabel */
-.pd-panel-screen .pd-panel-inner:has(.kf-window) { width: 1000px; }
 .kf-count { font-size: 13px; color: var(--text-tertiary); }
 .kf-table .ag-tr { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr) 110px; min-height: 58px; }
 .kf-table .ag-tr[data-uit] strong { color: var(--text-tertiary); }
@@ -91,52 +83,46 @@
 .kf-link-mid > span { width: 1.5px; height: 18px; background: rgba(188, 255, 47, 0.5); }
 .kf-link-mid .fv-chip { margin: 2px 0; }
 
-/* Het vangnet */
-.kf-answer { gap: 16px; }
-.kf-answer-q { display: flex; flex-direction: column; gap: 6px; }
-.kf-answer-q span { color: var(--text-primary); }
-.kf-answer-a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); }
-
 /* Bijblijven */
 .kf-conflict { gap: 10px; }
 .kf-conflict-h { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 4px; font-weight: var(--weight-medium); color: #f2c94c; }
 .kf-expire { gap: 14px; }
 
-/* Eerlijk: twee kolommen */
-.kf-honest { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 12px; overflow: hidden; background: #0b0c0d; }
-.kf-honest-col { padding: 36px 40px 40px; }
-.kf-honest-col + .kf-honest-col { border-left: 1px solid rgba(255, 255, 255, 0.07); }
-.kf-honest h3 { font-size: 15px; font-weight: var(--weight-medium); color: var(--text-primary); }
-.kf-honest ul { display: flex; flex-direction: column; gap: 14px; margin: 20px 0 0; padding: 0; list-style: none; }
-.kf-honest li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--text-secondary); }
-.kf-honest svg { flex-shrink: 0; color: var(--accent); }
-.kf-dot { width: 7px; height: 7px; margin: 0 3.5px; flex-shrink: 0; border-radius: 50%; background: var(--text-quaternary); }
+/* ==========================================================================
+   Nieuwe beelden voor de opbouw naar linear.app/ai
+   ========================================================================== */
 
-/* Breekpunten ------------------------------------------------------------ */
-@media (max-width: 1024px) {
-  .pd-panel-kf-hero .pd-panel-inner { zoom: 1; }
-  .pd-panel-kf-schema .pd-panel-inner { zoom: 0.8; }
-}
-@media (max-width: 900px) {
-  .kf-honest { grid-template-columns: 1fr; }
-  .kf-honest-col + .kf-honest-col { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.07); }
-}
-@media (max-width: 640px) {
-  .pd-panel-kf-hero .pd-panel-stage { height: auto; padding: 56px 16px 32px; }
-  .pd-panel-kf-hero .pd-panel-inner { position: static; width: auto; transform: none; zoom: 1; }
-  .kf-hero { padding: 22px 20px; }
-  .kf-hero p { font-size: 15px; line-height: 1.85; }
-  .kf-claim { white-space: normal; }
-  .kf-bronnen { grid-template-columns: 1fr; }
-  .kf-tip { display: none; }
-  /* Op een telefoon onder elkaar: van binnen, het brein, van buiten */
-  .pd-panel-kf-schema .pd-panel-stage { height: auto; padding: 40px 16px 28px; }
-  .pd-panel-kf-schema .pd-panel-inner { position: static; width: auto; transform: none; zoom: 1; }
-  .kf-schema { grid-template-columns: 1fr; gap: 20px; height: auto; }
-  .kf-lines { display: none; }
-  .kf-brain { width: 100%; box-sizing: border-box; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 10px; padding: 18px; }
-  .kf-brain-ring { margin-bottom: 0; padding: 6px; }
-  .kf-brain-n { margin-top: 0; }
-  .kf-honest-col { padding: 28px 24px; }
-  .kf-honest li { font-size: 14px; }
-}
+/* De tekst met herkomst, met het document tarieven-2026.pdf als venster erachter */
+.kc-comp { position: relative; width: 1120px; height: 560px; }
+.kc-back { position: absolute; left: 0; top: 96px; width: 420px; opacity: 0.8; }
+.kc-front { position: absolute; left: 250px; top: 0; width: 870px; }
+.kc-front .kf-hero { width: 100%; max-width: none; }
+.kc-pdf { display: flex; flex-direction: column; gap: 12px; padding: 28px 32px 36px; }
+.kc-pdf-h { font-size: 20px; font-weight: var(--weight-semibold); letter-spacing: -0.015em; color: var(--text-primary); }
+.kc-pdf-h2 { padding-top: 10px; font-size: 15px; font-weight: var(--weight-medium); color: var(--text-secondary); }
+.kc-pdf-l { display: block; height: 8px; border-radius: 4px; background: rgba(255, 255, 255, 0.07); }
+.kc-pdf-s { width: 60%; }
+.kc-pdf-r { font-size: 15px; color: var(--text-primary); }
+.kc-pdf-r mark { padding: 2px 4px; border-radius: 4px; background: rgba(188, 255, 47, 0.16); color: inherit; box-shadow: inset 0 -2px 0 rgba(188, 255, 47, 0.6); }
+
+/* Een pagina met vier gele zinnen en de reden ernaast */
+.wg-win { width: 100%; }
+.wg-body { display: grid; grid-template-columns: minmax(0, 1fr) 380px; min-height: 440px; }
+.wg-doc { display: flex; flex-direction: column; gap: 18px; padding: 36px 40px; }
+.wg-h1 { font-size: 24px; line-height: 1.25; font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--text-primary); }
+.wg-doc p { font-size: 16px; line-height: 2; color: var(--text-secondary); }
+.wg-side { display: flex; flex-direction: column; padding: 26px 22px 20px; border-left: 1px solid rgba(255, 255, 255, 0.06); }
+.wg-side > .fv-mono { padding-bottom: 12px; }
+.wg-item { display: flex; flex-direction: column; gap: 6px; padding: 14px 0; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+.wg-item-k { display: flex; }
+.wg-item-z { font-size: 13.5px; line-height: 1.45; color: var(--text-primary); }
+.wg-item-r { font-size: 13px; color: var(--text-tertiary); }
+
+.gg-card { gap: 12px; }
+.gg-off { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 9999px; border: 1px dashed rgba(255, 255, 255, 0.14); background: rgba(255, 255, 255, 0.03); font-size: 13px; color: var(--text-quaternary); }
+
+.cl-lijst { gap: 0; padding: 8px 22px; }
+.cl-rij { display: flex; align-items: center; gap: 12px; padding: 14px 0; color: var(--text-primary); }
+.cl-rij + .cl-rij { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.cl-vink { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: rgba(188, 255, 47, 0.12); color: var(--accent); }
+.cl-stip { width: 8px; height: 8px; margin: 0 7px; flex-shrink: 0; border-radius: 50%; background: var(--text-quaternary); }

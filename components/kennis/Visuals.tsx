@@ -1,6 +1,6 @@
-// De beelden van /kennis: het brein van de fictieve Lindeman Warmte. Elk beeld toont één idee: een
-// tekst met de herkomst van elke bewering, een verzonnen tekst naast een gecontroleerde, het brein
-// met zijn bronnen, en de gele zin die op een besluit wacht.
+// De beelden van /kwaliteit: Feiten en kennis van de fictieve Lindeman Warmte. Elk beeld toont één
+// idee: een tekst met de herkomst van elke harde bewering, een verzonnen tekst naast een
+// gecontroleerde, de feiten met hun bron en de gele zin die op een besluit wacht.
 import { Chip, Icon, Knop, Logo, Mono } from '@/components/product/ui'
 
 /* ── Hero: een alinea met de herkomst van elke bewering ───────────────────── */
@@ -111,7 +111,7 @@ export function VanBinnen() {
     <div className="fv-surface kf-quote">
       <Mono>Uit het kennismakingsgesprek</Mono>
       <blockquote>“We werken alleen met eigen monteurs, nooit met onderaannemers.”</blockquote>
-      <div className="kf-arrow"><Icon naam="pijl" size={14} />Nieuw feit in het brein</div>
+      <div className="kf-arrow"><Icon naam="pijl" size={14} />Nieuw feit in Feiten en kennis</div>
       <div className="kf-fact"><span>Alleen eigen monteurs</span><Chip tone="blauw">Gezegd door de klant</Chip></div>
     </div>
   )
@@ -201,35 +201,10 @@ export function FeitNaarZin() {
       </div>
       <div className="kf-link-mid"><span /><Chip tone="lime"><Icon naam="check" size={11} />Getal staat in de bron</Chip><span /></div>
       <div className="fv-surface kf-link-feit">
-        <Mono>In het brein</Mono>
+        <Mono>In Feiten en kennis</Mono>
         <div className="kf-fact"><span><mark>5 jaar</mark> garantie op elke installatie</span><Chip tone="groen" dot>Met bewijs</Chip></div>
         <span className="fv-small fv-muted">Website · /garantie</span>
       </div>
-    </div>
-  )
-}
-
-/* ── Het vangnet ──────────────────────────────────────────────────────────── */
-
-export function GeleZin() {
-  return (
-    <div className="fv-surface fv-check">
-      <blockquote>Na je akkoord plannen we de installatie binnen twee weken in.</blockquote>
-      <span className="fv-muted fv-small">Deze termijn staat nergens in het brein.</span>
-      <div className="fv-row"><Knop klein><Icon naam="check" size={12} />Klopt</Knop><Knop primair klein>Vraag het bedrijf</Knop></div>
-    </div>
-  )
-}
-
-export function AntwoordKlant() {
-  return (
-    <div className="fv-surface kf-answer">
-      <div className="kf-answer-q"><Mono>Vraag aan Lindeman Warmte</Mono><span>Binnen hoeveel tijd plannen jullie de installatie in?</span></div>
-      <div className="kf-answer-a">
-        <span className="fv-avatar" data-kleur="3">PL</span>
-        <span className="ag-li-t"><strong>Meestal binnen drie weken.</strong><em>Pieter Lindeman, via de deellink</em></span>
-      </div>
-      <div className="kf-arrow"><Icon naam="pijl" size={14} />Het antwoord staat onder de zin en gaat het brein in</div>
     </div>
   )
 }
@@ -253,6 +228,107 @@ export function Verloopt() {
       <div className="kf-fact"><span>Hybride warmtepomp vanaf € 4.500</span><Chip tone="geel" dot>Verloopt 1 januari</Chip></div>
       <span className="fv-muted fv-small">Daarna gaat deze prijs pas weer mee als iemand hem opnieuw bevestigt.</span>
       <div className="fv-row"><Knop klein><Icon naam="check" size={12} />Bevestig opnieuw</Knop></div>
+    </div>
+  )
+}
+
+
+/* ── Nieuw voor de pagina Kwaliteit ───────────────────────────────────────── */
+
+/** De tekst met herkomst, met het document tarieven-2026.pdf als venster erachter. */
+export function HerkomstCompositie() {
+  return (
+    <div className="kc-comp">
+      <div className="ag-window kc-back">
+        <div className="ag-bar">
+          <span className="ag-crumbs"><Icon naam="pdf" size={14} /><span className="ag-crumb-current">tarieven-2026.pdf</span></span>
+          <span className="fv-muted">Document</span>
+        </div>
+        <div className="kc-pdf">
+          <span className="kc-pdf-h">Tarieven 2026</span>
+          <span className="kc-pdf-l" /><span className="kc-pdf-l kc-pdf-s" />
+          <span className="kc-pdf-r"><mark>Hybride warmtepomp vanaf € 4.500, inclusief montage</mark></span>
+          <span className="kc-pdf-l" /><span className="kc-pdf-l kc-pdf-s" /><span className="kc-pdf-l" />
+          <span className="kc-pdf-h2">Optioneel</span>
+          <span className="kc-pdf-l" /><span className="kc-pdf-l kc-pdf-s" />
+        </div>
+      </div>
+      <div className="kc-front"><HeroHerkomst /></div>
+    </div>
+  )
+}
+
+/** Een pagina met gele zinnen en de reden eronder, zoals het scherm waar je ze nakijkt. */
+export function WatWordtGeel() {
+  const zinnen = [
+    ['Termijn', 'Na je akkoord plannen we de installatie binnen twee weken in.', 'Deze termijn staat nergens vastgelegd.'],
+    ['Bedrag', 'Je betaalt vanaf € 3.900, inclusief montage.', 'Het bedrag € 3.900 staat niet in de bron.'],
+    ['Garantie', 'Op elke installatie geven wij 10 jaar garantie.', 'Het getal 10 staat niet in de bron.'],
+    ['Keurmerk', 'Wij zijn een erkend Keurmerk-installateur.', 'Dit keurmerk staat nergens vastgelegd.'],
+  ] as const
+  return (
+    <div className="ag-window wg-win">
+      <div className="ag-bar">
+        <span className="ag-crumbs"><Logo size={18} /><span>Lindeman Warmte</span><span><span className="ag-sep">›</span>Bibliotheek</span><span className="ag-crumb-current"><span className="ag-sep">›</span>Hybride warmtepomp laten installeren</span></span>
+        <Chip tone="geel" dot>4 gele zinnen</Chip>
+      </div>
+      <div className="wg-body">
+        <article className="wg-doc">
+          <span className="wg-h1">Hybride warmtepomp laten installeren in Utrecht</span>
+          <p>
+            Een hybride warmtepomp van Lindeman Warmte staat er snel. <span className="fv-yellow">{zinnen[0][1]}</span> <span className="fv-yellow">{zinnen[1][1]}</span>
+          </p>
+          <p>
+            <span className="fv-yellow">{zinnen[2][1]}</span> <span className="fv-yellow">{zinnen[3][1]}</span> Twee eigen monteurs plaatsen de buitenunit en sluiten hem aan op je bestaande ketel.
+          </p>
+        </article>
+        <aside className="wg-side">
+          <Mono>Loop deze zinnen na</Mono>
+          {zinnen.map(([soort, zin, reden]) => (
+            <div key={soort} className="wg-item">
+              <span className="wg-item-k"><Chip tone="geel">{soort}</Chip></span>
+              <span className="wg-item-z">{zin}</span>
+              <span className="wg-item-r">{reden}</span>
+            </div>
+          ))}
+        </aside>
+      </div>
+    </div>
+  )
+}
+
+/** Keur goed is uitgeschakeld zolang er een gele zin openstaat. */
+export function GoedkeurenGeblokkeerd() {
+  return (
+    <div className="fv-surface gg-card">
+      <div className="kf-fact"><span>Hybride warmtepomp laten installeren</span><Chip tone="geel" dot>2 gele zinnen open</Chip></div>
+      <div className="fv-progress"><i style={{ width: '50%' }} /></div>
+      <span className="fv-muted fv-small">2 van 4 gele zinnen nagelopen.</span>
+      <div className="fv-row"><span className="gg-off"><Icon naam="slot" size={12} />Keur goed</span><Knop klein>Vraag een aanpassing</Knop></div>
+    </div>
+  )
+}
+
+/** Wat ORBIT ENGINE in code controleert. */
+export function ControleLijst() {
+  const punten = ['Bedragen en prijzen', 'Termijnen en levertijden', 'Garanties en keurmerken', 'Getallen die niet in de bron staan', 'Namen van concurrenten', 'Woorden die je klant niet wil']
+  return (
+    <div className="fv-surface cl-lijst">
+      {punten.map((p) => (
+        <div key={p} className="cl-rij"><span className="cl-vink"><Icon naam="check" size={12} /></span>{p}</div>
+      ))}
+    </div>
+  )
+}
+
+/** Wat bij jou en je team blijft. */
+export function JijBeslist() {
+  const punten = ['Of de toon past bij het merk', 'Of een tekst overtuigt', 'Algemene uitspraken, zoals "specialist in"', 'Wanneer een pagina live gaat']
+  return (
+    <div className="fv-surface cl-lijst">
+      {punten.map((p) => (
+        <div key={p} className="cl-rij"><span className="cl-stip" />{p}</div>
+      ))}
     </div>
   )
 }
