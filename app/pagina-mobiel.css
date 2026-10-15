@@ -168,6 +168,9 @@
   .lp-cel .fv-node-q, .lp-cel .fv-node-page { width: 112px; }
   .lp-cel .fv-node-kans { width: 78px; }
   .lp-cel .fv-flow-line { width: 18px; }
+  /* Klikken uit Google: lagere staafjes, zodat het cijfer eronder in beeld blijft */
+  .lp-cel .fv-traffic { gap: 12px; }
+  .lp-cel .fv-bars { height: 104px; }
   .lp-stapel > *::before, .lp-stapel > *::after { top: -8px; }
   .lp-stapel > *::after { top: -16px; }
 
