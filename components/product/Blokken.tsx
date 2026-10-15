@@ -179,20 +179,18 @@ export function Raster({ children }: { children: React.ReactNode }) {
 
 /**
  * Een cel in een raster: een uitsnede van het scherm die naar de randen en naar onderen vervaagt, met
- * daaronder titel en tekst. `stapel` legt twee kaarten schuin achter de voorste, `telefoon` houdt
- * de ruimte boven een telefoon kleiner.
+ * daaronder titel en tekst. `telefoon` houdt de ruimte boven een telefoon kleiner.
  */
-export function RasterCel({ b, alt, stapel = false, telefoon = false, children }: {
+export function RasterCel({ b, alt, telefoon = false, children }: {
   b: Bijschrift
   alt: string
-  stapel?: boolean
   telefoon?: boolean
   children: React.ReactNode
 }) {
   return (
     <figure className={`lp-cel${telefoon ? ' lp-cel-telefoon' : ''}`}>
       <div className="lp-cel-stage" role="img" aria-label={alt}>
-        <div className={`lp-cel-inner${stapel ? ' lp-stapel' : ''}`} aria-hidden="true">{children}</div>
+        <div className="lp-cel-inner" aria-hidden="true">{children}</div>
       </div>
       <BijschriftTekst b={b} />
     </figure>

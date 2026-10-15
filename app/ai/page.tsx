@@ -47,7 +47,7 @@ export default function AiPage() {
             <RasterCel b={s.wie.cellen[1]} alt="De dertig AI-vragen van een onderwerp, verdeeld over oriëntatie, overweging en beslissing.">
               <P.VragenKlantreis />
             </RasterCel>
-            <RasterCel b={s.wie.cellen[2]} stapel alt="Per concurrent de eigenschappen die AI noemt, zoals prijs, snelheid en reputatie, elk met een letterlijk fragment als bewijs.">
+            <RasterCel b={s.wie.cellen[2]} alt="Per concurrent de eigenschappen die AI noemt, zoals prijs, snelheid en reputatie, elk met een letterlijk fragment als bewijs.">
               <V.WaaromConcurrentWint />
             </RasterCel>
             <RasterCel b={s.wie.cellen[3]} alt="Een brief voor de pagina Hybride warmtepomp in Houten met drie vragen aan de klant. Hooguit acht vragen per pagina.">
@@ -66,7 +66,7 @@ export default function AiPage() {
             <RasterCel b={s.meten.cellen[0]} alt="De kennistest: wat ChatGPT uit zichzelf weet over Lindeman Warmte. Twee uitspraken kloppen, de vestigingsplaats klopt niet.">
               <V.Kennistest />
             </RasterCel>
-            <RasterCel b={s.meten.cellen[1]} stapel alt="De kanalen: ChatGPT staat altijd aan, Gemini staat aan en Google AI Overview staat uit. Extra kanalen kosten extra per vraag.">
+            <RasterCel b={s.meten.cellen[1]} alt="De kanalen: ChatGPT staat altijd aan, Gemini staat aan en Google AI Overview staat uit. Extra kanalen kosten extra per vraag.">
               <V.Kanalen />
             </RasterCel>
           </Raster>

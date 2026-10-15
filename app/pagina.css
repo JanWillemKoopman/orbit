@@ -99,14 +99,6 @@
 .lp-cel .fv-surface { width: 100%; max-width: 480px; }
 .lp-cel-telefoon .lp-cel-inner { padding-top: 44px; }
 .lp-cel-telefoon .lp-cel-inner > * { margin-block: 0 auto; zoom: 1; }
-/* Twee kaarten schuin achter de voorste, zoals bij Triage Intelligence op linear.app */
-.lp-stapel { isolation: isolate; }
-.lp-stapel > * { position: relative; }
-.lp-stapel > *::before, .lp-stapel > *::after {
-  content: ''; position: absolute; z-index: -1; left: 16px; right: 16px; top: -10px; height: 100%; border-radius: 14px;
-  background: #151618; border: 1px solid rgba(255, 255, 255, 0.09);
-}
-.lp-stapel > *::after { left: 32px; right: 32px; top: -20px; background: #101112; border-color: rgba(255, 255, 255, 0.06); }
 
 /* Breekpunten --------------------------------------------------------------- */
 @media (max-width: 1199px) {

@@ -41,7 +41,7 @@ export default function KwaliteitPage() {
             <RasterCel b={s.probleem.cellen[0]} alt="Een tekst van een gewone AI-schrijver met drie verzonnen beweringen: installatie binnen 48 uur, 10 jaar garantie en een keurmerk.">
               <V.GewoneAi />
             </RasterCel>
-            <RasterCel b={s.probleem.cellen[1]} stapel alt="Dezelfde tekst in ORBIT ENGINE: twee beweringen met een bron en één gele zin om na te lopen.">
+            <RasterCel b={s.probleem.cellen[1]} alt="Dezelfde tekst in ORBIT ENGINE: twee beweringen met een bron en één gele zin om na te lopen.">
               <V.OrbitTekst />
             </RasterCel>
           </Raster>
@@ -60,7 +60,7 @@ export default function KwaliteitPage() {
             <RasterCel b={s.weten.cellen[1]} alt="Drie punten uit de markt: vakkennis, regels en concurrenten, elk gecontroleerd op de bron.">
               <V.VanBuiten />
             </RasterCel>
-            <RasterCel b={s.weten.cellen[2]} stapel alt="Het vermoeden grootste installateur van Utrecht komt niet in een tekst tot iemand het bevestigt.">
+            <RasterCel b={s.weten.cellen[2]} alt="Het vermoeden grootste installateur van Utrecht komt niet in een tekst tot iemand het bevestigt.">
               <V.Vermoeden />
             </RasterCel>
             <RasterCel b={s.weten.cellen[3]} alt="De zin over 5 jaar garantie is letterlijk teruggevonden op de garantiepagina van de website.">
@@ -82,10 +82,10 @@ export default function KwaliteitPage() {
             <RasterCel b={s.vangnet.cellen[1]} alt="De merkstem: aanspreekvorm je en jij, toon nuchter, vakkundig en persoonlijk, en woorden die nooit gebruikt worden.">
               <P.Merkstem />
             </RasterCel>
-            <RasterCel b={s.vangnet.cellen[2]} stapel alt="De eindredactie: drie controles geslaagd en één zin om na te lopen.">
+            <RasterCel b={s.vangnet.cellen[2]} alt="De eindredactie: drie controles geslaagd en één zin om na te lopen.">
               <P.Eindredactie />
             </RasterCel>
-            <RasterCel b={s.vangnet.cellen[3]} stapel alt="Een pagina met twee gele zinnen open: Keur goed is uitgeschakeld tot alles is nagelopen.">
+            <RasterCel b={s.vangnet.cellen[3]} alt="Een pagina met twee gele zinnen open: Keur goed is uitgeschakeld tot alles is nagelopen.">
               <V.GoedkeurenGeblokkeerd />
             </RasterCel>
           </Raster>
@@ -98,7 +98,7 @@ export default function KwaliteitPage() {
             <RasterCel b={s.bijblijven.cellen[0]} alt="Twee bronnen zeggen iets anders over de garantie: 3 jaar in een oude brochure, 5 jaar op de website.">
               <V.Tegenstrijdig />
             </RasterCel>
-            <RasterCel b={s.bijblijven.cellen[1]} stapel alt="De prijs vanaf 4.500 euro verloopt op 1 januari en moet daarna opnieuw bevestigd worden.">
+            <RasterCel b={s.bijblijven.cellen[1]} alt="De prijs vanaf 4.500 euro verloopt op 1 januari en moet daarna opnieuw bevestigd worden.">
               <V.Verloopt />
             </RasterCel>
           </Raster>

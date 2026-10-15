@@ -39,7 +39,7 @@ export default function BeheerPage() {
             <RasterCel b={s.overzicht.cellen[0]} alt="Wacht op jou: Verbeek Bouw en Renovatie heeft twee teksten om na te kijken sinds zes dagen, Lindeman Warmte twee vragen bij de klant sinds vier dagen.">
               <V.LangstWacht />
             </RasterCel>
-            <RasterCel b={s.overzicht.cellen[1]} stapel alt="De maand starten voor drie bedrijven, samen vijftien pagina's, voor ongeveer 18 euro. Van de maandlimiet is nog 204 euro over.">
+            <RasterCel b={s.overzicht.cellen[1]} alt="De maand starten voor drie bedrijven, samen vijftien pagina's, voor ongeveer 18 euro. Van de maandlimiet is nog 204 euro over.">
               <V.MaandStarten />
             </RasterCel>
           </Raster>
@@ -55,7 +55,7 @@ export default function BeheerPage() {
             <RasterCel b={s.klanten.cellen[0]} alt="Het formulier Nieuw merk met bedrijfsnaam Bakkerij De Korenaar, de website en de knop Start het onderzoek, met een schatting van 1,90 euro.">
               <V.NieuwMerk />
             </RasterCel>
-            <RasterCel b={s.klanten.cellen[1]} stapel alt="De rondleiding voor een beheerder, stap 3 van 6: voeg een bedrijf toe met alleen de naam en de website.">
+            <RasterCel b={s.klanten.cellen[1]} alt="De rondleiding voor een beheerder, stap 3 van 6: voeg een bedrijf toe met alleen de naam en de website.">
               <V.ZoBeginJe />
             </RasterCel>
           </Raster>
@@ -74,7 +74,7 @@ export default function BeheerPage() {
             <RasterCel b={s.team.cellen[1]} alt="Wat mogen kijkers: vragen beantwoorden, materiaal toevoegen en een pagina goedkeuren staan aan, een pagina zelf bewerken staat uit.">
               <V.KijkerRechten />
             </RasterCel>
-            <RasterCel b={s.team.cellen[2]} stapel alt="Het scherm van een kijker: alleen Lindeman Warmte, een menu zonder Beheer en wat er op de kijker wacht.">
+            <RasterCel b={s.team.cellen[2]} alt="Het scherm van een kijker: alleen Lindeman Warmte, een menu zonder Beheer en wat er op de kijker wacht.">
               <V.SchermVanDeKijker />
             </RasterCel>
             <RasterCel b={s.team.cellen[3]} alt="De systeemstatus: het achtergrondwerk is gekoppeld, één taak is niet gelukt en er staat waarom en wat je doet.">
@@ -99,7 +99,7 @@ export default function BeheerPage() {
             <RasterCel b={s.kosten.cellen[2]} alt="De sleutels van Bureau Noordwind: OpenAI en Gemini zijn ingevuld en werken, DataForSEO is nog niet ingevuld.">
               <V.Sleutels />
             </RasterCel>
-            <RasterCel b={s.kosten.cellen[3]} stapel alt="De melding dat de maandlimiet van het bureau bereikt is: nieuw werk dat geld kost start weer op 1 november.">
+            <RasterCel b={s.kosten.cellen[3]} alt="De melding dat de maandlimiet van het bureau bereikt is: nieuw werk dat geld kost start weer op 1 november.">
               <V.MaandlimietBereikt />
             </RasterCel>
           </Raster>

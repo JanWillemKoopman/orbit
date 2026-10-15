@@ -56,7 +56,7 @@ export default function WerkwijzePage() {
             <RasterCel b={s.meten.cellen[1]} alt="ChatGPT noemt bij de vraag welke installateur in Utrecht goed is in hybride warmtepompen drie concurrenten, en Lindeman Warmte niet.">
               <V.AiAntwoord />
             </RasterCel>
-            <RasterCel b={s.meten.cellen[2]} stapel alt="Zichtbaarheid 47 procent met een marge van 10 procentpunt. Er tellen 42 van 90 vragen mee, uit drie samengevoegde rondes.">
+            <RasterCel b={s.meten.cellen[2]} alt="Zichtbaarheid 47 procent met een marge van 10 procentpunt. Er tellen 42 van 90 vragen mee, uit drie samengevoegde rondes.">
               <V.CijferMetMarge />
             </RasterCel>
             <RasterCel b={s.meten.cellen[3]} alt="Hoe vaak elk bedrijf genoemd wordt: Warmtewerk Utrecht 58 procent, Lindeman Warmte 47 procent, Domstad Installaties 41 procent, KlimaatPro 29 procent.">
@@ -75,7 +75,7 @@ export default function WerkwijzePage() {
             <RasterCel b={s.plannen.cellen[0]} alt="Een AI-vraag wordt een kans met potentie 78, en die kans wordt een pagina.">
               <V.VanVraagNaarPagina />
             </RasterCel>
-            <RasterCel b={s.plannen.cellen[1]} stapel alt="Het pagina-idee Hybride warmtepomp laten installeren in Utrecht met potentie 78 en de knop Plan in oktober.">
+            <RasterCel b={s.plannen.cellen[1]} alt="Het pagina-idee Hybride warmtepomp laten installeren in Utrecht met potentie 78 en de knop Plan in oktober.">
               <V.PaginaIdee />
             </RasterCel>
           </Raster>
@@ -91,13 +91,13 @@ export default function WerkwijzePage() {
             <RasterCel b={s.schrijven.cellen[0]} telefoon alt="Op een telefoon beantwoordt de klant de vraag over de prijsopbouw, zonder account.">
               <V.VragenKlant />
             </RasterCel>
-            <RasterCel b={s.schrijven.cellen[1]} stapel alt="Een gemarkeerde zin over een installatietermijn van twee weken met de knoppen Klopt en Vraag het bedrijf.">
+            <RasterCel b={s.schrijven.cellen[1]} alt="Een gemarkeerde zin over een installatietermijn van twee weken met de knoppen Klopt en Vraag het bedrijf.">
               <V.ZinNalopen />
             </RasterCel>
             <RasterCel b={s.schrijven.cellen[2]} alt="Het kopieermenu van een goedgekeurde pagina: kopieer als HTML, Markdown of platte tekst, en meld dat hij live staat.">
               <V.Publiceren />
             </RasterCel>
-            <RasterCel b={s.schrijven.cellen[3]} stapel alt="De publicatiecontrole: de pagina en de tekst zijn gevonden en de nameting staat ingepland. Is hij niet gevonden, dan volgt na een uur een nieuwe poging.">
+            <RasterCel b={s.schrijven.cellen[3]} alt="De publicatiecontrole: de pagina en de tekst zijn gevonden en de nameting staat ingepland. Is hij niet gevonden, dan volgt na een uur een nieuwe poging.">
               <V.Publicatiecontrole />
             </RasterCel>
           </Raster>
