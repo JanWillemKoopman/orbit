@@ -161,7 +161,10 @@
     -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   }
-  .lp .lp-cel .lp-cel-inner > * { margin-block: 0 auto; zoom: 0.86; filter: saturate(0.65); }
+  /* Het filter op het venster, niet op het beeld: een filter op het beeld maakt er een eigen laag van,
+     waardoor de kaarten van een stapel door de voorste heen zichtbaar worden */
+  .lp .lp-cel .lp-cel-inner { filter: saturate(0.65); }
+  .lp .lp-cel .lp-cel-inner > * { margin-block: 0 auto; zoom: 0.86; }
   .lp .lp-cel-telefoon .lp-cel-inner > * { zoom: 0.72; }
   /* Van vraag naar pagina: dezelfde drie stappen, smaller, zodat ze in leesbare maat passen */
   .lp .lp-cel .lp-cel-inner > .fv-flow { zoom: 0.86; }
