@@ -1,0 +1,151 @@
+/* ==========================================================================
+   De vier productpagina's in de opbouw van linear.app/ai.
+   Hero (kleine regel en grote titel), daarna per sectie een intro met titel links en tekst rechts,
+   gevolgd door een groot beeld of een raster, met veel lucht ertussen. Onderaan een rij met de vier
+   productpagina's en de afsluiter. De maten komen van de screenshot van linear.app/ai op 1440 px.
+   Kleuren, randen en beweging komen van de tokens in globals.css.
+   ========================================================================== */
+
+/* Hero ------------------------------------------------------------------ */
+.lp-hero {
+  position: relative; isolation: isolate; display: flex; align-items: center;
+  min-height: clamp(520px, 72svh, 760px);
+  border-bottom: 1px solid var(--border-translucent);
+}
+/* Hier komt later de achtergrondvideo. Hij vult de hele hero, ook achter de header. */
+.lp-hero-media { position: absolute; z-index: -1; inset: 0; pointer-events: none; }
+.lp-hero-inner { width: 100%; padding-block: 112px 88px; }
+.lp-eyebrow { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
+.lp-title {
+  max-width: 900px; margin-top: 16px; margin-left: -2px;
+  font-size: 72px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
+  color: var(--text-primary); text-wrap: balance;
+}
+
+/* Secties ---------------------------------------------------------------- */
+.lp-sectie { padding-top: 128px; scroll-margin-top: var(--header-height); }
+.lp-sectie + .lp-sectie { padding-top: 232px; }
+.feature-header.lp-intro { padding-top: 0; padding-bottom: 96px; }
+.lp-sectie > * + .lp-beeld, .lp-sectie > * + .lp-raster { margin-top: 0; }
+.lp-sectie > .lp-beeld + .lp-beeld, .lp-sectie > .lp-beeld + .lp-raster, .lp-sectie > .lp-raster + .lp-beeld, .lp-sectie > .lp-raster + .lp-raster { margin-top: 48px; }
+
+/* Bijschrift: titel in wit, tekst in grijs, op de tekstlijn van de pagina */
+.lp-caption { position: relative; z-index: 2; max-width: 600px; padding: 0 32px 40px; }
+.lp-cel .lp-caption { padding-top: 8px; }
+.lp-caption h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; font-size: 15px; line-height: 1.5; font-weight: var(--weight-medium); letter-spacing: -0.011em; color: var(--text-primary); }
+.lp-caption p { margin-top: 2px; max-width: 44ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+.lp-label {
+  display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: var(--weight-medium); color: var(--text-primary);
+  background: rgba(188, 255, 47, 0.1); box-shadow: inset 0 0 0 1px rgba(188, 255, 47, 0.25);
+}
+
+/* Groot beeld: 64 px breder dan de tekst, zoals op linear.app --------------- */
+.lp-beeld, .lp-raster { margin-inline: -32px; }
+.lp-beeld {
+  position: relative; overflow: hidden; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.07); background: #0b0c0d;
+}
+/* Beeld met een scherm: grijs verloop van boven, de vensters vervagen onderaan */
+.lp-beeld-scherm {
+  background:
+    radial-gradient(88% 60% at 50% 0%, rgba(176, 181, 188, 0.5) 0%, rgba(120, 126, 134, 0.2) 42%, rgba(8, 9, 10, 0) 82%),
+    #0b0c0d;
+}
+.lp-beeld-stage { position: relative; height: var(--stage-h, 640px); overflow: hidden; }
+.lp-beeld-inner { position: absolute; top: 96px; left: 50%; width: var(--comp-w, 1120px); transform: translateX(-50%); }
+/* De onderste 160 px van het vlak vervagen, ongeacht hoe hoog het venster is */
+.lp-beeld-scherm .lp-beeld-stage {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 160px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 160px), transparent 100%);
+}
+/* Schema: omlijnd, zonder verloop. Het diagram staat in het midden en vervaagt niet */
+.lp-beeld-schema .lp-beeld-inner { top: 56px; }
+.lp-beeld-stage, .lp-cel-stage { font-size: 14px; line-height: 1.5; color: var(--text-secondary); text-align: left; user-select: none; }
+
+/* Raster: één buitenrand, dunne lijnen ertussen ---------------------------- */
+.lp-raster {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 12px; overflow: hidden; background: #0b0c0d;
+}
+.lp-cel { display: flex; flex-direction: column; margin: 0; }
+.lp-cel:nth-child(even) { border-left: 1px solid rgba(255, 255, 255, 0.07); }
+.lp-cel:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.lp-cel-stage { position: relative; height: 460px; overflow: hidden; }
+/* Het beeld loopt aan de randen en onderaan het vlak uit. Een kort beeld staat in het midden, een lang
+   beeld begint bovenaan en wordt onderaan afgesneden. */
+.lp-cel-inner {
+  position: absolute; inset: 0; display: flex; justify-content: center; padding: 56px 48px 0;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 120px), transparent 100%), linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 120px), transparent 100%), linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-composite: intersect;
+}
+.lp-cel-inner > * { margin-block: auto; }
+.lp-cel-inner > :not(.fv-surface) { zoom: 1.1; }
+.lp-cel .fv-surface { width: 100%; max-width: 480px; }
+.lp-cel-telefoon .lp-cel-inner { padding-top: 44px; }
+.lp-cel-telefoon .lp-cel-inner > * { margin-block: 0 auto; zoom: 1; }
+/* Twee kaarten schuin achter de voorste, zoals bij Triage Intelligence op linear.app */
+.lp-stapel { isolation: isolate; }
+.lp-stapel > * { position: relative; }
+.lp-stapel > *::before, .lp-stapel > *::after {
+  content: ''; position: absolute; z-index: -1; left: 16px; right: 16px; top: -10px; height: 100%; border-radius: 14px;
+  background: #151618; border: 1px solid rgba(255, 255, 255, 0.09);
+}
+.lp-stapel > *::after { left: 32px; right: 32px; top: -20px; background: #101112; border-color: rgba(255, 255, 255, 0.06); }
+
+/* Rij met de vier productpagina's ------------------------------------------ */
+.lp-linkrij { margin-top: 232px; }
+.lp-linkrij ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.lp-linkrij li { display: flex; flex-direction: column; justify-content: space-between; gap: 72px; min-height: 360px; padding: 192px 32px 0 0; }
+.lp-linkrij li + li { padding-left: 32px; border-left: 1px solid rgba(255, 255, 255, 0.08); }
+.lp-linkrij h3 { max-width: 16ch; font-size: 24px; line-height: 1.33; font-weight: var(--weight-medium); letter-spacing: -0.012em; color: var(--text-primary); text-wrap: balance; }
+.lp-linkrij li[aria-current='page'] .home-link { color: var(--text-quaternary); }
+
+/* Breekpunten --------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .lp-beeld, .lp-raster { margin-inline: 0; }
+  .lp-beeld-inner { zoom: 0.88; }
+}
+@media (max-width: 1024px) {
+  .lp-title { font-size: 56px; line-height: 1.1; }
+  .lp-sectie + .lp-sectie { padding-top: 168px; }
+  .lp-linkrij ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lp-linkrij li { min-height: 280px; padding-top: 120px; }
+  .lp-linkrij li:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .lp-linkrij li:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .lp-beeld-inner { zoom: 0.76; }
+}
+@media (max-width: 900px) {
+  .lp-raster { grid-template-columns: 1fr; }
+  .lp-cel:nth-child(even) { border-left: 0; }
+  .lp-cel:nth-child(n + 2) { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+}
+@media (max-width: 640px) {
+  .lp-hero { min-height: 480px; }
+  .lp-hero-inner { padding-block: 88px 64px; }
+  .lp-title { font-size: 44px; line-height: 1.1; }
+  .lp-sectie { padding-top: 72px; }
+  .lp-sectie + .lp-sectie { padding-top: 96px; }
+  .feature-header.lp-intro { padding-bottom: 48px; }
+  /* Op een telefoon loopt het beeld over de volle breedte en het venster uit beeld, zoals op linear.app */
+  .lp-beeld, .lp-raster { margin-inline: calc(-1 * var(--page-padding)); border-radius: 0; border-inline: 0; }
+  .lp-beeld-stage { height: min(var(--stage-h, 640px), 440px); }
+  .lp-beeld-inner { left: 24px; top: 56px; transform: none; zoom: 0.56; }
+  .lp-beeld-schema .lp-beeld-inner { top: 40px; }
+  .lp-cel-stage { height: 360px; }
+  .lp-cel-inner { padding: 40px 24px 0; }
+  .lp-cel-inner > :not(.fv-surface) { zoom: 0.95; }
+  .lp-cel-inner > .fv-flow { zoom: 0.68; }
+  .lp-cel-telefoon .lp-cel-inner { padding-top: 28px; }
+  .lp-cel-telefoon .lp-cel-inner > * { zoom: 0.8; }
+  .lp-caption { padding: 0 24px 32px; }
+  .lp-linkrij { margin-top: 120px; }
+  .lp-linkrij ul { grid-template-columns: 1fr; }
+  .lp-linkrij li { min-height: 0; gap: 32px; padding: 40px 0 40px 0; }
+  .lp-linkrij li + li, .lp-linkrij li:nth-child(odd) { padding-left: 0; border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .lp-linkrij h3 { max-width: none; font-size: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-media { transition: none; }
+}

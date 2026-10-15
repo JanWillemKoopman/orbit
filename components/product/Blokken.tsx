@@ -1,6 +1,11 @@
-// Bouwblokken van de productpagina's (/product en /agency). Opbouw naar linear.app: per sectie een
-// kop met uitleg, daarna een groot paneel waarin een beeld over de rand loopt, of een raster van
-// cellen die elk één onderdeel van dichtbij tonen, met het bijschrift in het vlak zelf.
+// Bouwblokken van de productpagina's. Opbouw naar linear.app: per sectie een kop met uitleg, daarna
+// een groot paneel waarin een beeld over de rand loopt, of een raster van cellen die elk één
+// onderdeel van dichtbij tonen, met het bijschrift in het vlak zelf.
+//
+// Twee families. `Kop`, `Paneel`, `Cel` en `Splitsing` zijn de oude blokken (stijl in werkwijze.css,
+// nog in gebruik op Kwaliteit en Beheer). `PaginaHero`, `Sectie`, `Intro`, `Beeld`, `Raster`,
+// `RasterCel` en `Linkrij` zijn de blokken naar de opbouw van linear.app/ai (stijl in pagina.css).
+import Link from 'next/link'
 
 export type Bijschrift = { titel: string; tekst: string; label?: string }
 
@@ -68,5 +73,144 @@ export function Splitsing({ id, title, description, punten, alt, children }: { i
         </div>
       </div>
     </div>
+  )
+}
+
+
+/* ── De opbouw van linear.app/ai ──────────────────────────────────────────── */
+
+export type Verwijzing = { label: string; href: string }
+
+/**
+ * Hero zoals op linear.app/ai: een kleine regel en een grote titel, links uitgelijnd, zonder
+ * beschrijving en zonder knoppen. De achtergrond blijft voorlopig leeg.
+ */
+export function PaginaHero({ eyebrow, titel }: { eyebrow: string; titel: string }) {
+  return (
+    <section className="lp-hero" aria-labelledby="lp-titel">
+      {/* HERO-VIDEO: hier komt later de achtergrondvideo (vervaagd, schuin, over de volle breedte en
+          achter de header, zoals op linear.app/ai). De ruimte is vrijgehouden: lp-hero-media vult de
+          hele hero en ligt achter de tekst. */}
+      <div className="lp-hero-media" aria-hidden="true" />
+      <div className="container lp-hero-inner">
+        <p className="lp-eyebrow">{eyebrow}</p>
+        <h1 id="lp-titel" className="lp-title">{titel}</h1>
+      </div>
+    </section>
+  )
+}
+
+/** Een sectie: een intro, daarna een of meer beelden of rasters, met veel lucht ertussen. */
+export function Sectie({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <section id={id} className="lp-sectie" aria-labelledby={`${id}-titel`}>
+      {children}
+    </section>
+  )
+}
+
+/** Titel links, tekst rechts met een tekstlink eronder. Bouwt op `.feature-header` uit home.css. */
+export function Intro({ id, titel, tekst, link }: { id: string; titel: string; tekst: string; link?: Verwijzing }) {
+  return (
+    <div className="feature-header lp-intro">
+      <h2 id={`${id}-titel`} className="feature-title">{titel}</h2>
+      <div className="feature-description">
+        <p>{tekst}</p>
+        {link && (
+          <Link href={link.href} className="home-link">
+            {link.label}
+            <span aria-hidden="true">→</span>
+          </Link>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function BijschriftTekst({ b }: { b: Bijschrift }) {
+  return (
+    <figcaption className="lp-caption">
+      <h3>{b.titel}{b.label && <span className="lp-label">{b.label}</span>}</h3>
+      <p>{b.tekst}</p>
+    </figcaption>
+  )
+}
+
+/**
+ * Een groot beeld over de volle breedte. `scherm` heeft een grijs verloop van boven en toont een of
+ * twee appvensters die onderaan vervagen. `schema` is een omlijnd vlak zonder verloop, voor
+ * diagrammen. `hoogte` is de hoogte van het vlak, `breedte` de breedte van de compositie (px).
+ */
+export function Beeld({ b, alt, variant = 'scherm', hoogte = 640, breedte = 1120, children }: {
+  b: Bijschrift
+  alt: string
+  variant?: 'scherm' | 'schema'
+  hoogte?: number
+  breedte?: number
+  children: React.ReactNode
+}) {
+  return (
+    <figure className={`lp-beeld lp-beeld-${variant}`} style={{ '--stage-h': `${hoogte}px`, '--comp-w': `${breedte}px` } as React.CSSProperties}>
+      <div className="lp-beeld-stage" role="img" aria-label={alt}>
+        <div className="lp-beeld-inner" aria-hidden="true">{children}</div>
+      </div>
+      <BijschriftTekst b={b} />
+    </figure>
+  )
+}
+
+/** Een raster van twee of vier cellen met gedeelde randen, zoals op linear.app. */
+export function Raster({ children }: { children: React.ReactNode }) {
+  return <div className="lp-raster">{children}</div>
+}
+
+/**
+ * Een cel in een raster: een uitsnede van het scherm die naar de randen en naar onderen vervaagt, met
+ * daaronder titel en tekst. `stapel` legt twee kaarten schuin achter de voorste, `telefoon` houdt
+ * de ruimte boven een telefoon kleiner.
+ */
+export function RasterCel({ b, alt, stapel = false, telefoon = false, children }: {
+  b: Bijschrift
+  alt: string
+  stapel?: boolean
+  telefoon?: boolean
+  children: React.ReactNode
+}) {
+  return (
+    <figure className={`lp-cel${telefoon ? ' lp-cel-telefoon' : ''}`}>
+      <div className="lp-cel-stage" role="img" aria-label={alt}>
+        <div className={`lp-cel-inner${stapel ? ' lp-stapel' : ''}`} aria-hidden="true">{children}</div>
+      </div>
+      <BijschriftTekst b={b} />
+    </figure>
+  )
+}
+
+const LINKRIJ = [
+  { href: '/ai', titel: 'Het zware werk doet AI. Jij beslist.', label: 'Wat AI voor je doet' },
+  { href: '/werkwijze', titel: 'Elke maand dezelfde ronde, met bewijs aan het eind', label: 'Van meting tot bewijs' },
+  { href: '/kwaliteit', titel: 'Alleen feiten met een bron, nooit een verzonnen belofte', label: 'Hoe de feiten bewaakt worden' },
+  { href: '/beheer', titel: 'Al je klanten, je team en je kosten in één account', label: 'Klanten, team en kosten' },
+] as const
+
+/** De rij met de vier productpagina's, vlak boven de afsluiter, zoals de rij Intake, Planning, AI, Build. */
+export function Linkrij({ huidig }: { huidig: string }) {
+  return (
+    <nav className="lp-linkrij" aria-label="Verder in het product">
+      <div className="keyline" />
+      <div className="container">
+        <ul>
+          {LINKRIJ.map((m) => (
+            <li key={m.href} aria-current={m.href === huidig ? 'page' : undefined}>
+              <h3>{m.titel}</h3>
+              <Link href={m.href} className="home-link">
+                {m.label}
+                <span aria-hidden="true">→</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   )
 }

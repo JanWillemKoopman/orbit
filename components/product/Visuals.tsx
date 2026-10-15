@@ -52,17 +52,22 @@ const LIJNEN = [
   { w: [10, 15, 20, 25, 35], c: 'rgba(255,255,255,0.12)' },
   { w: [17, 23, 30, 37, 47], c: '#bcff2f', hoofd: true },
 ]
+// De marge wordt smaller zodra rondes worden samengevoegd.
+const MARGE = [18, 16, 13, 11, 10]
 
 export function ZichtbaarheidGrafiek() {
   const W = 880, H = 300, x = (i: number) => (i / 4) * W, y = (v: number) => H - (v / 70) * H
   const hoofd = LIJNEN[2].w
   const pad = (w: number[]) => w.map((v, i) => `${i ? 'L' : 'M'}${x(i)},${y(v)}`).join(' ')
   const vlak = `${pad(hoofd)} L${W},${H} L0,${H} Z`
+  const boven = hoofd.map((v, i) => `${i ? 'L' : 'M'}${x(i)},${y(v + MARGE[i])}`).join(' ')
+  const onder = [...hoofd].map((v, i) => `L${x(i)},${y(v - MARGE[i])}`).reverse().join(' ')
+  const band = `${boven} ${onder} Z`
   return (
     <div className="fv-surface fv-vis">
       <div className="fv-vis-head">
         <span className="fv-muted">Hybride warmtepomp · zichtbaarheid in AI</span>
-        <span className="fv-vis-num">47%<em>↑ 30 sinds juni</em></span>
+        <span className="fv-vis-num">47%<b>± 10</b><em>↑ 30 sinds juni</em></span>
       </div>
       <svg viewBox={`-12 -20 ${W + 24} ${H + 56}`} className="fv-vis-chart" aria-hidden="true">
         <defs>
@@ -73,6 +78,7 @@ export function ZichtbaarheidGrafiek() {
         </defs>
         {MAANDEN.map((m, i) => <line key={m} x1={x(i)} x2={x(i)} y1={0} y2={H} stroke="rgba(255,255,255,0.05)" />)}
         <path d={vlak} fill="url(#fv-vlak)" />
+        <path d={band} fill="rgba(188,255,47,0.09)" stroke="rgba(188,255,47,0.22)" strokeWidth="1" strokeDasharray="3 4" />
         {LIJNEN.map((l, k) => <path key={k} d={pad(l.w)} fill="none" stroke={l.c} strokeWidth={l.hoofd ? 2.5 : 1.5} strokeLinecap="round" strokeLinejoin="round" />)}
         <circle cx={x(4)} cy={y(47)} r="5" fill="#bcff2f" />
         <circle cx={x(4)} cy={y(47)} r="11" fill="#bcff2f" opacity="0.15" />
@@ -175,10 +181,10 @@ export function PaginaIdee() {
 }
 
 const KOLOMMEN = [
-  { maand: 'Oktober', n: 5, kaarten: [['Hybride warmtepomp in Utrecht', 'oranje'], ['Warmtepomp in een jaren-30-woning', 'geel'], ['Hybride warmtepomp in Houten', 'lime']] },
-  { maand: 'November', n: 5, kaarten: [['ISDE of energiebespaarlening?', 'blauw'], ['Waar plaats je de buitenunit?', 'blauw'], ['Hybride warmtepomp in Zeist', 'blauw']] },
-  { maand: 'December', n: 4, kaarten: [['Warmtepomp en thuisbatterij', 'grijs'], ['Hoeveel geluid maakt een warmtepomp?', 'grijs']] },
-  { maand: 'Januari', n: 2, kaarten: [['Cv-onderhoud in IJsselstein', 'grijs']] },
+  { maand: 'Oktober', n: 5, kaarten: [['Hybride warmtepomp in Utrecht', 'oranje'], ['Warmtepomp in een jaren-30-woning', 'geel'], ['Hybride warmtepomp in Houten', 'lime'], ['Wat kost een warmtepomp met installatie?', 'blauw'], ['Warmtepomp of cv-ketel vervangen?', 'blauw']] },
+  { maand: 'November', n: 5, kaarten: [['ISDE of energiebespaarlening?', 'blauw'], ['Waar plaats je de buitenunit?', 'blauw'], ['Hybride warmtepomp in Zeist', 'blauw'], ['Subsidie voor een warmtepomp', 'blauw'], ['Warmtepomp in een rijtjeshuis', 'blauw']] },
+  { maand: 'December', n: 4, kaarten: [['Warmtepomp en thuisbatterij', 'grijs'], ['Hoeveel geluid maakt een warmtepomp?', 'grijs'], ['Onderhoud van een warmtepomp', 'grijs'], ['Warmtepomp in een appartement', 'grijs']] },
+  { maand: 'Januari', n: 2, kaarten: [['Cv-onderhoud in IJsselstein', 'grijs'], ['Hybride warmtepomp in Nieuwegein', 'grijs']] },
 ] as const
 
 export function ContentplanBord() {
@@ -296,6 +302,7 @@ export function Hermeting() {
           <strong>{n}/8</strong>
         </div>
       ))}
+      <div className="fv-re-verdict"><Chip tone="lime" dot>Na 28 dagen: gestegen, buiten de marge</Chip></div>
     </div>
   )
 }
@@ -317,6 +324,11 @@ export function Zoekverkeer() {
 /* ── Rapportage ───────────────────────────────────────────────────────────── */
 
 export function Maandverslag() {
+  const paginas = [
+    ['Warmtepomp in een jaren-30-woning', 'Live op 12 september', 'lime', 'Gestegen'],
+    ['Hybride warmtepomp in Houten', 'Live op 18 september', 'grijs', 'Nog te vroeg'],
+    ['Warmtepomp en thuisbatterij', 'Live op 25 september', 'grijs', 'Gelijk'],
+  ] as const
   return (
     <div className="fv-surface fv-report">
       <div className="fv-report-head">
@@ -328,6 +340,16 @@ export function Maandverslag() {
         <span><em>Pagina&apos;s live</em><strong>5</strong></span>
         <span><em>Klikken uit Google</em><strong>1.204</strong><i className="fv-up">↑ 68%</i></span>
       </div>
+      <div className="fv-report-list">
+        <Mono>Pagina&apos;s die live gingen</Mono>
+        {paginas.map(([t, d, tone, oordeel]) => (
+          <div key={t} className="fv-report-row">
+            <span className="fv-report-t"><strong>{t}</strong><em>{d}</em></span>
+            <Chip tone={tone} dot>{oordeel}</Chip>
+          </div>
+        ))}
+      </div>
+      <span className="fv-muted fv-small">Volgende maand: 5 pagina&apos;s gepland, de eerste gaat op 8 oktober live.</span>
     </div>
   )
 }
@@ -377,6 +399,248 @@ export function Kosten() {
       <span className="fv-muted">Oktober</span>
       <span className="fv-cost-top"><strong>€ 46</strong><span className="fv-muted">van € 250</span></span>
       <div className="fv-cost-bar"><i style={{ width: '19%' }} /><b style={{ left: '100%' }} /></div>
+    </div>
+  )
+}
+
+
+/* ── Nieuw voor de pagina Werkwijze ───────────────────────────────────────── */
+
+/** Het scherm Openstaande taken: wat op jou wacht en de vijf stappen van deze maand, met een venster Meldingen erachter. */
+const OT_MENU = [
+  { kop: 'Overzicht', items: [{ i: 'taken', l: 'Openstaande taken', n: 4, aan: true }] },
+  { kop: 'Strategie', items: [{ i: 'plan', l: 'Contentplan' }, { i: 'vraag', l: 'Openstaande vragen', n: 2 }, { i: 'boek', l: 'Bibliotheek' }] },
+  { kop: 'Resultaten', items: [{ i: 'grafiek', l: 'Zichtbaarheid in AI' }, { i: 'zoek', l: 'Zoekverkeer' }] },
+  { kop: 'Mijn bedrijf', items: [{ i: 'merk', l: 'Merkdossier' }, { i: 'feit', l: 'Feiten en kennis' }] },
+] as const
+
+const OT_STAPPEN = [
+  { l: 'Meten', s: '1 okt', st: 'done', wie: '' },
+  { l: 'Plannen', s: "5 pagina's", st: 'done', wie: '' },
+  { l: 'Schrijven', s: '3 van 5', st: 'now', wie: 'Klant is aan zet' },
+  { l: 'Publiceren', s: '1 pagina', st: 'todo', wie: 'Jij bent aan zet' },
+  { l: 'Hermeten', s: '', st: 'todo', wie: '' },
+] as const
+
+const OT_MELDINGEN = [
+  { t: 'Pagina klaar voor akkoord', s: 'Warmtepomp in een jaren-30-woning', d: '10 min' },
+  { t: 'Antwoord ontvangen', s: 'Pieter Lindeman beantwoordde een vraag', d: '2 uur' },
+  { t: 'Meting klaar', s: 'Zichtbaarheid in AI: 47%', d: 'gisteren' },
+  { t: 'Pagina live', s: 'Hybride warmtepomp in Zeist, controle geslaagd', d: '2 dagen' },
+  { t: 'Nameting klaar', s: 'Warmtepomp en thuisbatterij: gestegen', d: '4 dagen' },
+] as const
+
+export function OpenstaandeTaken() {
+  return (
+    <div className="ot-comp">
+      <div className="ot-win ot-back">
+        <div className="ot-bar"><span className="ot-crumbs"><Icon naam="taken" size={13} /><span className="ot-crumb-now">Meldingen</span></span><span className="fv-muted">Alle bedrijven</span></div>
+        <div className="ot-notes">
+          {OT_MELDINGEN.map((m) => (
+            <div key={m.t} className="ot-note">
+              <span className="fv-stip" data-tone="lime" />
+              <span className="ot-note-t"><strong>{m.t}</strong><em>{m.s}</em></span>
+              <span className="ot-note-d">{m.d}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="ot-win ot-front">
+        <aside className="ot-side">
+          <div className="ot-side-top"><Logo size={18} /><span>Bureau Noordwind</span></div>
+          {OT_MENU.map((g) => (
+            <div key={g.kop} className="ot-side-group">
+              <span className="ot-side-kop">{g.kop}</span>
+              {g.items.map((it) => (
+                <span key={it.l} className="ot-side-item" data-on={'aan' in it || undefined}>
+                  <Icon naam={it.i} />{it.l}{'n' in it ? <em>{it.n}</em> : null}
+                </span>
+              ))}
+            </div>
+          ))}
+        </aside>
+        <div className="ot-main">
+          <div className="ot-bar">
+            <span className="ot-crumbs"><span>Lindeman Warmte</span><span className="ot-sep">›</span><span className="ot-crumb-now">Openstaande taken</span></span>
+            <Knop klein><Icon naam="pdf" size={13} />Maandverslag</Knop>
+          </div>
+          <div className="ot-body">
+            <div className="ot-head">
+              <span className="ot-title">Lindeman Warmte</span>
+              <span className="fv-muted">Laatste meting 1 oktober · volgende meting 1 november</span>
+            </div>
+
+            <div className="ot-block">
+              <Mono>Wat op jou wacht</Mono>
+              <div className="ot-task">
+                <span className="fv-task-icon"><Icon naam="vraag" /></span>
+                <span className="ot-task-t"><strong>2 vragen bij de klant</strong><em>Over hybride warmtepompen, daarna schrijft ORBIT ENGINE</em></span>
+                <Chip tone="oranje" dot>Wacht op klant</Chip>
+                <Knop primair klein>Bekijk de vragen</Knop>
+              </div>
+              <div className="ot-task">
+                <span className="fv-task-icon"><Icon naam="tekst" /></span>
+                <span className="ot-task-t"><strong>1 tekst om na te kijken</strong><em>Jaren-30-woning, 1 gele zin</em></span>
+                <Chip tone="geel" dot>Nakijken</Chip>
+                <Knop klein>Open de tekst</Knop>
+              </div>
+              <div className="ot-task">
+                <span className="fv-task-icon"><Icon naam="wereld" /></span>
+                <span className="ot-task-t"><strong>1 pagina om te plaatsen</strong><em>Hybride warmtepomp in Houten</em></span>
+                <Chip tone="lime" dot>Plaatsen</Chip>
+                <Knop klein>Meld live</Knop>
+              </div>
+            </div>
+
+            <div className="ot-block">
+              <Mono>Deze maand</Mono>
+              <div className="fv-cycle ot-cycle">
+                {OT_STAPPEN.map((st) => (
+                  <div key={st.l} className="fv-cycle-step" data-state={st.st}>
+                    <span className="fv-cycle-dot">{st.st === 'done' && <Icon naam="check" size={12} />}</span>
+                    <span className="fv-cycle-l">{st.l}</span>
+                    <span className="fv-cycle-s">{st.s}</span>
+                    <span className="ot-wie">{st.wie}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/** De lijst Dit bedrijf inrichten: elke stap vinkt zichzelf af. */
+export function DitBedrijfInrichten() {
+  const stappen = [
+    ['Sleutels ingevuld', true],
+    ['Onderzoek klaar', true],
+    ['Merkdossier nagelopen', true],
+    ['Kennismakingsgesprek vastgelegd', true],
+    ['Eerste onderwerp bevestigd', true],
+    ['Elke maand meten gekozen', false],
+    ['Search Console gekoppeld', false],
+    ['Contentplan opgesteld', false],
+  ] as const
+  return (
+    <div className="fv-surface fv-setup">
+      <div className="fv-q-head"><span>Dit bedrijf inrichten</span><span className="fv-muted">5 van 8</span></div>
+      <div className="fv-progress"><i style={{ width: '62%' }} /></div>
+      {stappen.map(([t, klaar]) => (
+        <div key={t} className="fv-q" data-done={klaar || undefined}>
+          {klaar ? <Icon naam="check" size={13} /> : <span className="fv-q-open" />}{t}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Het kennismakingsgesprek: wat een website niet vertelt, stuurt de kansen. */
+export function Kennismakingsgesprek() {
+  return (
+    <div className="fv-surface fv-talk">
+      <div className="fv-q-head"><span>Kennismakingsgesprek</span><Chip tone="lime" dot>Vastgelegd</Chip></div>
+      <div className="fv-voice-row"><span>Groeidoel</span><span className="fv-talk-v">Meer aanvragen voor hybride warmtepompen</span></div>
+      <div className="fv-voice-row"><span>Voorrang</span><span className="fv-tags"><Chip>Hybride warmtepomp</Chip></span></div>
+      <div className="fv-voice-row"><span>Nieuwe regio</span><span className="fv-tags"><Chip tone="blauw">Amersfoort</Chip></span></div>
+      <div className="fv-voice-row"><span>Niet meer</span><span className="fv-tags"><span className="fv-chip fv-strike">Airco&apos;s</span></span></div>
+      <span className="fv-muted fv-small">Kansen die het groeidoel raken, staan bovenaan.</span>
+    </div>
+  )
+}
+
+/** De dertig AI-vragen van een onderwerp, verdeeld over de klantreis. */
+export function VragenKlantreis() {
+  const fases = [
+    ['Oriëntatie', '10', 'Wat is het verschil tussen een hybride en een volledig elektrische warmtepomp?'],
+    ['Overweging', '10', 'Welke installateur in Utrecht raad je aan voor een hybride warmtepomp?'],
+    ['Beslissing', '10', 'Wat kost een hybride warmtepomp inclusief installatie in Utrecht?'],
+  ] as const
+  return (
+    <div className="fv-surface fv-journey">
+      <div className="fv-q-head"><span>Hybride warmtepomp</span><span className="fv-muted">30 AI-vragen</span></div>
+      {fases.map(([f, n, q]) => (
+        <div key={f} className="fv-journey-row">
+          <span className="fv-journey-f"><Chip tone={f === 'Beslissing' ? 'lime' : 'grijs'}>{f}</Chip><em>{n} vragen</em></span>
+          <span className="fv-journey-q">{q}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Een cijfer met onzekerheidsmarge en het aantal vragen dat meetelt. */
+export function CijferMetMarge() {
+  return (
+    <div className="fv-surface fv-margin">
+      <span className="fv-muted">Zichtbaarheid in AI</span>
+      <span className="fv-margin-num">47%<b>± 10</b></span>
+      <div className="fv-margin-track" aria-hidden="true">
+        <span className="fv-margin-band" style={{ left: '37%', width: '20%' }} />
+        <span className="fv-margin-dot" style={{ left: '47%' }} />
+      </div>
+      <div className="fv-margin-scale"><span>0</span><span>50</span><span>100</span></div>
+      <div className="fv-row"><Chip>Telt mee: 42 van 90 vragen</Chip><Chip tone="lime" dot>3 rondes samengevoegd</Chip></div>
+      <span className="fv-muted fv-small">Een verschil binnen de marge is toeval.</span>
+    </div>
+  )
+}
+
+/** De publicatiecontrole: de tekst wordt op het adres teruggezocht. */
+export function Publicatiecontrole() {
+  return (
+    <div className="fv-surface fv-verify">
+      <div className="fv-q-head"><span>Hybride warmtepomp in Zeist</span><Chip tone="lime" dot>Live gecontroleerd</Chip></div>
+      <span className="fv-muted fv-small fv-url">lindeman-warmte.example/hybride-warmtepomp-zeist</span>
+      <div className="fv-q" data-done><Icon naam="check" size={13} />Pagina gevonden</div>
+      <div className="fv-q" data-done><Icon naam="check" size={13} />Tekst teruggevonden op de pagina</div>
+      <div className="fv-q" data-done><Icon naam="check" size={13} />Nameting na 14 en 28 dagen ingepland</div>
+      <span className="fv-verify-foot"><Icon naam="slot" size={12} />Niet gevonden? Nieuwe poging over een uur, of bevestig zelf met &quot;Hij staat er echt&quot;.</span>
+    </div>
+  )
+}
+
+
+/** Een opgeleverde pagina: de tekst links, wat er bij hoort rechts. */
+export function PaginaScherm() {
+  const onderdelen = [
+    ['Titel', 'Hybride warmtepomp laten installeren in Utrecht'],
+    ['Metatitel', '58 tekens, binnen de limiet'],
+    ['Omschrijving', 'Wat kost een hybride warmtepomp en hoe snel staat hij er?'],
+    ['Veelgestelde vragen', '4 vragen met antwoord'],
+    ['Gestructureerde gegevens', 'JSON-LD, klaar om te plakken'],
+    ['Interne links', '3 naar deze pagina, 2 vanaf deze pagina'],
+  ] as const
+  return (
+    <div className="ps-win">
+      <div className="ot-bar">
+        <span className="ot-crumbs"><span>Lindeman Warmte</span><span className="ot-sep">›</span><span>Bibliotheek</span><span className="ot-sep">›</span><span className="ot-crumb-now">Hybride warmtepomp laten installeren</span></span>
+        <Chip tone="geel" dot>Wacht op goedkeuring</Chip>
+      </div>
+      <div className="ps-body">
+        <article className="ps-doc">
+          <span className="ps-h1">Hybride warmtepomp laten installeren in Utrecht</span>
+          <span className="ps-h2">Hoe de installatie verloopt</span>
+          <p>
+            De installatie zelf duurt bij ons{' '}
+            <span className="fv-answer-mark">één werkdag<span className="fv-tip"><Icon naam="vraag" size={12} />Antwoord van Pieter Lindeman</span></span>. Twee eigen monteurs plaatsen de buitenunit en sluiten hem aan op je bestaande ketel.{' '}
+            <span className="fv-yellow">Na je akkoord plannen we de installatie binnen twee weken in.</span>
+          </p>
+          <span className="ps-h2">Wat kost het?</span>
+          <p>
+            Een hybride warmtepomp kost bij ons <span className="fv-answer-mark">tussen € 4.500 en € 6.500</span>, inclusief montage. Op elke installatie geef je <span className="fv-answer-mark">5 jaar garantie</span>.
+          </p>
+        </article>
+        <aside className="ps-side">
+          <Mono>Bij deze pagina</Mono>
+          {onderdelen.map(([k, v]) => (
+            <div key={k} className="ps-part"><span className="ps-part-k">{k}</span><span className="ps-part-v">{v}</span></div>
+          ))}
+        </aside>
+      </div>
     </div>
   )
 }
