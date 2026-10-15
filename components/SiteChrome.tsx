@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import { Footer } from './Footer'
 import { Header } from './Header'
+import { OpbouwInBeeld } from './OpbouwInBeeld'
 
 // Pagina's zonder header en footer (volledig gecentreerde schermen).
 const kaal = ['/demo']
@@ -15,6 +16,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <Header />
       <main>{children}</main>
       <Footer />
+      <OpbouwInBeeld />
     </>
   )
 }

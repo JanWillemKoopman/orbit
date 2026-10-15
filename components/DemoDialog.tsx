@@ -9,6 +9,13 @@ export function DemoDialog({ open, onClose }: { open: boolean; onClose: () => vo
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
 
+  // Klik je naast de popup of druk je op Escape, dan sluit hij niet (zodat je niet per ongeluk een half
+  // ingevuld formulier kwijtraakt) maar veert hij kort in, zoals de dialogen op linear.app.
+  const veer = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    ref.current?.animate([{ transform: 'none' }, { transform: 'scale(0.98)' }, { transform: 'none' }], { duration: 150, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' })
+  }
+
   useEffect(() => {
     const d = ref.current
     if (!d) return
@@ -26,7 +33,8 @@ export function DemoDialog({ open, onClose }: { open: boolean; onClose: () => vo
       aria-labelledby="demo-titel"
       onClose={onClose}
       // Alleen het kruisje sluit de popup: niet via de achtergrond en niet via Escape.
-      onCancel={(e) => e.preventDefault()}
+      onCancel={(e) => { e.preventDefault(); veer() }}
+      onClick={(e) => { if (e.target === ref.current) veer() }}
     >
       {open && (
         <div className="demo-dialog-body">

@@ -156,12 +156,14 @@
   width: 100%; padding: 10px 12px; border-radius: 8px;
   background: var(--bg-level-2); border: 1px solid var(--border-translucent);
   color: var(--text-primary); font: inherit; font-size: 15px;
-  transition: border-color var(--speed-quick), background var(--speed-quick);
+  /* Bij focus kleurt de rand rustig naar het accent in plaats van te verspringen */
+  transition: border-color var(--speed-regular) var(--ease-out-quad), background var(--speed-regular) var(--ease-out-quad);
 }
 .field textarea { min-height: 140px; resize: vertical; line-height: 1.5; }
 @media (hover: hover) { .field :is(input, textarea, select):hover { border-color: var(--border-strong); } }
 .field :is(input, textarea, select):focus { outline: none; border-color: var(--accent); background: var(--bg-level-3); }
 .field ::placeholder { color: var(--text-quaternary); }
+@media (prefers-reduced-motion: reduce) { .field :is(input, textarea, select), .contact-field :is(input, select, textarea) { transition: none; } }
 .form-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 4px; }
 .form-note { font-size: 13px; color: var(--text-quaternary); }
 .form-success { font-size: 14px; color: var(--accent); }
@@ -188,7 +190,8 @@
   width: 100%; height: 50px; padding: 0 14px; border-radius: 10px;
   background: var(--bg-level-2); border: 1px solid var(--border-translucent);
   color: var(--text-primary); font: inherit; font-size: 16px;
-  transition: border-color var(--speed-quick), background var(--speed-quick);
+  /* Bij focus kleurt de rand rustig naar het accent in plaats van te verspringen */
+  transition: border-color var(--speed-regular) var(--ease-out-quad), background var(--speed-regular) var(--ease-out-quad);
 }
 .contact-field textarea { height: 132px; padding: 14px; resize: vertical; line-height: 1.5; }
 @media (hover: hover) { .contact-field :is(input, select, textarea):hover { border-color: var(--border-strong); } }

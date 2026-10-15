@@ -92,6 +92,10 @@ img, svg { display: block; max-width: 100%; }
 }
 
 .dimmed { color: var(--text-tertiary); transition: color var(--speed-quick); }
+/* Pijltje achter een link schuift bij hover een stukje mee naar rechts, zoals op linear.app */
+.pijl { display: inline-block; transition: transform 0.2s var(--ease-out-quad); }
+@media (hover: hover) { a:hover .pijl { transform: translateX(3px); } }
+@media (prefers-reduced-motion: reduce) { .pijl, .feature-plus { transition: none; } }
 @media (hover: hover) { .dimmed:hover { color: var(--text-primary); } }
 
 /* Generated artwork fills its frame */
@@ -165,6 +169,8 @@ img, svg { display: block; max-width: 100%; }
 /* Uitklapmenu, maten en kleuren van "Product" op linear.app */
 .site-header .container { position: relative; }
 .nav-menu { position: static; }
+/* Omhult de menuknoppen en het gedeelde paneel (NavMenus), zonder zelf een vak in de layout te zijn */
+.nav-menus { display: contents; }
 .nav-menu-trigger { font: inherit; font-size: 13px; cursor: default; }
 .nav-menu-trigger[data-actief] { color: var(--text-primary); }
 .nav-menu-trigger[aria-expanded='true'] { color: var(--text-primary); background: rgba(255, 255, 255, 0.08); }
@@ -232,7 +238,7 @@ img, svg { display: block; max-width: 100%; }
 .mobile-menu { display: none; }
 
 @media (max-width: 768px) {
-  .nav-list, .nav-divider { display: none; }
+  .nav-list, .nav-divider, .nav-menu-popup { display: none; }
   .menu-toggle { display: inline-flex; }
   /* Met open menu een dichte header, zodat er niets van de pagina doorheen schemert */
   .site-header { background: linear-gradient(180deg, rgba(8, 9, 10, 0.86) 0%, rgba(8, 9, 10, 0.8) 100%); }
@@ -265,6 +271,22 @@ img, svg { display: block; max-width: 100%; }
 }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+/* Een lichtglans schuift over tekst die op iets wacht, zoals "Versturen…" (naar linear.app). De band is
+   een doorschijnende versie van de tekstkleur, zodat het op elke knopkleur werkt. */
+.glans {
+  background: linear-gradient(90deg, currentColor 40%, color-mix(in srgb, currentColor 35%, transparent) 50%, currentColor 60%) 150% 0 / 300% 100%;
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  animation: glans 1.4s linear infinite;
+}
+@keyframes glans { from { background-position: 150% 0; } to { background-position: -50% 0; } }
+@media (prefers-reduced-motion: reduce) { .glans { animation: none; } }
+/* Zoekresultaten in de kennisbank schuiven na elkaar binnen (KennisbankOverzicht); vanaf de negende tegelijk */
+.schuif-in { animation: schuif-in var(--speed-regular) var(--ease-out-quad) both; animation-delay: calc(min(var(--i, 0), 8) * 20ms); }
+@keyframes schuif-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .schuif-in { animation: none; } }
+/* Paginawissel (app/template.tsx): alleen opacity, zodat vaste en sticky elementen niet verschuiven */
+.pagina-in { animation: fade-in 0.2s var(--ease-out-quad); }
+@media (prefers-reduced-motion: reduce) { .pagina-in { animation: none; } }
 @keyframes mobile-menu-item-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .menu-toggle-lijn { transition: none; }
@@ -334,6 +356,29 @@ img, svg { display: block; max-width: 100%; }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
 .card-image .art svg { transition: transform 0.6s var(--ease-out-expo); }
 @media (hover: hover) { .post-card:hover .card-image .art svg { transform: scale(1.02); } }
+/* Afbeeldingen verschijnen met een zachte veeg van links naar rechts zodra ze in beeld komen, zoals
+   op linear.app (data-opbouw, zie components/OpbouwInBeeld.tsx) */
+[data-opbouw='wacht'] > :is(.art, img) {
+  opacity: 0;
+  mask: linear-gradient(to right, #000 25%, rgba(0, 0, 0, 0.9) 50%, transparent) 150% 0 / 400% no-repeat;
+  -webkit-mask: linear-gradient(to right, #000 25%, rgba(0, 0, 0, 0.9) 50%, transparent) 150% 0 / 400% no-repeat;
+}
+[data-opbouw='klaar'] > :is(.art, img) { animation: veeg-in 0.8s var(--ease-out-quad) both; }
+@keyframes veeg-in {
+  from {
+    opacity: 0;
+    mask: linear-gradient(to right, #000 25%, rgba(0, 0, 0, 0.9) 50%, transparent) 150% 0 / 400% no-repeat;
+    -webkit-mask: linear-gradient(to right, #000 25%, rgba(0, 0, 0, 0.9) 50%, transparent) 150% 0 / 400% no-repeat;
+  }
+  to {
+    opacity: 1;
+    mask: linear-gradient(to right, #000 25%, rgba(0, 0, 0, 0.9) 50%, transparent) 0 0 / 400% no-repeat;
+    -webkit-mask: linear-gradient(to right, #000 25%, rgba(0, 0, 0, 0.9) 50%, transparent) 0 0 / 400% no-repeat;
+  }
+}
+/* Beelden in kaarten lichten bij hover iets op, zoals de kaarten op linear.app */
+.card-image, .press-image { transition: filter 0.16s var(--ease-out-quad); }
+@media (hover: hover) { .post-card:hover .card-image, .press-card:hover .press-image { filter: brightness(1.08); } }
 .card-title {
   margin-top: 24px;
   font-size: 20px; line-height: 1.33; font-weight: var(--weight-medium); letter-spacing: -0.012em;

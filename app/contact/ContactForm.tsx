@@ -40,7 +40,7 @@ export function ContactForm({ email }: { email: string }) {
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="demo-honey" />
       {status === 'error' && <p className="demo-error" role="alert">Versturen is niet gelukt. Probeer het later opnieuw.</p>}
       <div className="contact-actions">
-        <button type="submit" className="btn btn-lg btn-invert" disabled={status === 'sending'}>{status === 'sending' ? 'Versturen…' : 'Bericht versturen'}</button>
+        <button type="submit" className="btn btn-lg btn-invert" disabled={status === 'sending'}>{status === 'sending' ? <span className="glans">Versturen…</span> : 'Bericht versturen'}</button>
         <span className="contact-mail">Je kunt ons ook mailen op <a href={`mailto:${email}`}>{email}</a></span>
       </div>
     </form>

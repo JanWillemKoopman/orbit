@@ -5,7 +5,7 @@ import { Art } from './Art'
 export function PressCard({ item }: { item: PressItem }) {
   return (
     <a href={item.href} className="press-card" target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
-      <div className="press-image">
+      <div className="press-image" data-opbouw>
         <span className="press-icon" aria-hidden="true"><i style={{ background: item.accent }} /></span>
         <Art src={item.cover} />
       </div>

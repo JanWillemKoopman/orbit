@@ -64,7 +64,7 @@ export function ZichtbaarheidGrafiek() {
   const onder = [...hoofd].map((v, i) => `L${x(i)},${y(v - MARGE[i])}`).reverse().join(' ')
   const band = `${boven} ${onder} Z`
   return (
-    <div className="fv-surface fv-vis">
+    <div className="fv-surface fv-vis" data-opbouw>
       <div className="fv-vis-head">
         <span className="fv-muted">Hybride warmtepomp · zichtbaarheid in AI</span>
         <span className="fv-vis-num">47%<b>± 10</b><em>↑ 30 sinds juni</em></span>
@@ -77,11 +77,13 @@ export function ZichtbaarheidGrafiek() {
           </linearGradient>
         </defs>
         {MAANDEN.map((m, i) => <line key={m} x1={x(i)} x2={x(i)} y1={0} y2={H} stroke="rgba(255,255,255,0.05)" />)}
-        <path d={vlak} fill="url(#fv-vlak)" />
-        <path d={band} fill="rgba(188,255,47,0.09)" stroke="rgba(188,255,47,0.22)" strokeWidth="1" strokeDasharray="3 4" />
-        {LIJNEN.map((l, k) => <path key={k} d={pad(l.w)} fill="none" stroke={l.c} strokeWidth={l.hoofd ? 2.5 : 1.5} strokeLinecap="round" strokeLinejoin="round" />)}
-        <circle cx={x(4)} cy={y(47)} r="5" fill="#bcff2f" />
-        <circle cx={x(4)} cy={y(47)} r="11" fill="#bcff2f" opacity="0.15" />
+        <path className="fv-vlak" d={vlak} fill="url(#fv-vlak)" />
+        <path className="fv-vlak" d={band} fill="rgba(188,255,47,0.09)" stroke="rgba(188,255,47,0.22)" strokeWidth="1" strokeDasharray="3 4" />
+        {LIJNEN.map((l, k) => <path key={k} className="fv-lijn" pathLength={1} style={{ '--i': k } as React.CSSProperties} d={pad(l.w)} fill="none" stroke={l.c} strokeWidth={l.hoofd ? 2.5 : 1.5} strokeLinecap="round" strokeLinejoin="round" />)}
+        <g className="fv-vis-punt">
+          <circle cx={x(4)} cy={y(47)} r="5" fill="#bcff2f" />
+          <circle cx={x(4)} cy={y(47)} r="11" fill="#bcff2f" opacity="0.15" />
+        </g>
         {MAANDEN.map((m, i) => <text key={m} x={x(i)} y={H + 30} fill="#62666d" fontSize="13" textAnchor="middle">{m}</text>)}
       </svg>
     </div>
@@ -110,9 +112,9 @@ export function AandeelGenoemd() {
     { n: 'KlimaatPro', v: 29 },
   ]
   return (
-    <div className="fv-surface fv-share">
-      {rijen.map((r) => (
-        <div key={r.n} className="fv-share-row" data-eigen={r.eigen || undefined}>
+    <div className="fv-surface fv-share" data-opbouw>
+      {rijen.map((r, i) => (
+        <div key={r.n} className="fv-share-row" data-eigen={r.eigen || undefined} style={{ '--i': i } as React.CSSProperties}>
           <span className="fv-share-name">{r.n}</span>
           <span className="fv-share-bar"><i style={{ width: `${r.v}%` }} /></span>
           <span className="fv-share-val">{r.v}%</span>
@@ -294,11 +296,11 @@ export function Publiceren() {
 export function Hermeting() {
   const rijen = [['Vóór', 0], ['14 dagen', 3], ['28 dagen', 5]] as const
   return (
-    <div className="fv-remeasure">
-      {rijen.map(([l, n]) => (
-        <div key={l} className="fv-re-row">
+    <div className="fv-remeasure" data-opbouw>
+      {rijen.map(([l, n], r) => (
+        <div key={l} className="fv-re-row" style={{ '--r': r } as React.CSSProperties}>
           <span className="fv-re-l">{l}</span>
-          <span className="fv-dots">{Array.from({ length: 8 }, (_, i) => <i key={i} data-on={i < n || undefined} />)}</span>
+          <span className="fv-dots">{Array.from({ length: 8 }, (_, i) => <i key={i} data-on={i < n || undefined} style={{ '--i': i } as React.CSSProperties} />)}</span>
           <strong>{n}/8</strong>
         </div>
       ))}
@@ -312,9 +314,9 @@ export function Zoekverkeer() {
   const max = Math.max(...dagen)
   return (
     <div className="fv-traffic">
-      <div className="fv-bars">
+      <div className="fv-bars" data-opbouw>
         <span className="fv-bars-live"><Mono>Live</Mono></span>
-        {dagen.map((v, i) => <i key={i} style={{ height: `${Math.max(4, (v / max) * 100)}%` }} />)}
+        {dagen.map((v, i) => <i key={i} style={{ height: `${Math.max(4, (v / max) * 100)}%`, '--i': i } as React.CSSProperties} />)}
       </div>
       <div className="fv-traffic-n"><strong>262</strong> klikken sinds publicatie</div>
     </div>

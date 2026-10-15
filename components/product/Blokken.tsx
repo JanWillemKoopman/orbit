@@ -132,7 +132,7 @@ export function Intro({ id, titel, tekst, link, label }: { id: string; titel: st
         {link && (
           <Link href={link.href} className="home-link">
             {link.label}
-            <span aria-hidden="true">→</span>
+            <span className="pijl" aria-hidden="true">→</span>
           </Link>
         )}
       </div>

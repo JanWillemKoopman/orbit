@@ -8,6 +8,7 @@ import { faq, hero, loop, prefooter, result, statement, story, uitgelicht, uitge
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
+import { CitaatScroll } from '@/components/home/CitaatScroll'
 import { Faq } from '@/components/home/Faq'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
 import { HeroMaand } from '@/components/product/Visuals'
@@ -41,7 +42,7 @@ export default function HomePage() {
           <Link href={`/product-updates#${latest.slug}`} className="home-new-link">
             <span className="home-new blur-in" style={{ '--i': 3 } as React.CSSProperties}>
               <span className="home-new-label">Nieuw</span>
-              <span className="home-new-title">{latest.title} →</span>
+              <span className="home-new-title">{latest.title} <span className="pijl" aria-hidden="true">→</span></span>
             </span>
           </Link>
         </div>
@@ -57,9 +58,7 @@ export default function HomePage() {
       <div className="container">
         <figure className="home-quote">
           <blockquote className="home-statement">
-            <p>
-              <strong><span className="home-quote-mark" aria-hidden="true">“</span>{statement.strong}</strong> {statement.rest}<span aria-hidden="true">”</span>
-            </p>
+            <CitaatScroll strong={statement.strong} rest={statement.rest} />
           </blockquote>
           <figcaption className="home-quote-author">
             <img src={statement.author.photo} alt="" width={48} height={48} />
@@ -138,7 +137,7 @@ export default function HomePage() {
               </div>
               <div className="feature-description story-column">
                 <p>{story.paragraphs[1]}</p>
-                <Link href={story.link.href} className="home-link story-link">{story.link.label} <span aria-hidden="true">→</span></Link>
+                <Link href={story.link.href} className="home-link story-link">{story.link.label} <span className="pijl" aria-hidden="true">→</span></Link>
               </div>
             </div>
           </div>

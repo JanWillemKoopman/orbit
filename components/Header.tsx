@@ -7,7 +7,7 @@ import type { CSSProperties } from 'react'
 import { mainNav, mobileNav, site } from '@/lib/site'
 import { DemoDialog } from './DemoDialog'
 import { Logo } from './Logo'
-import { NavMenu } from './NavMenu'
+import { NavMenu, NavMenus } from './NavMenu'
 
 // Zo lang duurt het uitfaden van het mobiele menu; daarna gaat het echt dicht (hidden).
 const SLUIT_DUUR = 160
@@ -47,19 +47,21 @@ export function Header() {
           </Link>
 
           <nav className="header-right" aria-label="Hoofdmenu">
-            <ul className="nav-list">
-              {mainNav.map((item) =>
-                'items' in item ? (
-                  <NavMenu key={item.label} label={item.label} items={item.items} actief={item.items.some((i) => isActive(pathname, i.href))} />
-                ) : (
-                  <li key={item.label}>
-                    <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) ? 'page' : undefined}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ),
-              )}
-            </ul>
+            <NavMenus>
+              <ul className="nav-list">
+                {mainNav.map((item) =>
+                  'items' in item ? (
+                    <NavMenu key={item.label} label={item.label} items={item.items} actief={item.items.some((i) => isActive(pathname, i.href))} />
+                  ) : (
+                    <li key={item.label}>
+                      <Link href={item.href} className="nav-link" aria-current={isActive(pathname, item.href) ? 'page' : undefined}>
+                        {item.label}
+                      </Link>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </NavMenus>
             <div className="nav-divider" />
             <div className="header-actions">
               <a href={site.loginUrl} className="nav-link header-contact">Log in</a>

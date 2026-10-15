@@ -161,6 +161,8 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
     },
 
     teken(tijd) {
+      // Een sectie zonder maat (nog niet opgemeten tijdens een paginawissel) valt niets te tekenen.
+      if (!width || !height) return
       const t = (tijd / 1000) % LOOP
       // Het gas is het zwaarste deel; het verandert traag, dus om het andere frame is genoeg.
       if (frame++ % 2 === 0) tekenGas(t / LOOP)

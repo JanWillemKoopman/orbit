@@ -12,7 +12,7 @@ export function ArticleView({ post, terug, hero = true }: { post: Post; terug: {
       </Link>
       <h1 className="article-title">{post.title}</h1>
       {hero && (
-        <div className="article-hero">
+        <div className="article-hero" data-opbouw>
           <Art src={post.cover} alt="" priority />
         </div>
       )}

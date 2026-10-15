@@ -466,3 +466,28 @@
 .fv-report-t { display: flex; flex-direction: column; }
 .fv-report-t strong { font-weight: var(--weight-medium); color: var(--text-primary); }
 .fv-report-t em { font-style: normal; font-size: 13px; color: var(--text-tertiary); }
+
+/* ==========================================================================
+   Opbouw in beeld (components/OpbouwInBeeld.tsx), naar de grafieken op linear.app: staafjes
+   groeien omhoog, balken vullen zich, stippen ploppen op en lijnen tekenen zichzelf.
+   "wacht" = nog niet in beeld, "klaar" = in beeld gekomen.
+   ========================================================================== */
+[data-opbouw='wacht'].fv-bars i { transform: scaleY(0); }
+[data-opbouw='klaar'].fv-bars i { transform-origin: bottom; animation: opbouw-staaf 0.6s var(--ease-out-expo) both; animation-delay: calc(var(--i, 0) * 16ms); }
+@keyframes opbouw-staaf { from { transform: scaleY(0); } to { transform: none; } }
+
+[data-opbouw='wacht'] .fv-share-bar i { transform: scaleX(0); }
+[data-opbouw='klaar'] .fv-share-bar i { transform-origin: left; animation: opbouw-balk 0.8s var(--ease-out-expo) both; animation-delay: calc(var(--i, 0) * 80ms); }
+@keyframes opbouw-balk { from { transform: scaleX(0); } to { transform: none; } }
+
+[data-opbouw='wacht'] .fv-dots i[data-on] { opacity: 0; }
+[data-opbouw='klaar'] .fv-dots i[data-on] { animation: opbouw-stip 0.42s var(--ease-out-quad) both; animation-delay: calc(var(--r, 0) * 180ms + var(--i, 0) * 60ms); }
+@keyframes opbouw-stip { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: none; } }
+
+[data-opbouw='wacht'] .fv-lijn { stroke-dasharray: 1; stroke-dashoffset: 1; }
+[data-opbouw='klaar'] .fv-lijn { stroke-dasharray: 1; animation: opbouw-lijn 1.2s var(--ease-out-expo) both; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes opbouw-lijn { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+[data-opbouw='wacht'] .fv-vlak, [data-opbouw='wacht'] .fv-vis-punt { opacity: 0; }
+[data-opbouw='klaar'] .fv-vlak { animation: fade-in 0.8s var(--ease-out-quad) 0.35s both; }
+[data-opbouw='klaar'] .fv-vis-punt { transform-box: fill-box; transform-origin: center; animation: opbouw-stip 0.42s var(--ease-out-quad) 0.9s both; }
+

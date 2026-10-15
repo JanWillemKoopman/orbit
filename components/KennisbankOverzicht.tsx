@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
 
 type Item = { slug: string; title: string; description: string }
 
@@ -44,9 +45,10 @@ export function KennisbankOverzicht({ items }: { items: Item[] }) {
 
       <h2 className="kb-title">Helponderwerpen</h2>
       {shown.length ? (
-        <ul className="kb-grid">
-          {visible.map((it) => (
-            <li key={it.slug}>
+        // Een nieuwe zoekterm geeft een nieuwe lijst, zodat de kaarten opnieuw binnenschuiven.
+        <ul className="kb-grid" key={query}>
+          {visible.map((it, i) => (
+            <li key={it.slug} className="schuif-in" style={{ '--i': i } as CSSProperties}>
               <Link href={`/kennisbank/${it.slug}`} className="kb-card">
                 <h3>{it.title}</h3>
                 <p>{it.description}</p>

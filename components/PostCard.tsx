@@ -5,7 +5,7 @@ import { Art } from './Art'
 export function PostCard({ post, priority }: { post: PostMeta; priority?: boolean }) {
   return (
     <Link href={`/blog/${post.slug}`} className="post-card">
-      <div className="card-image">
+      <div className="card-image" data-opbouw>
         <Art src={post.cover} priority={priority} />
       </div>
       <h3 className="card-title">{post.title}</h3>
