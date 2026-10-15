@@ -445,11 +445,18 @@
   .rs-step-label { font-size: 10px; }
   .process { padding-bottom: 72px; }
   .home-uitgelicht { margin-top: 72px; }
-  .hu-cell .hu-stage { height: 340px; min-height: 0; }
-  .hu-stage-account .hu-inner { top: 36px; left: 20px; zoom: 0.6; }
-  .hu-cell .hu-stage-ronde { height: 260px; }
+  /* De twee beelden zoals linear.app/ai op 390 px: over de volle breedte met een lijn ertussen, 40 px lucht,
+     een vlak van 273 px waarin het beeld verticaal gecentreerd staat (een hoog beeld begint bovenaan en vervaagt onderin),
+     daaronder het bijschrift */
+  .home-uitgelicht .pd-grid { margin-inline: calc(-1 * var(--page-padding)); border-radius: 0; border-inline: 0; background: var(--bg-primary); }
+  .hu-cell { padding-top: 40px; }
+  .hu-cell .hu-stage, .hu-cell .hu-stage-ronde { height: 273px; min-height: 0; background: none; mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%); }
+  .hu-stage-account .hu-inner { top: 0; left: 24px; zoom: 0.6; }
   .hu-stage-ronde .hu-inner { width: 600px; max-width: none; zoom: 0.52; }
-  .hu-cell .hu-caption { flex-direction: column; gap: 12px; }
+  .hu-cell .hu-caption { flex-direction: column; gap: 12px; padding: 32px 24px 40px; }
+  /* De lijn onder het tweede beeld is meteen de lijn boven de volgende sectie, anders staan er twee met een lege strook ertussen */
+  .home-uitgelicht + .feature { margin-top: 0; }
+  .home-uitgelicht + .feature > .keyline { display: none; }
   .sc-root { margin-top: 56px; margin-inline: -8px; }
   /* Op mobiel een veegbare rij: elk scherm 86% breed, zodat het volgende net in beeld piept. */
   .sc-stage {
