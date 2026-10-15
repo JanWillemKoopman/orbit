@@ -156,15 +156,18 @@
 }
 
 @media (max-width: 640px) {
-  /* Cellen: een venster in leesbare maat, bovenaan, onderin vervaagd ------------------ */
+  /* Cellen: zoals linear.app/ai op 390 px. 40 px lucht, dan een vlak van 273 px waarin het beeld verticaal
+     gecentreerd staat; een beeld dat hoger is begint bovenaan en vervaagt onderin ------------------ */
+  .lp-cel { padding-top: 40px; }
   .lp-cel-stage { height: 273px; }
   .lp-cel-inner {
-    padding: 32px 24px 0;
+    padding: 0 24px;
     -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   }
-  .lp .lp-cel .lp-cel-inner > * { margin-block: 0 auto; zoom: 0.86; filter: saturate(0.65); }
-  .lp .lp-cel-telefoon .lp-cel-inner > * { zoom: 0.72; }
+  .lp .lp-cel .lp-cel-inner > * { margin-block: auto; zoom: 0.86; filter: saturate(0.65); }
+  .lp .lp-cel-telefoon .lp-cel-inner { padding-top: 0; }
+  .lp .lp-cel-telefoon .lp-cel-inner > * { margin-block: 0 auto; zoom: 0.72; }
   /* Van vraag naar pagina: dezelfde drie stappen, smaller, zodat ze in leesbare maat passen */
   .lp .lp-cel .lp-cel-inner > .fv-flow { zoom: 0.86; }
   .lp-cel .fv-node-q, .lp-cel .fv-node-page { width: 112px; }
