@@ -1,4 +1,4 @@
-// Het eindresultaat: één pagina uit de Bibliotheek van ORBIT ENGINE, nagebouwd naar het paginascherm
+// Het eindresultaat: één pagina uit de Bibliotheek van Orbit, nagebouwd naar het paginascherm
 // in de app (strategie/bibliotheek/[paginaId]): terugknop, titel, standbalk, de kaart "Aan zet" en de
 // tekst. Het is dezelfde voorbeeldpagina als in de drie schermen erboven, zodat je ziet waar het
 // antwoord uit Openstaande vragen (de bedragen) op de pagina terechtkomt. Voorbeelddata.

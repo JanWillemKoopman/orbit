@@ -11,7 +11,7 @@ export type { Bijschrift, Verwijzing }
 export const meta = {
   title: 'Beheer',
   description:
-    'ORBIT ENGINE voor online marketingbureaus: al je klanten in één overzicht, collega’s en klanten met de juiste rol, en grip op wat de AI kost. Je gebruikt je eigen sleutels en betaalt alleen je eigen gebruik.',
+    'Orbit voor online marketingbureaus: al je klanten in één overzicht, collega’s en klanten met de juiste rol, en grip op wat de AI kost. Je gebruikt je eigen sleutels en betaalt alleen je eigen gebruik.',
 }
 
 export const hero = {
@@ -42,7 +42,7 @@ export const secties = {
     label: 'Klanten',
     titel: 'Een nieuwe klant staat er in tien minuten.',
     tekst:
-      'Naam en website zijn genoeg. ORBIT ENGINE leest de site, brengt aanbod, doelgroep en concurrenten in kaart en zet een merkdossier klaar. Per bureau leg je vast hoeveel pagina’s een nieuwe klant per maand krijgt.',
+      'Naam en website zijn genoeg. Orbit leest de site, brengt aanbod, doelgroep en concurrenten in kaart en zet een merkdossier klaar. Per bureau leg je vast hoeveel pagina’s een nieuwe klant per maand krijgt.',
     link: { label: 'Wat het onderzoek doet', href: '/ai' },
     beeld: {
       titel: 'Elke klant zijn eigen dossier',
@@ -51,7 +51,7 @@ export const secties = {
     },
     cellen: [
       { titel: 'Naam en website, meer niet', tekst: 'Bij de knop staat wat een onderzoek je bureau eerder gemiddeld kostte, en wat er van de maandlimiet over is.' },
-      { titel: 'Een rondleiding voor je eerste dag', tekst: 'Bij de eerste keer inloggen loopt ORBIT ENGINE de beheerder langs de sleutel, een eerste klant en het werkoverzicht. De uitleg blijft achter het vraagteken op elk scherm.' },
+      { titel: 'Een rondleiding voor je eerste dag', tekst: 'Bij de eerste keer inloggen loopt Orbit de beheerder langs de sleutel, een eerste klant en het werkoverzicht. De uitleg blijft achter het vraagteken op elk scherm.' },
     ] as Bijschrift[],
   },
   team: {
@@ -77,7 +77,7 @@ export const secties = {
     label: 'Kosten',
     titel: 'Weet wat de AI kost, voordat je op de knop drukt.',
     tekst:
-      'Je gebruikt je eigen sleutels en betaalt de AI rechtstreeks. Bij elke betaalde knop staat ongeveer wat het kost, en een maandlimiet stopt nieuw werk. ORBIT ENGINE rekent op wat je bureau eerder betaalde, en doet geen gok.',
+      'Je gebruikt je eigen sleutels en betaalt de AI rechtstreeks. Bij elke betaalde knop staat ongeveer wat het kost, en een maandlimiet stopt nieuw werk. Orbit rekent op wat je bureau eerder betaalde, en doet geen gok.',
     link: { label: 'Wat AI voor je doet', href: '/ai' },
     beeld: {
       titel: 'Eén scherm voor je kosten',
@@ -105,6 +105,6 @@ export const secties = {
 }
 
 export const afsluiter = {
-  title: 'Zet je bureau in ORBIT ENGINE.',
+  title: 'Zet je bureau in Orbit.',
   description: 'Bekijk in een demo hoe het werkoverzicht, de rollen en de kosten werken voor een bureau met jouw aantal klanten.',
 }

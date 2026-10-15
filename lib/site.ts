@@ -35,7 +35,7 @@ export type NavMenuItem = { href: string; label: string; description: string[] }
 export type NavItem = NavLink | { label: string; items: NavMenuItem[] }
 
 export const productMenu: NavMenuItem[] = [
-  { href: '/ai', label: 'AI', description: ['Hoe ORBIT ENGINE AI inzet', 'in elke stap van het werk'] },
+  { href: '/ai', label: 'AI', description: ['Hoe Orbit AI inzet', 'in elke stap van het werk'] },
   { href: '/werkwijze', label: 'Werkwijze', description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
   { href: '/kwaliteit', label: 'Kwaliteit', description: ['Alleen feiten met een bron,', 'nooit een verzonnen belofte'] },
   { href: '/beheer', label: 'Beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
@@ -48,7 +48,7 @@ export const informatieMenu: NavMenuItem[] = [
 ]
 
 export const overOnsMenu: NavMenuItem[] = [
-  { href: '/over', label: 'Over Orbit Engine', description: ['Wie we zijn en waar', 'we voor staan'] },
+  { href: '/over', label: 'Over Orbit', description: ['Wie we zijn en waar', 'we voor staan'] },
   { href: '/contact', label: 'Contact opnemen', description: ['Een vraag of een demo?', 'We reageren binnen één werkdag'] },
 ]
 
@@ -86,7 +86,7 @@ export const footerNav = footerGroepen.map((group) => {
 })
 
 export const footerContact = {
-  company: 'Outer Orbit',
+  company: 'Orbit',
   email: 'go@outerorbit.nl',
   address: ['Pastoor van Liesstraat 7', '5089PN, Haghorst', 'Noord-Brabant, Nederland'],
   phone: '+31-(0)6234567',

@@ -167,7 +167,7 @@ export function AppFrame() {
 
           <aside className="af-panel">
             <div className="af-panel-head">
-              <span className="af-panel-title"><span className="af-engine-logo"><LogoMark size={11} /></span>ORBIT ENGINE</span>
+              <span className="af-panel-title"><span className="af-engine-logo"><LogoMark size={11} /></span>Orbit</span>
               <span className="af-panel-sub">Advies</span>
             </div>
             <div className="af-panel-card">

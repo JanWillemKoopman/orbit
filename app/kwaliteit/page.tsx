@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
   alternates: { canonical: '/kwaliteit' },
-  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/kwaliteit', images: [{ url: '/images/product/og-kwaliteit.png', width: 1200, height: 630 }] },
+  openGraph: { title: `${meta.title} – Orbit`, description: meta.description, url: '/kwaliteit', images: [{ url: '/images/product/og-kwaliteit.png', width: 1200, height: 630 }] },
   twitter: { card: 'summary_large_image', images: ['/images/product/og-kwaliteit.png'] },
 }
 
@@ -41,7 +41,7 @@ export default function KwaliteitPage() {
             <RasterCel b={s.probleem.cellen[0]} alt="Een tekst van een gewone AI-schrijver met drie verzonnen beweringen: installatie binnen 48 uur, 10 jaar garantie en een keurmerk.">
               <V.GewoneAi />
             </RasterCel>
-            <RasterCel b={s.probleem.cellen[1]} alt="Dezelfde tekst in ORBIT ENGINE: twee beweringen met een bron en één gele zin om na te lopen.">
+            <RasterCel b={s.probleem.cellen[1]} alt="Dezelfde tekst in Orbit: twee beweringen met een bron en één gele zin om na te lopen.">
               <V.OrbitTekst />
             </RasterCel>
           </Raster>
@@ -108,7 +108,7 @@ export default function KwaliteitPage() {
         <Sectie id={s.eerlijk.id}>
           <Intro id={s.eerlijk.id} label={s.eerlijk.label} titel={s.eerlijk.titel} tekst={s.eerlijk.tekst} />
           <Raster>
-            <RasterCel b={s.eerlijk.cellen[0]} alt="Wat ORBIT ENGINE controleert: bedragen en prijzen, termijnen en levertijden, garanties en keurmerken, getallen die niet in de bron staan, namen van concurrenten en woorden die je klant niet wil.">
+            <RasterCel b={s.eerlijk.cellen[0]} alt="Wat Orbit controleert: bedragen en prijzen, termijnen en levertijden, garanties en keurmerken, getallen die niet in de bron staan, namen van concurrenten en woorden die je klant niet wil.">
               <V.ControleLijst />
             </RasterCel>
             <RasterCel b={s.eerlijk.cellen[1]} alt="Wat jij beslist: of de toon past bij het merk, of een tekst overtuigt, algemene uitspraken en wanneer een pagina live gaat.">

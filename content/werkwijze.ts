@@ -1,6 +1,6 @@
 // Teksten van de pagina Werkwijze (/werkwijze), in de opbouw van linear.app/ai: een hero, vijf
 // secties met elk een intro (titel, tekst, link) en een groot beeld of een raster, een rij met de
-// vier productpagina's en de afsluiter. De beelden zijn nagebouwde schermen van ORBIT ENGINE
+// vier productpagina's en de afsluiter. De beelden zijn nagebouwde schermen van Orbit
 // (components/product/Visuals.tsx) met de fictieve voorbeeldcase Lindeman Warmte.
 
 import type { Bijschrift, Verwijzing } from '@/components/product/Blokken'
@@ -10,7 +10,7 @@ export type { Bijschrift, Verwijzing }
 export const meta = {
   title: 'Werkwijze',
   description:
-    "Zie hoe ORBIT ENGINE werkt: AI-zichtbaarheid meten, contentkansen plannen, pagina's schrijven en beoordelen en het resultaat nameten. Voor online marketingbureaus met meerdere klanten.",
+    "Zie hoe Orbit werkt: AI-zichtbaarheid meten, contentkansen plannen, pagina's schrijven en beoordelen en het resultaat nameten. Voor online marketingbureaus met meerdere klanten.",
 }
 
 export const hero = {
@@ -24,7 +24,7 @@ export const secties = {
     label: 'Start',
     titel: 'Elke klant een vaste maand.',
     tekst:
-      "Je klanten vragen ChatGPT al welke installateur ze moeten kiezen. ORBIT ENGINE laat zien of jouw klant genoemd wordt, schrijft de pagina's die dat veranderen en laat zien wat het opleverde. Voor al je klanten, onbeperkt.",
+      "Je klanten vragen ChatGPT al welke installateur ze moeten kiezen. Orbit laat zien of jouw klant genoemd wordt, schrijft de pagina's die dat veranderen en laat zien wat het opleverde. Voor al je klanten, onbeperkt.",
     link: { label: 'Wat AI voor je doet', href: '/ai' },
     beeld: {
       titel: 'Wat er deze maand speelt',
@@ -76,7 +76,7 @@ export const secties = {
     label: 'Schrijven',
     titel: 'Schrijf vanuit bedrijfskennis. Plaats wat je goedkeurt.',
     tekst:
-      'Wat alleen je klant weet, beantwoordt hij zelf, ook op zijn telefoon en zonder account. ORBIT ENGINE schrijft zodra alle antwoorden er zijn. Jij beoordeelt, kopieert en meldt het adres.',
+      'Wat alleen je klant weet, beantwoordt hij zelf, ook op zijn telefoon en zonder account. Orbit schrijft zodra alle antwoorden er zijn. Jij beoordeelt, kopieert en meldt het adres.',
     link: { label: 'Hoe de feiten bewaakt worden', href: '/kwaliteit' },
     beeld: {
       titel: 'Teksten die klinken als je klant',
@@ -86,8 +86,8 @@ export const secties = {
     cellen: [
       { titel: 'Je klant antwoordt waar hij is', tekst: 'Via een link op zijn telefoon, zonder account. Het antwoord gaat direct mee naar het schrijven en jij belt niet meer na.' },
       { titel: 'Controleer wat ertoe doet', tekst: 'Een termijn, bedrag of garantie zonder vastgelegde bron wordt geel. Zo komt er nooit een verzonnen belofte op de site van je klant.' },
-      { titel: 'Kopieer naar elk CMS', tekst: 'HTML, Markdown of platte tekst, met titel, omschrijving en veelgestelde vragen erbij. ORBIT ENGINE zet zelf niets op de site: jij houdt de regie.' },
-      { titel: 'ORBIT ENGINE controleert of hij live staat', tekst: 'Meld het adres en de tekst wordt teruggezocht, met een tweede poging een uur later. Zo start de nameting pas als de pagina er echt staat.' },
+      { titel: 'Kopieer naar elk CMS', tekst: 'HTML, Markdown of platte tekst, met titel, omschrijving en veelgestelde vragen erbij. Orbit zet zelf niets op de site: jij houdt de regie.' },
+      { titel: 'Orbit controleert of hij live staat', tekst: 'Meld het adres en de tekst wordt teruggezocht, met een tweede poging een uur later. Zo start de nameting pas als de pagina er echt staat.' },
     ] as Bijschrift[],
   },
   nameten: {
@@ -95,7 +95,7 @@ export const secties = {
     label: 'Nameten',
     titel: 'Zie wat de pagina deed. Laat het je klant zien.',
     tekst:
-      'Na 14 en 28 dagen meet ORBIT ENGINE de doelvragen van elke pagina opnieuw en toont de klikken uit Google. Klanten die zien wat ze krijgen, blijven. Alles komt in een maandverslag met de naam van je bureau.',
+      'Na 14 en 28 dagen meet Orbit de doelvragen van elke pagina opnieuw en toont de klikken uit Google. Klanten die zien wat ze krijgen, blijven. Alles komt in een maandverslag met de naam van je bureau.',
     link: { label: 'Beheer van je klanten', href: '/beheer' },
     beeld: {
       titel: 'Een verslag dat het gesprek voert',
@@ -103,13 +103,13 @@ export const secties = {
       label: 'Voorbeeldgegevens',
     },
     cellen: [
-      { titel: 'Eerlijk over het effect', tekst: 'Per pagina de stand vóór publicatie en na 14 en 28 dagen, op dezelfde vragen. Bij te weinig vragen zegt ORBIT ENGINE dat het nog niet te zeggen is.' },
+      { titel: 'Eerlijk over het effect', tekst: 'Per pagina de stand vóór publicatie en na 14 en 28 dagen, op dezelfde vragen. Bij te weinig vragen zegt Orbit dat het nog niet te zeggen is.' },
       { titel: 'Klikken uit Google', tekst: 'Vertoningen, klikken en positie per gepubliceerde pagina, vanaf de dag dat hij live ging.' },
     ] as Bijschrift[],
   },
 }
 
 export const afsluiter = {
-  title: 'Bekijk hoe ORBIT ENGINE in je bureau past.',
+  title: 'Bekijk hoe Orbit in je bureau past.',
   description: 'Ontdek de werkwijze in een demo en bespreek welke klant geschikt is voor een eerste toepassing.',
 }

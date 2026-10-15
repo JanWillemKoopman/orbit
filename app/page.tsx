@@ -15,7 +15,7 @@ import './werkwijze/werkwijze.css'
 import './beheer/beheer.css'
 
 export const metadata: Metadata = {
-  title: { absolute: 'ORBIT ENGINE – Open source SEO & GEO software voor marketeers' },
+  title: { absolute: 'Orbit – Open source SEO & GEO software voor marketeers' },
   description: hero.description,
   alternates: { canonical: '/' },
 }
@@ -67,7 +67,7 @@ export default function HomePage() {
           </figcaption>
         </figure>
 
-        <section className="home-uitgelicht" aria-label="ORBIT ENGINE voor bureaus">
+        <section className="home-uitgelicht" aria-label="Orbit voor bureaus">
           <div className="pd-grid">
             {uitgelicht.map((u, i) => (
               <figure className="pd-cell hu-cell" key={u.href}>

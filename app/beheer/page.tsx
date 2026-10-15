@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
   alternates: { canonical: '/beheer' },
-  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/beheer', images: [{ url: '/images/product/og-beheer.png', width: 1200, height: 630 }] },
+  openGraph: { title: `${meta.title} – Orbit`, description: meta.description, url: '/beheer', images: [{ url: '/images/product/og-beheer.png', width: 1200, height: 630 }] },
   twitter: { card: 'summary_large_image', images: ['/images/product/og-beheer.png'] },
 }
 
