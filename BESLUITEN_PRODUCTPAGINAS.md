@@ -74,3 +74,17 @@ Toegestaan, uitsluitend voor de nieuwe adressen: het menu (`lib/site.ts`, alleen
 ## Status
 
 Stap 0 is afgerond.
+
+## Stap 2: opbouw naar linear.app/ai (besluiten)
+
+Zie `PLAN_STAP2_LINEAR_OPBOUW.md`.
+
+- De hero is zoals bij Linear: eyebrow, titel en achtergrond, zonder knoppen en zonder beschrijving.
+- Een hero-video komt later. Er wordt ruimte voor gehouden en in de code staat een notitie op de plek waar de video komt. Voor nu geen achtergrondbeeld of video.
+- Elke pagina heeft vijf secties. Beelden verhuizen of vervallen zoals in hoofdstuk 3 van het plan.
+- De intro's verwijzen waar relevant naar andere productpagina's, zoals Linear dat doet.
+- Volgorde van werk: Werkwijze, Kwaliteit, Beheer, AI. Na elke pagina akkoord vragen voor de volgende.
+- Het eerste grote beeld op Werkwijze is een groot scherm met de openstaande taken en de balk met de processtappen.
+- Nieuwe beelden worden gecomponeerd zoals Linear dat doet (uitsnede, vervaging naar de randen, lagen over elkaar).
+- Niets naar `main` zonder akkoord.
+
