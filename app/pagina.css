@@ -108,14 +108,6 @@
 }
 .lp-stapel > *::after { left: 32px; right: 32px; top: -20px; background: #101112; border-color: rgba(255, 255, 255, 0.06); }
 
-/* Rij met de vier productpagina's ------------------------------------------ */
-.lp-linkrij { margin-top: 232px; }
-.lp-linkrij ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
-.lp-linkrij li { display: flex; flex-direction: column; justify-content: space-between; gap: 72px; min-height: 360px; padding: 192px 32px 0 0; }
-.lp-linkrij li + li { padding-left: 32px; border-left: 1px solid rgba(255, 255, 255, 0.08); }
-.lp-linkrij h3 { max-width: 16ch; font-size: 24px; line-height: 1.33; font-weight: var(--weight-medium); letter-spacing: -0.012em; color: var(--text-primary); text-wrap: balance; }
-.lp-linkrij li[aria-current='page'] .home-link { color: var(--text-quaternary); }
-
 /* Breekpunten --------------------------------------------------------------- */
 @media (max-width: 1199px) {
   .lp-beeld, .lp-raster { margin-inline: 0; }
@@ -124,10 +116,6 @@
 @media (max-width: 1024px) {
   .lp-title { font-size: 56px; line-height: 1.1; }
   .lp-sectie + .lp-sectie { padding-top: 168px; }
-  .lp-linkrij ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .lp-linkrij li { min-height: 280px; padding-top: 120px; }
-  .lp-linkrij li:nth-child(odd) { padding-left: 0; border-left: 0; }
-  .lp-linkrij li:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, 0.08); }
   .lp-beeld-inner { zoom: 0.76; }
 }
 @media (max-width: 900px) {
@@ -156,11 +144,6 @@
   .lp-cel-telefoon .lp-cel-inner { padding-top: 28px; }
   .lp-cel-telefoon .lp-cel-inner > * { zoom: 0.8; }
   .lp-caption { padding: 0 24px 32px; }
-  .lp-linkrij { margin-top: 120px; }
-  .lp-linkrij ul { grid-template-columns: 1fr; }
-  .lp-linkrij li { min-height: 0; gap: 32px; padding: 40px 0 40px 0; }
-  .lp-linkrij li + li, .lp-linkrij li:nth-child(odd) { padding-left: 0; border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
-  .lp-linkrij h3 { max-width: none; font-size: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .lp-hero-video { animation: none; }

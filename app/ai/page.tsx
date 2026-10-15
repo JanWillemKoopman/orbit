@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { CtaGolf } from '@/components/CtaGolf'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, hero, meta, quote, secties } from '@/content/ai'
-import { Beeld, Intro, Linkrij, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
+import { Beeld, Intro, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
 import * as P from '@/components/product/Visuals'
 import * as A from '@/components/agency/Visuals'
 import * as K from '@/components/kennis/Visuals'
@@ -117,8 +117,6 @@ export default function AiPage() {
           </figcaption>
         </figure>
       </div>
-
-      <Linkrij huidig="/ai" />
 
       {/* Afsluiter */}
       <section className="home-prefooter container pd-afsluiter" aria-labelledby="pd-afsluiter">

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { CtaGolf } from '@/components/CtaGolf'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, hero, meta, secties } from '@/content/werkwijze'
-import { Beeld, Intro, Linkrij, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
+import { Beeld, Intro, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
 import * as V from '@/components/product/Visuals'
 import '../pagina.css'
 import './werkwijze.css'
@@ -119,8 +119,6 @@ export default function WerkwijzePage() {
           </Raster>
         </Sectie>
       </div>
-
-      <Linkrij huidig="/werkwijze" />
 
       {/* Afsluiter */}
       <section className="home-prefooter container pd-afsluiter" aria-labelledby="pd-afsluiter">

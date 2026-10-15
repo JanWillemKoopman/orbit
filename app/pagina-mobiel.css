@@ -173,15 +173,6 @@
   .lp-cel .fv-bars { height: 104px; }
   .lp-stapel > *::before, .lp-stapel > *::after { top: -8px; }
   .lp-stapel > *::after { top: -16px; }
-
-  /* Rij met de vier productpagina's: één tikvlak per rij, zonder lijnen ---------------- */
-  .lp-linkrij { margin-top: 48px; }
-  .lp-linkrij .keyline { display: none; }
-  .lp .lp-linkrij li, .lp .lp-linkrij li + li { position: relative; min-height: 0; gap: 8px; justify-content: flex-start; padding: 24px 0; border-top: 0; }
-  .lp .lp-linkrij li:first-child { padding-top: 0; }
-  .lp .lp-linkrij li:last-child { padding-bottom: 0; }
-  .lp-linkrij h3 { max-width: none; font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
-  .lp-linkrij .home-link::after { content: ''; position: absolute; inset: 0; }
 }
 
 /* Header op de hero: een verloop van zwart naar transparant in plaats van een balk met lijn, en een groot tikvlak voor het menu */

@@ -3,8 +3,8 @@
 // onderdeel van dichtbij tonen, met het bijschrift in het vlak zelf.
 //
 // Twee families. `Kop`, `Paneel`, `Cel` en `Splitsing` zijn de oude blokken (stijl in werkwijze.css,
-// nog in gebruik op Kwaliteit en Beheer). `PaginaHero`, `Sectie`, `Intro`, `Beeld`, `Raster`,
-// `RasterCel` en `Linkrij` zijn de blokken naar de opbouw van linear.app/ai (stijl in pagina.css).
+// nog in gebruik op Kwaliteit en Beheer). `PaginaHero`, `Sectie`, `Intro`, `Beeld`, `Raster`
+// en `RasterCel` zijn de blokken naar de opbouw van linear.app/ai (stijl in pagina.css).
 import Link from 'next/link'
 import { preload } from 'react-dom'
 import { HeroVideo } from './HeroVideo'
@@ -196,34 +196,5 @@ export function RasterCel({ b, alt, stapel = false, telefoon = false, children }
       </div>
       <BijschriftTekst b={b} />
     </figure>
-  )
-}
-
-const LINKRIJ = [
-  { href: '/ai', titel: 'Het zware werk doet AI. Jij beslist.', label: 'Wat AI voor je doet' },
-  { href: '/werkwijze', titel: 'Elke maand dezelfde ronde, met bewijs aan het eind', label: 'Van meting tot bewijs' },
-  { href: '/kwaliteit', titel: 'Alleen feiten met een bron, nooit een verzonnen belofte', label: 'Hoe de feiten bewaakt worden' },
-  { href: '/beheer', titel: 'Al je klanten, je team en je kosten in één account', label: 'Klanten, team en kosten' },
-] as const
-
-/** De rij met de vier productpagina's, vlak boven de afsluiter, zoals de rij Intake, Planning, AI, Build. */
-export function Linkrij({ huidig }: { huidig: string }) {
-  return (
-    <nav className="lp-linkrij" aria-label="Verder in het product">
-      <div className="keyline" />
-      <div className="container">
-        <ul>
-          {LINKRIJ.map((m) => (
-            <li key={m.href} aria-current={m.href === huidig ? 'page' : undefined}>
-              <h3>{m.titel}</h3>
-              <Link href={m.href} className="home-link">
-                {m.label}
-                <span aria-hidden="true">→</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
   )
 }
