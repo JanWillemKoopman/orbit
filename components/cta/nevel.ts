@@ -1,10 +1,14 @@
-import { demping, maakKlok, maakRandom, maakRuis, smooth, TAU, type MaakVariant, type Rgb } from './util'
+import { demping, maakRandom, maakRuis, smooth, TAU, type MaakVariant, type Rgb } from './util'
 
 // Variant 'nevel': naar de Cosmic Cliffs in de Carinanevel, zoals James Webb die in infrarood zag.
 // Onderin een donkere wand van stof met grillige pieken en een oplichtende rand; daarboven gloeiend
 // gas dat in stromen kolkt. Door het stof heen zie je jonge sterren (de felste met de zes spikes
 // van Webb) en op de achtergrond kleine sterrenstelsels. Alles beweegt traag en organisch, doordat
 // het gas uit ruis komt die over zichzelf heen wordt verbogen (domain warping).
+//
+// De animatie is een naadloze loop van LOOP seconden: de ruis herhaalt zich in de tijd, de klif
+// en de gasstromen draaien in die tijd precies één rondje, en elke ster fonkelt een geheel aantal
+// keer per loop.
 //
 // Het gas wordt op een lage resolutie berekend en zacht opgeschaald; de sterren tekenen scherp
 // daaroverheen.
@@ -14,9 +18,11 @@ const SCHAAL_KLEIN = 5 // op smalle schermen
 const STER_DICHTHEID = 1 / 2600 // sterren per px²
 const SPIKE_STERREN = 9 // bij 1440 px breed
 const STELSELS = 22 // bij 1440 px breed
-const TEMPO = 2.5 // tempo van het kolkende gas en de verschuivende klif
+const LOOP = 24 // seconden per loop
+const GAS_RONDES = 3 // hoeveel ruiscellen het gas per loop doorloopt (tempo van het kolken)
+const KLIF_RONDES = 2 // idem voor de klifrand
 
-type Ster = { x: number; y: number; r: number; helder: number; fonkel: number; fase: number; diepte: number }
+type Ster = { x: number; y: number; r: number; helder: number; fonkel: number; fase: number }
 type Stelsel = { x: number; y: number; rx: number; ry: number; hoek: number; helder: number }
 type SpikeSter = { x: number; y: number; lengte: number; helder: number; fase: number }
 
@@ -24,13 +30,13 @@ const mix = (a: Rgb, b: Rgb, t: number): Rgb => [a[0] + (b[0] - a[0]) * t, a[1] 
 
 export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder: wit }) => {
   const seed = Math.floor(Math.random() * 2 ** 32)
-  const ruis = maakRuis(seed)
+  const ruis = maakRuis(seed, GAS_RONDES)
+  const klifRuis = maakRuis(seed ^ 0x165667b1, KLIF_RONDES)
   const rnd = maakRandom(seed ^ 0x27d4eb2f)
-  const klok = maakKlok()
 
   // Fractale ruis: drie octaven, ongeveer tussen -1 en 1.
   const fbm = (x: number, y: number, z: number) =>
-    (ruis(x, y, z) + 0.5 * ruis(x * 2.03 + 17, y * 2.03 + 3, z * 1.3) + 0.25 * ruis(x * 4.1 + 41, y * 4.1 + 29, z * 1.7)) / 1.2
+    (ruis(x, y, z) + 0.5 * ruis(x * 2.03 + 17, y * 2.03 + 3, z + 1.3) + 0.25 * ruis(x * 4.1 + 41, y * 4.1 + 29, z + 2.1)) / 1.2
 
   const buffer = document.createElement('canvas')
   const bctx = buffer.getContext('2d')!
@@ -48,16 +54,21 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
 
   const kleurStr = (c: Rgb, a: number) => `rgba(${c[0] | 0}, ${c[1] | 0}, ${c[2] | 0}, ${a.toFixed(3)})`
 
-  const tekenGas = (t: number) => {
+  // `u` is de plek in de loop, van 0 tot 1.
+  const tekenGas = (u: number) => {
     if (!beeld) return
     const data = beeld.data
-    const z = t * 0.045
+    const z = u * GAS_RONDES
+    const zk = u * KLIF_RONDES
+    // De stroming draait in een cirkel, zodat het gas aan het eind van de loop weer terug is.
+    const sx = 0.5 * Math.cos(u * TAU)
+    const sy = 0.5 * Math.sin(u * TAU)
     // Per kolom de hoogte van de klifrand: een grillige lijn met pieken die langzaam verschuift.
     const rand = new Float32Array(bw)
     for (let i = 0; i < bw; i++) {
       const x = i * schaal
-      const golf = fbm(x / 340 + t * 0.012, 11.3, t * 0.02)
-      const piek = Math.pow(Math.max(0, ruis(x / 110 + 70, 5.1, t * 0.03)), 2) * 0.9
+      const golf = klifRuis(x / 340, 11.3, zk) + 0.5 * klifRuis(x / 170 + 9, 2.7, zk + 0.5)
+      const piek = Math.pow(Math.max(0, klifRuis(x / 110 + 70, 5.1, zk + 1.1)), 2) * 0.9
       rand[i] = height * (0.58 + 0.16 * golf - 0.3 * piek)
     }
 
@@ -69,11 +80,11 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
         const px = x / 480
         const py = y / 420
         // Domain warping: twee lagen ruis buigen de derde, zodat het gas in slierten en krullen kolkt.
-        const qx = ruis(px + t * 0.02, py, z)
-        const qy = ruis(px + 5.2, py + 1.3 - t * 0.015, z + 3.1)
-        const r = fbm(px + 1.9 * qx + t * 0.03, py + 1.9 * qy, z + 7.7)
+        const qx = ruis(px + sx, py, z)
+        const qy = ruis(px + 5.2, py + 1.3 + sy, z + 0.4)
+        const r = fbm(px + 1.9 * qx + sy, py + 1.9 * qy, z + 0.8)
         // Filamenten: geribbelde ruis op een fijnere schaal geeft de dunne gasstromen en richels.
-        const f = 1 - Math.abs(ruis(px * 3.2 + 2.2 * qx, py * 3.2 + 2.2 * qy, z * 1.4 + 13))
+        const f = 1 - Math.abs(ruis(px * 3.2 + 2.2 * qx, py * 3.2 + 2.2 * qy, z + 1.7))
         const fil = f * f * f * f
 
         // Afstand tot de klifrand (positief = in het stof), met de rand zelf ook verbogen.
@@ -131,9 +142,9 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
         y: rnd() * h,
         r: 0.4 + Math.pow(rnd(), 4) * 1.1,
         helder: 0.25 + Math.pow(rnd(), 2) * 0.75,
-        fonkel: 0.5 + rnd() * 2,
+        // Een geheel aantal keer per loop, zodat het fonkelen naadloos doorloopt.
+        fonkel: (TAU * (3 + Math.floor(rnd() * 16))) / LOOP,
         fase: rnd() * TAU,
-        diepte: 0.3 + rnd() * 0.7,
       }))
       stelsels = Array.from({ length: Math.max(6, Math.round(STELSELS * verhouding)) }, () => {
         const grootte = 1.5 + rnd() * 3.5
@@ -150,9 +161,9 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
     },
 
     teken(tijd) {
-      const { t, dt } = klok(tijd)
+      const t = (tijd / 1000) % LOOP
       // Het gas is het zwaarste deel; het verandert traag, dus om het andere frame is genoeg.
-      if (frame++ % 2 === 0) tekenGas(t * TEMPO)
+      if (frame++ % 2 === 0) tekenGas(t / LOOP)
 
       ctx.clearRect(0, 0, width, height)
       ctx.imageSmoothingEnabled = true
@@ -161,19 +172,16 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
 
       const randDemp = (x: number, y: number) => 0.35 + 0.65 * demping(x, y, width, height)
 
-      // Sterrenstelsels: vage ovaaltjes ver weg, ze schuiven heel langzaam mee.
+      // Sterrenstelsels: vage ovaaltjes ver weg.
       for (const g of stelsels) {
-        g.x = (g.x + 1.2 * dt) % (width + 10)
         ctx.fillStyle = kleurStr(mix(grijs, licht, 0.25), g.helder * randDemp(g.x, g.y))
         ctx.beginPath()
         ctx.ellipse(g.x, g.y, g.rx, g.ry, g.hoek, 0, TAU)
         ctx.fill()
       }
 
-      // Sterren: fonkelen, en drijven met een beetje parallax.
+      // Sterren: fonkelen elk in hun eigen ritme.
       for (const s of sterren) {
-        s.x += 3 * s.diepte * dt
-        if (s.x > width + 2) s.x -= width + 4
         const a = s.helder * (0.6 + 0.4 * Math.sin(t * s.fonkel + s.fase)) * randDemp(s.x, s.y)
         if (a < 0.05) continue
         ctx.fillStyle = kleurStr(mix(grijs, wit, s.helder), a)
@@ -183,9 +191,7 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
       // Jonge, felle sterren met de zes diffractiespikes van Webb (plus de twee korte horizontale).
       ctx.lineCap = 'round'
       for (const s of spikes) {
-        s.x += 4 * dt
-        if (s.x > width + 30) s.x -= width + 60
-        const a = s.helder * (0.75 + 0.25 * Math.sin(t * 0.8 + s.fase)) * randDemp(s.x, s.y)
+        const a = s.helder * (0.75 + 0.25 * Math.sin((t / LOOP) * TAU * 3 + s.fase)) * randDemp(s.x, s.y)
         const kleur = mix(wit, licht, 0.35)
         ctx.fillStyle = kleurStr(kleur, a * 0.18)
         ctx.beginPath()

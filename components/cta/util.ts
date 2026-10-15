@@ -54,8 +54,10 @@ export function maakRandom(seed: number) {
   }
 }
 
-// Vloeiende 3D-ruis (value noise) tussen -1 en 1, met een eigen seed.
-export function maakRuis(seed: number) {
+// Vloeiende 3D-ruis (value noise) tussen -1 en 1, met een eigen seed. Met `zPeriode` (een geheel
+// getal) herhaalt de ruis zich langs z: ruis(x, y, z + zPeriode) is gelijk aan ruis(x, y, z). Zo
+// is een animatie die z als tijd gebruikt een naadloze loop.
+export function maakRuis(seed: number, zPeriode = 256) {
   const rnd = maakRandom(seed)
   const perm = new Uint8Array(512)
   const waarden = new Float32Array(256)
@@ -77,8 +79,9 @@ export function maakRuis(seed: number) {
   return (x: number, y: number, z: number) => {
     const xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z)
     const u = fade(x - xi), w = fade(y - yi), q = fade(z - zi)
-    const X = xi & 255, Y = yi & 255, Z = zi & 255
-    const X1 = (X + 1) & 255, Y1 = (Y + 1) & 255, Z1 = (Z + 1) & 255
+    const zp = ((zi % zPeriode) + zPeriode) % zPeriode
+    const X = xi & 255, Y = yi & 255, Z = zp & 255
+    const X1 = (X + 1) & 255, Y1 = (Y + 1) & 255, Z1 = ((zp + 1) % zPeriode) & 255
     return lerp(
       lerp(lerp(v(X, Y, Z), v(X1, Y, Z), u), lerp(v(X, Y1, Z), v(X1, Y1, Z), u), w),
       lerp(lerp(v(X, Y, Z1), v(X1, Y, Z1), u), lerp(v(X, Y1, Z1), v(X1, Y1, Z1), u), w),

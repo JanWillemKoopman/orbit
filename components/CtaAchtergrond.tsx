@@ -57,8 +57,8 @@ export function CtaAchtergrond() {
       variant.meet(width, height)
     }
 
-    const loop = (nu: number) => {
-      variant.teken(nu - start)
+    const loop = () => {
+      variant.teken(performance.now() - start)
       frame = requestAnimationFrame(loop)
     }
 
