@@ -11,7 +11,7 @@ export type Variant = {
   teken: (tijd: number) => void
 }
 
-export type MaakVariant = (ctx: CanvasRenderingContext2D, kleur: { rust: Rgb; grijs: Rgb; licht: Rgb }) => Variant
+export type MaakVariant = (ctx: CanvasRenderingContext2D, kleur: { achtergrond: Rgb; rust: Rgb; grijs: Rgb; helder: Rgb; licht: Rgb }) => Variant
 
 export function hexToRgb(value: string, fallback: Rgb): Rgb {
   const hex = value.trim().replace('#', '')
