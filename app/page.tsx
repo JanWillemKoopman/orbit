@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { changelog } from '@/content/changelog'
-import { CtaGolf } from '@/components/CtaGolf'
+import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { faq, hero, loop, prefooter, result, statement, story, uitgelicht, uitgelichtStappen } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
@@ -152,7 +152,7 @@ export default function HomePage() {
       </div>
 
       <section className="home-prefooter container">
-        <CtaGolf />
+        <CtaAchtergrond />
         <h2>{prefooter.title}</h2>
         <div className="home-prefooter-actions">
           <PrefooterKnoppen />
