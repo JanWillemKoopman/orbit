@@ -8,6 +8,7 @@ import '../werkwijze/werkwijze.css'
 import '../beheer/beheer.css'
 import '../pagina.css'
 import './kwaliteit.css'
+import '../pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -31,7 +32,7 @@ export default function KwaliteitPage() {
       <div className="container">
         {/* 1. Het probleem */}
         <Sectie id={s.probleem.id}>
-          <Intro id={s.probleem.id} titel={s.probleem.titel} tekst={s.probleem.tekst} link={s.probleem.link} />
+          <Intro id={s.probleem.id} label={s.probleem.label} titel={s.probleem.titel} tekst={s.probleem.tekst} link={s.probleem.link} />
           <Beeld b={s.probleem.beeld} hoogte={640} alt="Een alinea over een hybride warmtepomp. Elke harde bewering heeft een nummer met de bron: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina. Achter de tekst het document tarieven-2026.pdf met het bedrag gemarkeerd.">
             <V.HerkomstCompositie />
           </Beeld>
@@ -47,7 +48,7 @@ export default function KwaliteitPage() {
 
         {/* 2. Eerst weten */}
         <Sectie id={s.weten.id}>
-          <Intro id={s.weten.id} titel={s.weten.titel} tekst={s.weten.tekst} link={s.weten.link} />
+          <Intro id={s.weten.id} label={s.weten.label} titel={s.weten.titel} tekst={s.weten.tekst} link={s.weten.link} />
           <Beeld b={s.weten.beeld} breedte={1040} hoogte={640} alt="Feiten en kennis van Lindeman Warmte als tabel: per feit de bron, hoe zeker het is en of het in een tekst mag. Een vermoeden en een verboden woord mogen nooit.">
             <V.BreinTabel />
           </Beeld>
@@ -69,7 +70,7 @@ export default function KwaliteitPage() {
 
         {/* 3. Twijfel? Dan wordt het geel. */}
         <Sectie id={s.vangnet.id}>
-          <Intro id={s.vangnet.id} titel={s.vangnet.titel} tekst={s.vangnet.tekst} link={s.vangnet.link} />
+          <Intro id={s.vangnet.id} label={s.vangnet.label} titel={s.vangnet.titel} tekst={s.vangnet.tekst} link={s.vangnet.link} />
           <Beeld b={s.vangnet.beeld} hoogte={640} alt="Een pagina met vier gele zinnen: een termijn, een bedrag, een garantie en een keurmerk. Rechts staat onder elke zin waarom hij geel is.">
             <V.WatWordtGeel />
           </Beeld>
@@ -91,7 +92,7 @@ export default function KwaliteitPage() {
 
         {/* 4. Een feitenbestand dat bijblijft */}
         <Sectie id={s.bijblijven.id}>
-          <Intro id={s.bijblijven.id} titel={s.bijblijven.titel} tekst={s.bijblijven.tekst} />
+          <Intro id={s.bijblijven.id} label={s.bijblijven.label} titel={s.bijblijven.titel} tekst={s.bijblijven.tekst} />
           <Raster>
             <RasterCel b={s.bijblijven.cellen[0]} alt="Twee bronnen zeggen iets anders over de garantie: 3 jaar in een oude brochure, 5 jaar op de website.">
               <V.Tegenstrijdig />
@@ -104,7 +105,7 @@ export default function KwaliteitPage() {
 
         {/* 5. Wat gecontroleerd wordt en wat jij beslist */}
         <Sectie id={s.eerlijk.id}>
-          <Intro id={s.eerlijk.id} titel={s.eerlijk.titel} tekst={s.eerlijk.tekst} />
+          <Intro id={s.eerlijk.id} label={s.eerlijk.label} titel={s.eerlijk.titel} tekst={s.eerlijk.tekst} />
           <Raster>
             <RasterCel b={s.eerlijk.cellen[0]} alt="Wat ORBIT ENGINE controleert: bedragen en prijzen, termijnen en levertijden, garanties en keurmerken, getallen die niet in de bron staan, namen van concurrenten en woorden die je klant niet wil.">
               <V.ControleLijst />

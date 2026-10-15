@@ -33,6 +33,9 @@
 }
 @keyframes lp-video-in { from { opacity: 0; } to { opacity: 1; } }
 
+/* Het label boven de sectietitel staat alleen op mobiel (zie pagina-mobiel.css) */
+.lp-intro-label { display: none; }
+
 /* Secties ---------------------------------------------------------------- */
 .lp-sectie { padding-top: 128px; scroll-margin-top: var(--header-height); }
 .lp-sectie + .lp-sectie { padding-top: 232px; }

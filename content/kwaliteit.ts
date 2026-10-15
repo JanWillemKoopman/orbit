@@ -20,6 +20,7 @@ export const hero = {
 export const secties = {
   probleem: {
     id: 'probleem',
+    label: 'Het probleem',
     titel: 'AI verzint met dezelfde stelligheid als waarmee het feiten noemt.',
     tekst:
       'Een garantie die niet bestaat, een prijs van vorig jaar, een keurmerk dat je klant niet heeft. Het leest prima, tot de klant belt. ORBIT ENGINE schrijft alleen met feiten die ergens vandaan komen, zodat je AI-teksten kunt leveren zonder elke zin zelf na te pluizen.',
@@ -36,6 +37,7 @@ export const secties = {
   },
   weten: {
     id: 'weten',
+    label: 'Feiten',
     titel: 'Eerst weten. Dan pas schrijven.',
     tekst:
       'Voordat er één zin staat, verzamelt ORBIT ENGINE alles wat er over je klant bekend is: van binnen en van buiten. Elk feit heeft een bron en een zekerheid. Een vermoeden blijft een vermoeden.',
@@ -54,6 +56,7 @@ export const secties = {
   },
   vangnet: {
     id: 'vangnet',
+    label: 'Vangnet',
     titel: 'Twijfel? Dan wordt het geel.',
     tekst:
       'Noemt een tekst een bedrag, termijn, garantie of keurmerk zonder bron, dan wordt die zin geel. Je keurt een pagina pas goed als elke gele zin is nagelopen. Zo komt er nooit ongemerkt een verzonnen belofte op de site van je klant.',
@@ -72,6 +75,7 @@ export const secties = {
   },
   bijblijven: {
     id: 'bijblijven',
+    label: 'Bijblijven',
     titel: 'Een feitenbestand dat bijblijft.',
     tekst:
       'Bedrijven veranderen. Prijzen gaan omhoog, diensten stoppen, de website zegt het ene en de brochure het andere. ORBIT ENGINE ziet het en vraagt je om een besluit.',
@@ -82,6 +86,7 @@ export const secties = {
   },
   eerlijk: {
     id: 'eerlijk',
+    label: 'Grenzen',
     titel: 'Wat ORBIT ENGINE controleert. En wat jij beslist.',
     tekst: 'Geen tool kan alles controleren. Daarom staat hier precies wat er wel gecontroleerd wordt, zodat je weet waar je op moet letten.',
     cellen: [

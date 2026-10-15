@@ -6,6 +6,7 @@ import * as V from '@/components/agency/Visuals'
 import '../werkwijze/werkwijze.css'
 import '../pagina.css'
 import './beheer.css'
+import '../pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -29,7 +30,7 @@ export default function BeheerPage() {
       <div className="container">
         {/* 1. Overzicht */}
         <Sectie id={s.overzicht.id}>
-          <Intro id={s.overzicht.id} titel={s.overzicht.titel} tekst={s.overzicht.tekst} link={s.overzicht.link} />
+          <Intro id={s.overzicht.id} label={s.overzicht.label} titel={s.overzicht.titel} tekst={s.overzicht.tekst} link={s.overzicht.link} />
           <Beeld b={s.overzicht.beeld} breedte={1180} hoogte={720} alt="Het werkoverzicht van Bureau Noordwind: zeven bedrijven met hun zichtbaarheid, maandmeting, wat er op het bureau wacht en de kosten van de afgelopen dertig dagen.">
             <V.HeroWerkoverzicht />
           </Beeld>
@@ -45,7 +46,7 @@ export default function BeheerPage() {
 
         {/* 2. Klanten toevoegen */}
         <Sectie id={s.klanten.id}>
-          <Intro id={s.klanten.id} titel={s.klanten.titel} tekst={s.klanten.tekst} link={s.klanten.link} />
+          <Intro id={s.klanten.id} label={s.klanten.label} titel={s.klanten.titel} tekst={s.klanten.tekst} link={s.klanten.link} />
           <Beeld b={s.klanten.beeld} breedte={1180} hoogte={640} alt="Beheer, Bedrijven: vijf bedrijven met hun kijkers en het aantal pagina's per maand, en de standaarden voor nieuwe bedrijven.">
             <V.BeheerBedrijven />
           </Beeld>
@@ -61,7 +62,7 @@ export default function BeheerPage() {
 
         {/* 3. Team en kijkers */}
         <Sectie id={s.team.id}>
-          <Intro id={s.team.id} titel={s.team.titel} tekst={s.team.tekst} />
+          <Intro id={s.team.id} label={s.team.label} titel={s.team.titel} tekst={s.team.tekst} />
           <Beeld b={s.team.beeld} breedte={1180} hoogte={600} alt="Beheer, Gebruikers: twee beheerders, een kijker die één bedrijf ziet, en een openstaande uitnodiging.">
             <V.Gebruikers />
           </Beeld>
@@ -83,7 +84,7 @@ export default function BeheerPage() {
 
         {/* 4. Kosten en sleutels */}
         <Sectie id={s.kosten.id}>
-          <Intro id={s.kosten.id} titel={s.kosten.titel} tekst={s.kosten.tekst} link={s.kosten.link} />
+          <Intro id={s.kosten.id} label={s.kosten.label} titel={s.kosten.titel} tekst={s.kosten.tekst} link={s.kosten.link} />
           <Beeld b={s.kosten.beeld} breedte={1180} hoogte={600} alt="Beheer, Kosten: in oktober 46 euro van een limiet van 250 euro, ongeveer 51,80 euro die volgende maand vanzelf loopt, en het verbruik per soort werk.">
             <V.BeheerKosten />
           </Beeld>
@@ -105,7 +106,7 @@ export default function BeheerPage() {
 
         {/* 5. Gegevens */}
         <Sectie id={s.gegevens.id}>
-          <Intro id={s.gegevens.id} titel={s.gegevens.titel} tekst={s.gegevens.tekst} />
+          <Intro id={s.gegevens.id} label={s.gegevens.label} titel={s.gegevens.titel} tekst={s.gegevens.tekst} />
           <Raster>
             <RasterCel b={s.gegevens.cellen[0]} alt="Twee gearchiveerde bedrijven met de knop Terughalen.">
               <V.Archief />

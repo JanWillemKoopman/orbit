@@ -21,6 +21,7 @@ export const hero = {
 export const secties = {
   start: {
     id: 'start',
+    label: 'Start',
     titel: 'Elke klant een vaste maand.',
     tekst:
       "Je klanten vragen ChatGPT al welke installateur ze moeten kiezen. ORBIT ENGINE laat zien of jouw klant genoemd wordt, schrijft de pagina's die dat veranderen en laat zien wat het opleverde. Voor al je klanten, onbeperkt.",
@@ -37,6 +38,7 @@ export const secties = {
   },
   meten: {
     id: 'meten',
+    label: 'Meten',
     titel: 'Zie bij welke vragen je klant wordt genoemd.',
     tekst:
       'Dertig AI-vragen langs de klantreis, elke maand meten in ChatGPT, Gemini en Google AI Overview. Bij elk cijfer staat een marge, zodat je weet wanneer een verschil echt is. Zo verkoop je je klant geen toeval.',
@@ -55,6 +57,7 @@ export const secties = {
   },
   plannen: {
     id: 'plannen',
+    label: 'Plannen',
     titel: 'Geef inzichten een plek in je contentplan.',
     tekst:
       "Elke gemiste vraag wordt een pagina-idee met bewijs. Je kiest het aantal pagina's per maand, van vijf tot vijftig, en het plan loopt een jaar vooruit. Zo sluit je werk aan op wat je met je klant hebt afgesproken.",
@@ -70,6 +73,7 @@ export const secties = {
   },
   schrijven: {
     id: 'schrijven',
+    label: 'Schrijven',
     titel: 'Schrijf vanuit bedrijfskennis. Plaats wat je goedkeurt.',
     tekst:
       'Wat alleen je klant weet, beantwoordt hij zelf, ook op zijn telefoon en zonder account. ORBIT ENGINE schrijft zodra alle antwoorden er zijn. Jij beoordeelt, kopieert en meldt het adres.',
@@ -88,6 +92,7 @@ export const secties = {
   },
   nameten: {
     id: 'nameten',
+    label: 'Nameten',
     titel: 'Zie wat de pagina deed. Laat het je klant zien.',
     tekst:
       'Na 14 en 28 dagen meet ORBIT ENGINE de doelvragen van elke pagina opnieuw en toont de klikken uit Google. Klanten die zien wat ze krijgen, blijven. Alles komt in een maandverslag met de naam van je bureau.',

@@ -11,6 +11,7 @@ import '../beheer/beheer.css'
 import '../kwaliteit/kwaliteit.css'
 import '../pagina.css'
 import './ai-pagina.css'
+import '../pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -34,7 +35,7 @@ export default function AiPage() {
       <div className="container">
         {/* 1. Wie doet wat */}
         <Sectie id={s.wie.id}>
-          <Intro id={s.wie.id} titel={s.wie.titel} tekst={s.wie.tekst} link={s.wie.link} />
+          <Intro id={s.wie.id} label={s.wie.label} titel={s.wie.titel} tekst={s.wie.tekst} link={s.wie.link} />
           <Beeld b={s.wie.beeld} breedte={1120} hoogte={740} alt="Een tabel met negen stappen, van onderzoeken tot nameten, en drie kolommen: wat AI doet, wat code afdwingt en wat jij beslist. Bij publiceren doet AI niets.">
             <V.WieDoetWat />
           </Beeld>
@@ -56,7 +57,7 @@ export default function AiPage() {
 
         {/* 2. Meten */}
         <Sectie id={s.meten.id}>
-          <Intro id={s.meten.id} titel={s.meten.titel} tekst={s.meten.tekst} link={s.meten.link} />
+          <Intro id={s.meten.id} label={s.meten.label} titel={s.meten.titel} tekst={s.meten.tekst} link={s.meten.link} />
           <Beeld b={s.meten.beeld} variant="schema" breedte={1120} hoogte={360} alt="Van AI-vraag naar een cijfer: AI beantwoordt de vraag met zoeken op het web, AI beoordeelt wie er genoemd wordt, code rekent de zichtbaarheid uit. Het cijfer is 47 procent met een marge van 10.">
             <V.MeetStroom />
           </Beeld>
@@ -72,7 +73,7 @@ export default function AiPage() {
 
         {/* 3. Schrijven */}
         <Sectie id={s.schrijven.id}>
-          <Intro id={s.schrijven.id} titel={s.schrijven.titel} tekst={s.schrijven.tekst} link={s.schrijven.link} />
+          <Intro id={s.schrijven.id} label={s.schrijven.label} titel={s.schrijven.titel} tekst={s.schrijven.tekst} link={s.schrijven.link} />
           <Beeld b={s.schrijven.beeld} variant="schema" breedte={1120} hoogte={360} alt="De vijf stappen naar een pagina: brief door AI, vragen aan jou of je klant, schrijven door AI, eindredactie door AI en goedkeuren door jou. Code houdt verboden woorden eruit en weigert correcties met een nieuwe bewering.">
             <V.Schrijfstraat />
           </Beeld>
@@ -83,7 +84,7 @@ export default function AiPage() {
 
         {/* 4. Alles op de achtergrond */}
         <Sectie id={s.achtergrond.id}>
-          <Intro id={s.achtergrond.id} titel={s.achtergrond.titel} tekst={s.achtergrond.tekst} link={s.achtergrond.link} />
+          <Intro id={s.achtergrond.id} label={s.achtergrond.label} titel={s.achtergrond.titel} tekst={s.achtergrond.tekst} link={s.achtergrond.link} />
           <Beeld b={s.achtergrond.beeld} breedte={920} hoogte={640} alt="De systeemstatus van Bureau Noordwind: het achtergrondwerk is gekoppeld, er loopt een onderzoek, een meting en een tekst, een hermeting is gepland en een pagina wacht op antwoorden van de klant.">
             <V.AchtergrondWerk />
           </Beeld>
@@ -91,7 +92,7 @@ export default function AiPage() {
 
         {/* 5. De grenzen */}
         <Sectie id={s.grenzen.id}>
-          <Intro id={s.grenzen.id} titel={s.grenzen.titel} tekst={s.grenzen.tekst} />
+          <Intro id={s.grenzen.id} label={s.grenzen.label} titel={s.grenzen.titel} tekst={s.grenzen.tekst} />
           <Raster>
             <RasterCel b={s.grenzen.cellen[0]} alt="Wat AI en code doen: onderzoeken en vragen bedenken, antwoorden beoordelen en een pagina schrijven en nalezen door AI, marges uitrekenen en het effect vergelijken door code.">
               <V.WatAiEnCodeDoen />

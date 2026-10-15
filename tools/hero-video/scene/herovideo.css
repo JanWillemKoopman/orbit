@@ -33,9 +33,9 @@
 }
 .hv-root[data-formaat='mobiel'] .hv-shade {
   background:
-    linear-gradient(to bottom, rgba(8, 9, 10, 0.85) 0%, rgba(8, 9, 10, 0) 20%),
-    linear-gradient(to top, #08090a 0%, #08090a 24%, rgba(8, 9, 10, 0.92) 38%, rgba(8, 9, 10, 0.5) 50%, rgba(8, 9, 10, 0) 64%),
-    linear-gradient(to right, rgba(8, 9, 10, 0.5) 0%, rgba(8, 9, 10, 0) 25%, rgba(8, 9, 10, 0) 75%, rgba(8, 9, 10, 0.5) 100%);
+    linear-gradient(to bottom, rgba(8, 9, 10, 0.8) 0%, rgba(8, 9, 10, 0) 16%),
+    linear-gradient(to top, #08090a 0%, #08090a 40%, rgba(8, 9, 10, 0.92) 48%, rgba(8, 9, 10, 0.5) 56%, rgba(8, 9, 10, 0) 70%),
+    linear-gradient(to right, rgba(8, 9, 10, 0.4) 0%, rgba(8, 9, 10, 0) 22%, rgba(8, 9, 10, 0) 78%, rgba(8, 9, 10, 0.4) 100%);
 }
 /* Fijn korrelpatroon tegen banding in de donkere verlopen na het comprimeren */
 .hv-grain {
@@ -47,7 +47,7 @@
 .hv-win .fv-btn-primary { background: rgba(255, 255, 255, 0.1); color: #9aa0a8; }
 .hv-win .fv-btn { box-shadow: none; }
 .hv-win :is(.ot-title, .ag-title, .fv-doc-h, .kf-brain strong) { color: #aeb3ba; font-weight: var(--weight-medium); }
-.hv-root[data-formaat='mobiel'] .hv-plane { left: 20%; top: 20%; }
+.hv-root[data-formaat='mobiel'] .hv-plane { left: 20%; top: 6%; }
 .hv-root[data-formaat='mobiel'] .hv-cam { perspective: 1100px; }
 
 /* Deel-afbeelding: dezelfde taal als de hero, met de poster van de video als achtergrond */

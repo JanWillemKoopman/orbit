@@ -15,7 +15,7 @@
 .home-hero-description { max-width: 640px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
 .home-new-link { flex-shrink: 0; border-radius: 4px; }
 .home-new { display: inline-flex !important; align-items: center; gap: 12px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; transition: filter 0.16s var(--ease-out-quad); }
-.home-new:hover { filter: brightness(1.3); }
+@media (hover: hover) { .home-new:hover { filter: brightness(1.3); } }
 .home-new-label { color: var(--text-secondary); font-weight: var(--weight-medium); }
 .home-new-title { color: var(--text-tertiary); }
 
@@ -196,7 +196,7 @@
 /* Raster van /kennis en /product (product.css); de hele kaart is klikbaar via de link in het bijschrift. */
 .home-uitgelicht { margin-top: 120px; }
 .hu-cell { position: relative; transition: background-color var(--speed-quick); }
-.hu-cell:hover { background-color: rgba(255, 255, 255, 0.015); }
+@media (hover: hover) { .hu-cell:hover { background-color: rgba(255, 255, 255, 0.015); } }
 .hu-cell .hu-stage { height: 420px; mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); }
 .hu-cell .hu-stage-account { display: block; }
 .hu-stage-account .hu-inner { position: absolute; top: 56px; left: 40px; width: 1180px; zoom: 0.8; }
@@ -211,8 +211,8 @@
 .hu-cell .hu-caption > div { max-width: 440px; }
 .hu-link { flex-shrink: 0; white-space: nowrap; }
 .hu-link::after { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: inherit; }
-.hu-cell:hover .hu-link { color: var(--text-primary); }
-.hu-cell:hover .hu-link .feature-plus { transform: translateX(2px); }
+@media (hover: hover) { .hu-cell:hover .hu-link { color: var(--text-primary); } }
+@media (hover: hover) { .hu-cell:hover .hu-link .feature-plus { transform: translateX(2px); } }
 .hu-link:focus-visible { outline: none; }
 .hu-cell:has(.hu-link:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
 
@@ -225,7 +225,7 @@
 .feature-description { padding-inline: 32px; }
 .feature-description p { max-width: 38ch; font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; color: var(--text-secondary); text-wrap: pretty; }
 .home-link { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); transition: filter 0.16s var(--ease-out-quad), color 0.16s; }
-.home-link:hover { color: var(--text-secondary); }
+@media (hover: hover) { .home-link:hover { color: var(--text-secondary); } }
 .home-link span { color: var(--text-quaternary); }
 .feature-description .home-link { margin-top: 48px; }
 
@@ -247,8 +247,8 @@
 .process-title { margin-top: 24px; font-size: 20px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); color: var(--text-primary); }
 .process-description { margin-top: 8px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
 .process-link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 32px; font-size: 15px; letter-spacing: -0.011em; color: var(--text-tertiary); transition: color var(--speed-quick); }
-.process-link:hover { color: var(--text-primary); }
-.process-link:hover .feature-plus { transform: translateX(2px); }
+@media (hover: hover) { .process-link:hover { color: var(--text-primary); } }
+@media (hover: hover) { .process-link:hover .feature-plus { transform: translateX(2px); } }
 
 /* Drie schermen achter elkaar, naar linear.app/intake ------------------- */
 .sc-root {
@@ -379,7 +379,7 @@
 .faq-item { border-bottom: 1px solid var(--border-translucent); }
 .faq-question { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; cursor: pointer; list-style: none; font-size: 20px; line-height: 1.4; letter-spacing: -0.012em; font-weight: var(--weight-medium); color: var(--text-primary); transition: color 0.16s var(--ease-out-quad); }
 .faq-question::-webkit-details-marker { display: none; }
-.faq-question:hover { color: var(--text-secondary); }
+@media (hover: hover) { .faq-question:hover { color: var(--text-secondary); } }
 .faq-question:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
 .faq-icon { flex-shrink: 0; color: var(--text-tertiary); transition: transform var(--speed-regular) var(--ease-out-quad); }
 .faq-item[open] .faq-icon { transform: rotate(45deg); }

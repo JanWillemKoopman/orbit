@@ -1,0 +1,190 @@
+/* ==========================================================================
+   De vier productpagina's op een telefoon (tot 640 px), naar de mobiele opbouw van linear.app/ai.
+   Alles staat binnen een media query, zodat desktop en tablet niet veranderen. Gemeten op linear.app/ai bij
+   390 px: tekst op 24 px van de rand, de beelden over de volle breedte zonder afgeronde hoeken en met
+   een lijn van 1 px eronder, beeldtekst op een effen ondergrond met 32 px boven en 40 px onder, een
+   label boven elke sectietitel en één venster per beeld in leesbare maat (ongeveer 12 px), dat een klein
+   stuk rechts buiten beeld loopt. Op desktop staan twee vensters over elkaar; op mobiel blijft er één
+   over, in een eigen compositie.
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  /* Hero ----------------------------------------------------------------- */
+  .lp-hero { min-height: calc(549px + var(--header-height)); }
+  .lp-hero-inner { padding-block: 120px 48px; }
+  .lp-eyebrow { font-size: 16px; line-height: 24px; color: var(--text-primary); }
+  .lp-title { margin-top: 16px; font-size: 40px; line-height: 44px; letter-spacing: -0.022em; }
+
+  /* Sectie: label, titel en tekst ---------------------------------------- */
+  .lp-sectie { padding-top: 40px; }
+  .lp-sectie + .lp-sectie { padding-top: 40px; }
+  .feature-header.lp-intro { padding-bottom: 48px; }
+  .lp-intro-label { display: block; margin: 0 0 16px; font-size: 13px; line-height: 20px; color: var(--text-tertiary); }
+  .lp-intro .feature-title { max-width: 300px; padding-right: 0; text-wrap: balance; }
+
+  /* Beeld en cel: volle breedte, lijn eronder, beeldtekst op een effen ondergrond -- */
+  .lp-beeld, .lp-raster { background-color: var(--bg-primary); }
+  .lp-caption { max-width: none; padding: 32px 24px 40px; background: var(--bg-primary); }
+  .lp-cel .lp-caption { padding-top: 32px; }
+  .lp-caption h3 { display: flex; flex-direction: column; align-items: flex-start; gap: 0; font-size: 15px; line-height: 24px; }
+  .lp-caption p { max-width: none; margin-top: 4px; }
+  /* Het label wordt een stil kopje boven de titel in plaats van een chip die onder de titel afbreekt */
+  .lp-label {
+    order: -1; height: auto; padding: 0; margin-bottom: 2px; border-radius: 0; background: none; box-shadow: none;
+    font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-quaternary);
+  }
+}
+
+@media (max-width: 640px) {
+  /* Grote beelden: één venster, leesbaar, rechts een klein stuk buiten beeld ------- */
+  .lp-beeld-stage { height: 468px; }
+  .lp-beeld-scherm .lp-beeld-stage { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 84px), transparent 100%); mask-image: linear-gradient(to bottom, #000 calc(100% - 84px), transparent 100%); }
+  .lp-beeld-inner { top: 40px; left: 24px; width: 440px; zoom: 0.86; }
+  .lp-beeld-inner > * { filter: saturate(0.65); }
+  /* De balk bovenin blijft op één regel; knoppen, chips en uitleg bij de zin verdwijnen, die zijn te klein om te lezen */
+  .lp-beeld-inner .ot-crumbs, .lp-beeld-inner .ag-crumbs { min-width: 0; overflow: hidden; white-space: nowrap; }
+  .lp-beeld-inner .ot-bar > .fv-btn, .lp-beeld-inner .ot-bar > .fv-chip, .lp-beeld-inner .ag-bar > .fv-btn, .lp-beeld-inner .fv-tip { display: none; }
+  .lp-beeld-inner .ag-window, .lp-beeld-inner .fv-surface, .lp-beeld-inner .ps-win, .lp-beeld-inner .wg-win { width: 100%; max-width: none; }
+  .lp-beeld-inner .ag-view { gap: 14px; padding: 18px 20px 32px; }
+
+  /* Werkwijze: Openstaande taken, alleen het voorste venster zonder zijbalk */
+  .lp-beeld-inner .ot-comp { width: 100%; height: auto; }
+  .lp-beeld-inner .ot-back, .lp-beeld-inner .ot-side { display: none; }
+  .lp-beeld-inner .ot-front { position: static; width: 100%; height: auto; }
+  .lp-beeld-inner .ot-body { padding: 18px 20px 24px; gap: 18px; }
+  .lp-beeld-inner .ot-head > .fv-muted { display: none; }
+  .lp-beeld-inner .ot-task { grid-template-columns: 32px minmax(0, 1fr) auto; padding: 10px 14px; }
+  .lp-beeld-inner .ot-task + .ot-task { margin-top: 6px; }
+  .lp-beeld-inner .ot-task > .fv-btn { display: none; }
+  .lp-beeld-inner .ot-cycle { padding-top: 0; }
+  .lp-beeld-inner .fv-cycle-l { font-size: 14px; }
+  .lp-beeld-inner .fv-cycle-s { font-size: 12px; }
+  /* Grafiek: de lijn loopt over de volle breedte, dus het eindpunt blijft in beeld */
+  .lp-beeld-inner .fv-vis { padding: 22px 20px 16px; }
+  .lp-beeld-inner .fv-vis-num { font-size: 40px; }
+  /* Contentplan: twee maanden naast elkaar */
+  .lp-beeld-inner .fv-board { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .lp-beeld-inner .fv-col:nth-child(n + 3) { display: none; }
+  /* Tekstpagina: de tekst vult het venster, de redenen staan in het beeld hieronder */
+  .lp-beeld-inner .ps-body { grid-template-columns: 1fr; min-height: 0; }
+  .lp-beeld-inner .ps-side { display: none; }
+  .lp-beeld-inner .ps-doc { padding: 26px 24px 20px; gap: 12px; }
+  .lp-beeld-inner .ps-h1 { font-size: 22px; }
+  .lp-beeld-inner .ps-doc p { font-size: 15px; line-height: 1.8; }
+  /* Maandverslag: twee cijfers naast elkaar */
+  .lp-beeld-inner .fv-report { gap: 22px; padding: 24px 22px; }
+  .lp-beeld-inner .fv-report-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .lp-beeld-inner .fv-report-kpis > span:nth-child(3) { display: none; }
+
+  /* Kwaliteit: de herkomst van een bewering, zonder het document erachter */
+  .lp-beeld-inner .kc-comp { width: 100%; height: auto; }
+  .lp-beeld-inner .kc-back { display: none; }
+  .lp-beeld-inner .kc-front { position: static; width: 100%; }
+  .lp-beeld-inner .kf-hero { gap: 18px; padding: 26px 24px 22px; }
+  .lp-beeld-inner .kf-hero p { font-size: 16px; line-height: 1.8; }
+  .lp-beeld-inner .kf-bronnen { grid-template-columns: 1fr; gap: 10px; }
+  /* Feiten en kennis: feit, bron en of het in een tekst mag */
+  .lp-beeld-inner .kf-table .ag-tr { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) 76px; gap: 12px; min-height: 56px; padding: 0 8px; }
+  .lp-beeld-inner .kf-table .ag-tr > :nth-child(3) { display: none; }
+  .lp-beeld-inner .kf-count { display: none; }
+  /* Gele zinnen: de tekst, daaronder wat er per zin ontbreekt */
+  .lp-beeld-inner .wg-body { grid-template-columns: 1fr; min-height: 0; }
+  .lp-beeld-inner .wg-doc { gap: 12px; padding: 24px 22px 18px; }
+  .lp-beeld-inner .wg-h1 { font-size: 20px; }
+  .lp-beeld-inner .wg-doc p { font-size: 15px; line-height: 1.85; }
+  .lp-beeld-inner .wg-side { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.06); padding: 18px 22px 12px; }
+  .lp-beeld-inner .wg-item:nth-child(n + 4) { display: none; }
+
+  /* Beheer: werkoverzicht, bedrijven, gebruikers en kosten met minder kolommen */
+  .lp-beeld-inner .ag-bulk { display: none; }
+  /* Werkoverzicht: bedrijf, zichtbaarheid en wat er wacht (de tabellen Feiten en kennis en Gebruikers hebben hun eigen regels) */
+  .lp-beeld-inner .ag-table:not(.kf-table):not(.ag-users) .ag-tr { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px; min-height: 54px; padding: 0 8px; }
+  .lp-beeld-inner .ag-table:not(.kf-table):not(.ag-users) .ag-tr > :nth-child(1), .lp-beeld-inner .ag-table:not(.kf-table):not(.ag-users) .ag-tr > :nth-child(4), .lp-beeld-inner .ag-table:not(.kf-table):not(.ag-users) .ag-tr > :nth-child(5), .lp-beeld-inner .ag-table:not(.kf-table):not(.ag-users) .ag-tr > :nth-child(7), .lp-beeld-inner .ag-table:not(.kf-table):not(.ag-users) .ag-tr > :nth-child(8) { display: none; }
+  .lp-beeld-inner .ag-tr > strong { white-space: normal; }
+  .lp-beeld-inner .ag-cols { grid-template-columns: 1fr; }
+  .lp-beeld-inner .ag-std { display: none; }
+  .lp-beeld-inner .ag-li { grid-template-columns: minmax(0, 1fr) auto; gap: 12px; }
+  .lp-beeld-inner .ag-li > .fv-muted, .lp-beeld-inner .ag-li > .ag-ghost { display: none; }
+  .lp-beeld-inner .ag-users .ag-tr { grid-template-columns: minmax(0, 1fr) auto; min-height: 60px; }
+  .lp-beeld-inner .ag-users .ag-tr > :nth-child(3), .lp-beeld-inner .ag-users .ag-tr > :nth-child(4) { display: none; }
+  .lp-beeld-inner .ag-users .ag-tr > :nth-child(1), .lp-beeld-inner .ag-users .ag-tr > :nth-child(2) { display: flex; }
+  .lp-beeld-inner .ag-users .ag-th > :nth-child(1) { display: block; }
+  .lp-beeld-inner .ag-cost-grid { grid-template-columns: 1fr; }
+  .lp-beeld-inner .ag-cost-grid > :nth-child(3) { display: none; }
+  .lp-beeld-inner .ag-tabs { flex-wrap: nowrap; overflow: hidden; }
+
+  /* AI: Wie doet wat, per stap drie korte regels, zodat de kolom Jij blijft staan */
+  .lp-beeld-inner .wd { border-radius: 14px; }
+  .lp-beeld-inner .wd-head { display: none; }
+  .lp-beeld-inner .wd-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 20px; }
+  .lp-beeld-inner .wd-row > strong { padding-bottom: 2px; font-size: 15px; }
+  .lp-beeld-inner .wd-row > span { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: baseline; gap: 10px; font-size: 13.5px; }
+  .lp-beeld-inner .wd-row > span::before { font-size: 12px; font-weight: var(--weight-medium); color: var(--text-quaternary); }
+  .lp-beeld-inner .wd-row > span:nth-child(2)::before { content: 'AI'; color: #a3adff; }
+  .lp-beeld-inner .wd-row > span:nth-child(3)::before { content: 'Code'; }
+  .lp-beeld-inner .wd-row > span:nth-child(4)::before { content: 'Jij'; color: var(--accent); }
+  /* Systeemstatus: naam en stand */
+  .lp-beeld-inner .aw { max-width: none; }
+  .lp-beeld-inner .aw-tr { grid-template-columns: minmax(0, 1fr) auto; gap: 12px; min-height: 52px; }
+  .lp-beeld-inner .aw-w, .lp-beeld-inner .aw-s { display: none; }
+  .lp-beeld-inner .aw-status { flex-direction: column; gap: 8px; }
+
+  /* Diagrammen: een compacte, verticale compositie in plaats van de brede ------------ */
+  .lp-beeld-schema .lp-beeld-stage { height: auto; }
+  .lp-beeld-schema .lp-beeld-inner { position: static; width: auto; zoom: 1; padding: 32px 24px 8px; }
+  .lp-beeld-schema .lp-beeld-inner > * { filter: none; }
+  .ms, .ss { padding: 0; gap: 16px; }
+  .ms-flow, .ss-rij { grid-template-columns: 1fr; }
+  .ms-flow-stap, .ss-stap, .ss-stap:last-child { grid-template-columns: 1fr; }
+  .ms-node:not(.ms-result), .ss-kaart { flex-direction: row; align-items: center; gap: 12px; padding: 12px 16px; }
+  .ms-node:not(.ms-result) > span:last-child, .ss-kaart > span:last-child { display: none; }
+  .ms-node strong, .ss-kaart strong { font-size: 14px; }
+  .ms-result { padding: 16px; }
+  .ms-num { font-size: 32px; }
+  .ss-top { align-self: auto; gap: 10px; }
+  .ms-pijl, .ss-pijl { height: 20px; transform: rotate(90deg); }
+  .ms-foot { display: none; }
+  .ss-regel { align-items: flex-start; gap: 10px; padding: 12px 14px; font-size: 13px; }
+  .kf-schema { grid-template-columns: 1fr; height: auto; gap: 10px; }
+  .kf-schema .kf-lines { display: none; }
+  .kf-schema .kf-col { gap: 8px; }
+  .kf-schema .kf-src { height: 44px; padding: 0 12px; }
+  .kf-schema .kf-src-t em { display: none; }
+  .kf-schema .kf-brain { padding: 14px 16px; }
+}
+
+@media (max-width: 640px) {
+  /* Cellen: een venster in leesbare maat, bovenaan, onderin vervaagd ------------------ */
+  .lp-cel-stage { height: 273px; }
+  .lp-cel-inner {
+    padding: 32px 24px 0;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  .lp .lp-cel .lp-cel-inner > * { margin-block: 0 auto; zoom: 0.86; filter: saturate(0.65); }
+  .lp .lp-cel-telefoon .lp-cel-inner > * { zoom: 0.72; }
+  /* Van vraag naar pagina: dezelfde drie stappen, smaller, zodat ze in leesbare maat passen */
+  .lp .lp-cel .lp-cel-inner > .fv-flow { zoom: 0.86; }
+  .lp-cel .fv-node-q, .lp-cel .fv-node-page { width: 112px; }
+  .lp-cel .fv-node-kans { width: 78px; }
+  .lp-cel .fv-flow-line { width: 18px; }
+  .lp-stapel > *::before, .lp-stapel > *::after { top: -8px; }
+  .lp-stapel > *::after { top: -16px; }
+
+  /* Rij met de vier productpagina's: één tikvlak per rij, zonder lijnen ---------------- */
+  .lp-linkrij { margin-top: 48px; }
+  .lp-linkrij .keyline { display: none; }
+  .lp .lp-linkrij li, .lp .lp-linkrij li + li { position: relative; min-height: 0; gap: 8px; justify-content: flex-start; padding: 24px 0; border-top: 0; }
+  .lp .lp-linkrij li:first-child { padding-top: 0; }
+  .lp .lp-linkrij li:last-child { padding-bottom: 0; }
+  .lp-linkrij h3 { max-width: none; font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
+  .lp-linkrij .home-link::after { content: ''; position: absolute; inset: 0; }
+}
+
+/* Header op de hero: een verloop van zwart naar transparant in plaats van een balk met lijn, en een groot tikvlak voor het menu */
+@media (max-width: 768px) {
+  body:has(.lp-hero) .site-header { background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(8, 9, 10, 0) 100%); border-bottom-color: transparent; }
+  body:has(.lp-hero) .site-header[data-menu-open='true'] { background: #000; border-bottom-color: var(--border-translucent); }
+  .menu-toggle { width: 56px; height: 64px; margin-right: -18px; }
+  .mobile-menu a { height: 44px; }
+}

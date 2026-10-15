@@ -26,7 +26,7 @@ const SCENES: Record<string, Record<string, Venster[]>> = {
       { x: 1150, y: 120, s: 1.4, w: 520, children: <P.Hermeting /> },
     ],
     mobiel: [
-      { x: -400, y: -230, s: 1.45, w: 1120, children: <P.OpenstaandeTaken /> },
+      { x: -400, y: -150, s: 1.45, w: 1120, children: <P.OpenstaandeTaken /> },
     ],
   },
   kwaliteit: {
@@ -35,7 +35,7 @@ const SCENES: Record<string, Record<string, Venster[]>> = {
       { x: 1150, y: 120, s: 1.4, w: 480, children: <K.GoedkeurenGeblokkeerd /> },
     ],
     mobiel: [
-      { x: -400, y: -230, s: 1.45, w: 1120, children: <K.HerkomstCompositie /> },
+      { x: -400, y: -150, s: 1.45, w: 1120, children: <K.HerkomstCompositie /> },
     ],
   },
   beheer: {
@@ -44,7 +44,7 @@ const SCENES: Record<string, Record<string, Venster[]>> = {
       { x: 1150, y: 140, s: 1.4, w: 460, children: <A.MaandStarten /> },
     ],
     mobiel: [
-      { x: -400, y: -230, s: 1.4, w: 1180, children: <A.HeroWerkoverzicht /> },
+      { x: -400, y: -150, s: 1.4, w: 1180, children: <A.HeroWerkoverzicht /> },
     ],
   },
   ai: {
@@ -53,7 +53,7 @@ const SCENES: Record<string, Record<string, Venster[]>> = {
       { x: 1150, y: 120, s: 1.4, w: 480, children: <I.BriefVoorPagina /> },
     ],
     mobiel: [
-      { x: -400, y: -230, s: 1.45, w: 1120, children: <I.WieDoetWat /> },
+      { x: -400, y: -150, s: 1.45, w: 1120, children: <I.WieDoetWat /> },
     ],
   },
 }

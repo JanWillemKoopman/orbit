@@ -5,6 +5,7 @@ import { Beeld, Intro, Linkrij, PaginaHero, Raster, RasterCel, Sectie } from '@/
 import * as V from '@/components/product/Visuals'
 import '../pagina.css'
 import './werkwijze.css'
+import '../pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -27,7 +28,7 @@ export default function WerkwijzePage() {
       <div className="container">
         {/* 1. Start */}
         <Sectie id={s.start.id}>
-          <Intro id={s.start.id} titel={s.start.titel} tekst={s.start.tekst} link={s.start.link} />
+          <Intro id={s.start.id} label={s.start.label} titel={s.start.titel} tekst={s.start.tekst} link={s.start.link} />
           <Beeld b={s.start.beeld} hoogte={800} alt="Het scherm Openstaande taken van Lindeman Warmte: twee vragen bij de klant, een tekst om na te kijken en een pagina om te plaatsen, met de balk van de vijf stappen van deze maand. Erachter het venster Meldingen.">
             <V.OpenstaandeTaken />
           </Beeld>
@@ -43,7 +44,7 @@ export default function WerkwijzePage() {
 
         {/* 2. Meten */}
         <Sectie id={s.meten.id}>
-          <Intro id={s.meten.id} titel={s.meten.titel} tekst={s.meten.tekst} link={s.meten.link} />
+          <Intro id={s.meten.id} label={s.meten.label} titel={s.meten.titel} tekst={s.meten.tekst} link={s.meten.link} />
           <Beeld b={s.meten.beeld} hoogte={720} alt="Grafiek van de zichtbaarheid in AI voor hybride warmtepompen: van 17 procent in juni naar 47 procent in oktober, met een marge van 10 procentpunt die smaller wordt.">
             <V.ZichtbaarheidGrafiek />
           </Beeld>
@@ -65,7 +66,7 @@ export default function WerkwijzePage() {
 
         {/* 3. Plannen */}
         <Sectie id={s.plannen.id}>
-          <Intro id={s.plannen.id} titel={s.plannen.titel} tekst={s.plannen.tekst} />
+          <Intro id={s.plannen.id} label={s.plannen.label} titel={s.plannen.titel} tekst={s.plannen.tekst} />
           <Beeld b={s.plannen.beeld} hoogte={560} breedte={1240} alt="Het contentplan met een kolom per maand en per pagina een gekleurde stip voor de stand.">
             <V.ContentplanBord />
           </Beeld>
@@ -81,7 +82,7 @@ export default function WerkwijzePage() {
 
         {/* 4. Schrijven en publiceren */}
         <Sectie id={s.schrijven.id}>
-          <Intro id={s.schrijven.id} titel={s.schrijven.titel} tekst={s.schrijven.tekst} link={s.schrijven.link} />
+          <Intro id={s.schrijven.id} label={s.schrijven.label} titel={s.schrijven.titel} tekst={s.schrijven.tekst} link={s.schrijven.link} />
           <Beeld b={s.schrijven.beeld} hoogte={640} alt="Een geschreven pagina: het antwoord van de klant is groen gemarkeerd, een termijn zonder bron geel. Rechts wat er bij de pagina hoort: titel, metatitel, omschrijving, veelgestelde vragen, gestructureerde gegevens en interne links.">
             <V.PaginaScherm />
           </Beeld>
@@ -103,7 +104,7 @@ export default function WerkwijzePage() {
 
         {/* 5. Nameten en laten zien */}
         <Sectie id={s.nameten.id}>
-          <Intro id={s.nameten.id} titel={s.nameten.titel} tekst={s.nameten.tekst} link={s.nameten.link} />
+          <Intro id={s.nameten.id} label={s.nameten.label} titel={s.nameten.titel} tekst={s.nameten.tekst} link={s.nameten.link} />
           <Beeld b={s.nameten.beeld} hoogte={640} alt="Het verslag van september van Bureau Noordwind voor Lindeman Warmte: zichtbaarheid 39 procent, vijf pagina's live en 1.204 klikken uit Google.">
             <V.Maandverslag />
           </Beeld>

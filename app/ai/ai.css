@@ -51,7 +51,7 @@
   font: inherit; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary);
   background: none; border: 0; cursor: pointer; transition: color var(--speed-quick) var(--ease-out-quad);
 }
-.ai-intro-actie:hover { color: var(--text-primary); }
+@media (hover: hover) { .ai-intro-actie:hover { color: var(--text-primary); } }
 .ai-intro-plus { margin-left: 6px; }
 
 @media (max-width: 1280px) { .ai-hero { min-height: clamp(560px, 70svh, 720px); } }
@@ -91,5 +91,5 @@
   font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-quaternary);
   transition: color var(--speed-quick) var(--ease-out-quad), background var(--speed-quick) var(--ease-out-quad);
 }
-.ai-switch-link:hover { color: var(--text-primary); background: var(--bg-hover); }
+@media (hover: hover) { .ai-switch-link:hover { color: var(--text-primary); background: var(--bg-hover); } }
 .ai-switch-link[aria-current='page'] { color: var(--text-primary); background: var(--bg-translucent); }

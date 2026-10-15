@@ -10,7 +10,7 @@
   background: var(--bg-translucent); color: var(--text-secondary);
   transition: background var(--speed-quick), color var(--speed-quick);
 }
-.article-back:hover { background: var(--bg-hover); color: var(--text-primary); }
+@media (hover: hover) { .article-back:hover { background: var(--bg-hover); color: var(--text-primary); } }
 .article-title {
   max-width: 900px; margin: 8px auto 0;
   text-align: center; text-wrap: balance;
@@ -59,7 +59,7 @@
   text-underline-offset: 3px; text-decoration-thickness: 1px;
   transition: text-decoration-color var(--speed-quick);
 }
-.prose a:hover { text-decoration-color: var(--text-primary); }
+@media (hover: hover) { .prose a:hover { text-decoration-color: var(--text-primary); } }
 
 .prose h2, .prose h3, .prose h4 { position: relative; color: var(--text-primary); scroll-margin-top: calc(var(--header-height) + 24px); }
 .prose h2 { margin-top: 56px; font-size: 24px; line-height: 1.33; font-weight: var(--weight-semibold); letter-spacing: -0.012em; }
@@ -71,8 +71,8 @@
   color: var(--text-quaternary) !important; text-decoration: none !important;
   opacity: 0; transition: opacity var(--speed-quick), color var(--speed-quick);
 }
-.prose :is(h2, h3, h4):hover .heading-anchor { opacity: 1; }
-.heading-anchor:hover { color: var(--text-primary) !important; }
+@media (hover: hover) { .prose :is(h2, h3, h4):hover .heading-anchor { opacity: 1; } }
+@media (hover: hover) { .heading-anchor:hover { color: var(--text-primary) !important; } }
 
 .prose ul, .prose ol { padding-left: 24px; }
 .prose li + li { margin-top: 8px; }
@@ -159,7 +159,7 @@
   transition: border-color var(--speed-quick), background var(--speed-quick);
 }
 .field textarea { min-height: 140px; resize: vertical; line-height: 1.5; }
-.field :is(input, textarea, select):hover { border-color: var(--border-strong); }
+@media (hover: hover) { .field :is(input, textarea, select):hover { border-color: var(--border-strong); } }
 .field :is(input, textarea, select):focus { outline: none; border-color: var(--accent); background: var(--bg-level-3); }
 .field ::placeholder { color: var(--text-quaternary); }
 .form-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 4px; }
@@ -191,7 +191,7 @@
   transition: border-color var(--speed-quick), background var(--speed-quick);
 }
 .contact-field textarea { height: 132px; padding: 14px; resize: vertical; line-height: 1.5; }
-.contact-field :is(input, select, textarea):hover { border-color: var(--border-strong); }
+@media (hover: hover) { .contact-field :is(input, select, textarea):hover { border-color: var(--border-strong); } }
 .contact-field :is(input, select, textarea):focus { outline: none; border-color: var(--accent); }
 .contact-field ::placeholder { color: var(--text-tertiary); opacity: 0.8; }
 .contact-select { position: relative; }
@@ -223,7 +223,7 @@
 }
 .kb-search input::-webkit-search-cancel-button { display: none; }
 .kb-search input::placeholder { color: var(--text-tertiary); }
-.kb-search input:hover { border-color: var(--border-strong); }
+@media (hover: hover) { .kb-search input:hover { border-color: var(--border-strong); } }
 .kb-search input:focus { outline: none; border-color: var(--accent); }
 .kb-search svg { position: absolute; right: 26px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; }
 .kb-title { margin: 120px 0 40px; font-size: 48px; line-height: 1; font-weight: var(--weight-medium); letter-spacing: -0.022em; }
@@ -233,7 +233,7 @@
   background: var(--bg-level-1); border: 1px solid var(--border-translucent);
   transition: background var(--speed-quick), border-color var(--speed-quick);
 }
-.kb-card:hover { background: var(--bg-level-2); border-color: var(--border-strong); }
+@media (hover: hover) { .kb-card:hover { background: var(--bg-level-2); border-color: var(--border-strong); } }
 .kb-card h3 { margin: 0; font-size: 22px; line-height: 1.25; font-weight: var(--weight-medium); letter-spacing: -0.015em; }
 .kb-card p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--text-tertiary); }
 .kb-more { display: flex; justify-content: center; margin-top: 48px; }

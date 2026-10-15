@@ -22,6 +22,7 @@ export const hero = {
 export const secties = {
   wie: {
     id: 'wie',
+    label: 'Wie doet wat',
     titel: 'De snelheid van AI. Zonder het risico.',
     tekst:
       'AI onderzoekt, meet en schrijft. Code controleert wat een model niet mag beloven. Jij beslist wat er waar is en wat er live gaat.',
@@ -39,6 +40,7 @@ export const secties = {
   },
   meten: {
     id: 'meten',
+    label: 'Meten',
     titel: 'AI stelt de vragen die jouw klanten stellen.',
     tekst:
       'ORBIT ENGINE stelt elke vraag aan ChatGPT, met zoeken op het web. Per onderwerp zet je Gemini en Google AI Overview erbij. Een tweede AI-stap beoordeelt wie er genoemd wordt. De rekensom is van code, met een marge bij elk cijfer.',
@@ -54,6 +56,7 @@ export const secties = {
   },
   schrijven: {
     id: 'schrijven',
+    label: 'Schrijven',
     titel: 'AI schrijft de eerste versie. Een tweede AI leest mee.',
     tekst:
       'Eerst onderzoek, dan gerichte vragen, dan pas schrijven. De eindredacteur verbetert alleen wat nodig is en mag niets nieuws beweren.',
@@ -69,6 +72,7 @@ export const secties = {
   },
   achtergrond: {
     id: 'achtergrond',
+    label: 'Achtergrond',
     titel: 'Alles loopt door als jij je laptop dichtdoet.',
     tekst:
       'Onderzoek, metingen en schrijfwerk draaien op de achtergrond. Elke stap kijkt eerst of zijn resultaat al bestaat, zodat je niet dubbel betaalt. Bij elke betaalde knop staat vooraf ongeveer wat het kost.',
@@ -81,6 +85,7 @@ export const secties = {
   },
   grenzen: {
     id: 'grenzen',
+    label: 'Grenzen',
     titel: 'Wat AI niet beslist.',
     tekst:
       'Een AI-oordeel is een aanwijzing, geen bewijs. Daarom staat er precies wat AI en code doen, en wat bij jou blijft.',

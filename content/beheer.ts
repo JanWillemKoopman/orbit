@@ -22,6 +22,7 @@ export const hero = {
 export const secties = {
   overzicht: {
     id: 'overzicht',
+    label: 'Overzicht',
     titel: 'Zie in één oogopslag waar elke klant staat.',
     tekst:
       'Onbeperkt klanten in één werkoverzicht. Per klant de zichtbaarheid in AI, wat er op je wacht en sinds wanneer. Wat het langst wacht staat bovenaan, en je start de maand voor meerdere klanten tegelijk.',
@@ -38,6 +39,7 @@ export const secties = {
   },
   klanten: {
     id: 'klanten',
+    label: 'Klanten',
     titel: 'Een nieuwe klant staat er in tien minuten.',
     tekst:
       'Naam en website zijn genoeg. ORBIT ENGINE leest de site, brengt aanbod, doelgroep en concurrenten in kaart en zet een merkdossier klaar. Per bureau leg je vast hoeveel pagina’s een nieuwe klant per maand krijgt.',
@@ -54,6 +56,7 @@ export const secties = {
   },
   team: {
     id: 'team',
+    label: 'Team',
     titel: 'Je team en je klant, elk met de juiste rol.',
     tekst:
       'Beheerders doen alles. Een kijker ziet alleen de bedrijven die jij toewijst en doet alleen wat jij toestaat. De uitnodiging gaat per mail. Alles wat een meting, een tekst of een onderzoek start, blijft bij een beheerder.',
@@ -71,6 +74,7 @@ export const secties = {
   },
   kosten: {
     id: 'kosten',
+    label: 'Kosten',
     titel: 'Weet wat de AI kost, voordat je op de knop drukt.',
     tekst:
       'Je gebruikt je eigen sleutels en betaalt de AI rechtstreeks. Bij elke betaalde knop staat ongeveer wat het kost, en een maandlimiet stopt nieuw werk. ORBIT ENGINE rekent op wat je bureau eerder betaalde, en doet geen gok.',
@@ -89,6 +93,7 @@ export const secties = {
   },
   gegevens: {
     id: 'gegevens',
+    label: 'Gegevens',
     titel: 'Jouw klanten blijven van jou.',
     tekst:
       'Elk bureau werkt in een eigen omgeving en ziet van een ander bureau niets. Stopt een klant, dan archiveer je hem of verwijder je zijn gegevens definitief.',

@@ -70,16 +70,3 @@
 @media (max-width: 1199px) {
   .wd-row { gap: 16px; padding-inline: 20px; }
 }
-
-/* Op een telefoon staan de diagrammen onder elkaar. Afgesneden zouden ze het cijfer en de laatste stappen verbergen. */
-@media (max-width: 640px) {
-  .lp-beeld-schema:has(.ms, .ss, .kf-schema) .lp-beeld-stage { height: auto; }
-  .lp-beeld-schema:has(.ms, .ss, .kf-schema) .lp-beeld-inner { position: static; left: auto; width: auto; transform: none; zoom: 1; padding: 24px; }
-  .ms-flow, .ss-rij { grid-template-columns: 1fr; }
-  .ms-flow-stap, .ss-stap { grid-template-columns: 1fr; }
-  .ms-pijl, .ss-pijl { height: 28px; transform: rotate(90deg); }
-  .ms, .ss { padding: 0; }
-  .ms-foot { flex-direction: column; gap: 10px; }
-  .kf-schema { grid-template-columns: 1fr; height: auto; gap: 16px; }
-  .kf-schema .kf-lines { display: none; }
-}

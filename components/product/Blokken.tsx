@@ -118,10 +118,14 @@ export function Sectie({ id, children }: { id: string; children: React.ReactNode
   )
 }
 
-/** Titel links, tekst rechts met een tekstlink eronder. Bouwt op `.feature-header` uit home.css. */
-export function Intro({ id, titel, tekst, link }: { id: string; titel: string; tekst: string; link?: Verwijzing }) {
+/**
+ * Titel links, tekst rechts met een tekstlink eronder. Bouwt op `.feature-header` uit home.css. Het label
+ * staat alleen op mobiel boven de titel, zoals het kopje boven elke sectie op linear.app/ai.
+ */
+export function Intro({ id, titel, tekst, link, label }: { id: string; titel: string; tekst: string; link?: Verwijzing; label?: string }) {
   return (
     <div className="feature-header lp-intro">
+      {label && <p className="lp-intro-label">{label}</p>}
       <h2 id={`${id}-titel`} className="feature-title">{titel}</h2>
       <div className="feature-description">
         <p>{tekst}</p>
