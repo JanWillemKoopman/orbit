@@ -11,7 +11,8 @@ export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
   alternates: { canonical: '/beheer' },
-  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/beheer', images: [{ url: '/images/product/og-agency.png', width: 1200, height: 630 }] },
+  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/beheer', images: [{ url: '/images/product/og-beheer.png', width: 1200, height: 630 }] },
+  twitter: { card: 'summary_large_image', images: ['/images/product/og-beheer.png'] },
 }
 
 // Opbouw naar linear.app/ai (components/product/Blokken.tsx, app/pagina.css), zoals Werkwijze en
@@ -23,7 +24,7 @@ export default function BeheerPage() {
   const s = secties
   return (
     <div className="home lp">
-      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} />
+      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="hero-beheer" />
 
       <div className="container">
         {/* 1. Overzicht */}

@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
   alternates: { canonical: '/kwaliteit' },
-  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/kwaliteit', images: [{ url: '/images/product/og-kennis.png', width: 1200, height: 630 }] },
+  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/kwaliteit', images: [{ url: '/images/product/og-kwaliteit.png', width: 1200, height: 630 }] },
+  twitter: { card: 'summary_large_image', images: ['/images/product/og-kwaliteit.png'] },
 }
 
 // Opbouw naar linear.app/ai (components/product/Blokken.tsx, app/pagina.css), zoals Werkwijze: hero,
@@ -25,7 +26,7 @@ export default function KwaliteitPage() {
   const s = secties
   return (
     <div className="home lp">
-      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} />
+      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="hero-kwaliteit" />
 
       <div className="container">
         {/* 1. Het probleem */}

@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
   alternates: { canonical: '/ai' },
-  // De pagina staat nog niet in de sitemap. Pas indexeren zodra de hero-video erop staat.
-  robots: { index: false, follow: true },
+  openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/ai', images: [{ url: '/images/product/og-ai.png', width: 1200, height: 630 }] },
+  twitter: { card: 'summary_large_image', images: ['/images/product/og-ai.png'] },
 }
 
 // Opbouw naar linear.app/ai (components/product/Blokken.tsx, app/pagina.css), zoals de andere drie
@@ -29,7 +29,7 @@ export default function AiPage() {
   const s = secties
   return (
     <div className="home lp">
-      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} />
+      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="hero-ai" />
 
       <div className="container">
         {/* 1. Wie doet wat */}

@@ -6,6 +6,7 @@
 // nog in gebruik op Kwaliteit en Beheer). `PaginaHero`, `Sectie`, `Intro`, `Beeld`, `Raster`,
 // `RasterCel` en `Linkrij` zijn de blokken naar de opbouw van linear.app/ai (stijl in pagina.css).
 import Link from 'next/link'
+import { HeroVideo } from './HeroVideo'
 
 export type Bijschrift = { titel: string; tekst: string; label?: string }
 
@@ -83,15 +84,17 @@ export type Verwijzing = { label: string; href: string }
 
 /**
  * Hero zoals op linear.app/ai: een kleine regel en een grote titel, links uitgelijnd, zonder
- * beschrijving en zonder knoppen. De achtergrond blijft voorlopig leeg.
+ * beschrijving en zonder knoppen, met een rustige achtergrondvideo die over de volle breedte en achter
+ * de header loopt. `video` is de naam van de opnames in public/video, zonder formaat en extensie
+ * (`hero-werkwijze` voor hero-werkwijze-desktop.* en hero-werkwijze-mobiel.*).
  */
-export function PaginaHero({ eyebrow, titel }: { eyebrow: string; titel: string }) {
+export function PaginaHero({ eyebrow, titel, video }: { eyebrow: string; titel: string; video: string }) {
+  const poster = { '--poster-desktop': `url(/video/${video}-desktop-poster.jpg)`, '--poster-mobiel': `url(/video/${video}-mobiel-poster.jpg)` } as React.CSSProperties
   return (
     <section className="lp-hero" aria-labelledby="lp-titel">
-      {/* HERO-VIDEO: hier komt later de achtergrondvideo (vervaagd, schuin, over de volle breedte en
-          achter de header, zoals op linear.app/ai). De ruimte is vrijgehouden: lp-hero-media vult de
-          hele hero en ligt achter de tekst. */}
-      <div className="lp-hero-media" aria-hidden="true" />
+      <div className="lp-hero-media" aria-hidden="true" style={poster}>
+        <HeroVideo naam={video} />
+      </div>
       <div className="container lp-hero-inner">
         <p className="lp-eyebrow">{eyebrow}</p>
         <h1 id="lp-titel" className="lp-title">{titel}</h1>

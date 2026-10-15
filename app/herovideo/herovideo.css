@@ -1,0 +1,60 @@
+/* Scène voor de hero-video's. De hele animatie hangt aan één variabele, --p (0 tot 1, één lus), zodat elk
+   frame los te renderen is en de video naadloos herhaalt. Alles is gedimd en ontkleurd; de zwarte
+   verlopen zijn onderdeel van het beeld, zoals bij de video op linear.app/ai. */
+.hv-root { position: fixed; inset: 0; z-index: 99999; overflow: hidden; background: #08090a; --p: 0; font-size: 14px; line-height: 1.5; }
+.hv-cam { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 50% 20%; filter: brightness(1.05) saturate(0.5); }
+.hv-plane {
+  position: absolute; left: 42%; top: 34%; width: 0; height: 0; transform-style: preserve-3d;
+  transform:
+    translate3d(calc(-20px * sin(var(--p) * 360deg)), calc(10px * cos(var(--p) * 360deg)), 0)
+    rotateX(calc(44deg + 1.5deg * sin(var(--p) * 360deg)))
+    rotateZ(calc(-9deg + 1.2deg * cos(var(--p) * 360deg)));
+}
+.hv-win { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.hv-win > * { width: 100%; }
+.hv-win .fv-surface { max-width: none; }
+.hv-win .ot-comp, .hv-win .kc-comp { width: 1120px; }
+.hv-sheen {
+  position: absolute; inset: 0; pointer-events: none; border-radius: 14px;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.07) 50%, transparent 62%);
+  background-size: 300% 100%; background-position: calc(100% - 200% * var(--p)) 0;
+}
+/* Zachte focus: bovenin en aan de randen onscherp, in het midden scherper */
+.hv-blur { position: absolute; inset: 0; pointer-events: none; }
+.hv-blur-top { backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 38%); mask-image: linear-gradient(to bottom, #000 0%, transparent 38%); }
+.hv-blur-edge { backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); -webkit-mask-image: linear-gradient(to right, #000 0%, transparent 22%, transparent 78%, #000 100%); mask-image: linear-gradient(to right, #000 0%, transparent 22%, transparent 78%, #000 100%); }
+/* Zwarte verlopen: onder de header, aan de randen en vooral onderin, waar de titel komt te staan */
+.hv-shade {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(8, 9, 10, 0.6) 0%, rgba(8, 9, 10, 0) 18%),
+    linear-gradient(to top, #08090a 0%, #08090a 10%, rgba(8, 9, 10, 0.85) 28%, rgba(8, 9, 10, 0.4) 46%, rgba(8, 9, 10, 0) 66%),
+    linear-gradient(to right, rgba(8, 9, 10, 0.75) 0%, rgba(8, 9, 10, 0) 30%, rgba(8, 9, 10, 0) 70%, rgba(8, 9, 10, 0.75) 100%);
+}
+.hv-root[data-formaat='mobiel'] .hv-shade {
+  background:
+    linear-gradient(to bottom, rgba(8, 9, 10, 0.85) 0%, rgba(8, 9, 10, 0) 20%),
+    linear-gradient(to top, #08090a 0%, #08090a 18%, rgba(8, 9, 10, 0.88) 38%, rgba(8, 9, 10, 0.4) 60%, rgba(8, 9, 10, 0) 80%),
+    linear-gradient(to right, rgba(8, 9, 10, 0.5) 0%, rgba(8, 9, 10, 0) 25%, rgba(8, 9, 10, 0) 75%, rgba(8, 9, 10, 0.5) 100%);
+}
+/* Fijn korrelpatroon tegen banding in de donkere verlopen na het comprimeren */
+.hv-grain {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+
+/* Geen felle knoppen of dikke witte koppen: alles in de scène gaat een toon zachter */
+.hv-win .fv-btn-primary { background: rgba(255, 255, 255, 0.1); color: #9aa0a8; }
+.hv-win .fv-btn { box-shadow: none; }
+.hv-win :is(.ot-title, .ag-title, .fv-doc-h, .kf-brain strong) { color: #aeb3ba; font-weight: var(--weight-medium); }
+.hv-root[data-formaat='mobiel'] .hv-plane { left: 20%; top: 28%; }
+.hv-root[data-formaat='mobiel'] .hv-cam { perspective: 1100px; }
+
+/* Deel-afbeelding: dezelfde taal als de hero, met de poster van de video als achtergrond */
+.og-root { position: fixed; inset: 0; z-index: 99999; overflow: hidden; width: 1200px; height: 630px; background: #08090a var(--poster) 50% 0 / 1200px auto no-repeat; color: var(--text-primary); }
+.og-shade { position: absolute; inset: 0; background: linear-gradient(to top, #08090a 0%, rgba(8, 9, 10, 0.92) 34%, rgba(8, 9, 10, 0.35) 62%, rgba(8, 9, 10, 0) 82%), linear-gradient(to bottom, rgba(8, 9, 10, 0.7) 0%, rgba(8, 9, 10, 0) 24%); }
+.og-logo { position: absolute; top: 56px; left: 72px; font-size: 26px; }
+.og-logo .logo { transform: scale(1.35); transform-origin: left center; }
+.og-tekst { position: absolute; left: 72px; right: 72px; bottom: 64px; }
+.og-tekst p { font-size: 24px; line-height: 1.4; letter-spacing: -0.011em; color: var(--text-tertiary); }
+.og-tekst h1 { max-width: 980px; margin-top: 14px; margin-left: -2px; font-size: 76px; line-height: 1.02; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary); text-wrap: balance; }
