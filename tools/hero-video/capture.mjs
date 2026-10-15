@@ -1,5 +1,6 @@
 // Neemt de hero-video's op uit de scène /herovideo/<pagina>?f=<desktop|mobiel>.
 //
+//   (scène eerst naar app/herovideo kopiëren, zie README)
 //   node tools/hero-video/capture.mjs <pagina> <desktop|mobiel> [still] [--port 3056] [--uit map]
 //
 // Met "still" komt er één frame (p = 0,3) als png uit, om de compositie te beoordelen. Zonder "still" worden alle
