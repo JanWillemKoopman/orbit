@@ -213,6 +213,7 @@
 .fv-stip[data-tone='oranje'] { background: #f2a65a; }
 .fv-stip[data-tone='geel'] { background: #f2c94c; }
 .fv-stip[data-tone='lime'] { background: var(--accent); }
+.fv-stip[data-tone='rood'] { background: #eb5757; }
 .fv-stip[data-tone='blauw'] { background: #a3adff; }
 
 /* Klantinput */

@@ -200,7 +200,7 @@ export function BeheerBedrijven() {
         <div className="fv-surface ag-std">
           <strong className="ag-dialog-t">Standaarden</strong>
           <span className="fv-muted fv-small">Voor elk nieuw bedrijf en elk nieuw cluster.</span>
-          <div className="ag-std-row">
+          <div className="ag-std-row ag-std-stack">
             <span>Pagina&apos;s per maand</span>
             <span className="fv-seg">{[5, 10, 20, 30, 40, 50].map((n) => <span key={n} data-on={n === 10 || undefined}>{n}</span>)}</span>
           </div>
@@ -410,6 +410,90 @@ export function Verwijderen() {
       </div>
       <label className="ag-field"><span className="fv-muted fv-small">Typ de naam van het bedrijf over</span><span className="ag-input ag-input-on">Kringloop Het Goede Sp<i /></span></label>
       <div className="ag-dialog-btns"><span className="ag-ghost">Annuleer</span><span className="ag-btn-danger" data-uit>Verwijder definitief</span></div>
+    </div>
+  )
+}
+
+/* ── Nieuw voor de opbouw naar linear.app/ai ─────────────────────────────── */
+
+/** De rondleiding voor de beheerder bij de eerste keer inloggen. */
+export function ZoBeginJe() {
+  return (
+    <div className="fv-surface ag-tour">
+      <div className="ag-tour-head"><Mono>Rondleiding</Mono><span className="fv-muted">Stap 3 van 6</span></div>
+      <strong className="ag-dialog-t">Voeg een bedrijf toe</strong>
+      <p className="ag-tour-text">Op Merken voeg je een bedrijf toe met alleen de naam en de website. ORBIT ENGINE onderzoekt het in ongeveer tien minuten. Daarna staat bij het bedrijf de lijst Dit bedrijf inrichten.</p>
+      <div className="ag-tour-dots" aria-hidden="true">
+        {[1, 2, 3, 4, 5, 6].map((n) => <i key={n} data-state={n < 3 ? 'done' : n === 3 ? 'now' : undefined} />)}
+      </div>
+      <div className="ag-dialog-btns"><span className="ag-ghost">Terug</span><Knop primair klein>Volgende</Knop></div>
+    </div>
+  )
+}
+
+const KIJKER_MENU = [
+  ['Overzicht', 'taken', ['Openstaande taken']],
+  ['Strategie', 'plan', ['Contentplan', 'Openstaande vragen']],
+  ['Resultaten', 'grafiek', ['Zichtbaarheid in AI', 'Zoekverkeer']],
+  ['Mijn bedrijf', 'merk', ['Merkdossier', 'Feiten en kennis']],
+] as const
+
+/** Wat een kijker ziet: alleen zijn eigen bedrijf, in het menu geen Beheer. */
+export function SchermVanDeKijker() {
+  return (
+    <div className="fv-surface ag-kv">
+      <aside className="ag-kv-side">
+        <div className="ag-kv-brand"><span className="fv-avatar" data-kleur="3">PL</span><span className="ag-li-t"><strong>Lindeman Warmte</strong><em>Kijker</em></span></div>
+        {KIJKER_MENU.map(([kop, , items], g) => (
+          <div key={kop} className="ag-kv-group">
+            <span className="ag-kv-kop">{kop}</span>
+            {items.map((it, i) => <span key={it} className="ag-kv-item" data-on={(g === 0 && i === 0) || undefined}>{it}</span>)}
+          </div>
+        ))}
+      </aside>
+      <div className="ag-kv-main">
+        <Mono>Wat op jou wacht</Mono>
+        <div className="ag-kv-task">
+          <span className="ag-li-t"><strong>2 vragen om te beantwoorden</strong><em>Over hybride warmtepompen</em></span>
+          <Knop primair klein>Beantwoord</Knop>
+        </div>
+        <div className="ag-kv-task">
+          <span className="ag-li-t"><strong>1 tekst om goed te keuren</strong><em>Hybride warmtepomp in Houten</em></span>
+          <Knop klein>Open</Knop>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/** Het tabblad Systeemstatus: wat er niet lukte en wat je eraan doet, in een zin. */
+export function AlsErIetsMisgaat() {
+  return (
+    <div className="fv-surface ag-status">
+      <div className="ag-status-row"><span className="ag-status-ok"><Icon naam="check" size={12} /></span>Het achtergrondwerk is gekoppeld</div>
+      <div className="ag-status-row"><span className="ag-status-ok"><Icon naam="check" size={12} /></span>0 taken wachten, 2 bezig</div>
+      <div className="ag-status-row"><span className="ag-status-no">!</span>1 taak niet gelukt in de afgelopen 24 uur</div>
+      <div className="ag-status-fail">
+        <strong>Wat er misging</strong>
+        <span className="ag-status-who">Tandartspraktijk Lunetten <span className="ag-faint">· 1 taak</span></span>
+        <span className="ag-status-why">Het tegoed bij OpenAI is op. Vul het tegoed aan in het account bij OpenAI en probeer het daarna opnieuw.</span>
+      </div>
+    </div>
+  )
+}
+
+/** De melding als de maandlimiet bereikt is. */
+export function MaandlimietBereikt() {
+  return (
+    <div className="fv-surface ag-limit-hit">
+      <div className="ag-limit-top">
+        <span className="fv-stip" data-tone="rood" />
+        <strong>De maandlimiet van je bureau is bereikt</strong>
+      </div>
+      <div className="fv-cost-bar ag-bar-full"><i style={{ width: '100%' }} /></div>
+      <div className="ag-line"><span>Verbruik deze maand</span><span>€ 250,00 van € 250,00</span></div>
+      <div className="ag-line"><span>Nieuw werk dat geld kost</span><span>start weer op 1 november</span></div>
+      <span className="ag-lock"><Icon naam="slot" size={12} />Een beheerder kan de limiet verhogen onder Beheer, Kosten.</span>
     </div>
   )
 }

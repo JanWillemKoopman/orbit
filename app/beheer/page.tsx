@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { afsluiter, demoHref, hero, meta, ronde, secties, usps } from '@/content/agency'
-import { Cel, Kop, Paneel, Splitsing } from '@/components/product/Blokken'
+import { afsluiter, hero, meta, secties } from '@/content/beheer'
+import { Beeld, Intro, Linkrij, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
 import * as V from '@/components/agency/Visuals'
 import '../werkwijze/werkwijze.css'
+import '../pagina.css'
 import './beheer.css'
 
 export const metadata: Metadata = {
@@ -14,141 +14,111 @@ export const metadata: Metadata = {
   openGraph: { title: `${meta.title} – ORBIT ENGINE`, description: meta.description, url: '/beheer', images: [{ url: '/images/product/og-agency.png', width: 1200, height: 630 }] },
 }
 
-// Zelfde opbouw en vormgeving als /product, met de nadruk op het account van het bureau: het
-// werkoverzicht, klanten toevoegen, rollen, kosten, sleutels en gegevens. De grote panelen tonen een
-// heel scherm, de cellen één onderdeel van dichtbij (components/agency/Visuals.tsx).
+// Opbouw naar linear.app/ai (components/product/Blokken.tsx, app/pagina.css), zoals Werkwijze en
+// Kwaliteit: hero, vijf secties met een intro en een groot beeld of raster, de rij met de vier
+// productpagina's en de afsluiter. Het verhaal: het werkoverzicht, klanten toevoegen, team en
+// kijkers, kosten en sleutels, en gegevens die van het bureau blijven.
 
-export default function AgencyPage() {
+export default function BeheerPage() {
   const s = secties
   return (
-    <div className="home pd">
-      {/* 1. Hero */}
-      <section className="container pd-hero" aria-labelledby="pd-titel">
-        <p className="pd-eyebrow">{hero.eyebrow}</p>
-        <h1 id="pd-titel" className="home-title pd-title">{hero.title}</h1>
-        <div className="pd-hero-row">
-          <p className="pd-hero-description">{hero.description}</p>
-          <div className="pd-actions">
-            <Link href={demoHref} className="btn btn-lg btn-invert">{hero.cta}</Link>
-            <a href="#overzicht" className="btn btn-lg btn-secondary">{hero.secondary}</a>
-          </div>
-        </div>
-      </section>
-
-      <div className="container pd-hero-visual">
-        <Paneel b={hero.beeld} variant="screen" alt="Het werkoverzicht van Bureau Noordwind: zeven bedrijven met hun zichtbaarheid, maandmeting, wat er op het bureau wacht en de kosten van de afgelopen dertig dagen.">
-          <V.HeroWerkoverzicht />
-        </Paneel>
-        <p className="pd-note">{hero.note}</p>
-        <nav className="pd-ronde" aria-label="Het account van je bureau">
-          <ol>
-            {ronde.map((stap, i) => (
-              <li key={stap.label}>
-                <a href={stap.href}><span className="pd-ronde-nr" aria-hidden="true">{i + 1}</span>{stap.label}</a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-        <ul className="ag-usps">
-          {usps.map((u) => (
-            <li key={u.titel}>
-              <h2>{u.titel}</h2>
-              <p>{u.tekst}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="home lp">
+      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} />
 
       <div className="container">
-        {/* 2. Werkoverzicht */}
-        <section id={s.overzicht.id} className="feature pd-section" aria-labelledby={`${s.overzicht.id}-titel`}>
-          <div className="keyline" />
-          <Kop {...s.overzicht} />
-          <div className="pd-grid">
-            <Cel b={s.overzicht.cellen[0]} alt="Wacht op jou: Verbeek Bouw en Renovatie heeft twee teksten om na te kijken sinds zes dagen, Lindeman Warmte twee vragen bij de klant sinds vier dagen.">
+        {/* 1. Overzicht */}
+        <Sectie id={s.overzicht.id}>
+          <Intro id={s.overzicht.id} titel={s.overzicht.titel} tekst={s.overzicht.tekst} link={s.overzicht.link} />
+          <Beeld b={s.overzicht.beeld} breedte={1180} hoogte={720} alt="Het werkoverzicht van Bureau Noordwind: zeven bedrijven met hun zichtbaarheid, maandmeting, wat er op het bureau wacht en de kosten van de afgelopen dertig dagen.">
+            <V.HeroWerkoverzicht />
+          </Beeld>
+          <Raster>
+            <RasterCel b={s.overzicht.cellen[0]} alt="Wacht op jou: Verbeek Bouw en Renovatie heeft twee teksten om na te kijken sinds zes dagen, Lindeman Warmte twee vragen bij de klant sinds vier dagen.">
               <V.LangstWacht />
-            </Cel>
-            <Cel b={s.overzicht.cellen[1]} alt="De maand starten voor drie bedrijven, samen vijftien pagina's, voor ongeveer 18 euro. Van de maandlimiet is nog 204 euro over.">
+            </RasterCel>
+            <RasterCel b={s.overzicht.cellen[1]} stapel alt="De maand starten voor drie bedrijven, samen vijftien pagina's, voor ongeveer 18 euro. Van de maandlimiet is nog 204 euro over.">
               <V.MaandStarten />
-            </Cel>
-          </div>
-        </section>
+            </RasterCel>
+          </Raster>
+        </Sectie>
 
-        {/* 3. Klanten toevoegen */}
-        <section id={s.klanten.id} className="feature pd-section" aria-labelledby={`${s.klanten.id}-titel`}>
-          <div className="keyline" />
-          <Kop {...s.klanten} />
-          <div className="pd-grid">
-            <Cel b={s.klanten.cellen[0]} alt="Het formulier Nieuw merk met bedrijfsnaam Bakkerij De Korenaar, de website en de knop Start het onderzoek, met een schatting van 1,90 euro.">
-              <V.NieuwMerk />
-            </Cel>
-            <Cel b={s.klanten.cellen[1]} alt="Het onderzoek van Bakkerij De Korenaar: website, merk en aanbod zijn klaar, onderwerpen worden onderzocht.">
-              <V.Onderzoek />
-            </Cel>
-          </div>
-          <Paneel b={s.klanten.paneel} variant="screen" alt="Beheer, Bedrijven: vijf bedrijven met hun kijkers en het aantal pagina's per maand, en de standaarden voor nieuwe bedrijven.">
+        {/* 2. Klanten toevoegen */}
+        <Sectie id={s.klanten.id}>
+          <Intro id={s.klanten.id} titel={s.klanten.titel} tekst={s.klanten.tekst} link={s.klanten.link} />
+          <Beeld b={s.klanten.beeld} breedte={1180} hoogte={640} alt="Beheer, Bedrijven: vijf bedrijven met hun kijkers en het aantal pagina's per maand, en de standaarden voor nieuwe bedrijven.">
             <V.BeheerBedrijven />
-          </Paneel>
-        </section>
+          </Beeld>
+          <Raster>
+            <RasterCel b={s.klanten.cellen[0]} alt="Het formulier Nieuw merk met bedrijfsnaam Bakkerij De Korenaar, de website en de knop Start het onderzoek, met een schatting van 1,90 euro.">
+              <V.NieuwMerk />
+            </RasterCel>
+            <RasterCel b={s.klanten.cellen[1]} stapel alt="De rondleiding voor een beheerder, stap 3 van 6: voeg een bedrijf toe met alleen de naam en de website.">
+              <V.ZoBeginJe />
+            </RasterCel>
+          </Raster>
+        </Sectie>
 
-        {/* 4. Team en kijkers */}
-        <section id={s.team.id} className="feature pd-section" aria-labelledby={`${s.team.id}-titel`}>
-          <div className="keyline" />
-          <Kop {...s.team} />
-          <Paneel b={s.team.paneel} variant="screen" alt="Beheer, Gebruikers: twee beheerders, twee kijkers die elk één bedrijf zien, en een openstaande uitnodiging.">
+        {/* 3. Team en kijkers */}
+        <Sectie id={s.team.id}>
+          <Intro id={s.team.id} titel={s.team.titel} tekst={s.team.tekst} />
+          <Beeld b={s.team.beeld} breedte={1180} hoogte={600} alt="Beheer, Gebruikers: twee beheerders, een kijker die één bedrijf ziet, en een openstaande uitnodiging.">
             <V.Gebruikers />
-          </Paneel>
-          <div className="pd-grid">
-            <Cel b={s.team.cellen[0]} alt="Een collega uitnodigen als kijker, met Verbeek Bouw en Renovatie aangevinkt als het bedrijf dat ze mag zien.">
+          </Beeld>
+          <Raster>
+            <RasterCel b={s.team.cellen[0]} alt="Een collega uitnodigen als kijker, met Verbeek Bouw en Renovatie aangevinkt als het bedrijf dat ze mag zien.">
               <V.Uitnodigen />
-            </Cel>
-            <Cel b={s.team.cellen[1]} alt="Wat mogen kijkers: vragen beantwoorden, een link delen, materiaal toevoegen en een pagina goedkeuren staan aan, een pagina zelf bewerken staat uit.">
+            </RasterCel>
+            <RasterCel b={s.team.cellen[1]} alt="Wat mogen kijkers: vragen beantwoorden, materiaal toevoegen en een pagina goedkeuren staan aan, een pagina zelf bewerken staat uit.">
               <V.KijkerRechten />
-            </Cel>
-          </div>
-        </section>
+            </RasterCel>
+            <RasterCel b={s.team.cellen[2]} stapel alt="Het scherm van een kijker: alleen Lindeman Warmte, een menu zonder Beheer en wat er op de kijker wacht.">
+              <V.SchermVanDeKijker />
+            </RasterCel>
+            <RasterCel b={s.team.cellen[3]} alt="De systeemstatus: het achtergrondwerk is gekoppeld, één taak is niet gelukt en er staat waarom en wat je doet.">
+              <V.AlsErIetsMisgaat />
+            </RasterCel>
+          </Raster>
+        </Sectie>
 
-        {/* 5. Kosten */}
-        <section id={s.kosten.id} className="feature pd-section" aria-labelledby={`${s.kosten.id}-titel`}>
-          <div className="keyline" />
-          <Kop {...s.kosten} />
-          <Paneel b={s.kosten.paneel} variant="screen" alt="Beheer, Kosten: in oktober 46 euro van een limiet van 250 euro, ongeveer 51,80 euro die volgende maand vanzelf loopt, en het verbruik per soort werk en per maand.">
+        {/* 4. Kosten en sleutels */}
+        <Sectie id={s.kosten.id}>
+          <Intro id={s.kosten.id} titel={s.kosten.titel} tekst={s.kosten.tekst} link={s.kosten.link} />
+          <Beeld b={s.kosten.beeld} breedte={1180} hoogte={600} alt="Beheer, Kosten: in oktober 46 euro van een limiet van 250 euro, ongeveer 51,80 euro die volgende maand vanzelf loopt, en het verbruik per soort werk.">
             <V.BeheerKosten />
-          </Paneel>
-          <div className="pd-grid">
-            <Cel b={s.kosten.cellen[0]} alt="De knop Schrijf deze pagina nu met de schatting van ongeveer 1,20 euro per pagina, en schattingen bij drie andere betaalde knoppen.">
+          </Beeld>
+          <Raster>
+            <RasterCel b={s.kosten.cellen[0]} alt="De knop Schrijf deze pagina nu met de schatting van ongeveer 1,20 euro per pagina, en schattingen bij drie andere betaalde knoppen.">
               <V.PrijsBijKnop />
-            </Cel>
-            <Cel b={s.kosten.cellen[1]} alt="De kosten van oktober per bedrijf: Lindeman Warmte 12,40 euro, Tandartspraktijk Lunetten 9,60 euro, Verbeek Bouw en Renovatie 8,20 euro, samen 46 euro.">
+            </RasterCel>
+            <RasterCel b={s.kosten.cellen[1]} alt="De kosten van oktober per bedrijf: Lindeman Warmte 12,40 euro, Tandartspraktijk Lunetten 9,60 euro, Verbeek Bouw en Renovatie 8,20 euro, samen 46 euro.">
               <V.KostenPerKlant />
-            </Cel>
-          </div>
-        </section>
+            </RasterCel>
+            <RasterCel b={s.kosten.cellen[2]} alt="De sleutels van Bureau Noordwind: OpenAI en Gemini zijn ingevuld en werken, DataForSEO is nog niet ingevuld.">
+              <V.Sleutels />
+            </RasterCel>
+            <RasterCel b={s.kosten.cellen[3]} stapel alt="De melding dat de maandlimiet van het bureau bereikt is: nieuw werk dat geld kost start weer op 1 november.">
+              <V.MaandlimietBereikt />
+            </RasterCel>
+          </Raster>
+        </Sectie>
 
-        {/* 6. Sleutels */}
-        <section id={s.sleutels.id} className="feature pd-section" aria-labelledby={`${s.sleutels.id}-titel`}>
-          <div className="keyline" />
-          <Splitsing {...s.sleutels} alt="De sleutels van Bureau Noordwind: OpenAI en Gemini zijn ingevuld en werken, DataForSEO is nog niet ingevuld.">
-            <V.Sleutels />
-          </Splitsing>
-        </section>
-
-        {/* 7. Gegevens */}
-        <section id={s.gegevens.id} className="feature pd-section" aria-labelledby={`${s.gegevens.id}-titel`}>
-          <div className="keyline" />
-          <Kop {...s.gegevens} />
-          <div className="pd-grid">
-            <Cel b={s.gegevens.cellen[0]} alt="Twee gearchiveerde bedrijven met de knop Terughalen.">
+        {/* 5. Gegevens */}
+        <Sectie id={s.gegevens.id}>
+          <Intro id={s.gegevens.id} titel={s.gegevens.titel} tekst={s.gegevens.tekst} />
+          <Raster>
+            <RasterCel b={s.gegevens.cellen[0]} alt="Twee gearchiveerde bedrijven met de knop Terughalen.">
               <V.Archief />
-            </Cel>
-            <Cel b={s.gegevens.cellen[1]} alt="Een bedrijf definitief verwijderen: eerst staat er wat weggaat, daarna typ je de naam over.">
+            </RasterCel>
+            <RasterCel b={s.gegevens.cellen[1]} alt="Een bedrijf definitief verwijderen: eerst staat er wat weggaat, daarna typ je de naam over.">
               <V.Verwijderen />
-            </Cel>
-          </div>
-        </section>
+            </RasterCel>
+          </Raster>
+        </Sectie>
       </div>
 
-      {/* 8. Afsluiter */}
+      <Linkrij huidig="/beheer" />
+
+      {/* Afsluiter */}
       <section className="home-prefooter container pd-afsluiter" aria-labelledby="pd-afsluiter">
         <h2 id="pd-afsluiter">{afsluiter.title}</h2>
         <p>{afsluiter.description}</p>
