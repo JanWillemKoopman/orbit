@@ -3,19 +3,37 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { mainNav, mobileNav, site } from '@/lib/site'
 import { DemoDialog } from './DemoDialog'
 import { Logo } from './Logo'
 import { NavMenu } from './NavMenu'
 
+// Zo lang duurt het uitfaden van het mobiele menu; daarna gaat het echt dicht (hidden).
+const SLUIT_DUUR = 160
+
 const isActive = (pathname: string, href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`))
+
+// Volgnummer van een kopje (l = 0) of link (l > 0) over alle groepen heen.
+const stapVoor = (groep: number, l: number) =>
+  mobileNav.slice(0, groep).reduce((n, g) => n + g.links.length + 1, 0) + l
 
 export function Header() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  // Het menu blijft na het sluiten nog even staan, zodat het kan uitfaden.
+  const [zichtbaar, setZichtbaar] = useState(false)
   const [demoOpen, setDemoOpen] = useState(false)
 
   useEffect(() => setOpen(false), [pathname])
+  useEffect(() => {
+    if (open) {
+      setZichtbaar(true)
+      return
+    }
+    const timer = setTimeout(() => setZichtbaar(false), SLUIT_DUUR)
+    return () => clearTimeout(timer)
+  }, [open])
   useEffect(() => {
     document.documentElement.style.overflow = open ? 'hidden' : ''
   }, [open])
@@ -49,12 +67,10 @@ export function Header() {
                 Gratis demo
               </button>
               <button className="menu-toggle" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+                {/* Twee lijnen die bij openen naar het midden schuiven en tot een kruis draaien */}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  {open ? (
-                    <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  ) : (
-                    <path d="M2 5.25h12M2 10.75h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  )}
+                  <path className="menu-toggle-lijn" d="M2 5.25h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <path className="menu-toggle-lijn" d="M2 10.75h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </button>
             </div>
@@ -64,13 +80,14 @@ export function Header() {
       <DemoDialog open={demoOpen} onClose={() => setDemoOpen(false)} />
 
       {/* Buiten de header: de backdrop-filter van de header zou dit fixed menu anders insluiten */}
-      <nav className="mobile-menu" data-open={open} aria-label="Mobiel menu" hidden={!open}>
-        {mobileNav.map((group) => (
+      <nav className="mobile-menu" data-open={zichtbaar} data-sluit={(zichtbaar && !open) || undefined} aria-label="Mobiel menu" hidden={!zichtbaar}>
+        {mobileNav.map((group, g) => (
           <div key={group.title} className="mobile-menu-group">
-            <p className="mobile-menu-title">{group.title}</p>
+            {/* --i is de volgorde van binnenkomen: kopjes en links schuiven na elkaar op hun plek */}
+            <p className="mobile-menu-title" style={{ '--i': stapVoor(g, 0) } as CSSProperties}>{group.title}</p>
             <ul>
-              {group.links.map((item) => (
-                <li key={item.href}>
+              {group.links.map((item, l) => (
+                <li key={item.href} style={{ '--i': stapVoor(g, l + 1) } as CSSProperties}>
                   <Link href={item.href} aria-current={isActive(pathname, item.href) ? 'page' : undefined}>{item.label}</Link>
                 </li>
               ))}
