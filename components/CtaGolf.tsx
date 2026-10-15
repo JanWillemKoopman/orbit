@@ -6,6 +6,9 @@ import { useEffect, useRef } from 'react'
 // oplicht naar het accent. Het canvas loopt over de volle breedte van het venster en de volle
 // hoogte van de sectie. Het tekent alleen zolang de sectie in beeld is; met reduced motion staat
 // er één stilstaand beeld.
+//
+// De golven zijn bewust onvoorspelbaar: richting, snelheid, kromming en sterkte worden gestuurd
+// door vloeiende ruis met een willekeurige seed per bezoek, zodat er geen herhalend patroon is.
 
 const SPACING = 18 // afstand tussen de stipjes in px
 const SPACING_SMALL = 15 // op smalle schermen
@@ -17,6 +20,53 @@ function hexToRgb(value: string, fallback: [number, number, number]): [number, n
   if (!/^[0-9a-f]{6}$/i.test(hex)) return fallback
   return [parseInt(hex.slice(0, 2), 16), parseInt(hex.slice(2, 4), 16), parseInt(hex.slice(4, 6), 16)]
 }
+
+// Vloeiende 3D-ruis (value noise) tussen -1 en 1, met een eigen seed.
+function maakRuis(seed: number) {
+  let a = seed >>> 0
+  const rnd = () => {
+    a = (a + 0x6d2b79f5) >>> 0
+    let t = a
+    t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+  const perm = new Uint8Array(512)
+  const waarden = new Float32Array(256)
+  for (let i = 0; i < 256; i++) {
+    perm[i] = i
+    waarden[i] = rnd() * 2 - 1
+  }
+  for (let i = 255; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1))
+    const tmp = perm[i]
+    perm[i] = perm[j]
+    perm[j] = tmp
+  }
+  for (let i = 0; i < 256; i++) perm[i + 256] = perm[i]
+  const fade = (t: number) => t * t * t * (t * (t * 6 - 15) + 10)
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+  const v = (x: number, y: number, z: number) => waarden[perm[perm[perm[x] + y] + z]]
+
+  return (x: number, y: number, z: number) => {
+    const xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z)
+    const u = fade(x - xi), w = fade(y - yi), q = fade(z - zi)
+    const X = xi & 255, Y = yi & 255, Z = zi & 255
+    const X1 = (X + 1) & 255, Y1 = (Y + 1) & 255, Z1 = (Z + 1) & 255
+    return lerp(
+      lerp(lerp(v(X, Y, Z), v(X1, Y, Z), u), lerp(v(X, Y1, Z), v(X1, Y1, Z), u), w),
+      lerp(lerp(v(X, Y, Z1), v(X1, Y, Z1), u), lerp(v(X, Y1, Z1), v(X1, Y1, Z1), u), w),
+      q,
+    )
+  }
+}
+
+// Twee golftreinen die elkaar kruisen. Elk heeft een basisrichting, golflengte en snelheid; de ruis
+// laat die rond die basis zwerven.
+const GOLVEN = [
+  { hoek: 0.12, lengte: 0.5, snelheid: 1.15, scherpte: 6, sterkte: 1 },
+  { hoek: -0.55, lengte: 0.8, snelheid: 0.75, scherpte: 8, sterkte: 0.6 },
+]
 
 const smooth = (a: number, b: number, x: number) => {
   const t = Math.min(1, Math.max(0, (x - a) / (b - a)))
@@ -48,6 +98,11 @@ export function CtaGolf() {
     let frame = 0
     let zichtbaar = false
     const start = performance.now()
+    const ruis = maakRuis(Math.floor(Math.random() * 2 ** 32))
+    // Fase per golf. Die wordt per frame opgeteld in plaats van berekend uit de tijd, zodat de
+    // snelheid kan variëren zonder dat de golf verspringt.
+    const fasen = GOLVEN.map(() => Math.random() * TAU)
+    let vorige = -1
 
     // Meet de sectie, rek het canvas op tot de volle vensterbreedte en leg het raster opnieuw neer.
     const meet = () => {
@@ -85,19 +140,43 @@ export function CtaGolf() {
 
     const teken = (tijd: number) => {
       const t = tijd / 1000
-      const k1 = TAU / Math.max(width * 0.55, 420)
-      const k2 = TAU / Math.max(width * 0.9, 640)
+      const dt = vorige < 0 ? 0 : Math.min(0.1, Math.max(0, t - vorige))
+      vorige = t
+      const cx = width / 2
+      const cy = height / 2
       const paden = Array.from({ length: LEVELS }, () => new Path2D())
       const rBasis = width < 640 ? 1.1 : 1.25
 
+      // Per golf voor dit frame: richting en snelheid zwerven langzaam rond hun basiswaarde.
+      const golven = GOLVEN.map((g, n) => {
+        const hoek = g.hoek + 0.55 * ruis(t * 0.025, n * 13.7, 1.3)
+        const snelheid = g.snelheid * (0.95 + 0.6 * ruis(t * 0.04, n * 7.1, 5.9))
+        fasen[n] += snelheid * dt
+        return {
+          cos: Math.cos(hoek),
+          sin: Math.sin(hoek),
+          k: TAU / Math.max(width * g.lengte, 380),
+          fase: fasen[n],
+          scherpte: g.scherpte,
+          sterkte: g.sterkte,
+          z: t * 0.06 + n * 31.4,
+        }
+      })
+
       for (const d of dots) {
-        // Twee lopende golven die over elkaar heen schuiven. De zachte kromming in y maakt van de
-        // rechte banden een deining; de macht maakt de kammen smal, zodat de rest donker blijft.
-        const p1 = d.x * k1 - t * 1.1 + 1.4 * Math.sin(d.y * 0.012 + t * 0.45) + 0.5 * Math.sin(d.x * 0.004 - t * 0.3)
-        const p2 = d.x * k2 + d.y * 0.006 - t * 0.7 + 1.1 * Math.sin(d.y * 0.009 - t * 0.35 + 1.7)
-        const a = Math.pow(0.5 + 0.5 * Math.sin(p1), 6)
-        const b = Math.pow(0.5 + 0.5 * Math.sin(p2), 8) * 0.55
-        const i = Math.min(1, (a + b) * d.demp)
+        const px = d.x - cx
+        const py = d.y - cy
+        let som = 0
+        for (let n = 0; n < golven.length; n++) {
+          const g = golven[n]
+          // Ruis buigt de kammen (kromming) en bepaalt waar een golf sterk is en waar hij uitdooft,
+          // zodat er sets ontstaan die aanzwellen en weer verdwijnen.
+          const buig = 2.6 * ruis(d.x / 420, d.y / 300, g.z)
+          const env = smooth(-0.35, 0.55, ruis(d.x / 650 + 40, d.y / 650, g.z * 0.8 + 9))
+          const p = (px * g.cos + py * g.sin) * g.k - g.fase + buig
+          som += Math.pow(0.5 + 0.5 * Math.sin(p), g.scherpte) * g.sterkte * (0.35 + 0.65 * env)
+        }
+        const i = Math.min(1, som * 1.15 * d.demp)
         const level = Math.round(i * (LEVELS - 1))
         const r = rBasis + i * 0.6
         const pad = paden[level]
