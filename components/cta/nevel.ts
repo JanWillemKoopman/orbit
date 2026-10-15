@@ -1,8 +1,8 @@
 import { demping, maakRandom, maakRuis, smooth, TAU, type MaakVariant, type Rgb } from './util'
 
-// Variant 'nevel': naar de Cosmic Cliffs in de Carinanevel, zoals James Webb die in infrarood zag.
-// Onderin een donkere wand van stof met grillige pieken en een oplichtende rand; daarboven gloeiend
-// gas dat in stromen kolkt. Door het stof heen zie je jonge sterren (de felste met de zes spikes
+// De nevel achter de afsluiter: naar de Cosmic Cliffs in de Carinanevel, zoals James Webb die in
+// infrarood zag. Onderin een donkere wand van stof met grillige pieken en een oplichtende rand;
+// daarboven gloeiend gas dat in stromen kolkt. Door het stof heen zie je jonge sterren (de felste met de zes spikes
 // van Webb) en op de achtergrond kleine sterrenstelsels. Alles beweegt traag en organisch, doordat
 // het gas uit ruis komt die over zichzelf heen wordt verbogen (domain warping).
 //

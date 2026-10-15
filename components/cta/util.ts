@@ -1,31 +1,22 @@
-// Gedeelde hulpjes voor de achtergronden van de CTA-afsluiter (components/CtaAchtergrond.tsx).
+// Hulpjes voor de achtergrond van de CTA-afsluiter (components/CtaAchtergrond.tsx).
 
 export const TAU = Math.PI * 2
 
 export type Rgb = [number, number, number]
 
-// Eén achtergrondvariant: `meet` legt het veld opnieuw neer na een maatwijziging, `teken` tekent
+// De achtergrond: `meet` legt het veld opnieuw neer na een maatwijziging, `teken` tekent
 // één frame op tijdstip `tijd` (ms sinds de start).
 export type Variant = {
   meet: (width: number, height: number) => void
   teken: (tijd: number) => void
 }
 
-export type MaakVariant = (ctx: CanvasRenderingContext2D, kleur: { achtergrond: Rgb; rust: Rgb; grijs: Rgb; helder: Rgb; licht: Rgb }) => Variant
+export type MaakVariant = (ctx: CanvasRenderingContext2D, kleur: { achtergrond: Rgb; grijs: Rgb; helder: Rgb; licht: Rgb }) => Variant
 
 export function hexToRgb(value: string, fallback: Rgb): Rgb {
   const hex = value.trim().replace('#', '')
   if (!/^[0-9a-f]{6}$/i.test(hex)) return fallback
   return [parseInt(hex.slice(0, 2), 16), parseInt(hex.slice(2, 4), 16), parseInt(hex.slice(4, 6), 16)]
-}
-
-// `n` kleuren van `van` naar `naar`, als rgb()-strings.
-export function kleurtrap(van: Rgb, naar: Rgb, n: number) {
-  return Array.from({ length: n }, (_, i) => {
-    const t = i / (n - 1)
-    const c = van.map((r, j) => Math.round(r + (naar[j] - r) * t))
-    return `rgb(${c[0]}, ${c[1]}, ${c[2]})`
-  })
 }
 
 export const smooth = (a: number, b: number, x: number) => {
@@ -87,17 +78,5 @@ export function maakRuis(seed: number, zPeriode = 256) {
       lerp(lerp(v(X, Y, Z1), v(X1, Y, Z1), u), lerp(v(X, Y1, Z1), v(X1, Y1, Z1), u), w),
       q,
     )
-  }
-}
-
-// Seconden tussen twee frames, afgekapt zodat een lange pauze (tab op de achtergrond, sectie uit
-// beeld) geen sprong geeft.
-export function maakKlok() {
-  let vorige = -1
-  return (tijd: number) => {
-    const t = tijd / 1000
-    const dt = vorige < 0 ? 0 : Math.min(0.1, Math.max(0, t - vorige))
-    vorige = t
-    return { t, dt }
   }
 }
