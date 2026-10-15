@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Pagina AI (/ai): de beelden naast de opbouw uit pagina.css. De tabel Wie doet wat, de stroom van een
+   meting, de stappen van het schrijven, het werk op de achtergrond en de kleine lijsten in de cellen.
+   ========================================================================== */
+
+/* Wie doet wat: een tabel in een venster, onderaan uitlopend in het vlak */
+.wd {
+  display: flex; flex-direction: column; border-radius: 14px; overflow: hidden;
+  background: linear-gradient(180deg, #121314 0%, #0f1011 100%); border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.wd-row { display: grid; grid-template-columns: 150px repeat(3, minmax(0, 1fr)); align-items: center; gap: 24px; min-height: 58px; padding: 10px 28px; font-size: 13.5px; line-height: 1.45; color: var(--text-secondary); }
+.wd-row + .wd-row { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+.wd-row strong { font-weight: var(--weight-medium); color: var(--text-primary); }
+.wd-head { min-height: 52px; }
+.wd-leeg { color: var(--text-quaternary); }
+
+/* Cellen */
+.ai-comp, .ai-brief, .ai-test, .ai-kanalen { gap: 0; padding: 18px 22px 12px; }
+.ai-comp .fv-q-head, .ai-brief .fv-q-head, .ai-test .fv-q-head, .ai-kanalen .fv-q-head { padding-bottom: 12px; }
+.ai-comp-row { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 0; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.ai-comp-q { font-size: 13.5px; color: var(--text-secondary); }
+.ai-brief-vraag { display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-top: 1px solid rgba(255, 255, 255, 0.07); color: var(--text-primary); font-size: 13.5px; }
+.ai-brief-vraag svg { flex-shrink: 0; margin-top: 3px; color: #f2a65a; }
+.ai-test-rij { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; border-top: 1px solid rgba(255, 255, 255, 0.07); color: var(--text-primary); }
+.ai-kanaal { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.ai-kanaal .ag-li-t em { white-space: normal; }
+.fv-toggle[data-vast] { opacity: 0.55; }
+.ai-comp .ag-lock, .ai-brief .ag-lock, .ai-test .ag-lock { border-top: 1px solid rgba(255, 255, 255, 0.07); margin-top: 2px; padding-bottom: 6px; }
+.cl-rij .fv-chip { min-width: 46px; justify-content: center; }
+
+/* Meetstroom: vier stappen en een cijfer */
+.ms { display: flex; flex-direction: column; gap: 28px; padding: 0 8px; }
+.ms-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; align-items: stretch; }
+.ms-flow-stap { display: grid; grid-template-columns: minmax(0, 1fr) 32px; align-items: stretch; }
+.ms-node { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; height: 100%; padding: 18px; font-size: 13px; line-height: 1.45; color: var(--text-tertiary); }
+.ms-node strong { font-size: 15px; font-weight: var(--weight-medium); color: var(--text-primary); }
+.ms-pijl { display: flex; align-items: center; justify-content: center; color: var(--text-quaternary); }
+.ms-result { border-color: rgba(188, 255, 47, 0.28); }
+.ms-num { font-size: 40px; line-height: 1.1; font-weight: var(--weight-medium); letter-spacing: -0.03em; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.ms-num b { margin-left: 8px; font-size: 15px; font-weight: var(--weight-normal); letter-spacing: 0; color: var(--text-tertiary); }
+.ms-foot { display: flex; gap: 28px; padding: 0 4px; font-size: 13px; color: var(--text-tertiary); }
+.ms-foot span { display: inline-flex; align-items: center; gap: 8px; }
+.ms-foot svg { color: var(--accent); }
+
+/* Schrijfstraat: vijf kaarten met een regel van code eronder */
+.ss { display: flex; flex-direction: column; gap: 28px; padding: 0 8px; }
+.ss-rij { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.ss-stap { display: grid; grid-template-columns: minmax(0, 1fr) 28px; align-items: stretch; }
+.ss-stap:last-child { grid-template-columns: minmax(0, 1fr); }
+.ss-kaart { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; height: 100%; padding: 18px; font-size: 13px; line-height: 1.45; color: var(--text-tertiary); }
+.ss-kaart strong { font-size: 15px; font-weight: var(--weight-medium); color: var(--text-primary); }
+.ss-top { display: flex; align-items: center; justify-content: space-between; align-self: stretch; }
+.ss-nr { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(255, 255, 255, 0.06); font-size: 12px; color: var(--text-secondary); }
+.ss-pijl { display: flex; align-items: center; justify-content: center; color: var(--text-quaternary); }
+.ss-regel { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 12px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); font-size: 13.5px; color: var(--text-secondary); }
+
+/* Het werk op de achtergrond */
+.aw { width: 100%; max-width: 900px; margin: 0 auto; }
+.aw-status { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13.5px; color: var(--text-secondary); }
+.aw-status span { display: inline-flex; align-items: center; gap: 8px; }
+.aw-status i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); }
+.aw-status i[data-ok] { background: var(--accent); }
+.aw-tr { display: grid; grid-template-columns: minmax(0, 1.5fr) 0.7fr minmax(0, 2fr) 150px; align-items: center; gap: 16px; min-height: 56px; padding: 0 14px; color: var(--text-secondary); white-space: nowrap; }
+.aw-tr + .aw-tr { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+.aw-tr strong { overflow: hidden; text-overflow: ellipsis; font-weight: var(--weight-medium); color: var(--text-primary); }
+.aw-w { color: var(--text-primary); }
+.aw-s { overflow: hidden; text-overflow: ellipsis; color: var(--text-tertiary); }
+
+@media (max-width: 1199px) {
+  .wd-row { gap: 16px; padding-inline: 20px; }
+}
+
+/* Op een telefoon staan de diagrammen onder elkaar. Afgesneden zouden ze het cijfer en de laatste stappen verbergen. */
+@media (max-width: 640px) {
+  .lp-beeld-schema:has(.ms, .ss, .kf-schema) .lp-beeld-stage { height: auto; }
+  .lp-beeld-schema:has(.ms, .ss, .kf-schema) .lp-beeld-inner { position: static; left: auto; width: auto; transform: none; zoom: 1; padding: 24px; }
+  .ms-flow, .ss-rij { grid-template-columns: 1fr; }
+  .ms-flow-stap, .ss-stap { grid-template-columns: 1fr; }
+  .ms-pijl, .ss-pijl { height: 28px; transform: rotate(90deg); }
+  .ms, .ss { padding: 0; }
+  .ms-foot { flex-direction: column; gap: 10px; }
+  .kf-schema { grid-template-columns: 1fr; height: auto; gap: 16px; }
+  .kf-schema .kf-lines { display: none; }
+}

@@ -91,9 +91,9 @@ export function BreinSchema() {
       </svg>
       <div className="kf-brain">
         <span className="kf-brain-ring"><Logo size={34} /></span>
-        <strong>Het brein</strong>
+        <strong>Feiten en kennis</strong>
         <span className="fv-muted">Lindeman Warmte</span>
-        <span className="kf-brain-n"><b>86</b> feiten met bron</span>
+        <span className="kf-brain-n">Elk feit met een bron</span>
       </div>
       <svg className="kf-lines" viewBox="0 0 120 360" preserveAspectRatio="none" aria-hidden="true">
         {[120, 196, 272].map((y) => <path key={y} d={`M120 ${y} C 60 ${y}, 60 180, 0 180`} fill="none" stroke="rgba(163,173,255,0.45)" strokeWidth="1.5" />)}

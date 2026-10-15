@@ -49,7 +49,7 @@ function Vink({ aan = false }: { aan?: boolean }) {
 
 const RIJEN = [
   { n: 'Verbeek Bouw & Renovatie', s: 42, m: 6, d: 7, mm: '3 van 4', st: "November, 5 pagina's", w: '2 nakijken', ws: '6 dagen', k: '16,80', v: true },
-  { n: 'Lindeman Warmte', s: 47, m: 5, d: 10, mm: '4 van 4', st: "November, 5 pagina's", w: '2 vragen', ws: '4 dagen', k: '24,60', v: true },
+  { n: 'Lindeman Warmte', s: 47, m: 10, d: 10, mm: '4 van 4', st: "November, 5 pagina's", w: '2 vragen', ws: '4 dagen', k: '24,60', v: true },
   { n: 'Tandartspraktijk Lunetten', s: 55, m: 6, d: 10, mm: '2 van 3', st: '', w: '1 plaatsen', ws: '2 dagen', k: '19,30' },
   { n: 'Hoveniersbedrijf Groenrijk', s: 28, m: 6, d: 4, mm: '2 van 2', st: "November, 5 pagina's", w: '1 vraag', ws: 'vandaag', k: '7,30', v: true },
   { n: 'Fysio Oudwijk', s: 61, m: 7, d: 11, mm: '3 van 3', st: "November, 10 pagina's", w: '', ws: '', k: '9,80' },
