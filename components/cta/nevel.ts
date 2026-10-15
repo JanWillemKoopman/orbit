@@ -14,6 +14,7 @@ const SCHAAL_KLEIN = 5 // op smalle schermen
 const STER_DICHTHEID = 1 / 2600 // sterren per px²
 const SPIKE_STERREN = 9 // bij 1440 px breed
 const STELSELS = 22 // bij 1440 px breed
+const TEMPO = 2.5 // tempo van het kolkende gas en de verschuivende klif
 
 type Ster = { x: number; y: number; r: number; helder: number; fonkel: number; fase: number; diepte: number }
 type Stelsel = { x: number; y: number; rx: number; ry: number; hoek: number; helder: number }
@@ -151,7 +152,7 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
     teken(tijd) {
       const { t, dt } = klok(tijd)
       // Het gas is het zwaarste deel; het verandert traag, dus om het andere frame is genoeg.
-      if (frame++ % 2 === 0) tekenGas(t)
+      if (frame++ % 2 === 0) tekenGas(t * TEMPO)
 
       ctx.clearRect(0, 0, width, height)
       ctx.imageSmoothingEnabled = true
