@@ -1,4 +1,4 @@
-// Drie nagebouwde schermen van ORBIT ENGINE achter elkaar, naar het voorbeeld van linear.app/intake.
+// Drie nagebouwde schermen van Orbit achter elkaar, naar het voorbeeld van linear.app/intake.
 // Ze volgen de echte schermen in de app: Mijn clusters (strategie/clusters), Openstaande vragen
 // (strategie/vragen) en de kalender van het Contentplan (strategie/plan). Statusnamen en knoppen
 // zijn letterlijk die uit de app; namen en cijfers zijn voorbeelddata van het verzonnen merk uit de hero.
@@ -39,7 +39,7 @@ function Clusters() {
       <div className="sc-head">
         <span className="sc-eyebrow">Clusters</span>
         <span className="sc-title">Mijn clusters</span>
-        <span className="sc-desc">Elk cluster is één onderwerp waarop ORBIT ENGINE je zichtbaarheid volgt.</span>
+        <span className="sc-desc">Elk cluster is één onderwerp waarop Orbit je zichtbaarheid volgt.</span>
       </div>
       <div className="sc-list">
         {clusters.map((c) => (
@@ -77,7 +77,7 @@ function Vragen() {
           <span className="sc-group-name">Wat kost een onderhoudsbeurt voor een e-bike?</span>
           <span className="sc-caption">1 van 3 gedaan</span>
         </div>
-        <span className="sc-caption">ORBIT ENGINE schrijft deze pagina zodra elke vraag beantwoord of overgeslagen is.</span>
+        <span className="sc-caption">Orbit schrijft deze pagina zodra elke vraag beantwoord of overgeslagen is.</span>
       </div>
       <div className="sc-question" data-open>
         <span className="sc-q">Welke onderhoudsbeurten bied je aan, en wat kosten ze?</span>

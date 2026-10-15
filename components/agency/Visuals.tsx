@@ -1,6 +1,6 @@
 // De productbeelden van /agency: het account van het fictieve Bureau Noordwind. De grote panelen tonen
 // een heel scherm (het werkoverzicht, Beheer), de cellen één onderdeel van dichtbij. Teksten volgen
-// de schermen van ORBIT ENGINE; de bedragen tellen op tot dezelfde maand (oktober: € 46 van € 250).
+// de schermen van Orbit; de bedragen tellen op tot dezelfde maand (oktober: € 46 van € 250).
 import { Chip, Icon, Knop, Logo, Mono } from '@/components/product/ui'
 
 /* ── Venster: een scherm van de app zonder zijbalk ────────────────────────── */
@@ -422,7 +422,7 @@ export function ZoBeginJe() {
     <div className="fv-surface ag-tour">
       <div className="ag-tour-head"><Mono>Rondleiding</Mono><span className="fv-muted">Stap 3 van 6</span></div>
       <strong className="ag-dialog-t">Voeg een bedrijf toe</strong>
-      <p className="ag-tour-text">Op Merken voeg je een bedrijf toe met alleen de naam en de website. ORBIT ENGINE onderzoekt het in ongeveer tien minuten. Daarna staat bij het bedrijf de lijst Dit bedrijf inrichten.</p>
+      <p className="ag-tour-text">Op Merken voeg je een bedrijf toe met alleen de naam en de website. Orbit onderzoekt het in ongeveer tien minuten. Daarna staat bij het bedrijf de lijst Dit bedrijf inrichten.</p>
       <div className="ag-tour-dots" aria-hidden="true">
         {[1, 2, 3, 4, 5, 6].map((n) => <i key={n} data-state={n < 3 ? 'done' : n === 3 ? 'now' : undefined} />)}
       </div>

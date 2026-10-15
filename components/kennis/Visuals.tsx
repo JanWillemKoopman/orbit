@@ -46,7 +46,7 @@ export function GewoneAi() {
 export function OrbitTekst() {
   return (
     <div className="fv-surface kf-vs">
-      <div className="kf-vs-head"><Logo size={18} /><Mono>ORBIT ENGINE</Mono></div>
+      <div className="kf-vs-head"><Logo size={18} /><Mono>Orbit</Mono></div>
       <p>
         Lindeman Warmte installeert je warmtepomp <span className="kf-goed">binnen één werkdag</span>, met{' '}
         <span className="kf-goed">5 jaar garantie</span>. <span className="fv-yellow">Na je akkoord plannen we binnen twee weken in.</span>
@@ -309,7 +309,7 @@ export function GoedkeurenGeblokkeerd() {
   )
 }
 
-/** Wat ORBIT ENGINE in code controleert. */
+/** Wat Orbit in code controleert. */
 export function ControleLijst() {
   const punten = ['Bedragen en prijzen', 'Termijnen en levertijden', 'Garanties en keurmerken', 'Getallen die niet in de bron staan', 'Namen van concurrenten', 'Woorden die je klant niet wil']
   return (

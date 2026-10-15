@@ -1,5 +1,5 @@
 ---
-title: "Waarom ik ORBIT ENGINE bouw"
+title: "Waarom ik Orbit bouw"
 description: "Steeds meer klanten stellen hun vraag aan AI. Waarom ik software bouw die MKB-bedrijven daarin zichtbaar maakt."
 date: 2026-10-06
 author: Jan-Willem Koopman
@@ -18,7 +18,7 @@ Schrijf hier wat er verandert: klanten vragen hun antwoord aan AI, en wie daar n
 
 Schrijf hier wie je bent en wat je zag bij bedrijven om je heen.
 
-## Wat ORBIT ENGINE doet
+## Wat Orbit doet
 
 Schrijf hier de loop in gewone taal: kansen ontdekken, content genereren, publiceren, impact meten, en steeds slimmer worden.
 

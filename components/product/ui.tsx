@@ -1,5 +1,5 @@
 // Bouwstenen voor de productbeelden op /product: een appvenster, chips, iconen en knoppen in de
-// vormgeving van ORBIT ENGINE. De beelden zijn nagebouwd in HTML, zodat ze op elk scherm scherp zijn.
+// vormgeving van Orbit. De beelden zijn nagebouwd in HTML, zodat ze op elk scherm scherp zijn.
 import { LogoMark } from '@/components/Logo'
 
 type Tone = 'lime' | 'groen' | 'oranje' | 'geel' | 'rood' | 'grijs' | 'blauw'

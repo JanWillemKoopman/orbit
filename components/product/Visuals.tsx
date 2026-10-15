@@ -35,7 +35,7 @@ export function HeroMaand({ stappen = STAPPEN }: { stappen?: MaandStap[] }) {
         <span className="fv-task-icon"><Icon naam="vraag" /></span>
         <span className="fv-hero-task-t">
           <strong>2 vragen over hybride warmtepompen</strong>
-          <em>Daarna schrijft ORBIT ENGINE de pagina</em>
+          <em>Daarna schrijft Orbit de pagina</em>
         </span>
         <Chip tone="oranje" dot>Wacht op klant</Chip>
         <Knop primair>Bekijk de vragen</Knop>
@@ -475,7 +475,7 @@ export function OpenstaandeTaken() {
               <Mono>Wat op jou wacht</Mono>
               <div className="ot-task">
                 <span className="fv-task-icon"><Icon naam="vraag" /></span>
-                <span className="ot-task-t"><strong>2 vragen bij de klant</strong><em>Over hybride warmtepompen, daarna schrijft ORBIT ENGINE</em></span>
+                <span className="ot-task-t"><strong>2 vragen bij de klant</strong><em>Over hybride warmtepompen, daarna schrijft Orbit</em></span>
                 <Chip tone="oranje" dot>Wacht op klant</Chip>
                 <Knop primair klein>Bekijk de vragen</Knop>
               </div>

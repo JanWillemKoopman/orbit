@@ -119,7 +119,7 @@ function werkwijze() {
     states: stappen.map((s) => s.getAttribute('data-state')!),
   }
   const klaar = [
-    { chip: 'Beantwoord', kop: 'Vragen beantwoord', sub: 'ORBIT ENGINE schrijft nu de tekst', note: ['Vragen beantwoord', 'Over hybride warmtepompen'] },
+    { chip: 'Beantwoord', kop: 'Vragen beantwoord', sub: 'Orbit schrijft nu de tekst', note: ['Vragen beantwoord', 'Over hybride warmtepompen'] },
     { chip: 'Goedgekeurd', kop: 'Tekst goedgekeurd', sub: 'Jaren-30-woning, alle gele zinnen nagelopen', note: ['Tekst goedgekeurd', 'Jaren-30-woning'] },
     { chip: 'Live', kop: 'Pagina staat live', sub: 'Hybride warmtepomp in Houten', note: ['Pagina live', 'Hybride warmtepomp in Houten'] },
   ]
