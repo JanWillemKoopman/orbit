@@ -382,12 +382,12 @@
 @media (hover: hover) { .faq-question:hover { color: var(--text-secondary); } }
 .faq-question:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
 .faq-icon { flex-shrink: 0; color: var(--text-tertiary); transition: transform var(--speed-regular) var(--ease-out-quad); }
-.faq-item[open] .faq-icon { transform: rotate(45deg); }
+.faq-item[data-open] .faq-icon { transform: rotate(45deg); }
+/* Zonder JavaScript volgt het icoon gewoon het details-element */
+.faq-item[open]:not([data-open]) .faq-icon { transform: rotate(45deg); }
 .faq-answer { max-width: 720px; padding-bottom: 28px; font-size: 16px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
-/* Bij openen komt het antwoord rustig binnen: een fade met een kleine verschuiving vanaf boven */
-.faq-item[open] .faq-answer { animation: faq-antwoord-in var(--speed-regular) var(--ease-out-expo); }
-@keyframes faq-antwoord-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .faq-item[open] .faq-answer { animation: none; } }
+/* De hoogte van het antwoord groeit vloeiend mee bij openen en sluiten (FaqVraag.tsx) */
+.faq-answer-wrap { overflow: hidden; }
 
 /* Afsluiter -------------------------------------------------------------- */
 .home-prefooter { display: flex; flex-direction: column; align-items: center; gap: 40px; padding-block: 96px 224px; }
