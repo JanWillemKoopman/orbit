@@ -22,7 +22,7 @@ export default async function OgScene({ params }: { params: Promise<{ pagina: st
   const h = PAGINAS[pagina as keyof typeof PAGINAS]
   if (!h) notFound()
   return (
-    <div className="og-root" style={{ '--poster': `url(/video/hero-${pagina}-desktop-poster.jpg)` } as React.CSSProperties}>
+    <div className="og-root" style={{ '--poster': `url(/video/hero-${pagina}-desktop-poster.webp)` } as React.CSSProperties}>
       <div className="og-shade" />
       <div className="og-logo"><Logo /></div>
       <div className="og-tekst">

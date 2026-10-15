@@ -6,6 +6,7 @@
 // nog in gebruik op Kwaliteit en Beheer). `PaginaHero`, `Sectie`, `Intro`, `Beeld`, `Raster`,
 // `RasterCel` en `Linkrij` zijn de blokken naar de opbouw van linear.app/ai (stijl in pagina.css).
 import Link from 'next/link'
+import { preload } from 'react-dom'
 import { HeroVideo } from './HeroVideo'
 
 export type Bijschrift = { titel: string; tekst: string; label?: string }
@@ -89,7 +90,12 @@ export type Verwijzing = { label: string; href: string }
  * (`hero-werkwijze` voor hero-werkwijze-desktop.* en hero-werkwijze-mobiel.*).
  */
 export function PaginaHero({ eyebrow, titel, video }: { eyebrow: string; titel: string; video: string }) {
-  const poster = { '--poster-desktop': `url(/video/${video}-desktop-poster.jpg)`, '--poster-mobiel': `url(/video/${video}-mobiel-poster.jpg)` } as React.CSSProperties
+  const desktop = `/video/${video}-desktop-poster.webp`
+  const mobiel = `/video/${video}-mobiel-poster.webp`
+  // Het eerste beeld komt als eerste binnen en alleen in het formaat dat de bezoeker nodig heeft
+  preload(mobiel, { as: 'image', media: '(max-width: 768px)', fetchPriority: 'high' })
+  preload(desktop, { as: 'image', media: '(min-width: 769px)', fetchPriority: 'high' })
+  const poster = { '--poster-desktop': `url(${desktop})`, '--poster-mobiel': `url(${mobiel})` } as React.CSSProperties
   return (
     <section className="lp-hero" aria-labelledby="lp-titel">
       <div className="lp-hero-media" aria-hidden="true" style={poster}>

@@ -45,7 +45,12 @@ for (let i = 0; i < N; i++) {
   if (i % 60 === 0) console.log(naam, i, '/', N)
 }
 await browser.close()
-writeFileSync(`${uit}/${naam}-poster.jpg`, frames[0])
+// De poster is het eerste frame, als WebP (een vierde van een jpg, zonder zichtbare banding)
+await new Promise((res, rej) => {
+  const p = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-c:v', 'mjpeg', '-i', '-', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '74', '-compression_level', '6', `${uit}/${naam}-poster.webp`], { stdio: ['pipe', 'inherit', 'inherit'] })
+  p.on('close', (c) => (c === 0 ? res() : rej(new Error('ffmpeg poster ' + c))))
+  p.stdin.end(frames[0])
+})
 
 const codecs = {
   'h264.mp4': ['-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an'],

@@ -19,7 +19,7 @@ opnieuw te maken als een scherm of een tekst verandert.
 2. `npx next build` en `npx next start -p 3055`.
 3. Per pagina en formaat: `node tools/hero-video/capture.mjs <ai|werkwijze|kwaliteit|beheer> <desktop|mobiel> --port 3055`
    (met `still` komt er één beoordeelbaar frame uit). De bestanden komen in `public/video/hero-<pagina>-<formaat>.*`.
-4. Deel-afbeeldingen: `node tools/hero-video/og.mjs --port 3055` (leest de posters uit `public/video`).
+4. Deel-afbeeldingen: `node tools/hero-video/og.mjs --port 3055` (leest de posters uit `public/video`, als `.webp`).
 5. Verwijder `app/herovideo` weer. Het script verwacht Playwright in `/opt/node-tools` (pas het pad bovenin aan).
 
 Wat in welke scène staat, kies je in `scene/[pagina]/page.tsx` (`SCENES`), per pagina en per formaat apart.

@@ -29,6 +29,14 @@ const nextConfig = {
   reactStrictMode: true,
   // De productbeelden (/werkwijze) bevatten kleine schermtekst; 85 houdt die scherp.
   images: { qualities: [75, 85], formats: ['image/avif', 'image/webp'] },
+  // De hero-video's en posters in public/video hebben geen hash in de naam. Een dag lang geen nieuw verzoek, daarna
+  // nog een week bruikbaar terwijl de browser op de achtergrond ververst: snel bij een tweede bezoek en toch
+  // vers na een nieuwe opname.
+  async headers() {
+    return [
+      { source: '/video/:path*', headers: [{ key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' }] },
+    ]
+  },
   async redirects() {
     return [
       { source: '/categorie/van-het-team', destination: '/kennisbank', permanent: true },
