@@ -139,24 +139,26 @@
   .lp-beeld-schema .lp-beeld-stage { height: auto; }
   .lp-beeld-schema .lp-beeld-inner { position: static; width: auto; zoom: 1; padding: 32px 24px 8px; }
   .lp-beeld-schema .lp-beeld-inner > * { filter: none; }
-  .ms, .ss { padding: 0; gap: 16px; }
-  .ms-flow, .ss-rij { grid-template-columns: 1fr; }
-  .ms-flow-stap, .ss-stap, .ss-stap:last-child { grid-template-columns: 1fr; }
-  .ms-node:not(.ms-result), .ss-kaart { flex-direction: row; align-items: center; gap: 12px; padding: 12px 16px; }
-  .ms-node:not(.ms-result) > span:last-child, .ss-kaart > span:last-child { display: none; }
-  .ms-node strong, .ss-kaart strong { font-size: 14px; }
-  .ms-result { padding: 16px; }
-  .ms-num { font-size: 32px; }
-  .ss-top { align-self: auto; gap: 10px; }
-  .ms-pijl, .ss-pijl { height: 20px; transform: rotate(90deg); }
-  .ms-foot { display: none; }
-  .ss-regel { align-items: flex-start; gap: 10px; padding: 12px 14px; font-size: 13px; }
-  .kf-schema { grid-template-columns: 1fr; height: auto; gap: 10px; }
-  .kf-schema .kf-lines { display: none; }
-  .kf-schema .kf-col { gap: 8px; }
-  .kf-schema .kf-src { height: 44px; padding: 0 12px; }
-  .kf-schema .kf-src-t em { display: none; }
-  .kf-schema .kf-brain { padding: 14px 16px; }
+  /* Met .lp-beeld-schema ervoor, zodat deze regels ook winnen als de paginastijl (ai-pagina.css, kwaliteit) pas na dit
+     bestand laadt, zoals bij doorklikken vanaf een andere pagina */
+  .lp-beeld-schema .ms, .lp-beeld-schema .ss { padding: 0; gap: 16px; }
+  .lp-beeld-schema .ms-flow, .lp-beeld-schema .ss-rij { grid-template-columns: 1fr; }
+  .lp-beeld-schema .ms-flow-stap, .lp-beeld-schema .ss-stap, .lp-beeld-schema .ss-stap:last-child { grid-template-columns: 1fr; }
+  .lp-beeld-schema .ms-node:not(.ms-result), .lp-beeld-schema .ss-kaart { flex-direction: row; align-items: center; gap: 12px; padding: 12px 16px; }
+  .lp-beeld-schema .ms-node:not(.ms-result) > span:last-child, .lp-beeld-schema .ss-kaart > span:last-child { display: none; }
+  .lp-beeld-schema .ms-node strong, .lp-beeld-schema .ss-kaart strong { font-size: 14px; }
+  .lp-beeld-schema .ms-result { padding: 16px; }
+  .lp-beeld-schema .ms-num { font-size: 32px; }
+  .lp-beeld-schema .ss-top { align-self: auto; gap: 10px; }
+  .lp-beeld-schema .ms-pijl, .lp-beeld-schema .ss-pijl { height: 20px; transform: rotate(90deg); }
+  .lp-beeld-schema .ms-foot { display: none; }
+  .lp-beeld-schema .ss-regel { align-items: flex-start; gap: 10px; padding: 12px 14px; font-size: 13px; }
+  .lp-beeld-schema .kf-schema { grid-template-columns: 1fr; height: auto; gap: 10px; }
+  .lp-beeld-schema .kf-schema .kf-lines { display: none; }
+  .lp-beeld-schema .kf-schema .kf-col { gap: 8px; }
+  .lp-beeld-schema .kf-schema .kf-src { height: 44px; padding: 0 12px; }
+  .lp-beeld-schema .kf-schema .kf-src-t em { display: none; }
+  .lp-beeld-schema .kf-schema .kf-brain { padding: 14px 16px; }
 }
 
 @media (max-width: 640px) {
