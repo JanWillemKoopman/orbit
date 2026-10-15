@@ -42,6 +42,10 @@
   .lp-beeld-stage { height: 468px; }
   .lp-beeld-scherm .lp-beeld-stage { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 84px), transparent 100%); mask-image: linear-gradient(to bottom, #000 calc(100% - 84px), transparent 100%); }
   .lp-beeld-inner { top: 40px; left: 24px; width: 440px; zoom: 0.86; }
+  /* Zoals linear.app/ai: een venster dat lager is dan het vlak staat verticaal in het midden, een hoger venster
+     begint bovenaan en vervaagt onderin (de automatische marges vallen dan weg) */
+  .lp-beeld-scherm .lp-beeld-stage { display: flex; flex-direction: column; padding-block: 34px; }
+  .lp-beeld-scherm .lp-beeld-inner { position: relative; top: auto; flex: none; margin-block: auto; }
   .lp-beeld-inner > * { filter: saturate(0.65); }
   /* De balk bovenin blijft op één regel; knoppen, chips en uitleg bij de zin verdwijnen, die zijn te klein om te lezen */
   .lp-beeld-inner .ot-crumbs, .lp-beeld-inner .ag-crumbs { min-width: 0; overflow: hidden; white-space: nowrap; }
