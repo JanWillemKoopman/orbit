@@ -24,6 +24,8 @@
 
   /* Beeld en cel: volle breedte, lijn eronder, beeldtekst op een effen ondergrond -- */
   .lp-beeld, .lp-raster { background-color: var(--bg-primary); }
+  /* Beelden onder elkaar sluiten aan en delen één lijn, net als de cellen in een raster; anders staan er twee lijnen met een lege strook ertussen */
+  .lp-sectie > :is(.lp-beeld, .lp-raster) + :is(.lp-beeld, .lp-raster) { margin-top: 0; border-top: 0; }
   .lp-caption { max-width: none; padding: 32px 24px 40px; background: var(--bg-primary); }
   .lp-cel .lp-caption { padding-top: 32px; }
   .lp-caption h3 { display: flex; flex-direction: column; align-items: flex-start; gap: 0; font-size: 15px; line-height: 24px; }
