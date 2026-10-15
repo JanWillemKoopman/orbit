@@ -3,7 +3,7 @@
 //   (scène eerst naar app/herovideo kopiëren, zie README)
 //   node tools/hero-video/capture.mjs <pagina> <desktop|mobiel> [still] [--port 3056] [--uit map]
 //
-// Met "still" komt er één frame (p = 0,3) als png uit, om de compositie te beoordelen. Zonder "still" worden alle
+// Met "still" komt er één frame (p = 0,3, of de waarden van --p) als png uit, om de compositie te beoordelen. Zonder "still" worden alle
 // frames opgenomen en met ffmpeg omgezet naar AV1, VP9, H.264 en een poster. De scène wordt per frame vastgezet
 // met de variabele --p, zodat de video naadloos herhaalt. Zie tools/hero-video/README.md.
 import { chromium } from '/opt/node-tools/node_modules/playwright/index.mjs'
@@ -28,11 +28,14 @@ const page = await ctx.newPage()
 await page.goto(`http://localhost:${port}/herovideo/${pagina}?f=${formaat}`, { waitUntil: 'load', timeout: 120000 })
 await page.evaluate(() => document.fonts.ready)
 await page.waitForTimeout(800)
-const zet = (p) => page.evaluate((v) => document.querySelector('.hv-root').style.setProperty('--p', String(v)), p)
+const zet = (p) => page.evaluate((v) => { document.querySelector('.hv-root').style.setProperty('--p', String(v)); window.__render?.(v) }, p)
 
 if (still) {
-  await zet(0.3)
-  await page.screenshot({ path: `${uit}/still-${pagina}-${formaat}.png` })
+  const ps = arg('--p', '0.3').split(',')
+  for (const v of ps) {
+    await zet(Number(v))
+    await page.screenshot({ path: `${uit}/still-${pagina}-${formaat}-${v}.png` })
+  }
   await browser.close()
   process.exit(0)
 }

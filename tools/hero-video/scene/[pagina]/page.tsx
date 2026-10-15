@@ -9,6 +9,7 @@ import '../../beheer/beheer.css'
 import '../../kwaliteit/kwaliteit.css'
 import '../../ai/ai-pagina.css'
 import '../herovideo.css'
+import { Regie } from '../regie'
 
 // Scène waaruit de hero-video's van de vier productpagina's worden opgenomen (tools/hero-video).
 // Niet voor bezoekers: de pagina is noindex en staat niet in de sitemap.
@@ -22,38 +23,38 @@ type Venster = { x: number; y: number; s: number; w: number; children: React.Rea
 const SCENES: Record<string, Record<string, Venster[]>> = {
   werkwijze: {
     desktop: [
-      { x: -640, y: -250, s: 1.6, w: 1120, children: <P.OpenstaandeTaken /> },
-      { x: 1150, y: 120, s: 1.4, w: 520, children: <P.Hermeting /> },
+      { x: -980, y: -250, s: 1.6, w: 1120, children: <P.OpenstaandeTaken /> },
+      { x: 830, y: 110, s: 1.4, w: 520, children: <P.Hermeting /> },
     ],
     mobiel: [
-      { x: -400, y: -150, s: 1.45, w: 1120, children: <P.OpenstaandeTaken /> },
+      { x: -700, y: -60, s: 1.1, w: 1120, children: <P.OpenstaandeTaken /> },
     ],
   },
   kwaliteit: {
     desktop: [
-      { x: -640, y: -250, s: 1.6, w: 1120, children: <K.HerkomstCompositie /> },
-      { x: 1150, y: 120, s: 1.4, w: 480, children: <K.GoedkeurenGeblokkeerd /> },
+      { x: -640, y: -250, s: 1.6, w: 1120, children: <K.WatWordtGeel /> },
+      { x: -40, y: 250, s: 1.25, w: 480, children: <K.GoedkeurenGeblokkeerd /> },
     ],
     mobiel: [
-      { x: -400, y: -150, s: 1.45, w: 1120, children: <K.HerkomstCompositie /> },
+      { x: -200, y: -20, s: 1.3, w: 600, children: <K.WatWordtGeel /> },
     ],
   },
   beheer: {
     desktop: [
-      { x: -640, y: -240, s: 1.5, w: 1180, children: <A.HeroWerkoverzicht /> },
-      { x: 1150, y: 140, s: 1.4, w: 460, children: <A.MaandStarten /> },
+      { x: -620, y: -190, s: 1.28, w: 1180, children: <A.HeroWerkoverzicht /> },
+      { x: 170, y: 170, s: 1.2, w: 460, children: <A.MaandStarten /> },
     ],
     mobiel: [
-      { x: -400, y: -150, s: 1.4, w: 1180, children: <A.HeroWerkoverzicht /> },
+      { x: -135, y: -110, s: 1.15, w: 1180, children: <A.HeroWerkoverzicht /> },
     ],
   },
   ai: {
     desktop: [
-      { x: -640, y: -250, s: 1.6, w: 1120, children: <I.WieDoetWat /> },
-      { x: 1150, y: 120, s: 1.4, w: 480, children: <I.BriefVoorPagina /> },
+      { x: -700, y: -110, s: 1.2, w: 1120, children: <I.WieDoetWat /> },
+      { x: 700, y: 60, s: 1.05, w: 480, children: <I.BriefVoorPagina /> },
     ],
     mobiel: [
-      { x: -400, y: -150, s: 1.45, w: 1120, children: <I.WieDoetWat /> },
+      { x: -150, y: 70, s: 1.2, w: 1120, children: <I.WieDoetWat /> },
     ],
   },
 }
@@ -73,11 +74,12 @@ export default async function HeroVideoScene({ params, searchParams }: { params:
       <div className="hv-cam">
         <div className="hv-plane">
           {vensters.map((v, i) => (
-            <div key={i} className="hv-win" style={{ width: v.w, transform: `translate3d(${v.x}px, ${v.y}px, 0) scale(${v.s})` }}>
+            <div key={i} className="hv-win" data-x={v.x} data-y={v.y} data-s={v.s} style={{ width: v.w, transform: `translate3d(${v.x}px, ${v.y}px, 0) scale(${v.s})` }}>
               {v.children}
               <span className="hv-sheen" aria-hidden="true" />
             </div>
           ))}
+          <Regie pagina={pagina} />
         </div>
       </div>
       <div className="hv-blur hv-blur-top" />

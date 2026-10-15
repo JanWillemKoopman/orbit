@@ -58,3 +58,17 @@
 .og-tekst { position: absolute; left: 72px; right: 72px; bottom: 64px; }
 .og-tekst p { font-size: 24px; line-height: 1.4; letter-spacing: -0.011em; color: var(--text-tertiary); }
 .og-tekst h1 { max-width: 980px; margin-top: 14px; margin-left: -2px; font-size: 76px; line-height: 1.02; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary); text-wrap: balance; }
+
+/* Regie: cursor, klikrimpel en popover liggen in het vlak, zodat ze met de vensters meekantelen */
+.hv-cursor, .hv-rimpel, .hv-pop { position: absolute; left: 0; top: 0; pointer-events: none; opacity: 0; transform-origin: 3px 2px; }
+.hv-cursor { z-index: 5; width: 22px; height: 22px; transform-origin: 0 0; }
+.hv-cursor svg { display: block; margin: -2px 0 0 -3px; }
+.hv-rimpel { width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.75); transform-origin: 50% 50%; }
+.hv-pop { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 9999px; background: #1b1d1f; border: 1px solid rgba(255, 255, 255, 0.16); color: #d0d6e0; font-size: 13px; font-weight: 510; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35); transform-origin: 0 0; white-space: nowrap; }
+.hv-pop svg { color: #27a644; }
+
+/* Mobiel: het document van Kwaliteit staat alleen, op de breedte van het beeld */
+.hv-root[data-formaat='mobiel'] .wg-side { display: none; }
+.hv-root[data-formaat='mobiel'] .wg-body { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+.hv-root[data-formaat='mobiel'] .wg-doc { padding: 28px 28px 36px; }
+.hv-root[data-formaat='mobiel'] .ag-crumbs > span:not(.ag-crumb-current) { display: none; }

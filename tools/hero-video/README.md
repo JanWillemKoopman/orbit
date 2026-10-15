@@ -10,6 +10,10 @@ opnieuw te maken als een scherm of een tekst verandert.
   deel-afbeelding), met `herovideo.css`. Ze horen niet bij de website en staan daarom buiten `app/`.
 - De scène hangt aan één variabele, `--p` (0 tot 1, één lus van 12 seconden). Het script zet `--p` per frame,
   maakt een screenshot en laat ffmpeg er AV1, VP9, H.264 en een poster van maken. Zo herhaalt de video naadloos.
+- `scene/regie.tsx` is de regie: een cursor die klikt (met rimpel) en schermen die daarop reageren (chips, tellers,
+  vinkjes, een popover, een kolom die oplicht). Elke pagina heeft een eigen script, per formaat iets anders (op
+  mobiel schuift het beeld mee met de cursor). Het is een pure functie van `p`: `capture.mjs` roept `window.__render(p)`
+  aan na het zetten van `--p`. Rond 11,4 s springt alles terug naar het begin terwijl het beeld even dimt.
 - De beelden zijn gedimd en ontkleurd, met zwarte verlopen onder de header, aan de randen en vooral onderin,
   waar de titel komt te staan (zoals de video op linear.app/ai). Knoppen en koppen zijn bewust zacht gehouden.
 
@@ -18,7 +22,7 @@ opnieuw te maken als een scherm of een tekst verandert.
 1. Kopieer `tools/hero-video/scene` naar `app/herovideo` (de relatieve imports kloppen dan).
 2. `npx next build` en `npx next start -p 3055`.
 3. Per pagina en formaat: `node tools/hero-video/capture.mjs <ai|werkwijze|kwaliteit|beheer> <desktop|mobiel> --port 3055`
-   (met `still` komt er één beoordeelbaar frame uit). De bestanden komen in `public/video/hero-<pagina>-<formaat>.*`.
+   (met `still --p 0.2,0.5` komen er beoordeelbare frames uit). De bestanden komen in `public/video/hero-<pagina>-<formaat>.*`.
 4. Deel-afbeeldingen: `node tools/hero-video/og.mjs --port 3055` (leest de posters uit `public/video`, als `.webp`).
 5. Verwijder `app/herovideo` weer. Het script verwacht Playwright in `/opt/node-tools` (pas het pad bovenin aan).
 
