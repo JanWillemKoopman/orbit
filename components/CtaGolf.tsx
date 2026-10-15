@@ -14,6 +14,7 @@ const SPACING = 18 // afstand tussen de stipjes in px
 const SPACING_SMALL = 15 // op smalle schermen
 const LEVELS = 24 // aantal kleurstappen; per stap één path, zodat er weinig fill-calls zijn
 const TAU = Math.PI * 2
+const TEMPO = 2 // tempo van de hele animatie: golven, draaiing en aanzwellen
 
 function hexToRgb(value: string, fallback: [number, number, number]): [number, number, number] {
   const hex = value.trim().replace('#', '')
@@ -139,8 +140,8 @@ export function CtaGolf() {
     }
 
     const teken = (tijd: number) => {
-      const t = tijd / 1000
-      const dt = vorige < 0 ? 0 : Math.min(0.1, Math.max(0, t - vorige))
+      const t = (tijd / 1000) * TEMPO
+      const dt = vorige < 0 ? 0 : Math.min(0.1 * TEMPO, Math.max(0, t - vorige))
       vorige = t
       const cx = width / 2
       const cy = height / 2
