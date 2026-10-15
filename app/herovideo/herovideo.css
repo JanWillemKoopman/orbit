@@ -4,7 +4,7 @@
 .hv-root { position: fixed; inset: 0; z-index: 99999; overflow: hidden; background: #08090a; --p: 0; font-size: 14px; line-height: 1.5; }
 .hv-cam { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 50% 20%; filter: brightness(1.05) saturate(0.5); }
 .hv-plane {
-  position: absolute; left: 42%; top: 34%; width: 0; height: 0; transform-style: preserve-3d;
+  position: absolute; left: 42%; top: 22%; width: 0; height: 0; transform-style: preserve-3d;
   transform:
     translate3d(calc(-20px * sin(var(--p) * 360deg)), calc(10px * cos(var(--p) * 360deg)), 0)
     rotateX(calc(44deg + 1.5deg * sin(var(--p) * 360deg)))
@@ -28,13 +28,13 @@
   position: absolute; inset: 0; pointer-events: none;
   background:
     linear-gradient(to bottom, rgba(8, 9, 10, 0.6) 0%, rgba(8, 9, 10, 0) 18%),
-    linear-gradient(to top, #08090a 0%, #08090a 10%, rgba(8, 9, 10, 0.85) 28%, rgba(8, 9, 10, 0.4) 46%, rgba(8, 9, 10, 0) 66%),
+    linear-gradient(to top, #08090a 0%, #08090a 22%, rgba(8, 9, 10, 0.92) 36%, rgba(8, 9, 10, 0.5) 48%, rgba(8, 9, 10, 0) 62%),
     linear-gradient(to right, rgba(8, 9, 10, 0.75) 0%, rgba(8, 9, 10, 0) 30%, rgba(8, 9, 10, 0) 70%, rgba(8, 9, 10, 0.75) 100%);
 }
 .hv-root[data-formaat='mobiel'] .hv-shade {
   background:
     linear-gradient(to bottom, rgba(8, 9, 10, 0.85) 0%, rgba(8, 9, 10, 0) 20%),
-    linear-gradient(to top, #08090a 0%, #08090a 18%, rgba(8, 9, 10, 0.88) 38%, rgba(8, 9, 10, 0.4) 60%, rgba(8, 9, 10, 0) 80%),
+    linear-gradient(to top, #08090a 0%, #08090a 24%, rgba(8, 9, 10, 0.92) 38%, rgba(8, 9, 10, 0.5) 50%, rgba(8, 9, 10, 0) 64%),
     linear-gradient(to right, rgba(8, 9, 10, 0.5) 0%, rgba(8, 9, 10, 0) 25%, rgba(8, 9, 10, 0) 75%, rgba(8, 9, 10, 0.5) 100%);
 }
 /* Fijn korrelpatroon tegen banding in de donkere verlopen na het comprimeren */
@@ -47,7 +47,7 @@
 .hv-win .fv-btn-primary { background: rgba(255, 255, 255, 0.1); color: #9aa0a8; }
 .hv-win .fv-btn { box-shadow: none; }
 .hv-win :is(.ot-title, .ag-title, .fv-doc-h, .kf-brain strong) { color: #aeb3ba; font-weight: var(--weight-medium); }
-.hv-root[data-formaat='mobiel'] .hv-plane { left: 20%; top: 28%; }
+.hv-root[data-formaat='mobiel'] .hv-plane { left: 20%; top: 20%; }
 .hv-root[data-formaat='mobiel'] .hv-cam { perspective: 1100px; }
 
 /* Deel-afbeelding: dezelfde taal als de hero, met de poster van de video als achtergrond */
