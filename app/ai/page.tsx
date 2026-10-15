@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { afsluiter, hero, meta, secties } from '@/content/ai'
+import { afsluiter, hero, meta, quote, secties } from '@/content/ai'
 import { Beeld, Intro, Linkrij, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
 import * as P from '@/components/product/Visuals'
 import * as A from '@/components/agency/Visuals'
@@ -101,6 +101,19 @@ export default function AiPage() {
             </RasterCel>
           </Raster>
         </Sectie>
+
+        {/* De maker: een quote, voorlopig met Lorem ipsum (zie content/ai.ts) */}
+        <figure className="home-quote lp-quote">
+          <blockquote className="home-statement">
+            <p>
+              <strong><span className="home-quote-mark" aria-hidden="true">“</span>{quote.sterk}</strong> {quote.rest}<span aria-hidden="true">”</span>
+            </p>
+          </blockquote>
+          <figcaption className="home-quote-author">
+            {quote.auteur.foto && <img src={quote.auteur.foto} alt="" width={48} height={48} />}
+            <span>{quote.auteur.naam}</span>
+          </figcaption>
+        </figure>
       </div>
 
       <Linkrij huidig="/ai" />

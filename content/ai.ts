@@ -91,6 +91,14 @@ export const secties = {
   },
 }
 
+// PLACEHOLDER: de quote van de maker is nog niet aangeleverd. Vervang de Lorem ipsum-tekst en de naam
+// door de echte tekst, en zet een foto bij `foto` (zoals `statement.author` in content/home.ts).
+export const quote = {
+  sterk: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
+  rest: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  auteur: { naam: 'Lorem Ipsum', foto: '' },
+}
+
 export const afsluiter = {
   title: 'Zie hoe AI jouw klant meet.',
   description: 'Bekijk in een demo hoe een onderzoek, een meting en een pagina eruitzien voor een van je eigen klanten.',
