@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { CtaGolf } from '@/components/CtaGolf'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, hero, meta, secties } from '@/content/kwaliteit'
 import { Beeld, Intro, Linkrij, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
@@ -121,6 +122,7 @@ export default function KwaliteitPage() {
 
       {/* Afsluiter */}
       <section className="home-prefooter container pd-afsluiter" aria-labelledby="pd-afsluiter">
+        <CtaGolf />
         <h2 id="pd-afsluiter">{afsluiter.title}</h2>
         <p>{afsluiter.description}</p>
         <div className="home-prefooter-actions">

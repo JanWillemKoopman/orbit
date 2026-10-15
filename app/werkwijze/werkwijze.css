@@ -94,7 +94,7 @@
 .pd-cell-solo { border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 12px; overflow: hidden; background: radial-gradient(75% 60% at 50% 0%, rgba(208, 214, 224, 0.14) 0%, rgba(8, 9, 10, 0) 80%), #0b0c0d; }
 .pd-cell-solo .pd-cell-stage { height: 520px; background: none; }
 
-.pd-afsluiter { margin-block: 160px 200px; gap: 24px; }
+.pd-afsluiter { padding-block: 160px 200px; gap: 24px; }
 .pd-afsluiter p { max-width: 560px; text-align: center; font-size: 17px; line-height: 1.6; color: var(--text-tertiary); }
 .pd-afsluiter .home-prefooter-actions { margin-top: 16px; }
 
@@ -355,7 +355,7 @@
   .pd-caption h3, .pd-caption p { font-size: 14px; }
   .pd-split { padding-top: 40px; gap: 32px; }
   .pd-lead { margin-top: 20px; font-size: 15px; color: var(--text-tertiary); }
-  .pd-afsluiter { margin-block: 72px 96px; }
+  .pd-afsluiter { padding-block: 72px 96px; }
   .pd-afsluiter p { font-size: 15px; }
 }
 

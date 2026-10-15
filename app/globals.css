@@ -458,7 +458,16 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* Prefooter */
-.prefooter { margin: 264px auto 224px; text-align: center; }
+/* De golf van stipjes achter de afsluiter (components/CtaGolf.tsx). Het canvas krijgt zijn left en
+   breedte uit JS, zodat het de volle vensterbreedte vult zonder horizontale scroll. */
+.prefooter, .home-prefooter { position: relative; isolation: isolate; }
+.cta-golf {
+  position: absolute; top: 0; left: 0; z-index: -1; width: 100%; height: 100%;
+  pointer-events: none; opacity: 0; transition: opacity 0.6s var(--ease-out-quad);
+}
+.cta-golf[data-klaar] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .cta-golf { transition: none; } }
+.prefooter { padding-block: 264px 224px; text-align: center; }
 .prefooter h2 {
   max-width: 760px; margin: 0 auto;
   font-size: 72px; line-height: 1; font-weight: var(--weight-medium); letter-spacing: -0.022em; text-wrap: balance;
@@ -468,10 +477,10 @@ img, svg { display: block; max-width: 100%; }
   .prefooter h2 { max-width: 420px; font-size: 40px; line-height: 1.1; }
 }
 @media (max-width: 768px) {
-  .prefooter { margin: 168px auto 128px; }
+  .prefooter { padding-block: 168px 128px; }
 }
 @media (max-width: 640px) {
-  .prefooter { margin: 190px auto 158px; }
+  .prefooter { padding-block: 190px 158px; }
   .prefooter h2 { font-size: 38px; }
   .prefooter-actions { flex-direction: column; align-items: center; }
 }
