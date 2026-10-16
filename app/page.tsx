@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, prefooter, result, statement, story, uitgelicht, uitgelichtStappen, usps } from '@/content/home'
+import { faq, hero, prefooter, result, statement, uitgelicht, uitgelichtStappen, usps } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// twee beelden met een link naar /agency en /product, drie voordelen voor bureaus naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, veelgestelde vragen en een afsluiter.
+// twee beelden met een link naar /agency en /product, drie voordelen voor bureaus naast elkaar, drie nagebouwde schermen, het eindresultaat, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
 
   return (
@@ -117,22 +117,6 @@ export default function HomePage() {
             <div className="sc-caption-block">
               <h3>{result.captionTitle}</h3>
               <p>{result.caption}</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="feature story" aria-labelledby="home-story">
-          <div className="keyline" />
-          <div className="story-header">
-            <h2 id="home-story" className="feature-title story-title">{story.title}</h2>
-            <div className="story-columns">
-              <div className="feature-description story-column">
-                <p>{story.paragraphs[0]}</p>
-              </div>
-              <div className="feature-description story-column">
-                <p>{story.paragraphs[1]}</p>
-                <Link href={story.link.href} className="home-link story-link">{story.link.label} <span className="pijl" aria-hidden="true">→</span></Link>
-              </div>
             </div>
           </div>
         </section>

@@ -415,12 +415,6 @@
 .rs-article p { max-width: 760px; font-size: 14px; line-height: 1.7; color: var(--text-secondary); }
 .rs-article h4 { margin-top: 18px; margin-bottom: 6px; font-size: 15px; font-weight: var(--weight-medium); color: var(--text-primary); }
 
-/* Persoonlijke introductie met link naar het volledige artikel ------------- */
-.story-header { padding-top: 168px; padding-bottom: 128px; }
-.story-title { padding-right: 0; margin-left: 0; text-align: center; }
-.story-columns { display: grid; grid-template-columns: 1fr 1fr; align-items: start; margin-top: 64px; }
-.story-link { margin-top: 24px; }
-
 /* Veelgestelde vragen ---------------------------------------------------- */
 .home-block { margin-top: 0; }
 .home-block-title { padding-top: 168px; font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary); margin-left: -2px; }
@@ -480,9 +474,6 @@
   .home-prefooter { padding-block: 64px 128px; }
 }
 @media (max-width: 640px) {
-  .story-header { padding-top: 88px; padding-bottom: 72px; }
-  .story-columns { grid-template-columns: 1fr; margin-top: 32px; }
-  .story-column + .story-column { margin-top: 16px; }
   .result { padding-bottom: 72px; }
   .rs-stage { height: 680px; padding: 40px 0 0 16px; }
   .rs-frame { grid-template-columns: minmax(0, 1fr); width: 440px; }
