@@ -150,7 +150,7 @@ export function BreinTabel() {
   return (
     <div className="ag-window kf-window">
       <div className="ag-bar">
-        <span className="ag-crumbs"><Logo size={18} /><span>Lindeman Warmte</span><span className="ag-crumb-current"><span className="ag-sep">›</span>Feiten en kennis</span></span>
+        <span className="ag-crumbs"><span>Lindeman Warmte</span><span className="ag-crumb-current"><span className="ag-sep">›</span>Feiten en kennis</span></span>
         <span className="kf-count">86 feiten</span>
       </div>
       <div className="ag-view">
