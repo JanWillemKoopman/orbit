@@ -195,12 +195,9 @@
 .home-quote-author img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
 
 /* Twee beelden onder de quote ------------------------------------------- */
-/* Raster van /kennis en /product (product.css); de hele kaart is klikbaar via de link in het bijschrift. */
+/* Twee beelden met bijschrift; alleen de link in het bijschrift is klikbaar, de beelden niet. */
 .home-uitgelicht { margin-top: 120px; }
-.hu-cell { position: relative; transition: background-color var(--speed-quick); }
-@media (hover: hover) { .hu-cell:hover { background-color: rgba(255, 255, 255, 0.015); } }
-.hu-cell .hu-stage { transition: filter 0.16s var(--ease-out-quad); }
-@media (hover: hover) { .hu-cell:hover .hu-stage { filter: brightness(1.06); } }
+.hu-cell { position: relative; }
 .hu-cell .hu-stage { height: 420px; mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); }
 .hu-cell .hu-stage-account { display: block; }
 .hu-stage-account .hu-inner { position: absolute; top: 56px; left: 40px; width: 1180px; zoom: 0.8; }
@@ -214,11 +211,7 @@
 .hu-cell .hu-caption { position: static; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; max-width: none; }
 .hu-cell .hu-caption > div { max-width: 440px; }
 .hu-link { flex-shrink: 0; white-space: nowrap; }
-.hu-link::after { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: inherit; }
-@media (hover: hover) { .hu-cell:hover .hu-link { color: var(--text-primary); } }
-@media (hover: hover) { .hu-cell:hover .hu-link .feature-plus { transform: translateX(3px); } }
-.hu-link:focus-visible { outline: none; }
-.hu-cell:has(.hu-link:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
+@media (hover: hover) { .hu-link:hover { color: var(--text-primary); } .hu-link:hover .feature-plus { transform: translateX(3px); } }
 
 /* Drie blokken ----------------------------------------------------------- */
 .keyline { position: relative; left: 50%; width: 100vw; transform: translateX(-50%); height: 1px; background: rgba(255, 255, 255, 0.08); box-shadow: 0 -1px 0 #000; }
