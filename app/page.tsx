@@ -116,21 +116,21 @@ export default function HomePage() {
           </div>
           <div className="hk-duo">
             <figure className="lp-beeld lp-beeld-scherm">
-              <div className="lp-beeld-stage" role="img" aria-label="Een alinea over een hybride warmtepomp. Elke harde bewering heeft een nummer met de bron: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina.">
-                <div className="lp-beeld-inner" aria-hidden="true"><HerkomstCompositie /></div>
-              </div>
-              <figcaption className="lp-caption">
-                <h3>{kwaliteitSecties.probleem.beeld.titel}</h3>
-                <p>{kwaliteitSecties.probleem.beeld.tekst}</p>
-              </figcaption>
-            </figure>
-            <figure className="lp-beeld lp-beeld-scherm">
               <div className="lp-beeld-stage" role="img" aria-label="Feiten en kennis van Lindeman Warmte als tabel: per feit de bron en of het in een tekst mag. Een vermoeden en een verboden woord mogen nooit.">
                 <div className="lp-beeld-inner" aria-hidden="true"><BreinTabel /></div>
               </div>
               <figcaption className="lp-caption">
                 <h3>{kwaliteitSecties.weten.beeld.titel}</h3>
                 <p>{kwaliteitSecties.weten.beeld.tekst}</p>
+              </figcaption>
+            </figure>
+            <figure className="lp-beeld lp-beeld-scherm">
+              <div className="lp-beeld-stage" role="img" aria-label="Een alinea over een hybride warmtepomp. Elke harde bewering heeft een nummer met de bron: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina.">
+                <div className="lp-beeld-inner" aria-hidden="true"><HerkomstCompositie /></div>
+              </div>
+              <figcaption className="lp-caption">
+                <h3>{kwaliteitSecties.probleem.beeld.titel}</h3>
+                <p>{kwaliteitSecties.probleem.beeld.tekst}</p>
               </figcaption>
             </figure>
           </div>
