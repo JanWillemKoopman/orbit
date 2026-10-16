@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, loop, prefooter, result, statement, story, uitgelicht, uitgelichtStappen } from '@/content/home'
+import { faq, hero, prefooter, result, statement, story, uitgelicht, uitgelichtStappen, usps } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// twee beelden met een link naar /agency en /product, het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, veelgestelde vragen en een afsluiter.
+// twee beelden met een link naar /agency en /product, drie voordelen voor bureaus naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
 
   return (
@@ -88,23 +88,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="feature process" aria-labelledby="home-process">
+        <section className="feature process usp" aria-label="Wat Orbit je bureau oplevert">
           <div className="keyline" />
-          <div className="feature-header">
-            <h2 id="home-process" className="feature-title">{loop.title}</h2>
-            <div className="feature-description">
-              <p>{loop.description}</p>
-            </div>
-          </div>
-          <ol className="process-steps">
-            {loop.steps.map((step) => (
-              <li className="process-step" key={step.title}>
-                <span className="process-number" aria-hidden="true">
-                  {step.number ?? <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9" /><path d="M13.5 2.5v3h-3" /></svg>}
-                </span>
-                <h3 className="process-title">{step.title}</h3>
-                <p className="process-description">{step.description}</p>
-                <Link href={step.link.href} className="process-link">{step.link.label} <span className="feature-plus" aria-hidden="true">→</span></Link>
+          <ol className="process-steps usp-steps">
+            {usps.map((usp, i) => (
+              <li className="process-step" key={usp.title}>
+                <span className="process-number" aria-hidden="true">{i + 1}</span>
+                <h3 className="process-title">{usp.title}</h3>
+                <p className="process-description">{usp.description}</p>
               </li>
             ))}
           </ol>

@@ -281,6 +281,17 @@
 .process-link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 32px; font-size: 15px; letter-spacing: -0.011em; color: var(--text-tertiary); transition: color var(--speed-quick); }
 @media (hover: hover) { .process-link:hover { color: var(--text-primary); } }
 @media (hover: hover) { .process-link:hover .feature-plus { transform: translateX(3px); } }
+/* Drie voordelen voor bureaus: dezelfde kolommen als het procesblok, zonder kop erboven */
+.process-steps.usp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-top: 72px; }
+.usp-steps .process-step { min-height: 0; }
+@media (max-width: 1024px) {
+  .process-steps.usp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .usp-steps .process-step:nth-child(3) { padding-left: 24px; border-left: 1px solid rgba(255, 255, 255, 0.08); }
+}
+@media (max-width: 768px) {
+  .process-steps.usp-steps { grid-template-columns: 1fr; row-gap: 32px; padding-top: 48px; }
+  .usp-steps .process-step, .usp-steps .process-step:nth-child(3) { padding-left: 0; border-left: 0; }
+}
 
 /* Drie schermen achter elkaar, naar linear.app/intake ------------------- */
 .sc-root {

@@ -24,14 +24,14 @@ export type Uitgelicht = { titel: string; tekst: string; href: string; alt: stri
 
 export const uitgelicht: Uitgelicht[] = [
   {
-    titel: 'Al je klanten in één account',
-    tekst: 'Per klant de resultaten, content en kosten in een overzicht. Beheer meerdere klanten eenvoudig tegelijk.',
+    titel: 'Al je klanten in één platform',
+    tekst: 'Beheer merken, metingen en content vanuit één centrale omgeving. Houd overzicht terwijl je bureau groeit.',
     href: '/beheer',
     alt: 'Het werkoverzicht van Bureau Noordwind: bedrijven onder elkaar met hun zichtbaarheid in AI, de maandmeting en wat er klaarstaat om te starten.',
   },
   {
-    titel: 'Van meten tot hermeten',
-    tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Elke klant doorloopt elke maand dezelfde ronde, jij behoudt de regie.',
+    titel: 'De hele workflow. Van meten tot nameten.',
+    tekst: 'Meet de zichtbaarheid, ontdek kansen en werk ze uit tot een contentplan en nieuwe teksten. Volg de publicatie en meet daarna opnieuw hoe je klant ervoor staat. Alles in één platform.',
     href: '/werkwijze',
     alt: "De maand van een klant: meten is klaar, twintig pagina's zijn gepland, elf zijn geschreven en zeven gepubliceerd. Hermeten volgt. Er wachten twee vragen op de klant.",
   },
@@ -47,47 +47,23 @@ export const uitgelichtStappen: MaandStap[] = [
   { l: 'Hermeten', s: '', st: 'todo' },
 ]
 
-// Het procesblok direct onder de quote: titel en uitleg, daarna de stappen naast elkaar.
-// De stappen met `number` zijn het stappenplan; de laatste stap zonder nummer sluit de loop.
-// Elke link wijst naar de sectie van een productpagina die over die stap gaat (de ankers zijn de
-// `id`'s in content/werkwijze.ts en content/kwaliteit.ts). Verander je daar een `id`, pas hem hier aan.
-export type ProcessStep = { number?: number; title: string; description: string; link: FeatureLink }
+// Drie voordelen voor marketingbureaus, onder de twee beelden en boven de drie nagebouwde schermen.
+export type Usp = { title: string; description: string }
 
-export const loop: { title: string; description: string; steps: ProcessStep[] } = {
-  title: 'Orbit wordt steeds slimmer',
-  description: 'Orbit brengt kennis over merken, markten en klanten samen. Het zet die inzichten om in actie, meet wat werkt en gebruikt elk resultaat om de volgende stap te verbeteren.',
-  steps: [
-    {
-      number: 1,
-      title: 'Begrijpt je merk',
-      description: 'Strategie, diensten en expertise vormen samen het geheugen waarop Orbit verder bouwt.',
-      link: { label: 'Feiten en kennis', href: '/kwaliteit#weten' },
-    },
-    {
-      number: 2,
-      title: 'Doorgrondt je markt',
-      description: 'Zoekgedrag, concurrenten en trends maken duidelijk waar groeikansen liggen.',
-      link: { label: 'Kansen meten', href: '/werkwijze#meten' },
-    },
-    {
-      number: 3,
-      title: 'Zet kennis om in actie',
-      description: 'Orbit kiest de juiste pagina\'s, schrijft of verbetert content.',
-      link: { label: 'Plannen en schrijven', href: '/werkwijze#plannen' },
-    },
-    {
-      number: 4,
-      title: 'Leert van resultaten',
-      description: 'Posities, verkeer en AI-zichtbaarheid laten zien wat werkt en wat beter kan.',
-      link: { label: 'Resultaten nameten', href: '/werkwijze#nameten' },
-    },
-    {
-      title: 'Bouwt kennis op',
-      description: 'Elk resultaat verrijkt het geheugen. Zo maakt Orbit steeds beter onderbouwde keuzes.',
-      link: { label: 'Zo werkt AI in Orbit', href: '/ai' },
-    },
-  ],
-}
+export const usps: Usp[] = [
+  {
+    title: 'Maak AI-zichtbaarheid een vaste dienst',
+    description: 'Breid je aanbod uit met een maandelijkse dienst voor zichtbaarheid in Google en AI-assistenten.',
+  },
+  {
+    title: 'Maak vooruitgang zichtbaar voor je klant',
+    description: 'Volg hoe de zichtbaarheid zich ontwikkelt en geef klanten inzicht met overzichtelijke rapportages en een eigen kijkomgeving.',
+  },
+  {
+    title: 'Geef je specialisten tijd voor strategie',
+    description: 'Besteed minder uren aan repetitief uitvoerend werk en meer aan keuzes, kwaliteit en klantadvies.',
+  },
+]
 
 // Het blok met drie nagebouwde schermen onder het procesblok: alleen het bijschrift linksonder.
 export const showcase = {
