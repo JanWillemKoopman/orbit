@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
-import { changelog } from '@/content/changelog'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { faq, hero, loop, prefooter, result, statement, story, uitgelicht, uitgelichtStappen } from '@/content/home'
@@ -24,7 +23,6 @@ export const metadata: Metadata = {
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
 // twee beelden met een link naar /agency en /product, het procesblok met de stappen naast elkaar, drie nagebouwde schermen, het eindresultaat, een persoonlijke introductie, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
-  const latest = changelog[0]
 
   return (
     <div className="home">
@@ -39,10 +37,10 @@ export default function HomePage() {
         </h1>
         <div className="home-hero-row">
           <p className="home-hero-description blur-in" style={{ '--i': 2 } as React.CSSProperties}>{hero.description}</p>
-          <Link href={`/product-updates#${latest.slug}`} className="home-new-link">
+          <Link href={hero.link.href} className="home-new-link">
             <span className="home-new blur-in" style={{ '--i': 3 } as React.CSSProperties}>
-              <span className="home-new-label">Nieuw</span>
-              <span className="home-new-title">{latest.title} <span className="pijl" aria-hidden="true">→</span></span>
+              <span className="home-new-label">{hero.link.label}</span>
+              <span className="home-new-title">{hero.link.titel} <span className="pijl" aria-hidden="true">→</span></span>
             </span>
           </Link>
         </div>

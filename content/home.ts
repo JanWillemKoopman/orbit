@@ -4,6 +4,8 @@ import type { MaandStap } from '@/components/product/Visuals'
 export const hero = {
   title: ['Schaal de zichtbaarheid in Google', 'en AI-search van je klanten.'],
   description: 'Voor marketingbureaus die willen vooroplopen met AI.',
+  // Regel onder de knoppen: het eerste woord in het wit, de rest in grijs.
+  link: { label: 'Lees', titel: 'Ons verhaal', href: '/over' },
 }
 
 // Grote quote onder het dashboard. Het vetgedrukte deel staat in het wit, de rest in grijs.
