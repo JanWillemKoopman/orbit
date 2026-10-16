@@ -2,7 +2,7 @@
 import type { MaandStap } from '@/components/product/Visuals'
 
 export const hero = {
-  title: ['Je klanten willen zichtbaar zijn in AI.', 'Met Orbit maakt jouw agency het waar.'],
+  title: ['Het platform voor het genereren van', 'zichtbaarheid in AI-search voor agency’s'],
   description: 'Schaal je agency, niet je werkdruk. Orbit automatiseert SEO en GEO terwijl jij bouwt aan de volgende klantrelatie.',
 }
 
