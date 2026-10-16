@@ -2,7 +2,7 @@
 import type { MaandStap } from '@/components/product/Visuals'
 
 export const hero = {
-  title: ['Open source SEO & GEO software', 'voor marketeers.'],
+  title: ['Je klanten willen zichtbaar zijn in AI.', 'Met Orbit maakt jouw agency het waar.'],
   description: 'Orbit is gratis te gebruiken voor marketeers die voorop willen lopen met AI.',
 }
 
@@ -11,7 +11,7 @@ export const statement = {
   strong: 'Een nieuw soort marketingsoftware.',
   rest: 'Gemaakt voor een tijd waarin klanten hun antwoord aan AI vragen. Orbit laat zien of je merk genoemd wordt en wat je eraan kunt doen.',
   // Staat als quote met foto en naam eronder. Foto in public/images/, vierkant werkt het best.
-  author: { name: 'Jan-Willem Koopman', photo: '/images/jan-willem-koopman.jpg' },
+  author: { name: 'Jan-Willem Koopman - AI engineer', photo: '/images/jan-willem-koopman.jpg' },
 }
 
 // Twee beelden direct onder de quote, elk met een titel, een korte uitleg en een link. Links het
