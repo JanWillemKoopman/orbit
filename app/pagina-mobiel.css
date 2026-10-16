@@ -12,7 +12,6 @@
   /* Hero ----------------------------------------------------------------- */
   .lp-hero { min-height: calc(549px + var(--header-height)); }
   .lp-hero-inner { padding-block: 120px 48px; }
-  .lp-eyebrow { font-size: 16px; line-height: 24px; color: var(--text-primary); }
   .lp-title { margin-top: 16px; font-size: 40px; line-height: 44px; letter-spacing: -0.022em; }
 
   /* Sectie: label, titel en tekst ---------------------------------------- */

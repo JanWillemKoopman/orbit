@@ -24,7 +24,8 @@
 }
 
 .ai-hero-inner { position: relative; z-index: 1; width: 100%; padding-block: 64px; }
-.ai-eyebrow { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
+/* Als .lp-eyebrow; de 60% zit in de kleur, omdat blur-in de opacity zelf animeert */
+.ai-eyebrow { font-size: 16px; line-height: 24px; color: rgba(247, 248, 248, 0.6); }
 .ai-title {
   margin-top: 16px; margin-left: -2px; max-width: 100%;
   font-size: 72px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
