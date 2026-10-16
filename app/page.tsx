@@ -9,6 +9,7 @@ import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
 import { Faq } from '@/components/home/Faq'
+import { AiLogos } from '@/components/home/AiLogos'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
 import { HeroMaand } from '@/components/product/Visuals'
 import './werkwijze/werkwijze.css'
@@ -54,6 +55,8 @@ export default function HomePage() {
       </div>
 
       <div className="container">
+        <AiLogos />
+
         <figure className="home-quote">
           <blockquote className="home-statement">
             <CitaatScroll strong={statement.strong} rest={statement.rest} />

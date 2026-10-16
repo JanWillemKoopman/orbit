@@ -181,6 +181,23 @@
 .af-btn { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 9999px; font-size: 12px; font-weight: var(--weight-medium); background: rgba(255, 255, 255, 0.05); color: var(--text-secondary); }
 .af-btn-primary { background: #e2e4e7; color: #08090a; }
 
+/* Logo's van de AI-zoekmachines onder het grote beeld ------------------- */
+.ai-logos {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 64px;
+  margin: 64px 0 0; padding: 0; list-style: none;
+}
+.ai-logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 24px; line-height: 1; letter-spacing: -0.012em; font-weight: var(--weight-semibold); color: var(--text-primary);
+}
+.ai-logo-icoon { display: inline-flex; color: var(--text-primary); }
+.ai-logo-icoon svg { width: 26px; height: 26px; }
+@media (max-width: 768px) {
+  .ai-logos { display: grid; grid-template-columns: repeat(2, auto); justify-content: center; gap: 20px 40px; margin-top: 48px; }
+  .ai-logo { font-size: 17px; gap: 8px; }
+  .ai-logo-icoon svg { width: 20px; height: 20px; }
+}
+
 /* Tussenzin ------------------------------------------------------------- */
 .home-statement {
   max-width: 1250px; margin-top: 168px; margin-left: -2px;
