@@ -90,15 +90,17 @@ export default function HomePage() {
 
         <section className="feature process usp" aria-label="Wat Orbit je bureau oplevert">
           <div className="keyline" />
-          <ol className="process-steps usp-steps">
-            {usps.map((usp, i) => (
+          <ul className="process-steps usp-steps">
+            {usps.map((usp) => (
               <li className="process-step" key={usp.title}>
-                <span className="process-number" aria-hidden="true">{i + 1}</span>
+                <span className="process-number usp-vink" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3.5 8.5l3 3 6-7" /></svg>
+                </span>
                 <h3 className="process-title">{usp.title}</h3>
                 <p className="process-description">{usp.description}</p>
               </li>
             ))}
-          </ol>
+          </ul>
           <Showcase />
         </section>
 

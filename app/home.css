@@ -284,6 +284,8 @@
 /* Drie voordelen voor bureaus: dezelfde kolommen als het procesblok, zonder kop erboven */
 .process-steps.usp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-top: 72px; }
 .usp-steps .process-step { min-height: 0; }
+/* Vink in plaats van een nummer, klein in het accent */
+.usp-vink { color: var(--accent); border-color: rgba(188, 255, 47, 0.3); }
 @media (max-width: 1024px) {
   .process-steps.usp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .usp-steps .process-step:nth-child(3) { padding-left: 24px; border-left: 1px solid rgba(255, 255, 255, 0.08); }
