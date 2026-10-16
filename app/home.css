@@ -309,7 +309,7 @@
 .hk-duo .lp-beeld-stage { height: 520px; }
 .hk-duo .lp-beeld-inner { top: 64px; width: min(540px, calc(100% - 64px)); zoom: 1; }
 .hk-duo .ag-window, .hk-duo .kc-comp { width: 100%; max-width: none; height: auto; }
-.hk-duo .kc-back, .hk-duo .kf-count, .hk-duo .fv-tip { display: none; }
+.hk-duo .kc-back, .hk-duo .kf-count, .hk-duo .fv-tip, .hk-duo .kf-window .ag-crumbs > .fv-logo { display: none; }
 .hk-duo .kc-front { position: static; width: 100%; }
 .hk-duo .kf-hero { gap: 18px; padding: 26px 24px 22px; }
 .hk-duo .kf-hero p { font-size: 16px; line-height: 1.8; }
