@@ -283,9 +283,14 @@
 @media (hover: hover) { .process-link:hover .feature-plus { transform: translateX(3px); } }
 /* Drie voordelen voor bureaus: dezelfde kolommen als het procesblok, zonder kop erboven */
 .process-steps.usp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-top: 72px; }
-.usp-steps .process-step { min-height: 0; }
-/* Vink in plaats van een nummer, klein in het accent */
-.usp-vink { color: var(--accent); border-color: rgba(188, 255, 47, 0.3); }
+/* Vinkje links naast de titel, op de eerste regel uitgelijnd: een zacht accentvlak met een vet vinkje */
+.usp-steps .process-step { min-height: 0; display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 14px; align-content: start; }
+.usp-steps .process-title, .usp-steps .process-description { grid-column: 2; }
+.usp-steps .process-title { margin-top: 0; }
+.usp-vink {
+  grid-row: 1 / span 2; width: 20px; height: 20px; margin-top: 3px; border: 0;
+  background: rgba(188, 255, 47, 0.12); color: var(--accent);
+}
 @media (max-width: 1024px) {
   .process-steps.usp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .usp-steps .process-step:nth-child(3) { padding-left: 24px; border-left: 1px solid rgba(255, 255, 255, 0.08); }
@@ -293,6 +298,7 @@
 @media (max-width: 768px) {
   .process-steps.usp-steps { grid-template-columns: 1fr; row-gap: 32px; padding-top: 48px; }
   .usp-steps .process-step, .usp-steps .process-step:nth-child(3) { padding-left: 0; border-left: 0; }
+  .usp-vink { margin-top: 2px; }
 }
 
 /* Drie schermen achter elkaar, naar linear.app/intake ------------------- */
