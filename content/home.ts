@@ -17,20 +17,22 @@ export const statement = {
 }
 
 // Twee beelden direct onder de quote, elk met een titel, een korte uitleg en een link. Links het
-// account van het bureau (/agency), rechts de maand van één klant van meten tot hermeten (/product).
+// account van het bureau (/beheer), rechts de maand van één klant van meten tot hermeten (/werkwijze).
+// De links wijzen direct naar de pagina en niet naar de oude adressen /agency en /product, die alleen
+// nog doorsturen.
 export type Uitgelicht = { titel: string; tekst: string; href: string; alt: string }
 
 export const uitgelicht: Uitgelicht[] = [
   {
     titel: 'Al je klanten in één account',
-    tekst: 'Per klant de zichtbaarheid, wat er op je wacht en wat het kost. Start de maand voor meerdere klanten tegelijk.',
-    href: '/agency',
+    tekst: 'Per klant de resultaten, content en kosten in een overzicht. Beheer meerdere klanten eenvoudig tegelijk.',
+    href: '/beheer',
     alt: 'Het werkoverzicht van Bureau Noordwind: bedrijven onder elkaar met hun zichtbaarheid in AI, de maandmeting en wat er klaarstaat om te starten.',
   },
   {
     titel: 'Van meten tot hermeten',
-    tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Elke klant doorloopt elke maand dezelfde ronde, en je ziet welke stap loopt.',
-    href: '/product',
+    tekst: 'Meten, plannen, schrijven, publiceren en hermeten. Elke klant doorloopt elke maand dezelfde ronde, jij behoudt de regie.',
+    href: '/werkwijze',
     alt: "De maand van een klant: meten is klaar, twintig pagina's zijn gepland, elf zijn geschreven en zeven gepubliceerd. Hermeten volgt. Er wachten twee vragen op de klant.",
   },
 ]
@@ -47,44 +49,42 @@ export const uitgelichtStappen: MaandStap[] = [
 
 // Het procesblok direct onder de quote: titel en uitleg, daarna de stappen naast elkaar.
 // De stappen met `number` zijn het stappenplan; de laatste stap zonder nummer sluit de loop.
-// Alle links wijzen voorlopig naar dezelfde blogpost die nog geschreven wordt. Zolang die er
-// niet is, geeft de link een 404. Maak hem aan als content/posts/zo-werkt-orbit.md.
+// Elke link wijst naar de sectie van een productpagina die over die stap gaat (de ankers zijn de
+// `id`'s in content/werkwijze.ts en content/kwaliteit.ts). Verander je daar een `id`, pas hem hier aan.
 export type ProcessStep = { number?: number; title: string; description: string; link: FeatureLink }
 
-const processPost = '/blog/zo-werkt-orbit'
-
 export const loop: { title: string; description: string; steps: ProcessStep[] } = {
-  title: 'Jouw Brand Intelligence Brain',
-  description: 'Het combineert wat jij het vertelt met wat het online vindt, en gaat vervolgens aan de slag, meet de resultaten en wordt steeds slimmer, in één doorlopende loop.',
+  title: 'Orbit wordt steeds slimmer',
+  description: 'Orbit brengt kennis over merken, markten en klanten samen. Het zet die inzichten om in actie, meet wat werkt en gebruikt elk resultaat om de volgende stap te verbeteren.',
   steps: [
     {
       number: 1,
-      title: 'Ontdek kansen',
-      description: 'Welke vragen stellen je klanten aan AI, en waar ontbreekt jouw merk nog in het antwoord?',
-      link: { label: 'Kansen vinden', href: processPost },
+      title: 'Begrijpt je merk',
+      description: 'Strategie, diensten en expertise vormen samen het geheugen waarop Orbit verder bouwt.',
+      link: { label: 'Feiten en kennis', href: '/kwaliteit#weten' },
     },
     {
       number: 2,
-      title: 'Genereer content',
-      description: 'Pagina\'s in je eigen toon, gebouwd op de feiten die jij aanlevert.',
-      link: { label: 'Content maken', href: processPost },
+      title: 'Doorgrondt je markt',
+      description: 'Zoekgedrag, concurrenten en trends maken duidelijk waar groeikansen liggen.',
+      link: { label: 'Kansen meten', href: '/werkwijze#meten' },
     },
     {
       number: 3,
-      title: 'Publiceren',
-      description: 'Jij leest mee en beslist wat er live gaat op je eigen site.',
-      link: { label: 'Publiceren', href: processPost },
+      title: 'Zet kennis om in actie',
+      description: 'Orbit kiest de juiste pagina\'s, schrijft of verbetert content.',
+      link: { label: 'Plannen en schrijven', href: '/werkwijze#plannen' },
     },
     {
       number: 4,
-      title: 'Impact meten',
-      description: 'Zie of AI-assistenten je merk na publicatie vaker noemen.',
-      link: { label: 'Resultaten meten', href: processPost },
+      title: 'Leert van resultaten',
+      description: 'Posities, verkeer en AI-zichtbaarheid laten zien wat werkt en wat beter kan.',
+      link: { label: 'Resultaten nameten', href: '/werkwijze#nameten' },
     },
     {
-      title: 'Steeds slimmer',
-      description: 'Elke meting voedt de volgende ronde kansen. Zo begint de loop opnieuw, met meer kennis.',
-      link: { label: 'De loop', href: processPost },
+      title: 'Bouwt kennis op',
+      description: 'Elk resultaat verrijkt het geheugen. Zo maakt Orbit steeds beter onderbouwde keuzes.',
+      link: { label: 'Zo werkt AI in Orbit', href: '/ai' },
     },
   ],
 }
