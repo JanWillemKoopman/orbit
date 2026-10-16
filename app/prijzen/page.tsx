@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { GolfKnop } from '@/components/prijzen/GolfKnop'
+import Link from 'next/link'
 import { Plannen } from '@/components/prijzen/Plannen'
 import { afsluiter, hero, inbegrepen, plannen } from '@/content/prijzen'
 import '../home.css'
@@ -47,12 +47,12 @@ export default function PrijzenPage() {
       <section className="prefooter container pr-afsluiter" aria-labelledby="pr-afsluiter-titel">
         <h2 id="pr-afsluiter-titel">{afsluiter.titel}</h2>
         <div className="prefooter-actions">
-          <GolfKnop href="/contact">
+          <Link href="/contact" className="btn btn-lg btn-invert">
             {afsluiter.knop}
             <svg className="pijl" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </GolfKnop>
+          </Link>
         </div>
       </section>
     </>
