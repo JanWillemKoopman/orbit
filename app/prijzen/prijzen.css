@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Prijzen (/prijzen). Opbouw naar linear.app/pricing: titel, drie plannen naast elkaar en een
-   vergelijkingstabel per onderwerp. De klantenkiezer erboven is een paneel zoals in de app zelf.
+   Prijzen (/prijzen). Opbouw naar linear.app/pricing: titel, drie plannen naast elkaar en wat
+   bij elk plan inbegrepen is. De klantenkiezer erboven is een paneel zoals in de app zelf.
    ========================================================================== */
 
 /* Hero ------------------------------------------------------------------ */
@@ -110,6 +110,18 @@
 .pr-plan[data-actief] .pr-plan-klanten { color: var(--accent); }
 
 .pr-plan-prijs { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-top: 20px; min-height: 53px; }
+/* Tijdelijke korting: een klein label in het accent en de oude prijs doorgestreept */
+.pr-korting {
+  display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: var(--radius-pill);
+  background: rgba(188, 255, 47, 0.1); box-shadow: inset 0 0 0 1px rgba(188, 255, 47, 0.2);
+  font-family: var(--font-mono); font-size: 11px; line-height: 1; text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--accent); white-space: nowrap;
+}
+.pr-plan-korting { align-self: flex-start; margin-top: 16px; }
+.pr-plan-korting + .pr-plan-prijs { margin-top: 12px; }
+.pr-plan-korting-leeg { height: 20px; }
+.pr-plan-oud { font-size: 17px; letter-spacing: -0.012em; color: var(--text-quaternary); text-decoration-thickness: 1px; }
+.pr-kiezer-prijs .pr-korting { margin-left: 8px; vertical-align: 4px; }
 .pr-plan-voor { font-size: 13px; color: var(--text-tertiary); letter-spacing: -0.01em; }
 .pr-plan-bedrag { font-size: 48px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
 .pr-plan-periode { font-size: 13px; color: var(--text-tertiary); letter-spacing: -0.01em; }
@@ -145,42 +157,17 @@
 .pr-inbegrepen-lijst h3 { margin-top: 16px; font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
 .pr-inbegrepen-lijst p { margin-top: 8px; max-width: 340px; font-size: 14px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
 
-/* Vergelijkingstabel ----------------------------------------------------- */
-.pr-vergelijking { margin-top: 160px; }
-.pr-rij { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); align-items: center; gap: 16px; }
-/* De kop met de plannen blijft onder de header staan tijdens het scrollen, zoals op linear.app */
-.pr-tabel-kop {
-  position: sticky; top: var(--header-height); z-index: 2;
-  margin-inline: calc(var(--page-padding) * -1); padding-inline: var(--page-padding);
-  background: rgba(8, 9, 10, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-translucent);
-}
-.pr-tabel-kop .pr-rij { padding-block: 20px; }
-.pr-tabel-titel { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
-.pr-tabel-plan { font-size: 15px; letter-spacing: -0.011em; font-weight: var(--weight-medium); color: var(--text-primary); }
-.pr-groep { margin-top: 48px; }
-.pr-groep-titel h3 { padding-bottom: 12px; font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
-.pr-groep .pr-rij { min-height: 44px; padding-block: 10px; border-top: 1px solid var(--border-translucent); }
-.pr-groep .pr-rij:last-child { border-bottom: 1px solid var(--border-translucent); }
-.pr-rij-label { font-size: 14px; line-height: 1.43; letter-spacing: -0.013em; color: var(--text-tertiary); }
-.pr-cel { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; letter-spacing: -0.013em; color: var(--text-secondary); }
-.pr-cel .pr-vink { margin: 0; color: var(--text-secondary); }
-.pr-cel-leeg { color: var(--text-quaternary); }
-
-/* FAQ ------------------------------------------------------------------- */
-.pr-faq { margin-top: 160px; }
-.pr-faq-titel { margin-bottom: 40px; font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); }
-
 /* Breekpunten ------------------------------------------------------------ */
 @media (max-width: 1024px) {
   .pr-hero { padding-top: 160px; }
   .pr-title { font-size: 56px; line-height: 1.1; }
   .pr-plannen { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
   .pr-plan-beschrijving, .pr-plan-prijs { min-height: 0; }
+  .pr-plan-korting-leeg { display: none; }
+  .pr-plan-korting-leeg + .pr-plan-prijs { margin-top: 20px; }
   .pr-inbegrepen-lijst { grid-template-columns: 1fr; }
   .pr-inbegrepen-lijst li, .pr-inbegrepen-lijst li + li { padding: 24px 0; border-left: 0; }
   .pr-inbegrepen-lijst li + li { border-top: 1px solid var(--border-translucent); }
-  .pr-faq-titel { font-size: 40px; line-height: 1.1; }
 }
 @media (max-width: 760px) {
   .pr-kiezer { grid-template-columns: 1fr; padding: 20px; }
@@ -192,17 +179,6 @@
   /* Te smal voor drie labels: alleen het gekozen plan staat erbij, de streepjes blijven */
   .pr-schaal span:not([data-actief]) { color: transparent; }
   .pr-schaal span[data-actief] { z-index: 1; background: var(--bg-level-1); padding-right: 6px; }
-  /* Tabel: per rij eerst de functie, daaronder de drie plannen naast elkaar met hun naam erbij */
-  .pr-tabel-kop .pr-tabel-plan { display: none; }
-  .pr-tabel-kop { position: static; margin: 0; padding: 0; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
-  .pr-tabel-kop .pr-rij { grid-template-columns: 1fr; padding-block: 0 8px; }
-  .pr-groep .pr-rij { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; align-items: start; padding-block: 14px; }
-  .pr-rij-label { grid-column: 1 / -1; color: var(--text-secondary); }
-  .pr-cel { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 13px; }
-  .pr-cel::before {
-    content: attr(data-plan); font-family: var(--font-mono); font-size: 11px; line-height: 1.4;
-    text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-quaternary);
-  }
 }
 @media (max-width: 640px) {
   .pr-hero { padding-top: 120px; }
@@ -210,9 +186,7 @@
   .pr-plannen-sectie { margin-top: 48px; }
   .pr-plan { padding: 24px 20px; }
   .pr-plan-bedrag { font-size: 40px; }
-  .pr-inbegrepen, .pr-vergelijking, .pr-faq { margin-top: 96px; }
-  .pr-tabel-titel { font-size: 20px; }
-  .pr-faq-titel { font-size: 32px; }
+  .pr-inbegrepen { margin-top: 96px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pr-plan, .pr-plan::before, .pr-schaal span, .pr-plan-klanten,

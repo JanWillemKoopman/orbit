@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { DemoDialog } from '@/components/DemoDialog'
-import type { Plan } from '@/content/prijzen'
+import { extraKlant, kortingLabel, type Plan } from '@/content/prijzen'
 
 // De klantenkiezer en de drie plannen. Met de schuif kies je hoeveel klanten je bureau heeft; het plan
 // dat daarbij past licht op, zoals de geselecteerde rij in een lijst op linear.app. Zonder JavaScript
@@ -11,6 +11,11 @@ import type { Plan } from '@/content/prijzen'
 
 const MAX = 15
 const START = 5
+
+/** Prijs na korting, afgerond op hele euro's. */
+function nuPrijs(p: Plan) {
+  return p.prijs === null ? null : Math.round(p.prijs * (1 - (p.korting ?? 0) / 100))
+}
 
 function planVoor(plannen: Plan[], aantal: number) {
   return plannen.find((p) => aantal >= p.van && (p.tot === null || aantal <= p.tot)) ?? plannen[plannen.length - 1]
@@ -28,11 +33,13 @@ export function Plannen({ plannen, onboarding }: { plannen: Plan[]; onboarding: 
   const [aantal, setAantal] = useState(START)
   const [demoOpen, setDemoOpen] = useState(false)
   const actief = planVoor(plannen, aantal)
+  const metKorting = plannen.some((p) => p.korting)
   const procent = ((aantal - 1) / (MAX - 1)) * 100
   const label = aantal >= MAX ? `${MAX}+` : String(aantal)
 
   // Indicatie bij Small: €100 voor de eerste klant en €25 per extra klant.
-  const indicatie = actief.id === 'small' ? `€${100 + (aantal - 1) * 25}` : actief.prijs
+  const basis = nuPrijs(actief)
+  const indicatie = basis === null ? null : `€${actief.id === 'small' ? basis + (aantal - 1) * extraKlant : basis}`
   const indicatieTekst = actief.id === 'small' && aantal > 1 ? 'per maand, met 1 extra klant' : 'per maand'
 
   return (
@@ -73,6 +80,7 @@ export function Plannen({ plannen, onboarding }: { plannen: Plan[]; onboarding: 
             {indicatie && actief.voorPrijs && <span>{actief.voorPrijs} </span>}
             {indicatie ? <strong>{indicatie}</strong> : <strong>Op maat</strong>}
             {indicatie && <span> {indicatieTekst}</span>}
+            {actief.korting ? <span className="pr-korting">{actief.korting}% korting</span> : null}
           </span>
         </div>
       </div>
@@ -84,11 +92,18 @@ export function Plannen({ plannen, onboarding }: { plannen: Plan[]; onboarding: 
               <h3 className="pr-plan-naam">{p.naam}</h3>
               <span className="pr-plan-klanten">{p.klanten}</span>
             </div>
+            {p.korting ? (
+              <span className="pr-korting pr-plan-korting">{kortingLabel} {p.korting}% korting</span>
+            ) : metKorting ? (
+              // Houdt de prijzen op desktop op één lijn met de kaarten die wel een kortingslabel hebben.
+              <span className="pr-plan-korting pr-plan-korting-leeg" aria-hidden="true" />
+            ) : null}
             <p className="pr-plan-prijs">
-              {p.prijs ? (
+              {p.prijs !== null ? (
                 <>
                   {p.voorPrijs && <span className="pr-plan-voor">{p.voorPrijs}</span>}
-                  <span className="pr-plan-bedrag">{p.prijs}</span>
+                  <span className="pr-plan-bedrag">€{nuPrijs(p)}</span>
+                  {p.korting ? <s className="pr-plan-oud" aria-label={`was €${p.prijs}`}>€{p.prijs}</s> : null}
                   <span className="pr-plan-periode">{p.perPeriode}</span>
                 </>
               ) : (
