@@ -1,0 +1,220 @@
+/* ==========================================================================
+   Prijzen (/prijzen). Opbouw naar linear.app/pricing: titel, drie plannen naast elkaar en een
+   vergelijkingstabel per onderwerp. De klantenkiezer erboven is een paneel zoals in de app zelf.
+   ========================================================================== */
+
+/* Hero ------------------------------------------------------------------ */
+.pr-hero { position: relative; padding-top: 200px; }
+/* Heel zacht licht van boven, zoals achter de titels op linear.app */
+.pr-hero::before {
+  content: ''; position: absolute; z-index: -1; inset: -72px 0 auto 0; height: 560px; pointer-events: none;
+  background: radial-gradient(50% 60% at 30% 0%, rgba(255, 255, 255, 0.045), transparent 70%);
+}
+.pr-eyebrow { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-quaternary); }
+.pr-title {
+  margin: 20px 0 0 -2px; max-width: 1000px;
+  font-size: 64px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
+}
+.pr-title span { display: block; }
+.pr-description { margin-top: 32px; max-width: 600px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+
+/* Klantenkiezer ----------------------------------------------------------- */
+.pr-plannen-sectie { margin-top: 80px; }
+.pr-kiezer {
+  display: grid; grid-template-columns: 1fr auto; column-gap: 48px; align-items: end;
+  padding: 24px 28px 28px; border-radius: 12px;
+  background: var(--bg-level-1);
+  box-shadow: inset 0 0 0 1px var(--border-translucent), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.pr-kiezer-kop { grid-column: 1; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.pr-kiezer-label { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-secondary); font-weight: var(--weight-medium); }
+.pr-kiezer-aantal { font-size: 13px; letter-spacing: -0.01em; color: var(--text-tertiary); white-space: nowrap; }
+.pr-kiezer-getal { font-family: var(--font-mono); font-size: 13px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+
+.pr-schuif {
+  --vul: 28%;
+  grid-column: 1; width: 100%; height: 20px; margin: 18px 0 0; background: transparent;
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+}
+.pr-schuif:focus-visible { outline: none; }
+.pr-schuif::-webkit-slider-runnable-track {
+  height: 4px; border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--accent) var(--vul), var(--border-strong) var(--vul));
+}
+.pr-schuif::-moz-range-track { height: 4px; border-radius: var(--radius-pill); background: var(--border-strong); }
+.pr-schuif::-moz-range-progress { height: 4px; border-radius: var(--radius-pill); background: var(--accent); }
+.pr-schuif::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; margin-top: -7px; border: 0; border-radius: 50%;
+  background: var(--button-invert-bg-hover); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: transform var(--speed-quick) var(--ease-out-quad);
+}
+.pr-schuif::-moz-range-thumb {
+  width: 18px; height: 18px; border: 0; border-radius: 50%;
+  background: var(--button-invert-bg-hover); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: transform var(--speed-quick) var(--ease-out-quad);
+}
+.pr-schuif:active::-webkit-slider-thumb { transform: scale(1.1); }
+.pr-schuif:active::-moz-range-thumb { transform: scale(1.1); }
+.pr-schuif:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pr-schuif:focus-visible::-moz-range-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Waar elk plan begint, onder de schuif. De duim is 18px; de labels schuiven mee met dat stuk. */
+.pr-schaal { grid-column: 1; position: relative; height: 18px; margin-top: 10px; }
+.pr-schaal span {
+  position: absolute; left: calc(var(--van) * (100% - 18px) + 9px); top: 0;
+  padding-left: 8px; border-left: 1px solid var(--border-strong);
+  font-family: var(--font-mono); font-size: 12px; line-height: 18px; text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--text-quaternary); transition: color var(--speed-quick) var(--ease-out-quad);
+}
+.pr-schaal span:first-child { left: 0; }
+.pr-schaal span[data-actief] { color: var(--text-primary); border-left-color: var(--accent); }
+
+.pr-kiezer-uitkomst {
+  grid-column: 2; grid-row: 1 / span 3; align-self: stretch;
+  display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 220px;
+  padding-left: 32px; border-left: 1px solid var(--border-translucent);
+}
+.pr-kiezer-plan { font-size: 13px; letter-spacing: -0.01em; color: var(--text-tertiary); }
+.pr-kiezer-prijs { font-size: 13px; letter-spacing: -0.01em; color: var(--text-tertiary); }
+.pr-kiezer-prijs strong {
+  font-size: 32px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
+  color: var(--text-primary); font-variant-numeric: tabular-nums;
+}
+
+/* Plannen --------------------------------------------------------------- */
+.pr-plannen { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 16px 0 0; padding: 0; list-style: none; }
+.pr-plan {
+  position: relative; isolation: isolate; display: flex; flex-direction: column;
+  padding: 28px; border-radius: 12px; overflow: hidden;
+  background: var(--bg-level-1);
+  box-shadow: inset 0 0 0 1px var(--border-translucent);
+  transition: box-shadow var(--speed-regular) var(--ease-out-quad), background var(--speed-regular) var(--ease-out-quad);
+}
+/* Het gekozen plan: iets lichter, een sterkere rand en een dunne lijn licht langs de bovenkant */
+.pr-plan::before {
+  content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; opacity: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(188, 255, 47, 0.7), transparent) top / 100% 1px no-repeat,
+    radial-gradient(70% 50% at 50% 0%, rgba(188, 255, 47, 0.05), transparent 70%);
+  transition: opacity var(--speed-regular) var(--ease-out-quad);
+}
+.pr-plan[data-actief] { background: var(--bg-level-2); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14), 0 4px 24px rgba(0, 0, 0, 0.2); }
+.pr-plan[data-actief]::before { opacity: 1; }
+
+.pr-plan-kop { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.pr-plan-naam { font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
+.pr-plan-klanten {
+  flex-shrink: 0; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--text-quaternary); transition: color var(--speed-quick) var(--ease-out-quad);
+}
+.pr-plan[data-actief] .pr-plan-klanten { color: var(--accent); }
+
+.pr-plan-prijs { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-top: 20px; min-height: 53px; }
+.pr-plan-voor { font-size: 13px; color: var(--text-tertiary); letter-spacing: -0.01em; }
+.pr-plan-bedrag { font-size: 48px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
+.pr-plan-periode { font-size: 13px; color: var(--text-tertiary); letter-spacing: -0.01em; }
+.pr-plan-beschrijving { margin-top: 12px; min-height: 3.2em; font-size: 14px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+
+.pr-plan-actie { margin-top: 24px; }
+.pr-plan-knop { width: 100%; }
+.pr-plan-onboarding {
+  display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 12px;
+  font-size: 13px; letter-spacing: -0.01em; color: var(--text-secondary);
+}
+.pr-plan-onboarding .pr-vink { color: var(--accent); }
+
+.pr-plan-lijstkop {
+  margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border-translucent);
+  font-size: 13px; letter-spacing: -0.01em; font-weight: var(--weight-medium); color: var(--text-secondary);
+}
+.pr-plan-punten { display: grid; gap: 10px; margin: 14px 0 0; padding: 0; list-style: none; }
+.pr-plan-punten li { display: flex; gap: 10px; font-size: 14px; line-height: 1.43; letter-spacing: -0.013em; color: var(--text-secondary); }
+.pr-vink { flex-shrink: 0; margin-top: 1px; color: var(--text-tertiary); }
+
+/* Bij elk plan inbegrepen ------------------------------------------------- */
+.pr-inbegrepen { margin-top: 128px; }
+.pr-inbegrepen-titel { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
+.pr-inbegrepen-lijst {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 32px 0 0; padding: 0; list-style: none;
+  border-top: 1px solid var(--border-translucent);
+}
+.pr-inbegrepen-lijst li { padding: 24px 32px 0 0; }
+.pr-inbegrepen-lijst li + li { padding-left: 32px; border-left: 1px solid var(--border-translucent); }
+.pr-inbegrepen-nr { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; color: var(--text-quaternary); }
+.pr-inbegrepen-lijst li[data-eerste] .pr-inbegrepen-nr { color: var(--accent); }
+.pr-inbegrepen-lijst h3 { margin-top: 16px; font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
+.pr-inbegrepen-lijst p { margin-top: 8px; max-width: 340px; font-size: 14px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
+
+/* Vergelijkingstabel ----------------------------------------------------- */
+.pr-vergelijking { margin-top: 160px; }
+.pr-rij { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); align-items: center; gap: 16px; }
+/* De kop met de plannen blijft onder de header staan tijdens het scrollen, zoals op linear.app */
+.pr-tabel-kop {
+  position: sticky; top: var(--header-height); z-index: 2;
+  margin-inline: calc(var(--page-padding) * -1); padding-inline: var(--page-padding);
+  background: rgba(8, 9, 10, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-translucent);
+}
+.pr-tabel-kop .pr-rij { padding-block: 20px; }
+.pr-tabel-titel { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
+.pr-tabel-plan { font-size: 15px; letter-spacing: -0.011em; font-weight: var(--weight-medium); color: var(--text-primary); }
+.pr-groep { margin-top: 48px; }
+.pr-groep-titel h3 { padding-bottom: 12px; font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
+.pr-groep .pr-rij { min-height: 44px; padding-block: 10px; border-top: 1px solid var(--border-translucent); }
+.pr-groep .pr-rij:last-child { border-bottom: 1px solid var(--border-translucent); }
+.pr-rij-label { font-size: 14px; line-height: 1.43; letter-spacing: -0.013em; color: var(--text-tertiary); }
+.pr-cel { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; letter-spacing: -0.013em; color: var(--text-secondary); }
+.pr-cel .pr-vink { margin: 0; color: var(--text-secondary); }
+.pr-cel-leeg { color: var(--text-quaternary); }
+
+/* FAQ ------------------------------------------------------------------- */
+.pr-faq { margin-top: 160px; }
+.pr-faq-titel { margin-bottom: 40px; font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); }
+
+/* Breekpunten ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .pr-hero { padding-top: 160px; }
+  .pr-title { font-size: 56px; line-height: 1.1; }
+  .pr-plannen { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
+  .pr-plan-beschrijving, .pr-plan-prijs { min-height: 0; }
+  .pr-inbegrepen-lijst { grid-template-columns: 1fr; }
+  .pr-inbegrepen-lijst li, .pr-inbegrepen-lijst li + li { padding: 24px 0; border-left: 0; }
+  .pr-inbegrepen-lijst li + li { border-top: 1px solid var(--border-translucent); }
+  .pr-faq-titel { font-size: 40px; line-height: 1.1; }
+}
+@media (max-width: 760px) {
+  .pr-kiezer { grid-template-columns: 1fr; padding: 20px; }
+  .pr-kiezer-uitkomst {
+    grid-column: 1; grid-row: auto; flex-direction: row; align-items: baseline; justify-content: space-between; flex-wrap: wrap;
+    min-width: 0; margin-top: 20px; padding: 16px 0 0; border-left: 0; border-top: 1px solid var(--border-translucent);
+  }
+  .pr-kiezer-prijs strong { font-size: 24px; }
+  /* Te smal voor drie labels: alleen het gekozen plan staat erbij, de streepjes blijven */
+  .pr-schaal span:not([data-actief]) { color: transparent; }
+  .pr-schaal span[data-actief] { z-index: 1; background: var(--bg-level-1); padding-right: 6px; }
+  /* Tabel: per rij eerst de functie, daaronder de drie plannen naast elkaar met hun naam erbij */
+  .pr-tabel-kop .pr-tabel-plan { display: none; }
+  .pr-tabel-kop { position: static; margin: 0; padding: 0; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .pr-tabel-kop .pr-rij { grid-template-columns: 1fr; padding-block: 0 8px; }
+  .pr-groep .pr-rij { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; align-items: start; padding-block: 14px; }
+  .pr-rij-label { grid-column: 1 / -1; color: var(--text-secondary); }
+  .pr-cel { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 13px; }
+  .pr-cel::before {
+    content: attr(data-plan); font-family: var(--font-mono); font-size: 11px; line-height: 1.4;
+    text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-quaternary);
+  }
+}
+@media (max-width: 640px) {
+  .pr-hero { padding-top: 120px; }
+  .pr-title { font-size: 40px; }
+  .pr-plannen-sectie { margin-top: 48px; }
+  .pr-plan { padding: 24px 20px; }
+  .pr-plan-bedrag { font-size: 40px; }
+  .pr-inbegrepen, .pr-vergelijking, .pr-faq { margin-top: 96px; }
+  .pr-tabel-titel { font-size: 20px; }
+  .pr-faq-titel { font-size: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pr-plan, .pr-plan::before, .pr-schaal span, .pr-plan-klanten,
+  .pr-schuif::-webkit-slider-thumb { transition: none; }
+}
