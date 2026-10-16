@@ -2,7 +2,6 @@
 // in de app (strategie/bibliotheek/[paginaId]): terugknop, titel, standbalk, de kaart "Aan zet" en de
 // tekst. Het is dezelfde voorbeeldpagina als in de drie schermen erboven, zodat je ziet waar het
 // antwoord uit Openstaande vragen (de bedragen) op de pagina terechtkomt. Voorbeelddata.
-import { LogoMark } from '@/components/Logo'
 import { Icon, type IconName } from './AppFrame'
 
 const nav: { group?: string; items: { icon: IconName; label: string; active?: boolean }[] }[] = [
@@ -30,7 +29,6 @@ export function ResultFrame() {
     <div className="rs-frame" aria-hidden="true">
       <nav className="rs-sidebar">
         <span className="rs-workspace">
-          <span className="af-workspace-logo"><LogoMark size={12} /></span>
           <span>Fietsen Jansen</span>
           <Icon name="chevron" />
         </span>
