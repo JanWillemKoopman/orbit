@@ -3,7 +3,7 @@ import type { MaandStap } from '@/components/product/Visuals'
 
 export const hero = {
   title: ['Je klanten willen zichtbaar zijn in AI.', 'Met Orbit maakt jouw agency het waar.'],
-  description: 'Orbit is gratis te gebruiken voor marketeers die voorop willen lopen met AI.',
+  description: 'Schaal je agency, niet je werkdruk. Orbit automatiseert SEO en GEO terwijl jij bouwt aan de volgende klantrelatie.',
 }
 
 // Grote quote onder het dashboard. Het vetgedrukte deel staat in het wit, de rest in grijs.
