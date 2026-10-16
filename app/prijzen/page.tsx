@@ -24,7 +24,7 @@ export default function PrijzenPage() {
   const korteNamen = plannen.map((p) => p.naam.replace(' agency', ''))
   return (
     <div className="home pr">
-        <section className="container pr-hero" aria-labelledby="pr-titel">
+      <section className="container pr-hero" aria-labelledby="pr-titel">
         <p className="pr-eyebrow">{hero.eyebrow}</p>
         <h1 id="pr-titel" className="pr-title">
           {hero.title.map((regel) => <span key={regel}>{regel}</span>)}
