@@ -10,8 +10,8 @@ export const hero = {
 
 // Grote quote onder het dashboard. Het vetgedrukte deel staat in het wit, de rest in grijs.
 export const statement = {
-  strong: 'Een nieuw soort marketingsoftware.',
-  rest: 'Gemaakt voor een tijd waarin klanten hun antwoord aan AI vragen. Orbit laat zien of je merk genoemd wordt en wat je eraan kunt doen.',
+  strong: 'Van klantstrategie tot groeikans in AI zichtbaarheid.',
+  rest: 'Orbit brengt analyse, contentcreatie, publicatie en nameting samen in één doorlopende workflow. Jouw team bepaalt de koers. AI versnelt de uitvoering.',
   // Staat als quote met foto en naam eronder. Foto in public/images/, vierkant werkt het best.
   author: { name: 'Jan-Willem Koopman - AI engineer', photo: '/images/jan-willem-koopman.jpg' },
 }
