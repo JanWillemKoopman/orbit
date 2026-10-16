@@ -18,6 +18,12 @@ export const inbegrepen = {
   ],
 }
 
+// Label bij een plan met korting.
+export const kortingLabel = 'Tijdelijk'
+
+// Prijs van een extra klant bij Small, zonder korting.
+export const extraKlant = 25
+
 export type Plan = {
   id: 'small' | 'medium' | 'large'
   naam: string
@@ -26,7 +32,10 @@ export type Plan = {
   /** Eerste en laatste aantal klanten waarvoor dit plan geldt (voor de klantenkiezer). */
   van: number
   tot: number | null
-  prijs: string | null
+  /** Bedrag per maand in euro's, of null voor een prijs op maat. */
+  prijs: number | null
+  /** Tijdelijke korting in procenten. Haal de regel weg om de actie te stoppen. */
+  korting?: number
   /** Klein woordje vóór het bedrag, bijvoorbeeld "Vanaf". */
   voorPrijs?: string
   /** Wat er na het bedrag staat. */
@@ -45,7 +54,8 @@ export const plannen: Plan[] = [
     klanten: '1 klant',
     van: 1,
     tot: 2,
-    prijs: '€100',
+    prijs: 100,
+    korting: 50,
     perPeriode: 'per maand',
     beschrijving: 'Voor een klein bureau dat begint met AI-zichtbaarheid voor de eerste klant.',
     kop: 'Wat je krijgt',
@@ -63,7 +73,8 @@ export const plannen: Plan[] = [
     klanten: '3 tot 10 klanten',
     van: 3,
     tot: 10,
-    prijs: '€250',
+    prijs: 250,
+    korting: 50,
     voorPrijs: 'Vanaf',
     perPeriode: 'per maand',
     beschrijving: 'Voor een bureau dat AI-zichtbaarheid als vaste maandelijkse dienst verkoopt aan meerdere klanten.',
