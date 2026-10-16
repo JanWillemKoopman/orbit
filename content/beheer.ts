@@ -30,11 +30,10 @@ export const secties = {
     beeld: {
       titel: 'Het werkoverzicht van je bureau',
       tekst: 'Per klant de zichtbaarheid, wat er op je wacht en wat het de afgelopen dertig dagen kostte. Zo weet je elke ochtend waar je moet beginnen.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'Wat het langst wacht, staat bovenaan', tekst: 'Open vragen, teksten om na te kijken en pagina’s om te plaatsen, met het aantal dagen dat het al wacht.' },
-      { titel: 'Start de maand voor meerdere klanten', tekst: 'Vink bedrijven aan en start hun maand in één keer. Vooraf zie je hoeveel pagina’s het samen zijn en ongeveer wat het kost.', label: 'Bulk' },
+      { titel: 'Start de maand voor meerdere klanten', tekst: 'Vink bedrijven aan en start hun maand in één keer. Vooraf zie je hoeveel pagina’s het samen zijn en ongeveer wat het kost.' },
     ] as Bijschrift[],
   },
   klanten: {
@@ -47,7 +46,6 @@ export const secties = {
     beeld: {
       titel: 'Elke klant zijn eigen dossier',
       tekst: 'Leg per bureau vast hoeveel pagina’s een nieuwe klant per maand krijgt en of nieuwe clusters elke maand gemeten worden. Pas het per klant aan wanneer je wilt.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'Naam en website, meer niet', tekst: 'Bij de knop staat wat een onderzoek je bureau eerder gemiddeld kostte, en wat er van de maandlimiet over is.' },
@@ -63,11 +61,10 @@ export const secties = {
     beeld: {
       titel: 'Iedereen in je bureau op één plek',
       tekst: 'Wie beheerder is, wie meekijkt, welk bedrijf een kijker ziet en wanneer iemand voor het laatst inlogde. Openstaande uitnodigingen staan erbij.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
-      { titel: 'Uitnodigen met een rol', tekst: 'Kies beheerder of kijker, en bij een kijker meteen de bedrijven. De uitnodiging gaat per mail en werkt veertien dagen.', label: 'Toegang' },
-      { titel: 'Jij bepaalt wat een kijker mag', tekst: 'Vragen beantwoorden, materiaal toevoegen, teksten goedkeuren. Zet aan wat past bij de samenwerking.', label: 'Kijkers' },
+      { titel: 'Uitnodigen met een rol', tekst: 'Kies beheerder of kijker, en bij een kijker meteen de bedrijven. De uitnodiging gaat per mail en werkt veertien dagen.' },
+      { titel: 'Jij bepaalt wat een kijker mag', tekst: 'Vragen beantwoorden, materiaal toevoegen, teksten goedkeuren. Zet aan wat past bij de samenwerking.' },
       { titel: 'Je klant ziet alleen zijn eigen bedrijf', tekst: 'Geen Beheer en geen andere klanten. Wat hij mag doen, staat in zijn rondleiding en achter het vraagteken.' },
       { titel: 'Als er iets misgaat, zie je wat en wat je doet', tekst: 'Onder Systeemstatus staat per klant wat er niet lukte en wat je eraan doet, zoals een sleutel die wordt geweigerd. Geen foutcode, maar een zin.' },
     ] as Bijschrift[],
@@ -82,11 +79,10 @@ export const secties = {
     beeld: {
       titel: 'Eén scherm voor je kosten',
       tekst: 'Het verbruik van deze maand naast je maandlimiet, met een schatting van wat er volgende maand vanzelf loopt.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'De prijs staat bij de knop', tekst: 'Een schatting uit wat je eigen bureau eerder betaalde. Zonder geschiedenis staat er geen verzonnen bedrag, maar “nog geen schatting”.' },
-      { titel: 'Kosten per klant', tekst: 'Zie welke klant wat kost, zodat je je uren en je tarief op het echte verbruik afstemt.', label: 'Voorbeeldgegevens' },
+      { titel: 'Kosten per klant', tekst: 'Zie welke klant wat kost, zodat je je uren en je tarief op het echte verbruik afstemt.' },
       { titel: 'Jouw sleutels, jouw rekening', tekst: 'Je vult zelf de sleutel van OpenAI in. Extra meetkanalen en zoekdata werken met een eigen sleutel. Een testknop per sleutel, daarna zie je alleen de laatste vier tekens.' },
       { titel: 'De maandlimiet stopt nieuw werk', tekst: 'Is hij bereikt, dan krijgen de beheerders een melding. Nieuw werk dat geld kost start weer op de 1e van de volgende maand, of eerder als je de limiet verhoogt.' },
     ] as Bijschrift[],

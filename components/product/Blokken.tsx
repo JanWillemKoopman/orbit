@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { preload } from 'react-dom'
 import { HeroVideo } from './HeroVideo'
 
-export type Bijschrift = { titel: string; tekst: string; label?: string }
+export type Bijschrift = { titel: string; tekst: string }
 
 export function Kop({ id, title, description }: { id: string; title: string; description: string }) {
   return (
@@ -23,7 +23,7 @@ export function Kop({ id, title, description }: { id: string; title: string; des
 function Tekst({ b }: { b: Bijschrift }) {
   return (
     <figcaption className="pd-caption">
-      <h3>{b.titel}{b.label && <span className="pd-label">{b.label}</span>}</h3>
+      <h3>{b.titel}</h3>
       <p>{b.tekst}</p>
     </figcaption>
   )
@@ -143,7 +143,7 @@ export function Intro({ id, titel, tekst, link, label }: { id: string; titel: st
 function BijschriftTekst({ b }: { b: Bijschrift }) {
   return (
     <figcaption className="lp-caption">
-      <h3>{b.titel}{b.label && <span className="lp-label">{b.label}</span>}</h3>
+      <h3>{b.titel}</h3>
       <p>{b.tekst}</p>
     </figcaption>
   )

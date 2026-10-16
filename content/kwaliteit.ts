@@ -28,11 +28,10 @@ export const secties = {
     beeld: {
       titel: 'Elke harde bewering heeft een bron',
       tekst: 'Een bedrag, termijn of garantie komt van de website, van de klant zelf of uit een document. Staat er geen bron bij, dan wordt de zin geel.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
-      { titel: 'Klinkt goed, klopt niet', tekst: 'Een gewone AI-schrijver vult gaten op met wat aannemelijk klinkt. Je ziet niet welke zin verzonnen is.', label: 'Gewone AI' },
-      { titel: 'Je ziet meteen wat je moet nalopen', tekst: 'Bij Orbit rust de tekst op feiten met een bron. Een prijs, termijn of garantie zonder bron valt op.', label: 'Orbit' },
+      { titel: 'Klinkt goed, klopt niet', tekst: 'Een gewone AI-schrijver vult gaten op met wat aannemelijk klinkt. Je ziet niet welke zin verzonnen is.' },
+      { titel: 'Je ziet meteen wat je moet nalopen', tekst: 'Bij Orbit rust de tekst op feiten met een bron. Een prijs, termijn of garantie zonder bron valt op.' },
     ] as Bijschrift[],
   },
   weten: {
@@ -45,7 +44,6 @@ export const secties = {
     beeld: {
       titel: 'Feiten en kennis van één bedrijf',
       tekst: 'Elk feit met zijn bron en hoe zeker het is. Je team ziet in één oogopslag wat er in een tekst mag.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'Van binnen: wat je klant weet', tekst: 'De website, het kennismakingsgesprek, antwoorden op vragen en brochures. Orbit leest het en legt vast wat erin staat.' },
@@ -64,7 +62,6 @@ export const secties = {
     beeld: {
       titel: 'Je ziet waarom een zin geel is',
       tekst: 'Onder elke gele zin staat wat er ontbreekt. Klopt het, dan bevestig je het met één klik. Anders vraag je het je klant.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'Een getal moet in de bron staan', tekst: 'De schrijver geeft bij elke zin aan waarop die rust. Code controleert dat voor bedragen, getallen, termijnen, garanties en keurmerken.' },

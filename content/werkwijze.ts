@@ -29,7 +29,6 @@ export const secties = {
     beeld: {
       titel: 'Wat er deze maand speelt',
       tekst: 'Je ziet welke stap loopt, wat er op jou wacht en wanneer er een melding binnenkomt. Zo weet je elke ochtend waar je moet beginnen.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'Een klant staat in tien minuten klaar', tekst: 'Naam en website zijn genoeg. De lijst Dit bedrijf inrichten loopt met je mee en vinkt zichzelf af, ook voor een nieuwe collega.' },
@@ -46,7 +45,6 @@ export const secties = {
     beeld: {
       titel: 'Zichtbaarheid die je kunt laten zien',
       tekst: 'Elke maand meten, steeds op dezelfde vragen, zodat je groei per onderwerp echt vergelijkt.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'De vragen van jouw klanten, langs de hele klantreis', tekst: 'Van oriëntatie tot beslissing, met het aanbod en de plaatsnamen van het bedrijf. Zo zie je of je klant alleen meedoet in de uitlegfase, of ook als de koper kiest.' },
@@ -64,7 +62,6 @@ export const secties = {
     beeld: {
       titel: 'Plan het werk per maand',
       tekst: 'Per maand zie je welke pagina op antwoorden, akkoord of publicatie wacht. Open maanden vullen zich met de sterkste kansen.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'Van gemist antwoord naar pagina', tekst: "Een vraag waarbij AI concurrenten noemt, wordt een kans en daarna een pagina. Nooit twee pagina's over hetzelfde." },
@@ -81,7 +78,6 @@ export const secties = {
     beeld: {
       titel: 'Teksten die klinken als je klant',
       tekst: 'Het antwoord van de klant staat in de tekst. Een bewering zonder bron valt op.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'Je klant antwoordt waar hij is', tekst: 'Via een link op zijn telefoon, zonder account. Het antwoord gaat direct mee naar het schrijven en jij belt niet meer na.' },
@@ -100,7 +96,6 @@ export const secties = {
     beeld: {
       titel: 'Een verslag dat het gesprek voert',
       tekst: 'Zichtbaarheid, wat er live ging en wat het deed, en wat volgende maand op de planning staat. Met de naam van je bureau erboven.',
-      label: 'Voorbeeldgegevens',
     },
     cellen: [
       { titel: 'Eerlijk over het effect', tekst: 'Per pagina de stand vóór publicatie en na 14 en 28 dagen, op dezelfde vragen. Bij te weinig vragen zegt Orbit dat het nog niet te zeggen is.' },

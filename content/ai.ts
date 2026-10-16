@@ -32,7 +32,7 @@ export const secties = {
       tekst: 'Bij elke stap staat wat AI doet, wat code afdwingt en wat jij beslist.',
     },
     cellen: [
-      { titel: 'AI leert je klant kennen in ongeveer tien minuten', tekst: 'Naam en website zijn genoeg. Orbit leest de website en legt aanbod, doelgroep, concurrenten en markt vast. Het onderzoek loopt op de achtergrond.', label: 'Onderzoek' },
+      { titel: 'AI leert je klant kennen in ongeveer tien minuten', tekst: 'Naam en website zijn genoeg. Orbit leest de website en legt aanbod, doelgroep, concurrenten en markt vast. Het onderzoek loopt op de achtergrond.' },
       { titel: 'Dertig AI-vragen langs de klantreis', tekst: 'Per onderwerp stelt Orbit standaard dertig AI-vragen op, verdeeld over oriëntatie, overweging en beslissing. Je past ze aan of zet ze uit.' },
       { titel: 'Zie waarom een concurrent wordt genoemd', tekst: 'Per concurrent haalt Orbit de eigenschappen uit de antwoorden, met een letterlijk fragment als bewijs. Dat is het startpunt voor een pagina.' },
       { titel: 'Een brief per pagina, met gerichte vragen', tekst: 'Voor elke pagina zoekt Orbit uit wat erop moet en stelt het hooguit acht vragen aan jou of je klant.' },
@@ -50,8 +50,8 @@ export const secties = {
       tekst: 'AI beantwoordt en beoordeelt, code rekent. Een antwoord dat niet te beoordelen is, telt niet mee.',
     },
     cellen: [
-      { titel: 'Wat weet ChatGPT al over je klant?', tekst: 'Orbit vraagt de assistent wat hij over het bedrijf weet, met en zonder zoeken. Code oordeelt of het klopt, zodat je klant ziet waar AI hem verkeerd kent.', label: 'Kennistest' },
-      { titel: 'Meet waar je klant gevonden wordt', tekst: 'ChatGPT staat altijd aan en is de basis van het cijfer. Gemini en Google AI Overview zet je per onderwerp erbij. Ze kosten extra per vraag en werken met eigen sleutels.', label: 'Kanalen' },
+      { titel: 'Wat weet ChatGPT al over je klant?', tekst: 'Orbit vraagt de assistent wat hij over het bedrijf weet, met en zonder zoeken. Code oordeelt of het klopt, zodat je klant ziet waar AI hem verkeerd kent.' },
+      { titel: 'Meet waar je klant gevonden wordt', tekst: 'ChatGPT staat altijd aan en is de basis van het cijfer. Gemini en Google AI Overview zet je per onderwerp erbij. Ze kosten extra per vraag en werken met eigen sleutels.' },
     ] as Bijschrift[],
   },
   schrijven: {
@@ -80,7 +80,6 @@ export const secties = {
     beeld: {
       titel: 'Het werk van al je klanten, vanzelf',
       tekst: 'Je ziet wat er loopt, wat wacht en wat niet lukte. Gaat er iets mis, dan staat er in gewone taal wat je doet.',
-      label: 'Voorbeeldgegevens',
     },
   },
   grenzen: {
