@@ -508,7 +508,8 @@
   .process-title { margin-top: 0; font-size: 18px; }
   .process-description { margin-top: 4px; }
   .process-link { padding-top: 10px; width: fit-content; }
-  .home-hero { padding-top: 132px; }
+  .home-hero { padding-top: 66px; }
+  .home-new-link { display: none; }
   .home-quote-mark { position: static; transform: none; }
   .home-quote-author { margin-top: 24px; }
   .home-quote-author img { width: 40px; height: 40px; }
