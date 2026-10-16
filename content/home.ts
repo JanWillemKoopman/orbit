@@ -48,7 +48,13 @@ export const uitgelichtStappen: MaandStap[] = [
 ]
 
 // Drie voordelen voor marketingbureaus, onder de twee beelden en boven de drie nagebouwde schermen.
+// Erboven een kop (links) en een korte uitleg (rechts).
 export type Usp = { title: string; description: string }
+
+export const uspIntro = {
+  title: 'Gebouwd voor marketingbureaus',
+  description: 'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst aan te bieden, laat je klanten zien wat het oplevert en geeft je specialisten de ruimte voor het werk dat ertoe doet.',
+}
 
 export const usps: Usp[] = [
   {

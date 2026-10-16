@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, prefooter, result, statement, uitgelicht, uitgelichtStappen, usps } from '@/content/home'
+import { faq, hero, prefooter, result, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
@@ -88,8 +88,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="feature process usp" aria-label="Wat Orbit je bureau oplevert">
+        <section className="feature process usp" aria-labelledby="home-usp">
           <div className="keyline" />
+          <div className="feature-header">
+            <h2 id="home-usp" className="feature-title">{uspIntro.title}</h2>
+            <div className="feature-description">
+              <p>{uspIntro.description}</p>
+            </div>
+          </div>
           <ul className="process-steps usp-steps">
             {usps.map((usp) => (
               <li className="process-step" key={usp.title}>
