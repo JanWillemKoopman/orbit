@@ -170,7 +170,6 @@
 /* FAQ ------------------------------------------------------------------- */
 .pr-faq { margin-top: 160px; }
 .pr-faq-titel { margin-bottom: 40px; font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); }
-.pr-faq .faq { padding-bottom: 0; }
 
 /* Breekpunten ------------------------------------------------------------ */
 @media (max-width: 1024px) {
