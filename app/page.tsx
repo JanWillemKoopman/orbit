@@ -18,7 +18,6 @@ import './werkwijze/werkwijze.css'
 import './beheer/beheer.css'
 import './pagina.css'
 import './kwaliteit/kwaliteit.css'
-import './pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: { absolute: 'Orbit – Open source SEO & GEO software voor marketeers' },

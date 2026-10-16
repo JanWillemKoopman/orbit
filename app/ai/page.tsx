@@ -12,7 +12,6 @@ import '../beheer/beheer.css'
 import '../kwaliteit/kwaliteit.css'
 import '../pagina.css'
 import './ai-pagina.css'
-import '../pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: meta.title,

@@ -6,7 +6,6 @@ import { Beeld, Intro, PaginaHero, Raster, RasterCel, Sectie } from '@/component
 import * as V from '@/components/product/Visuals'
 import '../pagina.css'
 import './werkwijze.css'
-import '../pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: meta.title,

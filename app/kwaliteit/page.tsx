@@ -9,7 +9,6 @@ import '../werkwijze/werkwijze.css'
 import '../beheer/beheer.css'
 import '../pagina.css'
 import './kwaliteit.css'
-import '../pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: meta.title,

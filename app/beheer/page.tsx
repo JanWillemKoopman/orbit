@@ -7,7 +7,6 @@ import * as V from '@/components/agency/Visuals'
 import '../werkwijze/werkwijze.css'
 import '../pagina.css'
 import './beheer.css'
-import '../pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: meta.title,
