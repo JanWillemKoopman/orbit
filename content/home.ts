@@ -47,28 +47,18 @@ export const uitgelichtStappen: MaandStap[] = [
   { l: 'Hermeten', s: '', st: 'todo' },
 ]
 
-// Drie voordelen voor marketingbureaus, onder de twee beelden en boven de drie nagebouwde schermen.
-// Erboven een kop (links) en een korte uitleg (rechts).
-export type Usp = { title: string; description: string }
-
+// Vier voordelen voor marketingbureaus, onder de twee beelden en boven de drie nagebouwde schermen.
+// Erboven een kop (links) en een korte uitleg (rechts); per voordeel alleen een titel met een vinkje.
 export const uspIntro = {
   title: 'Gebouwd voor marketingbureaus',
   description: 'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst aan te bieden, laat je klanten zien wat het oplevert en geeft je specialisten de ruimte voor het werk dat ertoe doet.',
 }
 
-export const usps: Usp[] = [
-  {
-    title: 'Maak AI-zichtbaarheid een vaste dienst',
-    description: 'Breid je aanbod uit met een maandelijkse dienst voor zichtbaarheid in Google en AI-assistenten.',
-  },
-  {
-    title: 'Maak vooruitgang zichtbaar voor je klant',
-    description: 'Volg hoe de zichtbaarheid zich ontwikkelt en geef klanten inzicht met overzichtelijke rapportages en een eigen kijkomgeving.',
-  },
-  {
-    title: 'Geef je specialisten tijd voor strategie',
-    description: 'Besteed minder uren aan repetitief uitvoerend werk en meer aan keuzes, kwaliteit en klantadvies.',
-  },
+export const usps: string[] = [
+  'Maak AI-zichtbaarheid een vaste dienst',
+  'Maak vooruitgang zichtbaar voor je klant',
+  'Geef je specialisten tijd voor strategie',
+  'Beheer al je klanten vanuit één platform',
 ]
 
 // Het blok met drie nagebouwde schermen onder het procesblok: alleen het bijschrift linksonder.

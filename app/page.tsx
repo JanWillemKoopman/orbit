@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// twee beelden met een link naar /agency en /product, drie voordelen voor bureaus naast elkaar, drie nagebouwde schermen, het eindresultaat, veelgestelde vragen en een afsluiter.
+// twee beelden met een link naar /agency en /product, vier voordelen voor bureaus naast elkaar, drie nagebouwde schermen, het eindresultaat, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
 
   return (
@@ -98,12 +98,11 @@ export default function HomePage() {
           </div>
           <ul className="process-steps usp-steps">
             {usps.map((usp) => (
-              <li className="process-step" key={usp.title}>
+              <li className="process-step" key={usp}>
                 <span className="process-number usp-vink" aria-hidden="true">
                   <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
                 </span>
-                <h3 className="process-title">{usp.title}</h3>
-                <p className="process-description">{usp.description}</p>
+                <h3 className="process-title">{usp}</h3>
               </li>
             ))}
           </ul>
