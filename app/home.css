@@ -298,6 +298,8 @@
   .usp-steps .process-step { padding-left: 0; border-left: 0; }
   .usp-vink { margin-top: 2px; }
 }
+/* De kop en voordelen staan breed in hun eigen sectie en op mobiel tussen de twee beelden (zie hieronder) */
+.usp-blok-mobiel { display: none; }
 
 /* Drie schermen achter elkaar, naar linear.app/intake ------------------- */
 .sc-root {
@@ -493,6 +495,10 @@
   /* De lijn onder het tweede beeld is meteen de lijn boven de volgende sectie, anders staan er twee met een lege strook ertussen */
   .home-uitgelicht + .feature { margin-top: 0; }
   .home-uitgelicht + .feature > .keyline { display: none; }
+  /* Kop en voordelen tussen de twee beelden, met een lijn erboven; het tweede beeld houdt zijn eigen lijn erboven */
+  .usp-blok-breed { display: none; }
+  .usp-blok-mobiel { display: block; order: 1; padding: 0 24px 56px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+  .home-uitgelicht .pd-grid .pd-cell:last-of-type { order: 2; }
   .sc-root { margin-top: 56px; margin-inline: -8px; }
   /* Op mobiel een veegbare rij: elk scherm 86% breed, zodat het volgende net in beeld piept. */
   .sc-stage {

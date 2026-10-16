@@ -85,27 +85,18 @@ export default function HomePage() {
                 </figcaption>
               </figure>
             ))}
+            {/* Alleen op mobiel: de kop en de voordelen tussen de twee beelden; daar verbergt de CSS ze in de sectie eronder */}
+            <div className="usp-blok usp-blok-mobiel">
+              <UspBlok id="home-usp-mobiel" />
+            </div>
           </div>
         </section>
 
         <section className="feature process usp" aria-labelledby="home-usp">
           <div className="keyline" />
-          <div className="feature-header">
-            <h2 id="home-usp" className="feature-title">{uspIntro.title}</h2>
-            <div className="feature-description">
-              <p>{uspIntro.description}</p>
-            </div>
+          <div className="usp-blok usp-blok-breed">
+            <UspBlok id="home-usp" />
           </div>
-          <ul className="process-steps usp-steps">
-            {usps.map((usp) => (
-              <li className="process-step" key={usp}>
-                <span className="process-number usp-vink" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
-                </span>
-                <h3 className="process-title">{usp}</h3>
-              </li>
-            ))}
-          </ul>
           <Showcase />
         </section>
 
@@ -141,5 +132,30 @@ export default function HomePage() {
         </div>
       </section>
     </div>
+  )
+}
+
+// Kop, uitleg en de vier voordelen voor bureaus. Staat twee keer op de pagina: breed in de eigen sectie,
+// op mobiel tussen de twee beelden. De CSS laat steeds maar één van de twee zien.
+function UspBlok({ id }: { id: string }) {
+  return (
+    <>
+      <div className="feature-header">
+        <h2 id={id} className="feature-title">{uspIntro.title}</h2>
+        <div className="feature-description">
+          <p>{uspIntro.description}</p>
+        </div>
+      </div>
+      <ul className="process-steps usp-steps">
+        {usps.map((usp) => (
+          <li className="process-step" key={usp}>
+            <span className="process-number usp-vink" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
+            </span>
+            <h3 className="process-title">{usp}</h3>
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
