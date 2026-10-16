@@ -61,6 +61,15 @@ export const usps: string[] = [
   'Beheer al je klanten vanuit één platform',
 ]
 
+// Sectie over de kwaliteit van de content, onder de drie nagebouwde schermen: kop (links) en uitleg
+// (rechts), daaronder twee beelden van de pagina Kwaliteit naast elkaar. De bijschriften van de beelden
+// komen uit content/kwaliteit.ts, zodat ze op beide pagina's hetzelfde zijn.
+export const kwaliteit = {
+  title: 'AI-teksten die kloppen',
+  description: 'Orbit schrijft alleen met feiten die ergens vandaan komen: van de website, van je klant of uit een document. Wat niet te onderbouwen is, valt meteen op. Zo lever je AI-teksten zonder elke zin zelf na te lopen.',
+  link: { label: 'Zo bewaakt Orbit de kwaliteit', href: '/kwaliteit' },
+}
+
 // Het blok met drie nagebouwde schermen onder het procesblok: alleen het bijschrift linksonder.
 export const showcase = {
   title: 'Van kans tot ingeplande pagina',

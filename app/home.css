@@ -301,6 +301,37 @@
 /* De kop en voordelen staan breed in hun eigen sectie en op mobiel tussen de twee beelden (zie hieronder) */
 .usp-blok-mobiel { display: none; }
 
+/* Kwaliteit van de content: twee beelden van /kwaliteit naast elkaar, in de opmaak van pagina.css.
+   Per beeld één venster in leesbare maat, zoals die pagina ze op mobiel toont. */
+.hk { padding-bottom: 128px; }
+.hk-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hk-duo .lp-beeld { margin-inline: 0; }
+.hk-duo .lp-beeld-stage { height: 520px; }
+.hk-duo .lp-beeld-inner { top: 64px; width: min(540px, calc(100% - 64px)); zoom: 1; }
+.hk-duo .ag-window, .hk-duo .kc-comp { width: 100%; max-width: none; height: auto; }
+.hk-duo .kc-back, .hk-duo .kf-count, .hk-duo .fv-tip { display: none; }
+.hk-duo .kc-front { position: static; width: 100%; }
+.hk-duo .kf-hero { gap: 18px; padding: 26px 24px 22px; }
+.hk-duo .kf-hero p { font-size: 16px; line-height: 1.8; }
+.hk-duo .kf-bronnen { grid-template-columns: 1fr; gap: 10px; }
+.hk-duo .ag-view { gap: 14px; padding: 18px 20px 32px; }
+.hk-duo .kf-table .ag-tr { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) 76px; gap: 12px; min-height: 56px; padding: 0 8px; }
+.hk-duo .kf-table .ag-tr > :nth-child(3) { display: none; }
+.hk-duo .kf-table .ag-tr > strong { white-space: normal; }
+.hk-duo .lp-caption { max-width: none; }
+@media (max-width: 900px) {
+  .hk-duo { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .hk { padding-bottom: 0; }
+  /* Op een telefoon zoals /kwaliteit: over de volle breedte, de beelden sluiten op elkaar aan met één lijn ertussen */
+  .hk-duo { gap: 0; margin-inline: calc(-1 * var(--page-padding)); }
+  .hk-duo .lp-beeld { margin-inline: 0; }
+  .hk-duo .lp-beeld + .lp-beeld { border-top: 0; }
+  .hk-duo .lp-beeld-stage { height: 468px; }
+  .hk-duo .lp-beeld-inner { top: auto; width: 440px; zoom: 0.86; }
+}
+
 /* Drie schermen achter elkaar, naar linear.app/intake ------------------- */
 .sc-root {
   position: relative; margin-top: 96px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.06);

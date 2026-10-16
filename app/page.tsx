@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, prefooter, result, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
+import { faq, hero, kwaliteit, prefooter, result, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
@@ -12,8 +12,13 @@ import { Faq } from '@/components/home/Faq'
 import { AiLogos } from '@/components/home/AiLogos'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
 import { HeroMaand } from '@/components/product/Visuals'
+import { BreinTabel, HerkomstCompositie } from '@/components/kennis/Visuals'
+import { secties as kwaliteitSecties } from '@/content/kwaliteit'
 import './werkwijze/werkwijze.css'
 import './beheer/beheer.css'
+import './pagina.css'
+import './kwaliteit/kwaliteit.css'
+import './pagina-mobiel.css'
 
 export const metadata: Metadata = {
   title: { absolute: 'Orbit – Open source SEO & GEO software voor marketeers' },
@@ -22,7 +27,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// twee beelden met een link naar /agency en /product, vier voordelen voor bureaus naast elkaar, drie nagebouwde schermen, het eindresultaat, veelgestelde vragen en een afsluiter.
+// twee beelden met een link naar /agency en /product, vier voordelen voor bureaus naast elkaar, drie nagebouwde schermen, de kwaliteit van de content, het eindresultaat, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
 
   return (
@@ -98,6 +103,37 @@ export default function HomePage() {
             <UspBlok id="home-usp" />
           </div>
           <Showcase />
+        </section>
+
+        <section className="feature hk" aria-labelledby="home-kwaliteit">
+          <div className="keyline" />
+          <div className="feature-header">
+            <h2 id="home-kwaliteit" className="feature-title">{kwaliteit.title}</h2>
+            <div className="feature-description">
+              <p>{kwaliteit.description}</p>
+              <Link href={kwaliteit.link.href} className="home-link">{kwaliteit.link.label} <span className="pijl" aria-hidden="true">→</span></Link>
+            </div>
+          </div>
+          <div className="hk-duo">
+            <figure className="lp-beeld lp-beeld-scherm">
+              <div className="lp-beeld-stage" role="img" aria-label="Een alinea over een hybride warmtepomp. Elke harde bewering heeft een nummer met de bron: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina.">
+                <div className="lp-beeld-inner" aria-hidden="true"><HerkomstCompositie /></div>
+              </div>
+              <figcaption className="lp-caption">
+                <h3>{kwaliteitSecties.probleem.beeld.titel}</h3>
+                <p>{kwaliteitSecties.probleem.beeld.tekst}</p>
+              </figcaption>
+            </figure>
+            <figure className="lp-beeld lp-beeld-scherm">
+              <div className="lp-beeld-stage" role="img" aria-label="Feiten en kennis van Lindeman Warmte als tabel: per feit de bron en of het in een tekst mag. Een vermoeden en een verboden woord mogen nooit.">
+                <div className="lp-beeld-inner" aria-hidden="true"><BreinTabel /></div>
+              </div>
+              <figcaption className="lp-caption">
+                <h3>{kwaliteitSecties.weten.beeld.titel}</h3>
+                <p>{kwaliteitSecties.weten.beeld.tekst}</p>
+              </figcaption>
+            </figure>
+          </div>
         </section>
 
         <section className="feature result" aria-labelledby="home-result">
