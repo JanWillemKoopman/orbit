@@ -24,9 +24,12 @@ export function CitaatScroll({ strong, rest }: { strong: string; rest: string })
       frame = 0
       const rect = p.getBoundingClientRect()
       const vh = window.innerHeight
-      // 0 zodra de bovenkant op 85% van het beeld staat, 1 zodra de onderkant op 45% staat.
-      const start = vh * 0.85
-      const eind = vh * 0.45 - rect.height
+      // 0 zodra de bovenkant op 85% van het beeld staat, 1 zodra de onderkant op 60% staat.
+      // Mobiel is het citaat hoger en het scherm korter, dus daar begint en eindigt het eerder:
+      // bovenkant op 90%, onderkant op 75%.
+      const mobiel = window.matchMedia('(max-width: 640px)').matches
+      const start = vh * (mobiel ? 0.9 : 0.85)
+      const eind = vh * (mobiel ? 0.75 : 0.6) - rect.height
       const voortgang = Math.min(1, Math.max(0, (start - rect.top) / (start - eind)))
       const n = spans.length
       spans.forEach((s, i) => {
