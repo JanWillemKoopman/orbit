@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import { Prefooter } from '@/components/Prefooter'
+import Link from 'next/link'
 import { Plannen } from '@/components/prijzen/Plannen'
-import { hero, inbegrepen, plannen } from '@/content/prijzen'
+import { afsluiter, hero, inbegrepen, plannen } from '@/content/prijzen'
 import '../home.css'
 import './prijzen.css'
 
@@ -43,7 +43,18 @@ export default function PrijzenPage() {
           </ul>
         </section>
       </div>
-      <Prefooter />
+      {/* Afsluiter zonder bewegende achtergrond: gewoon zwart, met één knop naar contact */}
+      <section className="prefooter container pr-afsluiter" aria-labelledby="pr-afsluiter-titel">
+        <h2 id="pr-afsluiter-titel">{afsluiter.titel}</h2>
+        <div className="prefooter-actions">
+          <Link href="/contact" className="btn btn-lg btn-invert pr-golfknop">
+            {afsluiter.knop}
+            <svg className="pijl" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        </div>
+      </section>
     </>
   )
 }

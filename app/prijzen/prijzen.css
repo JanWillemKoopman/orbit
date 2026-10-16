@@ -157,6 +157,24 @@
 .pr-inbegrepen-lijst h3 { margin-top: 16px; font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
 .pr-inbegrepen-lijst p { margin-top: 8px; max-width: 340px; font-size: 14px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
 
+/* Afsluiter ------------------------------------------------------------- */
+/* Witte knop met een schokgolf: bij hover loopt er één keer een dunne ring van de knop naar buiten
+   die onderweg vervaagt. Alleen transform en opacity bewegen. */
+.pr-golfknop { position: relative; isolation: isolate; }
+.pr-golfknop::after {
+  content: ''; position: absolute; inset: -1px; z-index: -1; border-radius: inherit; pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), 0 0 12px rgba(255, 255, 255, 0.15);
+  opacity: 0;
+}
+@media (hover: hover) {
+  .pr-golfknop:hover::after { animation: pr-golf 0.9s var(--ease-out-expo); }
+  .pr-golfknop:hover .pijl { transform: translateX(3px); }
+}
+@keyframes pr-golf {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.18, 1.6); }
+}
+
 /* Breekpunten ------------------------------------------------------------ */
 @media (max-width: 1024px) {
   .pr-hero { padding-top: 160px; }
@@ -189,6 +207,7 @@
   .pr-inbegrepen { margin-top: 96px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .pr-golfknop::after { animation: none !important; }
   .pr-plan, .pr-plan::before, .pr-schaal span, .pr-plan-klanten,
   .pr-schuif::-webkit-slider-thumb { transition: none; }
 }

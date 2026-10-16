@@ -8,6 +8,12 @@ export const hero = {
   description: 'Transparante prijzen om je content te schalen en zichtbaar te worden in Google en AI-antwoordmachines zoals ChatGPT en Gemini.',
 }
 
+// De afsluiter onderaan de pagina: één knop naar /contact.
+export const afsluiter = {
+  titel: 'Lanceer je missie in Orbit',
+  knop: 'Neem vandaag nog contact op',
+}
+
 // Wat bij elk plan hoort. Eerste punt is het belangrijkste: de onboarding.
 export const inbegrepen = {
   onboarding: 'Inclusief persoonlijke onboarding',
