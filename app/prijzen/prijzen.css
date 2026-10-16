@@ -158,66 +158,50 @@
 .pr-inbegrepen-lijst p { margin-top: 8px; max-width: 340px; font-size: 14px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
 
 /* Afsluiter ------------------------------------------------------------- */
-/* Witte knop die bij de eerste hover ontploft (components/prijzen/GolfKnop.tsx): een flits, drie
-   drukgolven en vonken, allemaal vanuit het midden van de knop. Alleen transform en opacity bewegen.
-   De sectie knipt af, zodat de golf nooit een horizontale scroll geeft. */
+/* Witte knop met bij de eerste hover een trage golf in perspectief (components/prijzen/GolfKnop.tsx).
+   Twee lagen met dezelfde ringen en hetzelfde perspectief: de hele ring achter de knop, en over de
+   onderste helft van de knop dezelfde ring ervoor.
+   Alleen transform en opacity bewegen. De sectie knipt af, zodat er nooit een horizontale scroll komt. */
 .pr-afsluiter { overflow: clip; }
 .pr-golf { position: relative; display: inline-flex; }
 .pr-golfknop { position: relative; z-index: 1; }
 @media (hover: hover) { .pr-golfknop:hover .pijl { transform: translateX(3px); } }
 
-.pr-golf-lagen { position: absolute; left: 50%; top: 50%; width: 0; height: 0; pointer-events: none; }
-.pr-golf-lagen > span { position: absolute; left: 0; top: 0; border-radius: 50%; will-change: transform, opacity; }
-
-/* Felle kern: wit naar lime, vlak achter de knop */
-.pr-golf-flits {
-  width: 320px; height: 320px; margin: -160px 0 0 -160px;
-  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95), rgba(188, 255, 47, 0.55) 35%, rgba(188, 255, 47, 0.12) 65%, transparent);
-  filter: blur(6px);
-  animation: pr-flits 0.9s var(--ease-out-expo) both;
+.pr-golf-laag {
+  position: absolute; left: 50%; top: 50%; width: 1400px; height: 900px; margin: -450px 0 0 -700px;
+  pointer-events: none; perspective: 1600px; perspective-origin: 50% 50%;
 }
-@keyframes pr-flits {
-  0% { opacity: 0; transform: scale(0.2); }
-  12% { opacity: 1; }
-  100% { opacity: 0; transform: scale(2.6); }
-}
+.pr-golf-achter { z-index: 0; }
+/* Alleen over de onderste helft van de knop zelf ligt de ring ervoor. Een knip over de volle breedte
+   geeft een naadje in de gloed; zo valt de naad op de knop en is hij niet te zien. */
+.pr-golf-voor { z-index: 2; inset: 0; width: auto; height: auto; margin: 0; clip-path: inset(50% 0 0 0 round 0 0 9999px 9999px); }
 
-/* Drukgolven: elke ring iets later en zachter, ver buiten de knop */
+/* De ring ligt plat en kantelt naar achteren. Hij begint binnen de knop, zodat hij er zichtbaar
+   uit komt: achter de bovenrand langs en voor de onderrand langs. */
 .pr-golf-ring {
   --n: 0;
-  width: 200px; height: 200px; margin: -100px 0 0 -100px;
-  border: 1.5px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 24px rgba(188, 255, 47, 0.45), inset 0 0 24px rgba(188, 255, 47, 0.3);
-  animation: pr-ring 1.3s var(--ease-out-expo) both;
-  animation-delay: calc(var(--n) * 110ms);
+  position: absolute; left: 50%; top: 50%; width: 320px; height: 320px; margin: -160px 0 0 -160px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 28px rgba(188, 255, 47, 0.45), inset 0 0 28px rgba(188, 255, 47, 0.3);
+  will-change: transform, opacity;
+  animation: pr-golf-ring 3s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: calc(var(--n) * 450ms);
 }
-.pr-golf-ring:nth-child(3) { border-color: rgba(188, 255, 47, 0.8); }
-.pr-golf-ring:nth-child(4) { border-color: rgba(255, 255, 255, 0.4); }
-@keyframes pr-ring {
-  0% { opacity: 0; transform: scale(0.25); }
-  8% { opacity: 1; }
-  100% { opacity: 0; transform: scale(5); }
-}
-
-/* Vonken: korte streepjes die in alle richtingen wegschieten */
-.pr-golf-vonk {
-  width: 18px; height: 2px; margin: -1px 0 0 0; border-radius: 1px !important;
-  background: linear-gradient(90deg, transparent, var(--accent) 40%, #ffffff);
-  transform-origin: 0 50%;
-  animation: pr-vonk 0.95s var(--ease-out-expo) both;
-}
-@keyframes pr-vonk {
-  0% { opacity: 1; transform: rotate(var(--hoek)) translateX(20px) scaleX(0.5); }
-  60% { opacity: 1; }
-  100% { opacity: 0; transform: rotate(var(--hoek)) translateX(var(--ver)) scaleX(1.6); }
+.pr-golf-ring + .pr-golf-ring { border-color: rgba(188, 255, 47, 0.6); }
+@keyframes pr-golf-ring {
+  0% { opacity: 0; transform: rotateX(76deg) scale(0.5); }
+  10% { opacity: 1; }
+  65% { opacity: 0.7; }
+  100% { opacity: 0; transform: rotateX(76deg) scale(3.2); }
 }
 
-/* De knop zelf krijgt een korte terugslag */
-.pr-golf[data-golf] .pr-golfknop { animation: pr-terugslag 0.5s var(--ease-out-expo); }
-@keyframes pr-terugslag {
-  0% { transform: scale(1); }
-  15% { transform: scale(0.94); }
-  100% { transform: scale(1); }
+/* De knop komt een fractie omhoog terwijl de golf vertrekt, en zakt rustig terug */
+.pr-golf[data-golf] .pr-golfknop { animation: pr-golf-til 2.4s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes pr-golf-til {
+  0% { transform: none; }
+  20% { transform: translateY(-3px); }
+  100% { transform: none; }
 }
 
 /* Breekpunten ------------------------------------------------------------ */
@@ -252,7 +236,7 @@
   .pr-inbegrepen { margin-top: 96px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pr-golf-lagen { display: none; }
+  .pr-golf-laag { display: none; }
   .pr-plan, .pr-plan::before, .pr-schaal span, .pr-plan-klanten,
   .pr-schuif::-webkit-slider-thumb { transition: none; }
 }
