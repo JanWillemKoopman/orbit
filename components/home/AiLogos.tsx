@@ -1,4 +1,5 @@
 // Rij met de AI-zoekmachines onder het grote beeld op de homepage: merkicoon plus naam, de naam in wit.
+// Op mobiel staan ze ook naast elkaar en schuiven ze in een loop van rechts naar links.
 // Iconen: OpenAI, Claude en Gemini van simple-icons (CC0), de Google-G in zijn vier merkkleuren.
 const logos = [
   {
@@ -13,13 +14,6 @@ const logos = [
     naam: 'Gemini',
     icoon: (
       <svg viewBox="0 0 24 24">
-        <defs>
-          <linearGradient id="ai-logo-gemini" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#1c7dff" />
-            <stop offset=".5" stopColor="#9168c0" />
-            <stop offset="1" stopColor="#f6815b" />
-          </linearGradient>
-        </defs>
         <path fill="url(#ai-logo-gemini)" d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81" />
       </svg>
     ),
@@ -39,13 +33,30 @@ const logos = [
 
 export function AiLogos() {
   return (
-    <ul className="ai-logos" aria-label="AI-zoekmachines">
-      {logos.map((l) => (
-        <li className="ai-logo" key={l.naam}>
-          <span className="ai-logo-icoon" aria-hidden="true">{l.icoon}</span>
-          <span>{l.naam}</span>
-        </li>
-      ))}
-    </ul>
+    <div className="ai-logos">
+      {/* Kleurverloop van Gemini één keer, zodat de kopie van de rij geen dubbele id krijgt */}
+      <svg width="0" height="0" className="ai-logos-defs" aria-hidden="true">
+        <defs>
+          <linearGradient id="ai-logo-gemini" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#1c7dff" />
+            <stop offset=".5" stopColor="#9168c0" />
+            <stop offset="1" stopColor="#f6815b" />
+          </linearGradient>
+        </defs>
+      </svg>
+      {/* Op mobiel loopt de rij als band van rechts naar links; de kopie sluit naadloos aan en is alleen daar zichtbaar */}
+      <div className="ai-logos-band">
+        {[false, true].map((kopie) => (
+          <ul className={`ai-logos-lijst${kopie ? ' ai-logos-kopie' : ''}`} aria-label={kopie ? undefined : 'AI-zoekmachines'} aria-hidden={kopie || undefined} key={String(kopie)}>
+            {logos.map((l) => (
+              <li className="ai-logo" key={l.naam}>
+                <span className="ai-logo-icoon" aria-hidden="true">{l.icoon}</span>
+                <span>{l.naam}</span>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
   )
 }

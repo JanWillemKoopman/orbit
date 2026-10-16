@@ -182,20 +182,38 @@
 .af-btn-primary { background: #e2e4e7; color: #08090a; }
 
 /* Logo's van de AI-zoekmachines onder het grote beeld ------------------- */
-.ai-logos {
-  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 64px;
-  margin: 64px 0 0; padding: 0; list-style: none;
-}
+.ai-logos { margin-top: 64px; }
+.ai-logos-defs { position: absolute; }
+.ai-logos-band { display: flex; justify-content: center; }
+.ai-logos-lijst { display: flex; align-items: center; gap: 64px; margin: 0; padding: 0; list-style: none; }
+.ai-logos-kopie { display: none; }
 .ai-logo {
-  display: inline-flex; align-items: center; gap: 10px;
+  display: inline-flex; flex-shrink: 0; align-items: center; gap: 10px; white-space: nowrap;
   font-size: 24px; line-height: 1; letter-spacing: -0.012em; font-weight: var(--weight-semibold); color: var(--text-primary);
 }
 .ai-logo-icoon { display: inline-flex; color: var(--text-primary); }
 .ai-logo-icoon svg { width: 26px; height: 26px; }
+/* Mobiel: de band loopt over de volle breedte en vervaagt aan de randen. Twee gelijke lijsten met
+   elk de tussenruimte als rechtermarge, zodat -50% precies één lijst is en de loop naadloos doorgaat.
+   Een lopende band vraagt een constante snelheid, dus hier bewust een lineaire timing. */
 @media (max-width: 768px) {
-  .ai-logos { display: grid; grid-template-columns: repeat(2, auto); justify-content: center; gap: 20px 40px; margin-top: 48px; }
+  .ai-logos {
+    margin: 48px calc(var(--page-padding) * -1) 0; overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  }
+  .ai-logos-band { justify-content: flex-start; width: max-content; animation: ai-logos-loop 20s linear infinite; }
+  .ai-logos-lijst { gap: 40px; padding-right: 40px; }
+  .ai-logos-kopie { display: flex; }
   .ai-logo { font-size: 17px; gap: 8px; }
   .ai-logo-icoon svg { width: 20px; height: 20px; }
+}
+@keyframes ai-logos-loop { to { transform: translateX(-50%); } }
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .ai-logos { margin-inline: 0; mask-image: none; -webkit-mask-image: none; }
+  .ai-logos-band { width: auto; justify-content: center; animation: none; }
+  .ai-logos-lijst { display: grid; grid-template-columns: repeat(2, auto); gap: 20px 40px; padding-right: 0; }
+  .ai-logos-kopie { display: none; }
 }
 
 /* Tussenzin ------------------------------------------------------------- */
