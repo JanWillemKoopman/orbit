@@ -10,6 +10,7 @@ import { Showcase } from '@/components/home/Showcase'
 import { ResultFrame } from '@/components/home/ResultFrame'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
 import { Faq } from '@/components/home/Faq'
+import { NieuwsbriefPopup } from '@/components/home/NieuwsbriefPopup'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
 import { HeroMaand } from '@/components/product/Visuals'
 import './werkwijze/werkwijze.css'
@@ -157,6 +158,8 @@ export default function HomePage() {
           <PrefooterKnoppen />
         </div>
       </section>
+
+      <NieuwsbriefPopup />
     </div>
   )
 }

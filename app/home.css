@@ -508,3 +508,80 @@
 }
 
 @media (max-width: 899px) { .faq { grid-template-columns: 1fr; row-gap: 0; } .faq-column + .faq-column { border-top: 0; } }
+
+/* ==========================================================================
+   Nieuwsbrief-popup (homepage, na 70% scrollen, één keer per sessie)
+   ========================================================================== */
+.nb-dialog {
+  width: min(880px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; overflow: auto;
+  border: 0; border-radius: 16px; background: var(--bg-level-1); color: var(--text-primary);
+  box-shadow: inset 0 0 0 1px var(--border-translucent), inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.6), 0 7px 32px rgba(0, 0, 0, 0.35);
+}
+.nb-dialog::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.nb-dialog[open] { animation: dialog-in var(--speed-regular) var(--ease-out-expo); }
+.nb-dialog[open]::backdrop { animation: fade-in var(--speed-regular) var(--ease-out-quad); }
+.nb-grid { display: grid; grid-template-columns: 5fr 7fr; min-height: 520px; }
+
+/* Linkerkant: beeld met tags */
+.nb-beeld {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px;
+  background: radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.05), transparent 60%), var(--bg-primary);
+  border-right: 1px solid var(--border-translucent); overflow: hidden;
+}
+.nb-orbit { position: absolute; top: 24px; left: 50%; width: 360px; height: 360px; max-width: none; transform: translateX(-50%); }
+.nb-satelliet { filter: drop-shadow(0 0 6px rgba(188, 255, 47, 0.6)); }
+.nb-tags { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 0; list-style: none; }
+.nb-tags li {
+  padding: 6px 10px; border-radius: var(--radius-pill); background: var(--bg-translucent);
+  box-shadow: inset 0 0 0 1px var(--border-translucent);
+  font-family: var(--font-mono); font-size: 12px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-secondary);
+}
+
+/* Rechterkant: tekst en formulier */
+.nb-body { position: relative; display: flex; flex-direction: column; justify-content: center; padding: 56px 48px 40px; }
+.nb-close { top: 16px; right: 16px; }
+.nb-eyebrow { margin-bottom: 16px; font-family: var(--font-mono); font-size: 12px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; color: var(--accent); }
+.nb-titel { font-size: 32px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-semibold); text-wrap: balance; }
+.nb-titel-zacht { color: var(--text-tertiary); }
+.nb-intro { margin-top: 16px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
+.nb-form { position: relative; margin-top: 28px; }
+.nb-label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: var(--weight-medium); letter-spacing: -0.01em; color: var(--text-secondary); }
+.nb-rij { flex-direction: row; gap: 8px; }
+.nb-rij input { flex: 1; min-width: 0; height: 44px; border-radius: var(--radius-pill); padding-inline: 16px; }
+.nb-knop { flex-shrink: 0; }
+.nb-knop:disabled { opacity: 0.6; cursor: default; }
+.nb-form .demo-error { margin-top: 8px; }
+.nb-klein { margin-top: 16px; font-size: 13px; line-height: 1.5; letter-spacing: -0.01em; color: var(--text-tertiary); }
+.nb-klein strong { font-weight: var(--weight-medium); color: var(--text-secondary); }
+.nb-lijn { height: 1px; margin-top: 24px; background: var(--border-translucent); }
+.nb-lijn + .nb-klein { margin-top: 24px; }
+.nb-nee {
+  align-self: flex-start; margin-top: 20px; font-size: 13px; letter-spacing: -0.01em; color: var(--text-quaternary);
+  transition: color var(--speed-quick) var(--ease-out-quad);
+}
+@media (hover: hover) { .nb-nee:hover { color: var(--text-primary); } }
+
+/* Na aanmelden */
+.nb-succes { display: flex; flex-direction: column; align-items: flex-start; }
+.nb-succes-icoon {
+  width: 40px; height: 40px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: rgba(188, 255, 47, 0.1); color: var(--accent); box-shadow: inset 0 0 0 1px rgba(188, 255, 47, 0.2);
+}
+.nb-succes .nb-intro { max-width: 380px; }
+.nb-succes .nb-nee { margin-top: 28px; }
+
+@media (max-width: 760px) {
+  .nb-dialog { width: min(480px, calc(100vw - 32px)); }
+  .nb-grid { grid-template-columns: 1fr; min-height: 0; }
+  .nb-beeld { display: none; }
+  .nb-body { padding: 48px 24px 24px; }
+  .nb-titel { font-size: 24px; line-height: 1.2; letter-spacing: -0.012em; }
+}
+@media (max-width: 400px) {
+  .nb-rij { flex-direction: column; }
+  .nb-knop { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nb-dialog[open], .nb-dialog[open]::backdrop { animation: none; }
+  .nb-nee { transition: none; }
+}
