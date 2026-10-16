@@ -77,6 +77,6 @@ export default function PrijzenPage() {
         <h2 id="pr-faq-titel" className="pr-faq-titel">{faq.title}</h2>
         <Faq items={faq.items} />
       </section>
-  </div>
-)
+    </div>
+  )
 }
