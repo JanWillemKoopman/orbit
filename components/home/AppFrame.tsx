@@ -94,7 +94,6 @@ export function AppFrame() {
       <nav className="af-sidebar">
         <div className="af-sidebar-top">
           <span className="af-workspace">
-            <span className="af-workspace-logo"><LogoMark size={12} /></span>
             <span>Fietsen Jansen</span>
             <Icon name="chevron" />
           </span>
@@ -167,7 +166,7 @@ export function AppFrame() {
 
           <aside className="af-panel">
             <div className="af-panel-head">
-              <span className="af-panel-title"><span className="af-engine-logo"><LogoMark size={11} /></span>Orbit</span>
+              <span className="af-panel-title"><span className="af-engine-logo"><LogoMark size={16} /></span>Orbit</span>
               <span className="af-panel-sub">Advies</span>
             </div>
             <div className="af-panel-card">
