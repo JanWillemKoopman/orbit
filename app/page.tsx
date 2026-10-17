@@ -61,15 +61,9 @@ export default function HomePage() {
       <div className="container">
         <AiLogos />
 
-        <figure className="home-quote">
-          <blockquote className="home-statement">
-            <CitaatScroll strong={statement.strong} rest={statement.rest} />
-          </blockquote>
-          <figcaption className="home-quote-author">
-            <img src={statement.author.photo} alt="" width={48} height={48} />
-            <span>{statement.author.name}</span>
-          </figcaption>
-        </figure>
+        <div className="home-statement">
+          <CitaatScroll strong={statement.strong} rest={statement.rest} />
+        </div>
 
         <section className="home-uitgelicht" aria-label="Orbit voor bureaus">
           <div className="pd-grid">

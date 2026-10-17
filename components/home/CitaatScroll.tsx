@@ -54,12 +54,8 @@ export function CitaatScroll({ strong, rest }: { strong: string; rest: string })
 
   return (
     <p ref={ref}>
-      <strong>
-        <span className="home-quote-mark" aria-hidden="true">“</span>
-        {woorden(strong).map(span)}
-      </strong>{' '}
+      <strong>{woorden(strong).map(span)}</strong>{' '}
       {woorden(rest).map(span)}
-      <span aria-hidden="true">”</span>
     </p>
   )
 }
