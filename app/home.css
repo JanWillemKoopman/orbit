@@ -225,7 +225,7 @@
 /* Woorden van het citaat lichten op tijdens het scrollen (CitaatScroll.tsx); de opacity zet JS */
 .citaat-woord { transition: opacity var(--speed-quick) var(--ease-out-quad); }
 
-/* Twee beelden onder de quote ------------------------------------------- */
+/* Twee beelden onder de voordelen --------------------------------------- */
 /* Twee beelden met bijschrift; alleen de link in het bijschrift is klikbaar, de beelden niet. */
 .home-uitgelicht { margin-top: 120px; }
 .hu-cell { position: relative; }
@@ -294,8 +294,6 @@
   .usp-steps .process-step { padding-left: 0; border-left: 0; }
   .usp-vink { margin-top: 2px; }
 }
-/* De kop en voordelen staan breed in hun eigen sectie en op mobiel tussen de twee beelden (zie hieronder) */
-.usp-blok-mobiel { display: none; }
 
 /* Kwaliteit van de content: twee beelden van /kwaliteit naast elkaar, in de opmaak van pagina.css.
    Per beeld één venster in leesbare maat, zoals die pagina ze op mobiel toont. */
@@ -497,6 +495,7 @@
   .home-statement { font-size: 32px; line-height: 1.125; margin-top: 120px; }
   .feature { margin-top: 120px; }
   .feature-header { padding-top: 88px; }
+  .home-usp .feature-header { padding-top: 120px; }
   .home-block-title { padding-top: 88px; }
   .home-prefooter { padding-block: 64px 128px; }
 }
@@ -522,10 +521,6 @@
   /* De lijn onder het tweede beeld is meteen de lijn boven de volgende sectie, anders staan er twee met een lege strook ertussen */
   .home-uitgelicht + .feature { margin-top: 0; }
   .home-uitgelicht + .feature > .keyline { display: none; }
-  /* Kop en voordelen tussen de twee beelden, met een lijn erboven; het tweede beeld houdt zijn eigen lijn erboven */
-  .usp-blok-breed { display: none; }
-  .usp-blok-mobiel { display: block; order: 1; padding: 0 24px 56px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
-  .home-uitgelicht .pd-grid .pd-cell:last-of-type { order: 2; }
   .sc-root { margin-top: 56px; margin-inline: -8px; }
   /* Op mobiel een veegbare rij: elk scherm 86% breed, zodat het volgende net in beeld piept. */
   .sc-stage {
@@ -559,6 +554,7 @@
   .feature { display: flex; flex-direction: column; }
   .feature .keyline { order: -2; }
   .feature-header { padding-top: 40px; padding-bottom: 48px; }
+  .home-usp .feature-header { padding-top: 96px; }
   .feature-description p { letter-spacing: -0.011em; }
   .feature-description .home-link { margin-top: 24px; }
   .feature-title { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
