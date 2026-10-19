@@ -233,7 +233,7 @@
 .hu-cell .hu-stage-account { display: block; }
 .hu-stage-account .hu-inner { position: absolute; top: 56px; left: 40px; width: 1180px; zoom: 0.8; }
 .hu-stage-account::after { content: ''; position: absolute; inset: 0 0 0 auto; width: 22%; background: linear-gradient(90deg, rgba(11, 12, 13, 0), #0b0c0d); pointer-events: none; }
-.hu-stage-ronde .hu-inner { width: 640px; max-width: calc(100% - 64px); zoom: 0.9; }
+.hu-stage-ronde .hu-inner { width: 640px; max-width: calc(100% - 64px); zoom: 0.81; }
 .hu-cell .hu-inner .fv-surface { width: 100%; max-width: none; }
 /* Links zonder de bar met het kruimelpad, rechts zonder de regel met klantnaam en maand. Op /agency
    en /product blijven ze staan. De knop rechts krijgt de invert-kleur van de site in plaats van lime. */
