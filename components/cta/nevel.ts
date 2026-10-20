@@ -11,10 +11,13 @@ import { demping, maakRandom, maakRuis, smooth, TAU, type MaakVariant, type Rgb 
 // keer per loop.
 //
 // Het gas wordt op een lage resolutie berekend en zacht opgeschaald; de sterren tekenen scherp
-// daaroverheen.
+// daaroverheen. Een gaspixel is maar enkele schermpixels groot, anders wordt het beeld blokkerig
+// en korrelig.
 
-const SCHAAL = 7 // px per gaspixel op desktop
-const SCHAAL_KLEIN = 5 // op smalle schermen
+const SCHAAL = 4 // px per gaspixel op desktop
+const SCHAAL_KLEIN = 3 // op smalle schermen
+const BEELDEN_PER_SEC = 5 // berekende gasbeelden per seconde; ertussen wordt vloeiend overgevloeid
+const RIJEN_PER_FRAME = 10 // zoveel keer wordt het volgende gasbeeld over frames verdeeld
 const STER_DICHTHEID = 1 / 2600 // sterren per px²
 const SPIKE_STERREN = 9 // bij 1440 px breed
 const STELSELS = 22 // bij 1440 px breed
@@ -38,8 +41,16 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
   const fbm = (x: number, y: number, z: number) =>
     (ruis(x, y, z) + 0.5 * ruis(x * 2.03 + 17, y * 2.03 + 3, z + 1.3) + 0.25 * ruis(x * 4.1 + 41, y * 4.1 + 29, z + 2.1)) / 1.2
 
-  const buffer = document.createElement('canvas')
-  const bctx = buffer.getContext('2d')!
+  // Twee gasbeelden (nu en volgende) waartussen wordt overgevloeid, zodat het gas maar een paar keer
+  // per seconde berekend hoeft te worden en toch vloeiend beweegt.
+  const maakBuffer = () => {
+    const canvas = document.createElement('canvas')
+    return { canvas, ctx: canvas.getContext('2d')!, k: -1 }
+  }
+  let van = maakBuffer()
+  let naar = maakBuffer()
+  const BEELDEN = LOOP * BEELDEN_PER_SEC
+  let rand = new Float32Array(0)
   let beeld: ImageData | null = null
   let width = 0
   let height = 0
@@ -50,13 +61,15 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
   let sterren: Ster[] = []
   let stelsels: Stelsel[] = []
   let spikes: SpikeSter[] = []
-  let frame = 0
+  let taakK = -1
+  let taakRij = 0
 
   const kleurStr = (c: Rgb, a: number) => `rgba(${c[0] | 0}, ${c[1] | 0}, ${c[2] | 0}, ${a.toFixed(3)})`
 
-  // `u` is de plek in de loop, van 0 tot 1.
-  const tekenGas = (u: number) => {
+  // Berekent de rijen `van`..`tot` van gasbeeld `k` in `doel`. `u` is de plek in de loop, van 0 tot 1.
+  const tekenGas = (doel: ReturnType<typeof maakBuffer>, k: number, rijVan: number, rijTot: number) => {
     if (!beeld) return
+    const u = (k % BEELDEN) / BEELDEN
     const data = beeld.data
     const z = u * GAS_RONDES
     const zk = u * KLIF_RONDES
@@ -64,16 +77,15 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
     const sx = 0.5 * Math.cos(u * TAU)
     const sy = 0.5 * Math.sin(u * TAU)
     // Per kolom de hoogte van de klifrand: een grillige lijn met pieken die langzaam verschuift.
-    const rand = new Float32Array(bw)
-    for (let i = 0; i < bw; i++) {
+    if (rijVan === 0) for (let i = 0; i < bw; i++) {
       const x = i * schaal
       const golf = klifRuis(x / 340, 11.3, zk) + 0.5 * klifRuis(x / 170 + 9, 2.7, zk + 0.5)
       const piek = Math.pow(Math.max(0, klifRuis(x / 110 + 70, 5.1, zk + 1.1)), 2) * 0.9
       rand[i] = height * (0.58 + 0.16 * golf - 0.3 * piek)
     }
 
-    let o = 0
-    for (let j = 0; j < bh; j++) {
+    let o = rijVan * bw * 4
+    for (let j = rijVan; j < rijTot; j++) {
       const y = j * schaal
       for (let i = 0; i < bw; i++, o += 4) {
         const x = i * schaal
@@ -114,8 +126,13 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
         data[o + 3] = 255
       }
     }
-    bctx.putImageData(beeld, 0, 0)
+    if (rijTot >= bh) {
+      doel.ctx.putImageData(beeld, 0, 0)
+      doel.k = k
+    }
   }
+
+  const tekenVolledig = (doel: ReturnType<typeof maakBuffer>, k: number) => tekenGas(doel, k, 0, bh)
 
   return {
     meet(w, h) {
@@ -124,9 +141,14 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
       schaal = w < 640 ? SCHAAL_KLEIN : SCHAAL
       bw = Math.ceil(w / schaal) + 1
       bh = Math.ceil(h / schaal) + 1
-      buffer.width = bw
-      buffer.height = bh
-      beeld = bctx.createImageData(bw, bh)
+      for (const b of [van, naar]) {
+        b.canvas.width = bw
+        b.canvas.height = bh
+        b.k = -1
+      }
+      taakK = -1
+      rand = new Float32Array(bw)
+      beeld = van.ctx.createImageData(bw, bh)
       demp = new Float32Array(bw * bh)
       for (let j = 0; j < bh; j++) {
         for (let i = 0; i < bw; i++) {
@@ -157,20 +179,43 @@ export const maakNevel: MaakVariant = (ctx, { achtergrond, grijs, licht, helder:
         helder: 0.55 + rnd() * 0.45,
         fase: rnd() * TAU,
       }))
-      frame = 0
     },
 
     teken(tijd) {
       // Een sectie zonder maat (nog niet opgemeten tijdens een paginawissel) valt niets te tekenen.
       if (!width || !height) return
       const t = (tijd / 1000) % LOOP
-      // Het gas is het zwaarste deel; het verandert traag, dus om het andere frame is genoeg.
-      if (frame++ % 2 === 0) tekenGas(t / LOOP)
+
+      // Het gas is het zwaarste deel en verandert traag: een paar beelden per seconde, het volgende
+      // verdeeld over meerdere frames, en daartussen vloeit het over.
+      const pos = (tijd / 1000) * BEELDEN_PER_SEC
+      const k = Math.floor(pos)
+      let blend = pos - k
+      if (van.k !== k) {
+        if (naar.k === k) [van, naar] = [naar, van]
+        else tekenVolledig(van, k)
+        taakK = -1
+      }
+      if (naar.k !== k + 1) {
+        if (taakK !== k + 1) {
+          taakK = k + 1
+          taakRij = 0
+        }
+        const tot = Math.min(bh, taakRij + Math.ceil(bh / RIJEN_PER_FRAME))
+        tekenGas(naar, k + 1, taakRij, tot)
+        taakRij = tot
+      }
+      if (naar.k !== k + 1) blend = 0
 
       ctx.clearRect(0, 0, width, height)
       ctx.imageSmoothingEnabled = true
-      ctx.imageSmoothingQuality = 'low'
-      ctx.drawImage(buffer, 0, 0, bw, bh, 0, 0, bw * schaal, bh * schaal)
+      ctx.imageSmoothingQuality = 'high'
+      ctx.drawImage(van.canvas, 0, 0, bw, bh, 0, 0, bw * schaal, bh * schaal)
+      if (blend > 0) {
+        ctx.globalAlpha = blend
+        ctx.drawImage(naar.canvas, 0, 0, bw, bh, 0, 0, bw * schaal, bh * schaal)
+        ctx.globalAlpha = 1
+      }
 
       const randDemp = (x: number, y: number) => 0.35 + 0.65 * demping(x, y, width, height)
 
