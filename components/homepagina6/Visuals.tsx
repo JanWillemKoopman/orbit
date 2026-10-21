@@ -70,6 +70,12 @@ const PADEN = {
   kalender: 'M2.5 3.5h11v10h-11zM2.5 6.5h11M5.5 2v3M10.5 2v3',
   meer: 'M3.5 8h.01M8 8h.01M12.5 8h.01',
   slot: 'M4 7.5h8v6H4zM5.75 7.5V5.5a2.25 2.25 0 0 1 4.5 0v2',
+  feiten: 'M8 2.5l5 2v4c0 2.8-2.2 4.4-5 5-2.8-.6-5-2.2-5-5v-4zM5.8 8l1.5 1.5 3-3',
+  zoekverkeer: 'M2 11.5l3.5-3.5 3 2.5L14 4.5',
+  profiel: 'M8 7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM3 13.5c.6-2.6 2.6-4 5-4s4.4 1.4 5 4',
+  overzicht: 'M2.5 2.5h4.5v4.5h-4.5zM9 2.5h4.5v4.5H9zM2.5 9h4.5v4.5h-4.5zM9 9h4.5v4.5H9z',
+  euro: 'M11.5 4.4a4 4 0 1 0 0 7.2M3.5 7h6M3.5 9h6',
+  doel: 'M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM8 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM8 8h.01',
 } as const
 export type IcoonNaam = keyof typeof PADEN
 

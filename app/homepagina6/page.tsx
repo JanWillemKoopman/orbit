@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { DemoKnop } from '@/components/homepagina6/Demo'
 import { Pagina2 } from '@/components/homepagina6/Pagina2'
 import { Pagina3 } from '@/components/homepagina6/Pagina3'
+import { Pagina4 } from '@/components/homepagina6/Pagina4'
 import { IsoAudit, IsoMaanden, IsoPitch } from '@/components/homepagina6/Isometrie'
 import { Aanbod, Bibliotheek, Brief, Clusters, Concurrenten, Contentplan, FeitenKennis, Feitencontrole, Kalender, KansBewijs, Meetplan, NieuwBedrijf, Onboarding, Ontdekken, Overzicht, Planbord, Publiceren, VragenTelefoon, Zichtbaarheid, Zoekverkeer } from '@/components/homepagina6/Schermen'
 import { AntwoordBron, ClaimControle, DEMO, Figuur, HeroKans, Hermeting, Pitch, Werkoverzicht } from '@/components/homepagina6/Visuals'
@@ -206,6 +207,9 @@ export default function Homepagina6() {
 
       {/* Een derde pagina: tien voordelen voor bureaus, elk met twee beelden in het raster van linear.app */}
       <Pagina3 />
+
+      {/* Een vierde pagina: tien ontwerpvarianten om de voordelen op te sommen, om er één uit te kiezen */}
+      <Pagina4 />
     </div>
   )
 }

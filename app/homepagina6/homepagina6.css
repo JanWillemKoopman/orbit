@@ -1170,6 +1170,152 @@ i.ls-dag-wacht { background: var(--accent); }
 }
 
 /* ==========================================================================
+   Pagina 4: tien varianten om de voordelen op te sommen (Pagina4.tsx). Elke variant staat los, met een
+   label erboven. Grijs, wit en limoengroen; dunne lijnen in plaats van zware kaders.
+   ========================================================================== */
+.p4-variant { padding-block: 120px; }
+.p3-start + .p4-variant { border-top: 0; padding-top: 96px; }
+.p4-variant-label { margin-bottom: 40px; padding: 4px 10px; display: inline-block; border-radius: 6px; color: var(--accent); background: rgba(188, 255, 47, 0.08); }
+.p4-titel { max-width: 22ch; font-size: clamp(30px, 2.4vw + 10px, 44px); line-height: 1.08; letter-spacing: -0.022em; font-weight: var(--weight-medium); text-wrap: balance; }
+.p4-intro { max-width: 56ch; margin-top: 16px; font-size: 18px; line-height: 1.55; color: var(--text-tertiary); }
+.p4-vink { width: 16px; height: 16px; flex: none; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 640px) { .p4-variant { padding-block: 72px; } .p4-variant-label { margin-bottom: 28px; } .p4-intro { font-size: 17px; } }
+
+/* 01 Raster met iconen */
+.p4-raster { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 56px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--lf-lijn); border-left: 1px solid var(--lf-lijn); }
+.p4-raster li { padding: 28px 24px 32px; border-right: 1px solid var(--lf-lijn); border-bottom: 1px solid var(--lf-lijn); }
+.p4-icoonvak { display: inline-grid; place-items: center; width: 36px; height: 36px; margin-bottom: 20px; border-radius: 9px; color: var(--accent); background: rgba(188, 255, 47, 0.08); box-shadow: inset 0 0 0 1px rgba(188, 255, 47, 0.18); }
+.p4-icoonvak .lv-ico { width: 18px; height: 18px; }
+.p4-raster h3, .p4-genummerd h3, .p4-index h3, .p4-rol h3 { font-size: 16px; line-height: 1.4; font-weight: var(--weight-medium); color: var(--text-primary); }
+.p4-raster p { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--text-tertiary); }
+@media (max-width: 1024px) { .p4-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .p4-raster { grid-template-columns: minmax(0, 1fr); margin-top: 40px; } .p4-raster li { padding: 24px 20px; } }
+
+/* 02 Genummerd in twee kolommen */
+.p4-genummerd { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 72px; margin: 56px 0 0; padding: 0; list-style: none; }
+.p4-genummerd li { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 16px; padding: 28px 0; border-top: 1px solid var(--lf-lijn); }
+.p4-groot-nr { font-family: var(--font-mono); font-size: 32px; line-height: 1; letter-spacing: -0.02em; color: var(--accent); }
+.p4-genummerd h3 { font-size: 20px; letter-spacing: -0.012em; }
+.p4-genummerd p { margin-top: 8px; font-size: 15px; line-height: 1.6; color: var(--text-tertiary); }
+@media (max-width: 860px) { .p4-genummerd { grid-template-columns: minmax(0, 1fr); margin-top: 40px; } .p4-genummerd li { grid-template-columns: 52px minmax(0, 1fr); } .p4-groot-nr { font-size: 24px; } }
+
+/* 03 Eén zin in twee tinten */
+.p4-statement { max-width: 1100px; font-size: clamp(28px, 3vw + 8px, 52px); line-height: 1.14; letter-spacing: -0.024em; font-weight: var(--weight-medium); color: var(--text-quaternary); text-wrap: pretty; }
+.p4-statement strong { font-weight: inherit; color: var(--text-primary); }
+.p4-statement strong:last-child { color: var(--accent); }
+.p4-statement-voet { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 48px; }
+
+/* 04 Vergelijkingstabel */
+.p4-tabelvak { margin-top: 48px; overflow-x: auto; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--lf-lijn); }
+.p4-tabel { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 15px; }
+.p4-tabel th, .p4-tabel td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--lf-lijn); }
+.p4-tabel tr:last-child th, .p4-tabel tr:last-child td { border-bottom: 0; }
+.p4-tabel thead th { font-size: 14px; font-weight: var(--weight-medium); color: var(--text-tertiary); }
+.p4-tabel tbody th { font-weight: var(--weight-normal); color: var(--text-primary); }
+.p4-tabel td { color: var(--text-tertiary); }
+.p4-tabel .p4-kol-orbit { background: rgba(188, 255, 47, 0.04); }
+.p4-tabel thead .p4-kol-orbit { color: var(--accent); }
+.p4-ja { display: inline-flex; }
+.p4-nee { color: var(--text-quaternary); }
+.p4-soms { font-size: 14px; }
+.p4-bron { margin-top: 14px; color: var(--text-quaternary); }
+/* Op een telefoon wordt elke regel van de tabel een kaart, met het kolomlabel voor elke waarde */
+@media (max-width: 760px) {
+  .p4-tabelvak { overflow: visible; border-radius: 0; box-shadow: none; }
+  .p4-tabel { min-width: 0; }
+  .p4-tabel thead { display: none; }
+  .p4-tabel, .p4-tabel tbody, .p4-tabel tr, .p4-tabel th, .p4-tabel td { display: block; }
+  .p4-tabel tr { margin-bottom: 12px; padding: 6px 0; border-radius: 12px; background: var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--lf-lijn); }
+  .p4-tabel tbody th { padding: 12px 16px 8px; font-weight: var(--weight-medium); border: 0; }
+  .p4-tabel td { display: flex; justify-content: space-between; gap: 16px; padding: 8px 16px; border: 0; }
+  .p4-tabel td::before { content: attr(data-kolom); color: var(--text-tertiary); }
+  .p4-tabel td.p4-kol-orbit { background: none; }
+  .p4-tabel td.p4-kol-orbit::before { color: var(--accent); }
+}
+
+/* 05 Tabbladen */
+.p4-tabs { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px; margin-top: 48px; }
+.p4-tablijst { display: grid; align-content: start; gap: 2px; }
+.p4-tab { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 48px; padding: 10px 14px; border-radius: 10px; text-align: left; font-size: 16px; color: var(--text-tertiary); transition: background var(--speed-quick), color var(--speed-quick); }
+.p4-tab-nr { font-family: var(--font-mono); font-size: 12px; color: var(--text-quaternary); }
+.p4-tab[aria-selected='true'] { color: var(--text-primary); background: var(--bg-level-2); box-shadow: inset 2px 0 0 var(--accent); }
+.p4-tab[aria-selected='true'] .p4-tab-nr { color: var(--accent); }
+@media (hover: hover) { .p4-tab:hover { color: var(--text-primary); } }
+.p4-tabpaneel { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 380px; padding: 40px; border-radius: 14px; overflow: hidden; background: radial-gradient(80% 70% at 85% 0%, rgba(188, 255, 47, 0.08) 0%, rgba(188, 255, 47, 0) 60%), var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--lf-lijn); }
+.p4-tabpaneel-icoon { position: absolute; top: 40px; left: 40px; display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; color: var(--accent); background: rgba(188, 255, 47, 0.08); box-shadow: inset 0 0 0 1px rgba(188, 255, 47, 0.2); }
+.p4-tabpaneel-icoon .lv-ico { width: 26px; height: 26px; }
+.p4-tabpaneel h3 { font-size: clamp(24px, 1.6vw + 10px, 32px); line-height: 1.15; letter-spacing: -0.02em; font-weight: var(--weight-medium); color: var(--text-primary); }
+.p4-tabpaneel p { max-width: 46ch; margin-top: 12px; font-size: 17px; line-height: 1.6; color: var(--text-secondary); }
+.p4-tabpaneel-stand { position: absolute; top: 48px; right: 40px; font-family: var(--font-mono); font-size: 12px; color: var(--text-quaternary); }
+@media (max-width: 860px) {
+  .p4-tabs { grid-template-columns: minmax(0, 1fr); }
+  .p4-tablijst { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; padding-bottom: 4px; }
+  .p4-tab { white-space: nowrap; }
+  .p4-tabpaneel { min-height: 320px; padding: 28px; }
+  .p4-tabpaneel-icoon { top: 28px; left: 28px; }
+  .p4-tabpaneel-stand { top: 36px; right: 28px; }
+}
+
+/* 06 Bento met getallen */
+.p4-bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(180px, auto); gap: 12px; margin: 48px 0 0; padding: 0; list-style: none; }
+.p4-tegel { display: flex; flex-direction: column; padding: 24px; border-radius: 14px; background: var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--lf-lijn); }
+.p4-tegel-1 { grid-column: span 2; grid-row: span 2; justify-content: flex-end; background: radial-gradient(70% 60% at 20% 0%, rgba(188, 255, 47, 0.1) 0%, rgba(188, 255, 47, 0) 70%), var(--bg-level-1); }
+.p4-tegel-6 { grid-column: span 2; }
+.p4-getal { font-size: 44px; line-height: 1; letter-spacing: -0.03em; font-weight: var(--weight-medium); color: var(--text-primary); }
+.p4-tegel-1 .p4-getal { font-size: 120px; color: var(--accent); }
+.p4-eenheid { margin-top: 8px; font-size: 15px; font-weight: var(--weight-medium); color: var(--text-secondary); }
+.p4-tegel p { margin-top: auto; padding-top: 16px; font-size: 14px; line-height: 1.5; color: var(--text-tertiary); }
+@media (max-width: 1024px) { .p4-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); } .p4-tegel-6 { grid-column: auto; } }
+@media (max-width: 560px) { .p4-bento { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; } .p4-tegel-1, .p4-tegel-6 { grid-column: auto; grid-row: auto; } .p4-tegel-1 .p4-getal { font-size: 80px; } .p4-tegel { min-height: 150px; } }
+
+/* 07 Compacte checklist met knop */
+.p4-checklist { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: center; padding: 56px; border-radius: 16px; background: var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--lf-lijn); }
+.p4-checklist-kop .lv-knop, .p4-checklist-kop .hg-knop { margin-top: 28px; }
+.p4-vinklijst { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; margin: 0; padding: 0; list-style: none; }
+.p4-vinklijst li { display: flex; gap: 10px; font-size: 15px; line-height: 1.45; color: var(--text-primary); }
+.p4-vinklijst .p4-vink { margin-top: 2px; }
+@media (max-width: 960px) { .p4-checklist { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 32px 24px; } }
+@media (max-width: 480px) { .p4-vinklijst { grid-template-columns: minmax(0, 1fr); } }
+
+/* 08 Per rol */
+.p4-rollen { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 56px; border-top: 1px solid var(--lf-lijn); }
+.p4-rol { padding: 28px 28px 0 0; }
+.p4-rol + .p4-rol { padding-left: 28px; border-left: 1px solid var(--lf-lijn); }
+.p4-rol h3 { display: flex; align-items: center; gap: 10px; font-size: 18px; }
+.p4-rol h3::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.p4-rol ul { display: grid; gap: 14px; margin: 18px 0 0; padding: 0; list-style: none; }
+.p4-rol li { padding-top: 14px; border-top: 1px solid var(--lf-lijn); font-size: 15px; line-height: 1.55; color: var(--text-tertiary); }
+@media (max-width: 1024px) { .p4-rollen { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; } .p4-rol:nth-child(3) { padding-left: 0; border-left: 0; } }
+@media (max-width: 560px) { .p4-rollen { grid-template-columns: minmax(0, 1fr); } .p4-rol, .p4-rol + .p4-rol { padding: 28px 0 0; border-left: 0; } }
+
+/* 09 Index met grote titels */
+.p4-index { margin: 48px 0 0; padding: 0; list-style: none; }
+.p4-index li { display: grid; grid-template-columns: 64px minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 28px 0; border-top: 1px solid var(--lf-lijn); }
+.p4-index li:last-child { border-bottom: 1px solid var(--lf-lijn); }
+.p4-index .lf-mono { color: var(--text-quaternary); }
+.p4-index h3 { font-size: clamp(24px, 1.6vw + 10px, 34px); line-height: 1.1; letter-spacing: -0.02em; }
+.p4-index p { font-size: 15px; line-height: 1.6; color: var(--text-tertiary); }
+.p4-index li:first-child h3 { color: var(--accent); }
+@media (max-width: 860px) { .p4-index li { grid-template-columns: 40px minmax(0, 1fr); gap: 8px 16px; } .p4-index p { grid-column: 2; } }
+
+/* 10 Zonder en met Orbit */
+.p4-voorna { margin-top: 48px; }
+.p4-voorna-kop, .p4-voorna-rij { display: grid; grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr); gap: 16px; align-items: center; }
+.p4-voorna-kop { padding: 0 24px 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-quaternary); }
+.p4-voorna-kop span:last-child { color: var(--accent); }
+.p4-voorna-rij { padding: 20px 24px; border-top: 1px solid var(--lf-lijn); font-size: 16px; line-height: 1.5; }
+.p4-voorna-rij:last-child { border-bottom: 1px solid var(--lf-lijn); }
+.p4-zonder { color: var(--text-tertiary); text-decoration: line-through; text-decoration-color: rgba(255, 255, 255, 0.2); }
+.p4-pijl { justify-self: center; color: var(--text-quaternary); }
+.p4-met { display: flex; gap: 10px; color: var(--text-primary); }
+.p4-met .p4-vink { margin-top: 4px; }
+@media (max-width: 760px) {
+  .p4-voorna-kop { display: none; }
+  .p4-voorna-rij { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 18px 0; }
+  .p4-pijl { display: none; }
+}
+
+/* ==========================================================================
    Demo-dialoog
    ========================================================================== */
 .hg-dialoog h2 { margin-bottom: 8px; }

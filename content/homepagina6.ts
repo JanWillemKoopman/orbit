@@ -492,3 +492,57 @@ export const pagina3 = {
     },
   ] satisfies Usp[],
 }
+
+// Vierde pagina onderaan /homepagina6: tien ontwerpvarianten voor een sectie die de voordelen van Orbit voor
+// bureaus opsomt, om er één uit te kiezen. Alles komt uit docs/Orbit_het_product.md (hoofdstuk 7 tot 10).
+export const voordelen = [
+  { icoon: 'feiten', titel: 'Content zonder risico', tekst: 'Bedragen, termijnen, garanties en keurmerken worden gecontroleerd tegen de kennis over het bedrijf. Er komt nooit ongemerkt een verzonnen belofte op de site van je klant.' },
+  { icoon: 'zoekverkeer', titel: 'Bewijs wat je werk oplevert', tekst: 'Na publicatie meet Orbit elke pagina na 14 en 28 dagen opnieuw in AI en haalt de klikken uit Google Search Console.' },
+  { icoon: 'zichtbaarheid', titel: 'Een meting die overeind blijft', tekst: 'Vaste vragen langs de klantreis, herhaalde metingen en bij elk cijfer een onzekerheidsmarge. Je verkoopt een meetmethode, geen screenshot.' },
+  { icoon: 'euro', titel: 'Je marge blijft van jou', tekst: 'AI tegen kostprijs op de eigen sleutels van je bureau, met een maandlimiet en bij elke betaalde knop vooraf wat het kost.' },
+  { icoon: 'profiel', titel: 'Gebouwd voor bureaus', tekst: 'Een eigen, afgeschermde omgeving. Collega\'s werken als beheerder, klanten kijken mee als kijker, alleen bij hun eigen bedrijf.' },
+  { icoon: 'overzicht', titel: 'Al je klanten in één overzicht', tekst: 'Zie waar iets wacht en wie aan zet is, en start de maand voor al je klanten met één klik.' },
+  { icoon: 'doel', titel: 'Nieuwe klanten winnen', tekst: 'Een pitch en een GEO-audit in de huisstijl van je bureau, met het letterlijke AI-antwoord als bewijs.' },
+  { icoon: 'link', titel: 'Je klant levert aan zonder gedoe', tekst: 'Gerichte vragen via een deellink, zonder account en op de telefoon. Het schrijven start vanzelf na het laatste antwoord.' },
+] as const
+
+export const feiten = [
+  { getal: '3', eenheid: 'AI-kanalen', tekst: 'ChatGPT, Gemini en het AI-overzicht van Google, elk met een eigen cijfer.' },
+  { getal: '30', eenheid: 'vragen per onderwerp', tekst: 'Verdeeld over oriëntatie, overweging en beslissing.' },
+  { getal: '±', eenheid: 'marge bij elk cijfer', tekst: 'Je ziet altijd of een verschil echt is.' },
+  { getal: '10', eenheid: 'minuten', tekst: 'Van naam en website tot een merkdossier.' },
+  { getal: '14 en 28', eenheid: 'dagen', tekst: 'Na publicatie meet Orbit vanzelf opnieuw.' },
+  { getal: '5 tot 50', eenheid: 'pagina\'s per maand', tekst: 'Per klant, precies zoals afgesproken.' },
+  { getal: '250', eenheid: 'pagina\'s per maand', tekst: 'Technische controle zoals een AI-bot de site ziet, gratis.' },
+  { getal: '0', eenheid: 'accounts nodig', tekst: 'Voor je klant om vragen te beantwoorden.' },
+]
+
+export const rollen = [
+  { rol: 'Het bureau', punten: ['Een nieuwe, terugkerende dienst met een maandverslag dat zo naar de klant kan.', 'Nieuwe klanten winnen met een pitch en een GEO-audit.', 'Een gezonde marge: kosten per klant en een maandlimiet.'] },
+  { rol: 'Accountmanagers', punten: ['Het werkoverzicht zegt bij welke klant het langst iets wacht.', 'De klant beantwoordt vragen zelf, in de app of via een link.', 'Het maandverslag geeft het verhaal voor elk klantgesprek.'] },
+  { rol: 'SEO-specialisten', punten: ['Per pagina het effect in Google én in AI, naast elkaar.', 'Nieuwe onderwerpen op basis van echte zoekdata.', 'Elke maand een technische takenlijst voor de webbouwer.'] },
+  { rol: 'Contentmarketeers', punten: ['Een brief en gerichte vragen aan de klant voor elke pagina.', 'Gele zinnen met de reden erbij, en één klik om ze aan de klant te vragen.', 'Plakklare tekst voor elk CMS, met metadata en gestructureerde gegevens.'] },
+]
+
+export const voorNa = [
+  { zonder: 'Eén keer een vraag stellen en een screenshot maken', met: 'Vaste vragen, elke maand, met een marge bij elk cijfer' },
+  { zonder: 'Uren werk om een bedrijf te leren kennen', met: 'Een merkdossier in ongeveer tien minuten' },
+  { zonder: 'Mailen en spreadsheets om informatie van de klant te krijgen', met: 'Vragen via een link, zonder account' },
+  { zonder: 'Hopen dat de schrijver geen prijs of garantie verzint', met: 'Een vangnet dat harde claims controleert' },
+  { zonder: 'Rapportages maken en versturen', met: 'Een maandverslag met de naam van je bureau, klaar om te delen' },
+  { zonder: 'Bronnen en vermeldingen bijhouden in een spreadsheet', met: 'Eén lijst met status, opvolgdatum en controle' },
+]
+
+// De vergelijking uit hoofdstuk 9 van de productdocumentatie, ingekort tot de regels die het verschil maken.
+export const vergelijking = {
+  kolommen: ['Orbit', 'AI-zichtbaarheidstool', 'AI-schrijftool', 'Handwerk'],
+  rijen: [
+    { wat: 'Zichtbaarheid in ChatGPT, Gemini en AI-overzicht', waarden: ['ja', 'Vaak beperkt', 'nee', 'Steekproef'] },
+    { wat: 'Onzekerheidsmarge bij elk cijfer', waarden: ['ja', 'Zelden', 'nee', 'nee'] },
+    { wat: 'Contentplan uit meetresultaten', waarden: ['ja', 'Soms advies', 'nee', 'ja'] },
+    { wat: 'Vangnet tegen verzonnen prijzen en garanties', waarden: ['ja', 'nee', 'nee', 'Hangt af van de schrijver'] },
+    { wat: 'Effect per pagina in AI, voor en na publicatie', waarden: ['ja', 'nee', 'nee', 'Zelden'] },
+    { wat: 'Pitch en GEO-audit in de huisstijl van het bureau', waarden: ['ja', 'Soms', 'nee', 'Zelf maken'] },
+    { wat: 'Vragen aan de klant via een link, zonder account', waarden: ['ja', 'nee', 'nee', 'Mail en spreadsheets'] },
+  ],
+}
