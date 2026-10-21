@@ -4,15 +4,14 @@
 //   staat een app-venster dat onderaan uit het kader loopt en wegvaagt, en onder het venster het
 //   bijschrift, in hetzelfde kader.
 // - Een venster is rustig: bijna zwart, een rand van 5% wit, een glans op één hoek en tekst in grijzen.
-//   Kleur zit alleen in kleine statustekens. Diepte komt van een tweede venster of een zwevende kaart
+//   Er is geen kleur behalve het limoengroen van Orbit, en dat alleen waar iets aandacht vraagt of af
+//   is. Er staan geen logo's in de vensters. Diepte komt van een tweede venster of een zwevende kaart
 //   die over het eerste valt, niet van zware schaduwen.
 //
 // Alles volgt één doorlopend voorbeeld: Bureau Noordwind werkt voor Fietsen Jansen aan "bakfiets leasen
 // in Utrecht". Alle namen zijn verzonnen; elk bijschrift zegt dat het een demonstratie is. Knoppen in een
 // beeld zijn spans zonder aanwijzer of hover, want er valt niets te klikken. Voor hulptechnologie heeft
 // elk beeld één korte samenvatting en zijn de details verborgen.
-import { LogoMark } from '@/components/Logo'
-
 const KLANT = 'Fietsen Jansen'
 const BUREAU = 'Bureau Noordwind'
 const ONDERWERP = 'Bakfiets leasen in Utrecht'
@@ -90,8 +89,7 @@ function Status({ soort }: { soort: 'klaar' | 'gepland' | 'wacht' | 'niet' }) {
   return <svg className="lv-status lv-status-gepland" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5" /></svg>
 }
 
-const Klant = () => <span className="lv-klant"><span className="lv-avatar">FJ</span>{KLANT}</span>
-const Noordwind = () => <span className="lv-nw">N</span>
+const Klant = () => <span className="lv-klant">{KLANT}</span>
 
 function Antwoord() {
   return (
@@ -120,7 +118,7 @@ export function HeroKans() {
     >
       <Venster className="lv-app">
         <aside className="lv-zij">
-          <div className="lv-werkruimte"><Noordwind />{BUREAU}</div>
+          <div className="lv-werkruimte">{BUREAU}</div>
           <div className="lv-merkkeuze"><Klant /></div>
           {MENU.map((g) => (
             <div key={g.kop || 'start'} className="lv-groep">
@@ -147,7 +145,7 @@ export function HeroKans() {
           </div>
         </div>
         <div className="lv-zwevend lv-kans">
-          <div className="lv-zwevend-kop"><span className="lv-orbit"><LogoMark size={11} /></span>Geselecteerde kans</div>
+          <div className="lv-zwevend-kop">Geselecteerde kans</div>
           <div className="lv-zwevend-inhoud">
             <p className="lv-kans-titel">Maak je leaseaanbod duidelijker</p>
             <p className="lv-kans-tekst">Werk prijzen, voorwaarden en onderhoud uit op een eigen pagina. Controleer eerst welke informatie beschikbaar is.</p>
@@ -167,14 +165,14 @@ export function Pitch() {
       className="lv-pitch"
       samenvatting={`Voorbeeld van een pitch van ${BUREAU} in de eigen huisstijl: AI-zichtbaarheid van ${KLANT}, met een eerste verkenning van de vraag "${VRAAG}" en een kans om te bespreken. Erachter een fragment uit de GEO-audit met drie acties: leaseaanbod verduidelijken, technische toegankelijkheid controleren en relevante bronnen beoordelen.`}
     >
-      <Venster className="lv-audit" balk={<span className="lv-balk-titel"><Noordwind />GEO-audit · Actieplan</span>}>
+      <Venster className="lv-audit" balk={<span className="lv-balk-titel">GEO-audit · Actieplan</span>}>
         <ol className="lv-acties">
           <li><span className="lv-actie-nr">1</span>Leaseaanbod verduidelijken</li>
           <li><span className="lv-actie-nr">2</span>Technische toegankelijkheid controleren</li>
           <li><span className="lv-actie-nr">3</span>Relevante bronnen beoordelen</li>
         </ol>
       </Venster>
-      <Venster className="lv-pitchpagina" balk={<><span className="lv-balk-titel lv-balk-nw"><Noordwind />{BUREAU}</span><span className="lv-balk-rechts">hallo@noordwind.example</span></>}>
+      <Venster className="lv-pitchpagina" balk={<><span className="lv-balk-titel lv-balk-nw">{BUREAU}</span><span className="lv-balk-rechts">hallo@noordwind.example</span></>}>
         <div className="lv-pitch-inhoud">
           <p className="lv-pitch-titel">AI-zichtbaarheid van {KLANT}</p>
           <p className="lv-pitch-onderwerp">{ONDERWERP}</p>
@@ -309,7 +307,7 @@ export function Hermeting() {
           </div>
         </div>
       </Venster>
-      <Venster className="lv-verslag" balk={<span className="lv-balk-titel lv-balk-nw"><Noordwind />{BUREAU} · Maandverslag</span>}>
+      <Venster className="lv-verslag" balk={<span className="lv-balk-titel lv-balk-nw">{BUREAU} · Maandverslag</span>}>
         <div className="lv-verslag-inhoud">
           <p className="lv-verslag-klant">{KLANT}</p>
           <dl>
@@ -329,10 +327,10 @@ export function Hermeting() {
 /* 7. Wie is aan zet? ------------------------------------------------------------------------------ */
 
 const RIJEN = [
-  { klant: KLANT, kort: 'FJ', actie: 'Maandmeting bekijken', wie: 'Bureau' },
-  { klant: 'Studio Voorbeeld', kort: 'SV', actie: 'Tekst beoordelen', wie: 'Bureau' },
-  { klant: 'Bouwbedrijf Demo', kort: 'BD', actie: 'Vraag beantwoorden', wie: 'Klant' },
-  { klant: 'Praktijk Voorbeeld', kort: 'PV', actie: 'Publicatie controleren', wie: 'Bureau' },
+  { klant: KLANT, actie: 'Maandmeting bekijken', wie: 'Bureau' },
+  { klant: 'Studio Voorbeeld', actie: 'Tekst beoordelen', wie: 'Bureau' },
+  { klant: 'Bouwbedrijf Demo', actie: 'Vraag beantwoorden', wie: 'Klant' },
+  { klant: 'Praktijk Voorbeeld', actie: 'Publicatie controleren', wie: 'Bureau' },
 ]
 
 export function Werkoverzicht() {
@@ -341,12 +339,12 @@ export function Werkoverzicht() {
       className="lv-overzicht"
       samenvatting={`Productvoorbeeld van het werkoverzicht van ${BUREAU} met vier klanten. ${RIJEN.map((r) => `${r.klant}: ${r.actie.toLowerCase()}, ${r.wie.toLowerCase()} aan zet.`).join(' ')}`}
     >
-      <Venster className="lv-tabelvenster" balk={<><span className="lv-balk-titel"><Noordwind />{BUREAU}</span><Pad delen={['Werkoverzicht']} /></>}>
+      <Venster className="lv-tabelvenster" balk={<><span className="lv-balk-titel">{BUREAU}</span><Pad delen={['Werkoverzicht']} /></>}>
         <div className="lv-tabel">
           <div className="lv-tabel-kop"><span>Klant</span><span>Volgende actie</span><span>Aan zet</span></div>
           {RIJEN.map((r, i) => (
             <div key={r.klant} className={i === 0 ? 'lv-tabel-rij lv-tabel-aan' : 'lv-tabel-rij'}>
-              <span className="lv-tabel-klant"><span className="lv-avatar">{r.kort}</span>{r.klant}</span>
+              <span className="lv-tabel-klant">{r.klant}</span>
               <span className="lv-tabel-actie"><span className="lv-cel-label">Volgende actie</span>{r.actie}</span>
               <span className="lv-tabel-wie"><span className="lv-cel-label">Aan zet</span><span className={r.wie === 'Bureau' ? 'lv-wie lv-wie-bureau' : 'lv-wie lv-wie-klant'}>{r.wie}</span></span>
             </div>
