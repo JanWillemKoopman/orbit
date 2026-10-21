@@ -321,3 +321,73 @@ export const schermen = {
     beeld: { titel: 'Het overzicht van Fietsen Jansen in oktober' },
   },
 } satisfies Record<string, Scherm>
+
+// Tweede pagina onderaan /homepagina6: tien beelden in drie formaten (groot, middelgroot en compact),
+// met een nieuw voorbeeld: Bureau Noordwind werkt voor installateur Klimaatwerk Voorbeeld in Tilburg aan
+// het onderwerp hybride warmtepomp. De koppen komen uit het uitgewerkte idee van de eigenaar.
+export type Segment = { label: string; titel: string; intro: string; beeld: string; tekst?: string }
+
+export const pagina2 = {
+  hero: {
+    label: 'Voor marketingbureaus',
+    titel: 'Maak AI-zichtbaarheid een dienst van je bureau.',
+    intro: 'Zie welke koopvragen AI-assistenten beantwoorden zonder je klant te noemen, wie er wel genoemd wordt, en welke pagina je daarvoor kunt maken.',
+    beeld: 'Van koopvraag naar meting naar vervolgactie',
+  },
+  pitch: {
+    label: 'Nieuwe klanten',
+    titel: 'Begin het klantgesprek met bewijs.',
+    intro: 'Laat een prospect zien welke concurrenten AI aanbeveelt en waar zijn eigen bedrijf ontbreekt, op een pitchpagina in de huisstijl van je bureau. Je ziet wanneer de pitch voor het eerst geopend wordt.',
+    beeld: 'Een pitch van Bureau Noordwind',
+  },
+  bureau: {
+    label: 'Bureauoverzicht',
+    titel: 'Al je klanten. Je volgende actie meteen duidelijk.',
+    intro: 'Per klant de zichtbaarheid, hoe die zich ontwikkelt en wat er nu moet gebeuren. Bovenaan staat waar het langst iets wacht.',
+    beeld: 'Het overzicht van vier klanten',
+  },
+  merkdossier: {
+    label: 'Merkdossier',
+    titel: 'Leer het merk kennen voordat je ervoor schrijft.',
+    intro: 'Met een naam en een website zet Orbit het aanbod, de doelgroepen, het werkgebied, de merkstem en de bedrijfsfeiten op een rij. Bij elk feit staat de pagina waar het vandaan komt.',
+    beeld: 'Van website naar merkdossier',
+  },
+  meting: {
+    label: 'Meting',
+    titel: 'Zie wanneer AI je klant aanbeveelt.',
+    intro: 'Een cijfer per AI-assistent, met de marge erbij, en onder elk cijfer de koopvragen en de antwoorden die je zelf kunt teruglezen.',
+    beeld: 'De koopvragen achter het cijfer',
+  },
+  kans: {
+    label: 'Kansen',
+    titel: 'Elke contentkans begint met een gemiste klantvraag.',
+    intro: 'Orbit laat zien waarom een pagina nodig is: welke vraag hij moet winnen en wie die vraag nu wint. Met één klik staat hij in de planning.',
+    beeld: 'Een kans en de maand waarin hij komt',
+  },
+  contentplan: {
+    label: 'Contentplan',
+    titel: 'Van losse kansen naar een uitvoerbaar maandplan.',
+    intro: 'Elke maand een vast aantal pagina\'s, afgesproken met je klant: nieuwe dienstpagina\'s, verbeteringen van bestaande pagina\'s en vergelijkingen, elk met een stand die zegt wat er gebeurt.',
+    beeld: 'Drie maanden van het contentplan',
+  },
+  schrijver: {
+    label: 'Schrijven en controleren',
+    titel: 'Content in de merkstem. Gevoelige claims gecontroleerd.',
+    intro: 'Orbit schrijft in de stem van het merk en controleert bedragen, termijnen, garanties en keurmerken tegen het merkdossier. Wat niet bevestigd is, wordt gemarkeerd, en je team beslist.',
+    beeld: 'Een garantie die nog bevestigd moet worden',
+    tekst: 'Een gemarkeerde claim moet bevestigd of aangepast zijn voordat de tekst kan worden goedgekeurd.',
+  },
+  klantvraag: {
+    label: 'Vragen aan je klant',
+    titel: 'Laat je klant aanvullen wat alleen hij weet.',
+    intro: 'Wat niet op de website staat, vraagt Orbit gericht aan de klant. Die antwoordt via een link op zijn telefoon, zonder account, en het antwoord komt meteen bij de pagina terecht.',
+    beeld: 'Een antwoord van de klant, meteen bij het artikel',
+  },
+  resultaat: {
+    label: 'Resultaat',
+    titel: 'Laat zien wat er na publicatie gebeurt.',
+    intro: 'Na publicatie meet Orbit dezelfde vragen opnieuw na 14 en 28 dagen, kijkt of AI de pagina als bron gebruikt en haalt de klikken uit Google. Het maandverslag zet het werk en de ontwikkeling op een rij.',
+    beeld: 'Eén gepubliceerde pagina en het maandverslag',
+    tekst: 'Een stijging na publicatie bewijst op zichzelf nog geen oorzakelijk effect.',
+  },
+} satisfies Record<string, Segment>

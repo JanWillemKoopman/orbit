@@ -13,26 +13,26 @@ import { App, Beeld, Icoon, Kans, KLANT, Knop, VRAAG } from './Visuals'
 
 type Toon = 'neutraal' | 'accent' | 'live' | 'achter'
 
-function Chip({ toon = 'neutraal', children }: { toon?: Toon; children: React.ReactNode }) {
+export function Chip({ toon = 'neutraal', children }: { toon?: Toon; children: React.ReactNode }) {
   return <span className={`ls-chip ls-chip-${toon}`}>{children}</span>
 }
 
 // Een stand als rondje: klaar (vinkje), bezig (half), open (ring).
-function Stand({ soort }: { soort: 'klaar' | 'bezig' | 'open' }) {
+export function Stand({ soort }: { soort: 'klaar' | 'bezig' | 'open' }) {
   if (soort === 'klaar') return <svg className="ls-stand ls-stand-klaar" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" /><path d="M4.8 8.3l2.1 2.1 4.2-4.6" /></svg>
   if (soort === 'bezig') return <svg className="ls-stand ls-stand-bezig" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.25" /><path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" /></svg>
   return <svg className="ls-stand ls-stand-open" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.25" /></svg>
 }
 
 const Schakelaar = ({ aan }: { aan: boolean }) => <span className={aan ? 'ls-schakelaar ls-schakelaar-aan' : 'ls-schakelaar'}><span /></span>
-const Vinkje = ({ aan }: { aan: boolean }) => <span className={aan ? 'ls-vinkje ls-vinkje-aan' : 'ls-vinkje'}>{aan && <svg viewBox="0 0 16 16"><path d="M4 8.5l2.6 2.6L12 5.5" /></svg>}</span>
+export const Vinkje = ({ aan }: { aan: boolean }) => <span className={aan ? 'ls-vinkje ls-vinkje-aan' : 'ls-vinkje'}>{aan && <svg viewBox="0 0 16 16"><path d="M4 8.5l2.6 2.6L12 5.5" /></svg>}</span>
 
-function Tabs({ items, actief }: { items: string[]; actief: number }) {
+export function Tabs({ items, actief }: { items: string[]; actief: number }) {
   return <span className="ls-tabs">{items.map((t, i) => <span key={t} className={i === actief ? 'ls-tab-aan' : undefined}>{t}</span>)}</span>
 }
 
 // Een tabel als raster. De kolommen staan per tabel in `kol`.
-function Tabel({ kol, kop, children, className = '' }: { kol: string; kop: string[]; children: React.ReactNode; className?: string }) {
+export function Tabel({ kol, kop, children, className = '' }: { kol: string; kop: string[]; children: React.ReactNode; className?: string }) {
   return (
     <div className={`ls-tabel ${className}`} style={{ '--kol': kol } as React.CSSProperties}>
       <div className="ls-tabel-kop">{kop.map((k) => <span key={k}>{k}</span>)}</div>
@@ -41,7 +41,7 @@ function Tabel({ kol, kop, children, className = '' }: { kol: string; kop: strin
   )
 }
 
-function Rij({ aan = false, children }: { aan?: boolean; children: React.ReactNode }) {
+export function Rij({ aan = false, children }: { aan?: boolean; children: React.ReactNode }) {
   return <div className={aan ? 'ls-tabel-rij ls-tabel-rij-aan' : 'ls-tabel-rij'}>{children}</div>
 }
 
@@ -188,7 +188,7 @@ const CLUSTERS: { naam: string; waarde?: string; marge?: string; lijn?: number[]
   { naam: 'Elektrische bakfiets kopen', maand: false, wacht: true },
 ]
 
-function Lijntje({ punten }: { punten: number[] }) {
+export function Lijntje({ punten }: { punten: number[] }) {
   const max = Math.max(...punten) + 2
   const min = Math.min(...punten) - 2
   const d = punten.map((p, i) => `${(i / (punten.length - 1)) * 76 + 2},${22 - ((p - min) / (max - min)) * 18}`).join(' ')

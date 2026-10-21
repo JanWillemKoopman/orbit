@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DemoKnop } from '@/components/homepagina6/Demo'
+import { Pagina2 } from '@/components/homepagina6/Pagina2'
 import { IsoAudit, IsoMaanden, IsoPitch } from '@/components/homepagina6/Isometrie'
 import { Aanbod, Bibliotheek, Brief, Clusters, Concurrenten, Contentplan, FeitenKennis, Feitencontrole, Kalender, KansBewijs, Meetplan, NieuwBedrijf, Onboarding, Ontdekken, Overzicht, Planbord, Publiceren, VragenTelefoon, Zichtbaarheid, Zoekverkeer } from '@/components/homepagina6/Schermen'
 import { AntwoordBron, ClaimControle, DEMO, Figuur, HeroKans, Hermeting, Pitch, Werkoverzicht } from '@/components/homepagina6/Visuals'
@@ -198,6 +199,9 @@ export default function Homepagina6() {
           <p className="lf-mono hg-afsluiter-regel">{afsluiter.regel}</p>
         </div>
       </section>
+
+      {/* Een tweede pagina met tien beelden in drie formaten, als alternatief voor de rondleiding hierboven */}
+      <Pagina2 />
     </div>
   )
 }
