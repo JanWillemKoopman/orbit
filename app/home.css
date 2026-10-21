@@ -183,6 +183,8 @@
 
 /* Logo's van de AI-zoekmachines onder het grote beeld ------------------- */
 .ai-logos { margin-top: 64px; }
+/* Onder de logo's tot de lijn van het volgende blok evenveel ruimte als erboven, zodat de rij in het midden van zijn eigen band staat */
+.ai-logos + .feature { margin-top: 64px; }
 .ai-logos-defs { position: absolute; }
 .ai-logos-band { display: flex; justify-content: center; }
 .ai-logos-lijst { display: flex; align-items: center; gap: 64px; margin: 0; padding: 0; list-style: none; }
@@ -197,6 +199,7 @@
    elk de tussenruimte als rechtermarge, zodat -50% precies één lijst is en de loop naadloos doorgaat.
    Een lopende band vraagt een constante snelheid, dus hier bewust een lineaire timing. */
 @media (max-width: 768px) {
+  .ai-logos + .feature { margin-top: 48px; }
   .ai-logos {
     margin: 48px calc(var(--page-padding) * -1) 0; overflow: hidden;
     mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
