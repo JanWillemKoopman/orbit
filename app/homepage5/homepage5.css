@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Vijfde testhomepage (/homepage5). De opbouw en de bouwstenen van de beelden komen uit
+   homepage4.css (.hp4-*); hieronder staat alleen wat de beelden van deze pagina extra nodig hebben.
+   ========================================================================== */
+
+.hp5-hero h1 { max-width: 20ch; }
+.hp5-hero p { max-width: 52ch; }
+
+.hp5-mono { font-family: var(--font-mono); font-size: 0.86em; color: var(--text-secondary); }
+.hp5-pijl { width: 1.2em; height: 1.2em; flex: none; color: var(--text-quaternary); }
+.hp5-baan-ruimte { margin-top: 0.7em; }
+.hp4 .hp4-label svg { display: inline-block; vertical-align: -0.1em; margin-right: 0.3em; }
+
+/* Antwoord: vraag van de klant en het cijfer */
+.hp5-bubbel { align-self: flex-end; max-width: 75%; padding: 0.7em 1em; border-radius: 12px 12px 4px 12px; color: var(--text-primary); background: var(--bg-level-3); box-shadow: inset 0 0 0 1px var(--hp4-lijn); }
+.hp5-cijfer-rij { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5em; margin-top: 0.6em; }
+.hp5-spark { width: 55%; height: auto; overflow: visible; }
+.hp5-maanden { display: flex; justify-content: space-between; margin-top: 1em; padding-top: 0.8em; border-top: 1px solid var(--hp4-lijn-zacht); }
+
+/* Ringen met labels (dienst, cirkel) */
+.hp5-dienst { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 2em; width: 100%; }
+.hp5-ring { position: relative; width: 100%; aspect-ratio: 1; }
+.hp5-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hp5-ring-groot { width: 72%; }
+.hp5-knoop { fill: var(--bg-level-1); stroke: var(--text-quaternary); stroke-width: 1; }
+.hp5-knoop-accent { fill: var(--accent); }
+.hp5-ring-label { position: absolute; padding: 0.2em 0.6em; border-radius: var(--radius-pill); font-size: 0.86em; white-space: nowrap; color: var(--text-tertiary); background: var(--bg-level-1); transform: translate(-50%, -50%); }
+.hp5-ring-label-aan { color: var(--text-primary); }
+.hp5-ring-midden { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+.hp5-boog { fill: none; stroke: var(--hp4-vul); stroke-width: 6; stroke-linecap: round; }
+.hp5-boog-accent { stroke: var(--accent); }
+.hp5-ring-groot .hp5-ring-label { font-size: 1em; background: var(--bg-level-1); }
+
+.hp5-verslag { display: flex; flex-direction: column; gap: 0.6em; }
+.hp5-verslag-kop { display: flex; align-items: center; gap: 0.5em; padding-bottom: 0.6em; font-size: 0.86em; color: var(--text-tertiary); border-bottom: 1px solid var(--hp4-lijn); }
+.hp5-verslag .hp4-kaart-titel { margin-top: 0.2em; }
+
+/* Effect: drie staven */
+.hp5-staven { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4em; align-items: end; }
+.hp5-staaf { display: flex; flex-direction: column; align-items: center; gap: 0.8em; }
+.hp5-staaf-baan { position: relative; display: block; width: 3.2em; height: 12em; border-radius: 6px; background: var(--bg-translucent); overflow: hidden; }
+.hp5-staaf-vul { position: absolute; inset: auto 0 0 0; border-radius: inherit; background: var(--hp4-vul); }
+
+/* Maken: gemiste vraag naar pagina */
+.hp5-van-naar { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 0.8em; }
+.hp5-vraag-gemist { display: flex; align-items: center; gap: 0.6em; min-width: 0; color: var(--text-tertiary); }
+.hp5-pagina { justify-content: space-between; gap: 0.8em; min-width: 0; }
+
+/* Schaal: drie poorten */
+.hp5-straat { display: flex; align-items: center; gap: 1.2em; width: 100%; }
+.hp5-straat > * { position: relative; }
+.hp5-straat::before { content: ''; position: absolute; }
+.hp5-stapel-paginas { position: relative; width: 3.4em; height: 4.4em; flex: none; }
+.hp5-stapel-paginas span { position: absolute; inset: 0; border-radius: 4px; background: var(--bg-level-3); box-shadow: inset 0 0 0 1px var(--border-strong); }
+.hp5-stapel-paginas span:nth-child(1) { transform: translate(-0.5em, -0.5em); opacity: 0.4; }
+.hp5-stapel-paginas span:nth-child(2) { transform: translate(-0.25em, -0.25em); opacity: 0.7; }
+.hp5-poort { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6em; padding: 1.2em 0.4em; border-radius: 8px; text-align: center; background: var(--bg-level-2); box-shadow: inset 0 0 0 1px var(--hp4-lijn); }
+.hp5-live { flex: none; }
+
+/* Pitch */
+.hp5-pitch-kop { margin: 0.4em 0 1.4em; font-size: 1.5em; line-height: 1.15; letter-spacing: -0.02em; font-weight: var(--weight-medium); color: var(--text-primary); }
+
+/* Grip: wat AI zegt naast wat klopt */
+.hp5-vergelijk { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.hp5-vergelijk p { margin-top: 0.4em; font-size: 1.1em; }
+.hp5-vergelijk s { color: var(--text-quaternary); text-decoration-color: var(--red); }
+.hp5-juist { color: var(--text-primary); }
+.hp5-fout { position: absolute; top: 1.2em; right: 1.2em; color: var(--red); box-shadow: none; background: rgba(235, 87, 87, 0.14); }
+
+/* Klanten: tegels */
+.hp5-tegels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5em; }
+.hp5-tegel { display: flex; align-items: center; gap: 0.7em; padding: 0.7em 0.8em; border-radius: 6px; background: var(--bg-level-2); box-shadow: inset 0 0 0 1px var(--hp4-lijn-zacht); }
+.hp5-tegel-aan { box-shadow: inset 0 0 0 1px var(--hp4-lijn); }
+.hp5-tegel-tekst { display: flex; flex-direction: column; min-width: 0; }
+
+/* Samenwerken */
+.hp5-duo { display: grid; grid-template-columns: auto 1fr 1.4fr; align-items: center; width: 100%; }
+.hp5-partij { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3em; }
+.hp5-avatar { display: grid; place-items: center; width: 2.2em; height: 2.2em; margin-bottom: 0.4em; border-radius: 50%; font-size: 0.86em; font-weight: var(--weight-medium); color: var(--text-secondary); background: var(--bg-level-3); box-shadow: inset 0 0 0 1px var(--border-strong); }
+.hp5-verbinding { height: 1px; background: linear-gradient(to right, var(--border-strong), var(--accent)); }
+.hp5-rechten { width: 100%; margin-top: 0.6em; }
+.hp5-schakel { position: relative; width: 2em; height: 1.1em; flex: none; border-radius: var(--radius-pill); background: var(--bg-hover); }
+.hp5-schakel::after { content: ''; position: absolute; top: 0.15em; left: 0.15em; width: 0.8em; height: 0.8em; border-radius: 50%; background: var(--text-quaternary); }
+.hp5-schakel-aan { background: var(--accent); }
+.hp5-schakel-aan::after { left: auto; right: 0.15em; background: var(--bg-primary); }
+
+/* Kosten */
+.hp5-knop-rij { display: flex; flex-wrap: wrap; align-items: center; gap: 1em; }
+.hp5-sleutel { display: flex; align-items: center; justify-content: space-between; gap: 1em; }
+
+/* Het gat */
+.hp5-gat { position: relative; width: 74%; aspect-ratio: 1; }
+.hp5-gat svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hp5-tool-cirkel { fill: var(--bg-level-2); stroke: var(--hp4-lijn); stroke-width: 1; }
+.hp5-baan-cirkel { fill: none; stroke: rgba(188, 255, 47, 0.45); stroke-width: 1; stroke-dasharray: 2 4; }
+.hp5-orbit-punt { fill: var(--accent); }
+.hp5-gat-label { position: absolute; display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -50%); white-space: nowrap; color: var(--text-secondary); }
+.hp5-gat-midden { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.8em; font-weight: var(--weight-semibold); color: var(--bg-primary); }
+
+/* Eerlijke cijfers */
+.hp5-vakken { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8em; }
+.hp5-vakken .hp4-kaart, .hp5-vak-leeg { display: flex; flex-direction: column; gap: 1em; padding: 1.2em; }
+.hp5-vakken .hp4-groot { font-size: 2em; }
+.hp5-vak-leeg { border-radius: 8px; outline: 1px dashed var(--border-strong); outline-offset: -1px; }
+.hp5-onbekend { font-size: 1.1em; line-height: 1.8; color: var(--text-quaternary); }
+
+/* Feiten */
+.hp5-feitzin { font-size: 1.2em; line-height: 1.6; letter-spacing: -0.012em; color: var(--text-secondary); }
+.hp5-feitzin mark { padding: 0.05em 0.3em; border-radius: 4px; color: var(--text-primary); background: var(--hp4-accent-zacht); box-shadow: inset 0 -1px 0 rgba(188, 255, 47, 0.5); }
+.hp5-bron-stip { width: 0.45em; height: 0.45em; margin-right: 0.5em; border-radius: 50%; background: var(--accent); }
+
+/* Bureaus */
+.hp5-kwadrant { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6em; margin-top: 0.6em; }
+.hp5-kwadrant > div { display: flex; flex-direction: column; justify-content: space-between; gap: 1em; min-height: 6em; padding: 1em; border-radius: 6px; background: var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--hp4-lijn-zacht); }
+.hp5-mini-raster { display: grid; grid-template-columns: repeat(6, 0.9em); gap: 0.3em; }
+.hp5-mini-rapport { display: flex; flex-direction: column; gap: 0.4em; color: var(--text-tertiary); }
+.hp5-mini-oog { width: 1.8em; height: 1.8em; color: var(--text-tertiary); }
+.hp5-mini-oog svg { width: 100%; height: 100%; }
+
+@media (max-width: 768px) {
+  .hp5-staaf-baan { height: 9em; }
+}
