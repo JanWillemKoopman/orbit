@@ -35,6 +35,7 @@ export const pitch = {
     'Onderbouw je advies met de gemeten antwoorden.',
     'Zet een gewonnen prospect door naar een klant in Orbit.',
   ],
+  beeld: { titel: 'Het resultaat dat de prospect ontvangt' },
 }
 
 export const onderzoeken = {
@@ -46,6 +47,7 @@ export const onderzoeken = {
     'AI-antwoorden en bronnen die je kunt teruglezen.',
     'Herhaalde metingen en onzekerheidsmarges voor een zorgvuldige vergelijking.',
   ],
+  beeld: { titel: 'Antwoord, bron en voorgestelde actie' },
 }
 
 export const uitvoeren = {
@@ -58,7 +60,7 @@ export const uitvoeren = {
     { titel: 'Controleer en publiceer.', tekst: 'Beoordeel de tekst en plaats hem in het eigen CMS.' },
   ],
   micro: 'Orbit controleert daarna of de pagina live staat en plant de hermeting.',
-  onderschrift: 'Een gemarkeerde claim vraagt om controle voordat de tekst kan worden goedgekeurd.',
+  beeld: { titel: 'Eén concrete claim door de controle', tekst: 'Een gemarkeerde claim vraagt om controle voordat de tekst kan worden goedgekeurd.' },
   opvolging: [
     { stap: 'Beoordelen', wie: 'Je team' },
     { stap: 'Publiceren in je CMS', wie: 'Je team' },
@@ -75,6 +77,7 @@ export const rapporteren = {
     'Zicht op AI-vermeldingen, bronverwijzingen en Search Console-cijfers.',
     'Een maandverslag met de naam van je bureau, klaar om te delen.',
   ],
+  beeld: { titel: 'Publicatie, meetmomenten en conclusie', tekst: 'Orbit rapporteert ook zorgvuldig als een stijging nog niet aantoonbaar is.' },
 }
 
 export const klanten = {
@@ -86,6 +89,7 @@ export const klanten = {
     'Klanttoegang met rechten die je zelf instelt.',
     'Inzicht in AI-kosten per klant en een maandlimiet voor je bureau.',
   ],
+  beeld: { titel: 'Wie is aan zet?' },
 }
 
 // Sectie 8 heeft in de briefing geen eigen kop; de kop is er alleen voor hulptechnologie.

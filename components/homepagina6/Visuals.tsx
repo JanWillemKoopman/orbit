@@ -1,208 +1,279 @@
-// De zes productbeelden van /homepagina6. Ze volgen één doorlopend voorbeeld: Bureau Noordwind werkt voor
-// Fietsen Jansen aan het onderwerp "bakfiets leasen in Utrecht". Alle namen zijn verzonnen en elk beeld
-// draagt zelf het label "Demonstratie · fictieve gegevens", zodat ook wie midden op de pagina binnenkomt
-// weet dat het geen klantresultaat is.
+// De productbeelden van /homepagina6, gebouwd zoals linear.app zijn product laat zien:
 //
-// Alles is HTML en CSS met echte lettergroottes (minstens 14 px voor wat je moet lezen), zodat een beeld op
-// mobiel herschikt in plaats van krimpt. Knoppen in een beeld zijn geen knoppen: het zijn spans zonder
-// aanwijzer of hover, want er valt niets te klikken. Voor hulptechnologie heeft elk beeld één korte
-// samenvatting; de details eronder zijn verborgen.
+// - Een groot beeld is één kader, iets breder dan de tekstkolom, met grijze lichtval van boven. Daarin
+//   staat een app-venster dat onderaan uit het kader loopt en wegvaagt, en onder het venster het
+//   bijschrift, in hetzelfde kader.
+// - Een venster is rustig: bijna zwart, een rand van 5% wit, een glans op één hoek en tekst in grijzen.
+//   Kleur zit alleen in kleine statustekens. Diepte komt van een tweede venster of een zwevende kaart
+//   die over het eerste valt, niet van zware schaduwen.
+//
+// Alles volgt één doorlopend voorbeeld: Bureau Noordwind werkt voor Fietsen Jansen aan "bakfiets leasen
+// in Utrecht". Alle namen zijn verzonnen; elk bijschrift zegt dat het een demonstratie is. Knoppen in een
+// beeld zijn spans zonder aanwijzer of hover, want er valt niets te klikken. Voor hulptechnologie heeft
+// elk beeld één korte samenvatting en zijn de details verborgen.
+import { LogoMark } from '@/components/Logo'
 
 const KLANT = 'Fietsen Jansen'
 const BUREAU = 'Bureau Noordwind'
 const ONDERWERP = 'Bakfiets leasen in Utrecht'
 const VRAAG = 'Waar kan ik in Utrecht een bakfiets leasen?'
-const DEMO = 'Demonstratie · fictieve gegevens'
+export const DEMO = 'Demonstratie · fictieve gegevens'
 
-function Paneel({ samenvatting, className = '', children }: { samenvatting: string; className?: string; children: React.ReactNode }) {
+/* Bouwstenen ------------------------------------------------------------------------------------- */
+
+// Het grote beeld: lichtval, het podium met de vensters en het bijschrift.
+export function Figuur({ nr, titel, tekst, className = '', children }: { nr: string; titel: string; tekst?: string; className?: string; children: React.ReactNode }) {
   return (
-    <figure className={`hg-paneel ${className}`} role="img" aria-label={`${samenvatting} Demonstratie met fictieve gegevens.`}>
-      <div className="hg-paneel-in" aria-hidden="true">{children}</div>
+    <figure className={`lf ${className}`}>
+      <div className="lf-podium">{children}</div>
+      <figcaption className="lf-bijschrift">
+        <p className="lf-fig">Fig {nr} · {DEMO}</p>
+        <h3>{titel}</h3>
+        {tekst && <p className="lf-bijschrift-tekst">{tekst}</p>}
+      </figcaption>
     </figure>
   )
 }
 
-function Balk({ children }: { children: React.ReactNode }) {
+// Een beeld voor hulptechnologie: één samenvatting, de details verborgen.
+function Beeld({ samenvatting, className = '', children }: { samenvatting: string; className?: string; children: React.ReactNode }) {
   return (
-    <div className="hg-balk">
-      <div className="hg-balk-links">{children}</div>
-      <span className="hg-demo">{DEMO}</span>
+    <div className={`lv-beeld ${className}`} role="img" aria-label={`${samenvatting} Demonstratie met fictieve gegevens.`}>
+      <div className="lv-beeld-in" aria-hidden="true">{children}</div>
     </div>
   )
 }
 
-function Klant() {
-  return <span className="hg-klant"><span className="hg-avatar">FJ</span>{KLANT}</span>
+function Venster({ className = '', balk, children }: { className?: string; balk?: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className={`lv-venster ${className}`}>
+      {balk && <div className="lv-balk">{balk}</div>}
+      {children}
+    </div>
+  )
 }
+
+function Pad({ delen }: { delen: string[] }) {
+  return (
+    <span className="lv-pad">
+      {delen.map((d, i) => <span key={d} className={i === delen.length - 1 ? 'lv-pad-nu' : undefined}>{d}</span>)}
+    </span>
+  )
+}
+
+const PADEN = {
+  overzicht: 'M2.5 2.5h4.5v4.5h-4.5zM9 2.5h4.5v4.5H9zM2.5 9h4.5v4.5h-4.5zM9 9h4.5v4.5H9z',
+  plan: 'M2.5 3.5h11v10h-11zM2.5 6.5h11M5.5 2v3M10.5 2v3',
+  vragen: 'M3 3.5h10v7H7l-3 2.5v-2.5H3z',
+  bibliotheek: 'M4 2.5h6l2.5 2.5v8.5H4zM6 7.5h4.5M6 10h4.5',
+  zichtbaarheid: 'M2.5 13.5V9M6.5 13.5V6M10.5 13.5V8M14 13.5V3.5',
+  zoekverkeer: 'M2 11.5l3.5-3.5 3 2.5L14 4.5',
+  profiel: 'M8 7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM3 13.5c.6-2.6 2.6-4 5-4s4.4 1.4 5 4',
+  bronnen: 'M6.5 9.5l3-3M5 7.5L3.5 9a2.5 2.5 0 0 0 3.5 3.5L8.5 11M11 8.5L12.5 7A2.5 2.5 0 0 0 9 3.5L7.5 5',
+  feiten: 'M8 2.5l5 2v4c0 2.8-2.2 4.4-5 5-2.8-.6-5-2.2-5-5v-4zM5.8 8l1.5 1.5 3-3',
+  pijl: 'M3 8h10m-4-4 4 4-4 4',
+  let: 'M8 2.5l6 10.5H2zM8 7v2.5M8 11.4v.1',
+  link: 'M6.5 9.5l3-3M5 7.5L3.5 9a2.5 2.5 0 0 0 3.5 3.5L8.5 11M11 8.5L12.5 7A2.5 2.5 0 0 0 9 3.5L7.5 5',
+  document: 'M4 2.5h6l2.5 2.5v8.5H4zM10 2.5V5h2.5',
+} as const
+type IcoonNaam = keyof typeof PADEN
+
+function Icoon({ naam }: { naam: IcoonNaam }) {
+  return <svg className="lv-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><path d={PADEN[naam]} /></svg>
+}
+
+// Statustekens zoals in Linear: een rondje dat zegt hoe ver iets is, altijd met tekst ernaast.
+function Status({ soort }: { soort: 'klaar' | 'gepland' | 'wacht' | 'niet' }) {
+  if (soort === 'klaar') return <svg className="lv-status lv-status-klaar" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" /><path d="M4.3 7.2l1.9 1.8 3.5-3.8" /></svg>
+  if (soort === 'wacht') return <svg className="lv-status lv-status-wacht" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5" /><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" /></svg>
+  if (soort === 'niet') return <svg className="lv-status lv-status-niet" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5" /><path d="M4.5 7h5" /></svg>
+  return <svg className="lv-status lv-status-gepland" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5" /></svg>
+}
+
+const Klant = () => <span className="lv-klant"><span className="lv-avatar">FJ</span>{KLANT}</span>
+const Noordwind = () => <span className="lv-nw">N</span>
 
 function Antwoord() {
   return (
-    <p className="hg-antwoord-tekst">
+    <p className="lv-antwoord">
       Bekijk bijvoorbeeld <strong>Fietsatelier Voorbeeld</strong> en <strong>Stadsfiets Demo</strong>. Vergelijk de looptijd, onderhoudsafspraken en voorwaarden.
     </p>
   )
 }
 
-function NoordwindLogo() {
-  return <span className="hg-nw-logo">N</span>
-}
+/* 1. Hero: van gemiste vraag naar werkbare kans -------------------------------------------------- */
 
-const pijl = <svg className="hg-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10m-4-4 4 4-4 4" /></svg>
-const vink = <svg className="hg-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3.5 8.5l3 3 6-7" /></svg>
-const leeg = <svg className="hg-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="8" cy="8" r="5.5" /><path d="M5.5 8h5" /></svg>
-const letOp = <svg className="hg-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 2.5l6 10.5H2zM8 7v2.5M8 11.4v.1" /></svg>
-
-/* 1. Hero: van gemiste vraag naar werkbare kans --------------------------------------------------- */
+// De zijbalk volgt de hoofdstukken van de app (lib/nav.ts in ORBIT ENGINE), ingekort tot wat in beeld past.
+const MENU: { kop: string; items: [string, IcoonNaam][] }[] = [
+  { kop: '', items: [['Overzicht', 'overzicht']] },
+  { kop: 'Strategie', items: [['Contentplan', 'plan'], ['Openstaande vragen', 'vragen'], ['Bibliotheek', 'bibliotheek']] },
+  { kop: 'Resultaten', items: [['Zichtbaarheid in AI', 'zichtbaarheid'], ['Zoekverkeer', 'zoekverkeer']] },
+  { kop: 'Mijn bedrijf', items: [['Bedrijfsprofiel', 'profiel']] },
+  { kop: 'Tools', items: [['Bronnen', 'bronnen'], ['Feitencontrole', 'feiten']] },
+]
 
 export function HeroKans() {
   return (
-    <Paneel
-      className="hg-v-hero"
+    <Beeld
+      className="lv-hero"
       samenvatting={`Productvoorbeeld. Bij de vraag "${VRAAG}" noemt een gemeten antwoord Fietsatelier Voorbeeld en Stadsfiets Demo, maar niet ${KLANT}. Orbit zet daar een kans naast: maak je leaseaanbod duidelijker.`}
     >
-      <Balk><Klant /><span className="hg-pad">{ONDERWERP}</span></Balk>
-      <div className="hg-hero-grid">
-        <div className="hg-vak">
-          <p className="hg-kicker">Onderzochte vraag</p>
-          <p className="hg-vraag">{VRAAG}</p>
-          <div className="hg-antwoord">
-            <p className="hg-kicker">Voorbeeld van een gemeten antwoord</p>
-            <Antwoord />
+      <Venster className="lv-app">
+        <aside className="lv-zij">
+          <div className="lv-werkruimte"><Noordwind />{BUREAU}</div>
+          <div className="lv-merkkeuze"><Klant /></div>
+          {MENU.map((g) => (
+            <div key={g.kop || 'start'} className="lv-groep">
+              {g.kop && <span className="lv-groep-kop">{g.kop}</span>}
+              {g.items.map(([naam, icoon]) => (
+                <span key={naam} className={naam === 'Zichtbaarheid in AI' ? 'lv-nav lv-nav-aan' : 'lv-nav'}><Icoon naam={icoon} />{naam}</span>
+              ))}
+            </div>
+          ))}
+        </aside>
+        <div className="lv-hoofd">
+          <div className="lv-balk"><Pad delen={['Zichtbaarheid in AI', ONDERWERP]} /></div>
+          <div className="lv-hero-inhoud">
+            <p className="lv-label">Onderzochte vraag</p>
+            <p className="lv-titel">{VRAAG}</p>
+            <dl className="lv-eigenschappen">
+              <div><dt>Klant</dt><dd><Klant /></dd></div>
+              <div><dt>Onderwerp</dt><dd>{ONDERWERP}</dd></div>
+              <div><dt>Kanaal</dt><dd>ChatGPT</dd></div>
+            </dl>
+            <p className="lv-label lv-label-ruim">Voorbeeld van een gemeten antwoord</p>
+            <div className="lv-citaat"><Antwoord /></div>
+            <p className="lv-regel"><Status soort="niet" />{KLANT} niet genoemd in dit antwoord</p>
           </div>
-          <p className="hg-observatie">{leeg}{KLANT} niet genoemd in dit antwoord</p>
         </div>
-        <div className="hg-vak hg-vak-kans">
-          <div className="hg-kans">
-            <p className="hg-kicker hg-kicker-accent">Geselecteerde kans</p>
-            <p className="hg-kans-titel">Maak je leaseaanbod duidelijker</p>
-            <p className="hg-kans-tekst">Werk prijzen, voorwaarden en onderhoud uit op een eigen pagina. Controleer eerst welke informatie beschikbaar is.</p>
-            <span className="hg-nepknop">Bekijk de kans {pijl}</span>
+        <div className="lv-zwevend lv-kans">
+          <div className="lv-zwevend-kop"><span className="lv-orbit"><LogoMark size={11} /></span>Geselecteerde kans</div>
+          <div className="lv-zwevend-inhoud">
+            <p className="lv-kans-titel">Maak je leaseaanbod duidelijker</p>
+            <p className="lv-kans-tekst">Werk prijzen, voorwaarden en onderhoud uit op een eigen pagina. Controleer eerst welke informatie beschikbaar is.</p>
+            <span className="lv-nepknop">Bekijk de kans <Icoon naam="pijl" /></span>
           </div>
         </div>
-      </div>
-    </Paneel>
+      </Venster>
+    </Beeld>
   )
 }
 
-/* 3. Pitch in de huisstijl van het bureau, met een fragment uit de GEO-audit ---------------------- */
+/* 3. Pitch in de huisstijl van het bureau, met de GEO-audit erachter ------------------------------ */
 
 export function Pitch() {
   return (
-    <Paneel
-      className="hg-v-pitch"
-      samenvatting={`Voorbeeld van een pitch van ${BUREAU} in de eigen huisstijl: AI-zichtbaarheid van ${KLANT}, met een eerste verkenning van de vraag "${VRAAG}" en een kans om te bespreken. Daaronder een fragment uit de GEO-audit met drie acties.`}
+    <Beeld
+      className="lv-pitch"
+      samenvatting={`Voorbeeld van een pitch van ${BUREAU} in de eigen huisstijl: AI-zichtbaarheid van ${KLANT}, met een eerste verkenning van de vraag "${VRAAG}" en een kans om te bespreken. Erachter een fragment uit de GEO-audit met drie acties: leaseaanbod verduidelijken, technische toegankelijkheid controleren en relevante bronnen beoordelen.`}
     >
-      <div className="hg-pitch">
-        <div className="hg-pitch-kop">
-          <span className="hg-pitch-bureau"><NoordwindLogo />{BUREAU}</span>
-          <span className="hg-pitch-contact">hallo@noordwind.example</span>
-        </div>
-        <div className="hg-pitch-body">
-          <span className="hg-demo">{DEMO}</span>
-          <p className="hg-pitch-titel">AI-zichtbaarheid van {KLANT}</p>
-          <p className="hg-pitch-onderwerp">{ONDERWERP}</p>
-          <div className="hg-pitch-blok">
-            <p className="hg-kicker">Eerste verkenning</p>
-            <p className="hg-vraag hg-vraag-klein">{VRAAG}</p>
-            <Antwoord />
-          </div>
-          <div className="hg-pitch-blok hg-pitch-kans">
-            <p className="hg-kicker hg-kicker-nw">Kans om te bespreken</p>
-            <p className="hg-pitch-kans-tekst">Hoe duidelijk zijn je leasevoorwaarden op je website uitgewerkt?</p>
-            <span className="hg-nepknop hg-nepknop-nw">Bespreek de aanpak</span>
-          </div>
-        </div>
-      </div>
-      <div className="hg-audit">
-        <p className="hg-audit-titel"><NoordwindLogo />GEO-audit · Actieplan</p>
-        <ol>
-          <li><span className="hg-audit-nr">1</span>Leaseaanbod verduidelijken</li>
-          <li><span className="hg-audit-nr">2</span>Technische toegankelijkheid controleren</li>
-          <li><span className="hg-audit-nr">3</span>Relevante bronnen beoordelen</li>
+      <Venster className="lv-audit" balk={<span className="lv-balk-titel"><Noordwind />GEO-audit · Actieplan</span>}>
+        <ol className="lv-acties">
+          <li><span className="lv-actie-nr">1</span>Leaseaanbod verduidelijken</li>
+          <li><span className="lv-actie-nr">2</span>Technische toegankelijkheid controleren</li>
+          <li><span className="lv-actie-nr">3</span>Relevante bronnen beoordelen</li>
         </ol>
-      </div>
-    </Paneel>
+      </Venster>
+      <Venster className="lv-pitchpagina" balk={<><span className="lv-balk-titel lv-balk-nw"><Noordwind />{BUREAU}</span><span className="lv-balk-rechts">hallo@noordwind.example</span></>}>
+        <div className="lv-pitch-inhoud">
+          <p className="lv-pitch-titel">AI-zichtbaarheid van {KLANT}</p>
+          <p className="lv-pitch-onderwerp">{ONDERWERP}</p>
+          <p className="lv-label lv-label-ruim">Eerste verkenning</p>
+          <p className="lv-vraag">{VRAAG}</p>
+          <div className="lv-citaat"><Antwoord /></div>
+          <div className="lv-pitch-kans">
+            <p className="lv-label lv-label-nw">Kans om te bespreken</p>
+            <p className="lv-pitch-kans-tekst">Hoe duidelijk zijn je leasevoorwaarden op je website uitgewerkt?</p>
+            <span className="lv-nepknop lv-nepknop-nw">Bespreek de aanpak</span>
+          </div>
+        </div>
+      </Venster>
+    </Beeld>
   )
 }
 
-/* 4. Antwoord, bron, actie -------------------------------------------------------------------------- */
+/* 4. Antwoord, bron, actie ------------------------------------------------------------------------ */
 
 const VRAGEN = [
-  { vraag: VRAAG, gekozen: true },
-  { vraag: 'Is een elektrische bakfiets leasen voordeliger dan kopen?', gekozen: false },
-  { vraag: 'Welke fietsenmaker in Utrecht onderhoudt bakfietsen?', gekozen: false },
+  VRAAG,
+  'Is een elektrische bakfiets leasen voordeliger dan kopen?',
+  'Welke fietsenmaker in Utrecht onderhoudt bakfietsen?',
 ]
 
 export function AntwoordBron() {
   return (
-    <Paneel
-      className="hg-v-bron"
+    <Beeld
+      className="lv-bron"
       samenvatting={`Productvoorbeeld met drie gevolgde vragen. Bij de gekozen vraag "${VRAAG}" staan apart: de waarneming (het antwoord van ChatGPT), de teruggevonden bron (leasevoorwaarden, een voorbeeldbron) en de voorgestelde actie: onderzoek of prijzen en voorwaarden duidelijk genoeg zijn uitgewerkt.`}
     >
-      <Balk><Klant /><span className="hg-pad">Gevolgde vragen</span></Balk>
-      <div className="hg-bron-grid">
-        <ul className="hg-vragenlijst">
-          {VRAGEN.map((v) => (
-            <li key={v.vraag} className={v.gekozen ? 'hg-vraag-item hg-vraag-gekozen' : 'hg-vraag-item'}>{v.vraag}</li>
-          ))}
-        </ul>
-        <div className="hg-bron-detail">
-          <div className="hg-gebied">
-            <p className="hg-kicker">Waarneming · ChatGPT</p>
-            <Antwoord />
-          </div>
-          <div className="hg-bron-duo">
-            <div className="hg-gebied">
-              <p className="hg-kicker">Bron</p>
-              <p className="hg-bron-titel">Leasevoorwaarden — voorbeeldbron</p>
-              <p className="hg-domein">voorbeeld.example</p>
-            </div>
-            <div className="hg-gebied hg-gebied-advies">
-              <p className="hg-kicker hg-kicker-accent">Voorgestelde actie</p>
-              <p className="hg-advies-tekst">Onderzoek of prijzen en voorwaarden duidelijk genoeg zijn uitgewerkt</p>
-            </div>
+      <Venster className="lv-split" balk={<><Klant /><Pad delen={['Gevolgde vragen']} /></>}>
+        <div className="lv-split-grid">
+          <ul className="lv-lijst">
+            {VRAGEN.map((v, i) => (
+              <li key={v} className={i === 0 ? 'lv-lijst-item lv-lijst-aan' : 'lv-lijst-item'}>
+                <Status soort={i === 0 ? 'niet' : 'gepland'} />{v}
+              </li>
+            ))}
+          </ul>
+          <div className="lv-detail">
+            <p className="lv-titel lv-titel-klein">{VRAAG}</p>
+            <div className="lv-kanalen"><span className="lv-tab-aan">ChatGPT</span><span>Gemini</span><span>Google AI-overzicht</span></div>
+            <dl className="lv-gebieden">
+              <div>
+                <dt>Waarneming</dt>
+                <dd><Antwoord /></dd>
+              </div>
+              <div>
+                <dt>Bron</dt>
+                <dd><span className="lv-bron-titel"><Icoon naam="link" />Leasevoorwaarden — voorbeeldbron</span><span className="lv-domein">voorbeeld.example</span></dd>
+              </div>
+              <div>
+                <dt>Voorgestelde actie</dt>
+                <dd><span className="lv-advies">Onderzoek of prijzen en voorwaarden duidelijk genoeg zijn uitgewerkt</span></dd>
+              </div>
+            </dl>
           </div>
         </div>
-      </div>
-    </Paneel>
+      </Venster>
+    </Beeld>
   )
 }
 
-/* 5. Eén claim door de controle --------------------------------------------------------------------- */
+/* 5. Eén claim door de controle ------------------------------------------------------------------- */
 
 export function ClaimControle() {
   return (
-    <Paneel
-      className="hg-v-claim"
+    <Beeld
+      className="lv-claim"
       samenvatting={`Productvoorbeeld van een tekst in het contentplan voor ${ONDERWERP}. De zin "Onderhoud is inbegrepen in het maandbedrag" is gemarkeerd: in de beschikbare klantkennis is dat niet bevestigd. Het vervolg is het bedrijf vragen; de status is wacht op bevestiging.`}
     >
-      <Balk><span className="hg-pad hg-pad-eerst">Contentplan</span>{pijl}<span className="hg-pad hg-pad-eerst">{ONDERWERP}</span></Balk>
-      <div className="hg-claim-grid">
-        <div className="hg-document">
-          <p className="hg-document-titel">Een bakfiets leasen bij {KLANT}</p>
-          <p className="hg-document-tekst">
-            Bekijk welke bakfiets past bij je dagelijkse ritten. <mark className="hg-claim">Onderhoud is inbegrepen in het maandbedrag.</mark> Neem contact op om de mogelijkheden en voorwaarden te bespreken.
+      <Venster className="lv-doc" balk={<Pad delen={['Contentplan', ONDERWERP]} />}>
+        <div className="lv-doc-inhoud">
+          <span className="lv-doc-icoon"><Icoon naam="document" /></span>
+          <p className="lv-doc-titel">Een bakfiets leasen bij {KLANT}</p>
+          <p className="lv-doc-tekst">
+            Bekijk welke bakfiets past bij je dagelijkse ritten. <mark className="lv-claim-zin">Onderhoud is inbegrepen in het maandbedrag.</mark> Neem contact op om de mogelijkheden en voorwaarden te bespreken.
           </p>
         </div>
-        <div className="hg-controle">
-          <p className="hg-controle-titel">{letOp}Bevestiging nodig</p>
-          <p className="hg-controle-reden">In de beschikbare klantkennis is niet bevestigd dat onderhoud is inbegrepen.</p>
-          <div className="hg-controle-voet">
-            <span className="hg-nepknop">Vraag het bedrijf</span>
-            <span className="hg-status hg-status-amber"><span className="hg-stip" />Wacht op bevestiging</span>
+        <div className="lv-zwevend lv-controle">
+          <p className="lv-controle-titel"><Icoon naam="let" />Bevestiging nodig</p>
+          <p className="lv-controle-reden">In de beschikbare klantkennis is niet bevestigd dat onderhoud is inbegrepen.</p>
+          <div className="lv-controle-voet">
+            <span className="lv-nepknop">Vraag het bedrijf</span>
+            <span className="lv-statusregel lv-statusregel-wacht"><Status soort="wacht" />Wacht op bevestiging</span>
           </div>
         </div>
-      </div>
-    </Paneel>
+      </Venster>
+    </Beeld>
   )
 }
 
-/* 6. Hermeting en maandverslag ---------------------------------------------------------------------- */
+/* 6. Hermeting en maandverslag -------------------------------------------------------------------- */
 
-const MOMENTEN = [
-  { naam: 'Gepubliceerd', wat: 'Pagina live', status: 'Afgerond', klaar: true },
-  { naam: 'Dag 14', wat: 'Eerste hermeting', status: 'Afgerond', klaar: true },
-  { naam: 'Dag 28', wat: 'Tweede hermeting', status: 'Gepland', klaar: false },
+const MOMENTEN: { naam: string; wat: string; status: 'klaar' | 'gepland' }[] = [
+  { naam: 'Gepubliceerd', wat: 'Pagina live', status: 'klaar' },
+  { naam: 'Dag 14', wat: 'Eerste hermeting', status: 'klaar' },
+  { naam: 'Dag 28', wat: 'Tweede hermeting', status: 'gepland' },
 ]
 
 const VERSLAG = [
@@ -214,73 +285,74 @@ const VERSLAG = [
 
 export function Hermeting() {
   return (
-    <Paneel
-      className="hg-v-hermeting"
+    <Beeld
+      className="lv-hermeting"
       samenvatting={`Productvoorbeeld voor ${ONDERWERP}. Tijdlijn: gepubliceerd, de eerste hermeting op dag 14 is afgerond en de tweede op dag 28 is gepland. Conclusie: nog onvoldoende metingen voor een conclusie over de ontwikkeling. Ernaast het maandverslag van ${BUREAU} met wat is uitgevoerd, gecontroleerd en wat de volgende stap is.`}
     >
-      <Balk><Klant /><span className="hg-pad">Hermeting</span></Balk>
-      <div className="hg-hermeting-grid">
-        <div className="hg-meetverloop">
-          <p className="hg-meet-titel">{ONDERWERP}</p>
-          <ol className="hg-tijdlijn">
+      <Venster className="lv-meet" balk={<><Klant /><Pad delen={['Hermeting']} /></>}>
+        <div className="lv-meet-inhoud">
+          <p className="lv-titel">{ONDERWERP}</p>
+          <ol className="lv-tijdlijn">
             {MOMENTEN.map((m, i) => (
               // De lijn naar het volgende moment is doorgetrokken als dat moment al is afgerond.
-              <li key={m.naam} className={`hg-moment${m.klaar ? ' hg-moment-klaar' : ''}${MOMENTEN[i + 1]?.klaar ? ' hg-moment-door' : ''}`}>
-                <span className="hg-moment-punt">{m.klaar ? vink : null}</span>
-                <span className="hg-moment-naam">{m.naam}</span>
-                <span className="hg-moment-wat">{m.wat}</span>
-                <span className={m.klaar ? 'hg-status hg-status-groen' : 'hg-status'}><span className="hg-stip" />{m.status}</span>
+              <li key={m.naam} className={MOMENTEN[i + 1]?.status === 'klaar' ? 'lv-moment lv-moment-door' : 'lv-moment'}>
+                <Status soort={m.status} />
+                <span className="lv-moment-naam">{m.naam}</span>
+                <span className="lv-moment-wat">{m.wat}</span>
+                <span className="lv-moment-status">{m.status === 'klaar' ? 'Afgerond' : 'Gepland'}</span>
               </li>
             ))}
           </ol>
-          <div className="hg-conclusie">
-            <p className="hg-kicker">Conclusie</p>
-            <p className="hg-conclusie-tekst">Nog onvoldoende metingen voor een conclusie over de ontwikkeling.</p>
+          <div className="lv-conclusie">
+            <p className="lv-label">Conclusie</p>
+            <p className="lv-conclusie-tekst">Nog onvoldoende metingen voor een conclusie over de ontwikkeling.</p>
           </div>
         </div>
-        <div className="hg-verslag">
-          <p className="hg-verslag-kop"><NoordwindLogo />{BUREAU} · Maandverslag</p>
-          <p className="hg-verslag-klant">{KLANT}</p>
+      </Venster>
+      <Venster className="lv-verslag" balk={<span className="lv-balk-titel lv-balk-nw"><Noordwind />{BUREAU} · Maandverslag</span>}>
+        <div className="lv-verslag-inhoud">
+          <p className="lv-verslag-klant">{KLANT}</p>
           <dl>
             {VERSLAG.map((r) => (
-              <div key={r.kop} className="hg-verslag-rij">
+              <div key={r.kop}>
                 <dt>{r.kop}</dt>
                 <dd>{r.tekst}</dd>
               </div>
             ))}
           </dl>
         </div>
-      </div>
-    </Paneel>
+      </Venster>
+    </Beeld>
   )
 }
 
-/* 7. Wie is aan zet? -------------------------------------------------------------------------------- */
+/* 7. Wie is aan zet? ------------------------------------------------------------------------------ */
 
 const RIJEN = [
-  { klant: KLANT, actie: 'Maandmeting bekijken', wie: 'Bureau', actief: true },
-  { klant: 'Studio Voorbeeld', actie: 'Tekst beoordelen', wie: 'Bureau', actief: false },
-  { klant: 'Bouwbedrijf Demo', actie: 'Vraag beantwoorden', wie: 'Klant', actief: false },
-  { klant: 'Praktijk Voorbeeld', actie: 'Publicatie controleren', wie: 'Bureau', actief: false },
+  { klant: KLANT, kort: 'FJ', actie: 'Maandmeting bekijken', wie: 'Bureau' },
+  { klant: 'Studio Voorbeeld', kort: 'SV', actie: 'Tekst beoordelen', wie: 'Bureau' },
+  { klant: 'Bouwbedrijf Demo', kort: 'BD', actie: 'Vraag beantwoorden', wie: 'Klant' },
+  { klant: 'Praktijk Voorbeeld', kort: 'PV', actie: 'Publicatie controleren', wie: 'Bureau' },
 ]
 
 export function Werkoverzicht() {
   return (
-    <Paneel
-      className="hg-v-overzicht"
+    <Beeld
+      className="lv-overzicht"
       samenvatting={`Productvoorbeeld van het werkoverzicht van ${BUREAU} met vier klanten. ${RIJEN.map((r) => `${r.klant}: ${r.actie.toLowerCase()}, ${r.wie.toLowerCase()} aan zet.`).join(' ')}`}
     >
-      <Balk><span className="hg-klant"><NoordwindLogo />{BUREAU}</span><span className="hg-pad">Werkoverzicht</span></Balk>
-      <div className="hg-tabel">
-        <div className="hg-tabel-kop"><span>Klant</span><span>Volgende actie</span><span>Aan zet</span></div>
-        {RIJEN.map((r) => (
-          <div key={r.klant} className={r.actief ? 'hg-tabel-rij hg-tabel-rij-actief' : 'hg-tabel-rij'}>
-            <span className="hg-tabel-klant">{r.klant}</span>
-            <span className="hg-tabel-actie"><span className="hg-cel-label">Volgende actie</span>{r.actie}</span>
-            <span className="hg-tabel-wie"><span className="hg-cel-label">Aan zet</span><span className={`hg-wie hg-wie-${r.wie.toLowerCase()}`}>{r.wie}</span></span>
-          </div>
-        ))}
-      </div>
-    </Paneel>
+      <Venster className="lv-tabelvenster" balk={<><span className="lv-balk-titel"><Noordwind />{BUREAU}</span><Pad delen={['Werkoverzicht']} /></>}>
+        <div className="lv-tabel">
+          <div className="lv-tabel-kop"><span>Klant</span><span>Volgende actie</span><span>Aan zet</span></div>
+          {RIJEN.map((r, i) => (
+            <div key={r.klant} className={i === 0 ? 'lv-tabel-rij lv-tabel-aan' : 'lv-tabel-rij'}>
+              <span className="lv-tabel-klant"><span className="lv-avatar">{r.kort}</span>{r.klant}</span>
+              <span className="lv-tabel-actie"><span className="lv-cel-label">Volgende actie</span>{r.actie}</span>
+              <span className="lv-tabel-wie"><span className="lv-cel-label">Aan zet</span><span className={r.wie === 'Bureau' ? 'lv-wie lv-wie-bureau' : 'lv-wie lv-wie-klant'}>{r.wie}</span></span>
+            </div>
+          ))}
+        </div>
+      </Venster>
+    </Beeld>
   )
 }
