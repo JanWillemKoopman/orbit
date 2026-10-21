@@ -69,6 +69,7 @@ const PADEN = {
   bel: 'M4 11V7.5a4 4 0 0 1 8 0V11l1 1.5H3zM6.5 13.5a1.5 1.5 0 0 0 3 0',
   kalender: 'M2.5 3.5h11v10h-11zM2.5 6.5h11M5.5 2v3M10.5 2v3',
   meer: 'M3.5 8h.01M8 8h.01M12.5 8h.01',
+  slot: 'M4 7.5h8v6H4zM5.75 7.5V5.5a2.25 2.25 0 0 1 4.5 0v2',
 } as const
 export type IcoonNaam = keyof typeof PADEN
 

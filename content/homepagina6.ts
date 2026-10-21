@@ -391,3 +391,104 @@ export const pagina2 = {
     tekst: 'Een stijging na publicatie bewijst op zichzelf nog geen oorzakelijk effect.',
   },
 } satisfies Record<string, Segment>
+
+// Derde pagina onderaan /homepagina6: de tien voordelen van Orbit voor bureaus, elk met twee beelden in het
+// raster van linear.app. De voordelen komen uit docs/Orbit_het_product.md (hoofdstuk 5 en 7) in ORBIT ENGINE.
+export type Usp = { label: string; titel: string; intro: string; cellen: [{ titel: string; tekst: string }, { titel: string; tekst: string }] }
+
+export const pagina3 = {
+  kop: 'Waarom bureaus voor Orbit kiezen.',
+  intro: 'Tien voordelen die je merkt in het werk voor je klanten, en in de marge van je bureau.',
+  usps: [
+    {
+      label: '01 · Vangnet',
+      titel: 'AI-content, zonder je reputatie op het spel te zetten.',
+      intro: 'Een pagina mag alleen beweren wat in de gecontroleerde kennis over het bedrijf staat. Bedragen, termijnen, garanties en keurmerken worden gecontroleerd voordat iemand de tekst goedkeurt.',
+      cellen: [
+        { titel: 'Elke harde claim gecontroleerd', tekst: 'Wat niet in het merkdossier staat, wordt gemarkeerd, met de reden erbij.' },
+        { titel: 'Goedkeuren kan pas als alles klopt', tekst: 'Twijfel je, leg de zin dan met één klik aan je klant voor.' },
+      ],
+    },
+    {
+      label: '02 · Bewijs',
+      titel: 'Laat zien wat je werk oplevert, zodat je klant blijft.',
+      intro: 'Na publicatie meet Orbit elke pagina opnieuw in AI en haalt de klikken uit Google Search Console. Alleen pagina\'s die Orbit schreef tellen mee.',
+      cellen: [
+        { titel: 'De bewijsladder per pagina', tekst: 'Zeven tredes, van gepubliceerd tot omzet. De klant ziet stap voor stap wat zijn pagina doet.' },
+        { titel: 'Opbrengst die echt van het bureau is', tekst: 'Elke pagina telt vanaf zijn eigen publicatiedatum. Een cijfer zonder discussie.' },
+      ],
+    },
+    {
+      label: '03 · Meetmethode',
+      titel: 'Een meting die overeind blijft bij een kritische klant.',
+      intro: 'Vaste vragen langs de hele klantreis, herhaalde metingen waar het telt, weging naar commerciële waarde en bij elk cijfer een onzekerheidsmarge. Je verkoopt een meetmethode, geen screenshot.',
+      cellen: [
+        { titel: 'Bij elk cijfer de marge', tekst: 'Een verschil binnen de marge kan toeval zijn. Zo weet je altijd of een verschil echt is.' },
+        { titel: 'Gewogen naar waar het geld zit', tekst: 'Een vraag waarbij iemand op het punt staat te kiezen, weegt zwaarder dan een algemene uitlegvraag.' },
+      ],
+    },
+    {
+      label: '04 · Marge',
+      titel: 'Je marge blijft van jou.',
+      intro: 'AI tegen kostprijs, op de eigen sleutels van je bureau, zonder opslag. Een maandlimiet houdt al het betaalde werk tegen zodra hij bereikt is, ook het automatische werk.',
+      cellen: [
+        { titel: 'Een maandlimiet voor je bureau', tekst: 'Verbruik per maand, per soort werk en per klant, met een schatting voor volgende maand.' },
+        { titel: 'Vooraf weten wat iets kost', tekst: 'Bij elke betaalde knop staat wat het ongeveer kost, en wat er van de maandlimiet over is.' },
+      ],
+    },
+    {
+      label: '05 · Voor bureaus',
+      titel: 'Een eigen, afgeschermde omgeving voor je bureau.',
+      intro: 'Collega\'s werken als beheerder, klanten kijken mee als kijker, alleen bij hun eigen bedrijf. Andere bureaus zien niets van jou, ook niet dat je bestaat.',
+      cellen: [
+        { titel: 'Je team en je klanten', tekst: 'Beheerders zien alles binnen het bureau, een kijker alleen de bedrijven die je toewijst.' },
+        { titel: 'Jij bepaalt wat een kijker mag', tekst: 'Vragen beantwoorden, goedkeuren of live melden. Wat geld kost, blijft bij het bureau.' },
+      ],
+    },
+    {
+      label: '06 · Schaal',
+      titel: 'Een hele maand voor al je klanten in één klik.',
+      intro: 'Vink klanten aan en start de maand, zet de maandmeting aan of kies het aantal pagina\'s, voor allemaal tegelijk. Meldingen zeggen wat er veranderde.',
+      cellen: [
+        { titel: 'Start de maand voor meerdere klanten', tekst: 'Voor het starten zie je hoeveel pagina\'s het zijn en ongeveer wat het kost.' },
+        { titel: 'Meldingen die ertoe doen', tekst: 'Zichtbaarheid omhoog of omlaag, een pagina live, een vraag beantwoord. Op maandag een herinnering als er iets blijft liggen.' },
+      ],
+    },
+    {
+      label: '07 · Inzicht',
+      titel: 'Begrijp waarom concurrenten winnen.',
+      intro: 'Zie welke websites AI aanhaalt bij de vragen van je klant, waar een concurrent staat en je klant niet, en welke eigenschappen AI aan de concurrenten toeschrijft.',
+      cellen: [
+        { titel: 'De bronnen achter een aanbeveling', tekst: 'Per website wie er via die bron genoemd wordt. Een direct startpunt voor vermeldingen.' },
+        { titel: 'Weten waarop je verliest', tekst: 'Na elke meting zie je welke eigenschappen AI aan de concurrenten toeschrijft.' },
+      ],
+    },
+    {
+      label: '08 · Vermeldingen',
+      titel: 'Ook zichtbaar buiten de eigen website.',
+      intro: 'Het werk om je klant op andere websites te laten verschijnen, op één lijst met status en opvolgdatum. Orbit controleert daarna of de vermelding er staat, en blijft dat doen.',
+      cellen: [
+        { titel: 'Terugkerend werk dat je kunt laten zien', tekst: 'Per vermelding de website, de reden, de status en wanneer je opvolgt.' },
+        { titel: 'Een conceptbericht, klaar om te sturen', tekst: 'Op basis van gecontroleerde kennis. Je leest het na en verstuurt het zelf.' },
+      ],
+    },
+    {
+      label: '09 · Techniek',
+      titel: 'Een website die AI goed kan lezen.',
+      intro: 'Orbit leest elke maand tot 250 pagina\'s zoals de zoekbot van een AI-assistent ze ziet, en maakt er een takenlijst van voor de webbouwer. De controle is gratis.',
+      cellen: [
+        { titel: 'Zien wat een AI-bot mist', tekst: 'Tekst die pas met JavaScript verschijnt, bestaat voor de zoekbot van een AI-assistent niet.' },
+        { titel: 'Een takenlijst voor de webbouwer', tekst: 'Per probleem waarom het ertoe doet, wie het oplost en op welke pagina\'s. Opgelost staat erbij met de datum.' },
+      ],
+    },
+    {
+      label: '10 · Zorgeloos',
+      titel: 'Alles loopt op de achtergrond.',
+      intro: 'Onderzoek, metingen, rapporten en schrijfwerk draaien vanzelf. Klap gerust je laptop dicht. En achter elk vraagteken staat wat je ziet en waarom het zo werkt, zodat ook een nieuwe collega meteen meekan.',
+      cellen: [
+        { titel: 'Het werk gaat door', tekst: 'Tijdelijke storingen worden vanzelf opnieuw geprobeerd. Elke stap kijkt eerst of zijn resultaat al bestaat.' },
+        { titel: 'Uitleg op elk scherm', tekst: 'Wat je ziet, wat je kunt doen, waarom het zo werkt en wat de begrippen betekenen.' },
+      ],
+    },
+  ] satisfies Usp[],
+}
