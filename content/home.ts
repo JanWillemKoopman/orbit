@@ -8,13 +8,13 @@ export const hero = {
   link: { label: 'Lees', titel: 'Ons verhaal', href: '/over' },
 }
 
-// Grote tussenzin onder het dashboard. Het vetgedrukte deel staat in het wit, de rest in grijs.
+// Grote tussenzin onder de twee beelden, boven de kwaliteit van de content. Het vetgedrukte deel staat in het wit, de rest in grijs.
 export const statement = {
   strong: 'Van klantstrategie tot groeikans in AI zichtbaarheid.',
   rest: 'Orbit brengt analyse, contentcreatie, publicatie en nameting samen in één doorlopende workflow. Jouw team bepaalt de koers. AI versnelt de uitvoering.',
 }
 
-// Twee beelden direct onder de quote, elk met een titel, een korte uitleg en een link. Links het
+// Twee beelden direct onder het blok voor bureaus, elk met een titel, een korte uitleg en een link. Links het
 // account van het bureau (/beheer), rechts de maand van één klant van meten tot hermeten (/werkwijze).
 // De links wijzen direct naar de pagina en niet naar de oude adressen /agency en /product, die alleen
 // nog doorsturen.
@@ -45,7 +45,7 @@ export const uitgelichtStappen: MaandStap[] = [
   { l: 'Hermeten', s: '', st: 'todo' },
 ]
 
-// Vier voordelen voor marketingbureaus, onder de twee beelden en boven de drie nagebouwde schermen.
+// Vier voordelen voor marketingbureaus, direct onder de AI-logo's en boven de twee beelden.
 // Erboven een kop (links) en een korte uitleg (rechts); per voordeel alleen een titel met een vinkje.
 export const uspIntro = {
   title: 'Gebouwd voor marketingbureaus',

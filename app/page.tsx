@@ -25,8 +25,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-// Opbouw en maten volgen linear.app: hero met nagebouwde app, een grote tussenzin,
-// twee beelden met een link naar /agency en /product, vier voordelen voor bureaus naast elkaar, drie nagebouwde schermen, de kwaliteit van de content, het eindresultaat, veelgestelde vragen en een afsluiter.
+// Opbouw en maten volgen linear.app: hero met nagebouwde app, vier voordelen voor bureaus naast elkaar met drie nagebouwde schermen, twee beelden met een link naar /agency en /product, een grote tussenzin, de kwaliteit van de content, het eindresultaat, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
 
   return (
@@ -61,9 +60,13 @@ export default function HomePage() {
       <div className="container">
         <AiLogos />
 
-        <div className="home-statement">
-          <CitaatScroll strong={statement.strong} rest={statement.rest} />
-        </div>
+        <section className="feature process usp" aria-labelledby="home-usp">
+          <div className="keyline" />
+          <div className="usp-blok usp-blok-breed">
+            <UspBlok id="home-usp" />
+          </div>
+          <Showcase />
+        </section>
 
         <section className="home-uitgelicht" aria-label="Orbit voor bureaus">
           <div className="pd-grid">
@@ -83,20 +86,12 @@ export default function HomePage() {
                 </figcaption>
               </figure>
             ))}
-            {/* Alleen op mobiel: de kop en de voordelen tussen de twee beelden; daar verbergt de CSS ze in de sectie eronder */}
-            <div className="usp-blok usp-blok-mobiel">
-              <UspBlok id="home-usp-mobiel" />
-            </div>
           </div>
         </section>
 
-        <section className="feature process usp" aria-labelledby="home-usp">
-          <div className="keyline" />
-          <div className="usp-blok usp-blok-breed">
-            <UspBlok id="home-usp" />
-          </div>
-          <Showcase />
-        </section>
+        <div className="home-statement">
+          <CitaatScroll strong={statement.strong} rest={statement.rest} />
+        </div>
 
         <section className="feature hk" aria-labelledby="home-kwaliteit">
           <div className="keyline" />
@@ -164,8 +159,7 @@ export default function HomePage() {
   )
 }
 
-// Kop, uitleg en de vier voordelen voor bureaus. Staat twee keer op de pagina: breed in de eigen sectie,
-// op mobiel tussen de twee beelden. De CSS laat steeds maar één van de twee zien.
+// Kop, uitleg en de vier voordelen voor bureaus.
 function UspBlok({ id }: { id: string }) {
   return (
     <>
