@@ -3,10 +3,9 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, kwaliteit, prefooter, result, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
+import { faq, hero, kwaliteit, prefooter, showcase, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
-import { ResultFrame } from '@/components/home/ResultFrame'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
 import { Faq } from '@/components/home/Faq'
 import { AiLogos } from '@/components/home/AiLogos'
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-// Opbouw en maten volgen linear.app: hero met nagebouwde app, vier voordelen voor bureaus naast elkaar met drie nagebouwde schermen, twee beelden met een link naar /agency en /product, een grote tussenzin, de kwaliteit van de content, het eindresultaat, veelgestelde vragen en een afsluiter.
+// Opbouw en maten volgen linear.app: hero met nagebouwde app, vier voordelen voor bureaus naast elkaar, twee beelden met een link naar /beheer en /werkwijze, een grote tussenzin, drie nagebouwde schermen, de kwaliteit van de content, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
 
   return (
@@ -65,7 +64,6 @@ export default function HomePage() {
           <div className="usp-blok usp-blok-breed">
             <UspBlok id="home-usp" />
           </div>
-          <Showcase />
         </section>
 
         <section className="home-uitgelicht" aria-label="Orbit voor bureaus">
@@ -92,6 +90,10 @@ export default function HomePage() {
         <div className="home-statement">
           <CitaatScroll strong={statement.strong} rest={statement.rest} />
         </div>
+
+        <section aria-label={showcase.title}>
+          <Showcase />
+        </section>
 
         <section className="feature hk" aria-labelledby="home-kwaliteit">
           <div className="keyline" />
@@ -121,23 +123,6 @@ export default function HomePage() {
                 <p>{kwaliteitSecties.probleem.beeld.tekst}</p>
               </figcaption>
             </figure>
-          </div>
-        </section>
-
-        <section className="feature result" aria-labelledby="home-result">
-          <div className="keyline" />
-          <div className="feature-header">
-            <h2 id="home-result" className="feature-title">{result.title}</h2>
-            <div className="feature-description">
-              <p>{result.description}</p>
-            </div>
-          </div>
-          <div className="sc-root rs-root">
-            <div className="rs-stage"><ResultFrame /></div>
-            <div className="sc-caption-block">
-              <h3>{result.captionTitle}</h3>
-              <p>{result.caption}</p>
-            </div>
           </div>
         </section>
 

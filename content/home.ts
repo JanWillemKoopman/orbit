@@ -8,7 +8,7 @@ export const hero = {
   link: { label: 'Lees', titel: 'Ons verhaal', href: '/over' },
 }
 
-// Grote tussenzin onder de twee beelden, boven de kwaliteit van de content. Het vetgedrukte deel staat in het wit, de rest in grijs.
+// Grote tussenzin onder de twee beelden, boven de drie nagebouwde schermen. Het vetgedrukte deel staat in het wit, de rest in grijs.
 export const statement = {
   strong: 'Van klantstrategie tot groeikans in AI zichtbaarheid.',
   rest: 'Orbit brengt analyse, contentcreatie, publicatie en nameting samen in één doorlopende workflow. Jouw team bepaalt de koers. AI versnelt de uitvoering.',
@@ -68,19 +68,10 @@ export const kwaliteit = {
   link: { label: 'Zo bewaakt Orbit de kwaliteit', href: '/kwaliteit' },
 }
 
-// Het blok met drie nagebouwde schermen onder het procesblok: alleen het bijschrift linksonder.
+// Het blok met drie nagebouwde schermen onder de tussenzin: alleen het bijschrift linksonder.
 export const showcase = {
   title: 'Van kans tot ingeplande pagina',
   description: 'Je clusters, de vragen die de schrijver nog aan je heeft en de planning van je content staan bij elkaar. Zo zie je in één oogopslag wat er loopt en wat er van jou nodig is.',
-}
-
-// Het blok met het eindresultaat onder de drie schermen: kop en uitleg, daaronder één pagina uit de
-// Bibliotheek met een bijschrift linksonder.
-export const result = {
-  title: 'Het eindresultaat',
-  description: 'Een complete pagina in jouw toon, gebouwd op de antwoorden die je gaf. Jij keurt hem goed en zet hem op je site.',
-  captionTitle: 'Klaar voor je site',
-  caption: 'De bedragen op deze pagina komen uit het antwoord dat je bij Openstaande vragen gaf. Na publicatie meet Orbit of AI-assistenten je merk vaker noemen.',
 }
 
 export type FeatureLink = { label: string; href: string }
