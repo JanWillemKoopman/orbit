@@ -1,7 +1,7 @@
 // De productbeelden van /homepagina6. Het kader komt van linear.app (grijze lichtval, een venster dat
 // onderaan uit beeld loopt, het bijschrift in hetzelfde kader); wat erin staat, volgt de app van Orbit:
 //
-// - Een donkere zijbalk met daarnaast een ingezet hoofdpaneel, met bovenin een kruimelpad.
+// - Het hoofdpaneel van een scherm, met bovenin een kruimelpad. De zijbalk van de app laten de beelden weg.
 // - Kaarten die net iets lichter zijn dan het paneel, tekst in de grijzen van de site, en per kanaal een
 //   stip (genoemd) of een ring (niet genoemd).
 // - Rechts het paneel Advies met kaarten en onderaan twee knoppen.
@@ -12,10 +12,10 @@
 // is. Knoppen in een beeld zijn spans zonder aanwijzer of hover, want er valt niets te klikken. Voor
 // hulptechnologie heeft elk beeld één korte samenvatting en zijn de details verborgen.
 
-const KLANT = 'Fietsen Jansen'
-const BUREAU = 'Bureau Noordwind'
-const ONDERWERP = 'Bakfiets leasen in Utrecht'
-const VRAAG = 'Waar kan ik in Utrecht een bakfiets leasen?'
+export const KLANT = 'Fietsen Jansen'
+export const BUREAU = 'Bureau Noordwind'
+export const ONDERWERP = 'Bakfiets leasen in Utrecht'
+export const VRAAG = 'Waar kan ik in Utrecht een bakfiets leasen?'
 export const DEMO = 'Demonstratie · fictieve gegevens'
 
 /* Bouwstenen ------------------------------------------------------------------------------------- */
@@ -35,7 +35,7 @@ export function Figuur({ nr, titel, tekst, className = '', children }: { nr: str
 }
 
 // Een beeld voor hulptechnologie: één samenvatting, de details verborgen.
-function Beeld({ samenvatting, className = '', children }: { samenvatting: string; className?: string; children: React.ReactNode }) {
+export function Beeld({ samenvatting, className = '', children }: { samenvatting: string; className?: string; children: React.ReactNode }) {
   return (
     <div className={`lv-beeld ${className}`} role="img" aria-label={`${samenvatting} Demonstratie met fictieve gegevens.`}>
       <div className="lv-beeld-in" aria-hidden="true">{children}</div>
@@ -62,25 +62,32 @@ const PADEN = {
   vonk: 'M8 2.5c.4 3 1.5 4.6 5.5 5.5-4 .9-5.1 2.5-5.5 5.5-.4-3-1.5-4.6-5.5-5.5 4-.9 5.1-2.5 5.5-5.5z',
   vink: 'M3.5 8.5l3 3 6-7',
   klok: 'M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM8 5v3l2 1.5',
+  kopieer: 'M5.5 5.5h7v8h-7zM3.5 10.5v-8h7',
+  filter: 'M2.5 4h11M4.5 8h7M6.5 12h3',
+  greep: 'M6 4h.01M10 4h.01M6 8h.01M10 8h.01M6 12h.01M10 12h.01',
+  bestand: 'M4 2.5h5.5l2.5 2.5v8.5H4zM9.5 2.5V5H12',
+  bel: 'M4 11V7.5a4 4 0 0 1 8 0V11l1 1.5H3zM6.5 13.5a1.5 1.5 0 0 0 3 0',
+  kalender: 'M2.5 3.5h11v10h-11zM2.5 6.5h11M5.5 2v3M10.5 2v3',
+  meer: 'M3.5 8h.01M8 8h.01M12.5 8h.01',
 } as const
-type IcoonNaam = keyof typeof PADEN
+export type IcoonNaam = keyof typeof PADEN
 
-function Icoon({ naam }: { naam: IcoonNaam }) {
+export function Icoon({ naam }: { naam: IcoonNaam }) {
   return <svg className="lv-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><path d={PADEN[naam]} /></svg>
 }
 
 // Een stip als het merk in het antwoord stond, een ring als het er niet in stond.
-const Stip = ({ aan }: { aan: boolean }) => <span className={aan ? 'lv-stip lv-stip-aan' : 'lv-stip'} />
+export const Stip = ({ aan }: { aan: boolean }) => <span className={aan ? 'lv-stip lv-stip-aan' : 'lv-stip'} />
 
-function Knop({ primair = false, children }: { primair?: boolean; children: React.ReactNode }) {
+export function Knop({ primair = false, children }: { primair?: boolean; children: React.ReactNode }) {
   return <span className={primair ? 'lv-knop lv-knop-primair' : 'lv-knop'}>{children}</span>
 }
 
-function Kans({ children = 'Kans gevonden' }: { children?: React.ReactNode }) {
+export function Kans({ children = 'Kans gevonden' }: { children?: React.ReactNode }) {
   return <p className="lv-accentregel"><Icoon naam="vonk" />{children}</p>
 }
 
-function Pad({ delen }: { delen: string[] }) {
+export function Pad({ delen }: { delen: string[] }) {
   return (
     <span className="lv-pad">
       {delen.map((d, i) => <span key={d} className={i === delen.length - 1 ? 'lv-pad-nu' : undefined}>{d}</span>)}
@@ -88,53 +95,21 @@ function Pad({ delen }: { delen: string[] }) {
   )
 }
 
-// De zijbalk van een bedrijf, zoals in de app.
-const MENU: { kop: string; items: [string, IcoonNaam, number?][] }[] = [
-  { kop: '', items: [['Openstaande taken', 'taken', 3], ['Zichtbaarheid in AI', 'zichtbaarheid'], ['Zoekverkeer', 'zoek']] },
-  { kop: 'Clusters', items: [['Clusters ontdekken', 'kompas'], ['Mijn clusters', 'lagen']] },
-  { kop: 'Strategie', items: [['Contentplan', 'document'], ['Openstaande vragen', 'vraag'], ['Bibliotheek', 'boek']] },
-  { kop: 'Mijn bedrijf', items: [['Merkdossier', 'dossier'], ['Feiten en kennis', 'lijst']] },
-]
-
-function Zijbalk({ actief }: { actief: string }) {
+// Het hoofdpaneel van de app: kruimelpad bovenin, daaronder de inhoud. De zijbalk van de app staat
+// bewust niet in de beelden: die leidt af van het ene scherm waar het beeld over gaat.
+export function App({ pad, rechts, className = '', children }: { pad: string[]; rechts?: React.ReactNode; className?: string; children: React.ReactNode }) {
   return (
-    <aside className="lv-zij">
-      <div className="lv-zij-kop">
-        <span className="lv-werkruimte">{KLANT}<Icoon naam="omlaag" /></span>
-        <span className="lv-zij-iconen"><Icoon naam="zoek" /><Icoon naam="plus" /></span>
+    <div className={`lv-venster lv-los ${className}`}>
+      <div className="lv-paneel">
+        <div className="lv-balk"><Pad delen={pad} />{rechts && <span className="lv-balk-rechts">{rechts}</span>}</div>
+        {children}
       </div>
-      {MENU.map((g) => (
-        <div key={g.kop || 'start'} className="lv-groep">
-          {g.kop && <span className="lv-groep-kop">{g.kop}<Icoon naam="omlaag" /></span>}
-          {g.items.map(([naam, icoon, aantal]) => (
-            <span key={naam} className={naam === actief ? 'lv-nav lv-nav-aan' : 'lv-nav'}>
-              <Icoon naam={icoon} />{naam}{aantal && <span className="lv-aantal">{aantal}</span>}
-            </span>
-          ))}
-        </div>
-      ))}
-    </aside>
-  )
-}
-
-// Het hoofdpaneel: kruimelpad bovenin, daaronder de inhoud. Met `actief` staat de zijbalk ernaast.
-function App({ actief, pad, rechts, className = '', children }: { actief?: string; pad: string[]; rechts?: React.ReactNode; className?: string; children: React.ReactNode }) {
-  const paneel = (
-    <div className="lv-paneel">
-      <div className="lv-balk"><Pad delen={pad} />{rechts && <span className="lv-balk-rechts">{rechts}</span>}</div>
-      {children}
-    </div>
-  )
-  return (
-    <div className={`lv-venster ${actief ? 'lv-app' : 'lv-los'} ${className}`}>
-      {actief && <Zijbalk actief={actief} />}
-      {paneel}
     </div>
   )
 }
 
 // Het paneel Advies aan de rechterkant.
-function Advies({ soort = 'Advies', voet, children }: { soort?: string; voet?: React.ReactNode; children: React.ReactNode }) {
+export function Advies({ soort = 'Advies', voet, children }: { soort?: string; voet?: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="lv-advies">
       <div className="lv-advies-kop"><span>Orbit</span><span className="lv-advies-soort">{soort}</span></div>
@@ -144,7 +119,7 @@ function Advies({ soort = 'Advies', voet, children }: { soort?: string; voet?: R
   )
 }
 
-function Antwoord() {
+export function Antwoord() {
   return (
     <p className="lv-antwoord">
       Bekijk bijvoorbeeld <strong>Fietsatelier Voorbeeld</strong> en <strong>Stadsfiets Demo</strong>. Vergelijk de looptijd, onderhoudsafspraken en voorwaarden.
@@ -160,7 +135,7 @@ export function HeroKans() {
       className="lv-hero"
       samenvatting={`Productvoorbeeld. Bij de vraag "${VRAAG}" noemt een gemeten antwoord Fietsatelier Voorbeeld en Stadsfiets Demo, maar niet ${KLANT}. Orbit zet daar een kans naast: maak je leaseaanbod duidelijker.`}
     >
-      <App actief="Zichtbaarheid in AI" pad={['Resultaten', 'Zichtbaarheid in AI']} rechts={ONDERWERP}>
+      <App pad={['Resultaten', 'Zichtbaarheid in AI']} rechts={ONDERWERP}>
         <div className="lv-werk">
           <div className="lv-inhoud">
             <p className="lv-h1">{VRAAG}</p>

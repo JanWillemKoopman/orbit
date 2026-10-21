@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DemoKnop } from '@/components/homepagina6/Demo'
 import { IsoAudit, IsoMaanden, IsoPitch } from '@/components/homepagina6/Isometrie'
+import { Aanbod, Bibliotheek, Brief, Clusters, Concurrenten, Contentplan, FeitenKennis, Feitencontrole, Kalender, KansBewijs, Meetplan, NieuwBedrijf, Onboarding, Ontdekken, Overzicht, Planbord, Publiceren, VragenTelefoon, Zichtbaarheid, Zoekverkeer } from '@/components/homepagina6/Schermen'
 import { AntwoordBron, ClaimControle, DEMO, Figuur, HeroKans, Hermeting, Pitch, Werkoverzicht } from '@/components/homepagina6/Visuals'
-import { afsluiter, diensten, faq, hero, klanten, meta, onderzoeken, pitch, praktisch, rapporteren, uitvoeren } from '@/content/homepagina6'
+import { afsluiter, diensten, faq, hero, hoofdstukken, klanten, meta, onderzoeken, pitch, praktisch, rapporteren, schermen, uitvoeren, type Scherm } from '@/content/homepagina6'
 import './homepagina6.css'
 
 // Testpagina: een alternatief voor de homepage, uitgewerkt volgens de ontwerpbriefing van 21 oktober 2026.
@@ -19,9 +20,10 @@ export const metadata: Metadata = {
 const ISO = [IsoPitch, IsoAudit, IsoMaanden]
 
 // Header en footer komen uit de layout en blijven zoals op de rest van de site. Daartussen het verhaal van
-// de briefing, in de opbouw van linear.app: een hero met de app in één groot venster, een zin in twee
-// tinten met drie FIG-tekeningen, en daarna per productverhaal kop links, uitleg rechts, één groot beeld
-// met bijschrift en een rij met de punten. Secties worden gescheiden door lucht en een dunne lijn.
+// de briefing, in de opbouw van linear.app: een hero met de app in één groot venster en een zin in twee
+// tinten met drie FIG-tekeningen. Daarna een rondleiding door de app in zes hoofdstukken, in de volgorde
+// van het werk. Een sectie is groot (kop links, uitleg rechts, een breed beeld en een rij punten) of
+// half (tekst naast een beeld, om en om links en rechts), zodat het ritme niet eentonig wordt.
 export default function Homepagina6() {
   return (
     <div className="hg">
@@ -65,29 +67,50 @@ export default function Homepagina6() {
       <section className="lf-sectie" aria-labelledby="hg-pitch-titel">
         <div className="container">
           <Intro id="hg-pitch-titel" {...pitch} />
-          <Figuur nr="1.1" titel={pitch.beeld.titel}><Pitch /></Figuur>
+          <Figuur nr="0.4" titel={pitch.beeld.titel}><Pitch /></Figuur>
           <Punten punten={pitch.punten} />
         </div>
       </section>
 
+      <Hoofdstuk {...hoofdstukken.inrichten} />
+      <Half id="nieuw-bedrijf" nr="1.1" s={schermen.nieuwBedrijf}><NieuwBedrijf /></Half>
+      <Groot id="feiten" nr="1.2" s={schermen.feiten}><FeitenKennis /></Groot>
+      <Half id="aanbod" nr="1.3" s={schermen.aanbod} omgekeerd><Aanbod /></Half>
+      <Groot id="onboarding" nr="1.4" s={schermen.onboarding}><Onboarding /></Groot>
+
+      <Hoofdstuk {...hoofdstukken.meten} />
+      <Half id="clusters" nr="2.1" s={schermen.clusters}><Clusters /></Half>
+      <Half id="ontdekken" nr="2.2" s={schermen.ontdekken} omgekeerd><Ontdekken /></Half>
+      <Half id="meetplan" nr="2.3" s={schermen.meetplan}><Meetplan /></Half>
+      <Groot id="zichtbaarheid" nr="2.4" s={schermen.zichtbaarheid}><Zichtbaarheid /></Groot>
       <section className="lf-sectie" aria-labelledby="hg-onderzoeken-titel">
         <div className="container">
           <Intro id="hg-onderzoeken-titel" {...onderzoeken} />
-          <Figuur nr="2.1" titel={onderzoeken.beeld.titel}><AntwoordBron /></Figuur>
+          <Figuur nr="2.5" titel={onderzoeken.beeld.titel}><AntwoordBron /></Figuur>
           <Punten punten={onderzoeken.punten} />
         </div>
       </section>
+      <Half id="concurrenten" nr="2.6" s={schermen.concurrenten} omgekeerd><Concurrenten /></Half>
+      <Half id="kansen" nr="2.7" s={schermen.kansen}><KansBewijs /></Half>
 
+      <Hoofdstuk {...hoofdstukken.plannen} />
+      <Groot id="contentplan" nr="3.1" s={schermen.contentplan}><Contentplan /></Groot>
+      <Half id="plannen" nr="3.2" s={schermen.plannen}><Planbord /></Half>
+      <Groot id="kalender" nr="3.3" s={schermen.kalender}><Kalender /></Groot>
+      <Half id="vragen" nr="3.4" s={schermen.vragen} omgekeerd><VragenTelefoon /></Half>
+
+      <Hoofdstuk {...hoofdstukken.schrijven} />
+      <Half id="brief" nr="4.1" s={schermen.brief}><Brief /></Half>
       <section className="lf-sectie" aria-labelledby="hg-uitvoeren-titel">
         <div className="container">
           <Intro id="hg-uitvoeren-titel" {...uitvoeren} />
-          <Figuur nr="3.1" titel={uitvoeren.beeld.titel} tekst={uitvoeren.beeld.tekst} className="lf-met-lijst">
+          <Figuur nr="4.2" titel={uitvoeren.beeld.titel} tekst={uitvoeren.beeld.tekst} className="lf-met-lijst">
             {/* De stappen staan als echte tekst naast het venster, in de mono-opmaak die Linear daarvoor gebruikt */}
             <ol className="lf-stappen">
-              {uitvoeren.stappen.map((s, i) => (
-                <li key={s.titel}>
-                  <span className="lf-stap-titel">{i + 1}. {s.titel.replace(/\.$/, '')}</span>
-                  <span className="lf-stap-tekst">{s.tekst}</span>
+              {uitvoeren.stappen.map((st, i) => (
+                <li key={st.titel}>
+                  <span className="lf-stap-titel">{i + 1}. {st.titel.replace(/\.$/, '')}</span>
+                  <span className="lf-stap-tekst">{st.tekst}</span>
                 </li>
               ))}
             </ol>
@@ -106,19 +129,26 @@ export default function Homepagina6() {
           </div>
         </div>
       </section>
+      <Groot id="bibliotheek" nr="4.3" s={schermen.bibliotheek}><Bibliotheek /></Groot>
+      <Half id="publiceren" nr="4.4" s={schermen.publiceren} omgekeerd><Publiceren /></Half>
 
+      <Hoofdstuk {...hoofdstukken.bewijzen} />
       <section className="lf-sectie" aria-labelledby="hg-rapporteren-titel">
         <div className="container">
           <Intro id="hg-rapporteren-titel" {...rapporteren} />
-          <Figuur nr="4.1" titel={rapporteren.beeld.titel} tekst={rapporteren.beeld.tekst} className="lf-podium-breed"><Hermeting /></Figuur>
+          <Figuur nr="5.1" titel={rapporteren.beeld.titel} tekst={rapporteren.beeld.tekst} className="lf-podium-breed"><Hermeting /></Figuur>
           <Punten punten={rapporteren.punten} />
         </div>
       </section>
+      <Groot id="zoekverkeer" nr="5.2" s={schermen.zoekverkeer}><Zoekverkeer /></Groot>
+      <Half id="feitencontrole" nr="5.3" s={schermen.feitencontrole}><Feitencontrole /></Half>
 
+      <Hoofdstuk {...hoofdstukken.maand} />
+      <Groot id="overzicht" nr="6.1" s={schermen.overzicht}><Overzicht /></Groot>
       <section className="lf-sectie" aria-labelledby="hg-klanten-titel">
         <div className="container">
           <Intro id="hg-klanten-titel" {...klanten} />
-          <Figuur nr="5.1" titel={klanten.beeld.titel}><Werkoverzicht /></Figuur>
+          <Figuur nr="6.2" titel={klanten.beeld.titel}><Werkoverzicht /></Figuur>
           <Punten punten={klanten.punten} />
         </div>
       </section>
@@ -171,6 +201,53 @@ export default function Homepagina6() {
     </div>
   )
 }
+
+// Het begin van een hoofdstuk: een nummer, de naam van het hoofdstuk en een zin.
+function Hoofdstuk({ nr, titel, tekst }: { nr: string; titel: string; tekst: string }) {
+  return (
+    <div className="lf-hoofdstuk">
+      <div className="container">
+        <p className="lf-mono">Hoofdstuk {nr}</p>
+        <h2 className="lf-hoofdstuk-titel">{titel}</h2>
+        <p className="lf-hoofdstuk-tekst">{tekst}</p>
+      </div>
+    </div>
+  )
+}
+
+// Een grote sectie: kop links, uitleg rechts, een breed beeld en de punten eronder.
+function Groot({ id, nr, s, children }: { id: string; nr: string; s: Scherm; children: React.ReactNode }) {
+  return (
+    <section id={id} className="lf-sectie" aria-labelledby={`${id}-titel`}>
+      <div className="container">
+        <Intro id={`${id}-titel`} {...s} />
+        <Figuur nr={nr} titel={s.beeld.titel} tekst={s.beeld.tekst}>{children}</Figuur>
+        <Punten punten={s.punten} />
+      </div>
+    </section>
+  )
+}
+
+// Een halve sectie: de tekst naast een kleiner beeld. Met `omgekeerd` staat het beeld links.
+function Half({ id, nr, s, omgekeerd = false, children }: { id: string; nr: string; s: Scherm; omgekeerd?: boolean; children: React.ReactNode }) {
+  return (
+    <section id={id} className={omgekeerd ? 'lf-sectie lf-half lf-half-omgekeerd' : 'lf-sectie lf-half'} aria-labelledby={`${id}-titel`}>
+      <div className="container lf-half-raster">
+        <div className="lf-half-tekst">
+          <p className="lf-label">{s.label}</p>
+          <h2 id={`${id}-titel`}>{s.titel}</h2>
+          <p className="lf-intro-tekst">{s.intro}</p>
+          <ul className="lf-half-punten">
+            {s.punten.map((p) => <li key={p}><Vink />{p}</li>)}
+          </ul>
+        </div>
+        <Figuur nr={nr} titel={s.beeld.titel} tekst={s.beeld.tekst} className="lf-klein">{children}</Figuur>
+      </div>
+    </section>
+  )
+}
+
+const Vink = () => <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
 
 // Kop links, uitleg rechts, zoals elke sectie op linear.app begint.
 function Intro({ id, label, titel, intro }: { id: string; label: string; titel: string; intro: string }) {

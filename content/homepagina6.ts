@@ -164,3 +164,160 @@ export const formulier = {
   verstuur: 'Demo aanvragen',
   bedankt: 'Bedankt, je demoaanvraag is ontvangen.',
 }
+
+// De hoofdstukken van de rondleiding door de app, in de volgorde van het werk.
+export const hoofdstukken = {
+  inrichten: { nr: '01', titel: 'Een nieuwe klant inrichten', tekst: 'Van naam en website tot een merkdossier waar elke tekst op rust.' },
+  meten: { nr: '02', titel: 'Meten', tekst: 'Wat AI-assistenten over je klant zeggen, en waar de kansen liggen.' },
+  plannen: { nr: '03', titel: 'Plannen', tekst: 'Van kans naar een agenda die je klant kan volgen.' },
+  schrijven: { nr: '04', titel: 'Schrijven en publiceren', tekst: 'Teksten die kloppen, en die jouw team live zet.' },
+  bewijzen: { nr: '05', titel: 'Laten zien wat het oplevert', tekst: 'Hermeten, zoekverkeer en wat AI verkeerd zegt.' },
+  maand: { nr: '06', titel: 'Elke maand, voor al je klanten', tekst: 'Het dagelijkse werk van je bureau.' },
+}
+
+export type Scherm = { label: string; titel: string; intro: string; punten: string[]; beeld: { titel: string; tekst?: string } }
+
+// Twintig schermen van de app, elk met een eigen sectie. De feiten komen uit de productdocumentatie van
+// ORBIT ENGINE (docs/Orbit_het_product.md) en de uitleg per scherm in de app (lib/uitleg.ts).
+export const schermen = {
+  nieuwBedrijf: {
+    label: 'Een nieuwe klant',
+    titel: 'Een naam en een website. Meer heeft Orbit niet nodig.',
+    intro: 'Orbit leest de website, het aanbod, de concurrenten en de markt, en kijkt wat AI-assistenten al over het merk weten. Dat duurt ongeveer tien minuten en loopt op de achtergrond.',
+    punten: ['Tot 1000 pagina\'s van de website gelezen.', 'Concurrenten en werkgebied uit het onderzoek.', 'Je kunt het scherm gewoon sluiten.'],
+    beeld: { titel: 'Het onderzoek van een nieuw bedrijf' },
+  },
+  feiten: {
+    label: 'Merkdossier',
+    titel: 'Alles wat Orbit weet, met de bron erbij.',
+    intro: 'Feiten en kennis over het bedrijf staan op één plek, per regel met waar hij vandaan komt. Wat op de website staat, heeft een letterlijk citaat. Een vermoeden gaat pas mee in een tekst als iemand het bevestigt.',
+    punten: ['Een citaat van de website bij elke gevonden regel.', 'Brochures, tarieven en offertes als bron toevoegen.', 'Per regel zichtbaar of hij in teksten gebruikt wordt.'],
+    beeld: { titel: 'Feiten en kennis van Fietsen Jansen' },
+  },
+  aanbod: {
+    label: 'Aanbod',
+    titel: 'Zie welke diensten nog geen eigen pagina hebben.',
+    intro: 'Orbit zet het aanbod van het bedrijf op een rij, met per dienst de pagina waar het gevonden is. Een dienst zonder eigen pagina is lastig te vinden voor een AI-assistent, en vaak de snelste winst.',
+    punten: ['Per dienst de pagina waar Orbit hem vond.', 'Filter op diensten zonder eigen pagina.'],
+    beeld: { titel: 'Het aanbod, met de diensten zonder eigen pagina' },
+  },
+  onboarding: {
+    label: 'Klant onboarding',
+    titel: 'Leg vast wat een website niet vertelt.',
+    intro: 'Een begeleid gesprek met de klant over groeidoelen, belangrijke diensten, regio\'s, bezwaren en verhalen uit de praktijk. Wat Orbit al op de website vond, bevestig je met één klik.',
+    punten: ['Stap voor stap, in de volgorde van het gesprek.', 'De samenvatting mail je na afloop naar de klant.', 'Kansen die het groeidoel raken, krijgen voorrang.'],
+    beeld: { titel: 'Een stap uit het gesprek met de klant' },
+  },
+  clusters: {
+    label: 'Mijn clusters',
+    titel: 'Meet per onderwerp, niet in het wilde weg.',
+    intro: 'Een cluster is één afgebakend onderwerp met zijn eigen AI-vragen, zodat een stijging of daling iets zegt. Per cluster zet je de maandmeting aan, en Orbit meet op de eerste van de maand opnieuw.',
+    punten: ['Zichtbaarheid per cluster, met de marge erbij.', 'Maandmeting per cluster aan of uit.', 'Voorgestelde onderwerpen uit het onderzoek.'],
+    beeld: { titel: 'Alle clusters van een bedrijf' },
+  },
+  ontdekken: {
+    label: 'Clusters ontdekken',
+    titel: 'Vind de onderwerpen waar mensen echt naar zoeken.',
+    intro: 'Orbit combineert de Search Console-cijfers van je klant, de klant onboarding, het aanbod en zoekdata van Google tot voorstellen voor nieuwe onderwerpen, elk met een reden en een zoekvolume.',
+    punten: ['Hooguit twaalf voorstellen per ronde.', 'Zoekvolume als aanwijzing, niet als meting van AI-vragen.'],
+    beeld: { titel: 'Voorstellen voor nieuwe onderwerpen' },
+  },
+  meetplan: {
+    label: 'Meetplan',
+    titel: 'Dertig vragen langs de hele klantreis.',
+    intro: 'Orbit stelt per onderwerp de vragen op die mensen aan een AI-assistent stellen, verdeeld over oriëntatie, overweging en beslissing. Je loopt ze na, kiest de AI-assistenten en bevestigt. Pas dan begint de meting.',
+    punten: ['Elke vraag aan te passen, uit te zetten of zelf toe te voegen.', 'Vragen waarbij iemand op het punt staat te kiezen, wegen zwaarder.', 'ChatGPT, Gemini en Google AI-overzichten per onderwerp aan of uit.'],
+    beeld: { titel: 'Het meetplan voor bakfiets leasen' },
+  },
+  zichtbaarheid: {
+    label: 'Zichtbaarheid in AI',
+    titel: 'Eén cijfer, met de marge erbij.',
+    intro: 'Zie hoe vaak AI-assistenten je klant noemen, op welke plek gemiddeld en hoe vaak de eigen website als bron wordt aangehaald. Elk cijfer heeft een onzekerheidsmarge, zodat je weet of een verschil echt is.',
+    punten: ['Per cluster het verloop en hoeveel vragen meetellen.', 'Filter op AI-assistent, label en fase van de klantreis.', 'Elk AI-antwoord volledig terug te lezen.'],
+    beeld: { titel: 'Zichtbaarheid in AI over zes maanden', tekst: 'De band om de lijn is de marge: een verschil daarbinnen kan toeval zijn.' },
+  },
+  concurrenten: {
+    label: 'Concurrenten',
+    titel: 'Zie wie wel wordt aangeraden, en waarom.',
+    intro: 'Per vraag zie je welke merken genoemd worden en op welke plek je klant tussen hen staat. Orbit laat ook zien welke eigenschappen AI aan de concurrenten toeschrijft: een direct startpunt voor content en vermeldingen.',
+    punten: ['Genoemde merken ingedeeld als concurrent, vergelijkingssite of eigen merk.', 'Als eerste aanbevolen, een van meerdere of zijdelings.'],
+    beeld: { titel: 'Wie er genoemd wordt bij één vraag' },
+  },
+  kansen: {
+    label: 'Kansen',
+    titel: 'Elke gemiste vraag wordt een pagina-idee met bewijs.',
+    intro: 'Bij elke kans staat hoe vaak je klant genoemd werd, welke concurrenten wel, of de eigen site als bron werd aangehaald en, met Search Console, hoeveel vertoningen en klikken eraan hangen. Daarmee overtuig je de klant.',
+    punten: ['Nieuwe pagina\'s en verbeteringen van bestaande pagina\'s.', 'Overlappende ideeën worden samengevoegd.'],
+    beeld: { titel: 'Een kans met het bewijs erbij' },
+  },
+  contentplan: {
+    label: 'Contentplan',
+    titel: 'Een jaarplan met de sterkste kansen.',
+    intro: 'Orbit vult twaalf maanden met kansen, precies het aantal pagina\'s per maand uit de afspraak met je klant. Je start een maand in één keer, en ziet bovenaan wat er op jou wacht.',
+    punten: ['5, 10, 20, 30, 40 of 50 pagina\'s per maand.', 'Vooraf zien wat een maand ongeveer kost.', 'Orbit begint tien dagen voor de publicatiedatum.'],
+    beeld: { titel: 'Het contentplan, deze maand en volgende maand' },
+  },
+  plannen: {
+    label: 'Inplannen',
+    titel: 'Sleep een pagina naar de maand waarin hij hoort.',
+    intro: 'Op het planbord staan de pagina-ideeën naast de komende maanden. Je zet een idee in een maand en ziet per maand hoeveel plekken er nog vrij zijn.',
+    punten: ['Een eigen pagina-idee toevoegen met eigen materiaal.', 'Dienstpagina, artikel, gids, vergelijking of veelgestelde vragen.'],
+    beeld: { titel: 'Het planbord' },
+  },
+  kalender: {
+    label: 'Kalender',
+    titel: 'Je contentagenda, per dag.',
+    intro: 'De kalender toont het hele jaar, met per dag welke pagina live gaat en hoe het ervoor staat. Je ziet in één oogopslag wat op jou wacht en wat achterloopt.',
+    punten: ['Een pagina verzetten naar een andere dag.', 'De rest van het jaar onder de maand.', 'Filter op één cluster.'],
+    beeld: { titel: 'De kalender van oktober' },
+  },
+  vragen: {
+    label: 'Openstaande vragen',
+    titel: 'Je klant beantwoordt vragen op zijn telefoon.',
+    intro: 'Wat alleen de ondernemer weet, zoals prijzen en werkwijze, vraagt Orbit gericht, met hooguit acht vragen per pagina. Je klant beantwoordt ze via een deellink, zonder account, en het schrijven start vanzelf na het laatste antwoord.',
+    punten: ['Een datum meegeven, met een herinnering om te versturen.', 'Wat eenmaal beantwoord is, wordt nooit opnieuw gevraagd.'],
+    beeld: { titel: 'De deellink op de telefoon van de klant' },
+  },
+  brief: {
+    label: 'Content brief',
+    titel: 'Elke pagina begint met onderzoek.',
+    intro: 'Voor er een woord geschreven wordt, legt een brief vast wat er op de pagina moet, welke vragen de lezer heeft, wat concurrerende pagina\'s doen en welke informatie alleen het bedrijf kan geven.',
+    punten: ['Het juiste soort pagina voor het doel.', 'Wat ontbreekt, gaat als vraag naar het bedrijf.'],
+    beeld: { titel: 'De brief voor een pagina over bakfiets leasen' },
+  },
+  bibliotheek: {
+    label: 'Bibliotheek',
+    titel: 'Alle geschreven pagina\'s, met wat er nog moet gebeuren.',
+    intro: 'In de bibliotheek staan de teksten zelf: wat je moet lezen en goedkeuren, wat klaarstaat om op de site te zetten en wat al live staat. Elke versie blijft bewaard.',
+    punten: ['Goedkeuren, een aanpassing vragen of zelf bewerken.', 'Filter op één cluster.', 'Goedkeuren kun je ook bij de klant leggen.'],
+    beeld: { titel: 'De bibliotheek van Fietsen Jansen' },
+  },
+  publiceren: {
+    label: 'Publiceren',
+    titel: 'Plakklaar voor elk CMS. Jouw team zet hem live.',
+    intro: 'Kopieer de tekst als HTML, Markdown of platte tekst, met titel, metabeschrijving, veelgestelde vragen, gestructureerde gegevens en suggesties voor interne links. Meld daarna het adres: Orbit controleert of de pagina echt live staat.',
+    punten: ['Orbit zet zelf niets op een website.', 'Na het melden plant Orbit de hermetingen.'],
+    beeld: { titel: 'Een goedgekeurde pagina, klaar om live te zetten' },
+  },
+  zoekverkeer: {
+    label: 'Zoekverkeer',
+    titel: 'Wat de nieuwe pagina\'s doen in Google.',
+    intro: 'Orbit haalt elke dag klikken, vertoningen, doorklikratio en positie op uit Google Search Console, alleen voor de pagina\'s die Orbit schreef. Een markering op de grafiek laat zien wanneer een pagina live ging.',
+    punten: ['Elke pagina telt vanaf zijn eigen publicatiedatum.', 'Het effect in AI per pagina, los van Google.', 'Te exporteren als CSV.'],
+    beeld: { titel: 'Zoekverkeer van de pagina\'s van Orbit', tekst: 'Een stijging na publicatie bewijst op zichzelf niet dat de pagina de oorzaak is.' },
+  },
+  feitencontrole: {
+    label: 'Feitencontrole',
+    titel: 'Zie wat AI verkeerd zegt over je klant.',
+    intro: 'Een oud telefoonnummer of een dienst die het bedrijf niet levert: Orbit legt de antwoorden van AI-assistenten naast de kennis van het bedrijf. Per gegeven zie je het letterlijke citaat, wie het zei en wanneer.',
+    punten: ['Na elke meting nagelopen, zonder extra kosten.', 'Een melding bij een nieuwe fout.'],
+    beeld: { titel: 'Een onjuist gegeven in een AI-antwoord' },
+  },
+  overzicht: {
+    label: 'Overzicht',
+    titel: 'Elke maand dezelfde vijf stappen, en wie aan zet is.',
+    intro: 'Het overzicht van een bedrijf toont bovenaan wat er op jou wacht, en daaronder de vijf stappen van deze maand: meten, plannen, schrijven, publiceren en hermeten. Ook een nieuwe collega weet zo meteen wat er moet gebeuren.',
+    punten: ['Per stap wat er deze maand gebeurd is.', 'Meldingen, en een herinnering op maandagochtend.', 'Alles loopt op de achtergrond.'],
+    beeld: { titel: 'Het overzicht van Fietsen Jansen in oktober' },
+  },
+} satisfies Record<string, Scherm>
