@@ -220,10 +220,10 @@ img, svg { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) { .nav-menu-popup[data-open] { animation: none; } }
 .nav-divider { width: 1px; height: 16px; margin: 0 8px; background: var(--border-primary); }
 .header-actions { display: flex; align-items: center; gap: 8px; }
-/* Zoals "Log in" naast "Sign up" op linear.app: een tekstlink naast de witte knop, ook op mobiel */
+/* Zoals "Log in" naast "Sign up" op linear.app: een tekstlink naast de witte knop */
 .header-contact { padding: 0 8px; white-space: nowrap; }
-/* Op de smalste schermen past het naast logo, knop en menuknop niet; "Inloggen" staat dan in het mobiele menu */
-@media (max-width: 379px) { .header-contact { display: none; } }
+/* Op mobiel staat "Log in" al in het menu */
+@media (max-width: 768px) { .header-contact { display: none; } }
 
 .menu-toggle {
   display: none; width: 32px; height: 32px; margin-right: -6px; align-items: center; justify-content: center; border-radius: 8px; color: var(--text-primary);
