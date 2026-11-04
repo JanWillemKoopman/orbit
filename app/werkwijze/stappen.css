@@ -79,3 +79,16 @@
 @media (prefers-reduced-motion: reduce) {
   .ww-balk-in, .ww-balk-lijst i { transition: none; }
 }
+
+/* Hero op een telefoon: de video is hier een vierkante uitsnede (de helft van de breedte van het
+   origineel) die bovenaan staat en naar onderen overloopt in de achtergrond. Een staande uitsnede
+   die het hele vlak vult, toont maar een derde van de breedte en oogt te ver ingezoomd. De grens is
+   dezelfde als waarop HeroVideo de mobiele video kiest. */
+@media (max-width: 768px) {
+  .ww .lp-hero-media::before, .ww .lp-hero-video {
+    inset: 0 0 auto 0; height: auto; aspect-ratio: 1 / 1; object-position: 50% 50%;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  }
+  .ww .lp-hero-media::before { background-position: 50% 50%; background-size: cover; }
+}
