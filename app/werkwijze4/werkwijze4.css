@@ -1,0 +1,172 @@
+/* ==========================================================================
+   Pagina Werkwijze 4 (/werkwijze4): de opzet van /werkwijze3, strakker naar linear.app. Platte
+   panelen met een rand van 1px en lichtval van boven in plaats van schaduwen, een FIG-label in mono, en
+   isometrische lijnfiguren zoals de illustraties op linear.app (components/werkwijze4/Figuren.tsx).
+   Grijs met het accent alleen op het onderdeel waar het om gaat. Beweging: kort, ease-out, alleen
+   opacity, transform en het tekenen van een lijn, en alles staat stil bij minder beweging.
+   ========================================================================== */
+
+/* Hero ------------------------------------------------------------------ */
+.w4-hero { border-bottom: 1px solid var(--border-translucent); overflow: hidden; }
+.w4-hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 32px; padding-block: 168px 96px; }
+.w4-hero-titel { max-width: 640px; }
+.w4-woord { display: inline-block; white-space: pre; animation: w4-woord 0.9s var(--ease-out-expo) both; animation-delay: calc(0.12s + var(--i) * 0.05s); }
+.w4-hero-eyebrow { animation: w4-woord 0.9s var(--ease-out-expo) both; }
+@keyframes w4-woord { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.w4-hero-figuur { display: block; width: 118%; max-width: 720px; margin-right: -9%; justify-self: end; overflow: visible; }
+.w4-baan-in { stroke-dasharray: 1; stroke-dashoffset: 1; animation: w4-trek 2.2s var(--ease-out-expo) var(--d) forwards; }
+.w4-hero-laag { animation: w4-zak 0.9s var(--ease-out-expo) var(--d) both; }
+.w4-hero-stip { animation: w4-in 0.6s var(--ease-out-quad) 1.4s both; }
+@keyframes w4-trek { to { stroke-dashoffset: 0; } }
+@keyframes w4-zak { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+@keyframes w4-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* De stapel panelen ------------------------------------------------------- */
+.w4-stapel { display: flex; flex-direction: column; gap: 32px; margin: 0; padding: 128px 0 120px; list-style: none; }
+.w4-kaart {
+  position: sticky; top: calc(var(--header-height) + 32px + var(--i) * 10px);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 520px;
+  border-radius: 12px; overflow: hidden; scroll-margin-top: calc(var(--header-height) + 32px);
+  background: #0b0c0d; border: 1px solid rgba(255, 255, 255, 0.08);
+  transform-origin: 50% 0;
+  transition: transform 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-quad);
+}
+.w4-kaart[data-onder] { transform: scale(0.97); opacity: 0.5; }
+
+.w4-kaart-tekst { display: flex; flex-direction: column; padding: 40px 48px 48px 40px; }
+.w4-nr { font-family: var(--font-mono); font-size: 12px; line-height: 17px; letter-spacing: 0.02em; color: var(--text-quaternary); }
+.w4-nr span { color: var(--accent); }
+.w4-titel { margin-top: auto; padding-top: 48px; margin-left: -1px; font-size: 32px; line-height: 1.125; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary); text-wrap: balance; }
+.w4-aanloop { margin-top: 16px; max-width: 38ch; font-size: 17px; line-height: 1.5; letter-spacing: -0.012em; color: var(--text-secondary); text-wrap: pretty; }
+.w4-tekst { margin-top: 12px; max-width: 54ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+
+/* Het beeldvlak: lichtval van boven zoals de panelen op linear.app */
+.w4-kaart-beeld {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  background: radial-gradient(90% 70% at 50% 0%, rgba(208, 214, 224, 0.07) 0%, rgba(208, 214, 224, 0.015) 50%, rgba(8, 9, 10, 0) 85%), #0a0b0c;
+}
+.w4-fig { position: absolute; top: 20px; left: 24px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-quaternary); }
+.w4-figuur { display: block; width: 90%; max-width: 440px; height: auto; overflow: visible; }
+
+/* Figuren: lijnen en vlakken ---------------------------------------------- */
+.w4-figuur *, .w4-hero-figuur * { vector-effect: non-scaling-stroke; }
+.w4-blok path { stroke: rgba(255, 255, 255, 0.3); stroke-width: 1; stroke-linejoin: round; }
+.w4-boven { fill: #131416; }
+.w4-zijde-r { fill: #0c0d0e; }
+.w4-zijde-l { fill: #0f1011; }
+.w4-blok-accent path { stroke: rgba(188, 255, 47, 0.55); }
+.w4-blok-accent .w4-boven { fill: #1a2109; stroke: var(--accent); }
+.w4-blok-accent .w4-zijde-r { fill: #0e1206; }
+.w4-blok-accent .w4-zijde-l { fill: #111608; }
+.w4-vlak { fill: rgba(255, 255, 255, 0.012); stroke: rgba(255, 255, 255, 0.1); stroke-width: 1; }
+.w4-hulp { fill: none; stroke: rgba(255, 255, 255, 0.2); stroke-width: 1; stroke-dasharray: 2 3; }
+.w4-regel { fill: none; stroke: rgba(255, 255, 255, 0.24); stroke-width: 1.25; stroke-linecap: round; }
+.w4-regel-sterk { fill: none; stroke: rgba(255, 255, 255, 0.55); stroke-width: 1.5; stroke-linecap: round; }
+.w4-regel-accent { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.w4-accent-vlak { fill: var(--accent); }
+.w4-gleuf { fill: #08090a; stroke: rgba(255, 255, 255, 0.22); stroke-width: 1; }
+.w4-verbind { fill: none; stroke: rgba(255, 255, 255, 0.3); stroke-width: 1; }
+.w4-scherm { fill: #0a0b0c; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
+.w4-bel { fill: #17181a; stroke: rgba(255, 255, 255, 0.28); stroke-width: 1; }
+.w4-bel-accent { fill: rgba(188, 255, 47, 0.08); stroke: rgba(188, 255, 47, 0.7); stroke-width: 1; }
+.w4-typ-stip { fill: rgba(255, 255, 255, 0.5); }
+.w4-geest { fill: #0b0c0d; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
+.w4-markeer { fill: rgba(188, 255, 47, 0.07); stroke: rgba(188, 255, 47, 0.5); stroke-width: 1; }
+.w4-badge { fill: #0e0f10; stroke: var(--accent); stroke-width: 1.25; }
+.w4-vink { fill: none; stroke: var(--accent); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.w4-puls { fill: none; stroke: var(--accent); stroke-width: 1; opacity: 0; }
+.w4-trend { fill: none; stroke: rgba(188, 255, 47, 0.6); stroke-width: 1.25; stroke-linejoin: round; }
+.w4-baan { fill: none; stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; }
+.w4-baan-midden { stroke: rgba(255, 255, 255, 0.24); }
+.w4-satelliet { fill: var(--accent); }
+.w4-satelliet-grijs { fill: var(--text-tertiary); }
+
+/* Labels in de figuren, zoals in de schema's op linear.app */
+.w4-label-kader { fill: #0b0c0d; stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; }
+.w4-label-tekst, .w4-as { font-family: var(--font-mono); font-size: 7px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--text-tertiary); }
+.w4-as { fill: var(--text-quaternary); }
+.w4-leider { fill: none; stroke: rgba(255, 255, 255, 0.22); stroke-width: 1; stroke-dasharray: 1.5 2.5; }
+.w4-leider-punt { fill: var(--text-tertiary); }
+
+/* Wie met de muis over een paneel gaat, ziet de bovenste lagen iets loskomen */
+.w4-zweef { transition: transform 0.6s var(--ease-out-expo); }
+@media (hover: hover) { .w4-kaart:hover .w4-zweef { transform: translateY(-5px); } }
+
+/* Na het opbouwen stroomt er rustig iets langs de hulplijnen */
+.w4-kaart[data-in] .w4-figuur .w4-hulp { animation: w4-stroom 1.6s linear 2.4s infinite; }
+@keyframes w4-stroom { to { stroke-dashoffset: -10; } }
+
+/* Figuren: beweging. De eindstand is de gewone stand; zolang een paneel niet in beeld is geweest (en
+   JavaScript draait), staat elk onderdeel in zijn beginstand. --------------------------------- */
+.w4-figuur * { transform-box: fill-box; }
+.w4-zak, .w4-rijs, .w4-op, .w4-groei, .w4-schuif-l, .w4-schuif-r {
+  transition: opacity 0.5s var(--ease-out-quad), transform 0.8s var(--ease-out-expo);
+  transition-delay: var(--d, 0s);
+}
+.w4-trek { stroke-dasharray: 1; stroke-dashoffset: 0; transition: stroke-dashoffset 0.9s var(--ease-out-quad); transition-delay: var(--d, 0s); }
+.w4-groei { transform-origin: 50% 100%; }
+
+.w4-js .w4-kaart:not([data-in]) .w4-zak { opacity: 0; transform: translateY(-14px); }
+.w4-js .w4-kaart:not([data-in]) .w4-rijs { opacity: 0; transform: translateY(10px); }
+.w4-js .w4-kaart:not([data-in]) .w4-op { opacity: 0; }
+.w4-js .w4-kaart:not([data-in]) .w4-groei { transform: scaleY(0); }
+.w4-js .w4-kaart:not([data-in]) .w4-schuif-l { opacity: 0; transform: translate(-10px, -6px); }
+.w4-js .w4-kaart:not([data-in]) .w4-schuif-r { opacity: 0; transform: translate(10px, 6px); }
+.w4-js .w4-kaart:not([data-in]) .w4-trek { stroke-dashoffset: 1; }
+.w4-js .w4-kaart:not([data-in]) .w4-satelliet { opacity: 0; }
+
+.w4-typen { opacity: 0; }
+.w4-kaart[data-in] .w4-typen { animation: w4-typen 1.1s var(--ease-out-quad) var(--d) both; }
+.w4-kaart[data-in] .w4-typ-stip { transform-origin: 50% 50%; animation: w4-typ 0.45s var(--ease-out-quad) var(--d) 2 alternate; }
+@keyframes w4-typen { 0% { opacity: 0; } 15%, 80% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes w4-typ { to { transform: translateY(-3px); } }
+.w4-puls { transform-origin: 50% 50%; }
+.w4-kaart[data-in] .w4-puls { animation: w4-puls 1.8s var(--ease-out-quad) var(--d) 2; }
+@keyframes w4-puls { from { opacity: 0.9; transform: scale(0.4); } to { opacity: 0; transform: scale(1.6); } }
+
+/* De tekst van een paneel komt na elkaar binnen */
+.w4-kaart-tekst > * { transition: opacity 0.6s var(--ease-out-quad), transform 0.8s var(--ease-out-expo); }
+.w4-kaart-tekst > :nth-child(2) { transition-delay: 0.05s; }
+.w4-kaart-tekst > :nth-child(3) { transition-delay: 0.1s; }
+.w4-kaart-tekst > :nth-child(4) { transition-delay: 0.15s; }
+.w4-js .w4-kaart:not([data-in]) .w4-kaart-tekst > * { opacity: 0; transform: translateY(8px); }
+
+/* Breekpunten --------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .w4-kaart-tekst { padding: 36px; }
+  .w4-titel { font-size: 28px; }
+}
+@media (max-width: 1024px) {
+  .w4-hero-inner { grid-template-columns: 1fr; padding-block: 152px 48px; gap: 0; }
+  .w4-hero-figuur { width: 100%; max-width: 560px; margin: 8px auto 0; justify-self: center; }
+}
+/* Smal of laag scherm: geen stapel, maar panelen onder elkaar met de figuur bovenaan. Een paneel dat
+   hoger is dan het scherm kan niet blijven staan zonder dat er tekst onder het volgende verdwijnt. */
+@media (max-width: 900px), (max-height: 700px) {
+  .w4-kaart { position: relative; top: auto; grid-template-columns: 1fr; min-height: 0; }
+  .w4-kaart[data-onder] { transform: none; opacity: 1; }
+  .w4-kaart-beeld { order: -1; height: 300px; border-left: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+  .w4-figuur { width: auto; height: 84%; max-width: 100%; }
+  .w4-titel { padding-top: 28px; }
+}
+@media (max-width: 640px) {
+  .w4-hero-inner { padding-block: 136px 32px; }
+  .w4-stapel { gap: 16px; padding: 48px 0 64px; }
+  .w4-kaart { margin-inline: calc(-0.5 * var(--page-padding)); }
+  .w4-kaart-beeld { height: 240px; }
+  .w4-kaart-tekst { padding: 24px 22px 28px; }
+  .w4-titel { padding-top: 20px; font-size: 26px; }
+  .w4-aanloop { font-size: 17px; }
+  .w4-fig { top: 14px; left: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w4-woord, .w4-hero-eyebrow, .w4-hero-laag, .w4-hero-stip { animation: none; }
+  .w4-baan-in { animation: none; stroke-dashoffset: 0; }
+  .w4-satelliet, .w4-satelliet-grijs { display: none; }
+  .w4-kaart, .w4-kaart-tekst > *, .w4-figuur * { transition: none !important; animation: none !important; }
+  .w4-kaart[data-onder] { transform: none; opacity: 1; }
+  .w4-typen, .w4-puls { display: none; }
+  .w4-zweef { transition: none; }
+}

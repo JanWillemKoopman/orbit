@@ -1,22 +1,23 @@
 'use client'
 
-// De beweging op /werkwijze3. Zet `data-in` op een kaart zodra die in beeld komt (de animatie van de
-// kaart speelt dan één keer af) en `data-onder` op een kaart waar de volgende overheen schuift, zodat
-// die iets terugwijkt. Zonder JavaScript of met minder beweging aan staat alles meteen in beeld (zie
-// .w3-js in werkwijze3.css).
+// De beweging op /werkwijze3 en /werkwijze4 (`prefix` is w3 of w4). Zet `data-in` op een kaart zodra
+// die in beeld komt (de animatie van de kaart speelt dan één keer af) en `data-onder` op een kaart waar
+// de volgende overheen schuift, zodat die iets terugwijkt. Zonder JavaScript of met minder beweging aan
+// staat alles meteen in beeld (zie
+// .w3-js in werkwijze3.css en .w4-js in werkwijze4.css).
 import { useEffect } from 'react'
 
-export function Beweging() {
+export function Beweging({ prefix = 'w3' }: { prefix?: string }) {
   useEffect(() => {
-    const root = document.querySelector('.w3')
+    const root = document.querySelector(`.${prefix}`)
     if (!root) return
-    const kaarten = Array.from(root.querySelectorAll<HTMLElement>('.w3-kaart'))
+    const kaarten = Array.from(root.querySelectorAll<HTMLElement>(`.${prefix}-kaart`))
     // Wie minder beweging wil, krijgt alles meteen te zien
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       kaarten.forEach((k) => k.setAttribute('data-in', ''))
       return
     }
-    root.classList.add('w3-js')
+    root.classList.add(`${prefix}-js`)
 
     const zien = new IntersectionObserver(
       (items) => items.forEach((e) => {
@@ -47,6 +48,6 @@ export function Beweging() {
       window.removeEventListener('resize', plan)
       if (raf) cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [prefix])
   return null
 }

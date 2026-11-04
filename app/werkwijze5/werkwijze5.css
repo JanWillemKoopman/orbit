@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Pagina Werkwijze 5 (/werkwijze5): geïnspireerd op /werkwijze4, zonder beweging. De figuren en
+   hun stijl komen uit werkwijze4.css (components/werkwijze4/Figuren.tsx); hier staan de opbouw en het
+   stilzetten. Opbouw naar linear.app: rijen gescheiden door een lijn van 1px, de figuur om en om
+   rechts en links, direct op het zwart van de pagina met een FIG-label.
+   ========================================================================== */
+
+/* Alles staat stil: geen opbouw, geen stroom, geen rondlopende stip */
+.w5 .w4-figuur *, .w5 .w4-hero-figuur *, .w5 .w4-hero-titel { animation: none !important; transition: none !important; }
+.w5 .w4-baan-in { stroke-dashoffset: 0; }
+.w5 .w4-typen, .w5 .w4-puls { display: none; }
+
+/* De tien stappen als rijen ---------------------------------------------------- */
+.w5-lijst { margin: 0; padding: 0 0 128px; list-style: none; }
+.w5-stap {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 64px; align-items: center;
+  padding-block: 96px; border-bottom: 1px solid var(--border-translucent);
+}
+.w5-stap:last-child { border-bottom: 0; }
+
+.w5-nr { font-family: var(--font-mono); font-size: 12px; line-height: 17px; letter-spacing: 0.02em; color: var(--text-quaternary); }
+.w5-nr span { color: var(--accent); }
+.w5-titel { margin-top: 32px; margin-left: -2px; font-size: 40px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary); text-wrap: balance; }
+.w5-aanloop { margin-top: 20px; max-width: 36ch; font-size: 20px; line-height: 1.4; letter-spacing: -0.012em; color: var(--text-secondary); text-wrap: pretty; }
+.w5-lopend { margin-top: 16px; max-width: 52ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+
+/* De figuur staat direct op de pagina: zelfde zwart, geen vlak en geen rand, zodat hij erin opgaat */
+.w5-beeld {
+  position: relative; display: flex; align-items: center; justify-content: center; margin: 0; aspect-ratio: 6 / 5;
+  background: var(--bg-primary);
+}
+/* Om en om: de figuur rechts, dan links, dan weer rechts */
+.w5-stap:nth-child(even) { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+.w5-stap:nth-child(even) .w5-beeld { order: -1; }
+.w5-stap:nth-child(even) .w4-fig { left: auto; right: 24px; }
+.w5-beeld .w4-figuur { width: 88%; max-width: 520px; }
+
+/* Breekpunten --------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .w5-stap, .w5-stap:nth-child(even) { grid-template-columns: 1fr; gap: 40px; padding-block: 72px; }
+  .w5-stap:nth-child(even) .w5-beeld { order: 0; }
+  .w5-stap:nth-child(even) .w4-fig { left: 24px; right: auto; }
+  .w5-titel { font-size: 36px; }
+}
+@media (max-width: 640px) {
+  .w5-stap { gap: 28px; padding-block: 48px; }
+  .w5-titel { margin-top: 20px; font-size: 28px; }
+  .w5-aanloop { font-size: 18px; }
+  .w5-beeld { aspect-ratio: 5 / 4; }
+  .w5-beeld .w4-figuur { width: 96%; }
+  .w5-lijst { padding-bottom: 64px; }
+}
