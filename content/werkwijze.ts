@@ -1,16 +1,12 @@
-// Teksten van de pagina Werkwijze (/werkwijze), in de opbouw van linear.app/ai: een hero, vijf
-// secties met elk een intro (titel, tekst, link) en een groot beeld of een raster, een rij met de
-// vier productpagina's en de afsluiter. De beelden zijn nagebouwde schermen van Orbit
-// (components/product/Visuals.tsx) met de fictieve voorbeeldcase Lindeman Warmte.
-
-import type { Bijschrift, Verwijzing } from '@/components/product/Blokken'
-
-export type { Bijschrift, Verwijzing }
+// Teksten van de pagina Werkwijze (/werkwijze): een hero, een overzicht van de tien stappen en per stap
+// een titel met tekst en een beeld. De tekst van een stap is opgesplitst in een aanloop (groot) en de
+// rest (klein); samen vormen ze letterlijk de aangeleverde tekst, met één spatie ertussen. De beelden
+// zijn nagebouwde schermen van Orbit met de fictieve voorbeeldcase Lindeman Warmte.
 
 export const meta = {
   title: 'Werkwijze',
   description:
-    "Zie hoe Orbit werkt: AI-zichtbaarheid meten, contentkansen plannen, pagina's schrijven en beoordelen en het resultaat nameten. Voor online marketingbureaus met meerdere klanten.",
+    "Zo werkt Orbit in tien stappen: van een nieuwe klant en de nulmeting tot het contentplan, de pagina's, de effectmeting en het maandverslag.",
 }
 
 export const hero = {
@@ -18,91 +14,90 @@ export const hero = {
   title: 'Elke maand dezelfde ronde. Met bewijs aan het eind.',
 }
 
-export const secties = {
-  start: {
-    id: 'start',
-    label: 'Start',
-    titel: 'Elke klant een vaste maand.',
+export type Stap = { nr: number; id: string; titel: string; aanloop: string; tekst: string }
+
+export const stappen: Stap[] = [
+  {
+    nr: 1,
+    id: 'klant-toevoegen',
+    titel: 'Klant toevoegen',
+    aanloop: 'Je vult een naam en een website in. Meer niet.',
     tekst:
-      "Je klanten vragen ChatGPT al welke installateur ze moeten kiezen. Orbit laat zien of jouw klant genoemd wordt, schrijft de pagina's die dat veranderen en laat zien wat het opleverde. Voor al je klanten, onbeperkt.",
-    link: { label: 'Wat AI voor je doet', href: '/ai' },
-    beeld: {
-      titel: 'Wat er deze maand speelt',
-      tekst: 'Je ziet welke stap loopt, wat er op jou wacht en wanneer er een melding binnenkomt. Zo weet je elke ochtend waar je moet beginnen.',
-    },
-    cellen: [
-      { titel: 'Een klant staat in tien minuten klaar', tekst: 'Naam en website zijn genoeg. De lijst Dit bedrijf inrichten loopt met je mee en vinkt zichzelf af, ook voor een nieuwe collega.' },
-      { titel: 'Het kennismakingsgesprek stuurt alles', tekst: "Leg doelen, regio's en prioriteiten vast die een website niet vertelt. Kansen die het groeidoel van je klant raken, komen bovenaan." },
-    ] as Bijschrift[],
+      'Vanaf dat moment doet Orbit het werk waar een strateeg dagen mee bezig is: het leest de complete website, brengt het hele aanbod in kaart, zoekt de concurrenten op en test wat AI-assistenten nu al over het merk weten. Terwijl jij koffie haalt, bouwt Orbit een compleet merkdossier. Je begint elk nieuw klanttraject dus met een voorsprong.',
   },
-  meten: {
-    id: 'meten',
-    label: 'Meten',
-    titel: 'Zie bij welke vragen je klant wordt genoemd.',
+  {
+    nr: 2,
+    id: 'klant-onboarden',
+    titel: 'Klant onboarden',
+    aanloop: 'Met dat dossier op tafel wordt je kennismakingsgesprek direct een strategiesessie.',
     tekst:
-      'Dertig AI-vragen langs de klantreis, elke maand meten in ChatGPT, Gemini en Google AI Overview. Bij elk cijfer staat een marge, zodat je weet wanneer een verschil echt is. Zo verkoop je je klant geen toeval.',
-    link: { label: 'Hoe AI meet', href: '/ai' },
-    beeld: {
-      titel: 'Zichtbaarheid die je kunt laten zien',
-      tekst: 'Elke maand meten, steeds op dezelfde vragen, zodat je groei per onderwerp echt vergelijkt.',
-    },
-    cellen: [
-      { titel: 'De vragen van jouw klanten, langs de hele klantreis', tekst: 'Van oriëntatie tot beslissing, met het aanbod en de plaatsnamen van het bedrijf. Zo zie je of je klant alleen meedoet in de uitlegfase, of ook als de koper kiest.' },
-      { titel: 'Lees elk antwoord terug', tekst: 'Zie welke bedrijven de AI-assistent noemt, in welke volgorde en op welke bronnen dat leunt. Geen screenshot, maar een meting die je kunt nalezen.' },
-      { titel: 'Een cijfer met een marge', tekst: 'Vaste vragen, de zwaarste vaker gemeten, en een marge erbij. Je weet wanneer een verschil echt is, ook voor een klant met een kritische analist.' },
-      { titel: 'Weet wie je voor is', tekst: 'Per onderwerp zie je hoe vaak je klant genoemd wordt, naast de concurrenten die AI het vaakst aanbeveelt.' },
-    ] as Bijschrift[],
+      'Samen met je klant scherp je het aan: het aanbod, de concurrenten, de doelgroep en het verhaal van het merk. Brochures, prijslijsten en andere documenten voeg je met één klik toe. Zo groeit één centrale kennisbank per klant, waarin elk feit zijn bron heeft, of die nu uit de website, een document of de klant zelf komt. Aan het eind van het gesprek liggen de onderwerpen vast waarop je gaat winnen.',
   },
-  plannen: {
-    id: 'plannen',
-    label: 'Plannen',
-    titel: 'Geef inzichten een plek in je contentplan.',
+  {
+    nr: 3,
+    id: 'nulmeting',
+    titel: 'De nulmeting',
+    aanloop: 'Hier wordt het spannend. Per onderwerp stelt Orbit dertig vragen zoals echte klanten ze aan AI stellen, van de eerste oriëntatie tot het moment van kiezen.',
     tekst:
-      "Elke gemiste vraag wordt een pagina-idee met bewijs. Je kiest het aantal pagina's per maand, van vijf tot vijftig, en het plan loopt een jaar vooruit. Zo sluit je werk aan op wat je met je klant hebt afgesproken.",
-    beeld: {
-      titel: 'Plan het werk per maand',
-      tekst: 'Per maand zie je welke pagina op antwoorden, akkoord of publicatie wacht. Open maanden vullen zich met de sterkste kansen.',
-    },
-    cellen: [
-      { titel: 'Van gemist antwoord naar pagina', tekst: "Een vraag waarbij AI concurrenten noemt, wordt een kans en daarna een pagina. Nooit twee pagina's over hetzelfde." },
-      { titel: 'Klaar om in te plannen', tekst: 'Elk idee met zijn potentie en de vragen die het raakt. Eén klik en het staat in de maand.' },
-    ] as Bijschrift[],
+      'Orbit leest elk antwoord na: wordt je klant genoemd, op welke plek, en welke concurrent gaat ervandoor? Zo heb je zwart op wit hoe zichtbaar het merk is in AI. Je ziet ook precies waar de kansen liggen. Dat is een gesprek dat iedere klant wil voeren.',
   },
-  schrijven: {
-    id: 'schrijven',
-    label: 'Schrijven',
-    titel: 'Schrijf vanuit bedrijfskennis. Plaats wat je goedkeurt.',
+  {
+    nr: 4,
+    id: 'contentplan',
+    titel: 'Het contentplan',
+    aanloop: 'Elke kans wordt een concreet pagina-idee, met de vragen die die pagina moet gaan winnen.',
     tekst:
-      'Wat alleen je klant weet, beantwoordt hij zelf, ook op zijn telefoon en zonder account. Orbit schrijft zodra alle antwoorden er zijn. Jij beoordeelt, kopieert en meldt het adres.',
-    link: { label: 'Hoe de feiten bewaakt worden', href: '/kwaliteit' },
-    beeld: {
-      titel: 'Teksten die klinken als je klant',
-      tekst: 'Het antwoord van de klant staat in de tekst. Een bewering zonder bron valt op.',
-    },
-    cellen: [
-      { titel: 'Je klant antwoordt waar hij is', tekst: 'Via een link op zijn telefoon, zonder account. Het antwoord gaat direct mee naar het schrijven en jij belt niet meer na.' },
-      { titel: 'Controleer wat ertoe doet', tekst: 'Een termijn, bedrag of garantie zonder vastgelegde bron wordt geel. Zo komt er nooit een verzonnen belofte op de site van je klant.' },
-      { titel: 'Kopieer naar elk CMS', tekst: 'HTML, Markdown of platte tekst, met titel, omschrijving en veelgestelde vragen erbij. Orbit zet zelf niets op de site: jij houdt de regie.' },
-      { titel: 'Orbit controleert of hij live staat', tekst: 'Meld het adres en de tekst wordt teruggezocht, met een tweede poging een uur later. Zo start de nameting pas als de pagina er echt staat.' },
-    ] as Bijschrift[],
+      'Orbit kiest er meteen de vorm bij die werkt: een dienst- of productpagina, een artikel, een gids, een pagina met veelgestelde vragen of een vergelijking. Jij bepaalt per klant het tempo, en Orbit zet alles in een overzichtelijke maandplanning. Werk je voor tien klanten? Dan start je met één klik de maand voor allemaal tegelijk. Zo schaal je zonder extra mensen.',
   },
-  nameten: {
-    id: 'nameten',
-    label: 'Nameten',
-    titel: 'Zie wat de pagina deed. Laat het je klant zien.',
+  {
+    nr: 5,
+    id: 'voorbereiding',
+    titel: 'De voorbereiding',
+    aanloop: 'Waar andere tools meteen beginnen met schrijven, doet Orbit eerst onderzoek.',
     tekst:
-      'Na 14 en 28 dagen meet Orbit de doelvragen van elke pagina opnieuw en toont de klikken uit Google. Klanten die zien wat ze krijgen, blijven. Alles komt in een maandverslag met de naam van je bureau.',
-    link: { label: 'Beheer van je klanten', href: '/beheer' },
-    beeld: {
-      titel: 'Een verslag dat het gesprek voert',
-      tekst: 'Zichtbaarheid, wat er live ging en wat het deed, en wat volgende maand op de planning staat. Met de naam van je bureau erboven.',
-    },
-    cellen: [
-      { titel: 'Eerlijk over het effect', tekst: 'Per pagina de stand vóór publicatie en na 14 en 28 dagen, op dezelfde vragen. Bij te weinig vragen zegt Orbit dat het nog niet te zeggen is.' },
-      { titel: 'Klikken uit Google', tekst: 'Vertoningen, klikken en positie per gepubliceerde pagina, vanaf de dag dat hij live ging.' },
-    ] as Bijschrift[],
+      'Per pagina legt het de kennisbank van je klant naast actuele bronnen van internet, en zet in een scherpe briefing wat erop moet om de vraag beter te beantwoorden dan de concurrent. Orbit weet ook wat het niet weet. In plaats van prijzen, garanties of ervaringen te verzinnen, stelt het die als gerichte vragen aan je klant. Zo wordt elke pagina uniek en klopt alles.',
   },
-}
+  {
+    nr: 6,
+    id: 'klant-vult-aan',
+    titel: 'De klant vult aan',
+    aanloop: 'Je klant krijgt de vragen kort en overzichtelijk, per pagina en met een duidelijke deadline.',
+    tekst:
+      'Hij beantwoordt ze via een link die je doorstuurt, zonder in te loggen en zonder gedoe. Is er iets wat hij zelf graag op de pagina ziet? Dan is daar altijd ruimte voor. Zo komt echte kennis uit het bedrijf op de pagina’s te staan, en precies dat maakt het verschil bij AI-assistenten.',
+  },
+  {
+    nr: 7,
+    id: 'orbit-schrijft',
+    titel: 'Orbit schrijft',
+    aanloop: 'Op het juiste moment schrijft Orbit de pagina, in de toon en de aanspreekvorm van het merk.',
+    tekst:
+      'Orbit schrijft niet uit losse pols: elke pagina rust op de centrale kennisbank, de antwoorden van je klant en de briefing. Het resultaat is ijzersterke content die op feiten staat. Na een automatische eindredactie wordt elk bedrag, getal en keurmerk gecontroleerd tegen wat je klant echt heeft bevestigd. Je krijgt een complete pagina met titel, omschrijving voor Google en veelgestelde vragen.',
+  },
+  {
+    nr: 8,
+    id: 'goedkeuren-en-live',
+    titel: 'Content goedkeuren en live zetten',
+    aanloop: 'Jij houdt de regie en jouw bureau blijft het gezicht naar de klant.',
+    tekst:
+      'Orbit markeert de zinnen die nog een blik verdienen, zodat je pagina’s in een paar minuten goedkeurt in plaats van in een uur. Met één klik kopieer je de tekst in het juiste formaat voor elke website. Daarna geef je het adres door, en Orbit controleert zelf of de pagina echt online staat. Vanaf dat moment loopt de klok.',
+  },
+  {
+    nr: 9,
+    id: 'effect-meting',
+    titel: 'Effect meting',
+    aanloop: 'Dit is waar Orbit zich echt onderscheidt: je ziet wat je werk oplevert.',
+    tekst:
+      'Twee en vier weken na publicatie stelt Orbit dezelfde vragen opnieuw en zet het resultaat naast de stand van vóór de pagina. Wordt je klant vaker genoemd? Staat hij hoger? Je ziet het per pagina. Met Google Search Console gekoppeld volg je ook het effect in Google. Zo wordt AI-zichtbaarheid meetbaar.',
+  },
+  {
+    nr: 10,
+    id: 'maandverslag',
+    titel: 'Maandverslag',
+    aanloop: 'Elke maand ligt er per klant een helder verslag klaar, met de naam van jouw bureau erop.',
+    tekst:
+      'Daarin staat wat er is gemaakt, hoe de zichtbaarheid in AI groeit en wat de volgende stap is. Geen gepuzzel met spreadsheets, geen avonden rapportages schrijven. Je klant ziet elke maand de waarde van je werk, en jij hebt het perfecte gesprek voor de verlenging. Daarna begint de cyclus opnieuw.',
+  },
+]
 
 export const afsluiter = {
   title: 'Bekijk hoe Orbit in je bureau past.',
