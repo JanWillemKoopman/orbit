@@ -43,7 +43,7 @@ function StapSectie({ s }: { s: Stap }) {
 export default function WerkwijzePage() {
   return (
     <div className="home lp ww">
-      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="werkwijze-achtergrond" />
+      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="werkwijze-achtergrond" vierkantMobiel />
 
       <div className="ww-stappen">
         <StappenBalk stappen={stappen.map(({ id, nr, titel }) => ({ id, nr, titel }))} />

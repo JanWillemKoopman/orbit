@@ -87,9 +87,10 @@ export type Verwijzing = { label: string; href: string }
  * Hero zoals op linear.app/ai: een kleine regel en een grote titel, links uitgelijnd, zonder
  * beschrijving en zonder knoppen, met een rustige achtergrondvideo die over de volle breedte en achter
  * de header loopt. `video` is de naam van de opnames in public/video, zonder formaat en extensie
- * (`hero-werkwijze` voor hero-werkwijze-desktop.* en hero-werkwijze-mobiel.*).
+ * (`hero-werkwijze` voor hero-werkwijze-desktop.* en hero-werkwijze-mobiel.*). Met `vierkantMobiel` is de
+ * mobiele opname een vierkante uitsnede die bovenaan staat en naar onderen vervaagt (zie pagina.css).
  */
-export function PaginaHero({ eyebrow, titel, video }: { eyebrow?: string; titel: string; video: string }) {
+export function PaginaHero({ eyebrow, titel, video, vierkantMobiel = false }: { eyebrow?: string; titel: string; video: string; vierkantMobiel?: boolean }) {
   const desktop = `/video/${video}-desktop-poster.webp`
   const mobiel = `/video/${video}-mobiel-poster.webp`
   // Het eerste beeld komt als eerste binnen en alleen in het formaat dat de bezoeker nodig heeft
@@ -97,7 +98,7 @@ export function PaginaHero({ eyebrow, titel, video }: { eyebrow?: string; titel:
   preload(desktop, { as: 'image', media: '(min-width: 769px)', fetchPriority: 'high' })
   const poster = { '--poster-desktop': `url(${desktop})`, '--poster-mobiel': `url(${mobiel})` } as React.CSSProperties
   return (
-    <section className="lp-hero" aria-labelledby="lp-titel">
+    <section className={`lp-hero${vierkantMobiel ? ' lp-hero-vierkant' : ''}`} aria-labelledby="lp-titel">
       <div className="lp-hero-media" aria-hidden="true" style={poster}>
         <HeroVideo naam={video} />
       </div>
