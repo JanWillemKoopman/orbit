@@ -310,7 +310,7 @@ function Effect() {
 }
 
 /** 10. Het maandverslag: de maanden stapelen, de lijn stijgt, en de cyclus begint opnieuw. */
-function Maandverslag() {
+function Maandverslag({ statisch = false }: { statisch?: boolean }) {
   const lijn: [number, number][] = [[0, 0], [14, 6], [28, 4], [42, 16], [56, 20], [70, 34]]
   return (
     <Figuur y={-14}>
@@ -328,16 +328,21 @@ function Maandverslag() {
       />
       <Label x={148} y={-70} rechts tekst="Elke maand" naar={iso(54, -48, 24)} t={1.6} />
       <Label x={-148} y={-84} tekst="Opnieuw" naar={iso(-68, -68, 0)} t={1.8} />
-      <circle className="w4-satelliet" r={3.5}>
-        <animateMotion dur="16s" repeatCount="indefinite" begin="2s">
-          <mpath href="#w4-cyclus" />
-        </animateMotion>
-      </circle>
+      {statisch ? (
+        <circle className="w4-satelliet" r={3.5} cx={iso(-68, -68, 0)[0]} cy={iso(-68, -68, 0)[1]} />
+      ) : (
+        <circle className="w4-satelliet" r={3.5}>
+          <animateMotion dur="16s" repeatCount="indefinite" begin="2s">
+            <mpath href="#w4-cyclus" />
+          </animateMotion>
+        </circle>
+      )}
     </Figuur>
   )
 }
 
-export const FIGUREN: Record<string, () => React.JSX.Element> = {
+/** `statisch` geeft een figuur zonder rondlopende stip, voor /werkwijze5. */
+export const FIGUREN: Record<string, (p: { statisch?: boolean }) => React.JSX.Element> = {
   'klant-toevoegen': Dossier,
   'klant-onboarden': Kennisbank,
   nulmeting: Nulmeting,
@@ -350,8 +355,12 @@ export const FIGUREN: Record<string, () => React.JSX.Element> = {
   maandverslag: Maandverslag,
 }
 
-/** De hero: drie banen om een kleine stapel, met een stip die rondgaat. */
-export function HeroFiguur() {
+/** De hero: drie banen om een kleine stapel, met een stip die rondgaat (of stilstaat met `statisch`). */
+export function HeroFiguur({ statisch = false }: { statisch?: boolean }) {
+  const op = (straal: number, graden: number): P => {
+    const a = (graden * Math.PI) / 180
+    return iso(straal * Math.cos(a), straal * Math.sin(a), 0)
+  }
   return (
     <svg className="w4-hero-figuur" viewBox="-300 -190 600 380" aria-hidden="true">
       <g transform="translate(0 30)">
@@ -361,12 +370,21 @@ export function HeroFiguur() {
         {[0, 1, 2].map((i) => (
           <Blok key={i} className="w4-hero-laag" style={d(0.5 + i * 0.12)} x={-30} y={-30} z={i * 14} w={60} l={60} h={6} />
         ))}
-        <circle className="w4-satelliet w4-hero-stip" r={4.5}>
-          <animateMotion dur="24s" repeatCount="indefinite"><mpath href="#w4-baan-1" /></animateMotion>
-        </circle>
-        <circle className="w4-satelliet-grijs w4-hero-stip" r={3}>
-          <animateMotion dur="15s" begin="-6s" repeatCount="indefinite"><mpath href="#w4-baan-3" /></animateMotion>
-        </circle>
+        {statisch ? (
+          <>
+            <circle className="w4-satelliet" r={4.5} cx={op(190, 120)[0]} cy={op(190, 120)[1]} />
+            <circle className="w4-satelliet-grijs" r={3} cx={op(92, -30)[0]} cy={op(92, -30)[1]} />
+          </>
+        ) : (
+          <>
+            <circle className="w4-satelliet w4-hero-stip" r={4.5}>
+              <animateMotion dur="24s" repeatCount="indefinite"><mpath href="#w4-baan-1" /></animateMotion>
+            </circle>
+            <circle className="w4-satelliet-grijs w4-hero-stip" r={3}>
+              <animateMotion dur="15s" begin="-6s" repeatCount="indefinite"><mpath href="#w4-baan-3" /></animateMotion>
+            </circle>
+          </>
+        )}
       </g>
     </svg>
   )
