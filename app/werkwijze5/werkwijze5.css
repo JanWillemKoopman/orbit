@@ -1,8 +1,8 @@
 /* ==========================================================================
    Pagina Werkwijze 5 (/werkwijze5): geïnspireerd op /werkwijze4, zonder beweging. De figuren en
    hun stijl komen uit werkwijze4.css (components/werkwijze4/Figuren.tsx); hier staan de opbouw en het
-   stilzetten. Opbouw naar linear.app: rijen gescheiden door een lijn van 1px, tekst links, een vlak
-   met lichtval van boven en een FIG-label rechts.
+   stilzetten. Opbouw naar linear.app: rijen gescheiden door een lijn van 1px, de figuur om en om
+   rechts en links, direct op het zwart van de pagina met een FIG-label.
    ========================================================================== */
 
 /* Alles staat stil: geen opbouw, geen stroom, geen rondlopende stip */
@@ -24,23 +24,29 @@
 .w5-aanloop { margin-top: 20px; max-width: 36ch; font-size: 20px; line-height: 1.4; letter-spacing: -0.012em; color: var(--text-secondary); text-wrap: pretty; }
 .w5-lopend { margin-top: 16px; max-width: 52ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
 
+/* De figuur staat direct op de pagina: zelfde zwart, geen vlak en geen rand, zodat hij erin opgaat */
 .w5-beeld {
   position: relative; display: flex; align-items: center; justify-content: center; margin: 0; aspect-ratio: 6 / 5;
-  border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;
-  background: radial-gradient(90% 70% at 50% 0%, rgba(208, 214, 224, 0.07) 0%, rgba(208, 214, 224, 0.015) 50%, rgba(8, 9, 10, 0) 85%), #0a0b0c;
+  background: var(--bg-primary);
 }
+/* Om en om: de figuur rechts, dan links, dan weer rechts */
+.w5-stap:nth-child(even) { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+.w5-stap:nth-child(even) .w5-beeld { order: -1; }
+.w5-stap:nth-child(even) .w4-fig { left: auto; right: 24px; }
 .w5-beeld .w4-figuur { width: 88%; max-width: 520px; }
 
 /* Breekpunten --------------------------------------------------------------- */
 @media (max-width: 1024px) {
-  .w5-stap { grid-template-columns: 1fr; gap: 40px; padding-block: 72px; }
+  .w5-stap, .w5-stap:nth-child(even) { grid-template-columns: 1fr; gap: 40px; padding-block: 72px; }
+  .w5-stap:nth-child(even) .w5-beeld { order: 0; }
+  .w5-stap:nth-child(even) .w4-fig { left: 24px; right: auto; }
   .w5-titel { font-size: 36px; }
 }
 @media (max-width: 640px) {
   .w5-stap { gap: 28px; padding-block: 48px; }
   .w5-titel { margin-top: 20px; font-size: 28px; }
   .w5-aanloop { font-size: 18px; }
-  .w5-beeld { margin-inline: calc(-0.5 * var(--page-padding)); aspect-ratio: 5 / 4; }
+  .w5-beeld { aspect-ratio: 5 / 4; }
   .w5-beeld .w4-figuur { width: 96%; }
   .w5-lijst { padding-bottom: 64px; }
 }
