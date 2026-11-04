@@ -54,6 +54,30 @@ function Figuur({ children, y = 0 }: { children: ReactNode; y?: number }) {
   )
 }
 
+/**
+ * Een label zoals in de schema's op linear.app: mono, hoofdletters, in een dun kader, met een
+ * stippellijn naar het punt waar het bij hoort. (x, y) is de linker- of rechterkant van het kader.
+ */
+function Label({ x, y, tekst, naar, rechts = false, t = 1.6 }: { x: number; y: number; tekst: string; naar?: P; rechts?: boolean; t?: number }) {
+  const b = r(tekst.length * 4.6 + 12)
+  const x0 = rechts ? x - b : x
+  const rand: P = [rechts ? x0 : x0 + b, y]
+  const begin: P = naar && Math.abs(naar[0] - x0) < Math.abs(naar[0] - (x0 + b)) ? [x0, y] : rand
+  return (
+    <g className="w4-label w4-op" style={d(t)}>
+      {naar && <path className="w4-leider" d={`M${begin[0]} ${begin[1]} L${naar[0]} ${naar[1]}`} />}
+      {naar && <circle className="w4-leider-punt" cx={naar[0]} cy={naar[1]} r={1.6} />}
+      <rect className="w4-label-kader" x={x0} y={y - 6.5} width={b} height={13} rx={3} />
+      <text className="w4-label-tekst" x={x0 + 6} y={y + 0.5} dominantBaseline="middle">{tekst}</text>
+    </g>
+  )
+}
+
+/** Een los mono-label zonder kader, voor een as of een reeks. */
+function As({ x, y, tekst, eind = false, t = 0.2 }: { x: number; y: number; tekst: string; eind?: boolean; t?: number }) {
+  return <text className="w4-as w4-op" style={d(t)} x={x} y={y} textAnchor={eind ? 'end' : 'middle'} dominantBaseline="middle">{tekst}</text>
+}
+
 /** 1. Klant toevoegen: laag voor laag bouwt het merkdossier zich op. */
 function Dossier() {
   const lagen = [0, 13, 26, 39]
@@ -66,11 +90,15 @@ function Dossier() {
       {[[50, -50], [50, 50], [-50, 50]].map(([x, y], i) => (
         <path key={i} className="w4-hulp w4-op" style={d(0.7)} d={pad([iso(x, y, 46), iso(x, y, 66)], false)} />
       ))}
-      <Blok className="w4-zak" style={d(0.75)} x={-50} y={-50} z={66} w={100} l={100} h={7} />
-      {[0, 1, 2, 3].map((i) => (
-        <Regel key={i} className="w4-regel w4-trek" style={d(1.05 + i * 0.08)} x={-34} y={-30 + i * 14} z={73} l={[58, 44, 52, 30][i]} />
-      ))}
-      <Ring className="w4-accent-vlak w4-op" style={d(1.45)} x={34} y={30} z={73} straal={5} />
+      <g className="w4-zweef">
+        <Blok className="w4-zak" style={d(0.75)} x={-50} y={-50} z={66} w={100} l={100} h={7} />
+        {[0, 1, 2, 3].map((i) => (
+          <Regel key={i} className="w4-regel w4-trek" style={d(1.05 + i * 0.08)} x={-34} y={-30 + i * 14} z={73} l={[58, 44, 52, 30][i]} />
+        ))}
+        <Ring className="w4-accent-vlak w4-op" style={d(1.45)} x={34} y={30} z={73} straal={5} />
+      </g>
+      <Label x={-148} y={-104} tekst="Merkdossier" naar={iso(-50, 50, 73)} />
+      <Label x={148} y={40} rechts tekst="Website · aanbod · AI" naar={iso(50, -50, 6)} t={1.75} />
     </Figuur>
   )
 }
@@ -83,7 +111,7 @@ function Kennisbank() {
       <Blok className="w4-op" style={d(0)} x={-56} y={-6} z={0} w={112} l={84} h={30} />
       <path className="w4-gleuf w4-op" style={d(0.1)} d={pad([iso(-30, 18, 30), iso(30, 18, 30), iso(30, 54, 30), iso(-30, 54, 30)])} />
       {vellen.map(([x, y, t], i) => (
-        <g key={i}>
+        <g key={i} className="w4-zweef">
           <path className="w4-hulp w4-op" style={d(t + 0.3)} d={pad([iso(x + 20, y + 26, 96), iso(x + 20, y + 26, 34)], false)} />
           <Blok className="w4-zak" style={d(t)} x={x} y={y} z={96} w={40} l={52} h={2} />
           {[0, 1, 2].map((j) => (
@@ -92,6 +120,8 @@ function Kennisbank() {
         </g>
       ))}
       <Ring className="w4-accent-vlak w4-op" style={d(1.1)} x={40} y={66} z={30} straal={5} />
+      <Label x={148} y={34} rechts tekst="Kennisbank" naar={iso(56, -6, 16)} />
+      <Label x={-148} y={-122} tekst="Documenten" naar={iso(-78, 24, 97)} t={1.75} />
     </Figuur>
   )
 }
@@ -121,6 +151,8 @@ function Nulmeting() {
           />
         )
       })}
+      <Label x={-148} y={-62} tekst="30 vragen" naar={iso(-74, 63, 0)} />
+      <Label x={148} y={-92} rechts tekst="Genoemd" naar={iso(-36, -25, 30)} t={1.75} />
     </Figuur>
   )
 }
@@ -135,7 +167,7 @@ function Contentplan() {
       {[0, 1, 2, 3].map((k) => (
         <g key={k}>
           <path className="w4-hulp w4-op" style={d(0.05)} d={pad([iso(-80, -62 + k * 33, 0), iso(80, -62 + k * 33, 0)], false)} />
-          <Regel className="w4-regel-sterk w4-trek" style={d(0.1 + k * 0.08)} x={-74} y={-54 + k * 33} z={0} l={22} />
+          <As x={iso(-86, -46 + k * 33, 0)[0]} y={iso(-86, -46 + k * 33, 0)[1]} eind tekst={['OKT', 'NOV', 'DEC', 'JAN'][k]} t={0.1 + k * 0.08} />
         </g>
       ))}
       {slabs.map(({ k, rij }) => (
@@ -151,6 +183,7 @@ function Contentplan() {
           h={5}
         />
       ))}
+      <Label x={148} y={-96} rechts tekst="Pagina-idee" naar={iso(-31, -45, 5)} t={1.5} />
     </Figuur>
   )
 }
@@ -168,12 +201,17 @@ function Voorbereiding() {
       {[0, 1, 2].map((j) => <Regel key={`b${j}`} className="w4-regel w4-trek" style={d(0.3 + j * 0.06)} x={52} y={-26 + j * 12} z={6} l={[30, 38, 24][j]} />)}
       <path className="w4-verbind w4-trek" style={d(0.6)} pathLength={1} d={`M${ax} ${ay} C ${ax} ${ay - 40}, ${sx - 30} ${sy + 30}, ${sx - 6} ${sy + 8}`} />
       <path className="w4-verbind w4-trek" style={d(0.7)} pathLength={1} d={`M${bx} ${by} C ${bx} ${by - 40}, ${sx + 30} ${sy + 30}, ${sx + 6} ${sy + 8}`} />
-      <Blok className="w4-zak" style={d(1.0)} x={-14} y={-14} z={70} w={60} l={60} h={4} />
-      {[0, 1, 2].map((j) => <Regel key={`s${j}`} className="w4-regel-sterk w4-trek" style={d(1.25 + j * 0.07)} x={-4} y={-2 + j * 14} z={74} l={[38, 30, 34][j]} />)}
+      <g className="w4-zweef">
+        <Blok className="w4-zak" style={d(1.0)} x={-14} y={-14} z={70} w={60} l={60} h={4} />
+        {[0, 1, 2].map((j) => <Regel key={`s${j}`} className="w4-regel-sterk w4-trek" style={d(1.25 + j * 0.07)} x={-4} y={-2 + j * 14} z={74} l={[38, 30, 34][j]} />)}
+      </g>
       <g className="w4-zak" style={d(1.55)}>
         <Blok accent x={58} y={-40} z={92} w={16} l={16} h={16} />
       </g>
       <path className="w4-hulp w4-op" style={d(1.6)} d={pad([iso(66, -32, 92), iso(66, -32, 78)], false)} />
+      <Label x={-148} y={74} tekst="Kennisbank" naar={iso(-36, 70, 6)} t={1.7} />
+      <Label x={148} y={74} rechts tekst="Internet" naar={iso(70, -36, 6)} t={1.75} />
+      <Label x={148} y={-104} rechts tekst="Vraag aan klant" naar={iso(74, -32, 100)} t={1.85} />
     </Figuur>
   )
 }
@@ -197,6 +235,8 @@ function KlantVultAan() {
       <path className="w4-bel-accent w4-schuif-r" style={d(2.0)} d={vlak(-10, 30, 40, 72)} />
       <path className="w4-regel-accent w4-trek" style={d(2.25)} pathLength={1} d={pad([iso(8, -4, 62), iso(8, 24, 62)], false)} />
       <path className="w4-regel-accent w4-trek" style={d(2.35)} pathLength={1} d={pad([iso(8, -4, 52), iso(8, 14, 52)], false)} />
+      <Label x={-148} y={-176} tekst="Vraag" naar={iso(8, 18, 116)} t={0.9} />
+      <Label x={148} y={-110} rechts tekst="Antwoord" naar={iso(8, -10, 56)} t={2.5} />
     </Figuur>
   )
 }
@@ -217,6 +257,8 @@ function Schrijft() {
       ))}
       <path className="w4-regel-accent w4-trek" style={d(1.5)} pathLength={1} d={pad([iso(-38, 6, 89), iso(-8, 6, 89)], false)} />
       <path className="w4-regel-accent w4-trek" style={d(1.62)} pathLength={1} d={pad([iso(4, 6, 50), iso(30, 6, 50)], false)} />
+      <Label x={148} y={-126} rechts tekst="Bevestigd" naar={iso(-8, 6, 89)} t={1.8} />
+      <Label x={-148} y={-30} tekst="Briefing" naar={iso(-36, -26, 70)} t={1.9} />
     </Figuur>
   )
 }
@@ -232,12 +274,14 @@ function Goedkeuren() {
       ))}
       <path className="w4-markeer w4-op" style={d(0.6)} d={pad([iso(-62, -1, 4), iso(30, -1, 4), iso(30, 9, 4), iso(-62, 9, 4)])} />
       <path className="w4-hulp w4-op" style={d(1.0)} d={pad([iso(10, 10, 4), iso(10, 10, 74)], false)} />
-      <g className="w4-zak" style={d(1.0)}>
+ <g className="w4-zweef"><g className="w4-zak" style={d(1.0)}>
         <circle className="w4-badge" cx={kx} cy={ky} r={20} />
         <path className="w4-vink w4-trek" style={d(1.35)} pathLength={1} d={`M${kx - 8} ${ky} l6 6 l11 -12`} />
-      </g>
+      </g></g>
       <Blok className="w4-op" style={d(1.6)} x={62} y={44} z={0} w={14} l={14} h={14} accent />
       <Ring className="w4-puls" style={d(1.8)} x={69} y={51} z={0} straal={12} />
+      <Label x={-148} y={-60} tekst="Nalopen" naar={iso(-62, 4, 4)} t={0.9} />
+      <Label x={148} y={96} rechts tekst="Live" naar={iso(76, 51, 7)} t={1.9} />
     </Figuur>
   )
 }
@@ -256,6 +300,11 @@ function Effect() {
         </g>
       ))}
       <path className="w4-trend w4-trek" style={d(1.1)} pathLength={1} d={`M${toppen.map((p) => p.join(' ')).join(' L')}`} />
+      {['VÓÓR', '2 WK', '4 WK'].map((t, i) => {
+        const [ax, ay] = iso(-38 + i * 34 + 8, 8 - i * 34 + 30, 0)
+        return <As key={t} x={ax} y={ay + 8} tekst={t} t={0.4 + i * 0.22} />
+      })}
+      <Label x={148} y={-150} rechts tekst="Je klant" naar={toppen[2]} t={1.5} />
     </Figuur>
   )
 }
@@ -277,6 +326,8 @@ function Maandverslag() {
         pathLength={1}
         d={`M${lijn.map(([x, h]) => iso(-28 + x, 46 - h, 24).join(' ')).join(' L')}`}
       />
+      <Label x={148} y={-70} rechts tekst="Elke maand" naar={iso(54, -48, 24)} t={1.6} />
+      <Label x={-148} y={-84} tekst="Opnieuw" naar={iso(-68, -68, 0)} t={1.8} />
       <circle className="w4-satelliet" r={3.5}>
         <animateMotion dur="16s" repeatCount="indefinite" begin="2s">
           <mpath href="#w4-cyclus" />

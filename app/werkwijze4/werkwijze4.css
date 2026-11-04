@@ -83,6 +83,21 @@
 .w4-satelliet { fill: var(--accent); }
 .w4-satelliet-grijs { fill: var(--text-tertiary); }
 
+/* Labels in de figuren, zoals in de schema's op linear.app */
+.w4-label-kader { fill: #0b0c0d; stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; }
+.w4-label-tekst, .w4-as { font-family: var(--font-mono); font-size: 7px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--text-tertiary); }
+.w4-as { fill: var(--text-quaternary); }
+.w4-leider { fill: none; stroke: rgba(255, 255, 255, 0.22); stroke-width: 1; stroke-dasharray: 1.5 2.5; }
+.w4-leider-punt { fill: var(--text-tertiary); }
+
+/* Wie met de muis over een paneel gaat, ziet de bovenste lagen iets loskomen */
+.w4-zweef { transition: transform 0.6s var(--ease-out-expo); }
+@media (hover: hover) { .w4-kaart:hover .w4-zweef { transform: translateY(-5px); } }
+
+/* Na het opbouwen stroomt er rustig iets langs de hulplijnen */
+.w4-kaart[data-in] .w4-figuur .w4-hulp { animation: w4-stroom 1.6s linear 2.4s infinite; }
+@keyframes w4-stroom { to { stroke-dashoffset: -10; } }
+
 /* Figuren: beweging. De eindstand is de gewone stand; zolang een paneel niet in beeld is geweest (en
    JavaScript draait), staat elk onderdeel in zijn beginstand. --------------------------------- */
 .w4-figuur * { transform-box: fill-box; }
@@ -153,4 +168,5 @@
   .w4-kaart, .w4-kaart-tekst > *, .w4-figuur * { transition: none !important; animation: none !important; }
   .w4-kaart[data-onder] { transform: none; opacity: 1; }
   .w4-typen, .w4-puls { display: none; }
+  .w4-zweef { transition: none; }
 }
