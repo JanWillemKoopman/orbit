@@ -84,9 +84,9 @@ export function Header() {
       {/* Buiten de header: de backdrop-filter van de header zou dit fixed menu anders insluiten */}
       <nav className="mobile-menu" data-open={zichtbaar} data-sluit={(zichtbaar && !open) || undefined} aria-label="Mobiel menu" hidden={!zichtbaar}>
         {mobileNav.map((group, g) => (
-          <div key={group.title} className="mobile-menu-group">
+          <div key={group.title ?? g} className="mobile-menu-group">
             {/* --i is de volgorde van binnenkomen: kopjes en links schuiven na elkaar op hun plek */}
-            <p className="mobile-menu-title" style={{ '--i': stapVoor(g, 0) } as CSSProperties}>{group.title}</p>
+            {group.title && <p className="mobile-menu-title" style={{ '--i': stapVoor(g, 0) } as CSSProperties}>{group.title}</p>}
             <ul>
               {group.links.map((item, l) => (
                 <li key={item.href} style={{ '--i': stapVoor(g, l + 1) } as CSSProperties}>
