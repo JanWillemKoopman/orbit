@@ -12,5 +12,5 @@ export const metadata: Metadata = {
 
 // Voorlopig alleen de hero met achtergrondvideo, opgebouwd als de productpagina's (pagina.css).
 export default function Page() {
-  return <PaginaHero titel={titel} video="hero-agencies" />
+  return <PaginaHero titel={titel} video="hero-agencies" vierkantMobiel />
 }

@@ -112,6 +112,18 @@
   .lp-cel:nth-child(even) { border-left: 0; }
   .lp-cel:nth-child(n + 2) { border-top: 1px solid rgba(255, 255, 255, 0.07); }
 }
+/* Hero met `vierkantMobiel` op een telefoon: de video is een vierkante uitsnede (ongeveer de helft
+   van de breedte van het origineel) die bovenaan staat en naar onderen overloopt in de achtergrond.
+   Een staande uitsnede die het hele vlak vult, toont maar een derde van de breedte en oogt te ver
+   ingezoomd. De grens is dezelfde als waarop HeroVideo de mobiele video kiest. */
+@media (max-width: 768px) {
+  .lp-hero-vierkant .lp-hero-media::before, .lp-hero-vierkant .lp-hero-video {
+    inset: 0 0 auto 0; height: auto; aspect-ratio: 1 / 1; object-position: 50% 50%;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  }
+  .lp-hero-vierkant .lp-hero-media::before { background-position: 50% 50%; background-size: cover; }
+}
 /* De poster wisselt op dezelfde grens als de video (HeroVideo.tsx) */
 @media (max-width: 768px) { .lp-hero-media::before { background-image: var(--poster-mobiel); } }
 @media (max-width: 640px) {
