@@ -89,7 +89,7 @@ export type Verwijzing = { label: string; href: string }
  * de header loopt. `video` is de naam van de opnames in public/video, zonder formaat en extensie
  * (`hero-werkwijze` voor hero-werkwijze-desktop.* en hero-werkwijze-mobiel.*).
  */
-export function PaginaHero({ eyebrow, titel, video }: { eyebrow: string; titel: string; video: string }) {
+export function PaginaHero({ eyebrow, titel, video }: { eyebrow?: string; titel: string; video: string }) {
   const desktop = `/video/${video}-desktop-poster.webp`
   const mobiel = `/video/${video}-mobiel-poster.webp`
   // Het eerste beeld komt als eerste binnen en alleen in het formaat dat de bezoeker nodig heeft
@@ -102,7 +102,7 @@ export function PaginaHero({ eyebrow, titel, video }: { eyebrow: string; titel: 
         <HeroVideo naam={video} />
       </div>
       <div className="container lp-hero-inner">
-        <p className="lp-eyebrow">{eyebrow}</p>
+        {eyebrow && <p className="lp-eyebrow">{eyebrow}</p>}
         <h1 id="lp-titel" className="lp-title">{titel}</h1>
       </div>
     </section>
