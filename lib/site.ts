@@ -52,20 +52,26 @@ export const overOnsMenu: NavMenuItem[] = [
   { href: '/contact', label: 'Contact opnemen', description: ['Een vraag of een demo?', 'We reageren binnen één werkdag'] },
 ]
 
+// Losse pagina's vooraan in de header, zonder uitklapmenu.
+const workflow = { href: '/werkwijze', label: 'Workflow' }
+const agencies = { href: '/agencies', label: 'Agencies' }
+const prijzen = { href: '/prijzen', label: 'Prijzen' }
+
 export const mainNav: NavItem[] = [
-  { label: 'Product', items: productMenu },
-  { href: '/prijzen', label: 'Prijzen' },
-  { label: 'Informatie', items: informatieMenu },
+  workflow,
+  agencies,
+  prijzen,
+  { label: 'Resources', items: informatieMenu },
   { label: 'Over ons', items: overOnsMenu },
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
-// Op mobiel valt Prijzen onder Product; op desktop staat het los in de header.
+// De losse pagina's uit de header staan bovenaan in een groep zonder label.
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
-const prijzen = { href: '/prijzen', label: 'Prijzen' }
-export const mobileNav = [
-  { title: 'Product', links: [...links(productMenu), prijzen] },
-  { title: 'Informatie', links: links(informatieMenu) },
+export type NavGroep = { title?: string; links: NavLink[] }
+export const mobileNav: NavGroep[] = [
+  { links: [workflow, agencies, prijzen] },
+  { title: 'Resources', links: links(informatieMenu) },
   { title: 'Over ons', links: links(overOnsMenu) },
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
@@ -74,9 +80,9 @@ export const mobileNav = [
 // contactgegevens. De labels in de footer wijken af van het hoofdmenu: korter, en met extra links naar /contact.
 const footerLabels: Record<string, string> = { '/contact': 'Contact' }
 const footerGroepen = [
-  { title: 'Product', links: links(productMenu) },
+  { title: 'Product', links: [...links(productMenu), agencies] },
   { title: 'Prijzen', links: [prijzen] },
-  ...mobileNav.slice(1),
+  ...mobileNav.slice(1).map((g) => ({ title: g.title ?? '', links: g.links })),
 ]
 export const footerNav = footerGroepen.map((group) => {
   const renamed = group.links.map((l) => ({ href: l.href, label: footerLabels[l.href] ?? l.label }))
