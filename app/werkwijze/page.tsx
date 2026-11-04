@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, hero, meta, stappen, type Stap } from '@/content/werkwijze'
+import { PaginaHero } from '@/components/product/Blokken'
 import { StappenBalk } from '@/components/werkwijze/StappenBalk'
 import '../pagina.css'
 import './werkwijze.css'
@@ -15,9 +16,9 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', images: ['/images/product/og-werkwijze.png'] },
 }
 
-// Opbouw naar linear.app: een rustige hero met alleen tekst en daarna de tien stappen direct onder
+// Opbouw naar linear.app: de hero met een achtergrondvideo van grafieken en daarna de tien stappen direct onder
 // elkaar, elk met een keyline, een mononummer, de titel links en de tekst rechts. De pagina draait om
-// de tekst: er staan bewust geen schermbeelden op. Een balk onder de header laat zien bij welke stap
+// de tekst: tussen de stappen staan bewust geen schermbeelden. Een balk onder de header laat zien bij welke stap
 // je bent.
 
 const nr = (n: number) => String(n).padStart(2, '0')
@@ -42,10 +43,7 @@ function StapSectie({ s }: { s: Stap }) {
 export default function WerkwijzePage() {
   return (
     <div className="home lp ww">
-      <section className="container ww-hero" aria-labelledby="lp-titel">
-        <p className="lp-eyebrow">{hero.eyebrow}</p>
-        <h1 id="lp-titel" className="lp-title">{hero.title}</h1>
-      </section>
+      <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="werkwijze-achtergrond" />
 
       <div className="ww-stappen">
         <StappenBalk stappen={stappen.map(({ id, nr, titel }) => ({ id, nr, titel }))} />

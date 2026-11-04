@@ -1,10 +1,7 @@
 /* ==========================================================================
    Pagina Werkwijze (/werkwijze): de tien stappen. Opbouw naar linear.app: per stap een rij met een
-   keyline bovenaan, een mononummer, de titel links en de tekst rechts. Er staan bewust geen schermbeelden op; de stappen volgen elkaar direct op.
+   keyline bovenaan, een mononummer, de titel links en de tekst rechts. Tussen de stappen staan bewust geen schermbeelden; de stappen volgen elkaar direct op.
    ========================================================================== */
-
-/* Hero: alleen tekst, zonder achtergrondbeeld --------------------------------- */
-.ww-hero { padding-top: 168px; padding-bottom: 40px; }
 
 /* De stappen --------------------------------------------------------------- */
 .ww-stap { padding-top: 128px; scroll-margin-top: 48px; }
@@ -66,7 +63,6 @@
 @media (max-width: 640px) {
   .ww-stap { padding-top: 80px; }
   .ww-stap:first-child { padding-top: 64px; }
-  .ww-hero { padding-top: 120px; padding-bottom: 16px; }
   .ww-kop { padding-top: 16px; }
   .ww-nr { margin-bottom: 20px; }
   .ww-titel { font-size: 32px; line-height: 1.1; }
