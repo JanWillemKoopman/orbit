@@ -43,18 +43,59 @@
    keyline en de ruimte erboven, want de hero heeft zelf al een lijn aan de onderkant */
 .a2-usp { margin-top: 0; }
 
-/* De tussenzin en de voordelen ----------------------------------------------- */
-.a2-statement { margin-top: 232px; }
-.a2-voordelen { padding-top: 120px; padding-bottom: 40px; }
-.a2-lijst { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; }
-.a2-voordeel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 32px; padding-block: 28px 32px; border-top: 1px solid var(--border-translucent); }
-.a2-voordeel h3 { font-size: 17px; line-height: 1.4; letter-spacing: -0.012em; font-weight: var(--weight-medium); color: var(--text-primary); text-wrap: balance; }
-.a2-voordeel p { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+/* Twee secties: illustratie en tekst naast elkaar ----------------------------- */
+/* De illustratie staat in een vlak met het grijze verloop van de beelden op de site; de compositie heeft een vaste
+   maat en wordt per breedte als geheel verkleind, net als het grote scherm erboven. */
+.a2-split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: 80px; padding-top: 200px; scroll-margin-top: var(--header-height); }
+.a2-split[data-spiegel] { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+.a2-split[data-spiegel] .a2-split-beeld { order: 2; }
+.a2-split + .a2-split { padding-top: 160px; }
+.a2-split-beeld {
+  position: relative; height: 520px; overflow: hidden; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.07);
+  background: radial-gradient(88% 60% at 50% 0%, rgba(176, 181, 188, 0.4) 0%, rgba(120, 126, 134, 0.16) 42%, rgba(8, 9, 10, 0) 82%), #0b0c0d;
+  font-size: 14px; line-height: 1.5; color: var(--text-secondary); text-align: left; user-select: none;
+}
+.a2-split-inner { position: absolute; top: 56px; left: 40px; transform-origin: 0 0; }
+.a2-split-inner-content { transform: scale(0.8); }
+.a2-split-inner-whitelabel { left: 28px; transform: scale(0.52); }
+.a2-split-beeld::after { content: ''; position: absolute; inset: auto 0 0 0; height: 120px; background: linear-gradient(to bottom, rgba(11, 12, 13, 0), #0b0c0d); pointer-events: none; }
+
+.a2-split-label { font-size: 15px; line-height: 1.5; color: var(--text-tertiary); }
+.a2-split-titel { margin-top: 12px; margin-left: -1px; font-size: 40px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-primary); text-wrap: balance; }
+.a2-split-p { margin-top: 20px; max-width: 46ch; font-size: 17px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+.a2-split-punten { list-style: none; margin: 32px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.a2-split-punten li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.5; letter-spacing: -0.011em; color: var(--text-secondary); }
+.a2-split-punten .usp-vink { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; border-radius: 50%; }
+
+/* Content op schaal: de maand in een venster, ervoor één gecontroleerde zin */
+.a2-cs { position: relative; width: 640px; height: 560px; }
+.a2-cs-lijst { position: absolute; top: 0; left: 0; width: 600px; }
+.a2-cs-kop { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.a2-cs-kop .ag-li-t strong { font-size: 16px; }
+.a2-cs-n { font-size: 28px; line-height: 1; font-weight: var(--weight-medium); letter-spacing: -0.02em; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.a2-cs-n em { font-style: normal; font-size: 16px; color: var(--text-quaternary); }
+.a2-cs-rijen { display: flex; flex-direction: column; }
+.a2-cs-rij { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; }
+.a2-cs-rij + .a2-cs-rij { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+.a2-cs-rij .ag-li-t strong { font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.a2-cs-zin { position: absolute; top: 372px; left: 240px; width: 400px; gap: 12px; padding: 20px 22px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+.a2-cs-zin p { font-size: 15px; line-height: 1.65; color: var(--text-primary); }
+.a2-cs-zin mark { padding: 1px 3px; border-radius: 4px; background: rgba(188, 255, 47, 0.14); color: var(--accent); }
+.a2-cs-bron { display: flex; align-items: center; gap: 10px; font-size: 13px; }
 
 /* Breekpunten --------------------------------------------------------------- */
 @media (max-width: 1199px) {
-  .a2-lijst { grid-template-columns: 1fr; }
-  .a2-lijst .a2-voordeel:last-child { border-bottom: 1px solid var(--border-translucent); }
+  .a2-split { gap: 48px; }
+  .a2-split-inner-content { transform: scale(0.7); }
+  .a2-split-inner-whitelabel { transform: scale(0.45); }
+}
+/* Onder elkaar vanaf tabletbreedte: eerst de tekst, dan de illustratie over de volle breedte */
+@media (max-width: 900px) {
+  .a2-split, .a2-split[data-spiegel] { grid-template-columns: 1fr; gap: 40px; padding-top: 120px; }
+  .a2-split + .a2-split { padding-top: 120px; }
+  .a2-split .a2-split-beeld, .a2-split[data-spiegel] .a2-split-beeld { order: 2; }
+  .a2-split-inner-content { transform: scale(0.85); }
+  .a2-split-inner-whitelabel { transform: scale(0.64); }
 }
 /* Vanaf hier past het hele scherm niet meer: het begint links en loopt rechts uit beeld, zoals op linear.app */
 @media (max-width: 1199px) {
@@ -62,15 +103,10 @@
   .a2-scherm-frame { left: 40px; transform: scale(0.88); transform-origin: 0 0; }
 }
 @media (max-width: 1024px) {
-  .a2-statement { margin-top: 168px; }
   .a2-scherm-stage { height: 680px; }
   .a2-scherm-frame { transform: scale(0.76); }
 }
 @media (max-width: 640px) {
-  .a2-statement { margin-top: 96px; }
-  .a2-voordelen { padding-top: 64px; padding-bottom: 0; }
-  .a2-voordeel { grid-template-columns: 1fr; gap: 4px; padding-block: 20px 22px; }
-  .a2-voordeel h3 { font-size: 15px; line-height: 1.5; }
 
   /* Op een telefoon zoals de homepage: een vlak van 400 px hoog, het scherm op de helft van zijn maat,
      links op 18 px en rechts uitlopend in de achtergrond */
@@ -82,4 +118,15 @@
     mask-composite: intersect;
   }
   .a2-scherm-frame { top: 32px; left: 18px; transform: scale(0.5); transform-origin: 0 0; }
+
+  /* De twee secties: tekst kleiner, illustratie over de volle breedte en op de helft, zoals het grote scherm */
+  .a2-split, .a2-split[data-spiegel] { gap: 32px; padding-top: 88px; }
+  .a2-split + .a2-split { padding-top: 88px; }
+  .a2-split-titel { font-size: 32px; line-height: 1.125; }
+  .a2-split-p { font-size: 15px; }
+  .a2-split-beeld { height: 320px; margin-inline: calc(-1 * var(--page-padding)); border-radius: 0; border-inline: 0; }
+  .a2-split-inner { top: 32px; left: 18px; }
+  .a2-split-inner-content { transform: scale(0.5); }
+  .a2-split-inner-whitelabel { transform: scale(0.36); }
+  .a2-split-beeld::after { height: 56px; }
 }

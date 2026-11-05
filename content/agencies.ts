@@ -192,8 +192,8 @@ export const afsluiter = {
 }
 
 // Tweede versie (/agencies2): veel minimalistischer. De hero, een tekstblok met vier voordelen zoals op de
-// homepage, één groot beeld van het werkoverzicht met al je klanten, een korte tussenzin, de voordelen
-// als tekst zonder beelden en de afsluiter. De hero en de afsluiter zijn dezelfde als hierboven.
+// homepage, één groot beeld van het werkoverzicht met al je klanten, twee secties met een illustratie
+// en tekst naast elkaar (content op schaal en whitelabel) en de afsluiter. De hero en de afsluiter zijn dezelfde als hierboven.
 export const minimaal = {
   // Kop (links), uitleg (rechts) en vier voordelen met een vinkje, in de opbouw van het blok
   // "Gebouwd voor marketingbureaus" op de homepage (uspIntro en usps in content/home.ts).
@@ -212,18 +212,31 @@ export const minimaal = {
     titel: 'Het werkoverzicht van je bureau',
     tekst: 'Wat het langst wacht, staat bovenaan. Vink klanten aan en start de maand voor allemaal tegelijk.',
   },
-  statement: {
-    strong: 'Jullie bepalen de strategie.',
-    rest: 'Orbit voert hem uit.',
-  },
-  voordelen: [
-    { titel: 'Zoveel klanten als je wilt', tekst: 'Geen limiet. Orbit groeit mee, van je eerste klant tot je honderdste.' },
-    { titel: 'Volledig in jouw huisstijl', tekst: 'Je logo, je kleuren, je lettertype. Het redesign van de interface is inbegrepen.' },
-    { titel: 'Je klant kijkt mee', tekst: 'Hij ziet alleen zijn eigen resultaten, in gewone taal. Jij bepaalt wat hij mag.' },
-    { titel: 'Jullie de strategie, Orbit de uitvoering', tekst: 'Je marketeers bepalen met de klant de koers. Orbit onderzoekt, meet, plant en schrijft.' },
-    { titel: 'Het meeste werk uit handen', tekst: 'Orbit neemt het grootste deel van het SEO- en GEO-werk over. Je specialisten houden tijd over voor advies.' },
-    { titel: 'Teksten die kloppen', tekst: 'Geen verzonnen prijs of garantie op de site van je klant. De software houdt ze tegen.' },
-    { titel: 'Bewijs dat klanten houdt', tekst: 'Elke pagina wordt na twee en vier weken opnieuw gemeten. Resultaat, zwart op wit.' },
-    { titel: 'Een marge die van jou is', tekst: 'De AI draait op de sleutels van je bureau, tegen kostprijs en zonder opslag.' },
-  ] as Bijschrift[],
+  // Twee secties onder het grote beeld, elk met een illustratie en tekst naast elkaar.
+  secties: [
+    {
+      id: 'content',
+      label: 'Content op schaal',
+      titel: 'Content van topkwaliteit. Voor al je klanten tegelijk.',
+      tekst:
+        'Orbit schrijft pagina’s op de kennis van je klant: zijn website, zijn documenten en zijn eigen antwoorden. Elk bedrag, elke garantie en elke termijn wordt gecontroleerd voordat jij de tekst ziet. Zo lever je elke maand tientallen pagina’s, zonder dat de kwaliteit daalt.',
+      punten: [
+        'Een brief en gerichte vragen per pagina',
+        'Schrijven en eindredactie in de stem van het merk',
+        'Wat niet klopt, wordt geel en komt niet live',
+      ],
+    },
+    {
+      id: 'whitelabel',
+      label: 'Whitelabel',
+      titel: 'Jouw bureau. Jouw huisstijl.',
+      tekst:
+        'Orbit draait volledig in de huisstijl van je bureau: je logo, je kleuren, je lettertypes en je vormen, op elk scherm. Je team en je klanten zien jouw platform. Het redesign van de interface doen wij, en dat is inbegrepen.',
+      punten: [
+        'Je logo linksboven in de app',
+        'Je kleuren en lettertypes op elk scherm',
+        'Een maandverslag met de naam van je bureau',
+      ],
+    },
+  ],
 }

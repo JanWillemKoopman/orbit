@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { CitaatScroll } from '@/components/home/CitaatScroll'
 import { PaginaHero } from '@/components/product/Blokken'
-import { AlleKlanten } from '@/components/agencies/Visuals'
+import { AlleKlanten, ContentOpSchaal, Huisstijlen } from '@/components/agencies/Visuals'
 import { afsluiter, hero, meta, minimaal } from '@/content/agencies'
 import '../werkwijze/werkwijze.css'
 import '../beheer/beheer.css'
 import '../pagina.css'
+import '../agencies/agencies.css'
 import './agencies2.css'
 
 // Tweede, veel minimalistischere versie van /agencies. Een testpagina: niet in de zoekmachine en de
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 }
 
 // Opbouw naar linear.app, met zo min mogelijk: de hero met de achtergrondvideo, een tekstblok met vier
-// voordelen zoals op de homepage, één groot beeld van het werkoverzicht met al je klanten, een korte tussenzin, de voordelen als
-// tekst zonder beelden en de afsluiter.
+// voordelen zoals op de homepage, één groot beeld van het werkoverzicht met al je klanten, twee secties
+// met een illustratie en tekst naast elkaar (content op schaal en whitelabel) en de afsluiter.
 export default function Agencies2Page() {
   const m = minimaal
   return (
@@ -64,20 +64,33 @@ export default function Agencies2Page() {
           </figure>
         </section>
 
-        <div className="home-statement a2-statement">
-          <CitaatScroll strong={m.statement.strong} rest={m.statement.rest} />
-        </div>
-
-        <section className="a2-voordelen" aria-label="Waarom bureaus voor Orbit kiezen">
-          <ul className="a2-lijst">
-            {m.voordelen.map((v) => (
-              <li key={v.titel} className="a2-voordeel">
-                <h3>{v.titel}</h3>
-                <p>{v.tekst}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {/* Twee secties: illustratie en tekst naast elkaar, de tweede gespiegeld */}
+        {m.secties.map((sec, i) => (
+          <section key={sec.id} id={sec.id} className="a2-split" data-spiegel={i === 1 || undefined} aria-labelledby={`${sec.id}-titel`}>
+            <div className="a2-split-beeld" role="img" aria-label={i === 0
+              ? 'De pagina’s van november: 35 pagina’s voor 7 klanten, met per pagina of hij gecontroleerd is. Ervoor een zin met een bedrag dat in de tarievenlijst van de klant staat.'
+              : 'Hetzelfde werkoverzicht drie keer, in de huisstijl van drie bureaus: donker met blauw, donker met turquoise en licht met oranje.'}>
+              <div className={`a2-split-inner a2-split-inner-${sec.id}`} aria-hidden="true">
+                {i === 0 ? <ContentOpSchaal /> : <Huisstijlen />}
+              </div>
+            </div>
+            <div className="a2-split-tekst">
+              <p className="a2-split-label">{sec.label}</p>
+              <h2 id={`${sec.id}-titel`} className="a2-split-titel">{sec.titel}</h2>
+              <p className="a2-split-p">{sec.tekst}</p>
+              <ul className="a2-split-punten">
+                {sec.punten.map((pt) => (
+                  <li key={pt}>
+                    <span className="usp-vink" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
+                    </span>
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ))}
       </div>
 
       {/* Afsluiter */}

@@ -223,3 +223,50 @@ export function AlleKlanten() {
     </div>
   )
 }
+
+/* ── Agencies 2: content op schaal ────────────────────────────────────────── */
+
+const PAGINAS = [
+  { t: 'Hybride warmtepomp laten installeren', k: 'Lindeman Warmte', c: 'Gecontroleerd', tone: 'lime' },
+  { t: 'Dakkapel plaatsen in Den Bosch', k: 'Verbeek Bouw & Renovatie', c: 'Gecontroleerd', tone: 'lime' },
+  { t: 'Wat kost een wortelkanaalbehandeling?', k: 'Tandartspraktijk Lunetten', c: '1 gele zin', tone: 'geel' },
+  { t: 'Zonnepanelen op een plat dak', k: 'Zonnepanelen Brabant', c: 'Gecontroleerd', tone: 'lime' },
+  { t: 'Fysiotherapie na een knieoperatie', k: 'Fysio Oudwijk', c: 'Wordt geschreven', tone: 'blauw' },
+  { t: 'Een weekend weg op de Veluwe', k: 'Hotel De Wijde Blik', c: 'Wordt geschreven', tone: 'blauw' },
+] as const
+
+/** De pagina's van één maand voor al je klanten, met ervoor één gecontroleerde zin. */
+export function ContentOpSchaal() {
+  return (
+    <div className="a2-cs">
+      <div className="ag-window a2-cs-lijst">
+        <div className="ag-bar">
+          <span className="ag-crumbs"><Logo size={18} /><span>Bureau Noordwind</span><span className="ag-crumb-current"><span className="ag-sep">›</span>Pagina&apos;s van november</span></span>
+        </div>
+        <div className="ag-view">
+          <div className="a2-cs-kop">
+            <span className="ag-li-t"><strong>35 pagina&apos;s voor 7 klanten</strong><em>24 geschreven en gecontroleerd</em></span>
+            <span className="a2-cs-n">24<em>/35</em></span>
+          </div>
+          <div className="fv-progress"><i style={{ width: '69%' }} /></div>
+          <div className="a2-cs-rijen">
+            {PAGINAS.map((p) => (
+              <div key={p.t} className="a2-cs-rij">
+                <span className="ag-li-t"><strong>{p.t}</strong><em>{p.k}</em></span>
+                <Chip tone={p.tone} dot>{p.c}</Chip>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="fv-surface a2-cs-zin">
+        <Mono>In de tekst</Mono>
+        <p>Je betaalt vanaf <mark>€ 4.500</mark>, inclusief montage en het aansluiten op je ketel.</p>
+        <div className="a2-cs-bron">
+          <Chip tone="lime"><Icon naam="check" size={11} />Bedrag staat in de bron</Chip>
+          <span className="fv-muted">Tarievenlijst 2026.pdf</span>
+        </div>
+      </div>
+    </div>
+  )
+}
