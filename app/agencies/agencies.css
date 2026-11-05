@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Pagina Agencies (/agencies). Bouwt op pagina.css (hero, secties, beelden en rasters), home.css
+   (koppen, tussenzin, procesblok, vragen) en de beelden van werkwijze.css, beheer.css en kwaliteit.css.
+   Hier staan alleen het raster met de acht redenen, de drie huisstijlen, de huisstijlkaart en de
+   taakverdeling. Kleuren, randen en beweging komen van de tokens in globals.css.
+   ========================================================================== */
+
+/* De acht redenen ----------------------------------------------------------- */
+/* Vier kolommen met een keyline links, zoals het procesblok op de homepage en de featurerasters op linear.app */
+.agc-redenen { padding-top: 168px; }
+.agc-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 56px; }
+.agc-grid li { display: flex; }
+.agc-reden {
+  display: flex; flex-direction: column; width: 100%; padding: 0 24px; border-left: 1px solid rgba(255, 255, 255, 0.08);
+  color: inherit; text-decoration: none; border-radius: 0;
+}
+.agc-grid li:nth-child(4n + 1) .agc-reden { padding-left: 0; border-left: 0; }
+.agc-reden-ico {
+  display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px;
+  background: var(--bg-translucent); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06); color: var(--text-secondary);
+  transition: color var(--speed-quick) var(--ease-out-quad), background var(--speed-quick) var(--ease-out-quad);
+}
+.agc-reden h3 { margin-top: 20px; font-size: 15px; line-height: 1.5; letter-spacing: -0.011em; font-weight: var(--weight-medium); color: var(--text-primary); }
+.agc-reden p { margin-top: 4px; max-width: 30ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; transition: color var(--speed-quick) var(--ease-out-quad); }
+@media (hover: hover) {
+  .agc-reden:hover .agc-reden-ico { color: var(--accent); background: var(--bg-hover); }
+  .agc-reden:hover p { color: var(--text-secondary); }
+}
+.agc-reden:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+/* De tussenzin staat tussen twee secties en krijgt dezelfde lucht als een sectie */
+.agc-statement { margin-top: 232px; }
+
+/* Zo begin je: drie kolommen */
+.process-steps.agc-stappen { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.agc-stappen .process-step { min-height: 0; }
+.agc-stappen .process-description { max-width: 34ch; }
+
+/* Whitelabel: drie vensters in drie huisstijlen -------------------------------- */
+/* Elk bureau zet zijn eigen waarden; het venster zelf is voor alle drie hetzelfde. */
+.agc-wl, .agc-kaart {
+  --wl-bg: var(--bg-level-1); --wl-side: var(--bg-primary); --wl-text: var(--text-primary); --wl-muted: var(--text-tertiary);
+  --wl-line: rgba(255, 255, 255, 0.07); --wl-accent: var(--accent); --wl-ink: var(--bg-primary);
+  --wl-radius: 8px; --wl-knop-radius: var(--radius-pill); --wl-kop-font: var(--font-sans);
+}
+[data-stijl='kade'] { --wl-bg: var(--bg-level-1); --wl-side: var(--bg-primary); --wl-accent: var(--blue); --wl-radius: 4px; --wl-knop-radius: 4px; --wl-kop-font: var(--font-mono); }
+[data-stijl='lumen'] { --wl-bg: var(--bg-level-2); --wl-side: var(--bg-level-1); --wl-accent: var(--teal); --wl-radius: 12px; --wl-knop-radius: var(--radius-pill); }
+[data-stijl='merkwerk'] {
+  --wl-bg: #ffffff; --wl-side: var(--text-primary); --wl-text: var(--bg-primary); --wl-muted: var(--text-quaternary);
+  --wl-line: rgba(0, 0, 0, 0.08); --wl-accent: var(--orange); --wl-ink: #ffffff; --wl-radius: 8px; --wl-knop-radius: 6px;
+}
+
+.agc-wl-comp { position: relative; width: 1120px; height: 560px; }
+.agc-wl-pos { position: absolute; width: 640px; }
+.agc-wl-pos-1 { top: 64px; left: 0; }
+.agc-wl-pos-2 { top: 0; left: 240px; }
+.agc-wl-pos-3 { top: 112px; left: 480px; }
+
+.agc-wl {
+  display: grid; grid-template-columns: 172px minmax(0, 1fr); height: 440px; overflow: hidden;
+  border-radius: calc(var(--wl-radius) + 6px); background: var(--wl-bg); color: var(--wl-text);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.agc-wl[data-stijl='merkwerk'] { box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.6); }
+.agc-wl-side { display: flex; flex-direction: column; gap: 2px; padding: 16px 10px; background: var(--wl-side); border-right: 1px solid var(--wl-line); }
+.agc-wl-brand { display: flex; align-items: center; gap: 9px; padding: 0 6px 14px; font-size: 13.5px; font-weight: var(--weight-semibold); letter-spacing: -0.01em; white-space: nowrap; color: var(--wl-text); }
+.agc-merk {
+  display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; flex-shrink: 0;
+  border-radius: var(--wl-radius); background: var(--wl-accent); color: var(--wl-ink);
+  font-family: var(--wl-kop-font); font-size: 12px; font-weight: var(--weight-semibold); line-height: 1;
+}
+[data-stijl='lumen'] .agc-merk { border-radius: 50%; }
+.agc-wl-item { padding: 6px 8px; border-radius: var(--wl-radius); font-size: 12.5px; white-space: nowrap; color: var(--wl-muted); }
+.agc-wl-item[data-on] { color: var(--wl-text); background: color-mix(in srgb, var(--wl-accent) 14%, transparent); }
+.agc-wl-main { display: flex; flex-direction: column; gap: 16px; padding: 20px 22px; min-width: 0; }
+.agc-wl-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.agc-wl-titel { display: flex; flex-direction: column; gap: 2px; font-family: var(--wl-kop-font); font-size: 19px; line-height: 1.25; font-weight: var(--weight-semibold); letter-spacing: -0.015em; }
+[data-stijl='kade'] .agc-wl-titel { letter-spacing: -0.02em; font-weight: var(--weight-medium); }
+.agc-wl-titel em { font-family: var(--font-sans); font-style: normal; font-size: 12.5px; font-weight: var(--weight-normal); letter-spacing: -0.01em; color: var(--wl-muted); }
+.agc-wl-knop {
+  display: inline-flex; align-items: center; height: 30px; padding: 0 13px; border-radius: var(--wl-knop-radius);
+  background: var(--wl-accent); color: var(--wl-ink); font-size: 12.5px; font-weight: var(--weight-medium); white-space: nowrap;
+}
+[data-stijl='merkwerk'] .agc-wl-knop { text-transform: uppercase; letter-spacing: 0.04em; font-size: 11.5px; font-weight: var(--weight-semibold); }
+.agc-wl-tabel { display: flex; flex-direction: column; }
+.agc-wl-rij {
+  display: grid; grid-template-columns: minmax(0, 1fr) 72px 34px 74px; align-items: center; gap: 12px; min-height: 46px;
+  font-size: 12.5px; color: var(--wl-muted); font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.agc-wl-rij + .agc-wl-rij { border-top: 1px solid var(--wl-line); }
+.agc-wl-rij strong { overflow: hidden; text-overflow: ellipsis; font-weight: var(--weight-medium); color: var(--wl-text); }
+.agc-wl-balk { height: 4px; border-radius: var(--radius-pill); background: var(--wl-line); overflow: hidden; }
+.agc-wl-balk i { display: block; height: 100%; border-radius: inherit; background: var(--wl-accent); }
+.agc-wl-pct { text-align: right; color: var(--wl-text); }
+.agc-wl-chip {
+  justify-self: end; display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: var(--wl-knop-radius);
+  font-size: 11.5px; color: var(--wl-text); background: color-mix(in srgb, var(--wl-accent) 16%, transparent);
+}
+.agc-wl-chip[data-klaar] { color: var(--wl-muted); background: var(--wl-line); }
+
+/* De huisstijlkaart: hoe één bureau in de app staat */
+.agc-kaart { gap: 0; padding: 18px 22px 10px; }
+.agc-kaart-kop { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 12px; }
+.agc-kaart-kop .agc-wl-brand { padding: 0; color: var(--text-primary); }
+.agc-kaart-rij { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 12px; min-height: 46px; border-top: 1px solid rgba(255, 255, 255, 0.07); font-size: 13px; color: var(--text-tertiary); }
+.agc-kaart-w { display: flex; align-items: center; gap: 8px; color: var(--text-primary); }
+.agc-kaart-kleuren i { width: 22px; height: 22px; border-radius: 4px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
+.agc-kaart-mono { font-family: var(--font-mono); font-weight: var(--weight-medium); }
+
+/* Je team: wie doet wat ---------------------------------------------------- */
+.agc-taak { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.5fr); gap: 20px; align-items: start; width: 100%; }
+.agc-taak-kaart {
+  display: flex; flex-direction: column; gap: 18px; padding: 22px 24px 24px; border-radius: 14px;
+  background: var(--bg-level-1); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.agc-taak-orbit { background: linear-gradient(180deg, var(--bg-level-2) 0%, var(--bg-level-1) 100%); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+.agc-taak-kop { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.agc-taak-kop .ag-li-t strong { font-size: 15px; }
+.agc-taak-ico { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 6px; background: var(--bg-translucent); color: var(--text-secondary); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06); }
+.agc-taak-lijst { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.4; color: var(--text-secondary); }
+.agc-taak-lijst li { display: flex; align-items: flex-start; gap: 10px; }
+.agc-taak-twee { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; }
+.agc-taak-stip { width: 6px; height: 6px; margin: 6px 4px 0; flex-shrink: 0; border-radius: 50%; background: var(--text-quaternary); }
+.agc-taak-vink { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; margin-top: 1px; flex-shrink: 0; border-radius: 50%; background: rgba(188, 255, 47, 0.12); color: var(--accent); }
+
+/* Het contentplan in een cel: de eerste twee maanden over de breedte van de cel, in plaats van vier
+   vaste kolommen die aan beide kanten buiten beeld vallen */
+.agc .lp-cel .fv-board { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: 100%; max-width: 520px; }
+.agc .lp-cel .fv-col:nth-child(n + 3) { display: none; }
+
+/* Breekpunten --------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .agc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .agc-grid li:nth-child(4n + 1) .agc-reden { padding-left: 24px; border-left: 1px solid rgba(255, 255, 255, 0.08); }
+  .agc-grid li:nth-child(2n + 1) .agc-reden { padding-left: 0; border-left: 0; }
+  .agc-statement { margin-top: 168px; }
+}
+@media (max-width: 768px) {
+  .agc-redenen { padding-top: 88px; }
+  .process-steps.agc-stappen { grid-template-columns: 1fr; row-gap: 40px; }
+  .agc-stappen .process-step { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 640px) {
+  .agc-redenen { padding-top: 56px; }
+  .agc-grid { grid-template-columns: 1fr; row-gap: 0; }
+  .agc-grid li .agc-reden, .agc-grid li:nth-child(n) .agc-reden {
+    display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 16px; padding: 20px 0; border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .agc-grid li:last-child .agc-reden { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+  .agc-reden-ico { grid-row: span 2; }
+  .agc-reden h3 { margin-top: 4px; }
+  .agc-reden p { max-width: none; }
+  .agc-statement { margin-top: 96px; }
+
+  /* Whitelabel op een telefoon: alleen het voorste venster, over de breedte van het beeld */
+  .lp-beeld-inner .agc-wl-comp { width: 100%; height: auto; }
+  .lp-beeld-inner .agc-wl-pos-1, .lp-beeld-inner .agc-wl-pos-2 { display: none; }
+  .lp-beeld-inner .agc-wl-pos-3 { position: static; width: 100%; }
+  .lp-beeld-inner .agc-wl { grid-template-columns: 1fr; height: auto; }
+  .lp-beeld-inner .agc-wl-side { flex-direction: row; align-items: center; gap: 4px; padding: 12px 14px; border-right: 0; border-bottom: 1px solid var(--wl-line); overflow: hidden; }
+  .lp-beeld-inner .agc-wl-brand { padding: 0 8px 0 0; }
+  .lp-beeld-inner .agc-wl-item:nth-child(n + 4) { display: none; }
+  .lp-beeld-inner .agc-wl-rij { grid-template-columns: minmax(0, 1fr) 34px 74px; }
+  .lp-beeld-inner .agc-wl-balk { display: none; }
+
+  /* Wie doet wat: de twee kaarten onder elkaar, in een hoger vlak */
+  .lp-beeld:has(.agc-taak) .lp-beeld-stage { height: 760px; }
+  .lp-beeld-inner .agc-taak { grid-template-columns: 1fr; gap: 14px; }
+  .lp-beeld-inner .agc-taak-twee { grid-template-columns: 1fr; }
+}

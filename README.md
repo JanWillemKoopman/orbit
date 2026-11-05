@@ -50,6 +50,10 @@ De productpagina (`/product`, in het menu "Fases en werkwijze") laat ORBIT ENGIN
 
 De bureaupagina (`/agency`, in het menu "Account en beheer") heeft dezelfde opbouw en vormgeving als `/product`, met de nadruk op het account van een bureau: het werkoverzicht, klanten toevoegen, collega's en kijkers, kosten, eigen sleutels en het archiveren of verwijderen van gegevens. Teksten staan in `content/agency.ts`, de beelden in `components/agency/Visuals.tsx` en de aanvullende opmaak in `app/agency/agency.css`. De gedeelde bouwblokken (kop, paneel, cel) staan in `components/product/Blokken.tsx`.
 
+## Agencies
+
+De pagina `/agencies` (in het menu "Agencies") is de verkooppagina voor de eigenaar van een marketingbureau. Waar `/werkwijze` vertelt hoe Orbit werkt, zegt deze pagina waarom een bureau ervoor kiest: al je klanten bij elkaar, zoveel klanten als je wilt, alles in de huisstijl van het bureau, de klant die meekijkt, het team op strategie, bewijs van resultaat en de marge. De opbouw volgt linear.app: de hero met achtergrondvideo, een raster met acht redenen, zes secties met een intro en een groot beeld of raster, een tussenzin, de start in drie stappen, vragen van bureaus en de afsluiter. Teksten staan in `content/agencies.ts`, de eigen beelden (de drie huisstijlen, de huisstijlkaart en de taakverdeling) in `components/agencies/Visuals.tsx` en de opmaak in `app/agencies/agencies.css`. De overige beelden komen van `/beheer`, `/werkwijze` en `/kwaliteit`.
+
 ## Kennis en feiten
 
 De pagina `/kennis` ("Kennis en feiten") legt voor een nieuwe lezer uit hoe ORBIT ENGINE voorkomt dat AI feiten verzint: het brein met wat er over een bedrijf bekend is (van binnen en van buiten), de schrijver die alleen feiten met een bron krijgt, en de gele zin als vangnet. Teksten staan in `content/kennis.ts`, de beelden in `components/kennis/Visuals.tsx` en de opmaak in `app/kennis/kennis.css` (bovenop die van `/product` en `/agency`).
