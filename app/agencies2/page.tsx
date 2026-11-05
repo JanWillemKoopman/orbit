@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
 }
 
-// Opbouw naar linear.app, met zo min mogelijk: de hero met de achtergrondvideo, een kop met één zin,
-// één groot beeld van het werkoverzicht met al je klanten, een korte tussenzin, de voordelen als
+// Opbouw naar linear.app, met zo min mogelijk: de hero met de achtergrondvideo, een tekstblok met vier
+// voordelen zoals op de homepage, één groot beeld van het werkoverzicht met al je klanten, een korte tussenzin, de voordelen als
 // tekst zonder beelden en de afsluiter.
 export default function Agencies2Page() {
   const m = minimaal
@@ -29,11 +29,27 @@ export default function Agencies2Page() {
       <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="hero-agencies" vierkantMobiel />
 
       <div className="container">
-        <section className="lp-sectie a2-klanten" aria-labelledby="a2-klanten-titel">
-          <div className="feature-header lp-intro">
-            <h2 id="a2-klanten-titel" className="feature-title">{m.intro.titel}</h2>
-            <div className="feature-description"><p>{m.intro.tekst}</p></div>
+        {/* Tekstblok met vier voordelen, zoals "Gebouwd voor marketingbureaus" op de homepage */}
+        <section className="feature process usp a2-usp" aria-labelledby="a2-usp-titel">
+          <div className="feature-header">
+            <h2 id="a2-usp-titel" className="feature-title">{m.usp.titel}</h2>
+            <div className="feature-description">
+              <p>{m.usp.tekst}</p>
+            </div>
           </div>
+          <ul className="process-steps usp-steps">
+            {m.usp.punten.map((punt) => (
+              <li className="process-step" key={punt}>
+                <span className="process-number usp-vink" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
+                </span>
+                <h3 className="process-title">{punt}</h3>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="a2-klanten" aria-label="Het werkoverzicht van je bureau">
           <Beeld b={m.beeld} breedte={1240} hoogte={900} alt="Het scherm Alle bedrijven van een bureau: twaalf klanten onder elkaar met hun zichtbaarheid in AI, de maandmeting, wat er te starten is, wat er wacht en sinds wanneer, en de kosten van de afgelopen dertig dagen. Vier klanten zijn aangevinkt om de maand tegelijk te starten.">
             <AlleKlanten />
           </Beeld>

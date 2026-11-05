@@ -26,6 +26,10 @@
 .agc-ak-filters span[data-on] { background: rgba(255, 255, 255, 0.07); color: var(--text-primary); box-shadow: none; }
 .agc-ak-filters em { font-style: normal; color: var(--text-quaternary); }
 
+/* Het tekstblok onder de hero: de opmaak van het blok op de homepage (home.css), maar zonder de
+   keyline en de ruimte erboven, want de hero heeft zelf al een lijn aan de onderkant */
+.a2-usp { margin-top: 0; }
+
 /* De tussenzin en de voordelen ----------------------------------------------- */
 .a2-statement { margin-top: 232px; }
 .a2-voordelen { padding-top: 120px; padding-bottom: 40px; }

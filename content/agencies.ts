@@ -191,14 +191,22 @@ export const afsluiter = {
   description: 'Plan een demo. We laten je Orbit zien in de huisstijl van jouw bureau.',
 }
 
-// Tweede versie (/agencies2): veel minimalistischer. De hero, één groot beeld van het werkoverzicht met
-// al je klanten, een korte tussenzin, de voordelen als tekst zonder beelden en de afsluiter. De hero en
-// de afsluiter zijn dezelfde als hierboven.
+// Tweede versie (/agencies2): veel minimalistischer. De hero, een tekstblok met vier voordelen zoals op de
+// homepage, één groot beeld van het werkoverzicht met al je klanten, een korte tussenzin, de voordelen
+// als tekst zonder beelden en de afsluiter. De hero en de afsluiter zijn dezelfde als hierboven.
 export const minimaal = {
-  intro: {
-    titel: 'Al je klanten op één plek.',
+  // Kop (links), uitleg (rechts) en vier voordelen met een vinkje, in de opbouw van het blok
+  // "Gebouwd voor marketingbureaus" op de homepage (uspIntro en usps in content/home.ts).
+  usp: {
+    titel: 'Eén platform voor je hele bureau',
     tekst:
-      'Eén overzicht voor je hele portefeuille. Per klant de zichtbaarheid in AI, wat er wacht en sinds wanneer. Voor zoveel klanten als je wilt.',
+      'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst te verkopen, voor al je klanten tegelijk. Jullie bepalen met de klant de koers, Orbit doet het werk.',
+    punten: [
+      'Beheer al je klanten vanuit één platform',
+      'Volledig in de huisstijl van je bureau',
+      'Laat je klant meekijken',
+      'Neem je specialisten werk uit handen',
+    ],
   },
   beeld: {
     titel: 'Het werkoverzicht van je bureau',
