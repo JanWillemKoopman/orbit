@@ -21,14 +21,20 @@ const BUREAUS: Record<Stijl, { naam: string; merk: string }> = {
   zonnig: { naam: 'zonnig', merk: '' },
 }
 
-const MENU = ['Merken', 'Contentplan', 'Zichtbaarheid in AI', 'Bibliotheek', 'Beheer']
+const MENU: { l: string; i: string; n?: string }[] = [
+  { l: 'Merken', i: 'merk', n: '12' },
+  { l: 'Contentplan', i: 'plan' },
+  { l: 'Open vragen', i: 'vraag', n: '7' },
+  { l: 'Zichtbaarheid in AI', i: 'grafiek' },
+  { l: 'Bibliotheek', i: 'boek', n: '248' },
+]
 
 const KLANTEN = [
-  { n: 'Lindeman Warmte', z: '47%', w: '2 vragen' },
-  { n: 'Fysio Oudwijk', z: '61%', w: 'Klaar' },
-  { n: 'Verbeek Bouw & Renovatie', z: '42%', w: 'Nakijken' },
-  { n: 'Tandartspraktijk Lunetten', z: '55%', w: 'Klaar' },
-  { n: 'Hoveniersbedrijf Groenrijk', z: '28%', w: '1 vraag' },
+  { n: 'Lindeman Warmte', i: 'LW', sub: '4 clusters · elke maand', z: '47%', d: '+10', w: '2 vragen', v: [17, 23, 30, 37, 47] },
+  { n: 'Fysio Oudwijk', i: 'FO', sub: '3 clusters · elke maand', z: '61%', d: '+11', w: 'Klaar', v: [44, 50, 52, 61] },
+  { n: 'Verbeek Bouw & Renovatie', i: 'VB', sub: '4 clusters · elke maand', z: '42%', d: '+7', w: 'Nakijken', v: [19, 27, 35, 42] },
+  { n: 'Tandartspraktijk Lunetten', i: 'TL', sub: '3 clusters · elke maand', z: '55%', d: '+10', w: 'Klaar', v: [35, 40, 45, 55] },
+  { n: 'Hoveniersbedrijf Groenrijk', i: 'HG', sub: '2 clusters · elke maand', z: '28%', d: '+4', w: '1 vraag', v: [20, 22, 24, 28] },
 ]
 
 function Merkteken({ stijl }: { stijl: Stijl }) {
@@ -36,24 +42,77 @@ function Merkteken({ stijl }: { stijl: Stijl }) {
   return <span className="agc-merk">{BUREAUS[stijl].merk}</span>
 }
 
+function Trend({ v }: { v: readonly number[] }) {
+  const pts = v.map((x, i) => `${(i / (v.length - 1)) * 52},${18 - ((x - 10) / 55) * 18}`).join(' ')
+  return <svg className="agc-wl-trend" width="56" height="22" viewBox="-2 -2 56 22" aria-hidden="true"><polyline points={pts} fill="none" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" /></svg>
+}
+
+// Het aantal AI-vragen (van de 30) waarin Lindeman Warmte genoemd wordt, per maand
+const ZICHTBAAR = [6, 8, 11, 15, 19]
+
+/** Grafiek in het venster van zonnig: de toename van de AI-vragen waarin de klant zichtbaar is. */
+function Zichtbaar() {
+  const W = 300, H = 56
+  const x = (i: number) => (i / (ZICHTBAAR.length - 1)) * W
+  const y = (v: number) => H - ((v - 4) / 16) * H
+  const lijn = ZICHTBAAR.map((v, i) => `${x(i)},${y(v)}`).join(' ')
+  return (
+    <div className="agc-wl-grafiek">
+      <div className="agc-wl-grafiek-kop">
+        <span><em>AI-vragen waarin Lindeman Warmte genoemd wordt</em><strong>19<small> van 30</small></strong></span>
+        <b>+13 sinds juni</b>
+      </div>
+      <svg viewBox={`-4 -6 ${W + 8} ${H + 22}`} preserveAspectRatio="none" aria-hidden="true">
+        {[0, 1, 2].map((r) => <line key={r} x1="0" x2={W} y1={(H / 2) * r} y2={(H / 2) * r} className="agc-wl-raster" />)}
+        <polygon points={`0,${H} ${lijn} ${W},${H}`} className="agc-wl-vlak" />
+        <polyline points={lijn} className="agc-wl-lijn" />
+        <circle cx={x(ZICHTBAAR.length - 1)} cy={y(19)} r="4" className="agc-wl-punt" />
+        {['jun', 'jul', 'aug', 'sep', 'okt'].map((m, i) => (
+          <text key={m} x={x(i)} y={H + 14} textAnchor={i === 0 ? 'start' : i === 4 ? 'end' : 'middle'}>{m}</text>
+        ))}
+      </svg>
+    </div>
+  )
+}
+
+/** Hetzelfde werkoverzicht, met zijbalk, bovenbalk, kerncijfers en een tabel met trend per klant. */
 function HuisstijlVenster({ stijl }: { stijl: Stijl }) {
   return (
     <div className="agc-wl" data-stijl={stijl}>
       <aside className="agc-wl-side">
         <span className="agc-wl-brand"><Merkteken stijl={stijl} />{BUREAUS[stijl].naam}</span>
-        {MENU.map((m, i) => <span key={m} className="agc-wl-item" data-on={i === 0 || undefined}>{m}</span>)}
+        <span className="agc-wl-zoek"><Icon naam="zoek" size={12} />Zoeken<kbd>⌘K</kbd></span>
+        <span className="agc-wl-groep">Werk</span>
+        {MENU.map((m, i) => (
+          <span key={m.l} className="agc-wl-item" data-on={i === 0 || undefined}><Icon naam={m.i} size={13} />{m.l}{m.n && <em>{m.n}</em>}</span>
+        ))}
+        <span className="agc-wl-groep">Bureau</span>
+        <span className="agc-wl-item"><Icon naam="mensen" size={13} />Team</span>
+        <span className="agc-wl-item"><Icon naam="euro" size={13} />Kosten</span>
+        <span className="agc-wl-user"><i>SV</i><span>Sanne de Vries<em>Beheerder</em></span></span>
       </aside>
       <div className="agc-wl-main">
+        <div className="agc-wl-top">
+          <span className="agc-wl-pad">Werk <b>›</b> <strong>Merken</strong></span>
+          <span className="agc-wl-team"><i>SV</i><i>DM</i><i>+3</i></span>
+        </div>
         <div className="agc-wl-head">
           <span className="agc-wl-titel">Merken<em>12 bedrijven</em></span>
           <span className="agc-wl-knoppen"><span className="agc-wl-knop">Start de maand</span><span className="agc-wl-pijl"><Icon naam="pijl" size={12} /></span></span>
         </div>
+        <div className="agc-wl-kpis">
+          <span><em>Pagina&apos;s geschreven in november</em><strong>24<small>/35</small></strong><i className="agc-wl-voortgang"><i style={{ width: '69%' }} /></i></span>
+          <span><em>Openstaande vragen</em><strong>7</strong><b>bij 5 klanten</b></span>
+        </div>
+        {stijl === 'zonnig' && <Zichtbaar />}
         <div className="agc-wl-tabel">
+          <div className="agc-wl-rij agc-wl-th"><span /><span>Bedrijf</span><span>Trend</span><span>Zichtbaar</span><span>Status</span></div>
           {KLANTEN.map((k) => (
             <div key={k.n} className="agc-wl-rij">
-              <strong>{k.n}</strong>
-              <span className="agc-wl-balk"><i style={{ width: k.z }} /></span>
-              <span className="agc-wl-pct">{k.z}</span>
+              <span className="agc-wl-av">{k.i}</span>
+              <span className="agc-wl-naam"><strong>{k.n}</strong><em>{k.sub}</em></span>
+              <Trend v={k.v} />
+              <span className="agc-wl-pct">{k.z}<small>{k.d}</small></span>
               <span className="agc-wl-chip" data-klaar={k.w === 'Klaar' || undefined}>{k.w}</span>
             </div>
           ))}
