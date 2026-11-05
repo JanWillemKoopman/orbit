@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Agencies 2 (/agencies2): de minimalistische versie van /agencies. Bouwt op pagina.css (hero, beeld),
+   home.css (kop, tussenzin, afsluiter) en beheer.css (het appvenster en de tabel). Hier staan alleen
+   de zijbalk en de filters van het hele scherm en de voordelen als tekst.
+   ========================================================================== */
+
+/* Het werkoverzicht als heel scherm: zijbalk links, het scherm Alle bedrijven rechts */
+.agc-ak { display: grid; grid-template-columns: 212px minmax(0, 1fr); flex-direction: row; }
+.agc-ak-side { display: flex; flex-direction: column; gap: 2px; padding: 14px 10px; border-right: 1px solid rgba(255, 255, 255, 0.06); background: rgba(0, 0, 0, 0.18); }
+.agc-ak-ws { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 8px; margin-bottom: 10px; font-weight: var(--weight-semibold); letter-spacing: -0.01em; color: var(--text-primary); white-space: nowrap; }
+.agc-ak-item { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 6px; font-size: 13px; white-space: nowrap; color: var(--text-tertiary); }
+.agc-ak-item svg { flex-shrink: 0; color: var(--text-quaternary); }
+.agc-ak-item em { margin-left: auto; font-style: normal; font-size: 12px; color: var(--text-quaternary); font-variant-numeric: tabular-nums; }
+.agc-ak-item[data-on] { background: rgba(255, 255, 255, 0.06); color: var(--text-primary); }
+.agc-ak-item[data-on] svg { color: var(--text-secondary); }
+.agc-ak-kop { padding: 18px 8px 6px; font-size: 12px; color: var(--text-quaternary); }
+.agc-ak-klant { overflow: hidden; text-overflow: ellipsis; }
+.agc-ak-klant i { width: 7px; height: 7px; margin: 0 3px; flex-shrink: 0; border-radius: 50%; background: #3a3d42; }
+.agc-ak-klant i[data-tone='oranje'] { background: #f2a65a; }
+.agc-ak-klant i[data-tone='geel'] { background: #f2c94c; }
+.agc-ak-klant i[data-tone='lime'] { background: var(--accent); }
+.agc-ak-meer { padding: 6px 8px 0 26px; font-size: 12.5px; color: var(--text-quaternary); }
+.agc-ak-main { display: flex; flex-direction: column; min-width: 0; }
+.agc-ak-filters { display: flex; gap: 4px; }
+.agc-ak-filters span { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: var(--radius-pill); font-size: 13px; color: var(--text-tertiary); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07); white-space: nowrap; }
+.agc-ak-filters span[data-on] { background: rgba(255, 255, 255, 0.07); color: var(--text-primary); box-shadow: none; }
+.agc-ak-filters em { font-style: normal; color: var(--text-quaternary); }
+
+/* De tussenzin en de voordelen ----------------------------------------------- */
+.a2-statement { margin-top: 232px; }
+.a2-voordelen { padding-top: 120px; padding-bottom: 40px; }
+.a2-lijst { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; }
+.a2-voordeel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 32px; padding-block: 28px 32px; border-top: 1px solid var(--border-translucent); }
+.a2-voordeel h3 { font-size: 17px; line-height: 1.4; letter-spacing: -0.012em; font-weight: var(--weight-medium); color: var(--text-primary); text-wrap: balance; }
+.a2-voordeel p { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+
+/* Breekpunten --------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .a2-lijst { grid-template-columns: 1fr; }
+  .a2-lijst .a2-voordeel:last-child { border-bottom: 1px solid var(--border-translucent); }
+}
+@media (max-width: 1024px) {
+  .a2-statement { margin-top: 168px; }
+  /* Op een tablet past het hele scherm niet meer: het begint links en loopt rechts uit beeld, zoals op linear.app */
+  .lp-beeld-inner:has(.agc-ak) { left: 40px; transform: none; }
+  .lp-beeld:has(.agc-ak) .lp-beeld-stage { height: 780px; }
+}
+@media (max-width: 640px) {
+  .a2-statement { margin-top: 96px; }
+  .a2-voordelen { padding-top: 64px; padding-bottom: 0; }
+  .a2-voordeel { grid-template-columns: 1fr; gap: 4px; padding-block: 20px 22px; }
+  .a2-voordeel h3 { font-size: 15px; line-height: 1.5; }
+
+  /* Op een telefoon alleen het scherm zelf, zonder zijbalk en filters (de tabel volgt pagina.css) */
+  .lp-beeld-inner .agc-ak { grid-template-columns: 1fr; }
+  .lp-beeld-inner .agc-ak-side, .lp-beeld-inner .agc-ak-filters { display: none; }
+}

@@ -190,3 +190,32 @@ export const afsluiter = {
   title: 'Laat je bureau groeien met Orbit.',
   description: 'Plan een demo. We laten je Orbit zien in de huisstijl van jouw bureau.',
 }
+
+// Tweede versie (/agencies2): veel minimalistischer. De hero, één groot beeld van het werkoverzicht met
+// al je klanten, een korte tussenzin, de voordelen als tekst zonder beelden en de afsluiter. De hero en
+// de afsluiter zijn dezelfde als hierboven.
+export const minimaal = {
+  intro: {
+    titel: 'Al je klanten op één plek.',
+    tekst:
+      'Eén overzicht voor je hele portefeuille. Per klant de zichtbaarheid in AI, wat er wacht en sinds wanneer. Voor zoveel klanten als je wilt.',
+  },
+  beeld: {
+    titel: 'Het werkoverzicht van je bureau',
+    tekst: 'Wat het langst wacht, staat bovenaan. Vink klanten aan en start de maand voor allemaal tegelijk.',
+  },
+  statement: {
+    strong: 'Jullie bepalen de strategie.',
+    rest: 'Orbit voert hem uit.',
+  },
+  voordelen: [
+    { titel: 'Zoveel klanten als je wilt', tekst: 'Geen limiet. Orbit groeit mee, van je eerste klant tot je honderdste.' },
+    { titel: 'Volledig in jouw huisstijl', tekst: 'Je logo, je kleuren, je lettertype. Het redesign van de interface is inbegrepen.' },
+    { titel: 'Je klant kijkt mee', tekst: 'Hij ziet alleen zijn eigen resultaten, in gewone taal. Jij bepaalt wat hij mag.' },
+    { titel: 'Jullie de strategie, Orbit de uitvoering', tekst: 'Je marketeers bepalen met de klant de koers. Orbit onderzoekt, meet, plant en schrijft.' },
+    { titel: 'Het meeste werk uit handen', tekst: 'Orbit neemt het grootste deel van het SEO- en GEO-werk over. Je specialisten houden tijd over voor advies.' },
+    { titel: 'Teksten die kloppen', tekst: 'Geen verzonnen prijs of garantie op de site van je klant. De software houdt ze tegen.' },
+    { titel: 'Bewijs dat klanten houdt', tekst: 'Elke pagina wordt na twee en vier weken opnieuw gemeten. Resultaat, zwart op wit.' },
+    { titel: 'Een marge die van jou is', tekst: 'De AI draait op de sleutels van je bureau, tegen kostprijs en zonder opslag.' },
+  ] as Bijschrift[],
+}
