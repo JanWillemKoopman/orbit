@@ -45,6 +45,8 @@ const nextConfig = {
       { source: '/product', destination: '/werkwijze', permanent: true },
       { source: '/kennis', destination: '/kwaliteit', permanent: true },
       { source: '/agency', destination: '/beheer', permanent: true },
+      // De tweede versie van Agencies is de pagina Agencies geworden.
+      { source: '/agencies2', destination: '/agencies', permanent: true },
       ...Object.entries(vervangenKennisbank).flatMap(([slug, destination]) => [
         { source: `/kennisbank/${slug}`, destination, permanent: true },
         { source: `/blog/${slug}`, destination, permanent: true },

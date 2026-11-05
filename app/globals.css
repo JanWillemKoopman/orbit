@@ -20,6 +20,12 @@
 
   --accent: #bcff2f;
   --red: #eb5757;
+  /* Statuskleuren van Linear, alleen voor status en voor de huisstijlen van fictieve bureaus in een beeld */
+  --green: #27a644;
+  --blue: #4ea7fc;
+  --orange: #fc7840;
+  --yellow: #f0bf00;
+  --teal: #00b8cc;
   --button-invert-bg: #e5e5e6;
   --button-invert-bg-hover: #ffffff;
 
