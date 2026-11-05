@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
-import { Beeld, PaginaHero } from '@/components/product/Blokken'
+import { PaginaHero } from '@/components/product/Blokken'
 import { AlleKlanten } from '@/components/agencies/Visuals'
 import { afsluiter, hero, meta, minimaal } from '@/content/agencies'
 import '../werkwijze/werkwijze.css'
@@ -50,9 +50,18 @@ export default function Agencies2Page() {
         </section>
 
         <section className="a2-klanten" aria-label="Het werkoverzicht van je bureau">
-          <Beeld b={m.beeld} breedte={1240} hoogte={900} alt="Het scherm Alle bedrijven van een bureau: twaalf klanten onder elkaar met hun zichtbaarheid in AI, de maandmeting, wat er te starten is, wat er wacht en sinds wanneer, en de kosten van de afgelopen dertig dagen. Vier klanten zijn aangevinkt om de maand tegelijk te starten.">
-            <AlleKlanten />
-          </Beeld>
+          {/* Eigen vlak in plaats van Beeld: het scherm houdt op elke breedte zijn opbouw en wordt als geheel
+              verkleind, zoals het scherm boven aan de homepage. Beeld bouwt het op een telefoon om tot een
+              smalle versie. */}
+          <figure className="lp-beeld lp-beeld-scherm a2-scherm">
+            <div className="a2-scherm-stage" role="img" aria-label="Het scherm Alle bedrijven van een bureau: twaalf klanten onder elkaar met hun zichtbaarheid in AI, de maandmeting, wat er te starten is, wat er wacht en sinds wanneer, en de kosten van de afgelopen dertig dagen. Vier klanten zijn aangevinkt om de maand tegelijk te starten.">
+              <div className="a2-scherm-frame" aria-hidden="true"><AlleKlanten /></div>
+            </div>
+            <figcaption className="lp-caption">
+              <h3>{m.beeld.titel}</h3>
+              <p>{m.beeld.tekst}</p>
+            </figcaption>
+          </figure>
         </section>
 
         <div className="home-statement a2-statement">

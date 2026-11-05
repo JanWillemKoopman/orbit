@@ -26,6 +26,19 @@
 .agc-ak-filters span[data-on] { background: rgba(255, 255, 255, 0.07); color: var(--text-primary); box-shadow: none; }
 .agc-ak-filters em { font-style: normal; color: var(--text-quaternary); }
 
+/* Het vlak met het scherm. Het scherm is altijd 1240 x 820 en houdt zijn opbouw; per breedte wordt het
+   als geheel verkleind met een transform, die de opmaak eromheen niet raakt. Zo gedraagt het zich als
+   het scherm boven aan de homepage (.af-frame in home.css): op een telefoon op de helft, links
+   uitgelijnd en rechts uit beeld. */
+.a2-scherm-stage {
+  position: relative; height: 840px; overflow: hidden; user-select: none; text-align: left;
+  font-size: 14px; line-height: 1.5; color: var(--text-secondary);
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 160px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 160px), transparent 100%);
+}
+.a2-scherm-frame { position: absolute; top: 96px; left: 50%; width: 1240px; transform: translateX(-50%); transform-origin: 50% 0; }
+.a2-scherm-frame .agc-ak { height: 820px; }
+
 /* Het tekstblok onder de hero: de opmaak van het blok op de homepage (home.css), maar zonder de
    keyline en de ruimte erboven, want de hero heeft zelf al een lijn aan de onderkant */
 .a2-usp { margin-top: 0; }
@@ -43,11 +56,15 @@
   .a2-lijst { grid-template-columns: 1fr; }
   .a2-lijst .a2-voordeel:last-child { border-bottom: 1px solid var(--border-translucent); }
 }
+/* Vanaf hier past het hele scherm niet meer: het begint links en loopt rechts uit beeld, zoals op linear.app */
+@media (max-width: 1199px) {
+  .a2-scherm-stage { height: 760px; }
+  .a2-scherm-frame { left: 40px; transform: scale(0.88); transform-origin: 0 0; }
+}
 @media (max-width: 1024px) {
   .a2-statement { margin-top: 168px; }
-  /* Op een tablet past het hele scherm niet meer: het begint links en loopt rechts uit beeld, zoals op linear.app */
-  .lp-beeld-inner:has(.agc-ak) { left: 40px; transform: none; }
-  .lp-beeld:has(.agc-ak) .lp-beeld-stage { height: 780px; }
+  .a2-scherm-stage { height: 680px; }
+  .a2-scherm-frame { transform: scale(0.76); }
 }
 @media (max-width: 640px) {
   .a2-statement { margin-top: 96px; }
@@ -55,7 +72,14 @@
   .a2-voordeel { grid-template-columns: 1fr; gap: 4px; padding-block: 20px 22px; }
   .a2-voordeel h3 { font-size: 15px; line-height: 1.5; }
 
-  /* Op een telefoon alleen het scherm zelf, zonder zijbalk en filters (de tabel volgt pagina.css) */
-  .lp-beeld-inner .agc-ak { grid-template-columns: 1fr; }
-  .lp-beeld-inner .agc-ak-side, .lp-beeld-inner .agc-ak-filters { display: none; }
+  /* Op een telefoon zoals de homepage: een vlak van 400 px hoog, het scherm op de helft van zijn maat,
+     links op 18 px en rechts uitlopend in de achtergrond */
+  .a2-scherm-stage {
+    height: 400px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%), linear-gradient(to right, #000 70%, rgba(0, 0, 0, 0.2) 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%), linear-gradient(to right, #000 70%, rgba(0, 0, 0, 0.2) 100%);
+    mask-composite: intersect;
+  }
+  .a2-scherm-frame { top: 32px; left: 18px; transform: scale(0.5); transform-origin: 0 0; }
 }
