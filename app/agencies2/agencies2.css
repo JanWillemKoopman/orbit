@@ -57,7 +57,7 @@
 }
 .a2-split-inner { position: absolute; top: 56px; left: 40px; transform-origin: 0 0; }
 .a2-split-inner-content { transform: scale(0.8); }
-.a2-split-inner-whitelabel { left: 28px; transform: scale(0.52); }
+.a2-split-inner-whitelabel { top: 104px; left: 18px; transform: scale(0.535); }
 .a2-split-beeld::after { content: ''; position: absolute; inset: auto 0 0 0; height: 120px; background: linear-gradient(to bottom, rgba(11, 12, 13, 0), #0b0c0d); pointer-events: none; }
 
 .a2-split-label { font-size: 15px; line-height: 1.5; color: var(--text-tertiary); }

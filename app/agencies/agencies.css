@@ -51,10 +51,10 @@
 }
 
 .agc-wl-comp { position: relative; width: 1120px; height: 560px; }
-.agc-wl-pos { position: absolute; width: 640px; }
-.agc-wl-pos-1 { top: 64px; left: 0; }
-.agc-wl-pos-2 { top: 0; left: 240px; }
-.agc-wl-pos-3 { top: 112px; left: 480px; }
+.agc-wl-pos { position: absolute; width: 580px; }
+.agc-wl-pos-1 { top: 72px; left: 0; }
+.agc-wl-pos-2 { top: 0; left: 270px; }
+.agc-wl-pos-3 { top: 128px; left: 540px; }
 
 .agc-wl {
   display: grid; grid-template-columns: 172px minmax(0, 1fr); height: 440px; overflow: hidden;
@@ -97,6 +97,77 @@
   font-size: 11.5px; color: var(--wl-text); background: color-mix(in srgb, var(--wl-accent) 16%, transparent);
 }
 .agc-wl-chip[data-klaar] { color: var(--wl-muted); background: var(--wl-line); }
+
+/* De pijl naast de knop bestaat alleen in de stijl van .atelier */
+.agc-wl-knoppen { display: inline-flex; align-items: center; gap: 4px; }
+.agc-wl-pijl { display: none; }
+
+/* Drie totaal verschillende huisstijlen, naar de websites van de drie grootste bureaus van Nederland (DEPT, Monks en
+   Happy Horizon). De kleuren hieronder zijn hun merkkleuren en horen bij de illustratie, niet bij de site. */
+
+/* VONK: wit, zwart en fel oranje. Extra vette koppen in hoofdletters, haarlijnen, bijna geen hoeken, knoppen als
+   oranje omlijnde pil en een harde oranje schaduw zonder vervaging. */
+.agc-wl[data-stijl='vonk'] {
+  --wl-bg: #ffffff; --wl-side: #ffffff; --wl-text: #000000; --wl-muted: #767676; --wl-line: #e3e3e3;
+  --wl-accent: #ff4901; --wl-ink: #ffffff; --wl-radius: 2px; --wl-knop-radius: var(--radius-pill);
+  border-radius: 2px; box-shadow: 0 0 0 1px #121212, 10px 10px 0 #ff4901;
+}
+[data-stijl='vonk'] .agc-wl-side { border-right-color: #121212; }
+[data-stijl='vonk'] .agc-wl-brand { font-weight: 900; font-size: 16px; letter-spacing: -0.02em; }
+[data-stijl='vonk'] .agc-merk { border-radius: 0; background: #000000; color: #ffffff; font-weight: 900; }
+[data-stijl='vonk'] .agc-wl-item { border-radius: 0; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; }
+[data-stijl='vonk'] .agc-wl-item[data-on] { background: transparent; color: #ff4901; box-shadow: inset 2px 0 0 #ff4901; }
+[data-stijl='vonk'] .agc-wl-titel { font-size: 30px; line-height: 0.95; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+[data-stijl='vonk'] .agc-wl-knop { background: transparent; color: #ff4901; box-shadow: inset 0 0 0 1.5px #ff4901; text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px; font-weight: 700; }
+[data-stijl='vonk'] .agc-wl-rij { border-top-color: #121212 !important; }
+[data-stijl='vonk'] .agc-wl-rij strong { font-weight: 700; }
+[data-stijl='vonk'] .agc-wl-pct { font-weight: 900; }
+[data-stijl='vonk'] .agc-wl-balk { height: 6px; border-radius: 0; background: #f2f2f2; }
+[data-stijl='vonk'] .agc-wl-chip { background: transparent; padding: 0; color: #ff4901; font-weight: 700; text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.05em; }
+[data-stijl='vonk'] .agc-wl-chip[data-klaar] { color: #767676; }
+
+/* .atelier: warm bijna-zwart met gebroken wit, een schreeflettertype voor de koppen, zachte afgeronde rijen,
+   lichte pilknoppen met een ronde pijl ernaast en een warme gloed in plaats van een schaduw. */
+.agc-wl[data-stijl='atelier'] {
+  --wl-bg: #191715; --wl-side: #191715; --wl-text: #eae8e4; --wl-muted: #8c8882; --wl-line: rgba(234, 232, 228, 0.1);
+  --wl-accent: #eae8e4; --wl-ink: #191715; --wl-radius: 22px; --wl-knop-radius: var(--radius-pill);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border-radius: 24px; box-shadow: 0 0 0 1px rgba(234, 232, 228, 0.12), 0 40px 120px rgba(234, 232, 228, 0.1), 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+[data-stijl='atelier'] .agc-wl-side { border-right: 0; }
+[data-stijl='atelier'] .agc-wl-brand { font-size: 17px; font-weight: 800; letter-spacing: -0.03em; }
+[data-stijl='atelier'] .agc-wl-item[data-on] { background: #2d2d2d; color: #eae8e4; }
+[data-stijl='atelier'] .agc-wl-titel { font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-weight: 400; letter-spacing: -0.02em; }
+[data-stijl='atelier'] .agc-wl-titel em { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+[data-stijl='atelier'] .agc-wl-knop { height: 32px; padding: 0 16px; font-weight: 500; }
+[data-stijl='atelier'] .agc-wl-pijl { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #eae8e4; color: #191715; }
+[data-stijl='atelier'] .agc-wl-tabel { gap: 6px; }
+[data-stijl='atelier'] .agc-wl-rij { padding: 0 14px; border-radius: 14px; background: #2d2d2d; border-top: 0 !important; }
+[data-stijl='atelier'] .agc-wl-chip { background: rgba(234, 232, 228, 0.1); }
+
+/* zonnig: diep marineblauw met geel. Een blauwe zijbalk met een gele pil, rijen als ronde lichte kaarten met een
+   zachte blauwe schaduw, vette koppen en een gele pilknop. */
+.agc-wl[data-stijl='zonnig'] {
+  --wl-bg: #ffffff; --wl-side: #070733; --wl-text: #070733; --wl-muted: #8f90a6; --wl-line: #e4e4ec;
+  --wl-accent: #fce512; --wl-ink: #070733; --wl-radius: 16px; --wl-knop-radius: var(--radius-pill);
+  font-family: 'Avenir Next', Montserrat, var(--font-sans);
+  border-radius: 28px; box-shadow: 0 0 0 1px rgba(7, 7, 51, 0.5), 0 40px 90px rgba(7, 7, 51, 0.7);
+}
+[data-stijl='zonnig'] .agc-wl-side { border-right: 0; padding: 20px 12px; }
+[data-stijl='zonnig'] .agc-wl-brand { color: #ffffff; font-size: 19px; font-weight: 800; letter-spacing: -0.03em; }
+[data-stijl='zonnig'] .agc-wl-brand::after { content: ''; width: 7px; height: 7px; margin-left: -6px; margin-top: -10px; border-radius: 50%; background: #fce512; }
+[data-stijl='zonnig'] .agc-wl-item { color: rgba(255, 255, 255, 0.7); border-radius: var(--radius-pill); padding: 7px 12px; font-weight: 600; }
+[data-stijl='zonnig'] .agc-wl-item[data-on] { background: #fce512; color: #070733; }
+[data-stijl='zonnig'] .agc-wl-main { background: #f2f2f5; }
+[data-stijl='zonnig'] .agc-wl-titel { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; }
+[data-stijl='zonnig'] .agc-wl-knop { font-weight: 700; height: 34px; padding: 0 16px; box-shadow: 0 6px 16px rgba(252, 229, 18, 0.35); }
+[data-stijl='zonnig'] .agc-wl-tabel { gap: 8px; }
+[data-stijl='zonnig'] .agc-wl-rij { padding: 0 14px; border-radius: 16px; background: #ffffff; border-top: 0 !important; box-shadow: 0 6px 18px rgba(7, 7, 51, 0.08); }
+[data-stijl='zonnig'] .agc-wl-rij strong { font-weight: 700; }
+[data-stijl='zonnig'] .agc-wl-balk { height: 6px; background: #e4e4ec; }
+[data-stijl='zonnig'] .agc-wl-balk i { background: #070733; }
+[data-stijl='zonnig'] .agc-wl-chip { background: #070733; color: #ffffff; font-weight: 600; }
+[data-stijl='zonnig'] .agc-wl-chip[data-klaar] { background: #fce512; color: #070733; }
 
 /* De huisstijlkaart: hoe één bureau in de app staat */
 .agc-kaart { gap: 0; padding: 18px 22px 10px; }

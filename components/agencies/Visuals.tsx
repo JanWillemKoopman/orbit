@@ -8,12 +8,17 @@ import { Chip, Icon, Knop, Logo, Mono } from '@/components/product/ui'
 
 /* ── Whitelabel: hetzelfde scherm in drie huisstijlen ─────────────────────── */
 
-type Stijl = 'kade' | 'lumen' | 'merkwerk'
+type Stijl = 'kade' | 'lumen' | 'merkwerk' | 'vonk' | 'atelier' | 'zonnig'
 
 const BUREAUS: Record<Stijl, { naam: string; merk: string }> = {
   kade: { naam: 'Studio Kade', merk: 'K' },
   lumen: { naam: 'Lumen', merk: 'L' },
   merkwerk: { naam: 'Merkwerk', merk: 'M' },
+  // De drie van de whitelabel-illustratie: verzonnen bureaus, met de stijl van de drie grootste
+  // bureaus van Nederland als inspiratie (kleur, lettertype, hoeken, schaduw en knoppen)
+  vonk: { naam: 'VONK', merk: 'V' },
+  atelier: { naam: '.atelier', merk: '' },
+  zonnig: { naam: 'zonnig', merk: '' },
 }
 
 const MENU = ['Merken', 'Contentplan', 'Zichtbaarheid in AI', 'Bibliotheek', 'Beheer']
@@ -27,6 +32,7 @@ const KLANTEN = [
 ]
 
 function Merkteken({ stijl }: { stijl: Stijl }) {
+  if (!BUREAUS[stijl].merk) return null
   return <span className="agc-merk">{BUREAUS[stijl].merk}</span>
 }
 
@@ -40,7 +46,7 @@ function HuisstijlVenster({ stijl }: { stijl: Stijl }) {
       <div className="agc-wl-main">
         <div className="agc-wl-head">
           <span className="agc-wl-titel">Merken<em>12 bedrijven</em></span>
-          <span className="agc-wl-knop">Start de maand</span>
+          <span className="agc-wl-knoppen"><span className="agc-wl-knop">Start de maand</span><span className="agc-wl-pijl"><Icon naam="pijl" size={12} /></span></span>
         </div>
         <div className="agc-wl-tabel">
           {KLANTEN.map((k) => (
@@ -57,13 +63,13 @@ function HuisstijlVenster({ stijl }: { stijl: Stijl }) {
   )
 }
 
-/** Drie vensters over elkaar: hetzelfde werkoverzicht in de huisstijl van drie bureaus. */
+/** Drie vensters over elkaar: hetzelfde werkoverzicht in drie totaal verschillende huisstijlen. */
 export function Huisstijlen() {
   return (
     <div className="agc-wl-comp">
-      <div className="agc-wl-pos agc-wl-pos-1"><HuisstijlVenster stijl="kade" /></div>
-      <div className="agc-wl-pos agc-wl-pos-2"><HuisstijlVenster stijl="lumen" /></div>
-      <div className="agc-wl-pos agc-wl-pos-3"><HuisstijlVenster stijl="merkwerk" /></div>
+      <div className="agc-wl-pos agc-wl-pos-1"><HuisstijlVenster stijl="atelier" /></div>
+      <div className="agc-wl-pos agc-wl-pos-2"><HuisstijlVenster stijl="vonk" /></div>
+      <div className="agc-wl-pos agc-wl-pos-3"><HuisstijlVenster stijl="zonnig" /></div>
     </div>
   )
 }
