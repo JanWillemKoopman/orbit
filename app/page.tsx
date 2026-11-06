@@ -159,7 +159,7 @@ export default function HomePage() {
       </div>
 
       <section className="home-prefooter container">
-        <CtaAchtergrond lime="mobiel" />
+        <CtaAchtergrond />
         <h2>{prefooter.title}</h2>
         <div className="home-prefooter-actions">
           <PrefooterKnoppen />

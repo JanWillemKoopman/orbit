@@ -49,9 +49,10 @@ function markeerGezien(scene: SceneNaam) {
 }
 
 /** Zonder `scene` wisselt de achtergrond per bezoeker; met `scene` staat hij vast (voor de testpagina's).
- *  Met `lime` is het blok limegroen en zijn de stippen donkergroen; met `lime="mobiel"` alleen op een
- *  telefoon (tot 640 px breed). De kleuren van kop en knoppen volgen in globals.css. */
-export function CtaAchtergrond({ scene: vast, lime: limeProp = false }: { scene?: SceneNaam; lime?: boolean | 'mobiel' } = {}) {
+ *  Op een telefoon (tot 640 px breed) is het blok limegroen met donkergroene stippen (`lime="mobiel"`, de
+ *  standaard); `lime` maakt het overal groen, `lime={false}` nergens. De kleuren van kop en knoppen volgen
+ *  in globals.css. */
+export function CtaAchtergrond({ scene: vast, lime: limeProp = 'mobiel' }: { scene?: SceneNaam; lime?: boolean | 'mobiel' } = {}) {
   const lagenRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [scene, setScene] = useState<SceneNaam | null>(vast ?? null)

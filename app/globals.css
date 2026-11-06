@@ -564,6 +564,7 @@ img, svg { display: block; max-width: 100%; }
 .cta-achtergrond-lime { background: var(--accent); }
 .cta-achtergrond-lime::after { box-shadow: inset 0 0 0 1px rgba(8, 9, 10, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.35); }
 .container:has(> .cta-achtergrond-lime) h2 { color: var(--bg-primary); }
+.container:has(> .cta-achtergrond-lime) p { color: rgba(8, 9, 10, 0.72); }
 .container:has(> .cta-achtergrond-lime) .btn-invert {
   background: var(--bg-primary); color: var(--text-primary); border-color: var(--bg-primary);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 12px rgba(8, 9, 10, 0.2);
