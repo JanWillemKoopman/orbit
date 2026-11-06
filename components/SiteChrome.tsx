@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { Assistent } from './assistent/Assistent'
 import { Footer } from './Footer'
 import { Header } from './Header'
 import { OpbouwInBeeld } from './OpbouwInBeeld'
@@ -17,6 +18,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <main>{children}</main>
       <Footer />
       <OpbouwInBeeld />
+      <Assistent />
     </>
   )
 }

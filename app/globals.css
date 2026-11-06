@@ -713,3 +713,99 @@ img, svg { display: block; max-width: 100%; }
 .succes-icoon { width: 56px; height: 56px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--accent); color: var(--bg-primary); }
 .succes-dialog h2 { padding-right: 0; margin-bottom: 8px; }
 .succes-dialog .demo-intro { margin-bottom: 24px; }
+
+/* ==========================================================================
+   Assistent rechtsonder (components/assistent): een knop die een chatvenster opent
+   ========================================================================== */
+.dotbol { display: block; }
+.as-knop {
+  position: fixed; right: 24px; bottom: 24px; z-index: 40;
+  display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 22px 0 6px;
+  border-radius: var(--radius-pill); background: rgba(20, 21, 22, 0.82); color: var(--text-primary);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 0 0 1px var(--border-translucent), inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.6), 0 7px 32px rgba(0, 0, 0, 0.35);
+  text-align: left; cursor: pointer;
+  animation: as-in var(--speed-regular) var(--ease-out-quad) 0.6s both;
+  transition: background var(--speed-quick) var(--ease-out-quad), transform var(--speed-quick) var(--ease-out-quad);
+}
+.as-knop[hidden] { display: none; }
+@media (hover: hover) { .as-knop:hover { background: rgba(25, 26, 27, 0.92); } }
+.as-knop:active { transform: scale(0.97); }
+.as-knop-bol, .as-kop-bol {
+  flex: none; display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, var(--bg-level-3), var(--bg-primary) 75%);
+  box-shadow: inset 0 0 0 1px var(--border-translucent);
+}
+.as-knop-bol { width: 44px; height: 44px; }
+.as-knop-tekst { display: flex; flex-direction: column; gap: 3px; }
+.as-knop-label { font-family: var(--font-mono); font-size: 11px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; color: var(--accent); }
+.as-knop-vraag { font-size: 14px; line-height: 1.2; font-weight: var(--weight-medium); letter-spacing: -0.01em; white-space: nowrap; }
+
+.as-venster {
+  position: fixed; right: 24px; bottom: 24px; z-index: 90;
+  display: flex; flex-direction: column; width: 400px; max-height: min(640px, calc(100dvh - 48px)); overflow: hidden;
+  border-radius: var(--radius-16); background: var(--bg-level-1); color: var(--text-primary);
+  box-shadow: inset 0 0 0 1px var(--border-translucent), inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.6), 0 7px 32px rgba(0, 0, 0, 0.35);
+  transform-origin: bottom right;
+  animation: as-open var(--speed-regular) var(--ease-out-expo);
+}
+.as-kop {
+  display: flex; align-items: center; gap: 14px; padding: 18px 16px 18px 18px;
+  border-bottom: 1px solid var(--border-translucent);
+  background: radial-gradient(120% 140% at 0% 0%, rgba(188, 255, 47, 0.06), transparent 60%), var(--bg-level-2);
+}
+.as-kop-bol { width: 48px; height: 48px; }
+.as-kop-tekst { flex: 1; min-width: 0; }
+.as-kop-regel { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.as-kop h2 { font-size: 15px; line-height: 1.33; font-weight: var(--weight-semibold); letter-spacing: -0.012em; }
+.as-kop p { margin-top: 2px; font-size: 13px; line-height: 1.45; letter-spacing: -0.01em; color: var(--text-tertiary); }
+.as-sluit {
+  flex: none; align-self: flex-start; width: 32px; height: 32px; display: grid; place-items: center;
+  border-radius: 50%; color: var(--text-tertiary); transition: background var(--speed-quick), color var(--speed-quick);
+}
+@media (hover: hover) { .as-sluit:hover { background: var(--bg-hover); color: var(--text-primary); } }
+.as-badge {
+  flex: none; display: inline-flex; align-items: center; height: 20px; padding: 0 7px; border-radius: var(--radius-pill);
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-tertiary);
+  background: var(--bg-translucent); box-shadow: inset 0 0 0 1px var(--border-translucent);
+}
+.as-badge-accent { color: var(--accent); background: rgba(188, 255, 47, 0.08); box-shadow: inset 0 0 0 1px rgba(188, 255, 47, 0.2); }
+
+.as-inhoud { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.as-bericht {
+  max-width: 92%; padding: 11px 14px; border-radius: 4px 14px 14px 14px; background: var(--bg-level-3);
+  box-shadow: inset 0 0 0 1px var(--border-translucent);
+  font-size: 14px; line-height: 1.55; letter-spacing: -0.01em; color: var(--text-secondary);
+  opacity: 0; animation: as-in var(--speed-regular) var(--ease-out-quad) forwards;
+}
+.as-bericht:nth-child(1) { animation-delay: 0.08s; }
+.as-bericht:nth-child(2) { animation-delay: 0.32s; }
+.as-demo { width: 100%; margin-top: 8px; opacity: 0; animation: as-in var(--speed-regular) var(--ease-out-quad) 0.5s forwards; }
+.as-sectie { margin-top: 18px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-quaternary); }
+.as-opties { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.as-optie {
+  display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.1); cursor: default;
+}
+.as-optie-icoon { flex: none; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; background: var(--bg-translucent); color: var(--text-tertiary); }
+.as-optie-tekst { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.as-optie-titel { font-size: 14px; line-height: 1.4; font-weight: var(--weight-medium); letter-spacing: -0.01em; color: var(--text-secondary); }
+.as-optie-uitleg { font-size: 13px; line-height: 1.45; letter-spacing: -0.01em; color: var(--text-quaternary); }
+.as-voet { padding: 12px 18px; border-top: 1px solid var(--border-translucent); text-align: center; font-size: 12px; color: var(--text-quaternary); }
+
+/* Mobiel: alleen de ronde bol, en het venster over het hele scherm */
+@media (max-width: 640px) {
+  .as-knop { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); width: 56px; padding: 0; justify-content: center; }
+  .as-knop-tekst { display: none; }
+  .as-venster {
+    inset: 0; width: auto; max-height: none; border-radius: 0; box-shadow: none;
+    padding-bottom: env(safe-area-inset-bottom); transform-origin: bottom center;
+  }
+  .as-kop { padding-top: calc(18px + env(safe-area-inset-top)); }
+}
+
+@keyframes as-in { from { opacity: 0; transform: translateY(4px) scale(0.99); } to { opacity: 1; transform: none; } }
+@keyframes as-open { from { opacity: 0; transform: translateY(8px) scale(0.97); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .as-knop, .as-venster, .as-bericht, .as-demo { animation: none; opacity: 1; }
+}
