@@ -1,5 +1,5 @@
-// De eigen beelden van /agencies: het werkoverzicht als heel scherm (AlleKlanten), de pagina's van een maand
-// (ContentOpSchaal) en de whitelabel-illustratie (Huisstijlen). Drie verzonnen bureaus (VONK, .atelier en
+// De eigen beelden van /agencies: het werkoverzicht als heel scherm (AlleKlanten), de kosten per klant
+// (GripOpKosten) en de whitelabel-illustratie (Huisstijlen). Drie verzonnen bureaus (VONK, .atelier en
 // zonnig) laten zien hoe hetzelfde werkscherm in een totaal andere huisstijl staat, met de stijl van de drie
 // grootste bureaus van Nederland als inspiratie. Opmaak in app/agencies/agencies.css.
 import { Chip, Icon, Knop, Logo, Mono } from '@/components/product/ui'
@@ -220,47 +220,63 @@ export function AlleKlanten() {
   )
 }
 
-/* ── Content op schaal ────────────────────────────────────────────────────── */
+/* ── Grip op kosten ───────────────────────────────────────────────────────── */
 
-const PAGINAS = [
-  { t: 'Hybride warmtepomp laten installeren', k: 'Lindeman Warmte', c: 'Gecontroleerd', tone: 'lime' },
-  { t: 'Dakkapel plaatsen in Den Bosch', k: 'Verbeek Bouw & Renovatie', c: 'Gecontroleerd', tone: 'lime' },
-  { t: 'Wat kost een wortelkanaalbehandeling?', k: 'Tandartspraktijk Lunetten', c: '1 gele zin', tone: 'geel' },
-  { t: 'Zonnepanelen op een plat dak', k: 'Zonnepanelen Brabant', c: 'Gecontroleerd', tone: 'lime' },
-  { t: 'Fysiotherapie na een knieoperatie', k: 'Fysio Oudwijk', c: 'Wordt geschreven', tone: 'blauw' },
-  { t: 'Een weekend weg op de Veluwe', k: 'Hotel De Wijde Blik', c: 'Wordt geschreven', tone: 'blauw' },
+// Het tabblad Kosten van een bureau (Beheer › Kosten in de app): wat er deze maand staat tegen de
+// maandlimiet, de schatting voor volgende maand en het verbruik per bedrijf. De bedragen zijn de kosten
+// van de afgelopen dertig dagen uit het werkoverzicht hierboven (ALLE_KLANTEN), de zes duurste apart.
+const PER_BEDRIJF = [
+  { n: 'Lindeman Warmte', k: 24.6 },
+  { n: 'Zonnepanelen Brabant', k: 21.7 },
+  { n: 'Tandartspraktijk Lunetten', k: 19.3 },
+  { n: 'Verbeek Bouw & Renovatie', k: 16.8 },
+  { n: 'Hotel De Wijde Blik', k: 15.4 },
+  { n: 'Kringloop De Ruil', k: 13.1 },
+  { n: '6 andere bedrijven samen', k: 47.7, rest: true },
 ] as const
 
-/** De pagina's van één maand voor al je klanten, met ervoor één gecontroleerde zin. */
-export function ContentOpSchaal() {
+const eur = (n: number) => `€ ${n.toFixed(2).replace('.', ',')}`
+
+/** De kosten van een maand per klant, met ervoor de schatting die bij de knop Start de maand staat. */
+export function GripOpKosten() {
   return (
-    <div className="a2-cs">
-      <div className="ag-window a2-cs-lijst">
+    <div className="a2-ko">
+      <div className="ag-window a2-ko-venster">
         <div className="ag-bar">
-          <span className="ag-crumbs"><Logo size={18} /><span>Bureau Noordwind</span><span className="ag-crumb-current"><span className="ag-sep">›</span>Pagina&apos;s van november</span></span>
+          <span className="ag-crumbs"><Logo size={18} /><span>Bureau Noordwind</span><span className="ag-crumb-current"><span className="ag-sep">›</span>Kosten</span></span>
+          <span className="ag-ghost a2-ko-export"><Icon naam="download" size={13} />Download november</span>
         </div>
         <div className="ag-view">
-          <div className="a2-cs-kop">
-            <span className="ag-li-t"><strong>35 pagina&apos;s voor 7 klanten</strong><em>24 geschreven en gecontroleerd</em></span>
-            <span className="a2-cs-n">24<em>/35</em></span>
+          <div className="a2-ko-kop">
+            <div className="a2-ko-stand">
+              <Mono>Deze maand, november</Mono>
+              <span className="a2-ko-bedrag">€ 158,60<em>van € 250,00</em></span>
+              <div className="fv-progress"><i style={{ width: '63%' }} /></div>
+            </div>
+            <div className="a2-ko-stand">
+              <Mono>Volgende maand</Mono>
+              <span className="a2-ko-bedrag a2-ko-bedrag-klein"><em>ongeveer</em>€ 164</span>
+            </div>
           </div>
-          <div className="fv-progress"><i style={{ width: '69%' }} /></div>
-          <div className="a2-cs-rijen">
-            {PAGINAS.map((p) => (
-              <div key={p.t} className="a2-cs-rij">
-                <span className="ag-li-t"><strong>{p.t}</strong><em>{p.k}</em></span>
-                <Chip tone={p.tone} dot>{p.c}</Chip>
+          <Mono>Per bedrijf</Mono>
+          <div className="a2-ko-rijen">
+            {PER_BEDRIJF.map((r) => (
+              <div key={r.n} className="a2-ko-rij" data-rest={'rest' in r || undefined}>
+                <span className="a2-ko-naam">{r.n}</span>
+                <span className="a2-ko-balk"><i style={{ width: `${Math.round((r.k / 47.7) * 100)}%` }} /></span>
+                <span className="a2-ko-k">{eur(r.k)}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className="fv-surface a2-cs-zin">
-        <Mono>In de tekst</Mono>
-        <p>Je betaalt vanaf <mark>€ 4.500</mark>, inclusief montage en het aansluiten op je ketel.</p>
-        <div className="a2-cs-bron">
-          <Chip tone="lime"><Icon naam="check" size={11} />Bedrag staat in de bron</Chip>
-          <span className="fv-muted">Tarievenlijst 2026.pdf</span>
+      <div className="fv-surface a2-ko-vooraf">
+        <Mono>Kosten vooraf</Mono>
+        <p>Start de maand voor 4 bedrijven, 20 pagina&apos;s.</p>
+        <span className="a2-ko-schatting"><em>ongeveer</em>€ 11,80</span>
+        <div className="a2-ko-actie">
+          <span className="fv-muted">Nog € 91,40 over van je limiet</span>
+          <Knop primair klein>Start de maand</Knop>
         </div>
       </div>
     </div>

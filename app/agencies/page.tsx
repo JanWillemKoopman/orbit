@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { PaginaHero } from '@/components/product/Blokken'
-import { AlleKlanten, ContentOpSchaal, Huisstijlen } from '@/components/agencies/Visuals'
+import { AlleKlanten, GripOpKosten, Huisstijlen } from '@/components/agencies/Visuals'
 import { afsluiter, beeld, hero, meta, secties, usp } from '@/content/agencies'
 import '../werkwijze/werkwijze.css'
 import '../beheer/beheer.css'
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 // Opbouw naar linear.app, met zo min mogelijk: de hero met de achtergrondvideo, een tekstblok met vier
 // voordelen zoals op de homepage, één groot beeld van het werkoverzicht met al je klanten, twee secties
-// met een illustratie en tekst naast elkaar (content op schaal en whitelabel) en de afsluiter.
+// met een illustratie en tekst naast elkaar (grip op kosten en whitelabel) en de afsluiter.
 export default function AgenciesPage() {
   return (
     <div className="home lp a2">
@@ -64,10 +64,10 @@ export default function AgenciesPage() {
         {secties.map((sec, i) => (
           <section key={sec.id} id={sec.id} className="a2-split" data-spiegel={i === 1 || undefined} aria-labelledby={`${sec.id}-titel`}>
             <div className="a2-split-beeld" role="img" aria-label={i === 0
-              ? 'De pagina’s van november: 35 pagina’s voor 7 klanten, met per pagina of hij gecontroleerd is. Ervoor een zin met een bedrag dat in de tarievenlijst van de klant staat.'
+              ? 'Het tabblad Kosten van een bureau: deze maand € 158,60 van een limiet van € 250, volgende maand ongeveer € 164, en de kosten per bedrijf, van € 24,60 voor Lindeman Warmte tot € 13,10 voor Kringloop De Ruil. Ervoor de schatting bij Start de maand: 20 pagina’s voor 4 bedrijven, ongeveer € 11,80.'
               : 'Hetzelfde werkoverzicht drie keer, in de huisstijl van drie bureaus: donker met blauw, donker met turquoise en licht met oranje.'}>
               <div className={`a2-split-inner a2-split-inner-${sec.id}`} aria-hidden="true">
-                {i === 0 ? <ContentOpSchaal /> : <Huisstijlen />}
+                {i === 0 ? <GripOpKosten /> : <Huisstijlen />}
               </div>
             </div>
             <div className="a2-split-tekst">
