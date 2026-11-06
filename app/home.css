@@ -557,6 +557,12 @@
   }
   .sc-stage::-webkit-scrollbar { display: none; }
   .sc-screen[data-pos] { position: relative; inset: auto; flex: 0 0 86%; width: auto; height: 440px; padding: 20px; filter: none; scroll-snap-align: start; }
+  /* Clusters en Vragen zijn gebouwd voor een breed scherm: op ware grootte in een kaart van 300 px
+     breken titels over drie regels en vallen cijfers en knoppen weg. Verkleind, zoals de beelden
+     van .hu-stage, past de opbouw van de app er weer in. De kalender is een raster en past al. */
+  .sc-screen[data-pos='back'] > *, .sc-screen[data-pos='mid'] > * { zoom: 0.78; }
+  /* Drie cijfers passen niet naast elkaar; liever twee hele dan een afgekapt derde */
+  .sc-metrics > span:nth-child(n + 3) { display: none; }
   .sc-dots { display: flex; justify-content: center; gap: 6px; padding: 4px 0 20px; }
   .sc-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); transition: background var(--speed-quick), width var(--speed-quick); }
   .sc-dots span[data-active] { width: 16px; border-radius: 3px; background: var(--text-secondary); }
