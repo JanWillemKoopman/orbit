@@ -342,7 +342,7 @@
 /* Wat het werk oplevert: dezelfde opbouw als de kwaliteit hierboven (.hk), met daaronder vier punten
    in kolommen met een dunne lijn ertussen, zoals de voordelen bovenaan, en één slotzin. */
 .hr-verslag { width: 100%; }
-.hr-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fv-report-kpis.hr-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .hr-opbrengst { width: 100%; gap: 24px; padding: 26px 26px 24px; }
 .hr-op-head { display: flex; flex-direction: column; gap: 12px; }
 .hr-op-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
@@ -373,6 +373,10 @@
 }
 @media (max-width: 640px) {
   .hr { padding-bottom: 96px; }
+  /* De beelden volgen hier de breedte van het scherm, zodat de oordelen en getallen rechts niet wegvallen */
+  .hr .hk-duo .lp-beeld-inner { top: 48px; width: calc((100vw - 32px) / 0.86); zoom: 0.86; }
+  .hr-opbrengst { padding: 22px 20px; }
+  .hr-op-row { grid-template-columns: 84px minmax(0, 1fr) 44px; gap: 10px; }
   .hr-punten { grid-template-columns: 1fr; row-gap: 24px; margin-top: 48px; }
   .hr-punten li { padding-left: 0; border-left: 0; }
   .hr-slot { margin-top: 48px; font-size: 20px; }
