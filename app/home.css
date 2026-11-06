@@ -330,7 +330,8 @@
   .hk-duo { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .hk { padding-bottom: 0; }
+  /* Onder de stipjes van de slider 60 px lucht tot de volgende sectie, net als onder de drie schermen */
+  .hk { padding-bottom: 60px; }
   /* Op een telefoon een veegbare rij, net als de drie schermen hierboven (.sc-stage): elk beeld 88% breed,
      zodat het volgende net in beeld piept, met dezelfde stipjes eronder. Scheelt een heel beeld scrollen. */
   .hk-duo {
@@ -376,7 +377,7 @@
 .hr-grafiek svg { display: block; width: 100%; height: auto; overflow: visible; }
 .hr-maanden { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-quaternary); }
 @media (max-width: 640px) {
-  .hr { padding-bottom: 96px; }
+  .hr { padding-bottom: 60px; }
   .hr-opbrengst { padding: 24px 22px; }
   .hr-op-kpis > span { padding: 12px 14px; }
   .hr-op-kpis em, .hr-op-kpis i { font-size: 12px; white-space: nowrap; }
@@ -530,6 +531,8 @@
   .hu-cell .hu-stage, .hu-cell .hu-stage-ronde { height: 273px; min-height: 0; background: none; mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%); }
   .hu-stage-account .hu-inner { top: 0; left: 24px; zoom: 0.6; }
   .hu-stage-ronde .hu-inner { width: 600px; max-width: none; zoom: 0.52; }
+  /* Het stappenoverzicht is laag: een vlak van 273 px liet er boven en onder een leeg gat omheen */
+  .hu-cell .hu-stage-ronde { height: 196px; }
   .hu-cell .hu-caption { flex-direction: column; gap: 12px; padding: 32px 24px 40px; }
   .sc-root { margin-top: 56px; margin-inline: -8px; }
   /* Op mobiel een veegbare rij: elk scherm 86% breed, zodat het volgende net in beeld piept. */
@@ -569,14 +572,24 @@
   .feature-title { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
   .feature-description { margin-top: 24px; }
   .feature-description p { font-size: 15px; line-height: 1.6; color: var(--text-tertiary); }
-  .home-block-title { padding-top: 72px; font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
+  .home-block-title { padding-top: 40px; font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
   .home-block-title + * { margin-top: 40px; }
-  .faq { padding-bottom: 72px; }
+  .faq { padding-bottom: 48px; }
   .faq-question { padding-block: 20px; font-size: 16px; }
   .faq-answer { padding-bottom: 24px; font-size: 15px; }
-  .home-prefooter, .home-prefooter.pd-afsluiter { padding-block: 126px 158px; }
+  .home-prefooter, .home-prefooter.pd-afsluiter { padding-block: 96px 158px; }
   .home-prefooter h2 { font-size: 38px; }
   .home-prefooter-actions { flex-direction: column; align-items: center; }
 }
 
 @media (max-width: 899px) { .faq { grid-template-columns: 1fr; row-gap: 0; } .faq-column + .faq-column { border-top: 0; } }
+
+/* Koppen schalen mee met de schermbreedte. Op een groot toestel (440 px, zoals een iPhone Pro Max) hebben
+   ze precies de vaste maat van hierboven; op een smaller scherm worden ze naar verhouding kleiner, met een
+   ondergrens, zodat een kop niet lomp groot oogt naast de tekst. Lopende tekst schaalt niet mee: onder de
+   15 px wordt die slechter leesbaar. */
+@media (max-width: 640px) {
+  .home-title, .home-prefooter h2 { font-size: clamp(30px, 8.6vw, 38px); }
+  .feature-title, .home-block-title, .home-statement { font-size: clamp(21px, 5.45vw, 24px); }
+  .process-title { font-size: clamp(16px, 4.1vw, 18px); }
+}
