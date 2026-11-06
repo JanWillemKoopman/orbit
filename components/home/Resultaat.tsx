@@ -2,14 +2,15 @@
 // op wat er gepubliceerd is, rechts de resultaten: zichtbaarheid in AI en klikken uit Google. Fictieve
 // case Lindeman Warmte, dezelfde als in de andere beelden. De cijfers volgen wat de app werkelijk toont:
 // het verslag zet de pagina's die live gingen en de planning op een rij; de zichtbaarheid in AI heeft
-// een marge, en de klikken komen uit Search Console, per pagina vanaf zijn eigen publicatiedag.
+// een marge, en de klikken komen uit Search Console.
 import { Chip, Mono } from '@/components/product/ui'
 
+// De eerste pagina's van de achttien; de rest valt onder de vervaging van het beeld.
 const LIVE = [
-  ['Hybride warmtepomp laten installeren in Utrecht', 'Live op 3 oktober'],
-  ['Wat kost een warmtepomp in 2026?', 'Live op 10 oktober'],
-  ['Warmtepomp in een jaren-30-woning', 'Live op 17 oktober'],
-  ['Subsidie op een warmtepomp aanvragen', 'Live op 24 oktober'],
+  ['Hybride warmtepomp laten installeren in Utrecht', 'Live op 6 januari'],
+  ['Wat kost een warmtepomp in 2026?', 'Live op 7 januari'],
+  ['Warmtepomp in een jaren-30-woning', 'Live op 9 januari'],
+  ['Subsidie op een warmtepomp aanvragen', 'Live op 12 januari'],
 ] as const
 
 export function VerslagOktober() {
@@ -17,13 +18,13 @@ export function VerslagOktober() {
     <div className="fv-surface fv-report hr-verslag">
       <div className="hr-head">
         <span className="fv-muted">Maandrapportage</span>
-        <strong>Verslag van oktober</strong>
+        <strong>Januari</strong>
       </div>
       <div className="hr-hoofdcijfer">
-        <span className="hr-groot">4</span>
+        <span className="hr-groot">18</span>
         <span className="hr-groot-t">
           <strong>pagina&apos;s gepubliceerd</strong>
-          <Chip tone="lime" dot>4 van 4 afgesproken</Chip>
+          <Chip tone="lime" dot>18 van 18 uit contentplan</Chip>
         </span>
       </div>
       <div className="fv-report-list">
@@ -35,21 +36,32 @@ export function VerslagOktober() {
           </div>
         ))}
       </div>
-      <span className="fv-muted fv-small">Volgende maand: 4 pagina&apos;s gepland, de eerste gaat op 7 november live.</span>
+      <span className="fv-muted fv-small">Volgende maand: 18 pagina&apos;s gepland, de eerste gaat op 3 februari live.</span>
     </div>
   )
 }
 
-// Klikken per publicatiemaand: de oudste maand levert het meest op, zo zie je dat eerder werk blijft
-// meetellen. Opgeteld 2.561 klikken sinds de start.
-const MAANDEN = [
-  { m: 'Augustus', paginas: 4, klikken: 1384, breedte: 100 },
-  { m: 'September', paginas: 4, klikken: 912, breedte: 66 },
-  { m: 'Oktober', paginas: 4, klikken: 265, breedte: 19 },
+// Klikken uit Google per maand, van augustus tot januari: een stijgende lijn van 11.740 naar 24.694.
+const KLIKKEN = [
+  ['aug', 11740],
+  ['sep', 13420],
+  ['okt', 15980],
+  ['nov', 18310],
+  ['dec', 21050],
+  ['jan', 24694],
 ] as const
 
+// Het lijntje in een vlak van 400 bij 80, met wat ruimte boven en onder.
+const B = 400
+const H = 80
+const MIN = 10000
+const MAX = 26000
+const punten = KLIKKEN.map(([, v], i) => [(i / (KLIKKEN.length - 1)) * B, H - ((v - MIN) / (MAX - MIN)) * H] as const)
+const lijn = punten.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ')
+const vlak = `${lijn} L${B},${H} L0,${H} Z`
+
 export function OpbrengstOpgebouwd() {
-  const totaal = MAANDEN.reduce((s, r) => s + r.klikken, 0)
+  const [eindX, eindY] = punten[punten.length - 1]
   return (
     <div className="fv-surface hr-opbrengst">
       <div className="hr-head">
@@ -63,20 +75,26 @@ export function OpbrengstOpgebouwd() {
           <i className="fv-up">↑ 9 sinds vorige ronde</i>
         </span>
         <span>
-          <em>Klikken uit Google, 28 dagen</em>
-          <strong>694</strong>
-          <i className="fv-up">↑ 41% tegenover ervoor</i>
+          <em>Klikken uit Google</em>
+          <strong>24.694</strong>
+          <i className="fv-up">↑ 110% sinds augustus</i>
         </span>
       </div>
-      <div className="hr-op-list">
-        <span className="hr-op-kop"><Mono>Klikken per publicatiemaand</Mono><span className="fv-muted fv-small">{totaal.toLocaleString('nl-NL')} sinds de start</span></span>
-        {MAANDEN.map((r) => (
-          <div key={r.m} className="hr-op-row">
-            <span className="hr-op-m"><strong>{r.m}</strong><em>{r.paginas} pagina&apos;s</em></span>
-            <span className="hr-op-balk" aria-hidden="true"><i style={{ width: `${r.breedte}%` }} /></span>
-            <span className="hr-op-n">{r.klikken.toLocaleString('nl-NL')}</span>
-          </div>
-        ))}
+      <div className="hr-grafiek">
+        <span className="hr-op-kop"><Mono>Klikken per maand</Mono><span className="fv-muted fv-small">van 11.740 naar 24.694</span></span>
+        <svg viewBox={`-6 -10 ${B + 12} ${H + 16}`} aria-hidden="true">
+          <defs>
+            <linearGradient id="hr-vlak" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#bcff2f" stopOpacity="0.18" />
+              <stop offset="100%" stopColor="#bcff2f" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {[0, 0.5, 1].map((f) => <line key={f} x1="0" x2={B} y1={H * f} y2={H * f} stroke="rgba(255,255,255,0.07)" strokeWidth="1" vectorEffect="non-scaling-stroke" />)}
+          <path d={vlak} fill="url(#hr-vlak)" />
+          <path d={lijn} fill="none" stroke="#bcff2f" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+          <circle cx={eindX} cy={eindY} r="3.5" fill="#bcff2f" />
+        </svg>
+        <span className="hr-maanden">{KLIKKEN.map(([m]) => <span key={m}>{m}</span>)}</span>
       </div>
     </div>
   )

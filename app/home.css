@@ -345,31 +345,25 @@
 .hr-opbrengst { gap: 28px; padding: 30px 34px; }
 .hr-head { display: flex; flex-direction: column; }
 .hr-head strong { font-size: 22px; font-weight: var(--weight-semibold); letter-spacing: -0.015em; color: var(--text-primary); }
-.hr-hoofdcijfer { display: flex; align-items: center; gap: 20px; padding: 20px 22px; border-radius: 12px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); }
-.hr-groot { font-size: 64px; line-height: 1; font-weight: var(--weight-medium); letter-spacing: -0.03em; color: var(--text-primary); }
-.hr-groot-t { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-.hr-groot-t strong { font-size: 17px; font-weight: var(--weight-medium); letter-spacing: -0.012em; color: var(--text-primary); }
+.hr-hoofdcijfer { display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-radius: 12px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); }
+.hr-groot { font-size: 48px; line-height: 1; font-weight: var(--weight-medium); letter-spacing: -0.03em; color: var(--text-primary); }
+.hr-groot-t { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.hr-groot-t strong { font-size: 15px; font-weight: var(--weight-medium); letter-spacing: -0.012em; color: var(--text-primary); }
 .hr-op-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.hr-op-kpis > span { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; border-radius: 12px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); }
+.hr-op-kpis > span { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); }
 .hr-op-kpis em { font-style: normal; font-size: 13px; color: var(--text-tertiary); }
-.hr-op-kpis strong { font-size: 48px; line-height: 1.1; font-weight: var(--weight-medium); letter-spacing: -0.025em; color: var(--text-primary); }
+.hr-op-kpis strong { font-size: 36px; line-height: 1.15; font-weight: var(--weight-medium); letter-spacing: -0.025em; color: var(--text-primary); }
 .hr-op-kpis i { font-style: normal; font-size: 13px; }
-.hr-op-list { display: flex; flex-direction: column; }
-.hr-op-kop { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 8px; }
-.hr-op-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 52px; align-items: center; gap: 14px; padding: 10px 0; border-top: 1px solid rgba(255, 255, 255, 0.07); }
-.hr-op-m { display: flex; flex-direction: column; }
-.hr-op-m strong { font-weight: var(--weight-medium); color: var(--text-primary); }
-.hr-op-m em { font-style: normal; font-size: 12px; color: var(--text-tertiary); }
-.hr-op-balk { height: 8px; border-radius: 9999px; background: rgba(255, 255, 255, 0.05); overflow: hidden; }
-.hr-op-balk i { display: block; height: 100%; border-radius: 9999px; background: linear-gradient(to right, rgba(188, 255, 47, 0.35), var(--accent)); }
-.hr-op-n { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+.hr-grafiek { display: flex; flex-direction: column; gap: 10px; }
+.hr-op-kop { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.hr-grafiek svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hr-maanden { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-quaternary); }
 @media (max-width: 640px) {
   .hr { padding-bottom: 96px; }
   /* De beelden volgen hier de breedte van het scherm, zodat de getallen rechts niet wegvallen */
   .hr .hk-duo .lp-beeld-inner { top: 48px; width: calc((100vw - 32px) / 0.86); zoom: 0.86; }
   .hr-opbrengst { padding: 24px 22px; }
-  .hr-op-kpis strong { font-size: 36px; }
-  .hr-op-row { grid-template-columns: 84px minmax(0, 1fr) 44px; gap: 10px; }
+  .hr-op-kpis strong { font-size: 30px; }
 }
 
 /* Drie schermen achter elkaar, naar linear.app/intake ------------------- */
