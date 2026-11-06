@@ -68,7 +68,7 @@ function Vragen() {
   return (
     <>
       <div className="sc-head">
-        <span className="sc-eyebrow">Strategie</span>
+        <span className="sc-eyebrow">Vragen</span>
         <span className="sc-title">Openstaande vragen</span>
       </div>
       <div className="sc-group">
@@ -123,7 +123,7 @@ function Kalender() {
   return (
     <>
       <div className="sc-head">
-        <span className="sc-eyebrow">Strategie</span>
+        <span className="sc-eyebrow">Content</span>
         <span className="sc-title">Contentplan</span>
       </div>
       <div className="sc-month">
