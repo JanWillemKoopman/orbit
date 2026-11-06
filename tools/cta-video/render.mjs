@@ -9,8 +9,7 @@
 // een donkere wand van stof met grillige pieken en een oplichtende rand; daarboven gloeiend gas dat in
 // stromen kolkt, doordat het uit ruis komt die over zichzelf heen wordt verbogen (domain warping). De
 // ruis herhaalt zich in de tijd en de klif en de gasstromen draaien in LOOP seconden precies één
-// rondje, zodat de video naadloos herhaalt. De sterren staan niet in de video: die tekent de browser
-// scherp op een canvas erboven (components/cta/sterren.ts).
+// rondje, zodat de video naadloos herhaalt.
 import { spawn } from 'node:child_process'
 import { mkdirSync } from 'node:fs'
 
@@ -47,7 +46,7 @@ const smooth = (a, b, x) => {
 }
 const mix = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]
 
-// Gelijk aan demping() in components/cta/util.ts: boven en onder vloeit het beeld weg in de pagina,
+// Boven en onder vloeit het beeld weg in de pagina,
 // en achter de kop, tekst en knoppen in het midden is het gedempt.
 function demping(x, y) {
   const rand = smooth(0, 0.18, y / H) * smooth(0, 0.18, 1 - y / H)
@@ -115,7 +114,7 @@ for (let j = 0; j < BH; j++) {
   for (let i = 0; i < BW; i++) {
     const x = (i + 0.5) * SCHAAL
     const y = (j + 0.5) * SCHAAL
-    // Het gas mag iets verder doorlopen achter de tekst dan de sterren.
+    // Het gas mag een beetje doorlopen achter de tekst.
     demp[j * BW + i] = (0.25 + 0.75 * demping(x, y)) * smooth(0, 0.18, y / H) * smooth(0, 0.18, 1 - y / H)
   }
 }

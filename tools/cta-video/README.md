@@ -1,13 +1,10 @@
 # CTA-video
 
-De achtergrond van de afsluiter onderaan de pagina's (`components/CtaAchtergrond.tsx`) bestaat uit twee lagen:
-
-- **het gas**, een video van een naadloze loop van 24 seconden, die de grafische chip afspeelt;
-- **de sterren**, die de browser scherp op een canvas erboven tekent (`components/cta/sterren.ts`).
+De achtergrond van de afsluiter onderaan de pagina's (`components/CtaAchtergrond.tsx`) is een video van gas in een naadloze loop van 24 seconden, die de grafische chip afspeelt. Er staan geen
+sterren in.
 
 Het gas werd eerder live in de browser berekend. Dat kostte veel processortijd, vooral op zwakkere laptops en
-telefoons. Sterren staan bewust niet in de video: fonkelende puntjes van een pixel vervagen daarin of maken het
-bestand groot.
+telefoons.
 
 ## Opnieuw renderen
 

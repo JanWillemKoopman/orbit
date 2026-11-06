@@ -1,8 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { maakSterren } from './cta/sterren'
-import { hexToRgb } from './cta/util'
 
 type Verbinding = { saveData?: boolean; effectiveType?: string }
 type Formaat = 'desktop' | 'mobiel'
@@ -14,14 +12,12 @@ function zuinig(): boolean {
 }
 
 // Bewegende achtergrond van de afsluiter onderaan de pagina's: de Cosmic Cliffs als naadloze loop.
-// Het gas is een video die de grafische chip afspeelt (opgenomen met tools/cta-video/render.mjs); de
-// sterren tekent een canvas er scherp overheen (components/cta/sterren.ts). Beide lopen over de volle
-// breedte van het venster en de volle hoogte van de sectie, en bewegen alleen zolang de sectie in beeld
-// is. Met reduced motion of zuinig met data staat er één stilstaand beeld: de poster met stilstaande sterren.
+// Het gas is een video die de grafische chip afspeelt (opgenomen met tools/cta-video/render.mjs). Hij
+// loopt over de volle breedte van het venster en de volle hoogte van de sectie, en speelt alleen zolang
+// de sectie in beeld is. Met reduced motion of zuinig met data staat er één stilstaand beeld: de poster.
 
 export function CtaAchtergrond() {
   const lagenRef = useRef<HTMLDivElement>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const updateRef = useRef<() => void>(() => {})
   const [formaat, setFormaat] = useState<Formaat | null>(null)
@@ -29,73 +25,31 @@ export function CtaAchtergrond() {
 
   useEffect(() => {
     const lagen = lagenRef.current
-    const canvas = canvasRef.current
     const section = lagen?.parentElement
-    const ctx = canvas?.getContext('2d')
-    if (!lagen || !canvas || !section || !ctx) return
-
-    const styles = getComputedStyle(document.documentElement)
-    const sterren = maakSterren(ctx, {
-      helder: hexToRgb(styles.getPropertyValue('--text-primary'), [247, 248, 248]),
-      grijs: hexToRgb(styles.getPropertyValue('--text-tertiary'), [138, 143, 152]),
-      licht: hexToRgb(styles.getPropertyValue('--accent'), [188, 255, 47]),
-    })
+    if (!lagen || !section) return
 
     const smal = window.matchMedia('(max-width: 768px)')
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const start = performance.now()
-    let frame = 0
     let zichtbaar = false
 
-    // Meet de sectie en rek de lagen op tot de volle vensterbreedte.
+    // Meet de sectie en rek de laag op tot de volle vensterbreedte.
     const meet = () => {
       const rect = section.getBoundingClientRect()
-      const width = document.documentElement.clientWidth
-      const height = Math.round(rect.height)
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
       lagen.style.left = `${-rect.left}px`
-      lagen.style.width = `${width}px`
-      canvas.width = Math.round(width * dpr)
-      canvas.height = Math.round(height * dpr)
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      sterren.meet(width, height)
-    }
-
-    const loop = () => {
-      sterren.teken(performance.now() - start)
-      frame = requestAnimationFrame(loop)
-    }
-
-    const stop = () => {
-      cancelAnimationFrame(frame)
-      frame = 0
+      lagen.style.width = `${document.documentElement.clientWidth}px`
     }
 
     const update = () => {
-      stop()
       const video = videoRef.current
       const stil = reduceMotion.matches || zuinig()
       setFormaat(smal.matches ? 'mobiel' : 'desktop')
       setBeweeg(!stil)
-      if (stil) {
-        video?.pause()
-        sterren.teken(2400)
-      } else if (zichtbaar && !document.hidden) {
-        void video?.play().catch(() => {})
-        frame = requestAnimationFrame(loop)
-      } else {
-        video?.pause()
-      }
+      if (!stil && zichtbaar && !document.hidden) void video?.play().catch(() => {})
+      else video?.pause()
     }
     updateRef.current = update
 
-    const herteken = () => {
-      meet()
-      sterren.teken(performance.now() - start)
-    }
-
     meet()
-    sterren.teken(0)
     update()
     lagen.dataset.klaar = ''
 
@@ -105,19 +59,18 @@ export function CtaAchtergrond() {
     })
     io.observe(section)
 
-    const ro = new ResizeObserver(herteken)
+    const ro = new ResizeObserver(meet)
     ro.observe(section)
 
-    window.addEventListener('resize', herteken)
+    window.addEventListener('resize', meet)
     document.addEventListener('visibilitychange', update)
     reduceMotion.addEventListener('change', update)
     smal.addEventListener('change', update)
 
     return () => {
-      stop()
       io.disconnect()
       ro.disconnect()
-      window.removeEventListener('resize', herteken)
+      window.removeEventListener('resize', meet)
       document.removeEventListener('visibilitychange', update)
       reduceMotion.removeEventListener('change', update)
       smal.removeEventListener('change', update)
@@ -150,7 +103,6 @@ export function CtaAchtergrond() {
           <source src={`${basis}.h264.mp4`} type="video/mp4" />
         </video>
       )}
-      <canvas ref={canvasRef} className="cta-sterren" />
     </div>
   )
 }
