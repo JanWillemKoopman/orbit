@@ -169,7 +169,7 @@ export default function HomePage() {
   )
 }
 
-// Kop, uitleg en de vier voordelen voor bureaus.
+// Kop, uitleg en de vier voordelen voor bureaus. Desktop: korte titel met uitleg; mobiel: lange titel zonder uitleg.
 function UspBlok({ id }: { id: string }) {
   return (
     <>
@@ -181,11 +181,15 @@ function UspBlok({ id }: { id: string }) {
       </div>
       <ul className="process-steps usp-steps">
         {usps.map((usp) => (
-          <li className="process-step" key={usp}>
+          <li className="process-step" key={usp.titel}>
             <span className="process-number usp-vink" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
             </span>
-            <h3 className="process-title">{usp}</h3>
+            <h3 className="process-title">
+              <span className="usp-kort">{usp.kort}</span>
+              <span className="usp-lang">{usp.titel}</span>
+            </h3>
+            <p className="process-description usp-uitleg">{usp.uitleg}</p>
           </li>
         ))}
       </ul>

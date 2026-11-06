@@ -46,17 +46,37 @@ export const uitgelichtStappen: MaandStap[] = [
 ]
 
 // Vier voordelen voor marketingbureaus, direct onder de AI-logo's en boven de twee beelden.
-// Erboven een kop (links) en een korte uitleg (rechts); per voordeel alleen een titel met een vinkje.
+// Erboven een kop (links) en een korte uitleg (rechts); per voordeel een vinkje met titel.
 export const uspIntro = {
   title: 'Gebouwd voor marketingbureaus',
   description: 'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst aan te bieden, laat je klanten zien wat het oplevert en geeft je specialisten de ruimte voor het werk dat ertoe doet.',
 }
 
-export const usps: string[] = [
-  'Maak AI-zichtbaarheid een vaste dienst',
-  'Maak vooruitgang zichtbaar voor je klant',
-  'Geef je specialisten tijd voor strategie',
-  'Beheer al je klanten vanuit één platform',
+// Per voordeel twee titels: een korte voor desktop, die in vier kolommen op één regel past, met een regel
+// uitleg eronder, en een langere voor mobiel, zonder uitleg. Bron: docs/ORBIT_WAAROM.md in orbit-engine.
+export type Usp = { kort: string; titel: string; uitleg: string }
+
+export const usps: Usp[] = [
+  {
+    kort: 'Een vaste dienst',
+    titel: 'Maak AI-zichtbaarheid een vaste dienst',
+    uitleg: 'Meten, schrijven en hermeten als maandelijkse dienst, met een marge die je zelf bepaalt.',
+  },
+  {
+    kort: 'Zichtbare vooruitgang',
+    titel: 'Maak vooruitgang zichtbaar voor je klant',
+    uitleg: 'Orbit meet elke pagina na 14 en 28 dagen opnieuw. Je klant krijgt elke maand een verslag.',
+  },
+  {
+    kort: 'Tijd voor strategie',
+    titel: 'Geef je specialisten tijd voor strategie',
+    uitleg: 'Orbit stelt het merkdossier op en schrijft de eerste versie. Je specialisten sturen bij.',
+  },
+  {
+    kort: 'Alle klanten op één plek',
+    titel: 'Beheer al je klanten vanuit één platform',
+    uitleg: 'Onbeperkt klanten in één app. Het werkoverzicht laat zien waar iets op je wacht.',
+  },
 ]
 
 // Sectie over de kwaliteit van de content, onder de drie nagebouwde schermen: kop (links) en uitleg
