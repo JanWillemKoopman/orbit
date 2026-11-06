@@ -338,7 +338,8 @@
   .a2-split-p { font-size: 15px; }
   .a2-split-beeld { height: 320px; margin-inline: calc(-1 * var(--page-padding)); border-radius: 0; border-inline: 0; }
   .a2-split-inner { top: 32px; left: 18px; }
-  .a2-split-inner-kosten { transform: scale(0.5); }
+  /* De kosten-illustratie is 640 px breed, op de helft dus 320 px: in het midden van het vlak, met minstens 12 px aan de zijkant */
+  .a2-split-inner-kosten { left: max(12px, calc(50% - 160px)); transform: scale(0.5); }
   .a2-split-inner-whitelabel { transform: scale(0.36); }
   .a2-split-beeld::after { height: 56px; }
 }
