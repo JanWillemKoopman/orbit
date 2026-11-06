@@ -17,7 +17,7 @@ const kennisbankPost = async (params: Props['params']) => {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await kennisbankPost(params)
   if (!post) return {}
-  return { title: post.title, description: post.description, alternates: { canonical: `/kennisbank/${post.slug}` } }
+  return { title: post.title, description: post.description, alternates: { canonical: `/kennisbank/${post.slug}` }, robots: { index: false, follow: false } }
 }
 
 export default async function KennisbankArtikelPage({ params }: Props) {

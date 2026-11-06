@@ -23,7 +23,6 @@ export const KENNISBANK = 'kennisbank'
 // Tabs boven het blogoverzicht (/blog). "Changelog" en "Pers" hebben een eigen pagina.
 export const tabs = [
   { href: '/blog', label: 'Alles' },
-  { href: '/product-updates', label: 'Product updates' },
   ...categories.map((c) => ({ href: `/categorie/${c.slug}`, label: c.label })),
   { href: '/pers', label: 'Pers' },
 ]
@@ -33,12 +32,6 @@ export const tabs = [
 export type NavLink = { href: string; label: string }
 export type NavMenuItem = { href: string; label: string; description: string[] }
 export type NavItem = NavLink | { label: string; items: NavMenuItem[] }
-
-export const informatieMenu: NavMenuItem[] = [
-  { href: '/kennisbank', label: 'Kennisbank', description: ['Antwoorden en achtergronden', 'van het team'] },
-  { href: '/blog', label: 'Blog', description: ['Verhalen, nieuws en inzichten', 'van het Orbit-team'] },
-  { href: '/product-updates', label: 'Product updates', description: ['Wat er nieuw is en wat we', 'hebben verbeterd'] },
-]
 
 export const overOnsMenu: NavMenuItem[] = [
   { href: '/over', label: 'Over Orbit', description: ['Wie we zijn en waar', 'we voor staan'] },
@@ -53,40 +46,46 @@ export const hoofdProductMenu: NavMenuItem[] = [
   { ...agencies, description: ['AI-zichtbaarheid als vaste dienst', 'voor al je klanten'] },
 ]
 
-// Losse pagina vooraan in de header, zonder uitklapmenu.
+// Losse pagina's in de header, zonder uitklapmenu. De kennisbank en product updates staan
+// (voorlopig) nergens in het menu; hun pagina's bestaan nog wel, maar worden niet geïndexeerd.
 const prijzen = { href: '/prijzen', label: 'Prijzen' }
+const blog = { href: '/blog', label: 'Blog' }
 
 export const mainNav: NavItem[] = [
   { label: 'Product', items: hoofdProductMenu },
   prijzen,
-  { label: 'Informatie', items: informatieMenu },
+  blog,
   { label: 'Over ons', items: overOnsMenu },
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
-// Prijzen heeft geen uitklapmenu en staat los, in een groep zonder label.
+// Prijzen en Blog hebben geen uitklapmenu en staan los, in een groep zonder label.
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
 export type NavGroep = { title?: string; links: NavLink[] }
 const informatieEnMeer: NavGroep[] = [
-  { title: 'Informatie', links: links(informatieMenu) },
   { title: 'Over ons', links: links(overOnsMenu) },
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
 export const mobileNav: NavGroep[] = [
   { title: 'Product', links: links(hoofdProductMenu) },
-  { links: [prijzen] },
+  { links: [prijzen, blog] },
   ...informatieEnMeer,
 ]
 
 // Footer: volgt het hoofdmenu. Elke groep uit mainNav wordt een kolom, met dezelfde labels; Prijzen
-// (een losse pagina) sluit de kolom Product af, zoals "Pricing" onder Product in de footer van linear.app.
+// (een losse pagina) sluit de kolom Product af, zoals "Pricing" onder Product in de footer van linear.app,
+// en Blog staat onder Over ons, zoals "Blog" onder Company op linear.app.
 const footerLabels: Record<string, string> = { '/contact': 'Contact' }
 const footerLink = ({ href, label }: NavLink) => ({ href, label: footerLabels[href] ?? label })
 export const footerNav = mainNav
   .filter((item): item is { label: string; items: NavMenuItem[] } => 'items' in item)
   .map((group) => ({
     title: group.label,
-    links: [...group.items.map(footerLink), ...(group.label === 'Product' ? [prijzen] : [])],
+    links: [
+      ...group.items.map(footerLink),
+      ...(group.label === 'Product' ? [prijzen] : []),
+      ...(group.label === 'Over ons' ? [blog] : []),
+    ],
   }))
 
 export const footerContact = {
