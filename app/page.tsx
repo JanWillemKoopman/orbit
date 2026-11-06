@@ -35,7 +35,7 @@ export default function HomePage() {
         <h1 className="home-title">
           {hero.title.map((line, i) => (
             <Fragment key={line}>
-              {i > 0 && <>{' '}<br /></>}
+              {i > 0 && <>{' '}<br className="home-title-break" /></>}
               <span className="blur-in" style={{ '--i': i } as React.CSSProperties}>{line}</span>
             </Fragment>
           ))}

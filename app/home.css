@@ -25,6 +25,11 @@
   from { opacity: 0; filter: blur(10px); transform: translateY(20%); }
   to { opacity: 1; filter: none; transform: none; }
 }
+/* Op mobiel lopen de twee regels van de kop door als één zin, zodat er geen losse woorden op een eigen regel vallen. */
+@media (max-width: 640px) {
+  .home-title-break { display: none; }
+  .home-title .blur-in { display: inline; }
+}
 @media (prefers-reduced-motion: reduce) {
   .blur-in, .af-frame { animation: none !important; }
 }
