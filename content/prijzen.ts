@@ -1,3 +1,5 @@
+import type { FaqItem } from './home'
+
 // Teksten en prijzen van de pagina Prijzen (/prijzen). Alles hieronder mag je vrij aanpassen; de opmaak volgt vanzelf.
 // Let op: de prijzen van Medium en Large en de functies per plan zijn voorlopig. Alleen Small (€100 per maand,
 // 1 klant, 10 artikelen, extra klant €25) komt uit de uitgangspunten.
@@ -21,6 +23,38 @@ export const inbegrepen = {
     { titel: 'Persoonlijke onboarding', tekst: 'We zetten je eerste klant samen met je op, zodat je meteen weet hoe het werkt.' },
     { titel: 'Maandelijks opzegbaar', tekst: 'Geen looptijd en geen opzegtermijn van een jaar. Stop wanneer het niet meer past.' },
     { titel: 'Alle onderdelen van Orbit', tekst: 'Meten, begrijpen, plannen, schrijven en bewijzen zit in elk plan.' },
+  ],
+}
+
+// Veelgestelde vragen over de prijzen, onder 'Bij elk plan inbegrepen'. De eerste drie staan links,
+// de laatste drie rechts. Houd de antwoorden gelijk met de plannen hieronder.
+export const faq: { title: string; items: FaqItem[] } = {
+  title: 'Veelgestelde vragen over de prijzen',
+  items: [
+    {
+      question: 'Welk plan past bij mijn bureau?',
+      answer: 'Dat hangt af van het aantal klanten waarvoor je Orbit inzet. Small is voor 1 klant, en voor een tweede klant betaal je €25 per maand extra. Medium is voor 3 tot 10 klanten. Werk je voor meer dan 10 klanten, dan past Large, met een prijs op maat. Met de klantenkiezer boven de plannen zie je direct welk plan bij jouw aantal hoort.',
+    },
+    {
+      question: 'Wat gebeurt er als mijn bureau groeit?',
+      answer: 'Dan groeit je plan mee. Bij Small voeg je een extra klant toe voor €25 per maand. Kom je op 3 klanten of meer, dan stap je over naar Medium, en boven de 10 klanten stemmen we Large af op jouw volume. Je hoeft niet vooraf te kiezen voor een groter plan dan je nu nodig hebt.',
+    },
+    {
+      question: 'Hoeveel artikelen zitten er in een plan?',
+      answer: 'Bij Small schrijf je tot 10 artikelen per maand. Bij Medium krijg je een aantal artikelen per klant per maand, zodat het volume meegroeit met je klantenbestand. Bij Large spreken we het aantal af op basis van wat je bureau nodig heeft.',
+    },
+    {
+      question: 'Zit ik ergens aan vast?',
+      answer: 'Nee. Elk plan is maandelijks opzegbaar, zonder looptijd en zonder opzegtermijn van een jaar. Past Orbit niet meer bij je bureau, dan stop je aan het eind van de maand.',
+    },
+    {
+      question: 'Krijg ik bij een goedkoper plan minder functies?',
+      answer: 'Nee. Meten, begrijpen, plannen, schrijven en bewijzen zit in elk plan. Medium voegt daar een overzicht van al je klanten en een maandverslag met de naam van je bureau aan toe. Large geeft je daarnaast een vast aanspreekpunt bij Orbit en begeleiding bij het uitrollen over je team.',
+    },
+    {
+      question: 'Kan ik Orbit eerst zien voordat ik kies?',
+      answer: 'Ja. Plan een gratis demo, dan laten we zien hoe Orbit werkt voor een bureau als het jouwe. Kies je daarna een plan, dan zetten we je eerste klant samen met je op tijdens de persoonlijke onboarding. Die zit in elk plan.',
+    },
   ],
 }
 

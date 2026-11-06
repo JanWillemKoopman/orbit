@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Faq } from '@/components/home/Faq'
 import { Plannen } from '@/components/prijzen/Plannen'
-import { afsluiter, hero, inbegrepen, plannen } from '@/content/prijzen'
+import { afsluiter, faq, hero, inbegrepen, plannen } from '@/content/prijzen'
 import '../home.css'
 import './prijzen.css'
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 // Opbouw naar linear.app/pricing: titel en de plannen naast elkaar, met daarboven een klantenkiezer
-// zodat een bureau direct ziet welk plan past. Daarna wat bij elk plan inbegrepen is en de afsluiter.
+// zodat een bureau direct ziet welk plan past. Daarna wat bij elk plan inbegrepen is, de veelgestelde vragen en de afsluiter.
 
 export default function PrijzenPage() {
   return (
@@ -41,6 +42,12 @@ export default function PrijzenPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* Dezelfde FAQ als op de homepage: drie vragen links, drie rechts (op mobiel onder elkaar) */}
+        <section className="container pr-faq" aria-labelledby="pr-faq-titel">
+          <h2 id="pr-faq-titel" className="pr-faq-titel">{faq.title}</h2>
+          <Faq items={faq.items} />
         </section>
       </div>
       {/* Afsluiter zonder bewegende achtergrond: gewoon zwart, met één knop naar contact */}

@@ -157,6 +157,11 @@
 .pr-inbegrepen-lijst h3 { margin-top: 16px; font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
 .pr-inbegrepen-lijst p { margin-top: 8px; max-width: 340px; font-size: 14px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
 
+/* Veelgestelde vragen (opmaak van .faq staat in home.css) ---------------- */
+.pr-faq { margin-top: 128px; }
+.pr-faq-titel { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); }
+.pr-faq .faq { margin-top: 32px; }
+
 /* Breekpunten ------------------------------------------------------------ */
 @media (max-width: 1024px) {
   .pr-hero { padding-top: 160px; }
@@ -186,7 +191,7 @@
   .pr-plannen-sectie { margin-top: 48px; }
   .pr-plan { padding: 24px 20px; }
   .pr-plan-bedrag { font-size: 40px; }
-  .pr-inbegrepen { margin-top: 96px; }
+  .pr-inbegrepen, .pr-faq { margin-top: 96px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pr-plan, .pr-plan::before, .pr-schaal span, .pr-plan-klanten,
