@@ -3,11 +3,12 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, kwaliteit, prefooter, showcase, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
+import { faq, hero, kwaliteit, prefooter, resultaat, showcase, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
 import { Faq } from '@/components/home/Faq'
+import { OpbrengstOpgebouwd, VerslagOktober } from '@/components/home/Resultaat'
 import { AiLogos } from '@/components/home/AiLogos'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
 import { HeroMaand } from '@/components/product/Visuals'
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-// Opbouw en maten volgen linear.app: hero met nagebouwde app, vier voordelen voor bureaus naast elkaar, twee beelden met een link naar /beheer en /werkwijze, een grote tussenzin, drie nagebouwde schermen, de kwaliteit van de content, veelgestelde vragen en een afsluiter.
+// Opbouw en maten volgen linear.app: hero met nagebouwde app, vier voordelen voor bureaus naast elkaar, twee beelden met een link naar /beheer en /werkwijze, een grote tussenzin, drie nagebouwde schermen, de kwaliteit van de content, wat het werk oplevert, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
 
   return (
@@ -124,6 +125,38 @@ export default function HomePage() {
               </figcaption>
             </figure>
           </div>
+        </section>
+
+        <section className="feature hk hr" aria-labelledby="home-resultaat">
+          <div className="keyline" />
+          <div className="feature-header">
+            <h2 id="home-resultaat" className="feature-title">{resultaat.title}</h2>
+            <div className="feature-description">
+              <p>{resultaat.description}</p>
+            </div>
+          </div>
+          <div className="hk-duo">
+            {resultaat.beelden.map((b, i) => (
+              <figure className="lp-beeld lp-beeld-scherm" key={b.titel}>
+                <div className="lp-beeld-stage" role="img" aria-label={b.alt}>
+                  <div className="lp-beeld-inner" aria-hidden="true">{i === 0 ? <VerslagOktober /> : <OpbrengstOpgebouwd />}</div>
+                </div>
+                <figcaption className="lp-caption">
+                  <h3>{b.titel}</h3>
+                  <p>{b.tekst}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <ul className="hr-punten">
+            {resultaat.punten.map((p) => (
+              <li key={p.titel}>
+                <h3>{p.titel}</h3>
+                <p>{p.tekst}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="hr-slot">{resultaat.slot}</p>
         </section>
 
         <section className="home-block" aria-labelledby="home-faq">
