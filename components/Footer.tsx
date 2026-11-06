@@ -16,32 +16,29 @@ export function Footer() {
             <h3>{col.title}</h3>
             <ul>
               {col.links.map((l) => (
-                <li key={l.label}>
-                  {l.href.startsWith('http') ? (
-                    <a className="dimmed" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
-                  ) : (
-                    <Link className="dimmed" href={l.href}>{l.label}</Link>
-                  )}
+                <li key={l.href}>
+                  <Link className="dimmed" href={l.href}>{l.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
         ))}
         <div className="footer-col footer-contact">
-          <h3>{footerContact.company}</h3>
+          <h3>Contact</h3>
+          <ul>
+            <li><a className="dimmed" href={`mailto:${footerContact.email}`}>{footerContact.email}</a></li>
+            <li><a className="dimmed" href={`tel:${footerContact.phone.replace(/[^+\d]/g, '')}`}>{footerContact.phone}</a></li>
+          </ul>
           <address className="footer-address">
             {footerContact.address.map((regel) => (
               <span key={regel}>{regel}</span>
             ))}
           </address>
-          <ul>
-            <li><a className="dimmed" href={`mailto:${footerContact.email}`}>{footerContact.email}</a></li>
-            <li><a className="dimmed" href={`tel:${footerContact.phone.replace(/[^+\d]/g, '')}`}>{footerContact.phone}</a></li>
-          </ul>
         </div>
       </div>
       <div className="container footer-legal">
-        <p>© {new Date().getFullYear()} {footerContact.company} · All rights reserved.</p>
+        <p>© {new Date().getFullYear()} {footerContact.company}. Alle rechten voorbehouden.</p>
+        <a className="dimmed" href={site.loginUrl}>Inloggen</a>
       </div>
     </footer>
   )

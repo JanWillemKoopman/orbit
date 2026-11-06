@@ -34,13 +34,6 @@ export type NavLink = { href: string; label: string }
 export type NavMenuItem = { href: string; label: string; description: string[] }
 export type NavItem = NavLink | { label: string; items: NavMenuItem[] }
 
-export const productMenu: NavMenuItem[] = [
-  { href: '/ai', label: 'AI', description: ['Hoe Orbit AI inzet', 'in elke stap van het werk'] },
-  { href: '/werkwijze', label: 'Werkwijze', description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
-  { href: '/kwaliteit', label: 'Kwaliteit', description: ['Alleen feiten met een bron,', 'nooit een verzonnen belofte'] },
-  { href: '/beheer', label: 'Beheer', description: ['Je klanten, je team en je kosten', 'samen in één account'] },
-]
-
 export const informatieMenu: NavMenuItem[] = [
   { href: '/kennisbank', label: 'Kennisbank', description: ['Antwoorden en achtergronden', 'van het team'] },
   { href: '/blog', label: 'Blog', description: ['Verhalen, nieuws en inzichten', 'van het Orbit-team'] },
@@ -85,24 +78,20 @@ export const mobileNav: NavGroep[] = [
   ...informatieEnMeer,
 ]
 
-// Footer: dezelfde groepen als het hoofdmenu, met Prijzen als eigen kolom en rechts een kolom met
-// contactgegevens. De labels in de footer wijken af van het hoofdmenu: korter, en met extra links naar /contact.
+// Footer: volgt het hoofdmenu. Elke groep uit mainNav wordt een kolom, met dezelfde labels; Prijzen
+// (een losse pagina) sluit de kolom Product af, zoals "Pricing" onder Product in de footer van linear.app.
 const footerLabels: Record<string, string> = { '/contact': 'Contact' }
-const footerGroepen = [
-  { title: 'Product', links: [...links(productMenu), agencies] },
-  { title: 'Prijzen', links: [prijzen] },
-  ...informatieEnMeer.map((g) => ({ title: g.title ?? '', links: g.links })),
-]
-export const footerNav = footerGroepen.map((group) => {
-  const renamed = group.links.map((l) => ({ href: l.href, label: footerLabels[l.href] ?? l.label }))
-  if (group.title === 'Over ons') return { ...group, links: [...renamed, { href: '/contact', label: 'Samenwerking' }, { href: '/contact', label: 'Plan gesprek' }] }
-  if (group.title === 'Account') return { ...group, links: [...renamed, { href: '/demo', label: 'Demo aanvragen' }] }
-  return { ...group, links: renamed }
-})
+const footerLink = ({ href, label }: NavLink) => ({ href, label: footerLabels[href] ?? label })
+export const footerNav = mainNav
+  .filter((item): item is { label: string; items: NavMenuItem[] } => 'items' in item)
+  .map((group) => ({
+    title: group.label,
+    links: [...group.items.map(footerLink), ...(group.label === 'Product' ? [prijzen] : [])],
+  }))
 
 export const footerContact = {
   company: 'Orbit',
   email: 'go@outerorbit.nl',
-  address: ['Pastoor van Liesstraat 7', '5089PN, Haghorst', 'Noord-Brabant, Nederland'],
+  address: ['Pastoor van Liesstraat 7', '5089 PN Haghorst'],
   phone: '+31-(0)6234567',
 }

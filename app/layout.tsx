@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: site.description,
   alternates: { types: { 'application/rss+xml': '/rss.xml' } },
   openGraph: { siteName: site.name, type: 'website', locale: 'nl_NL' },
+  // Geen automatische links van iOS Safari op adres en telefoonnummer (de stippellijnen in de footer)
+  formatDetection: { telephone: false, address: false, email: false },
 }
 
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover', themeColor: '#08090a', colorScheme: 'dark' }
