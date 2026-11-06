@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { DemoDialog } from '../DemoDialog'
 import { DotBol } from './DotBol'
 
-// De assistent rechtsonder op elke pagina. Dicht is het een knop: op desktop een pil met de bol, het label
-// Orbit en "Vragen? Vraag het ons.", op mobiel alleen de ronde bol. Open is het een chatvenster: op desktop
+// De assistent rechtsonder op elke pagina, met de glazen bol (variant glas in ./bollen.ts). Dicht is het een
+// knop: op desktop een pil met de bol, het label Orbit en "Vragen? Vraag het ons.", op mobiel alleen de ronde bol. Open is het een chatvenster: op desktop
 // een paneel rechtsonder, op mobiel over het hele scherm. De AI-agent en de live chat bestaan nog niet;
 // het venster zegt dat eerlijk en verwijst naar de demo, die wel werkt.
 export function Assistent() {
@@ -70,7 +70,7 @@ export function Assistent() {
         data-zichtbaar={voorbijDrempel || undefined}
         onClick={() => setOpen(true)}
       >
-        <span className="as-knop-bol"><DotBol maat={44} /></span>
+        <span className="as-knop-bol"><DotBol maat={44} variant="glas" /></span>
         <span className="as-knop-tekst" aria-hidden="true">
           <span className="as-knop-label">Orbit</span>
           <span className="as-knop-vraag">Vragen? Vraag het ons.</span>
@@ -80,7 +80,7 @@ export function Assistent() {
       {open && (
         <div id="as-venster" className="as-venster" role="dialog" aria-labelledby="as-titel">
           <div className="as-kop">
-            <span className="as-kop-bol"><DotBol maat={48} /></span>
+            <span className="as-kop-bol"><DotBol maat={48} variant="glas" /></span>
             <div className="as-kop-tekst">
               <div className="as-kop-regel">
                 <h2 id="as-titel">Orbit-assistent</h2>
