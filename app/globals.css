@@ -558,24 +558,25 @@ img, svg { display: block; max-width: 100%; }
   }
 }
 .cta-achtergrond[data-klaar] { opacity: 1; }
-/* Limegroene variant (CtaAchtergrond met `lime`, sectie met .cta-lime): het blok in het accent, donkere
-   stippen, donkere tekst en knoppen die op het lichte vlak omdraaien. */
+/* Limegroene variant (CtaAchtergrond met `lime`): het blok in het accent, donkere stippen, donkere tekst en
+   knoppen die op het lichte vlak omdraaien. Kop en knoppen volgen het blok via :has, zodat ze meewisselen
+   met lime="mobiel". */
 .cta-achtergrond-lime { background: var(--accent); }
 .cta-achtergrond-lime::after { box-shadow: inset 0 0 0 1px rgba(8, 9, 10, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.35); }
-.cta-lime h2 { color: var(--bg-primary); }
-.cta-lime .btn-invert {
+.container:has(> .cta-achtergrond-lime) h2 { color: var(--bg-primary); }
+.container:has(> .cta-achtergrond-lime) .btn-invert {
   background: var(--bg-primary); color: var(--text-primary); border-color: var(--bg-primary);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 12px rgba(8, 9, 10, 0.2);
 }
-.cta-lime .btn-secondary {
+.container:has(> .cta-achtergrond-lime) .btn-secondary {
   background: rgba(8, 9, 10, 0.06); color: var(--bg-primary); backdrop-filter: none;
   box-shadow: inset 0 0 0 1px rgba(8, 9, 10, 0.25);
 }
 @media (hover: hover) {
-  .cta-lime .btn-invert:hover { background: var(--bg-level-3); }
-  .cta-lime .btn-secondary:hover { background: rgba(8, 9, 10, 0.12); }
+  .container:has(> .cta-achtergrond-lime) .btn-invert:hover { background: var(--bg-level-3); }
+  .container:has(> .cta-achtergrond-lime) .btn-secondary:hover { background: rgba(8, 9, 10, 0.12); }
 }
-.cta-lime :focus-visible { outline-color: var(--bg-primary); }
+.container:has(> .cta-achtergrond-lime) :focus-visible { outline-color: var(--bg-primary); }
 @media (prefers-reduced-motion: reduce) { .cta-achtergrond { transition: none; } }
 .prefooter { padding-block: 264px 224px; text-align: center; }
 .prefooter h2 {

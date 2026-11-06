@@ -49,14 +49,26 @@ function markeerGezien(scene: SceneNaam) {
 }
 
 /** Zonder `scene` wisselt de achtergrond per bezoeker; met `scene` staat hij vast (voor de testpagina's).
- *  Met `lime` is het blok limegroen en zijn de stippen donkergroen. */
-export function CtaAchtergrond({ scene: vast, lime = false }: { scene?: SceneNaam; lime?: boolean } = {}) {
+ *  Met `lime` is het blok limegroen en zijn de stippen donkergroen; met `lime="mobiel"` alleen op een
+ *  telefoon (tot 640 px breed). De kleuren van kop en knoppen volgen in globals.css. */
+export function CtaAchtergrond({ scene: vast, lime: limeProp = false }: { scene?: SceneNaam; lime?: boolean | 'mobiel' } = {}) {
   const lagenRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [scene, setScene] = useState<SceneNaam | null>(vast ?? null)
 
   // De keuze kan pas in de browser (localStorage), dus na het eerste renderen.
   useEffect(() => setScene(vast ?? volgendeScene()), [vast])
+
+  // De schermbreedte is pas in de browser bekend; bij draaien of verkleinen wisselt de kleur mee.
+  const [lime, setLime] = useState(limeProp === true)
+  useEffect(() => {
+    if (limeProp !== 'mobiel') return setLime(limeProp)
+    const mq = window.matchMedia('(max-width: 640px)')
+    const zet = () => setLime(mq.matches)
+    zet()
+    mq.addEventListener('change', zet)
+    return () => mq.removeEventListener('change', zet)
+  }, [limeProp])
 
   useEffect(() => {
     const lagen = lagenRef.current
