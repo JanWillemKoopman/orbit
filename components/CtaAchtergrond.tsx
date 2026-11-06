@@ -157,12 +157,27 @@ export function CtaAchtergrond({ scene: vast, lime: limeProp = true }: { scene?:
     document.addEventListener('visibilitychange', update)
     reduceMotion.addEventListener('change', update)
 
+    // Scènes die op de muis reageren, krijgen de positie ten opzichte van het blok.
+    const wijzer = (soort: 'beweeg' | 'klik' | 'weg') => (e: PointerEvent) => {
+      const rect = lagen.getBoundingClientRect()
+      sc.wijzer?.(e.clientX - rect.left, e.clientY - rect.top, soort)
+    }
+    const beweeg = wijzer('beweeg'), klik = wijzer('klik'), weg = wijzer('weg')
+    if (sc.wijzer) {
+      section.addEventListener('pointermove', beweeg)
+      section.addEventListener('pointerdown', klik)
+      section.addEventListener('pointerleave', weg)
+    }
+
     return () => {
       cancelAnimationFrame(raf)
       io.disconnect()
       ro.disconnect()
       document.removeEventListener('visibilitychange', update)
       reduceMotion.removeEventListener('change', update)
+      section.removeEventListener('pointermove', beweeg)
+      section.removeEventListener('pointerdown', klik)
+      section.removeEventListener('pointerleave', weg)
     }
   }, [scene, vast, lime])
 
