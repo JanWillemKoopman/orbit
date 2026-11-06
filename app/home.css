@@ -339,6 +339,47 @@
   .hk-duo .lp-beeld-inner { top: auto; width: 440px; zoom: 0.86; }
 }
 
+/* Wat het werk oplevert: dezelfde opbouw als de kwaliteit hierboven (.hk), met daaronder vier punten
+   in kolommen met een dunne lijn ertussen, zoals de voordelen bovenaan, en één slotzin. */
+.hr-verslag { width: 100%; }
+.hr-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hr-opbrengst { width: 100%; gap: 24px; padding: 26px 26px 24px; }
+.hr-op-head { display: flex; flex-direction: column; gap: 12px; }
+.hr-op-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.hr-op-kpis > span { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 10px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); }
+.hr-op-kpis em { font-style: normal; font-size: 12px; color: var(--text-tertiary); }
+.hr-op-kpis strong { font-size: 24px; line-height: 1.25; font-weight: var(--weight-medium); letter-spacing: -0.02em; color: var(--text-primary); }
+.hr-op-kpis i { font-style: normal; font-size: 12px; line-height: 1.35; }
+.hr-op-list { display: flex; flex-direction: column; }
+.hr-op-list > .fv-mono { padding-bottom: 8px; }
+.hr-op-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 52px; align-items: center; gap: 14px; padding: 10px 0; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.hr-op-m { display: flex; flex-direction: column; }
+.hr-op-m strong { font-weight: var(--weight-medium); color: var(--text-primary); }
+.hr-op-m em { font-style: normal; font-size: 12px; color: var(--text-tertiary); }
+.hr-op-balk { height: 8px; border-radius: 9999px; background: rgba(255, 255, 255, 0.05); overflow: hidden; }
+.hr-op-balk i { display: block; height: 100%; border-radius: 9999px; background: linear-gradient(to right, rgba(188, 255, 47, 0.35), var(--accent)); }
+.hr-op-n { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+.hr-ladder { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.hr-ladder .fv-mono { text-transform: none; letter-spacing: 0; font-size: 12px; color: var(--text-tertiary); }
+.hr-punten { list-style: none; margin: 72px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hr-punten li { padding: 0 24px; border-left: 1px solid rgba(255, 255, 255, 0.08); }
+.hr-punten li:first-child { padding-left: 0; border-left: 0; }
+.hr-punten h3 { font-size: 15px; line-height: 1.5; font-weight: var(--weight-medium); letter-spacing: -0.011em; color: var(--text-primary); }
+.hr-punten p { margin-top: 4px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+.hr-slot { margin-top: 72px; max-width: 32ch; font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; color: var(--text-secondary); text-wrap: balance; }
+@media (max-width: 1024px) {
+  .hr-punten { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
+  .hr-punten li:nth-child(3) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 640px) {
+  .hr { padding-bottom: 96px; }
+  .hr-punten { grid-template-columns: 1fr; row-gap: 24px; margin-top: 48px; }
+  .hr-punten li { padding-left: 0; border-left: 0; }
+  .hr-slot { margin-top: 48px; font-size: 20px; }
+  .hr-op-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hr-op-kpis > span:nth-child(3) { display: none; }
+}
+
 /* Drie schermen achter elkaar, naar linear.app/intake ------------------- */
 .sc-root {
   position: relative; margin-top: 96px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.07);
