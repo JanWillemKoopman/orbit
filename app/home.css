@@ -19,8 +19,13 @@
 .home-new-label { color: var(--text-secondary); font-weight: var(--weight-medium); }
 .home-new-title { color: var(--text-tertiary); }
 
-/* Tekst die bij het laden vanuit een waas op zijn plek valt, regel voor regel. */
+/* Tekst die bij het laden vanuit een waas op zijn plek valt, regel voor regel. Waarden 1-op-1 van linear.app/homepage:
+   1s met ease (0.25, 0.1, 0.25, 1); kopregels na 0.4s en 0.5s, beschrijving na 0.6s, de link pas na 2s
+   (op tablet en kleiner na 0.85s). Het gedeelde .blur-in (andere pagina's) blijft ongewijzigd. */
 .blur-in { display: inline-block; animation: blur-in 1s var(--ease-out-expo) both; animation-delay: calc(var(--i, 0) * 80ms + 50ms); }
+.hero-in { display: inline-block; animation: blur-in 1s ease var(--delay, 0s) both; }
+.hero-in-link { --delay: 2s; }
+@media (max-width: 1024px) { .hero-in-link { --delay: 0.85s; } }
 @keyframes blur-in {
   from { opacity: 0; filter: blur(10px); transform: translateY(20%); }
   to { opacity: 1; filter: none; transform: none; }
@@ -28,11 +33,21 @@
 /* Op mobiel lopen de twee regels van de kop door als één zin, zodat er geen losse woorden op een eigen regel vallen. */
 @media (max-width: 640px) {
   .home-title-break { display: none; }
-  .home-title .blur-in { display: inline; }
+  .home-title .blur-in, .home-title .hero-in { display: inline; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .blur-in, .af-frame { animation: none !important; }
+  .blur-in, .hero-in, .hero-frame-wrapper, .hero-backdrop, .af-frame-bg, .af-sidebar, .af-view { animation: none !important; }
 }
+
+/* Het dashboard komt in lagen binnen, met dezelfde timing als linear.app/homepage:
+   0.2s  het lege frame (0.5s fade);
+   1.3s  achtergrond van het podium (1.5s, via 85% al na de eerste 20%), de vlakken van het frame (0.5s)
+         en de zijbalk en het hoofdpaneel (1.5s), allemaal met ease-in-out-quad. */
+.hero-frame-wrapper { animation: fade-in 0.5s ease-in-out 0.2s both; }
+.hero-backdrop { animation: hero-backdrop-in 1.5s var(--ease-in-out-quad) 1.3s both; }
+.af-frame-bg { animation: fade-in 0.5s var(--ease-in-out-quad) 1.3s both; }
+.af-sidebar, .af-view { animation: fade-in 1.5s var(--ease-in-out-quad) 1.3s both; }
+@keyframes hero-backdrop-in { 0% { opacity: 0; } 20% { opacity: 0.85; } 100% { opacity: 1; } }
 
 /* Podium met het nagebouwde dashboard ----------------------------------- */
 .hero-stage {
@@ -87,16 +102,14 @@
   border-radius: 12px; overflow: hidden; background: #090a0b;
   user-select: none; text-align: left;
   font-size: 13px; line-height: 1.5; color: var(--text-secondary);
-  animation: frame-in 1.2s var(--ease-out-expo) 0.35s both;
 }
-@keyframes frame-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 .af-frame-bg { position: absolute; inset: 0; border-radius: inherit; background: #101112; border: 1px solid rgba(255, 255, 255, 0.08); }
 
 @media (max-width: 640px) {
   .hero-stage { height: 400px; padding: 0 0 30px; display: flex; align-items: flex-end; margin-top: 36px; }
   .hero-frame-wrapper { --frame-buffer: 18px; height: 360px; width: 100%; }
   .hero-frame-wrapper::after { background: linear-gradient(90deg, rgba(8, 9, 10, 0) 70%, rgba(8, 9, 10, 0.8) 100%); }
-  .af-frame { transform-origin: 0 0; transform: scale(0.5); margin: 0; animation: none; }
+  .af-frame { transform-origin: 0 0; transform: scale(0.5); margin: 0; }
 }
 
 /* Zijbalk */
