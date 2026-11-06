@@ -26,7 +26,7 @@ export function Header() {
   const [demoOpen, setDemoOpen] = useState(false)
   const demoKnop = useRef<HTMLButtonElement>(null)
 
-  // De demoknop vult zich met wit naarmate je verder scrolt: --p loopt van 0 (bovenaan) tot 1 (onderaan).
+  // De demoknop blendt in naar wit naarmate je verder scrolt: --p loopt van 0 (bovenaan) tot 1 (onderaan).
   useEffect(() => {
     const knop = demoKnop.current
     if (!knop) return
@@ -36,6 +36,7 @@ export function Header() {
       const ruimte = document.documentElement.scrollHeight - window.innerHeight
       const p = ruimte > 0 ? Math.min(1, Math.max(0, window.scrollY / ruimte)) : 0
       knop.style.setProperty('--p', p.toFixed(4))
+      knop.toggleAttribute('data-vol', p >= 0.5)
     }
     const plan = () => { if (!frame) frame = requestAnimationFrame(meet) }
     meet()
