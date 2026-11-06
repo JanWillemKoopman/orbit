@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { BOLLEN, type BolNaam } from './bollen'
+import { ALLE_BOLLEN, type BolNaam, type VrijeBolNaam } from './bollen'
 
 // De bol van stippen van de assistent rechtsonder. Hoe hij eruitziet en beweegt staat per variant in
 // ./bollen.ts. Tekent alleen als de pagina zichtbaar is, op hooguit 30 beelden per seconde; met reduced
 // motion staat er één stilstaand beeld.
-export function DotBol({ maat, variant = 'stippen' }: { maat: number; variant?: BolNaam }) {
+export function DotBol({ maat, variant = 'stippen' }: { maat: number; variant?: BolNaam | VrijeBolNaam }) {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export function DotBol({ maat, variant = 'stippen' }: { maat: number; variant?: 
     const dpr = Math.min(window.devicePixelRatio || 1, 3)
     canvas.width = Math.round(maat * dpr)
     canvas.height = Math.round(maat * dpr)
-    const bol = BOLLEN[variant]
+    const bol = ALLE_BOLLEN[variant]
 
     const teken = (t: number) => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
