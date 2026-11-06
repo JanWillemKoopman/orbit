@@ -36,14 +36,14 @@ export default function HomePage() {
           {hero.title.map((line, i) => (
             <Fragment key={line}>
               {i > 0 && <>{' '}<br className="home-title-break" /></>}
-              <span className="blur-in" style={{ '--i': i } as React.CSSProperties}>{line}</span>
+              <span className="hero-in" style={{ '--delay': `${0.4 + i * 0.1}s` } as React.CSSProperties}>{line}</span>
             </Fragment>
           ))}
         </h1>
         <div className="home-hero-row">
-          <p className="home-hero-description blur-in" style={{ '--i': 2 } as React.CSSProperties}>{hero.description}</p>
+          <p className="home-hero-description hero-in" style={{ '--delay': '0.6s' } as React.CSSProperties}>{hero.description}</p>
           <Link href={hero.link.href} className="home-new-link">
-            <span className="home-new blur-in" style={{ '--i': 3 } as React.CSSProperties}>
+            <span className="home-new hero-in hero-in-link">
               <span className="home-new-label">{hero.link.label}</span>
               <span className="home-new-title">{hero.link.titel} <span className="pijl" aria-hidden="true">→</span></span>
             </span>

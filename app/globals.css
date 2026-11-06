@@ -38,6 +38,7 @@
 
   --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   --speed-quick: 0.1s;
   --speed-regular: 0.25s;
 
@@ -797,6 +798,15 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 640px) {
   .as-knop { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); width: 56px; padding: 0; justify-content: center; }
   .as-knop-tekst { display: none; }
+  /* Pas na twee schermhoogtes scrollen zichtbaar (data-zichtbaar komt uit Assistent.tsx). */
+  .as-knop {
+    animation: none;
+    transition: opacity var(--speed-regular) var(--ease-out-quad), transform var(--speed-regular) var(--ease-out-quad), visibility 0s, background var(--speed-quick) var(--ease-out-quad);
+  }
+  .as-knop:not([data-zichtbaar]) {
+    opacity: 0; transform: translateY(4px) scale(0.99); visibility: hidden; pointer-events: none;
+    transition: opacity var(--speed-regular) var(--ease-out-quad), transform var(--speed-regular) var(--ease-out-quad), visibility 0s var(--speed-regular);
+  }
   .as-venster {
     inset: 0; width: auto; max-height: none; border-radius: 0; box-shadow: none;
     padding-bottom: env(safe-area-inset-bottom); transform-origin: bottom center;
@@ -808,4 +818,8 @@ img, svg { display: block; max-width: 100%; }
 @keyframes as-open { from { opacity: 0; transform: translateY(8px) scale(0.97); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .as-knop, .as-venster, .as-bericht, .as-demo { animation: none; opacity: 1; }
+  .as-knop { transition: none; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 640px) {
+  .as-knop:not([data-zichtbaar]) { opacity: 0; transform: none; }
 }
