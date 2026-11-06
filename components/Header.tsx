@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { mainNav, mobileNav, site } from '@/lib/site'
 import { DemoDialog } from './DemoDialog'
@@ -24,6 +24,33 @@ export function Header() {
   // Het menu blijft na het sluiten nog even staan, zodat het kan uitfaden.
   const [zichtbaar, setZichtbaar] = useState(false)
   const [demoOpen, setDemoOpen] = useState(false)
+  const demoKnop = useRef<HTMLButtonElement>(null)
+
+  // De demoknop vult zich met wit naarmate je verder scrolt: --p loopt van 0 (bovenaan) tot 1 (onderaan).
+  useEffect(() => {
+    const knop = demoKnop.current
+    if (!knop) return
+    let frame = 0
+    const meet = () => {
+      frame = 0
+      const ruimte = document.documentElement.scrollHeight - window.innerHeight
+      const p = ruimte > 0 ? Math.min(1, Math.max(0, window.scrollY / ruimte)) : 0
+      knop.style.setProperty('--p', p.toFixed(4))
+    }
+    const plan = () => { if (!frame) frame = requestAnimationFrame(meet) }
+    meet()
+    window.addEventListener('scroll', plan, { passive: true })
+    window.addEventListener('resize', plan)
+    // Pagina's die later langer worden (afbeeldingen, meer laden) veranderen de verhouding ook.
+    const observer = new ResizeObserver(plan)
+    observer.observe(document.body)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', plan)
+      window.removeEventListener('resize', plan)
+      observer.disconnect()
+    }
+  }, [pathname])
 
   useEffect(() => setOpen(false), [pathname])
   useEffect(() => {
@@ -65,8 +92,8 @@ export function Header() {
             <div className="nav-divider" />
             <div className="header-actions">
               <a href={site.loginUrl} className="nav-link header-contact">Log in</a>
-              <button type="button" className="btn btn-sm btn-invert header-demo" onClick={() => setDemoOpen(true)}>
-                Gratis demo
+              <button ref={demoKnop} type="button" className="btn btn-sm header-demo" onClick={() => setDemoOpen(true)}>
+                <span className="header-demo-label">Gratis demo</span>
               </button>
               <button className="menu-toggle" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
                 {/* Twee lijnen die bij openen naar het midden schuiven en tot een kruis draaien */}

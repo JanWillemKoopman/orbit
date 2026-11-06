@@ -228,6 +228,29 @@ img, svg { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) { .nav-menu-popup[data-open] { animation: none; } }
 .nav-divider { width: 1px; height: 16px; margin: 0 8px; background: var(--border-primary); }
 .header-actions { display: flex; align-items: center; gap: 8px; }
+
+/* Demoknop die meegroeit met het scrollen: bovenaan een witte rand met witte tekst, onderaan een gevulde
+   invert-knop. De vulling schuift van links naar rechts in (scaleX op --p, gezet door Header.tsx); de tekst
+   keert precies op de rand van de vulling om dankzij mix-blend-mode, dus halverwege is 'Gratis' al donker
+   en 'demo' nog wit. */
+.header-demo {
+  --p: 0;
+  position: relative; overflow: hidden; isolation: isolate;
+  color: var(--text-primary);
+  box-shadow: inset 0 0 0 1px var(--text-primary);
+}
+.header-demo::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: var(--button-invert-bg);
+  transform: scaleX(var(--p)); transform-origin: left center;
+  transition: background var(--speed-quick) var(--ease-out-quad);
+}
+.header-demo-label { position: relative; mix-blend-mode: difference; }
+@media (hover: hover) {
+  .header-demo:hover { background: var(--bg-hover); }
+  .header-demo:hover::before { background: var(--button-invert-bg-hover); }
+}
+@media (prefers-reduced-motion: reduce) { .header-demo::before { transition: none; } }
 /* Zoals "Log in" naast "Sign up" op linear.app: een tekstlink naast de witte knop */
 .header-contact { padding: 0 8px; white-space: nowrap; }
 /* Op mobiel staat "Log in" al in het menu */
