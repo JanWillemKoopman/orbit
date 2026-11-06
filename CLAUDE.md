@@ -39,7 +39,7 @@ De tokens staan in `app/globals.css` (`:root`). Gebruik altijd die variabelen in
 | Fout / rood | `--red` | `#eb5757` |
 | Invert-knop | `--button-invert-bg(-hover)` | `#e5e5e6` / `#ffffff` |
 
-Het accent is de enige bewuste afwijking van Linear (Linear gebruikt indigo `#7170ff`): ORBIT gebruikt lime `#bcff2f`, op dezelfde spaarzame manier als Linear zijn accent inzet (focus, selectie, kleine highlights, nooit grote vlakken). Statuskleuren, als ze nodig zijn, nemen we van Linear over: groen `#27a644`, blauw `#4ea7fc`, oranje `#fc7840`, geel `#f0bf00`, teal `#00b8cc`.
+Het accent is de enige bewuste afwijking van Linear (Linear gebruikt indigo `#7170ff`): ORBIT gebruikt lime `#bcff2f`, op dezelfde spaarzame manier als Linear zijn accent inzet (focus, selectie, kleine highlights, nooit grote vlakken). Eén uitzondering, op besluit van de eigenaar: het afsluitende CTA-blok onderaan de pagina's (`CtaAchtergrond`) is een limegroen vlak, met donkergroene stippen, donkere tekst en knoppen die omdraaien (primair zwart, secundair een donkere rand). Gebruik het accent nergens anders als vlak. Statuskleuren, als ze nodig zijn, nemen we van Linear over: groen `#27a644`, blauw `#4ea7fc`, oranje `#fc7840`, geel `#f0bf00`, teal `#00b8cc`.
 
 ### Typografie
 
