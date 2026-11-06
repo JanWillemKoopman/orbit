@@ -3,7 +3,7 @@ import { changelog } from '@/content/changelog'
 import { Prefooter } from '@/components/Prefooter'
 import { ProductUpdates } from '@/components/ProductUpdates'
 
-export const metadata: Metadata = { title: 'Product updates', alternates: { canonical: '/product-updates' } }
+export const metadata: Metadata = { title: 'Product updates', alternates: { canonical: '/product-updates' }, robots: { index: false, follow: false } }
 
 export default function ProductUpdatesPage() {
   return (
