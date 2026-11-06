@@ -1,5 +1,6 @@
-// Vier dot-achtergronden voor de afsluiter onderaan de pagina's (zie components/CtaAchtergrond.tsx). Terrein,
-// baan, stroming en rimpeling wisselen elkaar per bezoeker af op de site (ROTATIE).
+// Dot-achtergronden voor de afsluiter onderaan de pagina's (zie components/CtaAchtergrond.tsx). Terrein,
+// baan, stroming, rimpeling en golven wisselen elkaar per bezoeker af op de site (ROTATIE); stelsel, wereldbol
+// en halftoon staan alleen op de testpagina /visualisaties.
 // Elke scène tekent per frame duizenden stippen op een 2D-canvas. Het kleurenpalet is dat van de
 // huidige nevel: grijs-wit (--text-secondary) op bijna-zwart, met het lime accent (--accent) in de toppen.
 // Alle maten zijn CSS-pixels; het canvas schaalt zelf naar de devicePixelRatio.
@@ -540,4 +541,4 @@ export const SCENES = {
 export type SceneNaam = keyof typeof SCENES
 
 /** De volgorde waarin de scènes elkaar per bezoeker afwisselen. */
-export const ROTATIE: SceneNaam[] = ['terrein', 'baan', 'stroming', 'rimpeling']
+export const ROTATIE: SceneNaam[] = ['terrein', 'baan', 'stroming', 'rimpeling', 'golven']

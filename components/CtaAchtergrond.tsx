@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Batch, ROTATIE, SCENES, type SceneNaam } from './dots/scenes'
 
 // Bewegende achtergrond van de afsluiter onderaan de pagina's: een canvas met duizenden stippen in een blok
-// op de contentbreedte, over de volle hoogte van de sectie (de vorm staat in globals.css). Er zijn vier scènes (terrein,
-// baan, stroming, rimpeling, zie ./dots/scenes.ts) die elkaar per bezoeker afwisselen: wie de afsluiter met de ene scène
+// op de contentbreedte, over de volle hoogte van de sectie (de vorm staat in globals.css). Er zijn vijf scènes (terrein,
+// baan, stroming, rimpeling, golven, zie ./dots/scenes.ts) die elkaar per bezoeker afwisselen: wie de afsluiter met de ene scène
 // in beeld heeft gehad, krijgt de volgende keer de volgende. Welke het laatst gezien is, staat in
 // localStorage; zonder opslag begint de bezoeker bij een willekeurige scène.
 //
