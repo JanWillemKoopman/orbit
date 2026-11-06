@@ -148,15 +148,6 @@ export default function HomePage() {
               </figure>
             ))}
           </div>
-          <ul className="hr-punten">
-            {resultaat.punten.map((p) => (
-              <li key={p.titel}>
-                <h3>{p.titel}</h3>
-                <p>{p.tekst}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="hr-slot">{resultaat.slot}</p>
         </section>
 
         <section className="home-block" aria-labelledby="home-faq">

@@ -74,10 +74,10 @@ export const showcase = {
   description: 'Je clusters, de vragen die de schrijver nog aan je heeft en de planning van je content staan bij elkaar. Zo zie je in één oogopslag wat er loopt en wat er van jou nodig is.',
 }
 
-// Sectie over resultaten, direct boven de veelgestelde vragen: kop (links) en uitleg (rechts), twee
-// beelden naast elkaar en daaronder vier punten. Alles wat hier staat, doet Orbit nu al: het
-// maandverslag, de hermeting na 14 en 28 dagen, de bewijsladder per pagina en de klikken uit Search
-// Console per pagina vanaf zijn eigen publicatiedag. Verkeer betekent hier klikken uit Google;
+// Sectie over resultaten, direct boven de veelgestelde vragen: kop (links) en uitleg (rechts) en twee
+// beelden naast elkaar. Links het maandverslag met de nadruk op wat er gepubliceerd is, rechts de
+// resultaten: zichtbaarheid in AI en klikken uit Search Console, per pagina vanaf zijn eigen
+// publicatiedag. Alles wat hier staat, doet Orbit nu al. Verkeer betekent hier klikken uit Google;
 // conversie en omzet meet Orbit niet en staan er daarom niet in.
 export const resultaat = {
   title: 'Laat elke maand zien wat je werk oplevert',
@@ -85,34 +85,15 @@ export const resultaat = {
   beelden: [
     {
       titel: 'Het klantgesprek is voorbereid voordat je het plant',
-      tekst: 'Elke maand staat per klant klaar wat er live ging, hoe vaak AI-assistenten je klant nu noemen en wat er volgende maand op de planning staat. Met de naam van je bureau erop, als pdf te versturen.',
-      alt: 'Het verslag van oktober van Lindeman Warmte, door Bureau Noordwind: zichtbaarheid in AI 41 procent, de ronde ervoor 32 procent. Vier pagina\'s gingen live, twee met het oordeel gestegen. Volgende maand staan vier pagina\'s gepland.',
+      tekst: 'Elke maand staat per klant klaar welke pagina\'s er live gingen en wat er volgende maand op de planning staat. Je klant ziet in één oogopslag dat het afgesproken werk geleverd is. Met de naam van je bureau erop, als pdf te versturen.',
+      alt: 'De maandrapportage van oktober: vier pagina\'s gepubliceerd, zoals afgesproken, elk met de datum waarop hij live ging. Volgende maand staan vier pagina\'s gepland.',
     },
     {
       titel: 'Eerder werk blijft meetellen',
-      tekst: 'Een pagina van drie maanden geleden levert nog steeds bezoekers op. Orbit telt per pagina de klikken vanaf zijn eigen publicatiedag, alleen voor pagina\'s die met Orbit geschreven zijn. Zo zie je wat deze maand toevoegt bovenop alles wat er al staat.',
-      alt: 'Wat het in Google opleverde: twaalf pagina\'s live en 2.561 klikken sinds de start. De pagina\'s van augustus leverden 1.384 klikken op, die van september 912 en die van oktober 265. Eén pagina staat op alle vijf de treden, van gepubliceerd tot verkeer.',
+      tekst: 'AI-assistenten noemen je klant vaker, en pagina\'s van maanden geleden leveren nog steeds bezoekers op. Orbit telt per pagina de klikken vanaf zijn eigen publicatiedag, alleen voor pagina\'s die met Orbit geschreven zijn. Zo zie je wat deze maand toevoegt bovenop alles wat er al staat.',
+      alt: 'De resultaten: zichtbaarheid in AI 41 procent, de ronde ervoor 32 procent. 694 klikken uit Google in de laatste 28 dagen, 41 procent meer dan de 28 dagen ervoor. De pagina\'s van augustus leverden 1.384 klikken op, die van september 912 en die van oktober 265.',
     },
   ],
-  punten: [
-    {
-      titel: 'Per pagina het hele verhaal',
-      tekst: 'Gepubliceerd, zichtbaar in Google, genoemd door AI, aangehaald als bron en verkeer. Bij elke pagina zie je hoe ver hij op die ladder staat.',
-    },
-    {
-      titel: 'Nagemeten op de juiste vragen',
-      tekst: 'Na 14 en 28 dagen stelt Orbit precies de vragen opnieuw waarvoor de pagina geschreven is. Wordt je klant vaker genoemd, en haalt AI de nieuwe pagina aan?',
-    },
-    {
-      titel: 'Een cijfer dat overeind blijft',
-      tekst: 'Gestegen betekent: groter dan toeval. Bij elk cijfer staat een marge, dus ook een kritische directeur of een eigen analist neemt je resultaat serieus.',
-    },
-    {
-      titel: 'Bezoekers uit Google, elke dag',
-      tekst: 'Koppel Search Console één keer per klant. Orbit haalt dagelijks de klikken en vertoningen per pagina op, met een markering op de dag dat hij live ging.',
-    },
-  ],
-  slot: 'Klanten die elke maand zien wat ze krijgen, blijven. En ze zeggen eerder ja tegen meer pagina\'s.',
 }
 
 export type FeatureLink = { label: string; href: string }
