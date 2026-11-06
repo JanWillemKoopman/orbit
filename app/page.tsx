@@ -106,7 +106,7 @@ export default function HomePage() {
               <Link href={kwaliteit.link.href} className="home-link">{kwaliteit.link.label} <span className="pijl" aria-hidden="true">→</span></Link>
             </div>
           </div>
-          <DuoSlider>
+          <DuoSlider bijschriften={[kwaliteitSecties.weten.beeld, kwaliteitSecties.probleem.beeld]}>
             <figure className="lp-beeld lp-beeld-scherm">
               <div className="lp-beeld-stage" role="img" aria-label="Feiten en kennis van Lindeman Warmte als tabel: per feit de bron en of het in een tekst mag. Een vermoeden en een verboden woord mogen nooit.">
                 <div className="lp-beeld-inner" aria-hidden="true"><BreinTabel /></div>
@@ -136,7 +136,7 @@ export default function HomePage() {
               <p>{resultaat.description}</p>
             </div>
           </div>
-          <DuoSlider>
+          <DuoSlider bijschriften={resultaat.beelden}>
             {resultaat.beelden.map((b, i) => (
               <figure className="lp-beeld lp-beeld-scherm" key={b.titel}>
                 <div className="lp-beeld-stage" role="img" aria-label={b.alt}>
