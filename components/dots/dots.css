@@ -1,4 +1,4 @@
-/* Testpagina's /dots2 t/m /dots7: schakelaar tussen de achtergronden van de afsluiter. */
+/* Testpagina's /dots2 t/m /dots4 en /dots6: schakelaar tussen de achtergronden van de afsluiter. */
 .dots-test { padding-top: 64px; }
 .dots-switch { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
 .dots-switch-link {

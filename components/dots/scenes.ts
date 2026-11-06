@@ -1,6 +1,5 @@
-// Dot-achtergronden voor de afsluiter onderaan de pagina's (zie components/CtaAchtergrond.tsx). Terrein, baan
-// en stroming wisselen elkaar af op de site (ROTATIE); banen, rimpeling en tunnel zijn alternatieven op
-// de testpagina's /dots5 t/m /dots7.
+// Vier dot-achtergronden voor de afsluiter onderaan de pagina's (zie components/CtaAchtergrond.tsx). Terrein,
+// baan, stroming en rimpeling wisselen elkaar per bezoeker af op de site (ROTATIE).
 // Elke scène tekent per frame duizenden stippen op een 2D-canvas. Het kleurenpalet is dat van de
 // huidige nevel: grijs-wit (--text-secondary) op bijna-zwart, met het lime accent (--accent) in de toppen.
 // Alle maten zijn CSS-pixels; het canvas schaalt zelf naar de devicePixelRatio.
@@ -322,68 +321,6 @@ function stroming(): Scene {
   }
 }
 
-/** Banen: stippen die in gekantelde ellipsen rond de tekst draaien, met een paar lime satellieten. */
-function banen(): Scene {
-  // Per baan: straal (t.o.v. de basis), helling, kanteling in het vlak, snelheid, aantal stippen, satellieten
-  const BANEN = [
-    [0.55, 1.22, -0.1, 0.05, 260, 1],
-    [0.78, 1.28, 0.06, -0.035, 360, 0],
-    [1.0, 1.25, -0.04, 0.026, 460, 1],
-    [1.24, 1.3, 0.12, -0.02, 560, 0],
-    [1.5, 1.27, -0.08, 0.015, 680, 1],
-  ]
-  return {
-    init() {},
-    frame(b, w, h, t) {
-      const cx = w / 2
-      const cy = h * 0.48
-      const basis = Math.min(w * 0.42, 620)
-      const D = basis * 3.2 // afstand van de camera, voor het perspectief
-      const dichtheid = Math.max(0.4, basis / 620) // minder stippen op kleinere banen
-      const kantel = w < 640 ? 0.85 : 1 // op een smal scherm wat rondere ellipsen
-      const plaats = (r: number, hoek: number, inc: number, rol: number) => {
-        const x = r * Math.cos(hoek)
-        const y0 = r * Math.sin(hoek)
-        const y = y0 * Math.cos(inc)
-        const z = y0 * Math.sin(inc) // positief: naar de kijker toe
-        const p = D / (D - z)
-        const sx = (x * Math.cos(rol) - y * Math.sin(rol)) * p
-        const sy = (x * Math.sin(rol) + y * Math.cos(rol)) * p
-        return [cx + sx, cy + sy, z / r, p] as const
-      }
-      for (let k = 0; k < BANEN.length; k++) {
-        const [rf, i0, rol, v, n0, sat] = BANEN[k]
-        const r = rf * basis
-        const inc = i0 * kantel
-        const n = Math.round(n0 * dichtheid)
-        for (let i = 0; i < n; i++) {
-          const hoek = (i / n) * TAU + t * v
-          const [x, y, voor, p] = plaats(r, hoek, inc, rol)
-          if (x < -4 || x > w + 4 || y < -4 || y > h + 4) continue
-          const korrel = 0.55 + 0.45 * noise3(i * 0.31, k * 7.3, t * 0.2)
-          const diepte = 0.35 + 0.65 * smooth(-1, 1, voor)
-          const s = sluier(x, y, w, h, 0.6)
-          b.stip(x, y, (0.45 + 0.5 * diepte) * p, (0.12 + 0.55 * diepte) * korrel * s, 0)
-        }
-        // Satellieten: een heldere lime stip met een staart van vervagende stippen.
-        if (sat) {
-          for (let m = 0; m < 2; m++) {
-            const kop = t * v * 2.2 + m * Math.PI + k
-            for (let j = 0; j < 46; j++) {
-              const hoek = kop - Math.sign(v) * j * 0.012
-              const [x, y, voor, p] = plaats(r, hoek, inc, rol)
-              const staart = 1 - j / 46
-              const diepte = 0.4 + 0.6 * smooth(-1, 1, voor)
-              const s = sluier(x, y, w, h, 0.5)
-              b.stip(x, y, (j === 0 ? 2.2 : 0.6 + 0.9 * staart) * p * (0.7 + 0.3 * diepte), staart * staart * diepte * s, 1)
-            }
-          }
-        }
-      }
-    },
-  }
-}
-
 /** Rimpeling: een raster van stippen waarin golven vanuit het midden uitdijen, als een signaal dat zich verspreidt. */
 function rimpeling(): Scene {
   let stap = 11
@@ -425,52 +362,14 @@ function rimpeling(): Scene {
   }
 }
 
-/** Tunnel: ringen van stippen die vanuit de diepte langzaam op de kijker afkomen, met een lime spiraal erin. */
-function tunnel(): Scene {
-  const RINGEN = 70
-  const PER_RING = 120
-  const LENGTE = 14
-  return {
-    init() {},
-    frame(b, w, h, t) {
-      const cx = w / 2
-      const cy = h * 0.48
-      const f = Math.max(w, h * 1.4) * 0.16
-      const rx = 1, ry = Math.min(0.75, (h / w) * 1.3)
-      const reis = t * 0.55
-      for (let k = 0; k < RINGEN; k++) {
-        const z = LENGTE - (((k / RINGEN) * LENGTE + reis) % LENGTE) + 0.35
-        const p = f / z
-        const wz = z + reis // wereldpositie, voor de spiraal en de korrel
-        const nabij = smooth(0.35, 1.6, z) // vlak voor de camera vervagen in plaats van ploppen
-        const ver = 1 - smooth(LENGTE * 0.45, LENGTE, z)
-        for (let i = 0; i < PER_RING; i++) {
-          const a = (i / PER_RING) * TAU + z * 0.06
-          const x = cx + Math.cos(a) * rx * p * 3
-          const y = cy + Math.sin(a) * ry * p * 3
-          if (x < -6 || x > w + 6 || y < -6 || y > h + 6) continue
-          const spiraal = Math.cos(a * 2 - wz * 0.9)
-          const lime = smooth(0.8, 0.98, spiraal)
-          const korrel = 0.6 + 0.4 * noise3(i * 0.4, wz * 0.8, 1.7)
-          const s = sluier(x, y, w, h, 0.55)
-          const alpha = (0.12 + 0.35 * korrel + 0.5 * lime) * nabij * ver * s
-          b.stip(x, y, Math.min(2.2, 0.25 + p * 0.012), alpha, lime)
-        }
-      }
-    },
-  }
-}
-
 export const SCENES = {
   terrein,
   baan,
   stroming,
-  banen,
   rimpeling,
-  tunnel,
 } satisfies Record<string, () => Scene>
 
 export type SceneNaam = keyof typeof SCENES
 
 /** De volgorde waarin de scènes elkaar per bezoeker afwisselen. */
-export const ROTATIE: SceneNaam[] = ['terrein', 'baan', 'stroming']
+export const ROTATIE: SceneNaam[] = ['terrein', 'baan', 'stroming', 'rimpeling']
