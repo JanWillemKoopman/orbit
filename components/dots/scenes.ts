@@ -380,11 +380,161 @@ function rimpeling(): Scene {
   }
 }
 
+
+/** Golven: horizontale lijnen van stippen die als een signaal op en neer golven; de toppen lichten op. */
+function golven(): Scene {
+  return {
+    init() {},
+    frame(b, w, h, t) {
+      const lijnen = Math.max(14, Math.min(34, Math.round(h / 16)))
+      const boven = h * 0.1, onder = h * 0.92
+      const stap = w < 640 ? 3.5 : 4
+      const A = Math.min(90, h * (w < 640 ? 0.15 : 0.11))
+      for (let i = 0; i < lijnen; i++) {
+        const basis = boven + (i / (lijnen - 1)) * (onder - boven)
+        for (let x = 0; x <= w; x += stap) {
+          const env = Math.exp(-(((x - w / 2) / (w * (w < 640 ? 0.55 : 0.4))) ** 2))
+          const n = fbm(x * 0.0045 + 3, i * 0.17, t * 0.12, 3)
+          const top = clamp01((n - 0.42) / 0.3) * env
+          const y = basis - top * top * A - Math.sin(x * 0.012 + t * 0.6 + i * 0.4) * 2 * env
+          const s = sluier(x, y, w, h, 0.55)
+          b.stip(x, y, 0.55 + top * 0.9, (0.28 + 0.72 * top) * s, smooth(0.45, 0.9, top))
+        }
+      }
+    },
+  }
+}
+
+/** Stelsel: een draaiend sterrenstelsel van stippen met twee spiraalarmen, schuin van opzij gezien. */
+function stelsel(): Scene {
+  let deeltjes = new Float32Array(0)
+  return {
+    init(w, h) {
+      let s = 21
+      const rnd = () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646
+      const n = Math.min(9000, Math.round((w * h) / 45))
+      deeltjes = new Float32Array(n * 4)
+      for (let i = 0; i < n; i++) {
+        const r = Math.min(1, -Math.log(1 - rnd() * 0.98) * 0.32 + 0.04)
+        const arm = rnd() < 0.5 ? 0 : Math.PI
+        const spreiding = (rnd() - 0.5) * (0.5 + r * 0.9) * (rnd() < 0.25 ? 3 : 1)
+        deeltjes[i * 4] = r
+        deeltjes[i * 4 + 1] = arm + Math.log(r) * 2.4 + spreiding
+        deeltjes[i * 4 + 2] = rnd()
+        deeltjes[i * 4 + 3] = rnd() * TAU
+      }
+    },
+    frame(b, w, h, t) {
+      const R = w < 640 ? w * 1.05 : Math.max(w * 0.62, h * 0.55)
+      const cx = w / 2, cy = h * 0.52
+      const plat = w < 640 ? 0.62 : 0.42
+      for (let i = 0; i < deeltjes.length; i += 4) {
+        const r = deeltjes[i]
+        const a = deeltjes[i + 1] + t * (0.05 / (0.25 + r))
+        const x = cx + Math.cos(a) * r * R
+        const y = cy + Math.sin(a) * r * R * plat
+        if (x < -4 || x > w + 4 || y < -4 || y > h + 4) continue
+        const kern = Math.exp(-r * 5)
+        const flonker = deeltjes[i + 2] > 0.94 ? 0.5 + 0.5 * Math.sin(t * 2 + deeltjes[i + 3]) : 0
+        const v = clamp01(0.3 + kern * 0.8 + flonker * 0.6) * (1 - smooth(0.7, 1, r))
+        const s = sluier(x, y, w, h, 0.45)
+        b.stip(x, y, 0.45 + v * 0.8 + flonker * 0.4, v * s, clamp01(kern * 1.4 + flonker))
+      }
+    },
+  }
+}
+
+/** Wereldbol: een draaiende bol van stippen waarop telkens ergens een signaal oplicht, met een baan eromheen. */
+function wereldbol(): Scene {
+  let punten = new Float32Array(0)
+  return {
+    init(w, h) {
+      const n = w < 640 ? 1600 : 2600
+      punten = new Float32Array(n * 4)
+      const gulden = Math.PI * (3 - Math.sqrt(5))
+      let s = 5
+      const rnd = () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646
+      for (let i = 0; i < n; i++) {
+        const y = 1 - (i / (n - 1)) * 2
+        const r = Math.sqrt(1 - y * y)
+        punten[i * 4] = Math.cos(i * gulden) * r
+        punten[i * 4 + 1] = y
+        punten[i * 4 + 2] = Math.sin(i * gulden) * r
+        punten[i * 4 + 3] = rnd() < 0.035 ? rnd() * 10 : -1 // een paar punten krijgen een signaal
+      }
+      void h
+    },
+    frame(b, w, h, t) {
+      const R = Math.min(Math.max(w * 0.46, 170), h * 0.62)
+      const cx = w / 2, cy = h * 0.66
+      const rot = t * 0.12
+      const cr = Math.cos(rot), sr = Math.sin(rot)
+      const kant = 0.38
+      const ck = Math.cos(kant), sk = Math.sin(kant)
+      for (let i = 0; i < punten.length; i += 4) {
+        const x0 = punten[i], y0 = punten[i + 1], z0 = punten[i + 2]
+        const x1 = x0 * cr + z0 * sr
+        const z1 = -x0 * sr + z0 * cr
+        const y2 = y0 * ck - z1 * sk
+        const z2 = y0 * sk + z1 * ck
+        const x = cx + x1 * R, y = cy + y2 * R
+        if (y > h + 4) continue
+        const voor = (z2 + 1) / 2
+        let sig = 0
+        if (punten[i + 3] >= 0) {
+          const fase = ((t + punten[i + 3]) % 10) / 10
+          sig = smooth(0, 0.05, fase) * smooth(0.35, 0.1, fase) * smooth(0.2, 0.6, voor)
+        }
+        const v = clamp01((0.14 + 0.7 * voor * voor) + sig)
+        const s = sluier(x, y, w, h, 0.4)
+        b.stip(x, y, (0.45 + 0.6 * voor) + sig * 1.6, v * s, sig)
+      }
+      // De baan: een gekantelde ring van stippen, met een satelliet die er langs loopt.
+      const rx = R * 1.35, ry = R * 0.32
+      const n = Math.round(rx * 0.9)
+      for (let k = 0; k < n; k++) {
+        const a = (k / n) * TAU
+        const x = cx + Math.cos(a) * rx, y = cy - R * 0.1 + Math.sin(a) * ry
+        const achter = Math.sin(a) < 0 && Math.hypot((x - cx) / R, (y - cy) / R) < 1
+        if (achter) continue
+        b.stip(x, y, 0.6, 0.5 * sluier(x, y, w, h, 0.4))
+      }
+      const sa = t * 0.35
+      const sx = cx + Math.cos(sa) * rx, sy = cy - R * 0.1 + Math.sin(sa) * ry
+      if (!(Math.sin(sa) < 0 && Math.hypot((sx - cx) / R, (sy - cy) / R) < 1)) b.stip(sx, sy, 2.4, 1, 1)
+    },
+  }
+}
+
+/** Halftoon: een raster waarin de stippen groeien en krimpen met een langzaam drijvende wolk, als een gerasterde foto. */
+function halftoon(): Scene {
+  return {
+    init() {},
+    frame(b, w, h, t) {
+      const stap = w < 640 ? 9 : 11
+      for (let y = stap / 2, rij = 0; y < h; y += stap * 0.866, rij++) {
+        const verspring = (rij % 2) * stap * 0.5
+        for (let x = verspring; x < w + stap; x += stap) {
+          const n = fbm(x * 0.0032 + t * 0.04, y * 0.0042 - t * 0.015, t * 0.05, 3)
+          const v = clamp01((n - 0.32) / 0.42)
+          const s = sluier(x, y, w, h, 0.75)
+          const r = 0.4 + v * v * (stap * 0.32)
+          b.stip(x, y, r, (0.2 + 0.8 * v) * s, smooth(0.6, 0.95, v))
+        }
+      }
+    },
+  }
+}
+
 export const SCENES = {
   terrein,
   baan,
   stroming,
   rimpeling,
+  golven,
+  stelsel,
+  wereldbol,
+  halftoon,
 } satisfies Record<string, () => Scene>
 
 export type SceneNaam = keyof typeof SCENES

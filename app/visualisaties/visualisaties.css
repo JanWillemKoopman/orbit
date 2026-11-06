@@ -1,0 +1,4 @@
+/* Testpagina /visualisaties: koppen boven de vier afsluiters. */
+.vis { padding-top: 64px; }
+.vis-kop { text-align: center; font-size: 13px; letter-spacing: -0.01em; color: var(--text-tertiary); }
+.vis-kop b { margin-right: 6px; font-family: var(--font-mono); font-size: 12px; font-weight: var(--weight-normal); text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-primary); }
