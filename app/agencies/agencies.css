@@ -70,6 +70,8 @@
 /* Grip op kosten: het tabblad Kosten in een venster, ervoor de schatting bij Start de maand */
 .a2-ko { position: relative; width: 640px; height: 560px; }
 .a2-ko-venster { position: absolute; top: 0; left: 0; width: 600px; }
+/* Het logo van het bureau: wit op zwart, met een dunne rand zodat het vlak loskomt van de balk */
+.a2-ko .fv-logo { background: var(--bg-primary); color: var(--text-primary); box-shadow: inset 0 0 0 1px var(--border-translucent); }
 .a2-ko-export { display: inline-flex; align-items: center; gap: 6px; }
 .a2-ko-kop { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px; margin-bottom: 8px; }
 .a2-ko-stand { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.03); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
@@ -82,7 +84,6 @@
 .a2-ko-naam { color: var(--text-primary); font-weight: var(--weight-medium); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .a2-ko-balk { height: 4px; border-radius: 4px; background: rgba(255, 255, 255, 0.05); }
 .a2-ko-balk i { display: block; height: 100%; border-radius: inherit; background: var(--text-quaternary); }
-.a2-ko-rij:first-child .a2-ko-balk i { background: var(--accent); }
 .a2-ko-k { text-align: right; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
 .a2-ko-rij[data-rest] .a2-ko-naam, .a2-ko-rij[data-rest] .a2-ko-k { color: var(--text-tertiary); font-weight: var(--weight-normal); }
 .a2-ko-vooraf { position: absolute; top: 368px; left: 260px; width: 380px; gap: 10px; padding: 20px 22px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
