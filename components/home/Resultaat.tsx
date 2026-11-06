@@ -5,7 +5,7 @@
 // een marge, en de klikken komen uit Search Console.
 import { Chip, Mono } from '@/components/product/ui'
 
-// De eerste pagina's van de achttien; de rest valt onder de vervaging van het beeld.
+// De eerste pagina's van de twintig; de rest valt onder de vervaging van het beeld.
 const LIVE = [
   ['Hybride warmtepomp laten installeren in Utrecht', 'Live op 2 september'],
   ['Wat kost een warmtepomp in 2026?', 'Live op 4 september'],
@@ -21,10 +21,10 @@ export function VerslagMaand() {
         <strong>September</strong>
       </div>
       <div className="hr-hoofdcijfer">
-        <span className="hr-groot">18</span>
+        <span className="hr-groot">20</span>
         <span className="hr-groot-t">
           <strong>pagina&apos;s gepubliceerd</strong>
-          <Chip tone="lime" dot>18 van 18 uit contentplan</Chip>
+          <Chip tone="lime" dot>20 van 20 uit contentplan</Chip>
         </span>
       </div>
       <div className="fv-report-list">
@@ -36,7 +36,7 @@ export function VerslagMaand() {
           </div>
         ))}
       </div>
-      <span className="fv-muted fv-small">Volgende maand: 18 pagina&apos;s gepland, de eerste gaat op 1 oktober live.</span>
+      <span className="fv-muted fv-small">Volgende maand: 20 pagina&apos;s gepland, de eerste gaat op 1 oktober live.</span>
     </div>
   )
 }

@@ -86,7 +86,7 @@ export const resultaat = {
     {
       titel: 'Het klantgesprek is voorbereid voordat je het plant',
       tekst: 'Elke maand staat per klant klaar welke pagina\'s er live gingen en wat er volgende maand op de planning staat. Je klant ziet in één oogopslag dat het afgesproken werk geleverd is. Met de naam van je bureau erop, als pdf te versturen.',
-      alt: 'De maandrapportage van september: achttien pagina\'s gepubliceerd, alle achttien uit het contentplan, elk met de datum waarop hij live ging. Volgende maand staan achttien pagina\'s gepland.',
+      alt: 'De maandrapportage van september: twintig pagina\'s gepubliceerd, alle twintig uit het contentplan, elk met de datum waarop hij live ging. Volgende maand staan twintig pagina\'s gepland.',
     },
     {
       titel: 'Eerder werk blijft meetellen',
