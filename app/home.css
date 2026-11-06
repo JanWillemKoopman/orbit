@@ -331,12 +331,20 @@
 }
 @media (max-width: 640px) {
   .hk { padding-bottom: 0; }
-  /* Op een telefoon zoals /kwaliteit: over de volle breedte, de beelden sluiten op elkaar aan met één lijn ertussen */
-  .hk-duo { gap: 0; margin-inline: calc(-1 * var(--page-padding)); }
-  .hk-duo .lp-beeld { margin-inline: 0; }
-  .hk-duo .lp-beeld + .lp-beeld { border-top: 0; }
-  .hk-duo .lp-beeld-stage { height: 468px; }
-  .hk-duo .lp-beeld-inner { top: auto; width: 440px; zoom: 0.86; }
+  /* Op een telefoon een veegbare rij, net als de drie schermen hierboven (.sc-stage): elk beeld 88% breed,
+     zodat het volgende net in beeld piept, met dezelfde stipjes eronder. Scheelt een heel beeld scrollen. */
+  .hk-duo {
+    display: flex; gap: 12px; margin-inline: calc(-1 * var(--page-padding)); padding-inline: var(--page-padding);
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--page-padding); scrollbar-width: none;
+  }
+  .hk-duo::-webkit-scrollbar { display: none; }
+  .hk-duo .lp-beeld { flex: 0 0 88%; margin-inline: 0; scroll-snap-align: start; }
+  .hk-duo .lp-beeld-stage { height: 380px; }
+  /* Het venster past binnen het beeld: 88% van de rij min 12 px lucht aan elke kant, op 0.72 van zijn maat */
+  .hk-duo .lp-beeld-scherm .lp-beeld-inner { top: 36px; margin-block: 0 auto; width: calc((0.88 * (100vw - 2 * var(--page-padding)) - 24px) / 0.72); zoom: 0.72; }
+  .hk-duo .lp-caption { padding: 0 20px 28px; }
+  .hk-duo .lp-caption h3, .hk-duo .lp-caption p { font-size: 15px; }
+  .hk-dots { padding: 20px 0 0; }
 }
 
 /* Wat het werk oplevert: dezelfde opbouw als de kwaliteit hierboven (.hk). Links de maandrapportage met
@@ -360,9 +368,9 @@
 .hr-maanden { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-quaternary); }
 @media (max-width: 640px) {
   .hr { padding-bottom: 96px; }
-  /* De beelden volgen hier de breedte van het scherm, zodat de getallen rechts niet wegvallen */
-  .hr .hk-duo .lp-beeld-inner { top: 48px; width: calc((100vw - 32px) / 0.86); zoom: 0.86; }
   .hr-opbrengst { padding: 24px 22px; }
+  .hr-op-kpis > span { padding: 12px 14px; }
+  .hr-op-kpis em, .hr-op-kpis i { font-size: 12px; white-space: nowrap; }
   .hr-op-kpis strong { font-size: 30px; }
 }
 

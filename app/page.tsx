@@ -8,6 +8,7 @@ import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
 import { Faq } from '@/components/home/Faq'
+import { DuoSlider } from '@/components/home/DuoSlider'
 import { OpbrengstOpgebouwd, VerslagMaand } from '@/components/home/Resultaat'
 import { AiLogos } from '@/components/home/AiLogos'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
@@ -105,7 +106,7 @@ export default function HomePage() {
               <Link href={kwaliteit.link.href} className="home-link">{kwaliteit.link.label} <span className="pijl" aria-hidden="true">→</span></Link>
             </div>
           </div>
-          <div className="hk-duo">
+          <DuoSlider>
             <figure className="lp-beeld lp-beeld-scherm">
               <div className="lp-beeld-stage" role="img" aria-label="Feiten en kennis van Lindeman Warmte als tabel: per feit de bron en of het in een tekst mag. Een vermoeden en een verboden woord mogen nooit.">
                 <div className="lp-beeld-inner" aria-hidden="true"><BreinTabel /></div>
@@ -124,7 +125,7 @@ export default function HomePage() {
                 <p>{kwaliteitSecties.probleem.beeld.tekst}</p>
               </figcaption>
             </figure>
-          </div>
+          </DuoSlider>
         </section>
 
         <section className="feature hk hr" aria-labelledby="home-resultaat">
@@ -135,7 +136,7 @@ export default function HomePage() {
               <p>{resultaat.description}</p>
             </div>
           </div>
-          <div className="hk-duo">
+          <DuoSlider>
             {resultaat.beelden.map((b, i) => (
               <figure className="lp-beeld lp-beeld-scherm" key={b.titel}>
                 <div className="lp-beeld-stage" role="img" aria-label={b.alt}>
@@ -147,7 +148,7 @@ export default function HomePage() {
                 </figcaption>
               </figure>
             ))}
-          </div>
+          </DuoSlider>
         </section>
 
         <section className="home-block" aria-labelledby="home-faq">
