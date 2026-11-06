@@ -330,8 +330,11 @@
 
 /* Drie schermen achter elkaar, naar linear.app/intake ------------------- */
 .sc-root {
-  position: relative; margin-top: 96px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.06);
-  background: radial-gradient(90% 60% at 50% 0%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 55%, rgba(255, 255, 255, 0) 80%), var(--bg-primary);
+  position: relative; margin-top: 96px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.07);
+  /* Zelfde belichting als de andere beelden met een scherm (.lp-beeld-scherm in pagina.css) */
+  background:
+    radial-gradient(88% 60% at 50% 0%, rgba(176, 181, 188, 0.5) 0%, rgba(120, 126, 134, 0.2) 42%, rgba(8, 9, 10, 0) 82%),
+    #0b0c0d;
 }
 .sc-stage {
   position: relative; height: 640px;
@@ -339,14 +342,15 @@
 }
 .sc-screen {
   position: absolute; display: flex; flex-direction: column; gap: 20px; padding: 28px 32px; border-radius: 12px;
-  background: #101112; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(180deg, #121314 0%, #0f1011 100%); border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   font-size: 14px; color: var(--text-secondary); overflow: hidden;
 }
 /* De schermen blijven dicht, zodat het scherm erachter niet door de tekst heen schijnt. Dimmen
    gebeurt met brightness; het uitlopen naar onderen zit op het podium als geheel, zodat randen en
    inhoud van alle drie de schermen tegelijk wegvloeien. */
-.sc-screen[data-pos='back'] { left: 8%; top: 150px; width: 40%; height: 470px; filter: brightness(0.5); }
-.sc-screen[data-pos='mid'] { left: 29%; top: 120px; width: 38%; height: 490px; filter: brightness(0.72); }
+.sc-screen[data-pos='back'] { left: 8%; top: 150px; width: 40%; height: 470px; filter: brightness(0.72); }
+.sc-screen[data-pos='mid'] { left: 29%; top: 120px; width: 38%; height: 490px; filter: brightness(0.86); }
 .sc-screen[data-pos='front'] { left: 50%; top: 90px; width: 41%; height: 510px; }
 .sc-head { display: flex; flex-direction: column; gap: 4px; }
 .sc-eyebrow, .sc-mono { font-family: var(--font-mono); font-size: 11px; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-quaternary); }
