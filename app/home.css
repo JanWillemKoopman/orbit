@@ -518,6 +518,10 @@
 @media (max-width: 640px) {
   .process { padding-bottom: 72px; }
   .home-uitgelicht { margin-top: 72px; }
+  /* Onder de vier voordelen volgt meteen het blok met de twee beelden, dat al 72 px lucht boven zich heeft */
+  .process.usp { padding-bottom: 0; }
+  /* Onder de drie schermen staat hun bijschrift al in een kaart; meer dan 60 px lucht oogt daar als een gat */
+  .feature.hk:not(.hr) { margin-top: 60px; }
   /* De twee beelden zoals linear.app/ai op 390 px: over de volle breedte met een lijn ertussen, 40 px lucht,
      een vlak van 273 px waarin het beeld verticaal gecentreerd staat (een hoog beeld begint bovenaan en vervaagt onderin),
      daaronder het bijschrift */
