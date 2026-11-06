@@ -48,8 +48,9 @@ function markeerGezien(scene: SceneNaam) {
   } catch {}
 }
 
-/** Zonder `scene` wisselt de achtergrond per bezoeker; met `scene` staat hij vast (voor de testpagina's). */
-export function CtaAchtergrond({ scene: vast }: { scene?: SceneNaam } = {}) {
+/** Zonder `scene` wisselt de achtergrond per bezoeker; met `scene` staat hij vast (voor de testpagina's).
+ *  Met `lime` is het blok limegroen en zijn de stippen donkergroen. */
+export function CtaAchtergrond({ scene: vast, lime = false }: { scene?: SceneNaam; lime?: boolean } = {}) {
   const lagenRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [scene, setScene] = useState<SceneNaam | null>(vast ?? null)
@@ -66,7 +67,7 @@ export function CtaAchtergrond({ scene: vast }: { scene?: SceneNaam } = {}) {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     const sc = SCENES[scene]()
-    const batch = new Batch()
+    const batch = new Batch(lime ? 'lime' : 'standaard')
     let w = 0, h = 0
     let zichtbaar = false
     let gezien = false
@@ -151,10 +152,10 @@ export function CtaAchtergrond({ scene: vast }: { scene?: SceneNaam } = {}) {
       document.removeEventListener('visibilitychange', update)
       reduceMotion.removeEventListener('change', update)
     }
-  }, [scene, vast])
+  }, [scene, vast, lime])
 
   return (
-    <div ref={lagenRef} className="cta-achtergrond" aria-hidden="true">
+    <div ref={lagenRef} className={lime ? 'cta-achtergrond cta-achtergrond-lime' : 'cta-achtergrond'} aria-hidden="true">
       <canvas ref={canvasRef} className="cta-canvas" />
     </div>
   )

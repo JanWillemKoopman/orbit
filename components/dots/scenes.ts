@@ -68,16 +68,34 @@ const DEKKING = 16
 const GRIJS = [208, 214, 224] // --text-secondary
 const LIME = [188, 255, 47] // --accent
 
-const STIJLEN: string[] = []
-for (let k = 0; k < KLEUREN; k++) {
-  const m = k / (KLEUREN - 1)
-  const r = Math.round(lerp(GRIJS[0], LIME[0], m))
-  const g = Math.round(lerp(GRIJS[1], LIME[1], m))
-  const b = Math.round(lerp(GRIJS[2], LIME[2], m))
-  for (let d = 0; d < DEKKING; d++) STIJLEN.push(`rgba(${r},${g},${b},${((d + 1) / DEKKING).toFixed(3)})`)
+// Donkere variant voor een stippenveld op een limegroen vlak: van donker olijfgroen naar bijna zwart groen.
+const OLIJF = [52, 78, 0]
+const DIEPGROEN = [12, 20, 0]
+
+export type Palet = 'standaard' | 'lime'
+
+function stijlen(van: number[], naar: number[]): string[] {
+  const uit: string[] = []
+  for (let k = 0; k < KLEUREN; k++) {
+    const m = k / (KLEUREN - 1)
+    const r = Math.round(lerp(van[0], naar[0], m))
+    const g = Math.round(lerp(van[1], naar[1], m))
+    const b = Math.round(lerp(van[2], naar[2], m))
+    for (let d = 0; d < DEKKING; d++) uit.push(`rgba(${r},${g},${b},${((d + 1) / DEKKING).toFixed(3)})`)
+  }
+  return uit
+}
+
+const PALETTEN: Record<Palet, string[]> = {
+  standaard: stijlen(GRIJS, LIME),
+  lime: stijlen(OLIJF, DIEPGROEN),
 }
 
 export class Batch {
+  private stijlen: string[]
+  constructor(palet: Palet = 'standaard') {
+    this.stijlen = PALETTEN[palet]
+  }
   private emmers: number[][] = Array.from({ length: KLEUREN * DEKKING }, () => [])
 
   /** Voeg een stip toe. `lime` en `alpha` lopen van 0 tot 1, `r` is de straal in CSS-pixels. */
@@ -92,7 +110,7 @@ export class Batch {
     for (let i = 0; i < this.emmers.length; i++) {
       const e = this.emmers[i]
       if (e.length === 0) continue
-      ctx.fillStyle = STIJLEN[i]
+      ctx.fillStyle = this.stijlen[i]
       ctx.beginPath()
       for (let j = 0; j < e.length; j += 3) {
         const x = e[j], y = e[j + 1], r = e[j + 2]
