@@ -1,0 +1,11 @@
+/* Testpagina's /dots en /dots1 t/m /dots5: schakelaar tussen de achtergronden van de afsluiter. */
+.dots-test { padding-top: 64px; }
+.dots-switch { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+.dots-switch-link {
+  height: 28px; padding: 0 12px; display: inline-flex; align-items: center; border-radius: var(--radius-pill);
+  font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-quaternary);
+  transition: color var(--speed-quick) var(--ease-out-quad), background var(--speed-quick) var(--ease-out-quad);
+}
+@media (hover: hover) { .dots-switch-link:hover { color: var(--text-primary); background: var(--bg-hover); } }
+.dots-switch-link[aria-current='page'] { color: var(--text-primary); background: var(--bg-translucent); }
+.dots-uitleg { margin-top: 16px; text-align: center; font-size: 13px; letter-spacing: -0.01em; color: var(--text-tertiary); }
