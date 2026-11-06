@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { afsluiter, hero, meta, stappen, type Stap } from '@/content/werkwijze'
+import { afsluiter, hero, intro, meta, stappen, type Stap } from '@/content/werkwijze'
 import { PaginaHero } from '@/components/product/Blokken'
 import { StappenBalk } from '@/components/werkwijze/StappenBalk'
+import { CitaatScroll } from '@/components/home/CitaatScroll'
 import '../pagina.css'
 import './werkwijze.css'
 import './stappen.css'
@@ -44,6 +45,13 @@ export default function WerkwijzePage() {
   return (
     <div className="home lp ww">
       <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="werkwijze-achtergrond" vierkantMobiel />
+
+      {/* Introductie: dezelfde tussenzin als op de homepage */}
+      <div className="container">
+        <div className="home-statement ww-intro">
+          <CitaatScroll strong={intro.strong} rest={intro.rest} />
+        </div>
+      </div>
 
       <div className="ww-stappen">
         <StappenBalk stappen={stappen.map(({ id, nr, titel }) => ({ id, nr, titel }))} />
