@@ -41,14 +41,21 @@ export function VerslagOktober() {
   )
 }
 
-// Klikken uit Google per maand, van augustus tot januari: een stijgende lijn van 11.740 naar 24.694.
+// Klikken uit Google per maand, van januari tot december: duidelijk omhoog van 11.740 naar 24.694, met
+// de dipjes die echt zoekverkeer ook heeft, zodat de lijn niet te mooi oogt.
 const KLIKKEN = [
-  ['aug', 11740],
-  ['sep', 13420],
-  ['okt', 15980],
-  ['nov', 18310],
-  ['dec', 21050],
-  ['jan', 24694],
+  ['jan', 11740],
+  ['feb', 12980],
+  ['mrt', 12410],
+  ['apr', 14650],
+  ['mei', 15320],
+  ['jun', 14870],
+  ['jul', 16940],
+  ['aug', 18210],
+  ['sep', 17650],
+  ['okt', 20480],
+  ['nov', 22130],
+  ['dec', 24694],
 ] as const
 
 // Het lijntje in een vlak van 400 bij 80, met wat ruimte boven en onder.
@@ -61,7 +68,6 @@ const lijn = punten.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${
 const vlak = `${lijn} L${B},${H} L0,${H} Z`
 
 export function OpbrengstOpgebouwd() {
-  const [eindX, eindY] = punten[punten.length - 1]
   return (
     <div className="fv-surface hr-opbrengst">
       <div className="hr-head">
@@ -77,7 +83,7 @@ export function OpbrengstOpgebouwd() {
         <span>
           <em>Klikken uit Google</em>
           <strong>24.694</strong>
-          <i className="fv-up">↑ 110% sinds augustus</i>
+          <i className="fv-up">↑ 110% sinds januari</i>
         </span>
       </div>
       <div className="hr-grafiek">
@@ -92,7 +98,7 @@ export function OpbrengstOpgebouwd() {
           {[0, 0.5, 1].map((f) => <line key={f} x1="0" x2={B} y1={H * f} y2={H * f} stroke="rgba(255,255,255,0.07)" strokeWidth="1" vectorEffect="non-scaling-stroke" />)}
           <path d={vlak} fill="url(#hr-vlak)" />
           <path d={lijn} fill="none" stroke="#bcff2f" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-          <circle cx={eindX} cy={eindY} r="3.5" fill="#bcff2f" />
+          {punten.map(([x, y], i) => <circle key={i} cx={x} cy={y} r={i === punten.length - 1 ? 4 : 2.5} fill={i === punten.length - 1 ? '#bcff2f' : '#141517'} stroke="#bcff2f" strokeWidth="1.5" />)}
         </svg>
         <span className="hr-maanden">{KLIKKEN.map(([m]) => <span key={m}>{m}</span>)}</span>
       </div>

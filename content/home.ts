@@ -91,7 +91,7 @@ export const resultaat = {
     {
       titel: 'Eerder werk blijft meetellen',
       tekst: 'AI-assistenten noemen je klant vaker, en pagina\'s van maanden geleden leveren nog steeds bezoekers op. Orbit telt per pagina de klikken vanaf zijn eigen publicatiedag, alleen voor pagina\'s die met Orbit geschreven zijn. Zo zie je wat deze maand toevoegt bovenop alles wat er al staat.',
-      alt: 'De resultaten: zichtbaarheid in AI 41 procent, de ronde ervoor 32 procent. 24.694 klikken uit Google in januari, 110 procent meer dan in augustus. Een grafiek laat de klikken per maand stijgen van 11.740 in augustus naar 24.694 in januari.',
+      alt: 'De resultaten: zichtbaarheid in AI 41 procent, de ronde ervoor 32 procent. 24.694 klikken uit Google in december, 110 procent meer dan in januari. Een grafiek met een stip per maand laat de klikken met kleine dipjes stijgen van 11.740 in januari naar 24.694 in december.',
     },
   ],
 }
