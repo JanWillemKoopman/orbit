@@ -1,4 +1,4 @@
-// Vijf dot-achtergronden voor de afsluiter onderaan de pagina's (zie components/dots/CtaDots.tsx).
+// Drie dot-achtergronden voor de afsluiter onderaan de pagina's (zie components/CtaAchtergrond.tsx).
 // Elke scène tekent per frame duizenden stippen op een 2D-canvas. Het kleurenpalet is dat van de
 // huidige nevel: grijs-wit (--text-secondary) op bijna-zwart, met het lime accent (--accent) in de toppen.
 // Alle maten zijn CSS-pixels; het canvas schaalt zelf naar de devicePixelRatio.
@@ -133,40 +133,7 @@ export type Scene = {
   frame(b: Batch, w: number, h: number, t: number, dt: number): void
 }
 
-/** 1 · Golfveld: een vast raster van stippen; een stromend ruisveld laat er lichtende ruggen doorheen trekken. */
-function golfveld(): Scene {
-  let stap = 10
-  return {
-    init(w) {
-      stap = w < 640 ? 8 : 10
-    },
-    frame(b, w, h, t) {
-      const z = t * 0.045
-      const kolommen = Math.ceil(w / stap) + 1
-      const rijen = Math.ceil(h / stap) + 1
-      const ox = (w - (kolommen - 1) * stap) / 2
-      for (let j = 0; j < rijen; j++) {
-        const y = j * stap
-        // De golven zitten vooral in de onderste twee derde, zoals in de nevel.
-        const band = smooth(h * 0.15, h * 0.55, y)
-        for (let i = 0; i < kolommen; i++) {
-          const x = ox + i * stap
-          const n = fbm(x * 0.0022, y * 0.0042 - t * 0.012, z, 3)
-          const rug = Math.pow(1 - Math.abs(n * 2 - 1), 4) // lichtende ruggen
-          const veld = 0.35 + 0.65 * noise3(x * 0.0011 + 40, y * 0.002, z * 0.6)
-          const v = rug * veld * band
-          const s = sluier(x, y, w, h, 0.6)
-          const alpha = (0.13 + 0.87 * v) * s
-          const r = 0.6 + 1.5 * v
-          const lime = smooth(0.3, 0.75, v) * smooth(0.38, 0.6, noise3(x * 0.0016 - 7, y * 0.0016, z * 0.5 + 3))
-          b.stip(x, y, r, alpha, lime)
-        }
-      }
-    },
-  }
-}
-
-/** 2 · Terrein: een golvend landschap van stippen in perspectief; de heuvels rollen langzaam naar de kijker toe. */
+/** Terrein: een golvend landschap van stippen in perspectief; de heuvels rollen langzaam naar de kijker toe. */
 function terrein(): Scene {
   const NEAR = 1.1
   const FAR = 16
@@ -174,15 +141,18 @@ function terrein(): Scene {
     init() {},
     frame(b, w, h, t) {
       const horizon = h * 0.4
-      const f = w * 0.5
+      // In een smal, hoog blok (mobiel) schaalt het perspectief mee met de hoogte, anders wordt het een streep.
+      const f = Math.max(w, h * 1.4) * 0.5
       const camH = 0.85
       const K = f * 0.62 // verticale schaal
+      // Begin dichtbij genoeg dat de voorste rij onder de onderrand valt.
+      const near = Math.min(NEAR, (camH * K) / ((h - horizon) * 1.05))
       const gap = w < 640 ? 6 : 7 // gewenste afstand tussen stippen op het scherm
       const reis = t * 0.35
       // De rijen liggen vast op de grond, met een afstand die op het scherm steeds ongeveer `gap` is;
       // het hoogteveld schuift erdoorheen.
-      for (let z = NEAR; z < FAR; z += (gap * z * z) / (camH * K)) {
-        const verte = (z - NEAR) / (FAR - NEAR)
+      for (let z = near; z < FAR; z += (gap * z * z) / (camH * K)) {
+        const verte = (z - near) / (FAR - near)
         const mist = 1 - smooth(0.25, 1, verte)
         const dxw = (gap * 1.15 * z) / f
         const halve = ((w / 2 + 10) / f) * z
@@ -205,7 +175,7 @@ function terrein(): Scene {
   }
 }
 
-/** 3 · Baan: een planeet van stippen die aan de onderrand opkomt, met een ring van stippen eromheen. */
+/** Baan: een planeet van stippen die aan de onderrand opkomt, met een ring van stippen eromheen. */
 function baan(): Scene {
   let sterren: Float32Array = new Float32Array(0)
   let ring: Float32Array = new Float32Array(0)
@@ -296,7 +266,7 @@ function baan(): Scene {
   }
 }
 
-/** 4 · Stroming: duizenden deeltjes die een stromingsveld volgen en daardoor vanzelf in stromen samenkomen. */
+/** Stroming: duizenden deeltjes die een stromingsveld volgen en daardoor vanzelf in stromen samenkomen. */
 function stroming(): Scene {
   let px = new Float32Array(0), py = new Float32Array(0), leeftijd = new Float32Array(0), duur = new Float32Array(0)
   let s = 99
@@ -350,61 +320,13 @@ function stroming(): Scene {
   }
 }
 
-/** 5 · Raster: een halftoon-raster waarin de stipgrootte de gloed volgt van langzaam drijvende wolken. */
-function raster(): Scene {
-  let stap = 12
-  // Wolken: [x, y, straal, snelheid, fase, lime]
-  const WOLKEN = [
-    [0.18, 0.72, 0.28, 0.9, 0.0, 1],
-    [0.82, 0.62, 0.26, 0.7, 2.1, 1],
-    [0.5, 0.95, 0.34, 0.5, 4.2, 0],
-    [0.32, 0.4, 0.2, 1.1, 1.3, 0],
-    [0.7, 0.32, 0.18, 0.8, 3.4, 0],
-    [0.95, 0.9, 0.22, 0.6, 5.0, 1],
-  ]
-  return {
-    init(w) {
-      stap = w < 640 ? 10 : 12
-    },
-    frame(b, w, h, t) {
-      const m = Math.min(Math.max(w, h * 1.6), w * 1.2)
-      const posities = WOLKEN.map(([x, y, r, v, f, l]) => [
-        (x + Math.sin(t * 0.05 * v + f) * 0.08) * w,
-        (y + Math.cos(t * 0.04 * v + f * 1.7) * 0.07) * h,
-        r * m,
-        l,
-      ])
-      const rijen = Math.ceil(h / (stap * 0.866)) + 1
-      for (let j = 0; j < rijen; j++) {
-        const y = j * stap * 0.866
-        const verspring = (j % 2) * stap * 0.5
-        for (let x = verspring - stap; x < w + stap; x += stap) {
-          let grijs = 0, lime = 0
-          for (let k = 0; k < posities.length; k++) {
-            const [bx, by, br, bl] = posities[k]
-            const dx = (x - bx) / br, dy = (y - by) / (br * 0.6)
-            const g = Math.exp(-(dx * dx + dy * dy) * 2.2)
-            if (bl) lime += g
-            else grijs += g
-          }
-          const korrel = 0.75 + 0.5 * noise3(x * 0.012, y * 0.012, t * 0.15)
-          const v = clamp01((grijs * 0.7 + lime) * korrel)
-          const s = sluier(x, y, w, h, 0.85)
-          const r = (0.35 + stap * 0.34 * Math.pow(v, 1.3)) * (0.2 + 0.8 * s)
-          const mix = lime / (lime + grijs + 0.0001)
-          b.stip(x, y, r, (0.1 + 0.85 * v) * s, mix * smooth(0.1, 0.55, v))
-        }
-      }
-    },
-  }
-}
-
 export const SCENES = {
-  golfveld,
   terrein,
   baan,
   stroming,
-  raster,
 } satisfies Record<string, () => Scene>
 
 export type SceneNaam = keyof typeof SCENES
+
+/** De volgorde waarin de scènes elkaar per bezoeker afwisselen. */
+export const ROTATIE: SceneNaam[] = ['terrein', 'baan', 'stroming']

@@ -1,108 +1,161 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { Batch, ROTATIE, SCENES, type SceneNaam } from './dots/scenes'
 
-type Verbinding = { saveData?: boolean; effectiveType?: string }
-type Formaat = 'desktop' | 'mobiel'
+// Bewegende achtergrond van de afsluiter onderaan de pagina's: een canvas met duizenden stippen in een blok
+// op de contentbreedte, over de volle hoogte van de sectie (de vorm staat in globals.css). Er zijn drie scènes (terrein, baan,
+// stroming, zie ./dots/scenes.ts) die elkaar per bezoeker afwisselen: wie de afsluiter met de ene scène
+// in beeld heeft gehad, krijgt de volgende keer de volgende. Welke het laatst gezien is, staat in
+// localStorage; zonder opslag begint de bezoeker bij een willekeurige scène.
+//
+// Het canvas tekent alleen zolang de sectie in beeld is, op hooguit 30 beelden per seconde. Kost een beeld
+// het apparaat te veel tijd, dan zakt de beeldsnelheid stapsgewijs. Met reduced motion staat er één
+// stilstaand beeld.
 
-/** Zuinig met data: wie data wil besparen of een 2G-verbinding heeft, krijgt alleen de poster. */
-function zuinig(): boolean {
-  const v = (navigator as Navigator & { connection?: Verbinding }).connection
-  return Boolean(v?.saveData) || v?.effectiveType === 'slow-2g' || v?.effectiveType === '2g'
+const SLEUTEL = 'orbit-cta-achtergrond'
+const MAX_FPS = 30
+const MIN_FPS = 10
+const BUDGET_MS = 8 // gemiddelde tekentijd per beeld waarboven de beeldsnelheid omlaag gaat
+
+function laatstGezien(): number | null {
+  try {
+    const i = ROTATIE.indexOf(window.localStorage.getItem(SLEUTEL) as SceneNaam)
+    return i >= 0 ? i : null
+  } catch {
+    return null
+  }
 }
 
-// Bewegende achtergrond van de afsluiter onderaan de pagina's: de Cosmic Cliffs als naadloze loop.
-// Het gas is een video die de grafische chip afspeelt (opgenomen met tools/cta-video/render.mjs). Hij
-// loopt over de volle breedte van het venster en de volle hoogte van de sectie, en speelt alleen zolang
-// de sectie in beeld is. Met reduced motion of zuinig met data staat er één stilstaand beeld: de poster.
+function volgendeScene(): SceneNaam {
+  const i = laatstGezien()
+  if (i === null) {
+    // Nog nooit gezien: begin bij de eerste, of willekeurig als er geen opslag is.
+    let opslag = true
+    try {
+      window.localStorage.getItem(SLEUTEL)
+    } catch {
+      opslag = false
+    }
+    return ROTATIE[opslag ? 0 : Math.floor(Math.random() * ROTATIE.length)]
+  }
+  return ROTATIE[(i + 1) % ROTATIE.length]
+}
 
-export function CtaAchtergrond() {
+function markeerGezien(scene: SceneNaam) {
+  try {
+    window.localStorage.setItem(SLEUTEL, scene)
+  } catch {}
+}
+
+/** Zonder `scene` wisselt de achtergrond per bezoeker; met `scene` staat hij vast (voor de testpagina's). */
+export function CtaAchtergrond({ scene: vast }: { scene?: SceneNaam } = {}) {
   const lagenRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const updateRef = useRef<() => void>(() => {})
-  const [formaat, setFormaat] = useState<Formaat | null>(null)
-  const [beweeg, setBeweeg] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [scene, setScene] = useState<SceneNaam | null>(vast ?? null)
+
+  // De keuze kan pas in de browser (localStorage), dus na het eerste renderen.
+  useEffect(() => setScene(vast ?? volgendeScene()), [vast])
 
   useEffect(() => {
     const lagen = lagenRef.current
+    const canvas = canvasRef.current
     const section = lagen?.parentElement
-    if (!lagen || !section) return
+    const ctx = canvas?.getContext('2d')
+    if (!scene || !lagen || !canvas || !section || !ctx) return
 
-    const smal = window.matchMedia('(max-width: 768px)')
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sc = SCENES[scene]()
+    const batch = new Batch()
+    let w = 0, h = 0
     let zichtbaar = false
+    let gezien = false
+    let raf = 0
+    let t = 12 // niet op nul beginnen: dan is het eerste beeld al op gang
+    let vorige = 0
+    let fps = MAX_FPS
+    let kosten = 0, beelden = 0
 
-    // Meet de sectie en rek de laag op tot de volle vensterbreedte.
+    const teken = (dt: number) => {
+      const start = performance.now()
+      ctx.setTransform(1, 0, 0, 1, 0, 0)
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const dpr = canvas.width / Math.max(1, w)
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      sc.frame(batch, w, h, t, dt)
+      batch.teken(ctx)
+      return performance.now() - start
+    }
+
+    // Meet het blok en zet het canvas op de juiste resolutie.
     const meet = () => {
-      const rect = section.getBoundingClientRect()
-      lagen.style.left = `${-rect.left}px`
-      lagen.style.width = `${document.documentElement.clientWidth}px`
+      const nw = lagen.clientWidth, nh = lagen.clientHeight
+      if (nw === w && nh === h) return
+      w = nw
+      h = nh
+      const dpr = Math.min(window.devicePixelRatio || 1, w < 768 ? 1.5 : 2)
+      canvas.width = Math.round(w * dpr)
+      canvas.height = Math.round(h * dpr)
+      sc.init(w, h)
+      teken(0)
+    }
+
+    const lus = (nu: number) => {
+      raf = requestAnimationFrame(lus)
+      if (nu - vorige < 1000 / fps - 2) return
+      const dt = vorige ? Math.min((nu - vorige) / 1000, 0.1) : 1 / fps
+      vorige = nu
+      t += dt
+      kosten += teken(dt)
+      // Elke 30 beelden: te zwaar voor dit apparaat? Dan een stap omlaag in beeldsnelheid.
+      if (++beelden === 30) {
+        if (kosten / beelden > BUDGET_MS && fps > MIN_FPS) fps = Math.max(MIN_FPS, Math.round(fps * 0.66))
+        kosten = 0
+        beelden = 0
+      }
     }
 
     const update = () => {
-      const video = videoRef.current
-      const stil = reduceMotion.matches || zuinig()
-      setFormaat(smal.matches ? 'mobiel' : 'desktop')
-      setBeweeg(!stil)
-      if (!stil && zichtbaar && !document.hidden) void video?.play().catch(() => {})
-      else video?.pause()
+      const speel = zichtbaar && !document.hidden && !reduceMotion.matches
+      if (speel && !raf) {
+        vorige = 0
+        raf = requestAnimationFrame(lus)
+      } else if (!speel && raf) {
+        cancelAnimationFrame(raf)
+        raf = 0
+      }
     }
-    updateRef.current = update
 
     meet()
-    update()
     lagen.dataset.klaar = ''
 
     const io = new IntersectionObserver(([entry]) => {
       zichtbaar = entry.isIntersecting
+      // Pas als de afsluiter echt in beeld is geweest, telt deze scène als gezien.
+      if (zichtbaar && !gezien && !vast) {
+        gezien = true
+        markeerGezien(scene)
+      }
       update()
     })
     io.observe(section)
-
     const ro = new ResizeObserver(meet)
-    ro.observe(section)
-
-    window.addEventListener('resize', meet)
+    ro.observe(lagen)
     document.addEventListener('visibilitychange', update)
     reduceMotion.addEventListener('change', update)
-    smal.addEventListener('change', update)
 
     return () => {
+      cancelAnimationFrame(raf)
       io.disconnect()
       ro.disconnect()
-      window.removeEventListener('resize', meet)
       document.removeEventListener('visibilitychange', update)
       reduceMotion.removeEventListener('change', update)
-      smal.removeEventListener('change', update)
     }
-  }, [])
+  }, [scene, vast])
 
-  // Een nieuwe video (ander formaat) of een andere stand moet weer meteen spelen of stilstaan.
-  useEffect(() => updateRef.current(), [formaat, beweeg])
-
-  const basis = formaat && `/video/cta-nevel-${formaat}`
   return (
     <div ref={lagenRef} className="cta-achtergrond" aria-hidden="true">
-      {basis && (
-        <video
-          ref={videoRef}
-          key={basis}
-          className="cta-video"
-          poster={`${basis}-poster.webp`}
-          muted
-          loop
-          playsInline
-          disablePictureInPicture
-          disableRemotePlayback
-          preload={beweeg ? 'auto' : 'none'}
-          tabIndex={-1}
-          {...{ inert: true }}
-        >
-          <source src={`${basis}.av1.mp4`} type="video/mp4; codecs=av01.0.05M.08" />
-          <source src={`${basis}.vp9.webm`} type="video/webm; codecs=vp9" />
-          <source src={`${basis}.h264.mp4`} type="video/mp4" />
-        </video>
-      )}
+      <canvas ref={canvasRef} className="cta-canvas" />
     </div>
   )
 }
