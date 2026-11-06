@@ -335,3 +335,16 @@
   .a2-split-inner-whitelabel { transform: scale(0.36); }
   .a2-split-beeld::after { height: 56px; }
 }
+
+/* Tussenzin onder het werkoverzicht (home.css). Boven staat dezelfde ruimte als boven een sectie; de
+   eerste sectie eronder krijgt de ruimte die tussen twee secties staat. */
+.a2 .a2-statement { margin-top: 200px; }
+.a2-statement + .a2-split { padding-top: 160px; }
+@media (max-width: 900px) {
+  .a2 .a2-statement { margin-top: 120px; }
+  .a2-statement + .a2-split { padding-top: 120px; }
+}
+@media (max-width: 640px) {
+  .a2 .a2-statement { margin-top: 88px; }
+  .a2-statement + .a2-split { padding-top: 88px; }
+}

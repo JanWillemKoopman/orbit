@@ -3,7 +3,8 @@ import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { PaginaHero } from '@/components/product/Blokken'
 import { AlleKlanten, ContentOpSchaal, Huisstijlen } from '@/components/agencies/Visuals'
-import { afsluiter, beeld, hero, meta, secties, usp } from '@/content/agencies'
+import { CitaatScroll } from '@/components/home/CitaatScroll'
+import { afsluiter, beeld, hero, meta, secties, statement, usp } from '@/content/agencies'
 import '../werkwijze/werkwijze.css'
 import '../beheer/beheer.css'
 import '../pagina.css'
@@ -63,6 +64,11 @@ export default function AgenciesPage() {
             </figcaption>
           </figure>
         </section>
+
+        {/* Tussenzin zoals op de homepage */}
+        <div className="home-statement a2-statement">
+          <CitaatScroll strong={statement.strong} rest={statement.rest} />
+        </div>
 
         {/* Twee secties: illustratie en tekst naast elkaar, de tweede gespiegeld */}
         {secties.map((sec, i) => (

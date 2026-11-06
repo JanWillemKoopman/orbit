@@ -56,6 +56,13 @@ export const beeld = {
   tekst: 'Wat het langst wacht, staat bovenaan. Vink klanten aan en start de maand voor allemaal tegelijk.',
 }
 
+// Grote tussenzin onder het werkoverzicht, in dezelfde vorm als op de homepage: het vetgedrukte deel staat
+// in het wit, de rest in grijs, en de woorden lichten op tijdens het scrollen.
+export const statement = {
+  strong: 'Van klantstrategie tot groeikans in AI zichtbaarheid.',
+  rest: 'Orbit brengt analyse, contentcreatie, publicatie en nameting samen in één doorlopende workflow. Jouw team bepaalt de koers. AI versnelt de uitvoering.',
+}
+
 // Twee secties onder het grote beeld, elk met een illustratie en tekst naast elkaar.
 export const secties = [
   {
