@@ -86,12 +86,12 @@ export const resultaat = {
     {
       titel: 'Het klantgesprek is voorbereid voordat je het plant',
       tekst: 'Elke maand staat per klant klaar welke pagina\'s er live gingen en wat er volgende maand op de planning staat. Je klant ziet in één oogopslag dat het afgesproken werk geleverd is. Met de naam van je bureau erop, als pdf te versturen.',
-      alt: 'De maandrapportage van januari: achttien pagina\'s gepubliceerd, alle achttien uit het contentplan, elk met de datum waarop hij live ging. Volgende maand staan achttien pagina\'s gepland.',
+      alt: 'De maandrapportage van september: achttien pagina\'s gepubliceerd, alle achttien uit het contentplan, elk met de datum waarop hij live ging. Volgende maand staan achttien pagina\'s gepland.',
     },
     {
       titel: 'Eerder werk blijft meetellen',
       tekst: 'AI-assistenten noemen je klant vaker, en pagina\'s van maanden geleden leveren nog steeds bezoekers op. Orbit telt per pagina de klikken vanaf zijn eigen publicatiedag, alleen voor pagina\'s die met Orbit geschreven zijn. Zo zie je wat deze maand toevoegt bovenop alles wat er al staat.',
-      alt: 'De resultaten: zichtbaarheid in AI 41 procent, de ronde ervoor 32 procent. 24.694 klikken uit Google in december, 110 procent meer dan in januari. Een grafiek met een stip per maand laat de klikken met kleine dipjes stijgen van 11.740 in januari naar 24.694 in december.',
+      alt: 'De resultaten: zichtbaarheid in AI 41 procent, de ronde ervoor 32 procent. 24.694 klikken uit Google in september, 110 procent meer dan in januari. Een grafiek met een stip per maand laat de klikken met kleine dipjes stijgen van 11.740 in januari naar 24.694 in september.',
     },
   ],
 }

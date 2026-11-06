@@ -7,18 +7,18 @@ import { Chip, Mono } from '@/components/product/ui'
 
 // De eerste pagina's van de achttien; de rest valt onder de vervaging van het beeld.
 const LIVE = [
-  ['Hybride warmtepomp laten installeren in Utrecht', 'Live op 6 januari'],
-  ['Wat kost een warmtepomp in 2026?', 'Live op 7 januari'],
-  ['Warmtepomp in een jaren-30-woning', 'Live op 9 januari'],
-  ['Subsidie op een warmtepomp aanvragen', 'Live op 12 januari'],
+  ['Hybride warmtepomp laten installeren in Utrecht', 'Live op 2 september'],
+  ['Wat kost een warmtepomp in 2026?', 'Live op 4 september'],
+  ['Warmtepomp in een jaren-30-woning', 'Live op 8 september'],
+  ['Subsidie op een warmtepomp aanvragen', 'Live op 10 september'],
 ] as const
 
-export function VerslagOktober() {
+export function VerslagMaand() {
   return (
     <div className="fv-surface fv-report hr-verslag">
       <div className="hr-head">
         <span className="fv-muted">Maandrapportage</span>
-        <strong>Januari</strong>
+        <strong>September</strong>
       </div>
       <div className="hr-hoofdcijfer">
         <span className="hr-groot">18</span>
@@ -36,26 +36,23 @@ export function VerslagOktober() {
           </div>
         ))}
       </div>
-      <span className="fv-muted fv-small">Volgende maand: 18 pagina&apos;s gepland, de eerste gaat op 3 februari live.</span>
+      <span className="fv-muted fv-small">Volgende maand: 18 pagina&apos;s gepland, de eerste gaat op 1 oktober live.</span>
     </div>
   )
 }
 
-// Klikken uit Google per maand, van januari tot december: duidelijk omhoog van 11.740 naar 24.694, met
+// Klikken uit Google per maand, van januari tot september: duidelijk omhoog van 11.740 naar 24.694, met
 // de dipjes die echt zoekverkeer ook heeft, zodat de lijn niet te mooi oogt.
 const KLIKKEN = [
   ['jan', 11740],
-  ['feb', 12980],
-  ['mrt', 12410],
-  ['apr', 14650],
-  ['mei', 15320],
-  ['jun', 14870],
-  ['jul', 16940],
-  ['aug', 18210],
-  ['sep', 17650],
-  ['okt', 20480],
-  ['nov', 22130],
-  ['dec', 24694],
+  ['feb', 13120],
+  ['mrt', 12560],
+  ['apr', 15380],
+  ['mei', 16450],
+  ['jun', 15890],
+  ['jul', 19270],
+  ['aug', 21340],
+  ['sep', 24694],
 ] as const
 
 // Het lijntje in een vlak van 400 bij 80, met wat ruimte boven en onder.

@@ -8,7 +8,7 @@ import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
 import { Faq } from '@/components/home/Faq'
-import { OpbrengstOpgebouwd, VerslagOktober } from '@/components/home/Resultaat'
+import { OpbrengstOpgebouwd, VerslagMaand } from '@/components/home/Resultaat'
 import { AiLogos } from '@/components/home/AiLogos'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
 import { HeroMaand } from '@/components/product/Visuals'
@@ -139,7 +139,7 @@ export default function HomePage() {
             {resultaat.beelden.map((b, i) => (
               <figure className="lp-beeld lp-beeld-scherm" key={b.titel}>
                 <div className="lp-beeld-stage" role="img" aria-label={b.alt}>
-                  <div className="lp-beeld-inner" aria-hidden="true">{i === 0 ? <VerslagOktober /> : <OpbrengstOpgebouwd />}</div>
+                  <div className="lp-beeld-inner" aria-hidden="true">{i === 0 ? <VerslagMaand /> : <OpbrengstOpgebouwd />}</div>
                 </div>
                 <figcaption className="lp-caption">
                   <h3>{b.titel}</h3>
