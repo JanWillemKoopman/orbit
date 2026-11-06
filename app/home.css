@@ -363,7 +363,8 @@
   .hk-duo::-webkit-scrollbar { display: none; }
   /* De beelden zelf zijn geen kaart meer: geen rand en geen eigen verloop, alleen het venster erin */
   .hk-duo .lp-beeld { flex: 0 0 86%; margin-inline: 0; border: 0; border-radius: 0; background: none; scroll-snap-align: start; }
-  .hk-duo .lp-beeld-stage { height: 400px; }
+  /* Geen extra lucht boven het venster (pagina.css geeft het vlak 34 px): de 40 px van de rij is genoeg, net als bij de drie schermen */
+  .hk-duo .lp-beeld-scherm .lp-beeld-stage { height: 400px; padding-top: 0; }
   /* Het venster vult het beeld, op 0.72 van zijn maat: 86% van de rij binnen het venster (de pagina plus
      8 px aan elke kant, min 16 px binnenruimte aan elke kant) */
   .hk-duo .lp-beeld-scherm .lp-beeld-inner {
