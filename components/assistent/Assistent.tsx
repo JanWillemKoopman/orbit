@@ -14,6 +14,20 @@ export function Assistent() {
   const knopRef = useRef<HTMLButtonElement>(null)
   const sluitRef = useRef<HTMLButtonElement>(null)
   const wasOpen = useRef(false)
+  const [voorbijDrempel, setVoorbijDrempel] = useState(false)
+
+  // Op mobiel verschijnt de bol pas als de bezoeker zo'n twee schermhoogtes naar beneden heeft gescrold,
+  // en verdwijnt hij weer als die terug naar boven gaat. Op desktop is hij er altijd (zie de CSS).
+  useEffect(() => {
+    const controleer = () => setVoorbijDrempel(window.scrollY >= window.innerHeight * 2)
+    controleer()
+    window.addEventListener('scroll', controleer, { passive: true })
+    window.addEventListener('resize', controleer)
+    return () => {
+      window.removeEventListener('scroll', controleer)
+      window.removeEventListener('resize', controleer)
+    }
+  }, [])
 
   // Focus naar het venster bij openen, en terug naar de knop bij sluiten.
   useEffect(() => {
@@ -53,6 +67,7 @@ export function Assistent() {
         aria-controls="as-venster"
         aria-label="Vragen? Vraag het ons."
         hidden={open}
+        data-zichtbaar={voorbijDrempel || undefined}
         onClick={() => setOpen(true)}
       >
         <span className="as-knop-bol"><DotBol maat={44} /></span>
