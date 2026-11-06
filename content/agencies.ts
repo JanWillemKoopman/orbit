@@ -2,7 +2,7 @@
 // Waar /werkwijze laat zien hoe Orbit werkt, zegt deze pagina waarom een bureau ervoor kiest. Opbouw naar
 // linear.app, met zo min mogelijk: de hero met achtergrondvideo, een tekstblok met vier voordelen zoals op de
 // homepage, één groot beeld van het werkoverzicht met al je klanten, twee secties met een illustratie en
-// tekst naast elkaar (content op schaal en whitelabel) en de afsluiter.
+// tekst naast elkaar (grip op kosten en whitelabel) en de afsluiter.
 // Elke belofte hier bestaat in de app (de kern: bedrijven, clusters, contentplan, schrijven, resultaten,
 // kijkers en het design per bureau). De tools die in de wacht staan, komen op deze pagina niet voor.
 
@@ -66,15 +66,15 @@ export const statement = {
 // Twee secties onder het grote beeld, elk met een illustratie en tekst naast elkaar.
 export const secties = [
   {
-    id: 'content',
-    label: 'Content op schaal',
-    titel: 'Content van topkwaliteit. Voor al je klanten tegelijk.',
+    id: 'kosten',
+    label: 'Grip op kosten',
+    titel: 'Hanteer je bureautarief. Jij betaalt kostprijs.',
     tekst:
-      'Orbit schrijft pagina’s op de kennis van je klant: zijn website, zijn documenten en zijn eigen antwoorden. Elk bedrag, elke garantie en elke termijn wordt gecontroleerd voordat jij de tekst ziet. Zo lever je elke maand tientallen pagina’s, zonder dat de kwaliteit daalt.',
+      'Een pagina schrijven kost met Orbit minder dan een euro aan AI, onderzoek en eindredactie inbegrepen. Je betaalt de echte kostprijs, rechtstreeks bij OpenAI, zonder opslag en zonder prijs per klant. Wat je je klant rekent, bepaal je zelf. Het verschil is je marge, en je ziet per klant precies hoe groot die is.',
     punten: [
-      'Een brief en gerichte vragen per pagina',
-      'Schrijven en eindredactie in de stem van het merk',
-      'Wat niet klopt, wordt geel en komt niet live',
+      'AI tegen kostprijs, zonder opslag of prijs per klant',
+      'Per klant zien wat hij kost, en per maand exporteren',
+      'Een maandlimiet en vooraf de kosten bij elke knop',
     ],
   },
   {
