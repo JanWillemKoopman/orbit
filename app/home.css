@@ -342,9 +342,18 @@
   .hk-duo .lp-beeld-stage { height: 380px; }
   /* Het venster past binnen het beeld: 88% van de rij min 12 px lucht aan elke kant, op 0.72 van zijn maat */
   .hk-duo .lp-beeld-scherm .lp-beeld-inner { top: 36px; margin-block: 0 auto; width: calc((0.88 * (100vw - 2 * var(--page-padding)) - 24px) / 0.72); zoom: 0.72; }
-  .hk-duo .lp-caption { padding: 0 20px 28px; }
-  .hk-duo .lp-caption h3, .hk-duo .lp-caption p { font-size: 15px; }
-  .hk-dots { padding: 20px 0 0; }
+  /* De kaart heeft geen rand: de onderrand stond als losse lijn boven de stipjes. Het grijze verloop bovenin
+     tekent de kaart al af. */
+  .hk-duo .lp-beeld { border: 0; }
+  /* Lucht tussen beeld en bijschrift, en een iets kleinere tekst met ruimere regels, zodat het bijschrift
+     in een smalle kaart niet opgepropt oogt */
+  .hk-duo .lp-caption { padding: 24px 20px 8px; background: none; }
+  .hk-duo .lp-caption h3 { font-size: 15px; line-height: 22px; }
+  .hk-duo .lp-caption p { margin-top: 8px; font-size: 14px; line-height: 1.65; letter-spacing: -0.01em; }
+  /* De feitentabel in een smalle kaart: elke rij wat meer hoogte, zodat tweeregelige feiten niet tegen
+     elkaar aan staan */
+  .hk-duo .lp-beeld-inner .kf-table .ag-tr { min-height: 66px; padding: 10px 8px; gap: 14px; line-height: 1.45; }
+  .hk-dots { padding: 24px 0 0; }
 }
 
 /* Wat het werk oplevert: dezelfde opbouw als de kwaliteit hierboven (.hk). Links de maandrapportage met
