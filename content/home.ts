@@ -128,28 +128,28 @@ export const faq: { title: string; items: FaqItem[] } = {
   title: 'Veelgestelde vragen',
   items: [
     {
-      question: 'Wat doet Orbit?',
-      answer: 'Orbit meet hoe vaak AI-assistenten zoals ChatGPT je merk noemen. Het laat zien waar je ontbreekt, schrijft de pagina\'s die daar verandering in brengen en meet daarna of het gewerkt heeft.',
+      question: 'Wat doet Orbit voor mijn bureau?',
+      answer: 'Orbit meet hoe vaak ChatGPT, Gemini en het AI-overzicht van Google de merken van je klanten aanraden, en wie er in plaats van hen genoemd wordt. Elke vraag waarbij je klant ontbreekt, wordt een pagina-idee in een contentplan. Orbit schrijft die pagina’s en meet daarna wat ze hebben opgeleverd. Zo verkoop je AI-zichtbaarheid als vaste maandelijkse dienst.',
     },
     {
-      question: 'Wat is GEO, en wat is het verschil met SEO?',
-      answer: 'SEO zorgt dat je gevonden wordt in de zoekresultaten van Google. GEO, Generative Engine Optimization, zorgt dat je merk genoemd wordt in het antwoord dat een AI-assistent geeft. Wie zijn vraag aan ChatGPT stelt, ziet geen tien links maar één antwoord met een paar namen erin.',
+      question: 'AI-antwoorden verschillen per keer. Hoe betrouwbaar is de meting?',
+      answer: 'Orbit stelt geen losse vraag om er een screenshot van te maken. Per onderwerp stelt hij 30 vaste vragen, verdeeld over de hele klantreis, en de vragen die het zwaarst wegen meet hij vaker. Elk cijfer krijgt een marge, dus je ziet of een verschil echt is of toeval. Elk AI-antwoord kun je teruglezen.',
     },
     {
-      question: 'Welke AI-assistenten meet Orbit?',
-      answer: 'ChatGPT is de basis. Per onderwerp kun je Gemini en het AI-overzicht bovenaan Google erbij zetten. Bij elk cijfer staat een onzekerheidsmarge, zodat je ziet hoe zeker een uitkomst is.',
+      question: 'Hoe weet ik zeker dat er geen verzonnen feiten op de site van mijn klant komen?',
+      answer: 'Een pagina mag alleen beweren wat in de gecontroleerde kennis over het bedrijf staat. Orbit controleert bedragen, termijnen, garanties en keurmerken. Staat er geen bron bij, dan wordt de zin geel gemarkeerd, met de reden erbij, en kun je de pagina pas goedkeuren als elke gele zin bevestigd is. Twijfel je, dan leg je de zin met één klik aan je klant voor.',
     },
     {
-      question: 'Zet Orbit zelf pagina\'s op mijn website?',
-      answer: 'Nee. Orbit schrijft de pagina in jouw toon, op basis van de feiten die jij aanlevert. Jij leest hem, past aan wat nodig is en beslist zelf wat er live gaat op je site.',
+      question: 'Hoe laat ik mijn klant zien wat ons werk oplevert?',
+      answer: 'Na 14 en 28 dagen meet Orbit vanzelf opnieuw, op precies de vragen waarvoor een pagina is geschreven. Met Google Search Console zie je per pagina de klikken en vertoningen. Elke maand krijg je per klant een verslag met de naam van je bureau erop, dat je als pdf doorstuurt.',
     },
     {
-      question: 'Hoe weet ik of het werkt?',
-      answer: 'Na publicatie meet Orbit opnieuw of AI-assistenten je merk vaker noemen. Elke meting voedt de volgende ronde kansen, zodat je ziet wat werkt en daarop verder bouwt.',
+      question: 'Wat kost Orbit?',
+      answer: 'De kosten bestaan uit twee delen. Over het gebruik van Orbit maak je een afspraak bij de aanmelding. Het AI-gebruik loopt via de eigen sleutel van je bureau, tegen kostprijs en zonder opslag. Het aantal klanten is onbeperkt. Je stelt zelf een maandlimiet in, en bij elke knop die geld kost zie je vooraf ongeveer wat het kost.',
     },
     {
-      question: 'Voor wie is Orbit bedoeld?',
-      answer: 'Voor marketeers en bureaus die willen weten hoe hun merk of dat van hun opdrachtgevers in AI-antwoorden staat. Juist ook voor een MKB-bedrijf dat geen eigen team heeft om dit bij te houden.',
+      question: 'Hoe snel kan ik beginnen, en wat moet mijn klant doen?',
+      answer: 'Je installeert niets: je bureau krijgt een uitnodiging per mail. Voor een nieuwe klant vul je de naam en de website in, en binnen ongeveer tien minuten heeft Orbit het bedrijf onderzocht. Je klant kan meekijken, maar alleen bij zijn eigen bedrijf. Vragen die alleen hij kan beantwoorden, beantwoordt hij via een link, zonder account en ook op zijn telefoon.',
     },
   ],
 }
