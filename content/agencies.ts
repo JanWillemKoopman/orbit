@@ -6,6 +6,8 @@
 // Elke belofte hier bestaat in de app (de kern: bedrijven, clusters, contentplan, schrijven, resultaten,
 // kijkers en het design per bureau). De tools die in de wacht staan, komen op deze pagina niet voor.
 
+import type { Usp } from './home'
+
 export const meta = {
   title: 'Agencies',
   description:
@@ -18,16 +20,34 @@ export const hero = {
 }
 
 // Kop (links), uitleg (rechts) en vier voordelen met een vinkje, in de opbouw van het blok
-// "Gebouwd voor marketingbureaus" op de homepage (uspIntro en usps in content/home.ts).
-export const usp = {
+// "Gebouwd voor marketingbureaus" op de homepage (uspIntro en usps in content/home.ts): op desktop een
+// korte titel met een regel uitleg, op mobiel de lange titel zonder uitleg.
+// Bron van de uitleg: docs/ORBIT_WAAROM.md (4.1) in orbit-engine.
+export const usp: { titel: string; tekst: string; punten: Usp[] } = {
   titel: 'Eén platform voor je hele bureau',
   tekst:
     'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst te verkopen, voor al je klanten tegelijk. Jullie bepalen met de klant de koers, Orbit doet het werk.',
   punten: [
-    'Beheer al je klanten vanuit één platform',
-    'Volledig in de huisstijl van je bureau',
-    'Laat je klant meekijken',
-    'Neem je specialisten werk uit handen',
+    {
+      kort: 'Alle klanten op één plek',
+      titel: 'Beheer al je klanten vanuit één platform',
+      uitleg: 'Het werkoverzicht toont al je klanten op één scherm. Start de maand voor allemaal tegelijk.',
+    },
+    {
+      kort: 'Jouw huisstijl',
+      titel: 'Volledig in de huisstijl van je bureau',
+      uitleg: 'Je logo, je kleuren en je lettertypes op elk scherm. Je team en je klanten zien jouw platform.',
+    },
+    {
+      kort: 'Je klant kijkt mee',
+      titel: 'Laat je klant meekijken',
+      uitleg: 'Als kijker ziet je klant alleen zijn eigen bedrijf, met uitleg in gewone taal op elk scherm.',
+    },
+    {
+      kort: 'Werk uit handen',
+      titel: 'Neem je specialisten werk uit handen',
+      uitleg: 'Orbit meet, stelt het merkdossier op en schrijft de eerste versie. Je specialisten sturen bij.',
+    },
   ],
 }
 

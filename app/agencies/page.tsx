@@ -25,7 +25,7 @@ export default function AgenciesPage() {
       <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="hero-agencies" vierkantMobiel />
 
       <div className="container">
-        {/* Tekstblok met vier voordelen, zoals "Gebouwd voor marketingbureaus" op de homepage */}
+        {/* Tekstblok met vier voordelen, zoals "Gebouwd voor marketingbureaus" op de homepage: desktop korte titel met uitleg, mobiel lange titel */}
         <section className="feature process usp a2-usp" aria-labelledby="a2-usp-titel">
           <div className="feature-header">
             <h2 id="a2-usp-titel" className="feature-title">{usp.titel}</h2>
@@ -35,11 +35,15 @@ export default function AgenciesPage() {
           </div>
           <ul className="process-steps usp-steps">
             {usp.punten.map((punt) => (
-              <li className="process-step" key={punt}>
+              <li className="process-step" key={punt.titel}>
                 <span className="process-number usp-vink" aria-hidden="true">
                   <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
                 </span>
-                <h3 className="process-title">{punt}</h3>
+                <h3 className="process-title">
+                  <span className="usp-kort">{punt.kort}</span>
+                  <span className="usp-lang">{punt.titel}</span>
+                </h3>
+                <p className="process-description usp-uitleg">{punt.uitleg}</p>
               </li>
             ))}
           </ul>
