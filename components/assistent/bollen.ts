@@ -223,9 +223,13 @@ export const BOLLEN = {
 
   scanner: {
     naam: 'Scanner',
-    uitleg: 'Een draaiende bol waar een lime scanlijn op en neer langs beweegt.',
+    uitleg: 'Een draaiende bol waar een lime scanlijn op en neer langs beweegt, met telkens tien seconden rust.',
     teken(ctx, s, t) {
-      const lijn = Math.sin(t * 0.9) * 1.05
+      // Eén keer op en neer in 5 seconden, daarna 10 seconden rust. De lijn begint en eindigt net boven de
+      // bol, zodat hij niet plotseling verschijnt; in de rust staat hij buiten beeld.
+      const SCAN = 5, RUST = 10
+      const fase = t % (SCAN + RUST)
+      const lijn = fase < SCAN ? -Math.cos((fase / SCAN) * TAU) * 1.25 : -9
       BOL220.forEach((p) => {
         const q = draai(p, t * 0.18, KANTEL)
         const g = Math.exp(-((q[1] - lijn) ** 2) / 0.006)
