@@ -66,7 +66,7 @@ const prijzen = { href: '/prijzen', label: 'Prijzen' }
 export const mainNav: NavItem[] = [
   { label: 'Product', items: hoofdProductMenu },
   prijzen,
-  { label: 'Resources', items: informatieMenu },
+  { label: 'Informatie', items: informatieMenu },
   { label: 'Over ons', items: overOnsMenu },
 ]
 
@@ -74,15 +74,15 @@ export const mainNav: NavItem[] = [
 // Prijzen heeft geen uitklapmenu en staat los, in een groep zonder label.
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
 export type NavGroep = { title?: string; links: NavLink[] }
-const resourcesEnMeer: NavGroep[] = [
-  { title: 'Resources', links: links(informatieMenu) },
+const informatieEnMeer: NavGroep[] = [
+  { title: 'Informatie', links: links(informatieMenu) },
   { title: 'Over ons', links: links(overOnsMenu) },
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
 export const mobileNav: NavGroep[] = [
   { title: 'Product', links: links(hoofdProductMenu) },
   { links: [prijzen] },
-  ...resourcesEnMeer,
+  ...informatieEnMeer,
 ]
 
 // Footer: dezelfde groepen als het hoofdmenu, met Prijzen als eigen kolom en rechts een kolom met
@@ -91,7 +91,7 @@ const footerLabels: Record<string, string> = { '/contact': 'Contact' }
 const footerGroepen = [
   { title: 'Product', links: [...links(productMenu), agencies] },
   { title: 'Prijzen', links: [prijzen] },
-  ...resourcesEnMeer.map((g) => ({ title: g.title ?? '', links: g.links })),
+  ...informatieEnMeer.map((g) => ({ title: g.title ?? '', links: g.links })),
 ]
 export const footerNav = footerGroepen.map((group) => {
   const renamed = group.links.map((l) => ({ href: l.href, label: footerLabels[l.href] ?? l.label }))
