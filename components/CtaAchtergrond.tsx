@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Batch, ROTATIE, SCENES, type SceneNaam } from './dots/scenes'
 
 // Bewegende achtergrond van de afsluiter onderaan de pagina's: een canvas met duizenden stippen in een blok
-// op de contentbreedte, over de volle hoogte van de sectie (de vorm staat in globals.css). Er zijn vijf scènes (terrein,
-// baan, stroming, rimpeling, golven, zie ./dots/scenes.ts) die elkaar per bezoeker afwisselen: wie de afsluiter met de ene scène
+// op de contentbreedte, over de volle hoogte van de sectie (de vorm staat in globals.css). Er zijn zes scènes (terrein,
+// baan, stroming, rimpeling, golven, metamorfose, zie ./dots/scenes.ts) die elkaar per bezoeker afwisselen: wie de afsluiter met de ene scène
 // in beeld heeft gehad, krijgt de volgende keer de volgende. Welke het laatst gezien is, staat in
 // localStorage; zonder opslag begint de bezoeker bij een willekeurige scène.
 //
@@ -157,12 +157,27 @@ export function CtaAchtergrond({ scene: vast, lime: limeProp = true }: { scene?:
     document.addEventListener('visibilitychange', update)
     reduceMotion.addEventListener('change', update)
 
+    // Scènes die op de muis reageren, krijgen de positie ten opzichte van het blok.
+    const wijzer = (soort: 'beweeg' | 'klik' | 'weg') => (e: PointerEvent) => {
+      const rect = lagen.getBoundingClientRect()
+      sc.wijzer?.(e.clientX - rect.left, e.clientY - rect.top, soort)
+    }
+    const beweeg = wijzer('beweeg'), klik = wijzer('klik'), weg = wijzer('weg')
+    if (sc.wijzer) {
+      section.addEventListener('pointermove', beweeg)
+      section.addEventListener('pointerdown', klik)
+      section.addEventListener('pointerleave', weg)
+    }
+
     return () => {
       cancelAnimationFrame(raf)
       io.disconnect()
       ro.disconnect()
       document.removeEventListener('visibilitychange', update)
       reduceMotion.removeEventListener('change', update)
+      section.removeEventListener('pointermove', beweeg)
+      section.removeEventListener('pointerdown', klik)
+      section.removeEventListener('pointerleave', weg)
     }
   }, [scene, vast, lime])
 
