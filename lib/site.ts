@@ -52,28 +52,37 @@ export const overOnsMenu: NavMenuItem[] = [
   { href: '/contact', label: 'Contact opnemen', description: ['Een vraag of een demo?', 'We reageren binnen één werkdag'] },
 ]
 
-// Losse pagina's vooraan in de header, zonder uitklapmenu.
-const workflow = { href: '/werkwijze', label: 'Workflow' }
-const agencies = { href: '/agencies', label: 'Agencies' }
+// "Product" in de header: hoe Orbit werkt en voor wie het is.
+const workflow = { href: '/werkwijze', label: 'Zo werkt Orbit' }
+const agencies = { href: '/agencies', label: 'Voor agencies' }
+export const hoofdProductMenu: NavMenuItem[] = [
+  { ...workflow, description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
+  { ...agencies, description: ['AI-zichtbaarheid als vaste dienst', 'voor al je klanten'] },
+]
+
+// Losse pagina vooraan in de header, zonder uitklapmenu.
 const prijzen = { href: '/prijzen', label: 'Prijzen' }
 
 export const mainNav: NavItem[] = [
-  workflow,
-  agencies,
+  { label: 'Product', items: hoofdProductMenu },
   prijzen,
-  { label: 'Resources', items: informatieMenu },
+  { label: 'Informatie', items: informatieMenu },
   { label: 'Over ons', items: overOnsMenu },
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
-// De losse pagina's uit de header staan bovenaan in een groep zonder label.
+// Prijzen heeft geen uitklapmenu en staat los, in een groep zonder label.
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
 export type NavGroep = { title?: string; links: NavLink[] }
-export const mobileNav: NavGroep[] = [
-  { links: [workflow, agencies, prijzen] },
-  { title: 'Resources', links: links(informatieMenu) },
+const informatieEnMeer: NavGroep[] = [
+  { title: 'Informatie', links: links(informatieMenu) },
   { title: 'Over ons', links: links(overOnsMenu) },
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
+]
+export const mobileNav: NavGroep[] = [
+  { title: 'Product', links: links(hoofdProductMenu) },
+  { links: [prijzen] },
+  ...informatieEnMeer,
 ]
 
 // Footer: dezelfde groepen als het hoofdmenu, met Prijzen als eigen kolom en rechts een kolom met
@@ -82,7 +91,7 @@ const footerLabels: Record<string, string> = { '/contact': 'Contact' }
 const footerGroepen = [
   { title: 'Product', links: [...links(productMenu), agencies] },
   { title: 'Prijzen', links: [prijzen] },
-  ...mobileNav.slice(1).map((g) => ({ title: g.title ?? '', links: g.links })),
+  ...informatieEnMeer.map((g) => ({ title: g.title ?? '', links: g.links })),
 ]
 export const footerNav = footerGroepen.map((group) => {
   const renamed = group.links.map((l) => ({ href: l.href, label: footerLabels[l.href] ?? l.label }))
