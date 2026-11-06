@@ -3,6 +3,11 @@
    keyline bovenaan, een mononummer, de titel links en de tekst rechts. Tussen de stappen staan bewust geen schermbeelden; de stappen volgen elkaar direct op.
    ========================================================================== */
 
+/* Introductie: de tussenzin van de homepage (home.css), met minder ruimte boven omdat hij direct onder de hero staat */
+.ww .ww-intro { margin-top: 120px; }
+@media (max-width: 768px) { .ww .ww-intro { margin-top: 96px; } }
+@media (max-width: 640px) { .ww .ww-intro { margin-top: 72px; } }
+
 /* De stappen --------------------------------------------------------------- */
 .ww-stap { padding-top: 128px; scroll-margin-top: 48px; }
 .ww-stap:first-child { padding-top: 120px; }

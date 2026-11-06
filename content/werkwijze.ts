@@ -14,6 +14,13 @@ export const hero = {
   title: 'Elke maand dezelfde ronde. Met bewijs aan het eind.',
 }
 
+// Introductie tussen de hero en de eerste stap, in dezelfde vorm als de grote tussenzin op de homepage:
+// het vetgedrukte deel staat in het wit, de rest in grijs, en de woorden lichten op tijdens het scrollen.
+export const intro = {
+  strong: 'Van klantstrategie tot groeikans in AI zichtbaarheid.',
+  rest: 'Orbit brengt analyse, contentcreatie, publicatie en nameting samen in één doorlopende workflow. Jouw team bepaalt de koers. AI versnelt de uitvoering.',
+}
+
 export type Stap = { nr: number; id: string; titel: string; aanloop: string; tekst: string }
 
 export const stappen: Stap[] = [
