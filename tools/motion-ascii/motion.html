@@ -1,0 +1,1184 @@
+<title>MOTION ASCII Loop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Eén 9:16-film (1080 x 1920, 24 fps) gecentreerd op zwart, transportbalk eronder.
+     Bewust één beeldwereld: CRT-groen op zwart, alleen monospace. */
+  :root {
+    --bg: #000000;
+    --ink: #33ff66;
+    --ink-dim: rgba(51, 255, 102, 0.55);
+    --ink-faint: rgba(51, 255, 102, 0.18);
+    --ink-ghost: rgba(51, 255, 102, 0.08);
+    --font-mono: "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+    --bar-h: 60px;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 12px/1.4 var(--font-mono);
+    box-sizing: border-box;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 16px;
+    display: grid;
+    place-items: center;
+    overflow-x: hidden;
+  }
+  .film-wrap {
+    margin: 0;
+    display: grid;
+    gap: 10px;
+    width: fit-content;
+    max-width: 100%;
+  }
+  #film {
+    display: block;
+    height: min(calc(100vh - 32px - var(--bar-h) - 32px), calc((100vw - 32px) * 16 / 9));
+    height: min(calc(100dvh - 32px - var(--bar-h) - 32px), calc((100vw - 32px) * 16 / 9));
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: 9 / 16;
+    background: var(--bg);
+    cursor: pointer;
+  }
+  .film-wrap:fullscreen { width: 100%; height: 100%; place-content: center; background: var(--bg); }
+  .film-wrap:fullscreen #film { height: calc(100dvh - var(--bar-h) - 30px); }
+  .bar {
+    display: grid;
+    gap: 6px;
+    min-height: var(--bar-h);
+    width: 0;            /* de film bepaalt de breedte, de balk volgt */
+    min-width: 100%;
+  }
+  .bar .row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }
+  .bar .grow { flex: 1; }
+  .bar button {
+    font: inherit;
+    color: var(--ink-dim);
+    background: transparent;
+    border: 1px solid var(--ink-faint);
+    border-radius: 0;
+    padding: 6px 9px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.1s ease-out, border-color 0.1s ease-out, background-color 0.1s ease-out;
+  }
+  .bar button:hover { color: var(--ink); border-color: var(--ink-dim); }
+  .bar button:active { background: var(--ink-ghost); }
+  .bar button[aria-pressed="true"] { color: var(--ink); border-color: var(--ink-dim); }
+  .bar :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  #frame {
+    color: var(--ink-dim);
+    font-variant-numeric: tabular-nums;
+    min-width: 7ch;
+  }
+  #scrub {
+    flex: 1;
+    min-width: 60px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+  }
+  #scrub::-webkit-slider-runnable-track { height: 1px; background: var(--ink-faint); }
+  #scrub::-moz-range-track { height: 1px; background: var(--ink-faint); }
+  #scrub::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 8px; height: 14px; margin-top: -7px;
+    background: var(--ink); border: 0; border-radius: 0;
+  }
+  #scrub::-moz-range-thumb { width: 8px; height: 14px; background: var(--ink); border: 0; border-radius: 0; }
+  .keys {
+    width: 0;
+    min-width: 100%;
+    margin: -4px 0 0;
+    color: var(--ink-faint);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+  @media (max-width: 420px) {
+    .bar .row { gap: 6px; }
+    #full, .keys { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bar button { transition: none; }
+  }
+</style>
+
+<figure class="film-wrap">
+  <canvas id="film" width="1080" height="1920" role="img"
+    aria-label="ASCII-animatie van 8 seconden: een scherm start op, een torus draait, vervormt tot een hoofd en profil met glitch, en valt uiteen tot het woord MOTION."></canvas>
+  <figcaption class="bar">
+    <div class="row">
+      <input id="scrub" type="range" min="0" max="191" step="1" value="0" aria-label="Frame">
+      <output id="frame" for="scrub">000/192</output>
+    </div>
+    <div class="row">
+      <button id="play" type="button" aria-label="Pauzeren">pauze</button>
+      <span class="grow"></span>
+      <button id="sound" type="button" aria-pressed="false">geluid: uit</button>
+      <button id="full" type="button">volledig scherm</button>
+    </div>
+  </figcaption>
+  <p class="keys">spatie afspelen · ← → frame · M geluid · F scherm</p>
+</figure>
+
+<script>
+/* MOTION — rekenkern. Geen DOM: elke frame is een pure functie van het framenummer. */
+(function (root) {
+  'use strict';
+
+  // ---------------------------------------------------------------- vaste waarden
+  const W = 1080, H = 1920, FPS = 24, FRAMES = 192;
+  const COLS = 80, ROWS = 48, CW = 12, CH = 20;
+  const GW = COLS * CW, GH = ROWS * CH;          // 960 x 960
+  const GX = (W - GW) / 2, GY = (H - GH) / 2;    // 60, 480
+  const CHARS = '.,:;i1tfLCG08@';
+  const NCH = CHARS.length;
+  const N = COLS * ROWS;
+  const WORD = 'MOTION';
+
+  const SCENES = [
+    { from: 0,   to: 23,  status: 'booting'   },
+    { from: 24,  to: 83,  status: 'rendering' },
+    { from: 84,  to: 119, status: 'morphing'  },
+    { from: 120, to: 191, status: 'rendered'  },
+  ];
+
+  // ---------------------------------------------------------------- toeval (deterministisch)
+  function h32(x) {
+    x |= 0;
+    x = Math.imul(x ^ (x >>> 16), 0x7feb352d);
+    x = Math.imul(x ^ (x >>> 15), 0x846ca68b);
+    return (x ^ (x >>> 16)) >>> 0;
+  }
+  function rnd(a, b, c) {
+    return h32((a | 0) + h32((b | 0) + h32((c | 0) + 0x2545f491))) / 4294967296;
+  }
+
+  // ---------------------------------------------------------------- easing
+  const clamp01 = (t) => (t < 0 ? 0 : t > 1 ? 1 : t);
+  const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+
+  // ---------------------------------------------------------------- rasterbuffer
+  const grid = {
+    ch: new Int8Array(N),        // -1 = leeg, anders index in CHARS
+    a: new Float32Array(N),      // opacity per cel
+    shift: new Int8Array(ROWS),  // glitch: zijwaartse verschuiving per regel (in tekens)
+    inv: new Uint8Array(ROWS),   // glitch: inverse regel (zwart op groen)
+  };
+  function clearGrid() {
+    grid.ch.fill(-1);
+    grid.a.fill(0);
+    grid.shift.fill(0);
+    grid.inv.fill(0);
+  }
+
+  // ---------------------------------------------------------------- SDF-bouwstenen
+  function sdEll(x, y, z, cx, cy, cz, rx, ry, rz) {
+    const px = (x - cx) / rx, py = (y - cy) / ry, pz = (z - cz) / rz;
+    const k0 = Math.sqrt(px * px + py * py + pz * pz);
+    const qx = px / rx, qy = py / ry, qz = pz / rz;
+    const k1 = Math.sqrt(qx * qx + qy * qy + qz * qz);
+    return k1 > 1e-9 ? (k0 * (k0 - 1)) / k1 : -Math.min(rx, ry, rz);
+  }
+  function sdSph(x, y, z, cx, cy, cz, r) {
+    const dx = x - cx, dy = y - cy, dz = z - cz;
+    return Math.sqrt(dx * dx + dy * dy + dz * dz) - r;
+  }
+  function sdCap(x, y, z, ax, ay, az, bx, by, bz, r) {
+    const pax = x - ax, pay = y - ay, paz = z - az;
+    const bax = bx - ax, bay = by - ay, baz = bz - az;
+    let h = (pax * bax + pay * bay + paz * baz) / (bax * bax + bay * bay + baz * baz);
+    h = h < 0 ? 0 : h > 1 ? 1 : h;
+    const dx = pax - bax * h, dy = pay - bay * h, dz = paz - baz * h;
+    return Math.sqrt(dx * dx + dy * dy + dz * dz) - r;
+  }
+  function smin(a, b, k) {
+    const h = Math.max(k - Math.abs(a - b), 0) / k;
+    return Math.min(a, b) - h * h * k * 0.25;
+  }
+  function smax(a, b, k) {
+    const h = Math.max(k - Math.abs(a - b), 0) / k;
+    return Math.max(a, b) + h * h * k * 0.25;
+  }
+
+  // Hoofd en profil: gezicht naar -x, boven = +y, z = zijkant (symmetrisch).
+  const HEAD_SCALE = 1.12;
+  function headSDF(x, y, z) {
+    const k = 1 / HEAD_SCALE;
+    return headSDF0(x * k, y * k, z * k) * HEAD_SCALE;
+  }
+  function headSDF0(x, y, z) {
+    const az = Math.abs(z);
+    // schedel
+    let d = sdEll(x, y, z, 0.10, 0.38, 0, 0.98, 0.88, 0.76);
+    // bovengezicht (voorhoofd tot jukbeen)
+    d = smin(d, sdEll(x, y, z, -0.40, 0.02, 0, 0.53, 0.62, 0.62), 0.22);
+    // ondergezicht en kaak
+    d = smin(d, sdEll(x, y, z, -0.28, -0.52, 0, 0.60, 0.46, 0.56), 0.20);
+    // kin
+    d = smin(d, sdSph(x, y, z, -0.73, -0.82, 0, 0.215), 0.14);
+    // wenkbrauwboog
+    d = smin(d, sdCap(x, y, az, -0.84, 0.36, 0.0, -0.80, 0.36, 0.30, 0.10), 0.10);
+    // neus: rug, punt, vleugels
+    d = smin(d, sdCap(x, y, z, -0.89, 0.25, 0, -1.15, -0.17, 0, 0.07), 0.08);
+    d = smin(d, sdSph(x, y, z, -1.13, -0.20, 0, 0.09), 0.05);
+    d = smin(d, sdSph(x, y, az, -1.01, -0.25, 0.10, 0.08), 0.05);
+    // bovenlip-basis (philtrum) zodat neus en lip doorlopen
+    d = smin(d, sdEll(x, y, z, -0.80, -0.35, 0, 0.17, 0.13, 0.22), 0.08);
+    // lippen en mondspleet
+    d = smin(d, sdCap(x, y, az, -0.97, -0.43, 0, -0.91, -0.44, 0.18, 0.068), 0.06);
+    d = smin(d, sdCap(x, y, az, -0.93, -0.575, 0, -0.88, -0.575, 0.16, 0.064), 0.06);
+    d = smax(d, -sdCap(x, y, az, -1.10, -0.505, 0, -0.95, -0.505, 0.17, 0.024), 0.02);
+    // groef tussen onderlip en kin
+    d = smax(d, -sdCap(x, y, az, -1.02, -0.68, 0, -0.92, -0.68, 0.14, 0.05), 0.05);
+    // oogkas en oog
+    d = smax(d, -sdSph(x, y, az, -0.93, 0.14, 0.30, 0.14), 0.06);
+    d = smin(d, sdSph(x, y, az, -0.80, 0.14, 0.30, 0.115), 0.02);
+    // jukbeenderen
+    d = smin(d, sdEll(x, y, az, -0.55, -0.04, 0.40, 0.26, 0.16, 0.18), 0.12);
+    // oor
+    let ear = sdEll(x, y, az, 0.26, -0.02, 0.70, 0.16, 0.30, 0.09);
+    ear = smax(ear, -sdEll(x, y, az, 0.26, 0.0, 0.78, 0.10, 0.20, 0.05), 0.02);
+    d = smin(d, ear, 0.05);
+    // hals (afgesneden buste)
+    const nxc = 0.06 - 0.10 * (y + 0.4);
+    const ex = (x - nxc) / 0.47, ez = z / 0.42;
+    let neck = (Math.sqrt(ex * ex + ez * ez) - 1) * 0.42;
+    neck = Math.max(neck, -1.62 - y, y + 0.2);
+    d = smin(d, neck, 0.22);
+    return d;
+  }
+
+  // ---------------------------------------------------------------- geometrie
+  const R_MAJOR = 1.0, R_MINOR = 0.4;
+  const NU = 300, NV = 160;          // torusraster (NV deelbaar door 4, NU door 2)
+  const V_WARP = 0.32;               // meer monsters rond het silhouet
+  const HEAD_CY = -0.18 * HEAD_SCALE; // verticaal midden van het hoofd (hoofdcoördinaten)
+  const ORIGIN_Y = -0.15 * HEAD_SCALE; // oorsprong van de radiale projectie
+  const K = 240;                     // pixels per eenheid
+  const CAM_D = 7;                   // camera-afstand (milde perspectief)
+  const B_VIEWS = [                  // extra monsters van het eindbeeld en de laatste draai
+    [0, 0, 2], [0, 0.35, 1], [0, -0.35, 1], [0, 0.75, 1], [0, -0.75, 1], [0.35, 0, 1], [-0.35, 0, 1],
+  ];
+
+  let geo = null;
+  const nrm = new Float32Array(3);
+
+  function headNormal(px, py, pz) {
+    const e = 1e-3;
+    let gx = headSDF(px + e, py, pz) - headSDF(px - e, py, pz);
+    let gy = headSDF(px, py + e, pz) - headSDF(px, py - e, pz);
+    let gz = headSDF(px, py, pz + e) - headSDF(px, py, pz - e);
+    const gl = Math.hypot(gx, gy, gz) || 1;
+    nrm[0] = gx / gl; nrm[1] = gy / gl; nrm[2] = gz / gl;
+  }
+
+  // buitenste snijpunt langs een straal vanuit de oorsprong (van buiten naar binnen)
+  function marchInward(dx, dy, dz) {
+    let t = 3.6, prev = t, hit = false;
+    for (let s = 0; s < 96; s++) {
+      const d = headSDF(dx * t, ORIGIN_Y + dy * t, dz * t);
+      if (d < 1e-4) { hit = true; break; }
+      prev = t;
+      t -= Math.max(d * 0.85, 2e-4);
+      if (t <= 0) return 0;
+    }
+    if (!hit) return t;
+    let lo = t, hi = prev;
+    for (let s = 0; s < 10; s++) {
+      const m = (lo + hi) * 0.5;
+      if (headSDF(dx * m, ORIGIN_Y + dy * m, dz * m) > 0) hi = m; else lo = m;
+    }
+    return (lo + hi) * 0.5;
+  }
+
+  function buildGeometry() {
+    const TAU = Math.PI * 2;
+    const NA = NU * NV;
+    const CAP = NA + 40000;
+    const tP = new Float32Array(CAP * 3), tN = new Float32Array(CAP * 3);
+    const hP = new Float32Array(CAP * 3), hN = new Float32Array(CAP * 3);
+    const done = new Uint8Array(NA);
+
+    // A: gelijkmatig over de torus; doel op het hoofd langs de torusnormaal.
+    for (let j = 0; j < NV; j++) {
+      const vl = ((j + 0.5) / NV) * TAU;
+      const v = vl - V_WARP * Math.sin(2 * vl);
+      const cv = Math.cos(v), sv = Math.sin(v);
+      for (let i = 0; i < NU; i++) {
+        const u = (i / NU) * TAU;
+        const cu = Math.cos(u), su = Math.sin(u);
+        const k = (j * NU + i) * 3;
+        tP[k] = (R_MAJOR + R_MINOR * cv) * cu;
+        tP[k + 1] = (R_MAJOR + R_MINOR * cv) * su;
+        tP[k + 2] = R_MINOR * sv;
+        tN[k] = cv * cu; tN[k + 1] = cv * su; tN[k + 2] = sv;
+      }
+    }
+    // (u,v) en (u+π, π−v) hebben dezelfde normaal en dus hetzelfde doelpunt
+    for (let j = 0; j < NV; j++) {
+      for (let i = 0; i < NU; i++) {
+        const idx = j * NU + i;
+        if (done[idx]) continue;
+        const k = idx * 3;
+        const dx = tN[k], dy = tN[k + 1], dz = tN[k + 2];
+        const t = marchInward(dx, dy, dz);
+        const px = dx * t, py = ORIGIN_Y + dy * t, pz = dz * t;
+        headNormal(px, py, pz);
+        const j2 = ((NV >> 1) - 1 - j + NV) % NV;
+        const i2 = (i + (NU >> 1)) % NU;
+        for (let w = 0; w < 2; w++) {
+          const id = w === 0 ? idx : j2 * NU + i2;
+          const q = id * 3;
+          hP[q] = px; hP[q + 1] = py - HEAD_CY; hP[q + 2] = pz;
+          hN[q] = nrm[0]; hN[q + 1] = nrm[1]; hN[q + 2] = nrm[2];
+          done[id] = 1;
+        }
+      }
+    }
+
+    // B: zichtbare punten van het hoofd vanuit het eindbeeld (en de laatste draai),
+    // met een eigen beginpunt op de torus. Zo blijft het hoofd gatenvrij.
+    let n = NA;
+    const BC = HEAD_CY, BR = 2.0;    // omhullende bol (hoofdcoördinaten)
+    for (const [a, b, sub] of B_VIEWS) {
+      const ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
+      // M = Ry(b)·Rx(a) (object -> beeld); hier M^T gebruiken
+      const m00 = cb, m01 = sb * sa, m02 = sb * ca;
+      const m10 = 0, m11 = ca, m12 = -sa;
+      const m20 = -sb, m21 = cb * sa, m22 = cb * ca;
+      const ox = m20 * CAM_D, oyo = m21 * CAM_D, oz = m22 * CAM_D;     // M^T·(0,0,D)
+      const oy = oyo + HEAD_CY;
+      const stepX = CW / sub, stepY = CH / sub;
+      for (let gy = stepY / 2; gy < GH; gy += stepY) {
+        for (let gx = stepX / 2; gx < GW; gx += stepX) {
+          const vx = (gx - GW / 2) / K, vy = (GH / 2 - gy) / K, vz = -CAM_D;
+          const vl = Math.hypot(vx, vy, vz);
+          const ux = vx / vl, uy = vy / vl, uz = vz / vl;
+          const dx = m00 * ux + m10 * uy + m20 * uz;
+          const dy = m01 * ux + m11 * uy + m21 * uz;
+          const dz = m02 * ux + m12 * uy + m22 * uz;
+          // snijden met de omhullende bol
+          const cx0 = ox, cy0 = oy - BC, cz0 = oz;
+          const bq = cx0 * dx + cy0 * dy + cz0 * dz;
+          const cq = cx0 * cx0 + cy0 * cy0 + cz0 * cz0 - BR * BR;
+          const disc = bq * bq - cq;
+          if (disc <= 0) continue;
+          let t = -bq - Math.sqrt(disc);
+          const tEnd = -bq + Math.sqrt(disc);
+          let hit = false;
+          for (let s = 0; s < 120 && t < tEnd; s++) {
+            const d = headSDF(ox + dx * t, oy + dy * t, oz + dz * t);
+            if (d < 2e-4) { hit = true; break; }
+            t += d * 0.9;
+          }
+          if (!hit || n >= CAP) continue;
+          const hx = ox + dx * t, hy = oy + dy * t, hz = oz + dz * t;
+          headNormal(hx, hy, hz);
+          // beginpunt op de torus: richting vanuit de oorsprong
+          let ex = hx, ey = hy - ORIGIN_Y, ez = hz;
+          const el = Math.hypot(ex, ey, ez) || 1;
+          ex /= el; ey /= el; ez /= el;
+          let u = Math.atan2(ey, ex), v = Math.asin(Math.max(-1, Math.min(1, ez)));
+          if (rnd(n, 31) < 0.5) { u += Math.PI; v = Math.PI - v; }   // binnenkant
+          const cu = Math.cos(u), su = Math.sin(u), cv = Math.cos(v), sv = Math.sin(v);
+          const q = n * 3;
+          tP[q] = (R_MAJOR + R_MINOR * cv) * cu; tP[q + 1] = (R_MAJOR + R_MINOR * cv) * su; tP[q + 2] = R_MINOR * sv;
+          tN[q] = cv * cu; tN[q + 1] = cv * su; tN[q + 2] = sv;
+          hP[q] = hx; hP[q + 1] = hy - HEAD_CY; hP[q + 2] = hz;
+          hN[q] = nrm[0]; hN[q + 1] = nrm[1]; hN[q + 2] = nrm[2];
+          n++;
+        }
+      }
+    }
+    geo = {
+      tP: tP.subarray(0, n * 3), tN: tN.subarray(0, n * 3),
+      hP: hP.subarray(0, n * 3), hN: hN.subarray(0, n * 3), count: n, countA: NA,
+    };
+    return geo;
+  }
+
+  // ---------------------------------------------------------------- puntenwolk naar raster
+  const LIGHT = (() => {  // lichtbron linksboven, iets naar voren
+    const x = -0.9, y = 1.0, z = 0.75, l = Math.hypot(x, y, z);
+    return [x / l, y / l, z / l];
+  })();
+  const zbuf = new Float32Array(N);
+  const lbuf = new Float32Array(N);
+
+  function rasterShape(s, A, B) {
+    const { tP, tN, hP, hN, count } = geo;
+    zbuf.fill(-1e9);
+    const ca = Math.cos(A), sa = Math.sin(A), cb = Math.cos(B), sb = Math.sin(B);
+    // M = Ry(B) · Rx(A)
+    const m00 = cb, m01 = sb * sa, m02 = sb * ca;
+    const m11 = ca, m12 = -sa;
+    const m20 = -sb, m21 = cb * sa, m22 = cb * ca;
+    const [LX, LY, LZ] = LIGHT;
+    const s1 = 1 - s;
+    const cx = GW / 2, cy = GH / 2;
+    for (let p = 0, k = 0; p < count; p++, k += 3) {
+      const px = tP[k] * s1 + hP[k] * s, py = tP[k + 1] * s1 + hP[k + 1] * s, pz = tP[k + 2] * s1 + hP[k + 2] * s;
+      let nx = tN[k] * s1 + hN[k] * s, ny = tN[k + 1] * s1 + hN[k + 1] * s, nz = tN[k + 2] * s1 + hN[k + 2] * s;
+      const X = m00 * px + m01 * py + m02 * pz;
+      const Y = m11 * py + m12 * pz;
+      const Z = m20 * px + m21 * py + m22 * pz;
+      const q = CAM_D / (CAM_D - Z);
+      const sx = cx + K * q * X, sy = cy - K * q * Y;
+      if (sx < 0 || sy < 0) continue;
+      const c = (sx / CW) | 0, r = (sy / CH) | 0;
+      if (c >= COLS || r >= ROWS) continue;
+      const j = r * COLS + c;
+      if (Z <= zbuf[j]) continue;
+      const NX = m00 * nx + m01 * ny + m02 * nz;
+      const NY = m11 * ny + m12 * nz;
+      const NZ = m20 * nx + m21 * ny + m22 * nz;
+      const nl = Math.sqrt(NX * NX + NY * NY + NZ * NZ) || 1;
+      zbuf[j] = Z;
+      lbuf[j] = (NX * LX + NY * LY + NZ * LZ) / nl;
+    }
+    for (let j = 0; j < N; j++) {
+      if (zbuf[j] > -1e8) {
+        const l = lbuf[j] > 0 ? lbuf[j] : 0;
+        let idx = (l * NCH) | 0;
+        if (idx >= NCH) idx = NCH - 1;
+        grid.ch[j] = idx;
+        grid.a[j] = 1;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------- scène 1: opstarten (0–23)
+  function sceneBoot(f) {
+    let alpha = 0.2, rows = ROWS;
+    if (f <= 19) rows = Math.round((ROWS * f) / 19);   // lineair, regel voor regel
+    else alpha = (0.2 * (23 - f)) / 4;                 // laatste 4 frames: uitdoven
+    if (alpha <= 0 || rows <= 0) return;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const i = r * COLS + c;
+        const k = ((f + ((rnd(i, 7) * 3) | 0)) / 3) | 0;   // elk teken wisselt om de 3 frames
+        grid.ch[i] = (rnd(i, k, 11) * NCH) | 0;
+        grid.a[i] = alpha;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------- scène 2 en 3: torus en morph
+  const TAU = Math.PI * 2;
+  const REV_A = 1.2, REV_B = 0.8;                         // omwentelingen per seconde
+  const M_A = (REV_A * 35) / FPS, M_B = (REV_B * 35) / FPS; // snelheid bij de start van de morph
+  function hermite(t, m) { return m * t + (3 - 2 * m) * t * t + (m - 2) * t * t * t; }
+  function shapeState(f) {
+    if (f < 84) {
+      const t = (f - 24) / FPS;                            // constante snelheid
+      return { s: 0, A: TAU * REV_A * t, B: TAU * REV_B * t };
+    }
+    // morph: de draai remt af en komt na precies één extra omwenteling per as
+    // tot stilstand in het profiel; de vorm volgt easeInOutCubic.
+    const tau = clamp01((f - 84) / 35);
+    return {
+      s: easeInOutCubic(tau),
+      A: TAU * (REV_A * 2.5 + hermite(tau, M_A)),
+      B: TAU * (REV_B * 2.5 + hermite(tau, M_B)),
+    };
+  }
+
+  // glitch 108–119: harde, onregelmatige stroken
+  let glitch = null;
+  function buildGlitch() {
+    const counts = [1, 0, 2, 1, 3, 1, 2, 4, 2, 3, 4, 3];   // aantal stroken per frame (max 4)
+    const invAt = [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0];    // af en toe één inverse strook
+    const frames = [];
+    let prev = [];
+    for (let k = 0; k < 12; k++) {
+      const f = 108 + k;
+      const strips = [];
+      const used = new Uint8Array(ROWS);
+      const mark = (st) => { for (let r = st.r0 - 1; r <= st.r0 + st.h; r++) if (r >= 0 && r < ROWS) used[r] = 1; };
+      const free = (r0, h) => { for (let r = r0 - 1; r <= r0 + h; r++) if (r >= 0 && r < ROWS && used[r]) return false; return true; };
+      // soms blijft een strook van het vorige frame hangen
+      for (const st of prev) {
+        if (strips.length >= counts[k]) break;
+        if (rnd(f, st.r0, 3) < 0.45 && free(st.r0, st.h)) {
+          const keep = { r0: st.r0, h: st.h, dx: rnd(f, st.r0, 4) < 0.5 ? st.dx : -st.dx, inv: 0, fresh: 0 };
+          strips.push(keep); mark(keep);
+        }
+      }
+      for (let m = 0; strips.length < counts[k] && m < 40; m++) {
+        const h = 1 + ((rnd(f, m, 21) * 3) | 0);                 // 1–3 regels
+        const r0 = 6 + ((rnd(f, m, 22) * (38 - h)) | 0);
+        if (!free(r0, h)) continue;
+        const mag = 2 + ((rnd(f, m, 23) * 7) | 0);               // 2–8 tekens
+        const st = { r0, h, dx: rnd(f, m, 24) < 0.5 ? -mag : mag, inv: 0, fresh: 1 };
+        strips.push(st); mark(st);
+      }
+      if (invAt[k] && strips.length) {
+        const j = (rnd(f, 99) * strips.length) | 0;
+        strips[j].inv = 1;
+      }
+      frames.push(strips);
+      prev = strips;
+    }
+    const ticks = [];
+    frames.forEach((strips, k) => { if (strips.some((st) => st.fresh || st.inv)) ticks.push(108 + k); });
+    glitch = { frames, ticks };
+  }
+  function applyGlitch(f) {
+    if (f < 108 || f > 119) return;
+    for (const st of glitch.frames[f - 108]) {
+      for (let r = st.r0; r < st.r0 + st.h; r++) { grid.shift[r] = st.dx; grid.inv[r] = st.inv; }
+    }
+  }
+
+  // ---------------------------------------------------------------- scène 4: eindwoord
+  const LETTERS = {
+    M: ['####......####', '#####....#####', '#####....#####', '###.##..##.###', '###.##..##.###', '###..####..###',
+        '###..####..###', '###...##...###', '###........###', '###........###', '###........###', '###........###'],
+    O: ['..########..', '.##########.', '###......###', '###......###', '###......###', '###......###',
+        '###......###', '###......###', '###......###', '###......###', '.##########.', '..########..'],
+    T: ['###########', '###########', '....###....', '....###....', '....###....', '....###....',
+        '....###....', '....###....', '....###....', '....###....', '....###....', '....###....'],
+    I: ['###', '###', '###', '###', '###', '###', '###', '###', '###', '###', '###', '###'],
+    N: ['#####....###', '#####....###', '######...###', '######...###', '###.###..###', '###.###..###',
+        '###..###.###', '###..###.###', '###...######', '###...######', '###....#####', '###....#####'],
+  };
+  const LETTER_GAP = 2;
+  const WORD_H = 12;
+  // Verticaal op twee derde hoogte (gemeten vanaf de onderkant van het beeld):
+  // rijen 2–13 → midden op y = 640 van 1920.
+  const WORD_ROW = Math.round(((H / 3) - GY) / CH - WORD_H / 2);
+
+  let word = null;
+  function buildWord() {
+    const letters = WORD.split('').map((ch) => LETTERS[ch]);
+    const width = letters.reduce((w, L) => w + L[0].length, 0) + LETTER_GAP * (letters.length - 1);
+    const col0 = Math.floor((COLS - width) / 2);
+    const mask = new Uint8Array(N);
+    let x = col0;
+    for (const L of letters) {
+      for (let r = 0; r < WORD_H; r++) for (let c = 0; c < L[0].length; c++) {
+        if (L[r][c] === '#') mask[(WORD_ROW + r) * COLS + x + c] = 1;
+      }
+      x += L[0].length + LETTER_GAP;
+    }
+    // reliëf: normaal uit de maskergradiënt, Lambert met hetzelfde licht
+    const m = (c, r) => (c < 0 || r < 0 || c >= COLS || r >= ROWS ? 0 : mask[r * COLS + c]);
+    const [LX, LY, LZ] = LIGHT;
+    const cells = [];
+    let cmin = COLS, cmax = 0;
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      if (!mask[r * COLS + c]) continue;
+      const gx = (m(c + 1, r) - m(c - 1, r)) / 2;
+      const gy = (m(c, r - 1) - m(c, r + 1)) / 2;
+      let nx = -1.2 * gx, ny = -1.2 * gy, nz = 1;
+      const nl = Math.hypot(nx, ny, nz);
+      nx /= nl; ny /= nl; nz /= nl;
+      const lum = Math.max(0, nx * LX + ny * LY + nz * LZ);
+      const ch = Math.max(2, Math.min(NCH - 1, Math.round(2 + lum * 13)));
+      cells.push({ c, r, ch });
+      if (c < cmin) cmin = c;
+      if (c > cmax) cmax = c;
+    }
+    // oplossen 170–191: elk teken op een eigen moment, uiterlijk op frame 191 weg
+    cells.forEach((cell, i) => {
+      const dur = 4 + ((rnd(i, 51) * 5) | 0);
+      const span = 191 - 170 - dur;
+      const bias = (cell.c - cmin) / Math.max(1, cmax - cmin);
+      cell.d0 = 170 + Math.round((0.65 * rnd(i, 52) + 0.35 * bias) * span);
+      cell.dur = dur;
+    });
+    word = { cells, mask, col0, width };
+  }
+
+  let particles = null;
+  const prio = new Float32Array(N);
+  function buildParticles() {
+    clearGrid();
+    rasterShape(1, 0, 0);                                  // het hoofd zoals het op frame 119 staat
+    const src = [];
+    let hc = 0, hr = 0;
+    for (let i = 0; i < N; i++) if (grid.ch[i] >= 0) {
+      const c = i % COLS, r = (i / COLS) | 0;
+      src.push({ c, r, ch: grid.ch[i] });
+      hc += c; hr += r;
+    }
+    hc /= src.length; hr /= src.length;
+    let rmin = ROWS, rmax = 0;
+    for (const p of src) { rmin = Math.min(rmin, p.r); rmax = Math.max(rmax, p.r); }
+    const dst = word.cells.slice();
+    src.forEach((p, i) => { p.key = p.c + (rnd(i, 61) - 0.5) * 16; });
+    dst.forEach((p, i) => { p.key = p.c + (rnd(i, 62) - 0.5) * 6; });
+    src.sort((a, b) => a.key - b.key);
+    dst.sort((a, b) => a.key - b.key);
+    const P = Math.max(src.length, dst.length);
+    const list = [];
+    for (let i = 0; i < P; i++) {
+      const a = src[Math.floor((i * src.length) / P)];
+      const b = dst[Math.floor((i * dst.length) / P)];
+      // uiteenvallen: naar buiten en omlaag, dan met een boog naar de plek in het woord
+      let ox = (a.c - hc) * CW, oy = (a.r - hr) * CH;
+      const ol = Math.hypot(ox, oy) || 1;
+      ox /= ol; oy /= ol;
+      const push = 50 + rnd(i, 63) * 170;
+      const p1x = a.c + (ox * push + (rnd(i, 64) - 0.5) * 90) / CW;
+      const p1y = a.r + (oy * push + 40 + rnd(i, 65) * 130) / CH;
+      const p2x = b.c + ((rnd(i, 66) - 0.5) * 140) / CW;
+      const p2y = b.r + (60 + rnd(i, 67) * 160) / CH;
+      const delay = 4 * ((a.r - rmin) / Math.max(1, rmax - rmin)) + 2.5 * rnd(i, 68);
+      list.push({ x0: a.c, y0: a.r, x1: p1x, y1: p1y, x2: p2x, y2: p2y, x3: b.c, y3: b.r, ch0: a.ch, ch1: b.ch, delay });
+    }
+    particles = list;
+  }
+
+  function sceneWord(f) {
+    if (f < 150) {
+      prio.fill(-1);
+      for (const p of particles) {
+        const tau = clamp01((f - 120 - p.delay) / (30 - p.delay));
+        const e = easeOutQuart(tau);
+        const u = 1 - e;
+        const b0 = u * u * u, b1 = 3 * u * u * e, b2 = 3 * u * e * e, b3 = e * e * e;
+        const c = Math.round(b0 * p.x0 + b1 * p.x1 + b2 * p.x2 + b3 * p.x3);
+        const r = Math.round(b0 * p.y0 + b1 * p.y1 + b2 * p.y2 + b3 * p.y3);
+        if (c < 0 || r < 0 || c >= COLS || r >= ROWS) continue;
+        const ch = e >= 0.85 ? p.ch1 : p.ch0;
+        const pr = e * 100 + ch;
+        const j = r * COLS + c;
+        if (pr <= prio[j]) continue;
+        prio[j] = pr;
+        grid.ch[j] = ch;
+        grid.a[j] = 1 - 0.03 * e;
+      }
+      return;
+    }
+    if (f < 170) {
+      // stilstand: helderheid ademt 3% op en neer
+      const a = 0.97 + 0.03 * Math.sin((TAU * (f - 150)) / 20);
+      for (const cell of word.cells) { const j = cell.r * COLS + cell.c; grid.ch[j] = cell.ch; grid.a[j] = a; }
+      return;
+    }
+    // oplossen naar zwart
+    for (const cell of word.cells) {
+      const q = (f - cell.d0) / cell.dur;
+      if (q >= 1) continue;
+      const j = cell.r * COLS + cell.c;
+      if (q <= 0) { grid.ch[j] = cell.ch; grid.a[j] = 0.97; continue; }
+      grid.ch[j] = Math.round(cell.ch * (1 - q));
+      grid.a[j] = 0.97 * (1 - q);
+    }
+  }
+
+  // ---------------------------------------------------------------- frame
+  let ready = false;
+  function build() {
+    if (ready) return;
+    buildGeometry();
+    buildGlitch();
+    buildWord();
+    buildParticles();
+    ready = true;
+  }
+  function sceneOf(f) {
+    for (const sc of SCENES) if (f >= sc.from && f <= sc.to) return sc;
+    return SCENES[0];
+  }
+  function computeFrame(f) {
+    f = ((f % FRAMES) + FRAMES) % FRAMES;
+    clearGrid();
+    if (f <= 23) sceneBoot(f);
+    else if (f <= 119) {
+      build();
+      const st = shapeState(f);
+      rasterShape(st.s, st.A, st.B);
+      applyGlitch(f);
+    } else {
+      build();
+      sceneWord(f);
+    }
+    return sceneOf(f);
+  }
+  function audioEvents() {
+    build();
+    const ev = [{ f: 84, kind: 'morph' }, { f: 120, kind: 'morph' }];
+    for (const f of glitch.ticks) ev.push({ f, kind: 'glitch' });
+    return ev.sort((a, b) => a.f - b.f);
+  }
+
+  root.MotionCore = {
+    W, H, FPS, FRAMES, COLS, ROWS, CW, CH, GW, GH, GX, GY, CHARS, NCH, N, WORD, SCENES,
+    grid, clearGrid, rnd, h32, easeInOutCubic, easeOutQuart, clamp01,
+    headSDF, buildGeometry, rasterShape, build, computeFrame, sceneOf, audioEvents,
+    get word() { return word; }, get glitch() { return glitch; }, get particles() { return particles; },
+  };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+/* MOTION — speler: tekenen, CRT-laag, geluid en bediening. */
+(function () {
+  'use strict';
+  const M = window.MotionCore;
+  const { W, H, FPS, FRAMES, COLS, ROWS, CW, CH, GW, GX, GY, CHARS, NCH } = M;
+
+  const GREEN = '#33FF66';
+  const FONT = '"SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace';
+  const GLYPH_FONT = '700 20px ' + FONT;        // 20px, line-height 1.0 → cel 12 x 20
+  const TITLE_FONT = '400 24px ' + FONT;
+  const CMD_FONT = '400 32px ' + FONT;
+  const TITLE = 'claude ~/motion';
+  const COMMAND = '$ claude render --motion';
+  const MARGIN = 24;                            // kader: 24px marge rondom
+  const HUD_X = GX;                             // HUD lijnt uit met het raster
+  const TITLE_Y = 60, CMD_Y = 106, STATUS_Y = H - 60 - 32;
+  const BLOOM = 0.8;
+
+  const film = document.getElementById('film');
+  const ctx = film.getContext('2d', { alpha: false });
+
+  function makeCanvas(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    return c;
+  }
+
+  // ---------------------------------------------------------------- lagen
+  const content = makeCanvas(W, H);
+  const cctx = content.getContext('2d');
+  const half = makeCanvas(W / 2, H / 2);
+  const hctx = half.getContext('2d');
+  const quarter = makeCanvas(W / 4, H / 4);
+  const qctx = quarter.getContext('2d');
+  for (const c of [ctx, hctx, qctx]) { c.imageSmoothingEnabled = true; c.imageSmoothingQuality = 'high'; }
+
+  // glyph-atlas: elk teken één keer, daarna pixel-exact per cel kopiëren
+  const PAD = 6, SW = CW + PAD * 2, SH = CH + PAD * 2;
+  const atlas = makeCanvas(SW * NCH, SH);
+  {
+    const a = atlas.getContext('2d');
+    a.font = GLYPH_FONT;
+    a.fillStyle = GREEN;
+    a.textAlign = 'center';
+    a.textBaseline = 'alphabetic';
+    const m = a.measureText('M');
+    const asc = m.fontBoundingBoxAscent || 15.5, desc = m.fontBoundingBoxDescent || 4.5;
+    const base = Math.round(PAD + (CH - (asc + desc)) / 2 + asc);
+    for (let i = 0; i < NCH; i++) a.fillText(CHARS[i], i * SW + PAD + CW / 2, base);
+  }
+
+  // vaste CRT-overlay: scanlijnen (om de 3px 1px op 8% zwart) en lichte vignettering
+  const overlay = makeCanvas(W, H);
+  {
+    const o = overlay.getContext('2d');
+    o.fillStyle = 'rgba(0,0,0,0.08)';
+    for (let y = 0; y < H; y += 3) o.fillRect(0, y, W, 1);
+    o.save();
+    o.translate(W / 2, H / 2);
+    o.scale(1, H / W);
+    const g = o.createRadialGradient(0, 0, W * 0.42, 0, 0, W * 0.8);
+    g.addColorStop(0, 'rgba(0,0,0,0)');
+    g.addColorStop(1, 'rgba(0,0,0,0.38)');
+    o.fillStyle = g;
+    o.fillRect(-W, -W, W * 2, W * 2);
+    o.restore();
+  }
+
+  // ruis: 3% gemiddeld, korrel van 2px, wisselt per frame
+  const noise = [];
+  for (let t = 0; t < 4; t++) {
+    const T = 256, c = makeCanvas(T * 2, T * 2), n = c.getContext('2d');
+    const img = n.createImageData(T * 2, T * 2), d = img.data;
+    for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) {
+      const r = M.rnd(x + y * T, t, 77);
+      const green = r >= 0.5;
+      const a = Math.round(Math.abs(r - 0.5) * 2 * 0.06 * 255);
+      for (let dy = 0; dy < 2; dy++) for (let dx = 0; dx < 2; dx++) {
+        const k = ((y * 2 + dy) * T * 2 + x * 2 + dx) * 4;
+        d[k] = green ? 51 : 0; d[k + 1] = green ? 255 : 0; d[k + 2] = green ? 102 : 0; d[k + 3] = a;
+      }
+    }
+    n.putImageData(img, 0, 0);
+    noise.push(ctx.createPattern(c, 'repeat'));
+  }
+
+  // ---------------------------------------------------------------- tekenen
+  function drawGrid(g) {
+    const grid = M.grid;
+    let lastA = -1;
+    for (let r = 0; r < ROWS; r++) {
+      const y = GY + r * CH;
+      const sh = grid.shift[r];
+      const inv = grid.inv[r];
+      if (inv) {
+        // inverse strook: groen vlak, tekens als zwarte uitsparing
+        g.save();
+        g.beginPath(); g.rect(GX, y, GW, CH); g.clip();
+        g.globalAlpha = 1; lastA = 1;
+        g.fillStyle = GREEN;
+        g.fillRect(GX, y, GW, CH);
+        g.globalCompositeOperation = 'destination-out';
+      }
+      for (let c = 0; c < COLS; c++) {
+        const sc = c - sh;
+        if (sc < 0 || sc >= COLS) continue;
+        const i = r * COLS + sc;
+        const ch = grid.ch[i];
+        if (ch < 0) continue;
+        const a = inv ? 1 : grid.a[i];
+        if (a < 0.004) continue;
+        if (a !== lastA) { g.globalAlpha = a; lastA = a; }
+        g.drawImage(atlas, ch * SW, 0, SW, SH, GX + c * CW - PAD, y - PAD, SW, SH);
+      }
+      if (inv) { g.restore(); lastA = -1; }
+    }
+    g.globalAlpha = 1;
+  }
+
+  let cmdAdvance = 0;
+  function drawHUD(g, f, status) {
+    g.globalAlpha = 1;
+    g.fillStyle = GREEN;
+    g.strokeStyle = GREEN;
+    // 1. kader
+    g.globalAlpha = 0.18;
+    g.lineWidth = 1;
+    g.strokeRect(MARGIN + 0.5, MARGIN + 0.5, W - MARGIN * 2 - 1, H - MARGIN * 2 - 1);
+    g.textBaseline = 'top';
+    // 2. titelbalk en 3. frameteller
+    g.globalAlpha = 0.55;
+    g.font = TITLE_FONT;
+    g.textAlign = 'left';
+    g.fillText(TITLE, HUD_X, TITLE_Y);
+    g.textAlign = 'right';
+    g.fillText(String(f).padStart(3, '0') + '/' + FRAMES, W - HUD_X, TITLE_Y);
+    // 4. commandoregel
+    g.globalAlpha = 1;
+    g.font = CMD_FONT;
+    g.textAlign = 'left';
+    if (!cmdAdvance) cmdAdvance = g.measureText('MMMMMMMMMM').width / 10;
+    g.fillText(COMMAND, HUD_X, CMD_Y);
+    // 5. statusregel met blokcursor (2x per seconde: 6 frames aan, 6 uit)
+    g.fillText(status, HUD_X, STATUS_Y);
+    if (Math.floor(f / 6) % 2 === 0) {
+      g.fillRect(Math.round(HUD_X + cmdAdvance * status.length), STATUS_Y, Math.round(cmdAdvance), 32);
+    }
+  }
+
+  function drawFrame(f) {
+    const scene = M.computeFrame(f);
+    cctx.clearRect(0, 0, W, H);
+    drawGrid(cctx);
+    drawHUD(cctx, f, scene.status);
+
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0, 0, W, H);
+    ctx.drawImage(content, 0, 0);
+    // 6. CRT-laag: glow van 4px (halveren, halveren, terugschalen)
+    hctx.clearRect(0, 0, W / 2, H / 2);
+    hctx.drawImage(content, 0, 0, W / 2, H / 2);
+    qctx.clearRect(0, 0, W / 4, H / 4);
+    qctx.drawImage(half, 0, 0, W / 4, H / 4);
+    ctx.globalAlpha = BLOOM;
+    ctx.drawImage(quarter, 0, 0, W, H);
+    ctx.globalAlpha = 1;
+    ctx.drawImage(overlay, 0, 0);
+    const ox = (M.rnd(f, 901) * 512) | 0, oy = (M.rnd(f, 902) * 512) | 0;
+    ctx.save();
+    ctx.translate(-ox, -oy);
+    ctx.fillStyle = noise[f % noise.length];
+    ctx.fillRect(ox, oy, W, H);
+    ctx.restore();
+    return scene;
+  }
+
+  // ---------------------------------------------------------------- geluid
+  // Minimale techno op 124 bpm: kick op elke tel, zachte hihat op de tussentel,
+  // een korte digitale tik op elke morph en elke glitch. De tellen lopen door
+  // over de lus heen, zodat de maat nergens hapert (8 s is geen heel aantal tellen).
+  const BPM = 124, BEAT = 60 / BPM, LOOP = FRAMES / FPS;
+  const EVENTS = M.audioEvents();
+
+  function makeNoise(ac) {
+    const b = ac.createBuffer(1, Math.round(ac.sampleRate * 0.5), ac.sampleRate);
+    const d = b.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = M.rnd(i, 5, 9) * 2 - 1;
+    return b;
+  }
+  function kick(ac, out, nb, t) {
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(150, t);
+    o.frequency.exponentialRampToValueAtTime(44, t + 0.11);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.95, t + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.32);
+    o.connect(g); g.connect(out);
+    o.start(t); o.stop(t + 0.34);
+    const n = ac.createBufferSource(), hp = ac.createBiquadFilter(), ng = ac.createGain();
+    n.buffer = nb; hp.type = 'highpass'; hp.frequency.value = 2500;
+    ng.gain.setValueAtTime(0.22, t);
+    ng.gain.exponentialRampToValueAtTime(0.001, t + 0.012);
+    n.connect(hp); hp.connect(ng); ng.connect(out);
+    n.start(t, 0.1); n.stop(t + 0.02);
+  }
+  function hat(ac, out, nb, t, k) {
+    const n = ac.createBufferSource(), hp = ac.createBiquadFilter(), g = ac.createGain();
+    n.buffer = nb; hp.type = 'highpass'; hp.frequency.value = 7800;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.14, t + 0.002);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.045);
+    n.connect(hp); hp.connect(g); g.connect(out);
+    n.start(t, (k % 7) * 0.05); n.stop(t + 0.06);
+  }
+  function tick(ac, out, t, kind, k) {
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = 'square';
+    const morph = kind === 'morph';
+    const f0 = morph ? 1250 : 2100 + (k % 3) * 520;
+    o.frequency.setValueAtTime(f0, t);
+    o.frequency.exponentialRampToValueAtTime(f0 * 0.55, t + (morph ? 0.05 : 0.02));
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(morph ? 0.16 : 0.08, t + 0.001);
+    g.gain.exponentialRampToValueAtTime(0.0008, t + (morph ? 0.07 : 0.028));
+    o.connect(g); g.connect(out);
+    o.start(t); o.stop(t + 0.09);
+  }
+  function masterChain(ac) {
+    const comp = ac.createDynamicsCompressor();
+    comp.threshold.value = -12; comp.knee.value = 6; comp.ratio.value = 4;
+    comp.attack.value = 0.003; comp.release.value = 0.12;
+    const master = ac.createGain();
+    master.gain.value = 0.75;
+    master.connect(comp);
+    comp.connect(ac.destination);
+    return master;
+  }
+
+  let actx = null, master = null, bus = null, nbuf = null;
+  let soundOn = false, schedTimer = 0, beatIdx = 0, evLoop = 0, evIdx = 0;
+
+  // ---------------------------------------------------------------- klok
+  const clock = {
+    src: 'perf', base: 0, anchor: 0, playing: true,
+    srcNow() { return this.src === 'audio' ? actx.currentTime : performance.now() / 1000; },
+    now() { return this.playing ? this.base + (this.srcNow() - this.anchor) : this.base; },
+    set(T) { this.base = T; this.anchor = this.srcNow(); },
+    use(src) { const T = this.now(); this.src = src; this.set(T); },
+  };
+  const toAudio = (T) => clock.anchor + (T - clock.base);
+
+  function freshBus() {
+    if (bus) { try { bus.disconnect(); } catch (e) { /* al los */ } }
+    bus = actx.createGain();
+    bus.connect(master);
+  }
+  function resetCursors(T) {
+    beatIdx = Math.max(0, Math.ceil(T / BEAT - 1e-6));
+    evLoop = Math.floor(T / LOOP);
+    evIdx = 0;
+    while (evIdx < EVENTS.length && evLoop * LOOP + EVENTS[evIdx].f / FPS < T) evIdx++;
+  }
+  function schedule() {
+    if (!soundOn || !clock.playing || clock.src !== 'audio') return;
+    const now = clock.now(), horizon = now + 0.15;
+    while (beatIdx * BEAT < horizon) {
+      const T = beatIdx * BEAT;
+      if (T >= now - 0.005) {
+        kick(actx, bus, nbuf, toAudio(T));
+        hat(actx, bus, nbuf, toAudio(T + BEAT / 2), beatIdx);
+      }
+      beatIdx++;
+    }
+    for (;;) {
+      if (evIdx >= EVENTS.length) { evLoop++; evIdx = 0; }
+      const e = EVENTS[evIdx], T = evLoop * LOOP + e.f / FPS;
+      if (T >= horizon) break;
+      if (T >= now - 0.005) tick(actx, bus, toAudio(T), e.kind, evIdx);
+      evIdx++;
+    }
+  }
+  async function setSound(on) {
+    if (on === soundOn) return;
+    if (on) {
+      try {
+        if (!actx) {
+          actx = new (window.AudioContext || window.webkitAudioContext)();
+          master = masterChain(actx);
+          nbuf = makeNoise(actx);
+        }
+        await actx.resume();
+      } catch (e) {
+        ui.sound.textContent = 'geluid: niet beschikbaar';
+        return;
+      }
+      soundOn = true;
+      audioSeen = -1; audioSeenAt = performance.now();
+      clock.use('audio');
+      freshBus();
+      resetCursors(clock.now());
+      schedule();
+      schedTimer = setInterval(schedule, 25);
+    } else {
+      soundOn = false;
+      clearInterval(schedTimer);
+      clock.use('perf');
+      if (bus) { try { bus.disconnect(); } catch (e) { /* al los */ } bus = null; }
+      if (actx) actx.suspend().catch(() => {});
+    }
+    updateUI(lastDrawn);
+  }
+
+  // offline: één lus geluid renderen (voor een video-export)
+  async function renderAudio(seconds) {
+    const sr = 48000, len = Math.round((seconds || LOOP) * sr);
+    const oc = new OfflineAudioContext(2, len, sr);
+    const out = masterChain(oc);
+    const nb = makeNoise(oc);
+    const dur = len / sr;
+    for (let k = 0; k * BEAT < dur; k++) {
+      kick(oc, out, nb, k * BEAT);
+      if (k * BEAT + BEAT / 2 < dur) hat(oc, out, nb, k * BEAT + BEAT / 2, k);
+    }
+    for (let L = 0; L * LOOP < dur; L++) EVENTS.forEach((e, i) => {
+      const T = L * LOOP + e.f / FPS;
+      if (T < dur) tick(oc, out, T, e.kind, i);
+    });
+    const buf = await oc.startRendering();
+    const ch = [buf.getChannelData(0), buf.getChannelData(1)];
+    const pcm = new DataView(new ArrayBuffer(44 + len * 4));
+    const wstr = (o, s) => { for (let i = 0; i < s.length; i++) pcm.setUint8(o + i, s.charCodeAt(i)); };
+    wstr(0, 'RIFF'); pcm.setUint32(4, 36 + len * 4, true); wstr(8, 'WAVE'); wstr(12, 'fmt ');
+    pcm.setUint32(16, 16, true); pcm.setUint16(20, 1, true); pcm.setUint16(22, 2, true);
+    pcm.setUint32(24, sr, true); pcm.setUint32(28, sr * 4, true); pcm.setUint16(32, 4, true); pcm.setUint16(34, 16, true);
+    wstr(36, 'data'); pcm.setUint32(40, len * 4, true);
+    for (let i = 0, o = 44; i < len; i++) for (let c = 0; c < 2; c++, o += 2) {
+      const v = Math.max(-1, Math.min(1, ch[c][i]));
+      pcm.setInt16(o, v < 0 ? v * 0x8000 : v * 0x7fff, true);
+    }
+    let bin = '';
+    const bytes = new Uint8Array(pcm.buffer);
+    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(bin);
+  }
+
+  // ---------------------------------------------------------------- bediening
+  const ui = {
+    play: document.getElementById('play'),
+    scrub: document.getElementById('scrub'),
+    frame: document.getElementById('frame'),
+    sound: document.getElementById('sound'),
+    full: document.getElementById('full'),
+  };
+  let lastDrawn = -1;
+
+  function updateUI(f) {
+    if (f < 0) return;
+    ui.frame.textContent = String(f).padStart(3, '0') + '/' + FRAMES;
+    if (document.activeElement !== ui.scrub || clock.playing) ui.scrub.value = String(f);
+    ui.play.textContent = clock.playing ? 'pauze' : 'afspelen';
+    ui.play.setAttribute('aria-label', clock.playing ? 'Pauzeren' : 'Afspelen');
+    ui.sound.textContent = soundOn ? 'geluid: aan' : 'geluid: uit';
+    ui.sound.setAttribute('aria-pressed', String(soundOn));
+  }
+  function currentFrame() {
+    const f = Math.floor(clock.now() * FPS + 1e-6) % FRAMES;
+    return f < 0 ? f + FRAMES : f;
+  }
+  function show(f) {
+    drawFrame(f);
+    lastDrawn = f;
+    updateUI(f);
+  }
+  function setPlaying(on) {
+    if (on === clock.playing) return;
+    if (on) {
+      clock.anchor = clock.srcNow();
+      clock.playing = true;
+      if (soundOn) { freshBus(); resetCursors(clock.now()); schedule(); }
+    } else {
+      clock.base = clock.now();
+      clock.playing = false;
+      if (soundOn && bus) { try { bus.disconnect(); } catch (e) { /* al los */ } bus = null; }
+    }
+    updateUI(lastDrawn);
+  }
+  function seek(f) {
+    f = ((f % FRAMES) + FRAMES) % FRAMES;
+    const loops = Math.floor(clock.now() / LOOP);
+    clock.set(loops * LOOP + (f + 0.5) / FPS);
+    if (soundOn && clock.playing) { freshBus(); resetCursors(clock.now()); }
+    show(f);
+  }
+
+  ui.play.addEventListener('click', () => setPlaying(!clock.playing));
+  film.addEventListener('click', () => setPlaying(!clock.playing));
+  ui.sound.addEventListener('click', () => setSound(!soundOn));
+  ui.scrub.addEventListener('input', () => { setPlaying(false); seek(Number(ui.scrub.value)); });
+  ui.full.addEventListener('click', () => {
+    const el = document.querySelector('.film-wrap');
+    if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    else if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.target && e.target.tagName === 'INPUT' && e.key !== ' ') return;
+    if (e.key === ' ') { e.preventDefault(); setPlaying(!clock.playing); }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setPlaying(false);
+      seek(lastDrawn + (e.key === 'ArrowRight' ? 1 : -1));
+    } else if (e.key === 'm' || e.key === 'M') setSound(!soundOn);
+    else if (e.key === 'f' || e.key === 'F') ui.full.click();
+  });
+
+  // vangnet: staat de audioklok stil (geen uitvoerapparaat), dan terug naar de gewone klok
+  let audioSeen = -1, audioSeenAt = 0;
+  function watchAudioClock() {
+    if (clock.src !== 'audio' || !clock.playing || document.hidden) return;
+    const now = performance.now();
+    if (actx.currentTime !== audioSeen) { audioSeen = actx.currentTime; audioSeenAt = now; }
+    else if (now - audioSeenAt > 700) setSound(false);
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (!actx || !soundOn) return;
+    audioSeenAt = performance.now();
+    if (document.hidden) actx.suspend().catch(() => {});
+    else actx.resume().catch(() => {});
+  });
+
+  function loop() {
+    watchAudioClock();
+    if (clock.playing) {
+      const f = currentFrame();
+      if (f !== lastDrawn) show(f);
+    }
+    requestAnimationFrame(loop);
+  }
+
+  // start: eerst frame 0 (leeg raster), dan de geometrie, dan de klok
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  show(0);
+  window.MotionPlayer = {
+    drawFrame, renderAudio,
+    pause: () => setPlaying(false),
+    frameData: (f) => { drawFrame(f); return film.toDataURL('image/png'); },
+  };
+  setTimeout(() => {
+    M.build();
+    if (reduce) { clock.playing = false; seek(160); }
+    else clock.set(0);
+    requestAnimationFrame(loop);
+  }, 30);
+})();
+
+</script>
