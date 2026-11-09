@@ -4,8 +4,16 @@
 // dekking en stipgrootte: de voorkant is helder en groot, de achterkant flauw en klein.
 
 const TAU = Math.PI * 2
-const GRIJS = '208,214,224' // --text-secondary
+// De stippen volgen het thema van de pagina: in het donkere thema lichtgrijs, in het lichte thema van de blog
+// donkergrijs (beide --text-secondary). Lime blijft in beide het accent. DotBol zet het thema vóór elk beeld.
+const GRIJS_DONKER_THEMA = '208,214,224' // --text-secondary, donker thema
+const GRIJS_LICHT_THEMA = '60,65,73' // --text-secondary, licht thema
+let GRIJS = GRIJS_DONKER_THEMA
 const LIME = '188,255,47' // --accent
+
+export function zetThema(licht: boolean) {
+  GRIJS = licht ? GRIJS_LICHT_THEMA : GRIJS_DONKER_THEMA
+}
 
 type V3 = [number, number, number]
 

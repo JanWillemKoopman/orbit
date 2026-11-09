@@ -28,7 +28,7 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
-      <ArticleView post={post} terug={{ href: '/blog', label: 'de blog' }} />
+      <ArticleView post={post} kruimel={{ href: '/blog', label: 'Blog' }} />
       <Prefooter />
     </>
   )

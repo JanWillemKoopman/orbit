@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { DemoDialog } from '../DemoDialog'
 import { DotBol } from './DotBol'
@@ -9,6 +10,9 @@ import { DotBol } from './DotBol'
 // een paneel rechtsonder, op mobiel over het hele scherm. De AI-agent en de live chat bestaan nog niet;
 // het venster zegt dat eerlijk en verwijst naar de demo, die wel werkt.
 export function Assistent() {
+  // Op de blog staat de pagina in het lichte thema (app/blog/layout.tsx); de bol tekent dan donkere stippen.
+  const pathname = usePathname()
+  const licht = pathname === '/blog' || pathname.startsWith('/blog/')
   const [open, setOpen] = useState(false)
   const [demo, setDemo] = useState(false)
   const knopRef = useRef<HTMLButtonElement>(null)
@@ -70,7 +74,7 @@ export function Assistent() {
         data-zichtbaar={voorbijDrempel || undefined}
         onClick={() => setOpen(true)}
       >
-        <span className="as-knop-bol"><DotBol maat={44} variant="scanner" /></span>
+        <span className="as-knop-bol"><DotBol maat={44} variant="scanner" licht={licht} /></span>
         <span className="as-knop-tekst" aria-hidden="true">
           <span className="as-knop-label">Orbit</span>
           <span className="as-knop-vraag">Vragen? Vraag het ons.</span>
@@ -80,7 +84,7 @@ export function Assistent() {
       {open && (
         <div id="as-venster" className="as-venster" role="dialog" aria-labelledby="as-titel">
           <div className="as-kop">
-            <span className="as-kop-bol"><DotBol maat={48} variant="scanner" /></span>
+            <span className="as-kop-bol"><DotBol maat={48} variant="scanner" licht={licht} /></span>
             <div className="as-kop-tekst">
               <div className="as-kop-regel">
                 <h2 id="as-titel">Orbit-assistent</h2>

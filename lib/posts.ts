@@ -27,8 +27,6 @@ export type PostMeta = {
 
 export type Post = PostMeta & {
   html: string
-  /** De introductie: de alinea's vóór de eerste tussenkop (hooguit twee), voor het blogoverzicht. */
-  intro: string
 }
 
 function slugify(text: string) {
@@ -92,18 +90,6 @@ function createMarkdown() {
 
 const markdown = createMarkdown()
 
-const INTRO_MAX = 2
-
-/** Rendert de introductie: tekstalinea's tot de eerste tussenkop, hooguit INTRO_MAX. */
-function introHtml(content: string) {
-  const intro: Tokens.Generic[] = []
-  for (const token of markdown.lexer(content)) {
-    if (token.type === 'heading' || intro.length === INTRO_MAX) break
-    const imageOnly = token.type === 'paragraph' && token.tokens?.length === 1 && token.tokens[0].type === 'image'
-    if (token.type === 'paragraph' && !imageOnly) intro.push(token)
-  }
-  return markdown.parser(intro as Tokens.Paragraph[]) as string
-}
 const categoryLabel = (slug: string) => (slug === KENNISBANK ? 'Kennisbank' : categories.find((c) => c.slug === slug)?.label ?? slug)
 
 function readPost(file: string): Post {
@@ -124,7 +110,6 @@ function readPost(file: string): Post {
     featured: Boolean(data.featured),
     order: typeof data.order === 'number' ? data.order : undefined,
     html: markdown.parse(content) as string,
-    intro: introHtml(content),
   }
 }
 
@@ -141,11 +126,7 @@ export function getAllPosts(): Post[] {
   return posts
 }
 
-export const toMeta = ({ html: _html, intro: _intro, ...meta }: Post): PostMeta => meta
-
-/** De blogartikelen met hun introductie, voor het overzicht op /blog. */
-export const getBlogIntros = () => getAllPosts().filter((p) => p.category !== KENNISBANK).map(({ html: _html, ...p }) => p)
-export type BlogIntro = ReturnType<typeof getBlogIntros>[number]
+export const toMeta = ({ html: _html, ...meta }: Post): PostMeta => meta
 
 export const getPostMetas = () => getAllPosts().map(toMeta)
 
