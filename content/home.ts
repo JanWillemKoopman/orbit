@@ -57,20 +57,20 @@ export type Usp = { kort: string; titel: string; uitleg: string }
 
 export const usps: { titel: string; uitleg: string }[] = [
   {
-    titel: 'Jouw merk voorop',
-    uitleg: 'Geef je klanten een platform dat voelt als onderdeel van jouw bureau. De interface is 100% white label, standaard inbegrepen. Ook het maandrapport draagt jouw bureaunaam.',
+    titel: 'GEO/SEO als vaste dienst',
+    uitleg: 'Maak van vindbaarheid terugkerende omzet. Verkoop GEO en SEO onder je eigen naam, met standaard een 100% white-label platform in de huisstijl van jouw bureau.',
   },
   {
-    titel: 'Maak resultaat zichtbaar',
-    uitleg: 'Laat je klant zien of zijn merk vaker opduikt in AI-antwoorden. Orbit vergelijkt de nulmeting met metingen op dezelfde vragen na 14 en 28 dagen.',
+    titel: 'Inzicht in impact',
+    uitleg: 'Maak je waarde zichtbaar in elk klantgesprek. Met een nulmeting en nametingen laat je zien hoe het verkeer en de zichtbaarheid van je klant in AI-antwoorden zich ontwikkelen.',
   },
   {
-    titel: 'Meer klanten, zelfde team',
-    uitleg: 'Bedien meer klanten zonder dat elk nieuw traject je team evenveel extra werk kost. Start voor meerdere klanten tegelijk en zie in één overzicht waar je specialisten nodig zijn.',
+    titel: 'Verhoog productie',
+    uitleg: 'Lever meer content met het team dat je al hebt. Orbit versnelt het onderzoek en schrijfwerk, zodat je specialisten meer tijd hebben voor strategie en creatie.',
   },
   {
-    titel: 'Content op copywriterniveau',
-    uitleg: 'Lever teksten die klinken als het merk van je klant en zijn aanbod overtuigend uitleggen. Orbit schrijft in de juiste toon, controleert claims aan de hand van bronnen en markeert wat aandacht vraagt.',
+    titel: 'Copywriterniveau',
+    uitleg: 'Lever teksten die klinken als het merk van je klant, zijn aanbod overtuigend neerzetten en zijn onderbouwd met bronnen. Content waar je graag je bureaunaam onder zet.',
   },
 ]
 
