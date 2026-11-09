@@ -266,6 +266,11 @@
 /* Blog (/blog): kop zoals /kennisbank, met een langere subtekst */
 .kb-hero .blog-subline { max-width: 720px; margin: 24px auto 0; font-size: 20px; line-height: 1.5; }
 .blog-overzicht { margin-top: 80px; }
+/* Op /blog staan titel en subtekst links, gelijk met de linkerrand van de eerste kaart. De titel schuift een
+   fractie naar links, zodat de rechte stam van de B optisch op die rand staat (zoals de koppen op linear.app). */
+.blog-kop { max-width: 976px; margin-inline: auto; text-align: left; }
+.blog-kop h1 { margin-left: -0.04em; }
+.blog-kop .blog-subline { margin-left: 0; }
 @media (max-width: 639px) { .kb-hero .blog-subline { font-size: 17px; } .blog-overzicht { margin-top: 48px; } }
 
 /* Blogoverzicht: twee kaarten naast elkaar, opgebouwd als de kaarten op linear.app/now, met een dunne lijn
