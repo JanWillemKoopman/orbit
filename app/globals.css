@@ -632,8 +632,9 @@ img, svg { display: block; max-width: 100%; }
    Footer
    ========================================================================== */
 .site-footer { position: relative; background: var(--bg-primary); border-top: 1px solid var(--border-primary); }
-/* Logo links, daarnaast vier kolommen in de volgorde van het hoofdmenu, met contact als laatste */
-.footer-inner { display: grid; grid-template-columns: 224px repeat(4, 192px); padding-top: 56px; }
+/* Logo links; de kolommen (in de volgorde van het hoofdmenu, met contact als laatste) staan rechts tegen de
+   rand van de inhoud. Het logo krijgt de vrije ruimte, elke kolom erna is 192px breed, hoeveel het er ook zijn. */
+.footer-inner { display: grid; grid-template-columns: minmax(160px, 1fr); grid-auto-columns: 192px; grid-auto-flow: column; padding-top: 56px; }
 .footer-logo { display: inline-flex; color: var(--text-primary); opacity: 1; transition: opacity var(--speed-quick); }
 @media (hover: hover) { .footer-logo:hover { opacity: 0.7; } }
 .footer-col h3 { font-size: 13px; line-height: 1.5; font-weight: var(--weight-medium); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 24px; }
@@ -649,11 +650,11 @@ img, svg { display: block; max-width: 100%; }
 .footer-legal p { margin: 0; color: var(--text-quaternary); }
 
 @media (max-width: 1024px) {
-  .footer-inner { grid-template-columns: 160px repeat(4, minmax(0, 1fr)); column-gap: 16px; }
+  .footer-inner { grid-auto-columns: minmax(0, 192px); column-gap: 16px; }
   .footer-legal { padding-left: calc(160px + 16px + var(--page-padding)); }
 }
 @media (max-width: 768px) {
-  .footer-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 48px; }
+  .footer-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-flow: row; row-gap: 48px; }
   .footer-brand { grid-column: 1 / -1; }
   .footer-legal { padding-top: 64px; padding-left: var(--page-padding); }
 }
