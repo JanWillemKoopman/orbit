@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { ALLE_BOLLEN, type BolNaam, type VrijeBolNaam } from './bollen'
+import { ALLE_BOLLEN, zetThema, type BolNaam, type VrijeBolNaam } from './bollen'
 
 // De bol van stippen van de assistent rechtsonder. Hoe hij eruitziet en beweegt staat per variant in
 // ./bollen.ts. Tekent alleen als de pagina zichtbaar is, op hooguit 30 beelden per seconde; met reduced
-// motion staat er één stilstaand beeld.
-export function DotBol({ maat, variant = 'stippen' }: { maat: number; variant?: BolNaam | VrijeBolNaam }) {
+// motion staat er één stilstaand beeld. Met `licht` (de blog, in het lichte thema) zijn de grijze stippen donker.
+export function DotBol({ maat, variant = 'stippen', licht = false }: { maat: number; variant?: BolNaam | VrijeBolNaam; licht?: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -21,6 +21,7 @@ export function DotBol({ maat, variant = 'stippen' }: { maat: number; variant?: 
     const teken = (t: number) => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, maat, maat)
+      zetThema(licht)
       bol.teken(ctx, maat, t)
     }
 
@@ -54,7 +55,7 @@ export function DotBol({ maat, variant = 'stippen' }: { maat: number; variant?: 
       document.removeEventListener('visibilitychange', update)
       reduce.removeEventListener('change', update)
     }
-  }, [maat, variant])
+  }, [maat, variant, licht])
 
   return <canvas ref={ref} className="dotbol" style={{ width: maat, height: maat }} aria-hidden="true" />
 }

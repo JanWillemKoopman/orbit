@@ -904,14 +904,20 @@ img, svg { display: block; max-width: 100%; }
 }
 :root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) :focus-visible { outline-color: #08090a; }
 
-/* De assistent rechtsonder blijft een donker zwevend venster: zijn bol van lime en grijze stippen is op wit
-   niet te zien. De donkere tokens gelden daarom opnieuw binnen de knop en het venster. */
-:root:has(.licht-thema) :is(.as-knop, .as-venster) {
-  color-scheme: dark;
-  --bg-primary: #08090a; --bg-level-1: #0f1011; --bg-level-2: #141516; --bg-level-3: #191a1b;
-  --bg-translucent: rgba(255, 255, 255, 0.05); --bg-hover: rgba(255, 255, 255, 0.08);
-  --text-primary: #f7f8f8; --text-secondary: #d0d6e0; --text-tertiary: #8a8f98; --text-quaternary: #62666d;
-  --border-primary: #23252a; --border-translucent: rgba(255, 255, 255, 0.08); --border-strong: #34343a;
-  --button-invert-bg: #e5e5e6; --button-invert-bg-hover: #ffffff;
+/* De assistent rechtsonder in het lichte thema: een witte pil en een wit venster met lichte schaduwen (de
+   schaduw "high" van linear.app in het lichte thema). De bol tekent dan donkere stippen (Assistent.tsx). Het
+   lime label en de lime badge zijn op wit onleesbaar en worden donker. */
+:root:has(.licht-thema) .as-knop {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 0 0 1px var(--border-translucent), 0 1px 1px rgba(0, 0, 0, 0.04), 0 7px 24px rgba(0, 0, 0, 0.08);
 }
-:root:has(.licht-thema) :is(.as-knop, .as-venster) :focus-visible { outline-color: var(--accent); }
+@media (hover: hover) { :root:has(.licht-thema) .as-knop:hover { background: rgba(255, 255, 255, 0.98); } }
+:root:has(.licht-thema) .as-knop-label { color: var(--text-tertiary); }
+:root:has(.licht-thema) .as-venster {
+  background: var(--bg-primary);
+  box-shadow: inset 0 0 0 1px var(--border-translucent), 0 1px 4px rgba(0, 0, 0, 0.04), 0 7px 24px rgba(0, 0, 0, 0.08);
+}
+:root:has(.licht-thema) .as-kop { background: radial-gradient(120% 140% at 0% 0%, rgba(188, 255, 47, 0.12), transparent 60%), var(--bg-level-1); }
+:root:has(.licht-thema) .as-badge-accent { color: var(--text-primary); background: rgba(188, 255, 47, 0.35); box-shadow: inset 0 0 0 1px rgba(8, 9, 10, 0.08); }
+:root:has(.licht-thema) .as-optie { border-color: rgba(0, 0, 0, 0.12); }
+@media (max-width: 640px) { :root:has(.licht-thema) .as-venster { box-shadow: none; } }
