@@ -2,7 +2,7 @@
 import type { MaandStap } from '@/components/product/Visuals'
 
 export const hero = {
-  title: ['Automatiseer content productie.', 'Maak je klanten vindbaar in AI\u00a0&\u00a0Search.'],
+  title: ['Automatiseer content productie.', 'Maak je klanten zichtbaar in Search\u00a0&\u00a0AI.'],
   description: 'AI-software voor marketingbureaus met groeiambitie.',
   // Regel onder de knoppen: het eerste woord in het wit, de rest in grijs.
   link: { label: 'Lees', titel: 'Ons verhaal', href: '/over' },
