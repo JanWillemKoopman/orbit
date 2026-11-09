@@ -74,19 +74,29 @@ export const mobileNav: NavGroep[] = [
 
 // Footer: volgt het hoofdmenu. Elke groep uit mainNav wordt een kolom, met dezelfde labels; Prijzen
 // (een losse pagina) sluit de kolom Product af, zoals "Pricing" onder Product in de footer van linear.app,
-// en Blog staat onder Over ons, zoals "Blog" onder Company op linear.app.
-const footerLabels: Record<string, string> = { '/contact': 'Contact' }
-const footerLink = ({ href, label }: NavLink) => ({ href, label: footerLabels[href] ?? label })
-export const footerNav = mainNav
-  .filter((item): item is { label: string; items: NavMenuItem[] } => 'items' in item)
-  .map((group) => ({
-    title: group.label,
+// en Blog staat onder Over ons, zoals "Blog" onder Company op linear.app. Contact staat niet onder Over ons
+// maar in de kolom Start growing, naast de demo. Contactgegevens en adres volgen als eigen kolommen (Footer.tsx).
+const nietInFooterGroep = new Set(['/contact'])
+const footerLinks = (items: NavMenuItem[]): NavLink[] => links(items).filter((l) => !nietInFooterGroep.has(l.href))
+export const footerNav: { title: string; links: NavLink[] }[] = [
+  ...mainNav
+    .filter((item): item is { label: string; items: NavMenuItem[] } => 'items' in item)
+    .map((group) => ({
+      title: group.label,
+      links: [
+        ...footerLinks(group.items),
+        ...(group.label === 'Product' ? [prijzen] : []),
+        ...(group.label === 'Over ons' ? [blog] : []),
+      ],
+    })),
+  {
+    title: 'Start growing',
     links: [
-      ...group.items.map(footerLink),
-      ...(group.label === 'Product' ? [prijzen] : []),
-      ...(group.label === 'Over ons' ? [blog] : []),
+      { href: '/demo', label: 'Gratis demo aanvragen' },
+      { href: '/contact', label: 'Contact opnemen' },
     ],
-  }))
+  },
+]
 
 export const footerContact = {
   company: 'Orbit',
