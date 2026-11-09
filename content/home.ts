@@ -2,7 +2,7 @@
 import type { MaandStap } from '@/components/product/Visuals'
 
 export const hero = {
-  title: ['Automatiseer content productie.', 'Maak je klanten zichtbaar in Search\u00a0&\u00a0AI.'],
+  title: ['Automatiseer content productie.', 'Maak je klanten zichtbaar in AI\u00a0&\u00a0Search.'],
   description: 'AI-software voor marketingbureaus met groeiambitie.',
   // Regel onder de knoppen: het eerste woord in het wit, de rest in grijs.
   link: { label: 'Lees', titel: 'Ons verhaal', href: '/over' },
@@ -52,30 +52,25 @@ export const uspIntro = {
   description: 'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst aan te bieden, laat je klanten zien wat het oplevert en geeft je specialisten de ruimte voor het werk dat ertoe doet.',
 }
 
-// Per voordeel twee titels: een korte voor desktop, die in vier kolommen op één regel past, met een regel
-// uitleg eronder, en een langere voor mobiel, zonder uitleg. Bron: docs/ORBIT_WAAROM.md in orbit-engine.
+// Per voordeel een titel met uitleg, op desktop en mobiel. Het type Usp (korte en lange titel) gebruikt /agencies nog.
 export type Usp = { kort: string; titel: string; uitleg: string }
 
-export const usps: Usp[] = [
+export const usps: { titel: string; uitleg: string }[] = [
   {
-    kort: 'Een vaste dienst',
-    titel: 'Maak AI-zichtbaarheid een vaste dienst',
-    uitleg: 'Meten, schrijven en hermeten als maandelijkse dienst, met een marge die je zelf bepaalt.',
+    titel: 'Jouw merk voorop',
+    uitleg: 'Geef je klanten een platform dat voelt als onderdeel van jouw bureau. De interface is 100% white label, standaard inbegrepen. Ook het maandrapport draagt jouw bureaunaam.',
   },
   {
-    kort: 'Zichtbare vooruitgang',
-    titel: 'Maak vooruitgang zichtbaar voor je klant',
-    uitleg: 'Orbit meet elke pagina na 14 en 28 dagen opnieuw. Je klant krijgt elke maand een verslag.',
+    titel: 'Maak resultaat zichtbaar',
+    uitleg: 'Laat je klant zien of zijn merk vaker opduikt in AI-antwoorden. Orbit vergelijkt de nulmeting met metingen op dezelfde vragen na 14 en 28 dagen.',
   },
   {
-    kort: 'Tijd voor strategie',
-    titel: 'Geef je specialisten tijd voor strategie',
-    uitleg: 'Orbit stelt het merkdossier op en schrijft de eerste versie. Je specialisten sturen bij.',
+    titel: 'Meer klanten, zelfde team',
+    uitleg: 'Bedien meer klanten zonder dat elk nieuw traject je team evenveel extra werk kost. Start voor meerdere klanten tegelijk en zie in één overzicht waar je specialisten nodig zijn.',
   },
   {
-    kort: 'Alle klanten op één plek',
-    titel: 'Beheer al je klanten vanuit één platform',
-    uitleg: 'Onbeperkt klanten in één app. Het werkoverzicht laat zien waar iets op je wacht.',
+    titel: 'Content op copywriterniveau',
+    uitleg: 'Lever teksten die klinken als het merk van je klant en zijn aanbod overtuigend uitleggen. Orbit schrijft in de juiste toon, controleert claims aan de hand van bronnen en markeert wat aandacht vraagt.',
   },
 ]
 

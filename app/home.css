@@ -325,8 +325,18 @@
 .usp-lang { display: none; }
 .usp-uitleg { grid-column: 2; margin-top: 0; max-width: 30ch; }
 .usp-steps .usp-vink:has(+ .process-title .usp-kort) { margin-top: 2px; }
+/* Homepage: één titel (17px) met uitleg eronder, ook op mobiel */
+.usp-tekst .process-title { font-size: 17px; }
+.usp-tekst .usp-vink { margin-top: 2px; }
+.usp-tekst .usp-uitleg { max-width: none; }
 @media (max-width: 1024px) {
   .process-steps.usp-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process-steps.usp-tekst { row-gap: 40px; }
+  .usp-tekst .process-step:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 768px) {
+  .process-steps.usp-tekst { row-gap: 28px; }
+  .usp-tekst .usp-uitleg { display: block; }
 }
 @media (max-width: 768px) {
   .process-steps.usp-steps { grid-template-columns: 1fr; row-gap: 20px; }
