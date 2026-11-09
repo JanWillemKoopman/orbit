@@ -48,7 +48,7 @@ export const uitgelichtStappen: MaandStap[] = [
 // Vier voordelen voor marketingbureaus, direct onder de AI-logo's en boven de twee beelden.
 // Erboven een kop (links) en een korte uitleg (rechts); per voordeel een vinkje met titel.
 export const uspIntro = {
-  title: 'Gebouwd voor marketingbureaus',
+  title: 'Ontwikkeld voor marketingbureaus',
   description: 'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst aan te bieden, laat je klanten zien wat het oplevert en geeft je specialisten de ruimte voor het werk dat ertoe doet.',
 }
 

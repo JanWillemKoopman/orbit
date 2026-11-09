@@ -26,7 +26,7 @@ export default function AgenciesPage() {
       <PaginaHero eyebrow={hero.eyebrow} titel={hero.title} video="hero-agencies" vierkantMobiel />
 
       <div className="container">
-        {/* Tekstblok met vier voordelen, zoals "Gebouwd voor marketingbureaus" op de homepage: desktop korte titel met uitleg, mobiel lange titel */}
+        {/* Tekstblok met vier voordelen, zoals "Ontwikkeld voor marketingbureaus" op de homepage: desktop korte titel met uitleg, mobiel lange titel */}
         <section className="feature process usp a2-usp" aria-labelledby="a2-usp-titel">
           <div className="feature-header">
             <h2 id="a2-usp-titel" className="feature-title">{usp.titel}</h2>

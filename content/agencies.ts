@@ -20,7 +20,7 @@ export const hero = {
 }
 
 // Kop (links), uitleg (rechts) en vier voordelen met een vinkje, in de opbouw van het blok
-// "Gebouwd voor marketingbureaus" op de homepage (uspIntro en usps in content/home.ts): op desktop een
+// "Ontwikkeld voor marketingbureaus" op de homepage (uspIntro en usps in content/home.ts): op desktop een
 // korte titel met een regel uitleg, op mobiel de lange titel zonder uitleg.
 // Bron van de uitleg: docs/ORBIT_WAAROM.md (4.1) in orbit-engine.
 export const usp: { titel: string; tekst: string; punten: Usp[] } = {
