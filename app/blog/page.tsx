@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { BlogIntroItem } from '@/components/BlogIntro'
+import { BlogKaart } from '@/components/BlogKaart'
 import { MeerLaden } from '@/components/MeerLaden'
 import { Prefooter } from '@/components/Prefooter'
-import { getBlogIntros } from '@/lib/posts'
+import { getBlogMetas } from '@/lib/posts'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  const posts = getBlogIntros()
+  const posts = getBlogMetas()
 
   return (
     <>
@@ -21,8 +21,8 @@ export default function BlogPage() {
           <p className="blog-subline">In de blog vind je AI-gedreven tactieken, automatiseringsstrategieën en growth hacks die zijn ontworpen om concurrenten te slim af te zijn.</p>
         </div>
         <div className="blog-overzicht">
-          <MeerLaden className="blog-lijst">
-            {posts.map((p, i) => <BlogIntroItem key={p.slug} post={p} priority={i === 0} />)}
+          <MeerLaden className="blog-raster">
+            {posts.map((p, i) => <BlogKaart key={p.slug} post={p} priority={i < 2} />)}
           </MeerLaden>
         </div>
       </div>

@@ -17,6 +17,9 @@
   --border-primary: #23252a;
   --border-translucent: rgba(255, 255, 255, 0.08);
   --border-strong: #34343a;
+  /* Nog stillere randen en lijnen: de rand om een cover en de lijn tussen twee kaarten op /blog */
+  --border-faint: rgba(255, 255, 255, 0.05);
+  --line-tertiary: rgba(255, 255, 255, 0.05);
 
   --accent: #bcff2f;
   --red: #eb5757;
@@ -51,6 +54,33 @@
 
 @media (max-width: 640px) {
   :root { --header-height: 64px; --page-padding: 24px; }
+}
+
+/* Licht thema, alleen op /blog en de blogartikelen (app/blog/layout.tsx zet daar de klasse licht-thema), op
+   besluit van de eigenaar. De waarden zijn die van linear.app/now in het lichte thema. Ze staan op :root, zodat
+   ook header, footer en dialogen buiten de blog-layout meedoen; de rest van de site blijft donker. */
+:root:has(.licht-thema) {
+  color-scheme: light;
+  --bg-primary: #ffffff;
+  --bg-level-1: #f8f8f8;
+  --bg-level-2: #f4f4f4;
+  --bg-level-3: #f0f0f0;
+  --bg-translucent: rgba(0, 0, 0, 0.02);
+  --bg-hover: rgba(0, 0, 0, 0.08);
+
+  --text-primary: #282a30;
+  --text-secondary: #3c4149;
+  --text-tertiary: #6f6e77;
+  --text-quaternary: #86848d;
+
+  --border-primary: #e9e8ea;
+  --border-translucent: rgba(0, 0, 0, 0.08);
+  --border-strong: #dcdbdd;
+  --border-faint: rgba(0, 0, 0, 0.05);
+  --line-tertiary: #f0f0f0;
+
+  --button-invert-bg: #282a30;
+  --button-invert-bg-hover: #1f2024;
 }
 
 /* ==========================================================================
@@ -823,3 +853,65 @@ img, svg { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) and (max-width: 640px) {
   .as-knop:not([data-zichtbaar]) { opacity: 0; transform: none; }
 }
+
+/* ==========================================================================
+   Licht thema (/blog en de blogartikelen): waarden die niet via de tokens lopen
+   ========================================================================== */
+/* Header en menu's zoals op linear.app/now in het lichte thema */
+:root:has(.licht-thema) .site-header { background: rgba(255, 255, 255, 0.8); }
+:root:has(.licht-thema) .nav-menu-trigger[aria-expanded='true'] { background: rgba(0, 0, 0, 0.08); }
+:root:has(.licht-thema) .nav-menu-popup {
+  border-color: rgba(0, 0, 0, 0.08); background: rgba(255, 255, 255, 0.9); box-shadow: 0 8px 32px rgba(8, 9, 10, 0.05);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+}
+:root:has(.licht-thema) .nav-menu-grid { background: rgba(0, 0, 0, 0.02); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05); }
+:root:has(.licht-thema) .nav-menu-column + .nav-menu-column::before,
+:root:has(.licht-thema) .nav-menu-grid[data-raster] .nav-menu-column:nth-child(n + 3)::after { background: rgba(0, 0, 0, 0.05); }
+:root:has(.licht-thema) :is(.nav-menu-link, .nav-menu-footer):focus-visible { background: rgba(0, 0, 0, 0.03); }
+@media (hover: hover) { :root:has(.licht-thema) :is(.nav-menu-link, .nav-menu-footer):hover { background: rgba(0, 0, 0, 0.03); } }
+:root:has(.licht-thema) :is(.nav-menu-title, .nav-menu-footer-new) { color: #3c4149; }
+:root:has(.licht-thema) :is(.nav-menu-description, .nav-menu-footer-text, .nav-menu-footer-cta) { color: #6f6e77; }
+:root:has(.licht-thema) .nav-menu-footer-arrow { color: #86848d; }
+@media (max-width: 768px) {
+  :root:has(.licht-thema) .site-header { background: linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.8) 100%); }
+  :root:has(.licht-thema) .site-header[data-menu-open='true'],
+  :root:has(.licht-thema) .mobile-menu[data-open='true'] { background: #fff; }
+}
+
+/* Focus, links en knoppen: het limegroene accent is op wit onleesbaar, dus focus en accenttekst worden donker */
+:root:has(.licht-thema) :focus-visible { outline-color: var(--text-primary); }
+:root:has(.licht-thema) .prose a { text-decoration-color: var(--text-quaternary); }
+@media (hover: hover) { :root:has(.licht-thema) .prose a:hover { text-decoration-color: var(--text-primary); } }
+:root:has(.licht-thema) .prose code { background: var(--bg-level-2); border-color: var(--border-primary); }
+:root:has(.licht-thema) .field :is(input, textarea, select):focus { border-color: var(--text-primary); }
+:root:has(.licht-thema) .btn-secondary {
+  background: var(--bg-primary); backdrop-filter: none;
+  box-shadow: inset 0 0 0 1px var(--border-translucent), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+@media (hover: hover) { :root:has(.licht-thema) .btn-secondary:hover { background: var(--bg-level-2); } }
+:root:has(.licht-thema) .btn-invert { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+:root:has(.licht-thema) .demo-eyebrow { color: var(--text-tertiary); }
+:root:has(.licht-thema) .demo-success { color: var(--text-primary); }
+:root:has(.licht-thema) .demo-error { color: var(--red); }
+
+/* Het limegroene afsluitblok blijft hetzelfde: donkere kop en een zwarte knop, ook nu de tokens licht zijn */
+:root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) h2 { color: #08090a; }
+:root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) .btn-invert { background: #08090a; color: #f7f8f8; border-color: #08090a; }
+:root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) .btn-secondary { color: #08090a; background: rgba(8, 9, 10, 0.06); box-shadow: inset 0 0 0 1px rgba(8, 9, 10, 0.25); }
+@media (hover: hover) {
+  :root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) .btn-invert:hover { background: #191a1b; }
+  :root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) .btn-secondary:hover { background: rgba(8, 9, 10, 0.12); }
+}
+:root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) :focus-visible { outline-color: #08090a; }
+
+/* De assistent rechtsonder blijft een donker zwevend venster: zijn bol van lime en grijze stippen is op wit
+   niet te zien. De donkere tokens gelden daarom opnieuw binnen de knop en het venster. */
+:root:has(.licht-thema) :is(.as-knop, .as-venster) {
+  color-scheme: dark;
+  --bg-primary: #08090a; --bg-level-1: #0f1011; --bg-level-2: #141516; --bg-level-3: #191a1b;
+  --bg-translucent: rgba(255, 255, 255, 0.05); --bg-hover: rgba(255, 255, 255, 0.08);
+  --text-primary: #f7f8f8; --text-secondary: #d0d6e0; --text-tertiary: #8a8f98; --text-quaternary: #62666d;
+  --border-primary: #23252a; --border-translucent: rgba(255, 255, 255, 0.08); --border-strong: #34343a;
+  --button-invert-bg: #e5e5e6; --button-invert-bg-hover: #ffffff;
+}
+:root:has(.licht-thema) :is(.as-knop, .as-venster) :focus-visible { outline-color: var(--accent); }
