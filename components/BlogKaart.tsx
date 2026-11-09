@@ -5,10 +5,11 @@ import { Art } from './Art'
 
 // Eén blogpost in het overzicht op /blog, zoals de kaarten op linear.app/now: cover, titel, korte tekst
 // en onderaan naam en datum. De cover staat hier in zwart-wit (article.css); in het artikel zelf in kleur.
+// Geen data-opbouw: op de blog staat de cover er meteen, zonder animatie.
 export function BlogKaart({ post, priority }: { post: PostMeta; priority?: boolean }) {
   return (
     <Link href={`/blog/${post.slug}`} className="blog-kaart">
-      <div className="blog-kaart-beeld" data-opbouw>
+      <div className="blog-kaart-beeld">
         <Art src={post.cover} priority={priority} />
       </div>
       <h2 className="blog-kaart-titel">{post.title}</h2>

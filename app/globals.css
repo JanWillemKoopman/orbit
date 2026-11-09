@@ -896,6 +896,17 @@ img, svg { display: block; max-width: 100%; }
 :root:has(.licht-thema) .demo-success { color: var(--text-primary); }
 :root:has(.licht-thema) .demo-error { color: var(--red); }
 
+/* Op de blog beweegt niets, op besluit van de eigenaar: geen animaties en geen overgangen, alleen de assistent
+   rechtsonder (knop en venster) houdt de zijne. Beelden met data-opbouw staan er meteen, zonder veeg, en het
+   stippenblok onderaan staat stil (CtaAchtergrond.tsx). */
+:root:has(.licht-thema) *:not(.as-knop, .as-knop *, .as-venster, .as-venster *),
+:root:has(.licht-thema) *:not(.as-knop, .as-knop *, .as-venster, .as-venster *)::before,
+:root:has(.licht-thema) *:not(.as-knop, .as-knop *, .as-venster, .as-venster *)::after {
+  animation: none !important;
+  transition: none !important;
+}
+:root:has(.licht-thema) [data-opbouw] > :is(.art, img) { opacity: 1; mask: none; -webkit-mask: none; }
+
 /* Het limegroene afsluitblok blijft hetzelfde: donkere kop en een zwarte knop, ook nu de tokens licht zijn */
 :root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) h2 { color: #08090a; }
 :root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) .btn-invert { background: #08090a; color: #f7f8f8; border-color: #08090a; }

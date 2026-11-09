@@ -10,8 +10,8 @@ import { Batch, ROTATIE, SCENES, type SceneNaam } from './dots/scenes'
 // localStorage; zonder opslag begint de bezoeker bij een willekeurige scène.
 //
 // Het canvas tekent alleen zolang de sectie in beeld is, op hooguit 30 beelden per seconde. Kost een beeld
-// het apparaat te veel tijd, dan zakt de beeldsnelheid stapsgewijs. Met reduced motion staat er één
-// stilstaand beeld.
+// het apparaat te veel tijd, dan zakt de beeldsnelheid stapsgewijs. Met reduced motion, en op de blog,
+// staat er één stilstaand beeld.
 
 const SLEUTEL = 'orbit-cta-achtergrond'
 const MAX_FPS = 30
@@ -78,6 +78,8 @@ export function CtaAchtergrond({ scene: vast, lime: limeProp = true }: { scene?:
     if (!scene || !lagen || !canvas || !section || !ctx) return
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    // Op de blog (licht thema) beweegt niets: daar staat, net als bij reduced motion, één stilstaand beeld.
+    const stil = !!section.closest('.licht-thema')
     const sc = SCENES[scene]()
     const batch = new Batch(lime ? 'lime' : 'standaard')
     let w = 0, h = 0
@@ -129,7 +131,7 @@ export function CtaAchtergrond({ scene: vast, lime: limeProp = true }: { scene?:
     }
 
     const update = () => {
-      const speel = zichtbaar && !document.hidden && !reduceMotion.matches
+      const speel = zichtbaar && !document.hidden && !reduceMotion.matches && !stil
       if (speel && !raf) {
         vorige = 0
         raf = requestAnimationFrame(lus)
