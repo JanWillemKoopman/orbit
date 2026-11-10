@@ -5,7 +5,7 @@ export const hero = {
   title: ['Automatiseer content productie.', 'Maak je klanten zichtbaar in AI\u00a0&\u00a0Search.'],
   description: 'AI-software voor marketingbureaus met groeiambitie.',
   // Regel onder de knoppen: het eerste woord in het wit, de rest in grijs.
-  link: { label: 'Lees', titel: 'Ons verhaal', href: '/over' },
+  link: { label: 'Lees', titel: 'Zo werkt Orbit', href: '/werkwijze' },
 }
 
 // Grote tussenzin onder de twee beelden, boven de drie nagebouwde schermen. Het vetgedrukte deel staat in het wit, de rest in grijs.
