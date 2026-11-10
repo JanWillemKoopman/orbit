@@ -61,12 +61,12 @@ export const usps: { titel: string; uitleg: string }[] = [
     uitleg: 'Maak van vindbaarheid terugkerende omzet. Verkoop GEO en SEO onder je eigen naam, met standaard een 100% white-label platform in de huisstijl van jouw bureau.',
   },
   {
-    titel: 'Inzicht in impact',
-    uitleg: 'Maak je waarde zichtbaar in elk klantgesprek. Met een nulmeting en nametingen laat je zien hoe het verkeer en de zichtbaarheid van je klant in AI-antwoorden zich ontwikkelen.',
-  },
-  {
     titel: 'Verhoog productie',
     uitleg: 'Lever meer content met het team dat je al hebt. Orbit versnelt het onderzoek en schrijfwerk, zodat je specialisten meer tijd hebben voor strategie en creatie.',
+  },
+  {
+    titel: 'Inzicht in impact',
+    uitleg: 'Maak je waarde zichtbaar in elk klantgesprek. Met een nulmeting en nametingen laat je zien hoe het verkeer en de zichtbaarheid van je klant in AI-antwoorden zich ontwikkelen.',
   },
   {
     titel: 'Copywriterniveau',
