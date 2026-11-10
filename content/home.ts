@@ -24,7 +24,7 @@ export const uitgelicht: Uitgelicht[] = [
   {
     titel: 'Al je klanten in één platform',
     tekst: 'Beheer merken, metingen en content vanuit één centrale omgeving. Houd overzicht terwijl je bureau groeit.',
-    href: '/beheer',
+    href: '/werkwijze',
     alt: 'Het werkoverzicht van Bureau Noordwind: bedrijven onder elkaar met hun zichtbaarheid in AI, de maandmeting en wat er klaarstaat om te starten.',
   },
   {

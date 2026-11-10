@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-// Opbouw en maten volgen linear.app: hero met nagebouwde app, vier voordelen voor bureaus naast elkaar, twee beelden met een link naar /beheer en /werkwijze, een grote tussenzin, drie nagebouwde schermen, de kwaliteit van de content, wat het werk oplevert, veelgestelde vragen en een afsluiter.
+// Opbouw en maten volgen linear.app: hero met nagebouwde app, vier voordelen voor bureaus naast elkaar, twee beelden met een link naar /werkwijze, een grote tussenzin, drie nagebouwde schermen, de kwaliteit van de content, wat het werk oplevert, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
 
   return (
@@ -73,7 +73,7 @@ export default function HomePage() {
         <section className="home-uitgelicht" aria-label="Orbit voor bureaus">
           <div className="pd-grid">
             {uitgelicht.map((u, i) => (
-              <figure className="pd-cell hu-cell" key={u.href}>
+              <figure className="pd-cell hu-cell" key={u.titel}>
                 <div className={`pd-cell-stage hu-stage hu-stage-${i === 0 ? 'account' : 'ronde'}`} role="img" aria-label={u.alt}>
                   <div className="hu-inner" aria-hidden="true">{i === 0 ? <HeroWerkoverzicht /> : <HeroMaand stappen={uitgelichtStappen} />}</div>
                 </div>
