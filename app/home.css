@@ -646,71 +646,37 @@
 }
 
 /* White label: een eigen, smal limegroen blok onder de vier voordelen. Zelfde vorm en stippen als de
-   afsluiter (CtaAchtergrond, lime), maar veel kleiner. Links titel en uitleg in donkere tekst, rechts een
-   klein donker scherm dat om de drie seconden een andere huisstijl aanneemt. De merkkleuren zijn de
-   statuskleuren van linear.app. */
+   afsluiter (CtaAchtergrond, lime), maar veel kleiner en rustiger: de stippen zijn alleen aan de
+   rechterrand te zien. Links titel en uitleg in donkere tekst, rechts een link naar /agencies. */
 .wl {
   position: relative; isolation: isolate; margin-top: 64px;
-  display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: center; gap: 48px;
-  padding: 40px 48px; min-height: 220px;
+  display: flex; align-items: center; justify-content: space-between; gap: 48px;
+  padding: 32px 40px;
 }
-.wl .cta-achtergrond { inset: 0; }
-/* Zachte lime waas achter de tekst, zodat de stippen daar wegvallen en de tekst rustig leest */
+.wl .cta-achtergrond { inset: 0; z-index: -2; }
+/* Lime waas over het grootste deel van het blok: de stippen vallen weg en komen pas rechts op */
 .wl::before {
   content: ''; position: absolute; inset: 0; z-index: -1; border-radius: var(--radius-16); pointer-events: none;
-  background: linear-gradient(90deg, var(--accent) 30%, rgba(188, 255, 47, 0) 75%);
+  background: linear-gradient(90deg, var(--accent) 45%, rgba(188, 255, 47, 0.6) 80%, rgba(188, 255, 47, 0.35));
 }
-.wl-titel { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-semibold); color: var(--bg-primary); }
-.wl-uitleg { margin-top: 8px; max-width: 52ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: rgba(8, 9, 10, 0.72); text-wrap: pretty; }
-
-.wl-scherm {
-  border-radius: var(--radius-12); background: var(--bg-primary); overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 7px 32px rgba(8, 9, 10, 0.35);
+.wl-titel { font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-semibold); color: var(--bg-primary); }
+.wl-uitleg { margin-top: 4px; max-width: 60ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: rgba(8, 9, 10, 0.72); text-wrap: pretty; }
+.wl-link {
+  flex: none; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 18px; white-space: nowrap;
+  border-radius: var(--radius-pill); font-size: 15px; letter-spacing: -0.011em; font-weight: var(--weight-medium);
+  color: var(--bg-primary); background: rgba(8, 9, 10, 0.06); box-shadow: inset 0 0 0 1px rgba(8, 9, 10, 0.25);
+  transition: background var(--speed-quick) var(--ease-out-quad), transform var(--speed-quick) var(--ease-out-quad);
 }
-.wl-balk { display: flex; gap: 5px; padding: 10px 12px; border-bottom: 1px solid var(--border-translucent); }
-.wl-balk i { width: 7px; height: 7px; border-radius: 50%; background: var(--bg-hover); }
-.wl-merken { position: relative; display: grid; }
-.wl-merk {
-  grid-area: 1 / 1; padding: 16px 16px 18px; color: var(--text-tertiary); font-size: 12px; letter-spacing: -0.01em;
-  --merk: #4ea7fc;
-  animation: wl-wissel 9s var(--ease-out-quad) infinite both;
+.wl-link .feature-plus { color: inherit; }
+.wl-link:active { transform: scale(0.97); }
+.wl-link:focus-visible { outline-color: var(--bg-primary); }
+@media (hover: hover) {
+  .wl-link:hover { background: rgba(8, 9, 10, 0.12); }
+  .wl-link:hover .feature-plus { transform: translateX(3px); }
 }
-.wl-merk-2 { --merk: #fc7840; animation-delay: 3s; }
-.wl-merk-3 { --merk: #00b8cc; animation-delay: 6s; }
-.wl-kop { display: flex; align-items: center; gap: 8px; }
-.wl-logo {
-  display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: var(--radius-6);
-  background: var(--merk); color: var(--bg-primary); font-size: 11px; font-weight: var(--weight-semibold);
-}
-.wl-naam { font-size: 13px; font-weight: var(--weight-medium); color: var(--text-primary); }
-.wl-rij { display: flex; justify-content: space-between; margin-top: 18px; }
-.wl-getal { font-family: var(--font-mono); color: var(--text-secondary); }
-.wl-meter { height: 4px; margin-top: 8px; border-radius: var(--radius-pill); background: var(--bg-translucent); overflow: hidden; }
-.wl-meter span { display: block; width: 47%; height: 100%; border-radius: inherit; background: var(--merk); transform-origin: left; }
-.wl-voet { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; }
-.wl-lijn { flex: 1; height: 6px; max-width: 96px; border-radius: var(--radius-pill); background: var(--bg-translucent); }
-.wl-knop {
-  padding: 4px 10px; border-radius: var(--radius-pill); background: var(--merk); color: var(--bg-primary);
-  font-size: 11px; font-weight: var(--weight-medium);
-}
-/* Elk merk staat drie van de negen seconden in beeld: kort inschuiven, staan, kort uitschuiven */
-@keyframes wl-wissel {
-  0% { opacity: 0; transform: translateY(-4px) scale(0.99); }
-  4%, 30% { opacity: 1; transform: none; }
-  34%, 100% { opacity: 0; transform: translateY(4px) scale(0.99); }
-}
-.wl-merk .wl-meter span { animation: wl-meter 9s var(--ease-out-expo) infinite both; }
-.wl-merk-2 .wl-meter span { animation-delay: 3s; }
-.wl-merk-3 .wl-meter span { animation-delay: 6s; }
-@keyframes wl-meter { 0%, 2% { transform: scaleX(0); } 14%, 100% { transform: none; } }
-
 @media (max-width: 768px) {
-  .wl { grid-template-columns: 1fr; gap: 28px; margin-top: 48px; padding: 28px 24px 24px; }
-  .wl::before { background: linear-gradient(180deg, var(--accent) 35%, rgba(188, 255, 47, 0) 90%); }
-  .wl-titel { font-size: 20px; }
-  .wl-scherm { width: 100%; max-width: 340px; }
+  .wl { flex-direction: column; align-items: flex-start; gap: 20px; margin-top: 48px; padding: 24px; }
+  .wl-link { height: 36px; padding: 0 14px; font-size: 14px; letter-spacing: -0.01em; }
+  .wl::before { background: linear-gradient(180deg, var(--accent) 55%, rgba(188, 255, 47, 0.5)); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .wl-merk, .wl-merk .wl-meter span { animation: none; }
-  .wl-merk-2, .wl-merk-3 { visibility: hidden; }
-}
+@media (prefers-reduced-motion: reduce) { .wl-link { transition: none; } }
