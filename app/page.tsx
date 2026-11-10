@@ -11,6 +11,7 @@ import { Faq } from '@/components/home/Faq'
 import { DuoSlider } from '@/components/home/DuoSlider'
 import { OpbrengstOpgebouwd, VerslagMaand } from '@/components/home/Resultaat'
 import { AiLogos } from '@/components/home/AiLogos'
+import { WhiteLabel } from '@/components/home/WhiteLabel'
 import { HeroWerkoverzicht } from '@/components/agency/Visuals'
 import { HeroMaand } from '@/components/product/Visuals'
 import { BreinTabel, HerkomstCompositie } from '@/components/kennis/Visuals'
@@ -66,6 +67,7 @@ export default function HomePage() {
           <div className="usp-blok usp-blok-breed">
             <UspBlok id="home-usp" />
           </div>
+          <WhiteLabel />
         </section>
 
         <section className="home-uitgelicht" aria-label="Orbit voor bureaus">

@@ -74,6 +74,14 @@ export const usps: { titel: string; uitleg: string }[] = [
   },
 ]
 
+// Eigen regel onder de vier voordelen: een smal limegroen blok over white label, dat alle vier ondersteunt.
+// Rechts een klein scherm dat steeds een andere huisstijl aanneemt; de bureaus zijn verzonnen.
+export const whiteLabel = {
+  titel: 'White label',
+  tekst: 'De interface volledig in de huisstijl van jouw bureau. White label is standaard inbegrepen, zodat je klanten jouw merk ervaren bij elke stap.',
+  merken: ['Studio Noord', 'Bureau Kade', 'Merkwerk'],
+}
+
 // Sectie over de kwaliteit van de content, onder de drie nagebouwde schermen: kop (links) en uitleg
 // (rechts), daaronder twee beelden van de pagina Kwaliteit naast elkaar. De bijschriften van de beelden
 // komen uit content/kwaliteit.ts, zodat ze op beide pagina's hetzelfde zijn.
