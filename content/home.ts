@@ -49,7 +49,7 @@ export const uitgelichtStappen: MaandStap[] = [
 // Erboven een kop (links) en een korte uitleg (rechts); per voordeel een vinkje met titel.
 export const uspIntro = {
   title: 'Ontwikkeld voor marketingbureaus',
-  description: 'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst aan te bieden, laat je klanten zien wat het oplevert en geeft je specialisten de ruimte voor het werk dat ertoe doet.',
+  description: 'Van de eerste meting in Google Search en AI-assistenten tot overtuigende content en inzicht in de resultaten. Orbit automatiseert onderzoek, planning en schrijfwerk samen in één platform.',
 }
 
 // Per voordeel een titel met uitleg, op desktop en mobiel. Het type Usp (korte en lange titel) gebruikt /agencies nog.
