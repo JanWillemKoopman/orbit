@@ -9,6 +9,7 @@ type Verwijzing = { href: string; label: string }
 // De blog volgt de opbouw van een artikel op linear.app/now (`kruimel`): een grijze link naar het overzicht,
 // de titel, een brede cover met ronde hoeken, auteur en datum, en daaronder de smallere tekstkolom.
 // De kennisbank heeft een terugknop en geen cover, auteur of datum (`terug`, hero={false}).
+// De cover heeft geen data-opbouw: hij verschijnt direct, zonder animatie bij het laden.
 export function ArticleView({ post, terug, kruimel, hero = true }: { post: Post; terug?: Verwijzing; kruimel?: Verwijzing; hero?: boolean }) {
   return (
     <article className={kruimel ? 'article article-blog' : 'article'}>
@@ -26,7 +27,7 @@ export function ArticleView({ post, terug, kruimel, hero = true }: { post: Post;
       )}
       <h1 className="article-title">{post.title}</h1>
       {hero && (
-        <div className="article-hero" data-opbouw>
+        <div className="article-hero">
           <Art src={post.cover} alt="" priority />
         </div>
       )}
