@@ -644,3 +644,39 @@
   .feature-title, .home-block-title, .home-statement { font-size: clamp(21px, 5.45vw, 24px); }
   .process-title { font-size: clamp(16px, 4.1vw, 18px); }
 }
+
+/* White label: een eigen, smal zwart blok onder de vier voordelen, met een 1px donkergrijze rand. De eerste
+   keer dat het in beeld komt (data-licht, gezet in WhiteLabel.tsx), loopt er eenmalig een limegroen licht
+   één keer rond over de rand: een draaiend conisch verloop achter een masker dat alleen de rand doorlaat. */
+.wl {
+  position: relative; isolation: isolate; margin-top: 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: 48px;
+  padding: 32px 40px; border-radius: var(--radius-16);
+  background: var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--border-primary);
+}
+.wl-licht {
+  position: absolute; inset: 0; border-radius: inherit; padding: 1px; overflow: hidden; pointer-events: none;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+}
+.wl-licht::before {
+  content: ''; position: absolute; left: 50%; top: 50%; width: 150%; aspect-ratio: 1;
+  background: conic-gradient(from 0deg, rgba(188, 255, 47, 0) 0deg 300deg, rgba(188, 255, 47, 0.5) 345deg, var(--accent) 359deg, rgba(188, 255, 47, 0) 360deg);
+  transform: translate(-50%, -50%) rotate(0deg); opacity: 0;
+}
+.wl[data-licht] .wl-licht::before { animation: wl-licht 2.4s var(--ease-out-quad) 0.2s both; }
+@keyframes wl-licht {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(0deg); }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) rotate(360deg); }
+}
+.wl-titel { font-size: 17px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-medium); color: var(--text-primary); }
+.wl-uitleg { margin-top: 4px; max-width: 60ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+.wl-link { flex: none; white-space: nowrap; }
+@media (hover: hover) { .wl-link:hover .feature-plus { transform: translateX(3px); } }
+@media (max-width: 768px) {
+  .wl { flex-direction: column; align-items: flex-start; gap: 20px; margin-top: 48px; padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .wl[data-licht] .wl-licht::before { animation: none; } }

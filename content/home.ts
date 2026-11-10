@@ -5,7 +5,7 @@ export const hero = {
   title: ['Automatiseer content productie.', 'Maak je klanten zichtbaar in AI\u00a0&\u00a0Search.'],
   description: 'AI-software voor marketingbureaus met groeiambitie.',
   // Regel onder de knoppen: het eerste woord in het wit, de rest in grijs.
-  link: { label: 'Lees', titel: 'Ons verhaal', href: '/over' },
+  link: { label: 'Lees', titel: 'Zo werkt Orbit', href: '/werkwijze' },
 }
 
 // Grote tussenzin onder de twee beelden, boven de drie nagebouwde schermen. Het vetgedrukte deel staat in het wit, de rest in grijs.
@@ -24,7 +24,7 @@ export const uitgelicht: Uitgelicht[] = [
   {
     titel: 'Al je klanten in één platform',
     tekst: 'Beheer merken, metingen en content vanuit één centrale omgeving. Houd overzicht terwijl je bureau groeit.',
-    href: '/beheer',
+    href: '/werkwijze',
     alt: 'Het werkoverzicht van Bureau Noordwind: bedrijven onder elkaar met hun zichtbaarheid in AI, de maandmeting en wat er klaarstaat om te starten.',
   },
   {
@@ -49,7 +49,7 @@ export const uitgelichtStappen: MaandStap[] = [
 // Erboven een kop (links) en een korte uitleg (rechts); per voordeel een vinkje met titel.
 export const uspIntro = {
   title: 'Ontwikkeld voor marketingbureaus',
-  description: 'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst aan te bieden, laat je klanten zien wat het oplevert en geeft je specialisten de ruimte voor het werk dat ertoe doet.',
+  description: 'Van de eerste meting in Google Search en AI-assistenten tot overtuigende content en inzicht in de resultaten. Orbit automatiseert onderzoek, planning en schrijfwerk samen in één platform.',
 }
 
 // Per voordeel een titel met uitleg, op desktop en mobiel. Het type Usp (korte en lange titel) gebruikt /agencies nog.
@@ -61,18 +61,26 @@ export const usps: { titel: string; uitleg: string }[] = [
     uitleg: 'Maak van vindbaarheid terugkerende omzet. Verkoop GEO en SEO onder je eigen naam, met standaard een 100% white-label platform in de huisstijl van jouw bureau.',
   },
   {
-    titel: 'Inzicht in impact',
-    uitleg: 'Maak je waarde zichtbaar in elk klantgesprek. Met een nulmeting en nametingen laat je zien hoe het verkeer en de zichtbaarheid van je klant in AI-antwoorden zich ontwikkelen.',
-  },
-  {
     titel: 'Verhoog productie',
     uitleg: 'Lever meer content met het team dat je al hebt. Orbit versnelt het onderzoek en schrijfwerk, zodat je specialisten meer tijd hebben voor strategie en creatie.',
+  },
+  {
+    titel: 'Inzicht in impact',
+    uitleg: 'Maak je waarde zichtbaar in elk klantgesprek. Met een nulmeting en nametingen laat je zien hoe het verkeer en de zichtbaarheid van je klant in AI-antwoorden zich ontwikkelen.',
   },
   {
     titel: 'Copywriterniveau',
     uitleg: 'Lever teksten die klinken als het merk van je klant, zijn aanbod overtuigend neerzetten en zijn onderbouwd met bronnen. Content waar je graag je bureaunaam onder zet.',
   },
 ]
+
+// Eigen regel onder de vier voordelen: een smal limegroen blok over white label, dat alle vier ondersteunt.
+// Rechts een link naar /agencies, over hoe Orbit in het werk van een bureau past.
+export const whiteLabel = {
+  titel: 'White label',
+  tekst: 'De interface volledig in de huisstijl van jouw bureau. White label is standaard inbegrepen, zodat je klanten jouw merk ervaren bij elke stap.',
+  link: { label: 'Zo past Orbit in je bureau', href: '/agencies' },
+}
 
 // Sectie over de kwaliteit van de content, onder de drie nagebouwde schermen: kop (links) en uitleg
 // (rechts), daaronder twee beelden van de pagina Kwaliteit naast elkaar. De bijschriften van de beelden
