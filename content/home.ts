@@ -15,7 +15,7 @@ export const hero = {
 export const statement = {
   citaat: 'De volgende stap voor marketingbureaus is hun expertise schaalbaar maken. AI geeft een sterk team de mogelijkheid om veel meer ondernemers vooruit te helpen. Met Orbit wil ik die ontwikkeling versnellen. Zodat bureaus kunnen groeien op de kracht van hun kennis, met de persoonlijke aandacht die hun klanten aan hen bindt.',
   naam: 'Jan-Willem Koopman',
-  functie: 'Oprichter van Orbit',
+  functie: 'Founder',
   foto: '',
 }
 

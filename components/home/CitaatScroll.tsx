@@ -87,7 +87,7 @@ export function CitaatScroll(props: Props) {
           <span className="citaat-foto citaat-foto-leeg" aria-hidden="true">{initialen(naam)}</span>
         )}
         <span className="citaat-bron-tekst">
-          <span className="citaat-naam">{naam}</span>
+          <span className="citaat-naam">{naam}<span className="citaat-komma">,</span></span>
           <span className="citaat-functie">{functie}</span>
         </span>
       </figcaption>
