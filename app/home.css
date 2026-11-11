@@ -256,7 +256,9 @@
 .home-statement strong { color: var(--text-primary); font-weight: var(--weight-medium); }
 /* Het citaat op de homepage is langer dan een tussenzin en staat helemaal in het wit, dus een maat kleiner
    en op een smallere kolom. */
-.home-citaat { max-width: 1080px; font-size: 40px; line-height: 1.1; color: var(--text-primary); }
+/* Het citaat springt op desktop een stukje in, zodat het los komt van de kolom waar de rest van de
+   pagina op staat. Vanaf tablet valt die inspringing weg, want daar is de ruimte te krap. */
+.home-citaat { max-width: 1040px; margin-left: 40px; font-size: 40px; line-height: 1.1; color: var(--text-primary); }
 .citaat { margin: 0; }
 .citaat-tekst { margin: 0; text-wrap: pretty; }
 /* Woorden van het citaat lichten op tijdens het scrollen (CitaatScroll.tsx); de opacity zet JS */
@@ -577,7 +579,7 @@
 @media (max-width: 768px) {
   .home-title { font-size: 40px; line-height: 1.1; }
   .home-statement { font-size: 32px; line-height: 1.125; margin-top: 120px; }
-  .home-citaat { font-size: 28px; line-height: 1.2; }
+  .home-citaat { margin-left: 0; font-size: 28px; line-height: 1.2; }
   .feature { margin-top: 120px; }
   .feature-header { padding-top: 88px; }
   .home-block-title { padding-top: 88px; }
