@@ -34,12 +34,12 @@ export function CitaatScroll(props: Props) {
       frame = 0
       const rect = p.getBoundingClientRect()
       const vh = window.innerHeight
-      // 0 zodra de bovenkant op 92% van het beeld staat, 1 zodra de onderkant op 88% staat. Het venster
-      // tussen begin en eind is krap gehouden, zodat de tekst al vroeg in de scroll helemaal wit is.
-      // Mobiel is het citaat hoger en het scherm korter, dus daar begint en eindigt het nog iets eerder.
+      // 0 zodra de bovenkant op 90% van het beeld staat, 1 zodra de onderkant op 75% staat. Het venster
+      // ertussen bepaalt hoe snel de tekst wit wordt: krapper is sneller.
+      // Mobiel is het citaat hoger en het scherm korter, dus daar begint en eindigt het iets eerder.
       const mobiel = window.matchMedia('(max-width: 640px)').matches
-      const start = vh * (mobiel ? 0.96 : 0.92)
-      const eind = vh * (mobiel ? 0.94 : 0.88) - rect.height
+      const start = vh * (mobiel ? 0.94 : 0.9)
+      const eind = vh * (mobiel ? 0.84 : 0.75) - rect.height
       const voortgang = Math.min(1, Math.max(0, (start - rect.top) / (start - eind)))
       const n = spans.length
       spans.forEach((s, i) => {
