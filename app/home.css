@@ -248,14 +248,32 @@
   .ai-logos-kopie { display: none; }
 }
 
-/* Tussenzin ------------------------------------------------------------- */
+/* Tussenzin en citaat ---------------------------------------------------- */
 .home-statement {
   max-width: 1250px; margin-top: 168px; margin-left: -2px;
   font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); color: var(--text-tertiary);
 }
 .home-statement strong { color: var(--text-primary); font-weight: var(--weight-medium); }
+/* Het citaat op de homepage is langer dan een tussenzin en staat helemaal in het wit, dus een maat kleiner
+   en op een smallere kolom. */
+.home-citaat { max-width: 1080px; font-size: 40px; line-height: 1.1; color: var(--text-primary); }
+.citaat { margin: 0; }
+.citaat-tekst { margin: 0; text-wrap: pretty; }
 /* Woorden van het citaat lichten op tijdens het scrollen (CitaatScroll.tsx); de opacity zet JS */
 .citaat-woord { transition: opacity var(--speed-quick) var(--ease-out-quad); }
+/* Naam en functie onder het citaat, met een rond portret ervoor. */
+.citaat-bron { display: flex; align-items: center; gap: 12px; margin-top: 32px; }
+.citaat-foto {
+  flex: none; width: 44px; height: 44px; border-radius: var(--radius-pill); object-fit: cover;
+  background: var(--bg-level-2); box-shadow: inset 0 0 0 1px var(--border-translucent);
+}
+.citaat-foto-leeg {
+  display: grid; place-items: center;
+  font-size: 14px; line-height: 1; letter-spacing: 0; font-weight: var(--weight-medium); color: var(--text-tertiary);
+}
+.citaat-bron-tekst { display: flex; flex-direction: column; gap: 2px; }
+.citaat-naam { font-size: 14px; line-height: 1.5; letter-spacing: -0.011em; font-weight: var(--weight-medium); color: var(--text-primary); }
+.citaat-functie { font-size: 14px; line-height: 1.5; letter-spacing: -0.011em; font-weight: var(--weight-normal); color: var(--text-tertiary); }
 
 /* Twee beelden onder de quote ------------------------------------------- */
 /* Twee beelden met bijschrift; alleen de link in het bijschrift is klikbaar, de beelden niet. */
@@ -533,6 +551,7 @@
   .home-hero { padding-top: 124px; }
   .home-title { font-size: 56px; line-height: 1.1; }
   .home-statement { font-size: 40px; line-height: 1.1; }
+  .home-citaat { font-size: 32px; line-height: 1.125; }
   .home-block-title { font-size: 40px; line-height: 1.1; }
   .home-prefooter h2 { font-size: 40px; line-height: 1.1; max-width: 520px; }
 }
@@ -556,6 +575,7 @@
 @media (max-width: 768px) {
   .home-title { font-size: 40px; line-height: 1.1; }
   .home-statement { font-size: 32px; line-height: 1.125; margin-top: 120px; }
+  .home-citaat { font-size: 28px; line-height: 1.2; }
   .feature { margin-top: 120px; }
   .feature-header { padding-top: 88px; }
   .home-block-title { padding-top: 88px; }
@@ -615,6 +635,8 @@
   .home-hero-row { flex-direction: column; align-items: flex-start; gap: 20px; margin-top: 20px; }
   .home-hero-description { max-width: 276px; }
   .home-statement { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; margin-top: 96px; }
+  .home-citaat { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
+  .citaat-bron { margin-top: 24px; }
   .feature { display: flex; flex-direction: column; }
   .feature .keyline { order: -2; }
   .feature-header { padding-top: 40px; padding-bottom: 48px; }
@@ -641,7 +663,7 @@
    15 px wordt die slechter leesbaar. */
 @media (max-width: 640px) {
   .home-title, .home-prefooter h2 { font-size: clamp(30px, 8.6vw, 38px); }
-  .feature-title, .home-block-title, .home-statement { font-size: clamp(21px, 5.45vw, 24px); }
+  .feature-title, .home-block-title, .home-statement, .home-citaat { font-size: clamp(21px, 5.45vw, 24px); }
   .process-title { font-size: clamp(16px, 4.1vw, 18px); }
 }
 

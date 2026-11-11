@@ -8,10 +8,15 @@ export const hero = {
   link: { label: 'Lees', titel: 'Zo werkt Orbit', href: '/werkwijze' },
 }
 
-// Grote tussenzin onder de twee beelden, boven de drie nagebouwde schermen. Het vetgedrukte deel staat in het wit, de rest in grijs.
+// Citaat onder de twee beelden, boven de drie nagebouwde schermen. De tekst staat tussen aanhalingstekens
+// en licht woord voor woord op tijdens het scrollen. Daaronder de naam en functie van wie het zegt, met een
+// rond portret. Zet `foto` op het pad van de foto in /public (bijvoorbeeld '/images/jan-willem-koopman.jpg');
+// zolang dat leeg is, staan de initialen in de cirkel.
 export const statement = {
-  strong: 'Van klantstrategie tot groeikans in AI zichtbaarheid.',
-  rest: 'Orbit brengt analyse, contentcreatie, publicatie en nameting samen in één doorlopende workflow. Jouw team bepaalt de koers. AI versnelt de uitvoering.',
+  citaat: 'De volgende stap voor marketingbureaus is hun expertise schaalbaar maken. AI geeft een sterk team de mogelijkheid om veel meer ondernemers vooruit te helpen. Met Orbit wil ik die ontwikkeling versnellen. Zodat bureaus kunnen groeien op de kracht van hun kennis, met de persoonlijke aandacht die hun klanten aan hen bindt.',
+  naam: 'Jan-Willem Koopman',
+  functie: 'Oprichter van Orbit',
+  foto: '',
 }
 
 // Twee beelden direct onder het blok voor bureaus, elk met een titel, een korte uitleg en een link. Links het
