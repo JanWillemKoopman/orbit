@@ -13,7 +13,7 @@ export const hero = {
 // rond portret. Zet `foto` op het pad van de foto in /public (bijvoorbeeld '/images/jan-willem-koopman.jpg');
 // zolang dat leeg is, staan de initialen in de cirkel.
 export const statement = {
-  citaat: 'De volgende stap voor marketingbureaus is hun expertise schaalbaar maken. AI geeft een sterk team de mogelijkheid om veel meer ondernemers vooruit te helpen. Met Orbit wil ik die ontwikkeling versnellen. Zodat bureaus kunnen groeien op de kracht van hun kennis, met de persoonlijke aandacht die hun klanten aan hen bindt.',
+  citaat: 'AI geeft een marketing team de mogelijkheid om veel meer ondernemers zichtbaar te maken in Chatbots en Zoekmachines. Met Orbit wil ik die ontwikkeling versnellen. Zodat bureaus kunnen groeien op de kracht van hun kennis, met de persoonlijke aandacht die hun klanten aan hen bindt.',
   naam: 'Jan-Willem Koopman',
   functie: 'Founder',
   foto: '',
