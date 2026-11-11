@@ -34,12 +34,12 @@ export function CitaatScroll(props: Props) {
       frame = 0
       const rect = p.getBoundingClientRect()
       const vh = window.innerHeight
-      // 0 zodra de bovenkant op 85% van het beeld staat, 1 zodra de onderkant op 60% staat.
-      // Mobiel is het citaat hoger en het scherm korter, dus daar begint en eindigt het eerder:
-      // bovenkant op 90%, onderkant op 75%.
+      // 0 zodra de bovenkant op 92% van het beeld staat, 1 zodra de onderkant op 88% staat. Het venster
+      // tussen begin en eind is krap gehouden, zodat de tekst al vroeg in de scroll helemaal wit is.
+      // Mobiel is het citaat hoger en het scherm korter, dus daar begint en eindigt het nog iets eerder.
       const mobiel = window.matchMedia('(max-width: 640px)').matches
-      const start = vh * (mobiel ? 0.9 : 0.85)
-      const eind = vh * (mobiel ? 0.75 : 0.6) - rect.height
+      const start = vh * (mobiel ? 0.96 : 0.92)
+      const eind = vh * (mobiel ? 0.94 : 0.88) - rect.height
       const voortgang = Math.min(1, Math.max(0, (start - rect.top) / (start - eind)))
       const n = spans.length
       spans.forEach((s, i) => {
@@ -77,7 +77,7 @@ export function CitaatScroll(props: Props) {
     <figure className="citaat">
       <blockquote ref={ref as React.RefObject<HTMLQuoteElement>} className="citaat-tekst">
         <p>
-          <span aria-hidden="true">&ldquo;</span>{woorden(citaat).map(span)}<span aria-hidden="true">&rdquo;</span>
+          {woorden(`\u201c${citaat}\u201d`).map(span)}
         </p>
       </blockquote>
       <figcaption className="citaat-bron">
