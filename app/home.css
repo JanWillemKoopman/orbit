@@ -271,7 +271,9 @@
   display: grid; place-items: center;
   font-size: 14px; line-height: 1; letter-spacing: 0; font-weight: var(--weight-medium); color: var(--text-tertiary);
 }
-.citaat-bron-tekst { display: flex; flex-direction: column; gap: 2px; }
+/* Naam en functie staan op één regel, gescheiden door een komma; onder 640px past dat niet naast het
+   portret en komen ze onder elkaar (zonder komma). */
+.citaat-bron-tekst { display: flex; align-items: baseline; gap: 5px; }
 .citaat-naam { font-size: 14px; line-height: 1.5; letter-spacing: -0.011em; font-weight: var(--weight-medium); color: var(--text-primary); }
 .citaat-functie { font-size: 14px; line-height: 1.5; letter-spacing: -0.011em; font-weight: var(--weight-normal); color: var(--text-tertiary); }
 
@@ -637,6 +639,8 @@
   .home-statement { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; margin-top: 96px; }
   .home-citaat { font-size: 24px; line-height: 1.33; letter-spacing: -0.012em; }
   .citaat-bron { margin-top: 24px; }
+  .citaat-bron-tekst { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .citaat-komma { display: none; }
   .feature { display: flex; flex-direction: column; }
   .feature .keyline { order: -2; }
   .feature-header { padding-top: 40px; padding-bottom: 48px; }
