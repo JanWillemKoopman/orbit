@@ -91,8 +91,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        <div className="home-statement">
-          <CitaatScroll strong={statement.strong} rest={statement.rest} />
+        <div className="home-statement home-citaat">
+          <CitaatScroll
+            citaat={statement.citaat}
+            naam={statement.naam}
+            functie={statement.functie}
+            foto={statement.foto}
+          />
         </div>
 
         <section aria-label={showcase.title}>
