@@ -599,9 +599,12 @@
   .hu-cell { padding-top: 40px; }
   .hu-cell .hu-stage, .hu-cell .hu-stage-ronde { height: 273px; min-height: 0; background: none; mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent 100%); }
   .hu-stage-account .hu-inner { top: 0; left: 24px; zoom: 0.6; }
-  .hu-stage-ronde .hu-inner { width: 600px; max-width: none; zoom: 0.52; }
-  /* Het stappenoverzicht is laag: een vlak van 273 px liet er boven en onder een leeg gat omheen */
-  .hu-cell .hu-stage-ronde { height: 196px; }
+  /* Even groot in beeld als het werkoverzicht hierboven: dezelfde zoom, zodat de kaart net als dat
+     scherm van rand tot rand loopt in plaats van klein in het midden te staan. */
+  .hu-stage-ronde .hu-inner { width: 600px; max-width: none; zoom: 0.6; }
+  /* Het stappenoverzicht is laag: een vlak van 273 px liet er boven en onder een leeg gat omheen.
+     Deze kaart houdt bovendien op waar hij ophoudt, dus geen vervaging onderin: die at de onderrand op. */
+  .hu-cell .hu-stage-ronde { height: 226px; mask-image: none; -webkit-mask-image: none; }
   .hu-cell .hu-caption { flex-direction: column; gap: 12px; padding: 32px 24px 40px; }
   .sc-root { margin-top: 56px; margin-inline: -8px; }
   /* Op mobiel een veegbare rij: elk scherm 86% breed, zodat het volgende net in beeld piept. */
@@ -659,6 +662,22 @@
   .home-prefooter, .home-prefooter.pd-afsluiter { padding-block: 96px 158px; }
   .home-prefooter h2 { font-size: 38px; }
   .home-prefooter-actions { flex-direction: column; align-items: center; }
+}
+
+/* De kaart van het stappenoverzicht is 600 px breed en wordt met zoom geschaald, dus een stap per
+   schermmaat: op een breder scherm groter, op een smallere telefoon kleiner, zodat hij overal
+   ongeveer even veel ruimte pakt als het werkoverzicht erboven en nergens tegen de rand aan loopt. */
+@media (min-width: 500px) and (max-width: 640px) {
+  .hu-stage-ronde .hu-inner { zoom: 0.74; }
+  .hu-cell .hu-stage-ronde { height: 268px; }
+}
+@media (max-width: 389px) {
+  .hu-stage-ronde .hu-inner { zoom: 0.56; }
+  .hu-cell .hu-stage-ronde { height: 214px; }
+}
+@media (max-width: 344px) {
+  .hu-stage-ronde .hu-inner { zoom: 0.48; }
+  .hu-cell .hu-stage-ronde { height: 190px; }
 }
 
 @media (max-width: 899px) { .faq { grid-template-columns: 1fr; row-gap: 0; } .faq-column + .faq-column { border-top: 0; } }
