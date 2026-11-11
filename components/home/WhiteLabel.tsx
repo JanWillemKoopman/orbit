@@ -6,7 +6,7 @@ import { whiteLabel } from '@/content/home'
 
 // Smal zwart blok onder de vier voordelen met een donkergrijze rand. De eerste keer dat het blok in beeld
 // komt, loopt er eenmalig een limegroen licht over de rand, één keer rond (home.css, .wl-licht).
-// Links titel en uitleg, rechts een link naar /agencies.
+// Links titel en uitleg, rechts een tekstlink naar /agencies in dezelfde vorm als de link onder de hero.
 export function WhiteLabel() {
   const ref = useRef<HTMLElement>(null)
 
@@ -29,8 +29,11 @@ export function WhiteLabel() {
         <h3 id="home-white-label" className="wl-titel">{whiteLabel.titel}</h3>
         <p className="wl-uitleg">{whiteLabel.tekst}</p>
       </div>
-      <Link href={whiteLabel.link.href} className="btn btn-secondary wl-link">
-        {whiteLabel.link.label} <span className="feature-plus" aria-hidden="true">→</span>
+      <Link href={whiteLabel.link.href} className="wl-link">
+        <span className="home-new">
+          <span className="home-new-label">{whiteLabel.link.label}</span>
+          <span className="home-new-title">{whiteLabel.link.titel} <span className="pijl" aria-hidden="true">→</span></span>
+        </span>
       </Link>
     </aside>
   )

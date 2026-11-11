@@ -75,11 +75,11 @@ export const usps: { titel: string; uitleg: string }[] = [
 ]
 
 // Eigen regel onder de vier voordelen: een smal limegroen blok over white label, dat alle vier ondersteunt.
-// Rechts een link naar /agencies, over hoe Orbit in het werk van een bureau past.
+// Rechts een tekstlink naar /agencies, zoals de link onder de hero: het eerste woord in het wit, de rest in grijs.
 export const whiteLabel = {
   titel: 'White label',
   tekst: 'De interface volledig in de huisstijl van jouw bureau. White label is standaard inbegrepen, zodat je klanten jouw merk ervaren bij elke stap.',
-  link: { label: 'Zo past Orbit in je bureau', href: '/agencies' },
+  link: { label: 'Lees', titel: 'Orbit voor marketingbureau\u2019s', href: '/agencies' },
 }
 
 // Sectie over de kwaliteit van de content, onder de drie nagebouwde schermen: kop (links) en uitleg
