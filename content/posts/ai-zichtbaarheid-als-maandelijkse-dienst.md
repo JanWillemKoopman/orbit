@@ -5,6 +5,7 @@ date: 2026-11-13
 author: Jan-Willem Koopman
 category: productlanceringen
 cover: "/images/cover-astronaut.webp"
+coverBeweging: astronaut
 featured: true
 ---
 
