@@ -23,6 +23,10 @@
   pointer-events: none; user-select: none;
 }
 .article-hero img { width: 100%; height: 100%; object-fit: cover; }
+/* Bewegende cover (LevendeCover): het canvas ligt over de foto en komt op zodra het eerste beeld getekend is. */
+.levende-cover { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity var(--speed-regular) var(--ease-out-quad); }
+.levende-cover.is-levend { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .levende-cover { display: none; } }
 /* Zonder headerafbeelding (kennisbank) begint de tekst direct onder de titel. */
 .article-title + .prose { margin-top: 48px; }
 .article-meta {

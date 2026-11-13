@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Art } from '@/components/Art'
+import { LevendeCover } from '@/components/LevendeCover'
 import { formatDate } from '@/lib/format'
 import { byline, type Post } from '@/lib/posts'
 
@@ -9,7 +10,8 @@ type Verwijzing = { href: string; label: string }
 // De blog volgt de opbouw van een artikel op linear.app/now (`kruimel`): een grijze link naar het overzicht,
 // de titel, een brede cover met ronde hoeken, auteur en datum, en daaronder de smallere tekstkolom.
 // De kennisbank heeft een terugknop en geen cover, auteur of datum (`terug`, hero={false}).
-// De cover heeft geen data-opbouw: hij verschijnt direct, zonder animatie bij het laden.
+// De cover heeft geen data-opbouw: hij verschijnt direct, zonder animatie bij het laden. Met `coverBeweging` in de
+// frontmatter beweegt de foto daarna langzaam (LevendeCover).
 export function ArticleView({ post, terug, kruimel, hero = true }: { post: Post; terug?: Verwijzing; kruimel?: Verwijzing; hero?: boolean }) {
   return (
     <article className={kruimel ? 'article article-blog' : 'article'}>
@@ -28,7 +30,7 @@ export function ArticleView({ post, terug, kruimel, hero = true }: { post: Post;
       <h1 className="article-title">{post.title}</h1>
       {hero && (
         <div className="article-hero">
-          <Art src={post.cover} alt="" priority />
+          {post.coverBeweging ? <LevendeCover src={post.cover} /> : <Art src={post.cover} alt="" priority />}
         </div>
       )}
       {kruimel && (
