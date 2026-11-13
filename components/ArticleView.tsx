@@ -26,6 +26,7 @@ export function ArticleView({ post, terug, kruimel, hero = true }: { post: Post;
         </Link>
       )}
       <h1 className="article-title">{post.title}</h1>
+      {post.subtitle && <p className="article-subtitle">{post.subtitle}</p>}
       {hero && (
         <div className="article-hero">
           <Art src={post.cover} alt="" priority />

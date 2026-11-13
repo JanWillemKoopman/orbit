@@ -11,6 +11,8 @@ export type PostMeta = {
   slug: string
   title: string
   description: string
+  /** Ondertitel onder de titel van het artikel zelf. */
+  subtitle?: string
   date: string
   author: string
   category: CategorySlug | typeof KENNISBANK
@@ -113,6 +115,7 @@ function readPost(file: string): Post {
     slug,
     title: String(data.title),
     description: String(data.description ?? ''),
+    subtitle: data.subtitle ? String(data.subtitle) : undefined,
     date,
     author: String(data.author ?? ''),
     category: data.category as CategorySlug | typeof KENNISBANK,
