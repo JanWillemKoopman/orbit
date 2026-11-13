@@ -9,7 +9,7 @@ export function PostCard({ post, priority }: { post: PostMeta; priority?: boolea
         <Art src={post.cover} priority={priority} />
       </div>
       <h3 className="card-title">{post.title}</h3>
-      <span className="card-description">{post.description}</span>
+      <span className="card-description">{post.subtitle ?? post.description}</span>
     </Link>
   )
 }
