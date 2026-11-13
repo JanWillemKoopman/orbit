@@ -62,6 +62,18 @@ function createMarkdown() {
         const id = slugify(text)
         return `<h${level} id="${id}"><span class="heading-text">${text}</span><a class="heading-anchor" href="#${id}" aria-label="Link naar deze sectie"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7.1 3.5a3.25 3.25 0 0 1 4.6 4.6l-1.4 1.4a.75.75 0 1 1-1.06-1.06l1.4-1.4a1.75 1.75 0 0 0-2.48-2.48l-1.4 1.4A.75.75 0 1 1 5.7 4.9l1.4-1.4Zm-.8 6.2a.75.75 0 0 1 0 1.06l-1.4 1.4a3.25 3.25 0 1 1-4.6-4.6l1.4-1.4a.75.75 0 1 1 1.06 1.06l-1.4 1.4a1.75 1.75 0 1 0 2.48 2.48l1.4-1.4a.75.75 0 0 1 1.06 0Zm3.73-4.79a.75.75 0 0 1 0 1.06l-3.06 3.06a.75.75 0 1 1-1.06-1.06l3.06-3.06a.75.75 0 0 1 1.06 0Z"/></svg></a></h${level}>\n`
       },
+      blockquote(this: { parser: { parse: (t: Tokens.Generic[]) => string; parseInline: (t: Tokens.Generic[]) => string } }, token: Tokens.Blockquote) {
+        // Een citaat wordt een uitgelicht quote-blok. Begint de laatste alinea met een kwadraatje (—),
+        // dan is dat de bronvermelding: die komt als <cite> onder het citaat te staan.
+        const tokens = [...token.tokens]
+        const last = tokens[tokens.length - 1]
+        let cite = ''
+        if (last?.type === 'paragraph' && /^\s*(?:—|–|--)/.test(last.raw)) {
+          tokens.pop()
+          cite = this.parser.parseInline((last as Tokens.Paragraph).tokens).replace(/^\s*(?:—|–|--)\s*/, '')
+        }
+        return `<blockquote>${this.parser.parse(tokens)}${cite ? `<cite>${cite}</cite>` : ''}</blockquote>\n`
+      },
       paragraph(this: { parser: { parseInline: (t: Tokens.Generic[]) => string } }, token: Tokens.Paragraph) {
         // Een alinea met alleen een afbeelding wordt een <figure>; de title wordt het bijschrift.
         if (token.tokens.length === 1 && token.tokens[0].type === 'image') {
