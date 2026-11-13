@@ -19,8 +19,6 @@ export type PostMeta = {
   label?: string
   /** Cover: een pad naar een afbeelding in /public, of "art:<variant>:<seed>". */
   cover: string
-  /** Laat de cover in het artikel langzaam bewegen (components/LevendeCover.tsx). Nu alleen 'astronaut'. */
-  coverBeweging?: 'astronaut'
   /** Toon de post als kaart op de homepage (anders alleen in het archief). */
   featured: boolean
   /** Volgorde in de kennisbank (oplopend); zonder volgorde komt een artikel achteraan. */
@@ -121,7 +119,6 @@ function readPost(file: string): Post {
     categoryLabel: categoryLabel(String(data.category)),
     label: data.label ? String(data.label) : undefined,
     cover: String(data.cover ?? `art:lines:${slug.length}`),
-    coverBeweging: data.coverBeweging === 'astronaut' ? 'astronaut' : undefined,
     featured: Boolean(data.featured),
     order: typeof data.order === 'number' ? data.order : undefined,
     html: markdown.parse(content) as string,
