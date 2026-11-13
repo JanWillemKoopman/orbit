@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { BlogKaart } from '@/components/BlogKaart'
 import { MeerLaden } from '@/components/MeerLaden'
-import { Prefooter } from '@/components/Prefooter'
 import { getBlogMetas } from '@/lib/posts'
 
 export const metadata: Metadata = {
@@ -26,7 +25,6 @@ export default function BlogPage() {
           </MeerLaden>
         </div>
       </div>
-      <Prefooter />
     </>
   )
 }
