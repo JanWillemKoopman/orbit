@@ -62,6 +62,12 @@
 .prose > * { max-width: var(--measure); margin-left: auto; margin-right: auto; }
 .prose > * + * { margin-top: 20px; }
 .prose strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
+/* Introductie: de eerste alinea van een blogartikel staat groter en iets zwaarder dan de lopende tekst,
+   zodat meteen zichtbaar is dat het de inleiding op het hele artikel is. */
+.article-blog .prose > p:first-child {
+  font-size: 20px; line-height: 1.5; letter-spacing: -0.014em;
+  font-weight: var(--weight-medium); color: var(--text-primary);
+}
 .prose em { font-style: italic; }
 .prose a {
   color: var(--text-primary);
@@ -155,6 +161,7 @@
 }
 @media (max-width: 768px) {
   .prose { font-size: 15px; line-height: 24px; letter-spacing: -0.011em; }
+  .article-blog .prose > p:first-child { font-size: 17px; line-height: 1.45; }
   .prose h2 { font-size: 20px; }
   .prose h3 { font-size: 16px; }
   .prose blockquote { margin-top: 32px; margin-bottom: 32px; padding-top: 34px; font-size: 20px; line-height: 1.35; }

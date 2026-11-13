@@ -8,7 +8,7 @@ cover: "art:rings:14"
 featured: true
 ---
 
-Je klant wil weten of ChatGPT zijn bedrijf aanbeveelt. Na de eerste meting begint het echte werk. Welke gemiste vermeldingen zijn commercieel interessant? Welke pagina verdient voorrang? En wat zie je terug als die live staat? Orbit brengt dat werk samen in één platform voor marketingbureaus, van AI-meting en contentplanning tot redactie en hermeting.
+Je klant wil weten of ChatGPT zijn bedrijf aanbeveelt. Na de eerste meting begint het echte werk: welke gemiste vermeldingen zijn commercieel interessant, welke pagina verdient voorrang, en wat zie je terug als die eenmaal live staat? Dit artikel volgt die route door Orbit. Je leest hoe het platform per onderwerp dertig koopvragen meet en gemiste vragen bundelt tot contentkansen, hoe het de kennis van je klant ophaalt en daar pagina's van schrijft die jij beoordeelt, en hoe AI-metingen naast Google Search Console laten zien wat een publicatie oplevert. Tot slot lees je wat er nodig is om dit voor meerdere klanten elke maand te leveren.
 
 Stel dat ChatGPT bij drie relevante vragen steeds dezelfde concurrent noemt. De ene vraag komt van iemand die zich breed oriënteert, de andere van iemand die aanbieders vergelijkt en wil weten wat een dienst kost. Welke vraag je als eerste oppakt, hangt af van het aanbod, de groeidoelen en wat er al op de site staat. Misschien verdient een bestaande dienstenpagina een concreet prijsvoorbeeld. Misschien rechtvaardigt de vraag een eigen pagina.
 
