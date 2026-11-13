@@ -1,5 +1,5 @@
 ---
-title: "Orbit maakt van AI-zichtbaarheid een dienst die je elke maand kunt leveren"
+title: "Zichtbaarheid in AI-antwoorden en zoekmachines analyseren, kansen ontdekken, een contentplanning opstellen én daadwerkelijk kwalitatieve content schrijven. Zo automatiseerde Jan-Willem met Orbit GEO voor marketingbureaus."
 description: "Na de eerste meting begint het echte werk: welke gemiste vermeldingen zijn commercieel interessant, en welke pagina verdient voorrang? Orbit brengt dat samen in één platform voor marketingbureaus."
 date: 2026-11-13
 author: Redactie Orbit
