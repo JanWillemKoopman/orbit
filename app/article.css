@@ -91,11 +91,29 @@
 .prose ol > li { list-style: decimal; }
 .prose ol > li::marker { font-variant-numeric: tabular-nums; }
 
+/* Citaat: een uitgelicht quote-blok met een groot aanhalingsteken erboven, grotere tekst dan de lopende
+   tekst en daaronder de bronvermelding (lib/posts.ts maakt van een laatste regel met "— Naam" een <cite>). */
 .prose blockquote {
-  padding-left: 20px; border-left: 2px solid var(--border-strong);
-  color: var(--text-primary); font-size: 19px; line-height: 1.55; letter-spacing: -0.012em;
+  position: relative;
+  margin-top: 44px; margin-bottom: 44px; padding-top: 44px;
+  color: var(--text-primary); font-size: 24px; line-height: 1.4;
+  font-weight: var(--weight-medium); letter-spacing: -0.018em;
+  text-wrap: pretty;
 }
-.prose blockquote p + p { margin-top: 12px; }
+.prose blockquote::before {
+  content: '\201C';
+  position: absolute; top: -4px; left: -2px;
+  font-size: 76px; line-height: 1; color: var(--border-strong);
+  pointer-events: none; user-select: none;
+}
+.prose blockquote p + p { margin-top: 16px; }
+.prose blockquote cite {
+  display: block; margin-top: 20px;
+  font-size: 14px; line-height: 1.5; font-weight: var(--weight-medium); letter-spacing: -0.011em;
+  font-style: normal; color: var(--text-tertiary);
+}
+.prose blockquote cite::before { content: '\2014\00a0'; }
+.prose blockquote + * { margin-top: 44px; }
 
 .prose hr { border: 0; height: 1px; background: var(--border-primary); margin-top: 48px; margin-bottom: 48px; }
 
@@ -139,7 +157,9 @@
   .prose { font-size: 15px; line-height: 24px; letter-spacing: -0.011em; }
   .prose h2 { font-size: 20px; }
   .prose h3 { font-size: 16px; }
-  .prose blockquote { font-size: 17px; }
+  .prose blockquote { margin-top: 32px; margin-bottom: 32px; padding-top: 34px; font-size: 20px; line-height: 1.35; }
+  .prose blockquote::before { font-size: 58px; }
+  .prose blockquote + * { margin-top: 32px; }
 }
 
 /* ==========================================================================
