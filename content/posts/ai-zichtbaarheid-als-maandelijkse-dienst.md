@@ -1,6 +1,6 @@
 ---
-title: "Navigeer je marketing team door alle razendsnelle AI ontwikkelingen."
-subtitle: "Hoe Orbit marketingbureaus helpt AI-zichtbaarheid te meten, content te plannen en pagina’s te schrijven vanuit één platform."
+title: "Hoe Orbit in één platform AI-zichtbaarheid meet, content plant én pagina’s schrijft"
+subtitle: "Oprichter Jan-Willem Koopman introduceert het AI-platform Orbit."
 description: "Steeds meer ondernemers willen weten hoe zichtbaar hun bedrijf is in ChatGPT. Jan-Willem Koopman ontwikkelde Orbit: een platform dat die zichtbaarheid analyseert, kansen vertaalt naar een contentplanning, pagina's schrijft en de resultaten opnieuw meet."
 date: 2026-11-13
 author: Jan-Willem Koopman
