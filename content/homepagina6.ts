@@ -103,7 +103,6 @@ export const praktisch = {
     {
       titel: 'Houd grip op je gebruik.',
       tekst: 'Je betaalt voor het gebruik van Orbit en voor AI-gebruik via de eigen sleutels van je bureau. Je beheert onbeperkt klanten, ziet vooraf een kostenindicatie en stelt een maandlimiet in.',
-      link: { label: 'Bekijk hoe de kosten werken', href: '/prijzen', meet: 'pricing_click' },
     },
     {
       titel: 'Gebouwd vanuit marketinganalyse.',
@@ -142,7 +141,7 @@ export const faq = {
     },
     {
       vraag: 'Hoe werken de kosten?',
-      antwoord: 'De kosten bestaan uit het gebruik van Orbit en AI-gebruik via de eigen sleutels van je bureau. Het AI-gebruik wordt zonder opslag door Orbit afgerekend bij de betreffende aanbieders. Je ziet kostenindicaties en kunt een maandlimiet instellen. Bekijk de prijzenpagina voor de actuele afspraken over het platform.',
+      antwoord: 'De kosten bestaan uit het gebruik van Orbit en AI-gebruik via de eigen sleutels van je bureau. Het AI-gebruik wordt zonder opslag door Orbit afgerekend bij de betreffende aanbieders. Je ziet kostenindicaties en kunt een maandlimiet instellen.',
     },
     {
       vraag: 'Blijft mijn team verantwoordelijk voor de kwaliteit?',

@@ -38,28 +38,22 @@ export const overOnsMenu: NavMenuItem[] = [
   { href: '/contact', label: 'Contact opnemen', description: ['Een vraag of een demo?', 'We reageren binnen één werkdag'] },
 ]
 
-// "Product" in de header: hoe Orbit werkt en voor wie het is.
-const workflow = { href: '/werkwijze', label: 'Zo werkt Orbit' }
-const agencies = { href: '/agencies', label: 'Voor agencies' }
-export const hoofdProductMenu: NavMenuItem[] = [
-  { ...workflow, description: ['Van AI-vraag tot gepubliceerde', 'pagina, en het effect erna'] },
-  { ...agencies, description: ['AI-zichtbaarheid als vaste dienst', 'voor al je klanten'] },
-]
-
-// Losse pagina's in de header, zonder uitklapmenu. De kennisbank en product updates staan
+// Losse pagina's in de header, zonder uitklapmenu. Workflow en Agencies stonden eerder in een
+// uitklapmenu "Product"; ze staan nu zelf in de balk. De kennisbank en product updates staan
 // (voorlopig) nergens in het menu; hun pagina's bestaan nog wel, maar worden niet geïndexeerd.
-const prijzen = { href: '/prijzen', label: 'Prijzen' }
+const workflow = { href: '/werkwijze', label: 'Workflow' }
+const agencies = { href: '/agencies', label: 'Agencies' }
 const blog = { href: '/blog', label: 'Blog' }
 
 export const mainNav: NavItem[] = [
-  { label: 'Product', items: hoofdProductMenu },
-  prijzen,
+  workflow,
+  agencies,
   blog,
   { label: 'Over ons', items: overOnsMenu },
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
-// Prijzen en Blog hebben geen uitklapmenu en staan los, in een groep zonder label.
+// Workflow, Agencies en Blog hebben geen uitklapmenu en staan los, in een groep zonder label.
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
 export type NavGroep = { title?: string; links: NavLink[] }
 const informatieEnMeer: NavGroep[] = [
@@ -67,25 +61,25 @@ const informatieEnMeer: NavGroep[] = [
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
 export const mobileNav: NavGroep[] = [
-  { title: 'Product', links: links(hoofdProductMenu) },
-  { links: [prijzen, blog] },
+  { links: [workflow, agencies, blog] },
   ...informatieEnMeer,
 ]
 
-// Footer: volgt het hoofdmenu. Elke groep uit mainNav wordt een kolom, met dezelfde labels; Prijzen
-// (een losse pagina) sluit de kolom Product af, zoals "Pricing" onder Product in de footer van linear.app,
-// en Blog staat onder Over ons, zoals "Blog" onder Company op linear.app. Contact staat niet onder Over ons;
-// daarna volgen de kolom Demo en de kolom Contact met e-mail, telefoon en adres (Footer.tsx).
+// Footer: volgt het hoofdmenu. Workflow en Agencies staan los in de header en vormen in de footer
+// samen de kolom Product, zoals linear.app zijn productpagina's onder één kop zet. Elke groep uit
+// mainNav wordt een kolom met hetzelfde label; Blog staat onder Over ons, zoals "Blog" onder Company
+// op linear.app. Contact staat niet onder Over ons; daarna volgen de kolom Demo en de kolom Contact
+// met e-mail, telefoon en adres (Footer.tsx).
 const nietInFooterGroep = new Set(['/contact'])
 const footerLinks = (items: NavMenuItem[]): NavLink[] => links(items).filter((l) => !nietInFooterGroep.has(l.href))
 export const footerNav: { title: string; links: NavLink[] }[] = [
+  { title: 'Product', links: [workflow, agencies] },
   ...mainNav
     .filter((item): item is { label: string; items: NavMenuItem[] } => 'items' in item)
     .map((group) => ({
       title: group.label,
       links: [
         ...footerLinks(group.items),
-        ...(group.label === 'Product' ? [prijzen] : []),
         ...(group.label === 'Over ons' ? [blog] : []),
       ],
     })),

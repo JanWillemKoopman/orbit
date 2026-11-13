@@ -72,7 +72,7 @@ export const actie = {
     { titel: 'Voeg je eerste klant toe', tekst: 'Naam en website zijn genoeg. Na ongeveer tien minuten onderzoek begin je met meten.' },
   ],
   knop: 'Plan een gratis demo',
-  tweede: { label: 'Bekijk de prijzen', href: '/prijzen' },
+  tweede: { label: 'Bekijk hoe het werkt', href: '/werkwijze' },
 }
 
 export const faq: { title: string; items: FaqItem[] } = {
