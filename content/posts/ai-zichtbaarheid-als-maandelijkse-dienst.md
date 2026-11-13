@@ -4,7 +4,7 @@ description: "Steeds meer ondernemers willen weten hoe zichtbaar hun bedrijf is 
 date: 2026-11-13
 author: Jan-Willem Koopman
 category: productlanceringen
-cover: "/images/cover-jan-willem-koopman.webp"
+cover: "/images/cover-astronaut.webp"
 featured: true
 ---
 
