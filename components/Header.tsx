@@ -42,7 +42,7 @@ export function Header() {
     <>
       <header className="site-header" data-menu-open={open}>
         <div className="container">
-          <Link href="/" className="logo-link" aria-label={`${site.name} – home`}>
+          <Link href="/" className="logo-link" onClick={() => setOpen(false)} aria-label={`${site.name} – home`}>
             <Logo />
           </Link>
 
@@ -90,7 +90,8 @@ export function Header() {
             <ul>
               {group.links.map((item, l) => (
                 <li key={item.href} style={{ '--i': stapVoor(g, l + 1) } as CSSProperties}>
-                  <Link href={item.href} aria-current={isActive(pathname, item.href) ? 'page' : undefined}>{item.label}</Link>
+                  {/* Sluit ook bij een klik op de pagina waar je al bent: dan verandert pathname niet */}
+                  <Link href={item.href} onClick={() => setOpen(false)} aria-current={isActive(pathname, item.href) ? 'page' : undefined}>{item.label}</Link>
                 </li>
               ))}
             </ul>
