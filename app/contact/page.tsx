@@ -1,8 +1,14 @@
 import type { Metadata } from 'next'
 import { ContactForm } from './ContactForm'
+import { paginaMeta } from '@/lib/seo'
 import { site } from '@/lib/site'
 
-export const metadata: Metadata = { title: 'Contact opnemen', description: `Neem contact op met ${site.name}.` }
+export const metadata: Metadata = paginaMeta({
+  titel: 'Contact: stel je vraag of plan een gesprek – Orbit',
+  omschrijving:
+    'Een vraag over Orbit, een samenwerking of een demo voor je bureau? Laat een bericht achter. We reageren binnen één werkdag.',
+  pad: '/contact',
+})
 
 const punten = ['Stel ons een vraag', 'Ontdek mogelijke samenwerking', 'Plan een gesprek in']
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Documentatie' }
+// Zolang hier nog niets staat, hoort de pagina niet in de zoekresultaten.
+export const metadata: Metadata = { title: 'Documentatie', alternates: { canonical: '/documentatie' }, robots: { index: false, follow: false } }
 
 export default function Page() {
   return (

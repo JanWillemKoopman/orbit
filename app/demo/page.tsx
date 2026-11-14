@@ -1,9 +1,15 @@
 import type { Metadata } from 'next'
 import { DemoForm } from '@/components/DemoForm'
 import { LogoMark } from '@/components/Logo'
+import { paginaMeta } from '@/lib/seo'
 import { site } from '@/lib/site'
 
-export const metadata: Metadata = { title: 'Plan een gratis demo', description: `Plan een gratis demo van ${site.name}.` }
+export const metadata: Metadata = paginaMeta({
+  titel: 'Plan een gratis demo voor je bureau – Orbit',
+  omschrijving:
+    'Zie in 15 of 45 minuten hoe je bureau met Orbit AI-zichtbaarheid als vaste dienst verkoopt. Gratis, en op een moment dat jou uitkomt.',
+  pad: '/demo',
+})
 
 export default function DemoPage() {
   return (

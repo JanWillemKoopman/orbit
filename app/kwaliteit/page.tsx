@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ogBeeld, paginaMeta } from '@/lib/seo'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, hero, meta, secties } from '@/content/kwaliteit'
@@ -10,13 +11,7 @@ import '../beheer/beheer.css'
 import '../pagina.css'
 import './kwaliteit.css'
 
-export const metadata: Metadata = {
-  title: meta.title,
-  description: meta.description,
-  alternates: { canonical: '/kwaliteit' },
-  openGraph: { title: `${meta.title} – Orbit`, description: meta.description, url: '/kwaliteit', images: [{ url: '/images/product/og-kwaliteit.png', width: 1200, height: 630 }] },
-  twitter: { card: 'summary_large_image', images: ['/images/product/og-kwaliteit.png'] },
-}
+export const metadata: Metadata = paginaMeta({ titel: meta.zoektitel, omschrijving: meta.description, pad: '/kwaliteit', beeld: ogBeeld('kwaliteit') })
 
 // Opbouw naar linear.app/ai (components/product/Blokken.tsx, app/pagina.css), zoals Werkwijze: hero,
 // vijf secties met een intro en een groot beeld of raster, de rij met de vier productpagina's en de

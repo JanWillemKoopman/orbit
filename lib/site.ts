@@ -3,7 +3,9 @@ export const site = {
   name: 'Orbit',
   blogTitle: 'Nu',
   description: 'Verhalen, productnieuws en inzichten van het Orbit-team.',
-  url: 'https://orbit.example.com',
+  // Het adres waarop de site nu live staat. Hier hangen het vaste adres van elke pagina (canonical), de
+  // sitemap en de deelbeelden aan. Komt er een eigen domein, vervang dit dan door dat adres.
+  url: 'https://orbit-eight-flax.vercel.app',
   contactEmail: 'hallo@orbit.example.com',
   // Rechtsboven in de header: de link "Inloggen". Tijdelijke URL, vervang door de definitieve.
   loginUrl: 'https://www.nogoptegevenurl.nl',

@@ -13,6 +13,8 @@ export type PostMeta = {
   description: string
   /** Ondertitel onder de titel van het artikel zelf. */
   subtitle?: string
+  /** Titel in de zoekresultaten en bij een gedeelde link, als de titel van het artikel daarvoor te lang is. */
+  metaTitle?: string
   date: string
   author: string
   category: CategorySlug | typeof KENNISBANK
@@ -116,6 +118,7 @@ function readPost(file: string): Post {
     title: String(data.title),
     description: String(data.description ?? ''),
     subtitle: data.subtitle ? String(data.subtitle) : undefined,
+    metaTitle: data.metaTitle ? String(data.metaTitle) : undefined,
     date,
     author: String(data.author ?? ''),
     category: data.category as CategorySlug | typeof KENNISBANK,

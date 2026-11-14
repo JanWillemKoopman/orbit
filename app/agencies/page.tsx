@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { paginaMeta } from '@/lib/seo'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { Intro, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
@@ -12,12 +13,7 @@ import '../beheer/beheer.css'
 import '../pagina.css'
 import './agencies.css'
 
-export const metadata: Metadata = {
-  title: meta.title,
-  description: meta.description,
-  alternates: { canonical: '/agencies' },
-  openGraph: { title: `${meta.title} – Orbit`, description: meta.description, url: '/agencies' },
-}
+export const metadata: Metadata = paginaMeta({ titel: meta.zoektitel, omschrijving: meta.description, pad: '/agencies' })
 
 const Vink = () => (
   <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>

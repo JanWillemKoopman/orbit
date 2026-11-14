@@ -10,10 +10,13 @@
 
 export type Stap = { nr: number; id: string; titel: string; aanloop: string; tekst: string }
 
+// `title` is de korte naam van de pagina; `zoektitel` en `description` staan in de zoekresultaten en bij een
+// gedeelde link. Richtlijn: de titel hooguit 60 tekens, de omschrijving hooguit 158.
 export const meta = {
   title: 'Werkwijze',
+  zoektitel: 'Zo werkt Orbit: van AI-meting tot maandverslag in 10 stappen',
   description:
-    'Het werkproces van Orbit in tien stappen: van een nieuwe klant en de nulmeting tot het contentplan, de pagina’s, de effectmeting en het maandverslag.',
+    'Eén werkproces voor al je klanten. Merkdossier in tien minuten, nulmeting in ChatGPT, contentplan, pagina’s en elke maand een verslag met je bureaunaam.',
 }
 
 export const hero = {
