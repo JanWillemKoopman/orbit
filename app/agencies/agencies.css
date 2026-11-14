@@ -1,7 +1,9 @@
 /* ==========================================================================
-   Pagina Agencies (/agencies). Bouwt op pagina.css (hero, beeld), home.css (tekstblok, afsluiter) en
-   beheer.css (het appvenster en de tabel). Hier staan het grote scherm met al je klanten, de twee secties
-   met een illustratie en tekst, en de drie huisstijlen van de whitelabel-illustratie.
+   Pagina Agencies (/agencies). Bouwt op pagina.css (hero, intro, beeld, raster), home.css (tekstblok,
+   tussenzin, afsluiter) en beheer.css (het appvenster en de tabel). Eerst het grote scherm met al je
+   klanten, de secties met een illustratie en tekst en de drie huisstijlen van de whitelabel-illustratie;
+   daarna de link naar de demo, het grote beeld met de drie huisstijlen, de beelden van de huisstijl, de
+   kijker en de klant, en het raster met zes punten.
    ========================================================================== */
 
 /* Het werkoverzicht als heel scherm: zijbalk links, het scherm Alle bedrijven rechts */
@@ -57,7 +59,6 @@
 }
 .a2-split-inner { position: absolute; top: 56px; left: 40px; transform-origin: 0 0; }
 .a2-split-inner-kosten { transform: scale(0.8); }
-.a2-split-inner-whitelabel { top: 104px; left: 18px; transform: scale(0.535); }
 .a2-split-beeld::after { content: ''; position: absolute; inset: auto 0 0 0; height: 120px; background: linear-gradient(to bottom, rgba(11, 12, 13, 0), #0b0c0d); pointer-events: none; }
 
 .a2-split-label { font-size: 15px; line-height: 1.5; color: var(--text-tertiary); }
@@ -299,7 +300,6 @@
 @media (max-width: 1199px) {
   .a2-split { gap: 48px; }
   .a2-split-inner-kosten { transform: scale(0.7); }
-  .a2-split-inner-whitelabel { transform: scale(0.45); }
 }
 /* Onder elkaar vanaf tabletbreedte: eerst de tekst, dan de illustratie over de volle breedte */
 @media (max-width: 900px) {
@@ -307,7 +307,6 @@
   .a2-split + .a2-split { padding-top: 120px; }
   .a2-split .a2-split-beeld, .a2-split[data-spiegel] .a2-split-beeld { order: 2; }
   .a2-split-inner-kosten { transform: scale(0.85); }
-  .a2-split-inner-whitelabel { transform: scale(0.64); }
 }
 /* Vanaf hier past het hele scherm niet meer: het begint links en loopt rechts uit beeld, zoals op linear.app */
 @media (max-width: 1199px) {
@@ -339,7 +338,6 @@
   .a2-split-beeld { height: 320px; margin-inline: calc(-1 * var(--page-padding)); border-radius: 0; border-inline: 0; }
   .a2-split-inner { top: 32px; left: 18px; }
   .a2-split-inner-kosten { transform: scale(0.5); }
-  .a2-split-inner-whitelabel { transform: scale(0.36); }
   .a2-split-beeld::after { height: 56px; }
 }
 
@@ -354,4 +352,144 @@
 @media (max-width: 640px) {
   .a2 .a2-statement { margin-top: 88px; }
   .a2-statement + .a2-split { padding-top: 88px; }
+}
+
+/* ==========================================================================
+   De link naar de demo, white label als groot beeld, de nieuwe beelden en het raster
+   ========================================================================== */
+
+/* De link naar de demo onder de inleiding: een knop in de vorm van de tekstlinks op de site */
+.a3-demo { padding: 0; border: 0; background: none; font: inherit; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-primary); cursor: pointer; border-radius: 4px; }
+.a3-demo .pijl { transition: transform 0.2s var(--ease-out-quad); }
+@media (hover: hover) { .a3-demo:hover { color: var(--text-primary); } .a3-demo:hover .pijl { transform: translateX(3px); } }
+.a3 .a2-usp .feature-description .home-link { margin-top: 32px; }
+
+/* Ruimte tussen de secties: iets krapper dan op de productpagina's, zodat de pagina niet langer wordt dan
+   de homepage */
+.a3 .lp-sectie { padding-top: 96px; }
+.a3 .lp-sectie + .lp-sectie { padding-top: 200px; }
+.a3 .a2-split + .lp-sectie { padding-top: 200px; }
+.a3 .feature-header.lp-intro { padding-bottom: 80px; }
+/* Onder het laatste raster dezelfde lucht als boven de afsluiter op de homepage */
+.a3 #verder { padding-bottom: 72px; }
+
+/* White label: de drie huisstijlen als groot beeld -------------------------- */
+/* De compositie is altijd 1120 x 660 en wordt per breedte als geheel verkleind, zoals het grote scherm met
+   al je klanten hierboven. Hier blijven alle drie de vensters op elke breedte in beeld: het gaat om
+   het verschil ertussen. */
+.a3-wl-stage {
+  position: relative; height: 800px; overflow: hidden; user-select: none; text-align: left;
+  font-size: 14px; line-height: 1.5; color: var(--text-secondary);
+}
+.a3-wl-frame { position: absolute; top: 88px; left: 50%; width: 1120px; transform: translateX(-50%); transform-origin: 50% 0; }
+/* De huisstijlen horen bij de illustratie en volgen het thema van de site niet */
+.a3-wl-frame .agc-wl-comp { margin-left: -5px; }
+
+/* Wat wij van de website overnemen */
+.a3-hs { gap: 0; padding: 18px 22px 16px; }
+.a3-hs-kop { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; }
+.a3-hs-bron { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 12px; border-radius: var(--radius-pill); font-size: 13px; color: var(--text-secondary); background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07); }
+.a3-hs-bron svg { color: var(--text-quaternary); }
+.a3-hs-rij { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.a3-hs-logo { position: relative; display: inline-flex; align-items: center; height: 32px; padding: 0 16px 0 12px; border-radius: 8px; background: #070733; color: #ffffff; font-family: Montserrat, 'Avenir Next', var(--font-sans); font-size: 17px; font-weight: 800; letter-spacing: -0.03em; }
+.a3-hs-logo i { position: absolute; top: 8px; right: 8px; width: 6px; height: 6px; border-radius: 50%; background: #fce512; }
+.a3-hs-kleuren { display: inline-flex; gap: 6px; }
+.a3-hs-kleuren i { width: 28px; height: 28px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14); }
+.a3-hs-font { display: inline-flex; align-items: baseline; gap: 10px; font-size: 13.5px; color: var(--text-secondary); }
+.a3-hs-font b { font-family: Montserrat, 'Avenir Next', var(--font-sans); font-size: 22px; line-height: 1; font-weight: 800; letter-spacing: -0.03em; color: var(--text-primary); }
+.a3-hs-vormen { display: inline-flex; align-items: center; gap: 8px; }
+.a3-hs-vormen i { display: inline-flex; align-items: center; justify-content: center; height: 28px; font-style: normal; font-size: 12px; font-weight: var(--weight-semibold); }
+.a3-hs-vormen i[data-vorm='knop'] { padding: 0 14px; border-radius: var(--radius-pill); background: #fce512; color: #070733; }
+.a3-hs-vormen i[data-vorm='kaart'] { width: 44px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14); }
+.a3-hs .ag-lock { margin-top: 2px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+/* Het scherm van een klant die meekijkt, in de huisstijl van bureau zonnig (de stijl zelf staat hierboven) */
+.a3 .lp-cel-inner > .a3-kijker { width: 580px; height: 400px; flex-shrink: 0; zoom: 0.84; }
+.a3-kijker .agc-wl-main { padding-bottom: 0; }
+.a3-kijker-taken .agc-wl-rij { grid-template-columns: minmax(0, 1fr) auto; min-height: 52px; }
+.a3-kijker-taken .agc-wl-chip { justify-self: end; }
+
+/* Je klant doet mee: het venster met wat een kijker mag, ervoor de telefoon met een vraag */
+.a3-km { position: relative; width: 620px; height: 640px; }
+.a3-km-venster { position: absolute; top: 0; left: 0; width: 410px; }
+.a3-km-venster .ag-view { gap: 14px; padding: 22px 24px 22px; }
+.a3-km-rechten { display: flex; flex-direction: column; }
+.a3-km-groep > .fv-mono { display: block; padding: 10px 0 4px; }
+.a3-km-groep .fv-right { padding: 10px 0; font-size: 13.5px; letter-spacing: -0.01em; }
+.a3-km-groep .fv-right:first-of-type { border-top: 0; }
+.a3-km-venster .ag-lock { padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.a3-km-telefoon { position: absolute; top: 72px; left: 330px; }
+.a3-km-voortgang { display: flex; flex-direction: column; gap: 8px; width: 100%; font-size: 12px; color: var(--text-quaternary); }
+.a2-split-inner-samenwerken { transform: scale(0.8); }
+
+/* Wat er verder geregeld is: zes punten in een raster met één buitenrand en dunne lijnen ertussen */
+.a3-grid {
+  list-style: none; margin: 0 -32px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 12px; overflow: hidden; background: #0b0c0d;
+}
+.a3-grid li { display: flex; flex-direction: column; padding: 32px 32px 36px; border-left: 1px solid rgba(255, 255, 255, 0.07); }
+.a3-grid li:nth-child(3n + 1) { border-left: 0; }
+.a3-grid li:nth-child(n + 4) { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.a3-grid-icoon { display: inline-flex; color: var(--text-tertiary); }
+.a3-grid h3 { margin-top: 20px; font-size: 15px; line-height: 1.5; font-weight: var(--weight-medium); letter-spacing: -0.011em; color: var(--text-primary); }
+.a3-grid p { margin-top: 2px; max-width: 36ch; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); text-wrap: pretty; }
+
+/* Breekpunten --------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .a3-grid { margin-inline: 0; }
+  .a3-wl-stage { height: 700px; }
+  .a3-wl-frame { top: 72px; transform: translateX(-50%) scale(0.84); }
+  .a2-split-inner-samenwerken { transform: scale(0.7); }
+  .a3 .lp-cel-inner > .a3-kijker { zoom: 0.72; }
+}
+@media (max-width: 1024px) {
+  .a3 .lp-sectie + .lp-sectie, .a3 .a2-split + .lp-sectie { padding-top: 160px; }
+  .a3-wl-stage { height: 580px; }
+  .a3-wl-frame { top: 56px; transform: translateX(-50%) scale(0.7); }
+  .a3 .lp-cel-inner > .a3-kijker { zoom: 0.62; }
+}
+@media (max-width: 900px) {
+  .a3-wl-stage { height: 500px; }
+  .a3-wl-frame { top: 48px; transform: translateX(-50%) scale(0.6); }
+  .a2-split-inner-samenwerken { transform: scale(0.85); }
+  .a3 .lp-cel-inner > .a3-kijker { zoom: 0.84; }
+  .a3-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .a3-grid li:nth-child(3n + 1) { border-left: 1px solid rgba(255, 255, 255, 0.07); }
+  .a3-grid li:nth-child(2n + 1) { border-left: 0; }
+  .a3-grid li:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+}
+@media (max-width: 768px) {
+  .a3-wl-stage { height: 420px; }
+  .a3-wl-frame { top: 40px; transform: translateX(-50%) scale(0.5); }
+}
+@media (max-width: 640px) {
+  .a3 .lp-sectie { padding-top: 56px; }
+  .a3 .lp-sectie + .lp-sectie, .a3 .a2-split + .lp-sectie { padding-top: 72px; }
+  .a3 .feature-header.lp-intro { padding-bottom: 32px; }
+  /* Alle drie de vensters passen op een telefoon: de compositie staat in het midden op een derde van zijn maat */
+  .a3-wl-stage { height: 290px; }
+  .a3-wl-frame { top: 32px; transform: translateX(-50%) scale(0.31); }
+  .a2-split-inner-samenwerken { transform: scale(0.5); }
+  .a3 .lp-cel-inner > .a3-kijker { zoom: 0.58; }
+  .a3-grid { grid-template-columns: 1fr; margin-inline: calc(-1 * var(--page-padding)); border-radius: 0; border-inline: 0; }
+  .a3-grid li { padding: 20px 24px 22px; border-left: 0 !important; }
+  .a3-grid li:nth-child(n + 2) { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+  .a3-grid h3 { margin-top: 12px; }
+  .a3-grid p { max-width: none; }
+  /* Op een telefoon is de homepage de maat: de vlakken zijn lager en de lucht tussen de onderdelen is kleiner */
+  .a3 #verder { padding-bottom: 0; }
+  .a3 .lp-cel-stage { height: 272px; }
+  .a3 .lp-cel-inner { padding-top: 32px; }
+  .a3 .a2-scherm-stage { height: 360px; }
+  .a3 .a2-split-beeld { height: 290px; }
+  .a3 .a2-split, .a3 .a2-split[data-spiegel], .a3 .a2-split + .a2-split, .a3 .a2-statement + .a2-split { padding-top: 72px; }
+  .a3.a2 .a2-statement { margin-top: 72px; }
+  .a3 .a2-usp.process { padding-bottom: 40px; }
+}
+@media (max-width: 374px) {
+  .a3-wl-stage { height: 250px; }
+  .a3-wl-frame { top: 28px; transform: translateX(-50%) scale(0.26); }
+  .a3 .lp-cel-inner > .a3-kijker { zoom: 0.48; }
+  .a3 .lp-cel-stage { height: 240px; }
+  .a2-split-inner-samenwerken { transform: scale(0.44); }
 }

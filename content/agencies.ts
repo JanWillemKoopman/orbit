@@ -1,97 +1,185 @@
-// Teksten van de pagina Agencies (/agencies): de verkooppagina voor de eigenaar van een marketingbureau.
-// Waar /werkwijze laat zien hoe Orbit werkt, zegt deze pagina waarom een bureau ervoor kiest. Opbouw naar
-// linear.app, met zo min mogelijk: de hero met achtergrondvideo, een tekstblok met vier voordelen zoals op de
-// homepage, één groot beeld van het werkoverzicht met al je klanten, twee secties met een illustratie en
-// tekst naast elkaar (grip op kosten en whitelabel) en de afsluiter.
-// Elke belofte hier bestaat in de app (de kern: bedrijven, clusters, contentplan, schrijven, resultaten,
-// kijkers en het design per bureau). De tools die in de wacht staan, komen op deze pagina niet voor.
+// Teksten van de pagina Agencies (/agencies), de verkooppagina voor de eigenaar van een marketingbureau.
+// De homepage vertelt wat Orbit is, /werkwijze hoe een maand verloopt; deze pagina vertelt waarom Orbit
+// voor een bureau is gemaakt.
+// Het verhaal in één lijn: je klanten vragen al naar AI-zichtbaarheid, maak er een vaste dienst van onder
+// je eigen naam (white label), draai die voor al je klanten zonder extra mensen (werkoverzicht), laat je
+// klant meedoen zonder dat het je tijd kost (kijker en deellink) en houd de marge zelf (AI tegen
+// kostprijs). De woordkeus sluit aan op het blogartikel van de oprichter
+// (content/posts/ai-zichtbaarheid-als-maandelijkse-dienst.md): Orbit is geen tracker maar het hele traject,
+// GEO als terugkerende dienst, de kennis van de ondernemer als basis, en tijd voor de relatie met de klant.
+//
+// Elke belofte hier bestaat in de app en is nagelopen in de code van orbit-engine: het design per bureau
+// (lib/klantdesign), het werkoverzicht en de handelingen voor meerdere bedrijven (lib/portfolio,
+// /api/beheer/bulk), kijkers en hun rechten (lib/kijker-rechten), de deellink, de kosten per bedrijf en de
+// maandlimiet (lib/verbruik, lib/maandlimiet-regels) en de vakkennis per branche binnen één bureau
+// (lib/kennis/marktkennis). De tools die in de wacht staan, komen niet voor. Het bedrag per klant komt uit
+// hoofdstuk 19 van de procesdocumentatie (ongeveer 4 tot 5 euro per maand bij 3 clusters en 10 pagina's).
 
 import type { Usp } from './home'
 
 export const meta = {
   title: 'Agencies',
   description:
-    'Orbit is het platform voor marketingbureaus die AI-zichtbaarheid als vaste dienst verkopen: al je klanten bij elkaar, onbeperkt klanten, je klant kijkt mee en alles in de huisstijl van je bureau.',
+    'Orbit is gemaakt voor marketingbureaus die GEO als vaste dienst willen aanbieden: onder je eigen naam, met al je klanten in één overzicht, een klant die meekijkt en AI tegen kostprijs.',
 }
 
 export const hero = {
   eyebrow: 'Agencies',
-  title: "AI-software voor marketing agency's met groeiambitie",
+  title: 'Verkoop AI-zichtbaarheid als vaste dienst. Onder je eigen naam.',
 }
 
-// Kop (links), uitleg (rechts) en vier voordelen met een vinkje, in de opbouw van het blok
-// "Ontwikkeld voor marketingbureaus" op de homepage (uspIntro en usps in content/home.ts): op desktop een
-// korte titel met een regel uitleg, op mobiel de lange titel zonder uitleg.
-// Bron van de uitleg: docs/ORBIT_WAAROM.md (4.1) in orbit-engine.
-export const usp: { titel: string; tekst: string; punten: Usp[] } = {
-  titel: 'Eén platform voor je hele bureau',
+// Het blok direct onder de hero: de kern van het aanbod in één alinea, met vier voordelen die elk
+// terugkomen als sectie verderop. Op desktop de korte titel met een regel uitleg, op mobiel de lange titel.
+export const usp: { titel: string; tekst: string; demo: string; punten: Usp[] } = {
+  titel: 'Een nieuwe dienst. Zonder nieuw team.',
   tekst:
-    'Orbit helpt je bureau AI-zichtbaarheid als vaste dienst te verkopen, voor al je klanten tegelijk. Jullie bepalen met de klant de koers, Orbit doet het werk.',
+    'Je klanten vragen het al: worden wij aanbevolen door ChatGPT? Een tracker geeft alleen het antwoord. Met Orbit doe je er ook iets aan en maak je van GEO een dienst die elke maand terugkomt. Voor al je klanten, in je eigen huisstijl.',
+  demo: 'Plan een gratis demo',
   punten: [
     {
-      kort: 'Alle klanten op één plek',
-      titel: 'Beheer al je klanten vanuit één platform',
-      uitleg: 'Het werkoverzicht toont al je klanten op één scherm. Start de maand voor allemaal tegelijk.',
-    },
-    {
-      kort: 'Jouw huisstijl',
+      kort: 'Jouw merk voorop',
       titel: 'Volledig in de huisstijl van je bureau',
-      uitleg: 'Je logo, je kleuren en je lettertypes op elk scherm. Je team en je klanten zien jouw platform.',
+      uitleg: 'Je logo, je kleuren en je lettertypes op elk scherm. White label is standaard inbegrepen.',
     },
     {
-      kort: 'Je klant kijkt mee',
-      titel: 'Laat je klant meekijken',
-      uitleg: 'Als kijker ziet je klant alleen zijn eigen bedrijf, met uitleg in gewone taal op elk scherm.',
+      kort: 'Onbeperkt klanten',
+      titel: 'Al je klanten in één overzicht',
+      uitleg: 'Eén werkoverzicht voor al je klanten. Je start de maand voor allemaal tegelijk.',
     },
     {
-      kort: 'Werk uit handen',
-      titel: 'Neem je specialisten werk uit handen',
-      uitleg: 'Orbit meet, stelt het merkdossier op en schrijft de eerste versie. Je specialisten sturen bij.',
+      kort: 'Je klant doet mee',
+      titel: 'Je klant kijkt mee en levert aan',
+      uitleg: 'Je klant kijkt mee bij zijn eigen bedrijf en beantwoordt vragen via een link, zonder account.',
+    },
+    {
+      kort: 'Je marge blijft van jou',
+      titel: 'AI tegen kostprijs, je tarief bepaal je zelf',
+      uitleg: 'AI tegen kostprijs, op de sleutel van je bureau. Wat je je klant rekent, bepaal je zelf.',
     },
   ],
 }
 
-export const beeld = {
-  titel: 'Het werkoverzicht van je bureau',
-  tekst: 'Wat het langst wacht, staat bovenaan. Vink klanten aan en start de maand voor allemaal tegelijk.',
+// White label: de sectie die het verschil maakt voor een bureau en daarom vooraan staat. Een intro, het
+// grote beeld met drie huisstijlen en twee cellen: hoe de huisstijl tot stand komt en wat de klant ziet.
+export const whitelabel = {
+  id: 'whitelabel',
+  label: 'White label',
+  titel: 'Jouw platform. Niet het onze.',
+  tekst:
+    'Orbit draait volledig in de huisstijl van je bureau: je logo, je kleuren, je lettertypes en je vormen, op elk scherm. Je team en je klanten werken in jouw platform. Het ontwerp maken wij, en dat is inbegrepen.',
+  beeld: {
+    titel: 'Eén platform, elk bureau zijn eigen gezicht',
+    tekst: 'Hetzelfde werkscherm in de huisstijl van drie bureaus. De interface gaat mee in elke stijl.',
+    alt: 'Hetzelfde werkoverzicht drie keer, in de huisstijl van drie bureaus: warm donker met een schreefletter, wit met fel oranje en marineblauw met geel.',
+  },
+  cellen: [
+    {
+      titel: 'Wij vertalen je huisstijl',
+      tekst: 'We nemen het logo, de kleuren, de lettertypes en de vormen van je website over en rekenen na of elke tekst leesbaar blijft.',
+      alt: 'De huisstijl van bureau zonnig, overgenomen van de website: het logo, vier kleuren, het lettertype Montserrat en ronde vormen. De huisstijl staat aan en elke tekst is op leesbaarheid nagerekend.',
+    },
+    {
+      titel: 'Je klant ziet jouw merk',
+      tekst: 'Kijkt je klant mee, dan werkt hij in de huisstijl van je bureau, met je logo boven in het menu.',
+      alt: 'Het scherm van een klant die meekijkt, in de huisstijl van bureau zonnig: het logo van het bureau boven het menu, de zichtbaarheid in AI van Lindeman Warmte en twee taken die op de klant wachten.',
+    },
+  ],
 }
 
-// Grote tussenzin onder het werkoverzicht, in dezelfde vorm als op de homepage: het vetgedrukte deel staat
-// in het wit, de rest in grijs, en de woorden lichten op tijdens het scrollen.
+// Het werkoverzicht: een intro met een link naar /werkwijze en het grote scherm met twaalf klanten.
+export const overzicht = {
+  id: 'overzicht',
+  label: 'Overzicht',
+  titel: 'Al je klanten in één overzicht.',
+  tekst:
+    'Onbeperkt klanten op één scherm. Je ziet wie nog vragen moet beantwoorden, welke teksten op je wachten en welke pagina’s klaarstaan. De maand start je voor al je klanten tegelijk. Zo groeit je klantenportefeuille en niet je werkdruk.',
+  link: { label: 'Zo ziet een maand eruit', href: '/werkwijze' },
+  beeld: {
+    titel: 'Het werkoverzicht van je bureau',
+    tekst: 'Wat het langst wacht, staat bovenaan. Vooraf zie je hoeveel pagina’s je start en ongeveer wat het kost.',
+    alt: 'Het scherm Alle bedrijven van een bureau: twaalf klanten onder elkaar met hun zichtbaarheid in AI, de maandmeting, wat er te starten is, wat er wacht en sinds wanneer, en de kosten van de afgelopen dertig dagen. Vier klanten zijn aangevinkt om de maand tegelijk te starten.',
+  },
+}
+
+// Grote tussenzin tussen het werkoverzicht en de twee secties: het vetgedrukte deel in het wit, de rest in
+// grijs, en de woorden lichten op tijdens het scrollen.
 export const statement = {
-  strong: 'Van klantstrategie tot groeikans in AI zichtbaarheid.',
-  rest: 'Orbit brengt analyse, contentcreatie, publicatie en nameting samen in één doorlopende workflow. Jouw team bepaalt de koers. AI versnelt de uitvoering.',
+  strong: 'Jouw kennis. Jouw klanten. Jouw naam.',
+  rest: 'Orbit neemt het onderzoek en het schrijfwerk uit handen, voor al je klanten tegelijk. Je team houdt de regie, met tijd voor persoonlijke aandacht.',
 }
 
-// Twee secties onder het grote beeld, elk met een illustratie en tekst naast elkaar.
+// Twee secties met een illustratie en tekst naast elkaar; de tweede is gespiegeld.
 export const secties = [
   {
-    id: 'kosten',
-    label: 'Grip op kosten',
-    titel: 'Hanteer je bureautarief. Jij betaalt kostprijs.',
+    id: 'samenwerken',
+    label: 'Samenwerken met je klant',
+    titel: 'Je klant doet mee. Zonder dat jij erachteraan moet.',
     tekst:
-      'Een pagina schrijven kost met Orbit minder dan een euro aan AI, onderzoek en eindredactie inbegrepen. Je betaalt de echte kostprijs, rechtstreeks bij OpenAI, zonder opslag en zonder prijs per klant. Wat je je klant rekent, bepaal je zelf. Het verschil is je marge, en je ziet per klant precies hoe groot die is.',
+      'Nodig je klant uit als kijker: hij ziet alleen zijn eigen bedrijf. Wat niet op zijn website staat, zoals prijzen, werkwijze en praktijkvoorbeelden, vraagt Orbit gericht na. Die vragen stuur je als link door. Zo komt de kennis van de ondernemer in de teksten.',
     punten: [
-      'AI tegen kostprijs, zonder opslag of prijs per klant',
-      'Per klant zien wat hij kost, en per maand exporteren',
-      'Een maandlimiet en vooraf de kosten bij elke knop',
+      'Je klant ziet alleen zijn eigen bedrijf',
+      'Jij bepaalt wat hij mag: aanleveren, bevestigen of goedkeuren',
+      'Vragen beantwoorden via een link, zonder account',
+      'Alles wat geld kost, blijft bij je bureau',
     ],
+    alt: 'Het onderdeel Wat mogen kijkers van een bureau: vragen beantwoorden, materiaal toevoegen, gele zinnen bevestigen en een pagina goedkeuren staan aan, een pagina zelf bewerken staat uit. Ervoor een telefoon waarop de klant zonder account een vraag over zijn prijs beantwoordt.',
   },
   {
-    id: 'whitelabel',
-    label: 'Whitelabel',
-    titel: 'Jouw bureau. Jouw huisstijl.',
+    id: 'kosten',
+    label: 'Marge',
+    titel: 'Hanteer je bureautarief. Jij betaalt kostprijs.',
     tekst:
-      'Orbit draait volledig in de huisstijl van je bureau: je logo, je kleuren, je lettertypes en je vormen, op elk scherm. Je team en je klanten zien jouw platform. Het redesign van de interface doen wij, en dat is inbegrepen.',
+      'Het AI-gebruik loopt via de eigen sleutel van je bureau, tegen kostprijs en zonder opslag. Meten en tien pagina’s schrijven kost je aan AI een paar euro per klant per maand. Wat je je klant rekent, bepaal je zelf. Het verschil is je marge.',
     punten: [
-      'Je logo linksboven in de app',
-      'Je kleuren en lettertypes op elk scherm',
-      'Een maandverslag met de naam van je bureau',
+      'AI tegen kostprijs, zonder opslag',
+      'Per klant zien wat hij kost, per maand te downloaden',
+      'Een maandlimiet en vooraf de kosten bij elke knop',
     ],
+    alt: 'Het tabblad Kosten van een bureau: deze maand € 158,60 van een limiet van € 250, volgende maand ongeveer € 164, en de kosten per bedrijf, van € 24,60 voor Lindeman Warmte tot € 13,10 voor Kringloop De Ruil. Ervoor de schatting bij Start de maand: 20 pagina’s voor 4 bedrijven, ongeveer € 11,80.',
   },
 ]
 
+// Raster met zes korte punten onderaan: wat er verder voor een bureau geregeld is. `icoon` is een naam uit
+// components/product/ui.tsx.
+export const verder = {
+  id: 'verder',
+  titel: 'Ingericht op hoe een bureau werkt.',
+  tekst: 'Orbit gaat uit van een team, een klantenportefeuille en klanten die willen zien wat je voor ze doet.',
+  punten: [
+    {
+      icoon: 'slot',
+      titel: 'Een eigen, afgeschermde omgeving',
+      tekst: 'Andere bureaus zien niets van jouw bureau, ook niet dat het bestaat.',
+    },
+    {
+      icoon: 'mensen',
+      titel: 'Je team met de juiste rol',
+      tekst: 'Collega’s nodig je uit als beheerder, klanten als kijker. De uitnodiging gaat per mail.',
+    },
+    {
+      icoon: 'merk',
+      titel: 'Een nieuwe klant in tien minuten',
+      tekst: 'Naam en website zijn genoeg. Orbit onderzoekt het bedrijf en zet het merkdossier klaar.',
+    },
+    {
+      icoon: 'pdf',
+      titel: 'Een maandverslag per klant',
+      tekst: 'Elke maand een verslag met de naam van je bureau erop, als pdf te versturen.',
+    },
+    {
+      icoon: 'boek',
+      titel: 'Vakkennis die meegroeit',
+      tekst: 'Gecontroleerde vakkennis uit een branche gebruikt Orbit opnieuw bij je andere klanten in die branche. Alleen binnen je eigen bureau.',
+    },
+    {
+      icoon: 'wereld',
+      titel: 'Nederlands van begin tot eind',
+      tekst: 'De app, de AI-vragen en de teksten zijn Nederlands, met oog voor lokale bedrijven, werkgebieden en plaatsnamen.',
+    },
+  ],
+}
+
 export const afsluiter = {
-  title: 'Laat je bureau groeien met Orbit.',
-  description: 'Plan een demo. We laten je Orbit zien in de huisstijl van jouw bureau.',
+  title: 'Zie Orbit in de huisstijl van jouw bureau.',
+  description: 'Plan een demo. We laten zien hoe je klanten, je team en je marge in Orbit passen.',
 }
