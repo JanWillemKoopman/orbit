@@ -125,7 +125,7 @@
   .a3-grid p { max-width: none; }
   /* Op een telefoon is de homepage de maat: de vlakken zijn lager en de lucht tussen de onderdelen is kleiner */
   .a3 #verder { padding-bottom: 0; }
-  .a3 .lp-cel-stage { height: 290px; }
+  .a3 .lp-cel-stage { height: 272px; }
   .a3 .lp-cel-inner { padding-top: 32px; }
   .a3 .a2-scherm-stage { height: 360px; }
   .a3 .a2-split-beeld { height: 290px; }
@@ -137,6 +137,6 @@
   .a3-wl-stage { height: 250px; }
   .a3-wl-frame { top: 28px; transform: translateX(-50%) scale(0.26); }
   .a3 .lp-cel-inner > .a3-kijker { zoom: 0.48; }
-  .a3 .lp-cel-stage { height: 264px; }
+  .a3 .lp-cel-stage { height: 240px; }
   .a2-split-inner-samenwerken { transform: scale(0.44); }
 }

@@ -6,7 +6,9 @@
 // Het verhaal in één lijn: je klanten vragen al naar AI-zichtbaarheid, maak er een vaste dienst van onder
 // je eigen naam (white label), draai die voor al je klanten zonder extra mensen (werkoverzicht), laat je
 // klant meedoen zonder dat het je tijd kost (kijker en deellink) en houd de marge zelf (AI tegen
-// kostprijs).
+// kostprijs). De woordkeus sluit aan op het blogartikel van de oprichter
+// (content/posts/ai-zichtbaarheid-als-maandelijkse-dienst.md): Orbit is geen tracker maar het hele traject,
+// GEO als terugkerende dienst, de kennis van de ondernemer als basis, en tijd voor de relatie met de klant.
 //
 // Elke belofte hier bestaat in de app en is nagelopen in de code van orbit-engine: het design per bureau
 // (lib/klantdesign), het werkoverzicht en de handelingen voor meerdere bedrijven (lib/portfolio,
@@ -20,7 +22,7 @@ import type { Usp } from './home'
 export const meta = {
   title: 'Agencies',
   description:
-    'Orbit is gemaakt voor marketingbureaus: verkoop AI-zichtbaarheid als vaste dienst onder je eigen naam, met al je klanten in één overzicht, een klant die meekijkt en AI tegen kostprijs.',
+    'Orbit is gemaakt voor marketingbureaus die GEO als vaste dienst willen aanbieden: onder je eigen naam, met al je klanten in één overzicht, een klant die meekijkt en AI tegen kostprijs.',
 }
 
 export const hero = {
@@ -33,7 +35,7 @@ export const hero = {
 export const usp: { titel: string; tekst: string; demo: string; punten: Usp[] } = {
   titel: 'Een nieuwe dienst. Zonder nieuw team.',
   tekst:
-    'Je klanten vragen het al: worden wij aanbevolen door ChatGPT? Met Orbit maak je van dat antwoord een dienst die elke maand terugkomt. Voor al je klanten, in de huisstijl van je bureau en met een marge die je zelf bepaalt.',
+    'Je klanten vragen het al: worden wij aanbevolen door ChatGPT? Een tracker geeft alleen het antwoord. Met Orbit doe je er ook iets aan en maak je van GEO een dienst die elke maand terugkomt. Voor al je klanten, in je eigen huisstijl.',
   demo: 'Plan een gratis demo',
   punten: [
     {
@@ -92,7 +94,7 @@ export const overzicht = {
   label: 'Overzicht',
   titel: 'Al je klanten in één overzicht.',
   tekst:
-    'Onbeperkt klanten op één scherm. Per klant zie je de zichtbaarheid in AI, wat er op je wacht en wat het kostte. Je vinkt klanten aan en start de maand voor allemaal tegelijk. Zo groeit je klantenbestand en niet je werkdruk.',
+    'Onbeperkt klanten op één scherm. Je ziet wie nog vragen moet beantwoorden, welke teksten op je wachten en welke pagina’s klaarstaan. De maand start je voor al je klanten tegelijk. Zo groeit je klantenportefeuille en niet je werkdruk.',
   link: { label: 'Zo ziet een maand eruit', href: '/werkwijze' },
   beeld: {
     titel: 'Het werkoverzicht van je bureau',
@@ -105,7 +107,7 @@ export const overzicht = {
 // grijs, en de woorden lichten op tijdens het scrollen.
 export const statement = {
   strong: 'Jouw kennis. Jouw klanten. Jouw naam.',
-  rest: 'Orbit is de motor erachter: het meet, plant en schrijft voor al je klanten tegelijk. Je specialisten houden de regie en je klant ziet jouw bureau.',
+  rest: 'Orbit neemt het onderzoek en het schrijfwerk uit handen, voor al je klanten tegelijk. Je team houdt de regie, met tijd voor persoonlijke aandacht.',
 }
 
 // Twee secties met een illustratie en tekst naast elkaar; de tweede is gespiegeld.
@@ -115,7 +117,7 @@ export const secties = [
     label: 'Samenwerken met je klant',
     titel: 'Je klant doet mee. Zonder dat jij erachteraan moet.',
     tekst:
-      'Nodig je klant uit als kijker: hij ziet alleen zijn eigen bedrijf. Vragen die alleen het bedrijf kan beantwoorden, stuur je als link naar de ondernemer, de verkoper of de planner. Zo komt echte kennis in de teksten en blijft je klant betrokken.',
+      'Nodig je klant uit als kijker: hij ziet alleen zijn eigen bedrijf. Wat niet op zijn website staat, zoals prijzen, werkwijze en praktijkvoorbeelden, vraagt Orbit gericht na. Die vragen stuur je als link door. Zo komt de kennis van de ondernemer in de teksten.',
     punten: [
       'Je klant ziet alleen zijn eigen bedrijf',
       'Jij bepaalt wat hij mag: aanleveren, bevestigen of goedkeuren',
@@ -144,7 +146,7 @@ export const secties = [
 export const verder = {
   id: 'verder',
   titel: 'Ingericht op hoe een bureau werkt.',
-  tekst: 'Orbit gaat uit van een team, een klantenbestand en klanten die willen zien wat je voor ze doet.',
+  tekst: 'Orbit gaat uit van een team, een klantenportefeuille en klanten die willen zien wat je voor ze doet.',
   punten: [
     {
       icoon: 'slot',
