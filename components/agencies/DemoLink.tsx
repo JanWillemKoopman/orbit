@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { DemoDialog } from '@/components/DemoDialog'
 
-// Tekstlink onder de inleiding van /agencies2 die het demoformulier opent: dezelfde popup als de knop
+// Tekstlink onder de inleiding van /agencies die het demoformulier opent: dezelfde popup als de knop
 // onderaan de pagina, zodat een bezoeker niet eerst helemaal naar beneden hoeft.
 export function DemoLink({ label }: { label: string }) {
   const [open, setOpen] = useState(false)
