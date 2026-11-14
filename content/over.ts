@@ -1,5 +1,13 @@
 // Teksten van de pagina Over (/over). Alles hieronder mag je vrij aanpassen; de opmaak volgt vanzelf.
 
+// Titel en omschrijving in de zoekresultaten en bij een gedeelde link. Richtlijn: de titel hooguit 60 tekens,
+// de omschrijving hooguit 158.
+export const meta = {
+  zoektitel: 'Over Orbit: software voor zichtbaarheid in AI en Google',
+  description:
+    'Klanten vragen hun antwoord steeds vaker aan AI. Orbit bouwt de software waarmee marketingbureaus hun klanten daarin zichtbaar maken. Lees ons verhaal.',
+}
+
 export const hero = {
   title: ['Software bouwen voor het', 'nieuwe tijdperk van vindbaarheid'],
   description: 'AI verandert hoe klanten een merk vinden. Wij bouwen de software voor wat daarna komt.',

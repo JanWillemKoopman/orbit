@@ -3,6 +3,8 @@ import { notFound, permanentRedirect } from 'next/navigation'
 import { ArticleView } from '@/components/ArticleView'
 import { Prefooter } from '@/components/Prefooter'
 import { getAllPosts, getPost } from '@/lib/posts'
+import { coverAlsDeelbeeld, paginaMeta } from '@/lib/seo'
+import { site } from '@/lib/site'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -12,12 +14,13 @@ export const generateStaticParams = () => getAllPosts().map((p) => ({ slug: p.sl
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPost((await params).slug)
   if (!post || post.category === 'kennisbank') return {}
-  return {
-    title: post.title,
-    description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: { type: 'article', title: post.title, description: post.description, publishedTime: post.date, authors: [post.author] },
-  }
+  return paginaMeta({
+    titel: post.metaTitle ?? `${post.title} – ${site.name}`,
+    omschrijving: post.description,
+    pad: `/blog/${post.slug}`,
+    beeld: coverAlsDeelbeeld(post.cover),
+    artikel: { gepubliceerd: post.date, auteur: post.author },
+  })
 }
 
 export default async function ArticlePage({ params }: Props) {

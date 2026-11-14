@@ -8,10 +8,13 @@ import type { Bijschrift, Verwijzing } from '@/components/product/Blokken'
 
 export type { Bijschrift, Verwijzing }
 
+// `title` is de korte naam van de pagina; `zoektitel` en `description` staan in de zoekresultaten en bij een
+// gedeelde link. Richtlijn: de titel hooguit 60 tekens, de omschrijving hooguit 158.
 export const meta = {
   title: 'Beheer',
+  zoektitel: 'Al je klanten in één account, grip op je AI-kosten – Orbit',
   description:
-    'Orbit voor online marketingbureaus: al je klanten in één overzicht, collega’s en klanten met de juiste rol, en grip op wat de AI kost. Je gebruikt je eigen sleutels en betaalt alleen je eigen gebruik.',
+    'Onbeperkt klanten in één werkoverzicht, collega’s en klanten met de juiste rol en AI tegen kostprijs met een maandlimiet. Jij houdt de regie.',
 }
 
 export const hero = {

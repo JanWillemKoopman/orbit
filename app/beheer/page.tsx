@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ogBeeld, paginaMeta } from '@/lib/seo'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, hero, meta, secties } from '@/content/beheer'
@@ -8,13 +9,7 @@ import '../werkwijze/werkwijze.css'
 import '../pagina.css'
 import './beheer.css'
 
-export const metadata: Metadata = {
-  title: meta.title,
-  description: meta.description,
-  alternates: { canonical: '/beheer' },
-  openGraph: { title: `${meta.title} – Orbit`, description: meta.description, url: '/beheer', images: [{ url: '/images/product/og-beheer.png', width: 1200, height: 630 }] },
-  twitter: { card: 'summary_large_image', images: ['/images/product/og-beheer.png'] },
-}
+export const metadata: Metadata = paginaMeta({ titel: meta.zoektitel, omschrijving: meta.description, pad: '/beheer', beeld: ogBeeld('beheer') })
 
 // Opbouw naar linear.app/ai (components/product/Blokken.tsx, app/pagina.css), zoals Werkwijze en
 // Kwaliteit: hero, vijf secties met een intro en een groot beeld of raster, de rij met de vier

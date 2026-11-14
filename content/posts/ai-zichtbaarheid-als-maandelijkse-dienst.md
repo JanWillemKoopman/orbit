@@ -1,6 +1,7 @@
 ---
 title: "Orbit is live: maak je klanten zichtbaar in ChatGPT en bewijs wat het oplevert"
 subtitle: "Ik heb Orbit gebouwd voor marketingbureaus die van AI-zichtbaarheid hun volgende vaste dienst willen maken."
+metaTitle: "Orbit is live: maak je klanten zichtbaar in ChatGPT"
 description: "Worden wij aanbevolen door ChatGPT? Met Orbit meet je het, lever je de pagina's die het verschil maken en laat je elke maand zien wat het oplevert."
 date: 2026-11-13
 author: Jan-Willem Koopman

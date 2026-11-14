@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ogBeeld, paginaMeta } from '@/lib/seo'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
 import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { afsluiter, hero, intro, meta, overzicht, stappen, type Stap } from '@/content/werkwijze'
@@ -9,13 +10,7 @@ import '../pagina.css'
 import './werkwijze.css'
 import './stappen.css'
 
-export const metadata: Metadata = {
-  title: meta.title,
-  description: meta.description,
-  alternates: { canonical: '/werkwijze' },
-  openGraph: { title: `${meta.title} – Orbit`, description: meta.description, url: '/werkwijze', images: [{ url: '/images/product/og-werkwijze.png', width: 1200, height: 630 }] },
-  twitter: { card: 'summary_large_image', images: ['/images/product/og-werkwijze.png'] },
-}
+export const metadata: Metadata = paginaMeta({ titel: meta.zoektitel, omschrijving: meta.description, pad: '/werkwijze', beeld: ogBeeld('werkwijze') })
 
 // Opbouw naar linear.app: de hero met een achtergrondvideo van grafieken, een introductie, een overzicht van de
 // tien stappen en daarna de tien stappen direct onder

@@ -3,6 +3,7 @@ import '@fontsource-variable/inter/opsz.css'
 import '@fontsource-variable/inter/opsz-italic.css'
 import '@fontsource-variable/jetbrains-mono/wght.css'
 import { SiteChrome } from '@/components/SiteChrome'
+import { STANDAARD_DEELBEELD, standaard } from '@/lib/seo'
 import { site } from '@/lib/site'
 import './globals.css'
 import './article.css'
@@ -10,10 +11,11 @@ import './home.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.blogTitle} – ${site.name}`, template: `%s – ${site.name}` },
-  description: site.description,
+  title: { default: standaard.titel, template: `%s – ${site.name}` },
+  description: standaard.omschrijving,
   alternates: { types: { 'application/rss+xml': '/rss.xml' } },
-  openGraph: { siteName: site.name, type: 'website', locale: 'nl_NL' },
+  openGraph: { siteName: site.name, type: 'website', locale: 'nl_NL', images: [STANDAARD_DEELBEELD] },
+  twitter: { card: 'summary_large_image' },
   // Geen automatische links van iOS Safari op adres en telefoonnummer (de stippellijnen in de footer)
   formatDetection: { telephone: false, address: false, email: false },
 }

@@ -2,12 +2,14 @@ import type { Metadata } from 'next'
 import { BlogKaart } from '@/components/BlogKaart'
 import { MeerLaden } from '@/components/MeerLaden'
 import { getBlogMetas } from '@/lib/posts'
+import { paginaMeta } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'AI-gedreven tactieken, automatiseringsstrategieën en growth hacks.',
-  alternates: { canonical: '/blog' },
-}
+export const metadata: Metadata = paginaMeta({
+  titel: 'Blog over GEO, AI-zichtbaarheid en content – Orbit',
+  omschrijving:
+    'Productnieuws, inzichten en praktijkverhalen over zichtbaar worden in ChatGPT en Google. Voor marketeers die GEO als vak serieus nemen.',
+  pad: '/blog',
+})
 
 export default function BlogPage() {
   const posts = getBlogMetas()

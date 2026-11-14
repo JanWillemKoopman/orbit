@@ -1,13 +1,10 @@
 import type { Metadata } from 'next'
 import { Prefooter } from '@/components/Prefooter'
-import { foto, hero, verhaal } from '@/content/over'
+import { foto, hero, meta, verhaal } from '@/content/over'
+import { paginaMeta } from '@/lib/seo'
 import './over.css'
 
-export const metadata: Metadata = {
-  title: 'Over',
-  description: hero.description,
-  alternates: { canonical: '/over' },
-}
+export const metadata: Metadata = paginaMeta({ titel: meta.zoektitel, omschrijving: meta.description, pad: '/over' })
 
 export default function Page() {
   return (

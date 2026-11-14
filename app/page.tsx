@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { paginaMeta, standaard } from '@/lib/seo'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { CtaAchtergrond } from '@/components/CtaAchtergrond'
@@ -21,11 +22,7 @@ import './beheer/beheer.css'
 import './pagina.css'
 import './kwaliteit/kwaliteit.css'
 
-export const metadata: Metadata = {
-  title: { absolute: 'Orbit – Open source SEO & GEO software voor marketeers' },
-  description: hero.description,
-  alternates: { canonical: '/' },
-}
+export const metadata: Metadata = paginaMeta({ titel: standaard.titel, omschrijving: standaard.omschrijving, pad: '/' })
 
 // Opbouw en maten volgen linear.app: hero met nagebouwde app, vier voordelen voor bureaus naast elkaar, twee beelden met een link naar /werkwijze, een grote tussenzin, drie nagebouwde schermen, de kwaliteit van de content, wat het werk oplevert, veelgestelde vragen en een afsluiter.
 export default function HomePage() {
