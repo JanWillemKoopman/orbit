@@ -1,7 +1,7 @@
 ---
-title: "Hoe Orbit in één platform AI-zichtbaarheid meet, content plant én pagina’s schrijft"
-subtitle: "Oprichter Jan-Willem Koopman introduceert het AI-platform Orbit."
-description: "Steeds meer ondernemers willen weten hoe zichtbaar hun bedrijf is in ChatGPT. Jan-Willem Koopman ontwikkelde Orbit: een platform dat die zichtbaarheid analyseert, kansen vertaalt naar een contentplanning, pagina's schrijft en de resultaten opnieuw meet."
+title: "Orbit is live: AI-zichtbaarheid meten, verbeteren en aantonen in één platform"
+subtitle: "Ik heb Orbit gebouwd voor marketingbureaus die van AI-zichtbaarheid een vaste dienst willen maken."
+description: "Worden wij aanbevolen door ChatGPT? Orbit meet het, maakt van gemiste vragen een contentplan, schrijft de pagina's en laat zien wat ze opleveren."
 date: 2026-11-13
 author: Jan-Willem Koopman
 category: productlanceringen
@@ -9,96 +9,80 @@ cover: "/images/cover-handen.gif"
 featured: true
 ---
 
-Steeds meer ondernemers willen weten hoe zichtbaar hun bedrijf is in ChatGPT en andere AI-assistenten. Voor marketingbureaus is daar een nieuw werkveld ontstaan waarin het niet alleen draait om het meten van zichtbaarheid, maar vooral om het benutten van commerciële kansen. Welke onderwerpen verdienen prioriteit? Welke content kan de zichtbaarheid verbeteren? En hoe maak je de resultaten inzichtelijk? Om bureaus bij dat volledige proces te ondersteunen, ontwikkelde Jan-Willem Koopman Orbit: een platform dat AI-zichtbaarheid analyseert, kansen vertaalt naar een concrete contentplanning, pagina's schrijft en de resultaten na publicatie opnieuw meet.
+Worden wij eigenlijk aanbevolen door ChatGPT? Steeds meer ondernemers stellen die vraag aan hun marketingbureau. Zonder eigen meting heb je daar geen onderbouwd antwoord op. Google Analytics en Search Console laten het niet zien, en zelf een paar vragen intypen zegt weinig, omdat een AI-assistent elke keer net anders antwoordt.
 
-De ontwikkeling waar Orbit op inspeelt, is relatief nieuw. Waar potentiële klanten voorheen zelf een keuze maakten uit een lijst met zoekresultaten, krijgen ze via AI-assistenten steeds vaker een samengesteld antwoord waarin slechts enkele aanbieders worden genoemd. Voor bedrijven wordt het daarmee steeds belangrijker om ook binnen die antwoorden zichtbaar te zijn.
+De vraag is wel terecht. Wie een AI-assistent om een installateur, een advocatenkantoor of een webshop vraagt, krijgt geen tien links om uit te kiezen, maar één antwoord met een handvol namen. Staat je klant daar niet tussen, dan komt hij bij die koper niet in beeld.
 
-Voor marketingbureaus betekent dit een uitbreiding van hun vakgebied. Naast traditionele zoekmachineoptimalisatie ontstaat een discipline waarin kennis van zoekgedrag, contentstrategie en AI-technologie samenkomen. Bestaande analysetools zoals Google Analytics en Search Console blijven daarbij waardevol, maar bieden beperkt inzicht in de manier waarop bedrijven door AI-assistenten worden genoemd en aanbevolen.
+Voor die situatie heb ik Orbit gebouwd, en vanaf nu is het beschikbaar. Orbit is een platform voor marketingbureaus dat meet hoe vaak AI-assistenten je klanten noemen, de gemiste vragen omzet in een contentplan, de pagina's schrijft en na publicatie laat zien wat ze hebben opgeleverd.
 
-Orbit voegt die inzichten toe en verbindt ze direct aan de werkzaamheden die nodig zijn om de zichtbaarheid te verbeteren.
+## Een tracker geeft het antwoord. Daarna begint het werk.
 
-> Er zijn talloze AI trackers die laten zien hoe zichtbaar een bedrijf is in chatbots zoals ChatGPT, Gemini en Claude. Met Orbit wilde ik een stap verder gaan: niet alleen ontdekken waar kansen liggen, maar ook de middelen bieden om ze daadwerkelijk te benutten.
+Er zijn inmiddels genoeg AI-trackers die laten zien hoe zichtbaar een merk is in ChatGPT en andere AI-assistenten. Dat inzicht is nuttig, en Orbit begint er ook mee. Maar zodra je klant weet dat hij bij twee derde van de vragen ontbreekt, wil hij weten wat je eraan gaat doen.
 
-Jan-Willem werkte de afgelopen tien jaar als analist binnen marketingafdelingen, onder meer bij Randstad Groep Nederland en tegenwoordig bij Van den Udenhout. Daar is hij nauw betrokken bij disciplines als SEO, GEO, advertising, contentmarketing en merkstrategie.
+Dan moet iemand uitzoeken waarom de concurrent wel wordt genoemd, bepalen welke pagina's ontbreken, bij de ondernemer ophalen wat alleen hij weet, de teksten schrijven en controleren, en een maand later laten zien of het heeft gewerkt. In de praktijk loopt dat over losse tools, spreadsheets en mailwisselingen, en daar gaan de uren van je team in zitten.
 
-Door de snelle ontwikkeling van AI veranderde ook zijn eigen werk. Waar de nadruk voorheen vooral lag op het analyseren en interpreteren van data, verschoof zijn rol steeds meer naar datamodellering, het ontwikkelen van AI-pipelines en software-engineering.
+> Met Orbit wilde ik verder gaan dan meten: niet alleen laten zien waar de kansen liggen, maar ook het gereedschap leveren om ze te benutten.
 
-Die combinatie van marketingervaring en technische expertise vormde de basis voor Orbit. Vanuit de overtuiging dat marketingstrategie, bedrijfskennis en AI-technologie elkaar kunnen versterken, ontwikkelde hij een platform dat aansluit op de dagelijkse praktijk van marketingbureaus: van de eerste analyse en contentontwikkeling tot het meten van de resultaten.
+Orbit zet dat hele traject in één keten. De meting voedt het plan, het plan voedt de teksten, en elke gepubliceerde pagina wordt opnieuw gemeten.
 
-## AI-gestuurde analyses als vertrekpunt
+## Waarom ik Orbit heb gebouwd
 
-Orbit begint met het in kaart brengen van het bedrijf waarvoor het wordt ingezet. Op basis van de online aanwezigheid analyseert het platform onder meer het aanbod, de doelgroep, het werkgebied en de markt waarin de onderneming actief is.
+Ik werk al tien jaar als data-analist op marketingafdelingen, onder meer bij Randstad Groep Nederland en tegenwoordig bij Van den Udenhout. Daar zit ik dicht op SEO, GEO, advertising, contentmarketing en merkstrategie. Al die jaren draaide mijn werk om dezelfde vraag: wat levert marketing echt op, en hoe toon je dat eerlijk aan?
 
-Het marketingbureau vult deze informatie samen met de ondernemer aan. Op welke diensten wil het bedrijf groeien? Welke vragen stellen potentiële klanten tijdens verkoopgesprekken? En wat onderscheidt de onderneming van concurrenten?
+Door AI veranderde mijn eigen werk. Ik besteedde minder tijd aan het analyseren en duiden van data en steeds meer aan bouwen: datamodellen, AI-pipelines, software. In Orbit komen die twee kanten samen, de marketingpraktijk en de techniek.
 
-Ook de gewenste schrijfstijl, aanspreekvorm en onderwerpen die vermeden moeten worden, worden vastgelegd. Zo ontstaat een bedrijfsprofiel dat als basis dient voor de verdere analyses en contentontwikkeling.
+Twee gewoontes uit mijn vak zitten diep in het platform. Een cijfer zonder marge presenteer ik niet, want dan weet niemand of een stijging echt is of toeval. En wat een taalmodel belooft, laat ik controleren door code.
 
-Vervolgens genereert Orbit per onderwerp relevante vragen, verdeeld over drie fasen van de klantreis: oriëntatie, overweging en beslissing. De formulering sluit aan bij de manier waarop potentiële klanten naar oplossingen zoeken. Voor een lokale dienstverlener speelt bijvoorbeeld de regio een belangrijke rol, terwijl bij een webshop vooral het productaanbod centraal staat.
+## Het begint met een naam en een website
 
-Deze vragen worden voorgelegd aan AI-modellen met een webzoekfunctie. Orbit analyseert vervolgens welke bedrijven in de antwoorden worden genoemd en in welke context dat gebeurt.
+Een nieuwe klant voeg je toe met zijn naam en zijn webadres. Ongeveer tien minuten later staat er een bedrijfsprofiel klaar. Orbit heeft dan de website gelezen, het aanbod in kaart gebracht, de concurrenten opgezocht en getest wat AI-assistenten nu al over het bedrijf weten. Bij elk feit staat de bron.
 
-Omdat AI-antwoorden niet altijd hetzelfde zijn, worden commercieel belangrijke vragen meerdere keren gesteld. Het platform berekent een onzekerheidsmarge en bewaart de onderliggende antwoorden. Zo kunnen marketeers de resultaten beter interpreteren, ontwikkelingen volgen en hun conclusies onderbouwen.
+Wat geen website vertelt, leg je daarna samen met je klant vast. Op welke diensten wil hij groeien? Welke vragen en bezwaren hoort hij in verkoopgesprekken? Hoe moet het merk klinken, en waarover mag nooit geschreven worden? Die antwoorden bepalen op welke onderwerpen je gaat meten en hoe elke tekst straks klinkt.
 
-Op basis van deze analyses brengt Orbit nieuwe contentkansen in kaart. Vragen waarbij een bedrijf nog niet wordt genoemd, worden gegroepeerd tot concrete voorstellen. Per onderwerp maakt het platform inzichtelijk welke informatie potentiële klanten zoeken en waarom een nieuwe of verbeterde pagina waardevol kan zijn.
+## Een meting die overeind blijft bij een kritische klant
 
-Het marketingbureau bepaalt vervolgens zelf de prioriteiten, het aantal pagina's per maand en de verhouding tussen nieuwe content en het verbeteren van bestaande pagina's. Daarmee sluit de contentplanning aan op de bredere marketingstrategie van de klant.
+Per onderwerp stelt Orbit dertig vragen op, verdeeld over oriëntatie, overweging en beslissing, en geformuleerd zoals een koper ze stelt. Bij een lokale installateur staan er plaatsnamen in, bij een webshop gaan ze over het assortiment. Je loopt de vragen na, past aan wat je wilt en bevestigt.
 
-## De kennis van de ondernemer als basis
+Orbit legt de vragen voor aan ChatGPT, met zoeken op het web aan, zodat het antwoord rust op wat er nu online te vinden is. Gemini en het AI-overzicht van Google zet je er per onderwerp bij. Daarna leest Orbit elk antwoord na: wordt je klant genoemd, op welke plek, welke concurrent krijgt de aanbeveling en om welke eigenschappen?
 
-Sterke content vraagt om meer dan alleen een goede analyse. De informatie die een pagina echt onderscheidend maakt, is namelijk lang niet altijd op de website van een onderneming te vinden.
+Omdat AI-antwoorden per keer verschillen, stelt Orbit de vragen die commercieel het zwaarst wegen drie keer en krijgt elk cijfer een onzekerheidsmarge. Een verschil telt pas mee als het groter is dan toeval, en elk antwoord kun je teruglezen. Je laat je klant dus een meting zien waarvan je kunt uitleggen hoe ze tot stand kwam, ook als een kritische directeur doorvraagt.
 
-Denk aan concrete prijsindicaties, praktijkvoorbeelden, specifieke werkwijzen of ervaringen uit klanttrajecten. Die kennis is vaak wel aanwezig binnen het bedrijf, maar ligt verspreid over offertes, documenten en gesprekken met medewerkers.
+## Van gemiste vraag naar een pagina met de kennis van de ondernemer
 
-Om deze informatie te benutten, bereidt Orbit iedere pagina inhoudelijk voor. Het platform brengt in kaart welke kennis al beschikbaar is en stelt gerichte vragen om de inhoud verder aan te vullen.
+Elke vraag waarbij je klant ontbreekt, wordt een pagina-idee met het bewijs erbij: wie er wel wordt genoemd en, met Search Console gekoppeld, hoeveel vertoningen en klikken eraan hangen. Vragen die uit dezelfde behoefte komen, bundelt Orbit tot één pagina. Staat er al een pagina over het onderwerp op de site, dan wordt het voorstel een verbetering daarvan. Jij bepaalt de prioriteiten, het aantal pagina's per maand en de verhouding tussen nieuwe en verbeterde pagina's.
 
-De ondernemer kan deze vragen rechtstreeks in Orbit beantwoorden of via een persoonlijke deellink, zonder account en eenvoudig vanaf een mobiele telefoon. De antwoorden worden bewaard, zodat de opgedane bedrijfskennis ook voor toekomstige pagina's beschikbaar blijft.
+Voordat er iets wordt geschreven, bereidt Orbit elke pagina voor. Het legt de kennis over het bedrijf naast actuele bronnen en naast de pagina's die AI-assistenten bij die vragen nu aanhalen. Wat dan nog ontbreekt, is vaak iets wat alleen de ondernemer weet: een prijsindicatie, een doorlooptijd, een voorbeeld uit de praktijk. Orbit verzint dat niet, maar vraagt ernaar, met hooguit acht vragen per pagina.
 
-Met deze informatie schrijft Orbit de content in de vooraf vastgelegde schrijfstijl. Een afzonderlijke AI-redactiestap beoordeelt vervolgens de tekst. Ook metatitels, metabeschrijvingen, veelgestelde vragen, gestructureerde gegevens en voorstellen voor interne links maken deel uit van de oplevering.
+Je klant beantwoordt ze in het platform of via een link die je doorstuurt naar wie het weet: de ondernemer, de verkoper of de planner. Dat kan zonder account, gewoon op een telefoon. Wat eenmaal beantwoord is, blijft bewaard, zodat hij het geen tweede keer hoeft te vertellen. Juist die kennis maakt een pagina anders dan wat er al online staat.
 
-Het marketingbureau behoudt de regie over de inhoud en de uiteindelijke publicatie. Orbit ondersteunt het voorbereidende en uitvoerende werk, zodat marketeers meer ruimte krijgen voor de inhoudelijke keuzes en het contact met hun klanten.
+## Geen prijs of garantie op de site zonder bron
 
-## Automatische controle op feitelijke juistheid
+Met de voorbereiding en de antwoorden schrijft Orbit de pagina, in de toon en de aanspreekvorm die jullie hebben vastgelegd. Een aparte eindredactieronde loopt de tekst na. Je krijgt een complete pagina: tekst, metatitel, metabeschrijving, veelgestelde vragen, gestructureerde gegevens en interne links.
 
-Bij het genereren van content besteedt Orbit bijzondere aandacht aan de betrouwbaarheid van feitelijke informatie.
+Het risico van AI-teksten ken je: een model formuleert een verzonnen garantie even stellig als een echt feit. Een instructie aan het model vond ik daarvoor niet genoeg. Daarom loopt code na het schrijven elke zin na op bedragen, getallen, termijnen, garanties en keurmerken. Staat er in de kennis over het bedrijf geen bron voor, dan wordt de zin geel, met de reden erbij. Zolang er een gele zin openstaat, kun je de pagina niet goedkeuren. Je bevestigt de zin, past hem aan of legt hem met één klik aan je klant voor.
 
-AI-modellen kunnen overtuigend klinkende uitspraken formuleren die niet altijd overeenkomen met de werkelijkheid. Vooral bij concrete beweringen over prijzen, levertijden, garanties en certificeringen vraagt dat om extra zorgvuldigheid.
+Er gaat ook niets vanzelf online. Na je akkoord kopieer je de tekst naar het CMS van je klant, zet je de pagina live en geef je het adres door. Orbit controleert of de tekst er echt staat, en vanaf dat moment loopt de effectmeting.
 
-Daarom beschikt Orbit over een aanvullende controle op codeniveau die dergelijke uitspraken automatisch identificeert. Beweringen die extra verificatie vereisen, worden gemarkeerd, met een toelichting op wat gecontroleerd moet worden.
+## Wat een pagina oplevert, in AI en in Google
 
-Het marketingbureau of de ondernemer kan de juistheid vervolgens bevestigen of de betreffende tekst aanpassen. Pas wanneer alle gemarkeerde uitspraken zijn gecontroleerd, kan de pagina worden gepubliceerd.
+Twee en vier weken na publicatie stelt Orbit de vragen waarvoor de pagina is geschreven opnieuw. Wordt je klant vaker genoemd? Haalt de AI-assistent de nieuwe pagina aan als bron? Het oordeel luidt gestegen, gelijk of gedaald, en gestegen staat er alleen als het verschil groter is dan toeval. Orbit zegt er ook bij dat een algemene verschuiving in AI-antwoorden kan meespelen. Bij een klant die doorvraagt, sta je daar sterker mee dan met een grafiek die alleen maar stijgt.
 
-Zo combineert Orbit de snelheid van AI-gegenereerde content met een zorgvuldig redactieproces, waarin de betrouwbaarheid van de informatie centraal staat.
+Daarnaast haalt Orbit via Google Search Console elke dag de klikken en vertoningen per pagina op, geteld vanaf de publicatiedag. Die twee lijnen lopen niet vanzelf gelijk op. Een pagina kan al verkeer uit Google krijgen terwijl ChatGPT je klant nog niet vaker noemt, en een AI-assistent kan een pagina als bron gebruiken voordat het zoekverkeer op gang komt. Door ze apart te volgen, kun je je klant uitleggen wat er gebeurt.
 
-## Aantonen wat gepubliceerde content oplevert
+Elke maand staat er per klant een verslag klaar met de naam van je bureau erop: hoe de zichtbaarheid zich ontwikkelt, welke pagina's live gingen met hun effect en wat er volgende maand gepland staat. Je slaat het op als pdf en stuurt het door. Meet je elke maand opnieuw, dan worden de gemiste vragen uit de nieuwste meting de pagina-ideeën voor de volgende ronde.
 
-Met de publicatie van een pagina begint de volgende fase: het meten van de resultaten. Orbit volgt daarbij twee ontwikkelingen die elkaar aanvullen, maar niet noodzakelijk gelijk oplopen.
+## Gemaakt voor een bureau met meer dan één klant
 
-Via Google Search Console verzamelt het platform dagelijks gegevens over klikken en vertoningen. De publicatiedatum wordt vastgelegd, zodat marketeers kunnen volgen hoe een pagina zich vanaf het moment van plaatsing ontwikkelt.
+Orbit is white label. Het platform draait in de huisstijl van je bureau, met je logo, je kleuren en je lettertypes op elk scherm, en dat is standaard inbegrepen. Je klant kijkt mee bij zijn eigen bedrijf en doet wat jij toestaat, zoals vragen beantwoorden, een gele zin bevestigen of een pagina goedkeuren. Hij werkt in jouw platform, onder jouw naam.
 
-Daarnaast meet Orbit opnieuw hoe zichtbaar het bedrijf is binnen de AI-antwoorden die aanleiding gaven tot de content. Daarbij wordt niet alleen gekeken of het bedrijf vaker wordt aanbevolen, maar ook of de nieuwe pagina als bron wordt aangehaald.
+Al je klanten staan in één werkoverzicht. Je ziet wie nog vragen moet beantwoorden, welke teksten op je wachten en welke pagina's klaarstaan om te plaatsen. De nieuwe maand start je voor meerdere klanten tegelijk, en vooraf zie je hoeveel pagina's dat zijn en ongeveer wat het kost.
 
-Die twee ontwikkelingen kunnen uiteenlopen. Een pagina kan bijvoorbeeld al vertoningen en klikken vanuit Google ontvangen, terwijl de zichtbaarheid binnen ChatGPT nauwelijks verandert. Omgekeerd kan een AI-assistent een nieuwe pagina als bron gebruiken voordat het organische zoekverkeer op gang komt.
+De AI-kosten betaal je rechtstreeks aan OpenAI, via de eigen API-sleutel van je bureau, tegen kostprijs en zonder opslag. Voor een klant met drie onderwerpen en tien pagina's per maand is dat op dit moment ongeveer vier tot vijf euro per maand. Je stelt zelf een maandlimiet in, het aantal klanten is onbeperkt en wat je je klant rekent, bepaal je zelf.
 
-Door beide resultaten afzonderlijk te volgen en rekening te houden met meetonzekerheid, krijgen marketingbureaus een beter onderbouwd beeld van de prestaties. Die inzichten kunnen zij gebruiken in hun rapportages en gesprekken met klanten.
+## Meer klanten bedienen met het team dat je hebt
 
-De resultaten vormen bovendien input voor de volgende contentronde. Zoekopdrachten waarop een website al vertoningen ontvangt, kunnen bijvoorbeeld aanleiding geven voor een nieuwe pagina of extra prioriteit voor een bestaand contentvoorstel.
-
-Zo ontstaat een doorlopend proces waarin analyses, contentontwikkeling en resultaatmetingen elkaar versterken.
-
-## GEO schaalbaar maken voor marketingbureaus
-
-Orbit is specifiek ontwikkeld voor marketingbureaus die GEO als structurele dienstverlening willen aanbieden aan meerdere opdrachtgevers.
-
-Vanuit één centraal werkoverzicht beheren bureaus hun volledige klantenportefeuille. Ze zien welke ondernemers nog vragen moeten beantwoorden, welke teksten wachten op beoordeling en welke pagina's klaarstaan voor publicatie. Ook kunnen ze voor meerdere bedrijven tegelijk een nieuwe contentmaand starten.
-
-Klanten kunnen binnen de ingestelde toegangsrechten meekijken in het platform, terwijl het bureau de regie houdt over de strategie, planning en uitvoering.
-
-Voor het gebruik van AI-modellen werken bureaus met hun eigen API-sleutels. Orbit maakt de kosten per handeling inzichtelijk en biedt de mogelijkheid om maandelijkse limieten in te stellen. Zo houden bureaus grip op de kosten naarmate hun klantenportefeuille groeit.
-
-Daarnaast ontvangt ieder bedrijf een maandrapportage met een overzicht van de uitgevoerde werkzaamheden en de gemeten ontwikkelingen.
-
-Daarmee biedt Orbit bureaus de mogelijkheid om GEO uit te bouwen tot een schaalbare, terugkerende dienstverlening. Door analyse, contentproductie en resultaatmeting binnen één platform samen te brengen, kunnen zij hun expertise efficiënter inzetten en meer klanten ondersteunen zonder dat de benodigde uitvoerende werkzaamheden evenredig toenemen.
+Ik geloof dat marketingstrategie, de kennis van een ondernemer en AI elkaar versterken als ieder doet waar hij goed in is. Het onderzoek, het meetwerk en het schrijfwerk kan software doen. De koers bepalen, een tekst beoordelen en het gesprek met de klant voeren blijft werk van mensen, en daar zit de waarde van je bureau.
 
 > Met Orbit wil ik goede marketingteams de ruimte geven om meer ondernemers zichtbaar te maken. Meer kennis benutten, meer kansen oppakken en aandacht houden voor de relaties die het werk waardevol maken.
 
-Meer informatie over het volledige proces, van de eerste zichtbaarheidsmeting tot contentontwikkeling en het meten van resultaten, is te vinden op [Zo werkt Orbit](/werkwijze). Marketingbureaus die willen ontdekken hoe Orbit binnen hun eigen klantenportefeuille kan worden ingezet, kunnen via de [contactpagina](/contact) een persoonlijke rondleiding aanvragen.
+Hoe een maand in Orbit verloopt, lees je stap voor stap op [Zo werkt Orbit](/werkwijze). Wat het je bureau oplevert, staat op de [pagina voor bureaus](/agencies). Wil je zien hoe het voor jouw bureau werkt? [Plan een gratis demo](/demo), dan lopen we het samen door.
