@@ -162,11 +162,12 @@ export default function HomePage() {
         </section>
       </div>
 
-      <section className="home-prefooter container">
+      <section className="home-prefooter container pd-afsluiter" aria-labelledby="home-afsluiter">
         <CtaAchtergrond />
-        <h2>{prefooter.title}</h2>
+        <h2 id="home-afsluiter">{prefooter.title}</h2>
+        <p>{prefooter.description}</p>
         <div className="home-prefooter-actions">
-          <PrefooterKnoppen />
+          <PrefooterKnoppen contact={false} />
         </div>
       </section>
     </div>

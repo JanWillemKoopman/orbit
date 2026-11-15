@@ -116,7 +116,9 @@ export const stappen: Stap[] = [
   },
 ]
 
+// De afsluiter: de lezer heeft de tien stappen gezien; de volgende stap is de eerste drie zelf doen, met een
+// eigen klant. Tien minuten voor het merkdossier en de nulmeting staan in stap 1 en 3 hierboven.
 export const afsluiter = {
-  title: 'Begin met je eerste klant.',
-  description: 'Probeer Orbit gratis: onboard je eerste klant en voer een zichtbaarheidsmeting uit.',
+  title: 'Doorloop de eerste stappen met een eigen klant.',
+  description: 'Maak gratis een account aan. Vul de naam en de website van een klant in: tien minuten later ligt er een merkdossier, en de nulmeting laat zien waar je klant ontbreekt in AI.',
 }

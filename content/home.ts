@@ -125,8 +125,11 @@ export const resultaat = {
 }
 
 export type FeatureLink = { label: string; href: string }
+// De afsluiter onderaan de homepage: een kop, een zin eronder en de knop Gratis uitproberen. De lezer kent
+// Orbit net; de zin zegt wat hij na het aanmelden meteen ziet: of AI zijn klant aanraadt, en wie wel.
 export const prefooter = {
-  title: 'Built for the future. Available today.',
+  title: 'Ontdek gratis of AI je klant aanraadt.',
+  description: 'Maak een account aan en voeg je eerste klant toe. Je ziet hoe vaak ChatGPT, Gemini en Google je klant noemen, en wie ze in plaats daarvan aanraden.',
 }
 
 // Het vragenblok onderaan de homepage. Elke vraag klapt open; de volgorde hier is de volgorde op

@@ -77,7 +77,7 @@ export default function WerkwijzePage() {
         <h2 id="pd-afsluiter">{afsluiter.title}</h2>
         <p>{afsluiter.description}</p>
         <div className="home-prefooter-actions">
-          <PrefooterKnoppen />
+          <PrefooterKnoppen contact={false} />
         </div>
       </section>
     </div>
