@@ -10,3 +10,10 @@ export const aanmelden = {
   demoVraag: 'Liever eerst een demo?',
   demoLink: 'Plan een demo',
 }
+
+// De afsluiter onderaan de homepage, /werkwijze en /agencies: op alle drie dezelfde kop en zin, met
+// daaronder alleen de knop Gratis uitproberen. Pas hem hier aan, dan verandert hij op alle drie.
+export const afsluiter = {
+  title: 'Probeer Orbit gratis met een klant.',
+  description: 'Ontdek waar de kansen liggen en schrijf meteen je eerste artikel.',
+}

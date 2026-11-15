@@ -182,9 +182,5 @@ export const verder = {
   ],
 }
 
-// De afsluiter: de eigenaar van een bureau wil weten of dit een dienst is die hij kan verkopen. De laagste
-// drempel is het eerst met één bestaande klant te proberen; de meting levert het klantgesprek op.
-export const afsluiter = {
-  title: 'Probeer het met één klant, voordat je het verkoopt.',
-  description: 'Maak gratis een account aan en onboard een bestaande klant. De zichtbaarheidsmeting laat zien waar je klant ontbreekt in AI. Daar gaat je volgende klantgesprek over.',
-}
+// De afsluiter: dezelfde als op de homepage en /werkwijze (content/aanmelden.ts).
+export { afsluiter } from './aanmelden'
