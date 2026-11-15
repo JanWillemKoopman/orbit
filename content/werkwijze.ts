@@ -117,6 +117,6 @@ export const stappen: Stap[] = [
 ]
 
 export const afsluiter = {
-  title: 'Bekijk het werkproces in een demo.',
-  description: 'We lopen de tien stappen met je door en bespreken welke klant geschikt is om mee te beginnen.',
+  title: 'Begin met je eerste klant.',
+  description: 'Probeer Orbit gratis: onboard je eerste klant en voer een zichtbaarheidsmeting uit.',
 }

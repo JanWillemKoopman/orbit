@@ -37,7 +37,7 @@ export const usp: { titel: string; tekst: string; demo: string; punten: Usp[] } 
   titel: 'Gemaakt voor het team dat je al hebt.',
   tekst:
     'Je klanten vragen al of ChatGPT hun bedrijf aanbeveelt. Een tracker laat alleen zien hoe het ervoor staat. Met Orbit werk je er ook aan en wordt GEO een dienst die elke maand terugkomt, voor al je klanten en in de huisstijl van je bureau.',
-  demo: 'Plan een gratis demo',
+  demo: 'Probeer Orbit gratis',
   punten: [
     {
       kort: 'Je eigen huisstijl',
@@ -183,6 +183,6 @@ export const verder = {
 }
 
 export const afsluiter = {
-  title: 'Bekijk Orbit in de huisstijl van je bureau.',
-  description: 'Plan een demo en we laten zien hoe je klanten beheert, met ze samenwerkt en je AI-kosten bewaakt.',
+  title: 'Zie Orbit in de huisstijl van je bureau.',
+  description: 'Probeer Orbit gratis: onboard je eerste klant en voer een zichtbaarheidsmeting uit.',
 }

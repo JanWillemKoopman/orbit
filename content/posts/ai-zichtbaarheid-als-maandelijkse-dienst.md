@@ -80,4 +80,4 @@ Ik geloof dat marketingstrategie, de kennis van een ondernemer en AI elkaar vers
 
 > Met Orbit wil ik goede marketingteams de ruimte geven om meer ondernemers zichtbaar te maken. Meer kennis benutten, meer kansen oppakken en aandacht houden voor de relaties die het werk waardevol maken.
 
-Benieuwd hoe Orbit eruitziet in de huisstijl van jouw bureau? [Plan een gratis demo](/demo). Wil je eerst meer lezen, dan vind je op [Zo werkt Orbit](/werkwijze) het hele werkproces stap voor stap en op de [pagina voor bureaus](/agencies) wat het je bureau oplevert.
+Benieuwd hoe Orbit eruitziet in de huisstijl van jouw bureau? [Probeer Orbit gratis](/aanmelden). Wil je eerst meer lezen, dan vind je op [Zo werkt Orbit](/werkwijze) het hele werkproces stap voor stap en op de [pagina voor bureaus](/agencies) wat het je bureau oplevert.

@@ -18,7 +18,7 @@ export const STANDAARD_DEELBEELD = ogBeeld('agency')
 export const standaard = {
   titel: `${site.name} – White label GEO-software voor marketingbureaus`,
   omschrijving:
-    'Maak je klanten zichtbaar in ChatGPT en Google. Orbit meet de AI-zichtbaarheid, schrijft de pagina’s en bewijst het resultaat. Plan een gratis demo.',
+    'Maak je klanten zichtbaar in ChatGPT en Google. Orbit meet de AI-zichtbaarheid, schrijft de pagina’s en bewijst het resultaat. Probeer het gratis.',
 }
 
 /**

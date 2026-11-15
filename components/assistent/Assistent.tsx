@@ -2,19 +2,21 @@
 
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+import { AanmeldDialog } from '../AanmeldDialog'
 import { DemoDialog } from '../DemoDialog'
 import { DotBol } from './DotBol'
 
 // De assistent rechtsonder op elke pagina, met de scannerbol (variant scanner in ./bollen.ts). Dicht is het een
 // knop: op desktop een pil met de bol, het label Orbit en "Vragen? Vraag het ons.", op mobiel alleen de ronde bol. Open is het een chatvenster: op desktop
 // een paneel rechtsonder, op mobiel over het hele scherm. De AI-agent en de live chat bestaan nog niet;
-// het venster zegt dat eerlijk en verwijst naar de demo, die wel werkt.
+// het venster zegt dat eerlijk en verwijst naar het aanmeldformulier (gratis uitproberen) en de demo, die wel werken.
 export function Assistent() {
   // Op de blog staat de pagina in het lichte thema (app/blog/layout.tsx); de bol tekent dan donkere stippen.
   const pathname = usePathname()
   const licht = pathname === '/blog' || pathname.startsWith('/blog/')
   const [open, setOpen] = useState(false)
   const [demo, setDemo] = useState(false)
+  const [aanmelden, setAanmelden] = useState(false)
   const knopRef = useRef<HTMLButtonElement>(null)
   const sluitRef = useRef<HTMLButtonElement>(null)
   const wasOpen = useRef(false)
@@ -36,9 +38,9 @@ export function Assistent() {
   // Focus naar het venster bij openen, en terug naar de knop bij sluiten.
   useEffect(() => {
     if (open) sluitRef.current?.focus()
-    else if (wasOpen.current && !demo) knopRef.current?.focus()
+    else if (wasOpen.current && !demo && !aanmelden) knopRef.current?.focus()
     wasOpen.current = open
-  }, [open, demo])
+  }, [open, demo, aanmelden])
 
   // Escape sluit het venster.
   useEffect(() => {
@@ -59,6 +61,10 @@ export function Assistent() {
   const planDemo = () => {
     setOpen(false)
     setDemo(true)
+  }
+  const probeerGratis = () => {
+    setOpen(false)
+    setAanmelden(true)
   }
 
   return (
@@ -90,7 +96,7 @@ export function Assistent() {
                 <h2 id="as-titel">Orbit-assistent</h2>
                 <span className="as-badge as-badge-accent">In ontwikkeling</span>
               </div>
-              <p>Plan een gratis demo met ons team</p>
+              <p>Probeer Orbit gratis</p>
             </div>
             <button ref={sluitRef} type="button" className="as-sluit" aria-label="Sluiten" onClick={() => setOpen(false)}>
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
@@ -100,17 +106,16 @@ export function Assistent() {
           <div className="as-inhoud">
             <p className="as-bericht">Hoi, welkom bij Orbit.</p>
             <p className="as-bericht">
-              Een AI-agent en live chat komen binnenkort. Tot die tijd krijg je het snelst antwoord op je vragen in een
-              gratis demo: 15 of 45 minuten, wanneer het jou uitkomt.
+              Een AI-agent en live chat komen binnenkort. Tot die tijd zie je het snelst wat Orbit doet door het
+              gratis uit te proberen: je onboardt je eerste klant en voert een zichtbaarheidsmeting uit.
             </p>
-            <button type="button" className="btn btn-lg btn-invert as-demo" onClick={planDemo}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M2 6.75h12M5.25 1.75v2.5M10.75 1.75v2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              Plan een gratis demo
+            <button type="button" className="btn btn-lg btn-invert as-demo" onClick={probeerGratis}>
+              Gratis uitproberen
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
+            <p className="as-demo-link">
+              Liever eerst met ons praten? <button type="button" onClick={planDemo}>Plan een demo</button>
+            </p>
 
             <p className="as-sectie">Binnenkort</p>
             <ul className="as-opties">
@@ -141,6 +146,7 @@ export function Assistent() {
         </div>
       )}
 
+      <AanmeldDialog open={aanmelden} onClose={() => setAanmelden(false)} />
       <DemoDialog open={demo} onClose={() => setDemo(false)} />
     </>
   )
