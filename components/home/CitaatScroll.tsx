@@ -1,25 +1,18 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
-// Het citaat op de homepage licht woord voor woord op terwijl je erlangs scrolt: de woorden staan
-// eerst gedimd en komen op volle sterkte naarmate het citaat door het beeld schuift. Zonder
-// JavaScript of met reduced motion staat alles meteen op volle sterkte. Onder het citaat staan een
-// rond portret, de naam en de functie van wie het zegt; die lichten niet mee op.
+// De tussenzin op /agencies en /werkwijze licht woord voor woord op terwijl je erlangs scrolt: de
+// woorden staan eerst gedimd en komen op volle sterkte naarmate de zin door het beeld schuift. Zonder
+// JavaScript of met reduced motion staat alles meteen op volle sterkte. Het citaat op de homepage
+// gebruikt dit niet; dat staat meteen in beeld (components/home/Citaat.tsx).
 
 const GEDIMD = 0.18 // doorzichtigheid van een woord dat nog niet aan de beurt is
 
 const woorden = (tekst: string) => tekst.split(/(\s+)/)
 
-const initialen = (naam: string) =>
-  naam.split(/[\s-]+/).filter(Boolean).slice(0, 2).map((d) => d[0]).join('').toUpperCase()
-
-// Twee vormen: een tussenzin (strong + rest, zoals op /agencies) of een citaat met naam, functie en
-// portret (zoals op de homepage). Beide lichten op dezelfde manier op tijdens het scrollen.
-type Props =
-  | { strong: string; rest: string; citaat?: never; naam?: never; functie?: never; foto?: never }
-  | { citaat: string; naam: string; functie: string; foto?: string; strong?: never; rest?: never }
+// Eén vorm: een tussenzin van een vetgedrukt begin (strong) en een vervolg (rest).
+type Props = { strong: string; rest: string }
 
 export function CitaatScroll(props: Props) {
   const ref = useRef<HTMLElement>(null)
@@ -62,35 +55,10 @@ export function CitaatScroll(props: Props) {
 
   const span = (w: string, i: number) => (/^\s+$/.test(w) ? w : <span key={i} data-woord className="citaat-woord">{w}</span>)
 
-  if (props.citaat === undefined) {
-    return (
-      <p ref={ref as React.RefObject<HTMLParagraphElement>}>
-        <strong>{woorden(props.strong).map(span)}</strong>{' '}
-        {woorden(props.rest).map(span)}
-      </p>
-    )
-  }
-
-  const { citaat, naam, functie, foto } = props
-
   return (
-    <figure className="citaat">
-      <blockquote ref={ref as React.RefObject<HTMLQuoteElement>} className="citaat-tekst">
-        <p>
-          {woorden(`\u201c${citaat}\u201d`).map(span)}
-        </p>
-      </blockquote>
-      <figcaption className="citaat-bron">
-        {foto ? (
-          <Image src={foto} alt={`Portret van ${naam}`} width={44} height={44} className="citaat-foto" />
-        ) : (
-          <span className="citaat-foto citaat-foto-leeg" aria-hidden="true">{initialen(naam)}</span>
-        )}
-        <span className="citaat-bron-tekst">
-          <span className="citaat-naam">{naam}<span className="citaat-komma">,</span></span>
-          <span className="citaat-functie">{functie}</span>
-        </span>
-      </figcaption>
-    </figure>
+    <p ref={ref as React.RefObject<HTMLParagraphElement>}>
+      <strong>{woorden(props.strong).map(span)}</strong>{' '}
+      {woorden(props.rest).map(span)}
+    </p>
   )
 }

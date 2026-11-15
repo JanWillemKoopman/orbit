@@ -261,6 +261,8 @@
 .home-citaat { max-width: 1040px; margin-left: 40px; font-size: 40px; line-height: 1.1; color: var(--text-primary); }
 .citaat { margin: 0; }
 .citaat-tekst { margin: 0; text-wrap: pretty; }
+/* De eerste zin van het citaat staat in het wit, de rest een tint grijzer. */
+.citaat-vervolg { color: var(--text-tertiary); }
 /* Woorden van het citaat lichten op tijdens het scrollen (CitaatScroll.tsx); de opacity zet JS */
 .citaat-woord { transition: opacity var(--speed-quick) var(--ease-out-quad); }
 /* Naam en functie onder het citaat, met een rond portret ervoor. */

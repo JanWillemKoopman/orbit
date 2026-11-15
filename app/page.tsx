@@ -7,7 +7,7 @@ import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
 import { faq, hero, kwaliteit, prefooter, resultaat, showcase, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
-import { CitaatScroll } from '@/components/home/CitaatScroll'
+import { Citaat } from '@/components/home/Citaat'
 import { Faq } from '@/components/home/Faq'
 import { DuoSlider } from '@/components/home/DuoSlider'
 import { OpbrengstOpgebouwd, VerslagMaand } from '@/components/home/Resultaat'
@@ -89,7 +89,7 @@ export default function HomePage() {
         </section>
 
         <div className="home-statement home-citaat">
-          <CitaatScroll
+          <Citaat
             citaat={statement.citaat}
             naam={statement.naam}
             functie={statement.functie}
