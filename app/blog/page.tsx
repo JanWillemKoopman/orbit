@@ -19,7 +19,7 @@ export default function BlogPage() {
       <div className="container">
         <div className="kb-hero blog-kop">
           <h1>Blog</h1>
-          <p className="blog-subline">In de blog vind je AI-gedreven tactieken, automatiseringsstrategieën en growth hacks die zijn ontworpen om concurrenten te slim af te zijn.</p>
+          <p className="blog-subline">De toekomst van online zichtbaarheid.{' '}<br className="blog-subline-break" />Lees de laatste ontwikkelingen op het blog.</p>
         </div>
         <div className="blog-overzicht">
           <MeerLaden className="blog-raster">
