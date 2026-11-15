@@ -915,6 +915,8 @@ img, svg { display: block; max-width: 100%; }
 :root:has(.licht-thema) .demo-eyebrow { color: var(--text-tertiary); }
 :root:has(.licht-thema) .demo-success { color: var(--text-primary); }
 :root:has(.licht-thema) .demo-error { color: var(--red); }
+/* De limegroene verstuurknop houdt ook in het lichte thema donkere tekst, zoals in het donkere thema */
+:root:has(.licht-thema) .demo-submit { color: #08090a; }
 
 /* Het limegroene afsluitblok blijft hetzelfde: donkere kop en een zwarte knop, ook nu de tokens licht zijn */
 :root:has(.licht-thema) .container:has(> .cta-achtergrond-lime) h2 { color: #08090a; }
