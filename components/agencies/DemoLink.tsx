@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { DemoDialog } from '@/components/DemoDialog'
+import { AanmeldDialog } from '@/components/AanmeldDialog'
 
-// Tekstlink onder de inleiding van /agencies die het demoformulier opent: dezelfde popup als de knop
+// Tekstlink onder de inleiding van /agencies die het aanmeldformulier opent: dezelfde popup als de knop
 // onderaan de pagina, zodat een bezoeker niet eerst helemaal naar beneden hoeft.
 export function DemoLink({ label }: { label: string }) {
   const [open, setOpen] = useState(false)
@@ -13,7 +13,7 @@ export function DemoLink({ label }: { label: string }) {
         {label}
         <span className="pijl" aria-hidden="true">→</span>
       </button>
-      <DemoDialog open={open} onClose={() => setOpen(false)} />
+      <AanmeldDialog open={open} onClose={() => setOpen(false)} />
     </>
   )
 }

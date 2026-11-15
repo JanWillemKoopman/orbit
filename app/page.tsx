@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import { paginaMeta, standaard } from '@/lib/seo'
 import Link from 'next/link'
 import { Fragment } from 'react'
-import { CtaAchtergrond } from '@/components/CtaAchtergrond'
-import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { faq, hero, kwaliteit, prefooter, resultaat, showcase, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
+import { Prefooter } from '@/components/Prefooter'
+import { faq, hero, kwaliteit, resultaat, showcase, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
@@ -162,13 +161,7 @@ export default function HomePage() {
         </section>
       </div>
 
-      <section className="home-prefooter container">
-        <CtaAchtergrond />
-        <h2>{prefooter.title}</h2>
-        <div className="home-prefooter-actions">
-          <PrefooterKnoppen />
-        </div>
-      </section>
+      <Prefooter />
     </div>
   )
 }

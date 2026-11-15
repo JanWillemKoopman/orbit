@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { mainNav, mobileNav, site } from '@/lib/site'
-import { DemoDialog } from './DemoDialog'
+import { AanmeldDialog } from './AanmeldDialog'
 import { Logo } from './Logo'
 import { NavMenu, NavMenus } from './NavMenu'
 
@@ -23,7 +23,7 @@ export function Header() {
   const [open, setOpen] = useState(false)
   // Het menu blijft na het sluiten nog even staan, zodat het kan uitfaden.
   const [zichtbaar, setZichtbaar] = useState(false)
-  const [demoOpen, setDemoOpen] = useState(false)
+  const [aanmeldOpen, setAanmeldOpen] = useState(false)
 
   useEffect(() => setOpen(false), [pathname])
   useEffect(() => {
@@ -65,8 +65,8 @@ export function Header() {
             <div className="nav-divider" />
             <div className="header-actions">
               <a href={site.loginUrl} className="nav-link header-contact">Log in</a>
-              <button type="button" className="btn btn-sm btn-invert header-demo" onClick={() => setDemoOpen(true)}>
-                Gratis demo
+              <button type="button" className="btn btn-sm btn-invert header-demo" onClick={() => setAanmeldOpen(true)}>
+                Gratis uitproberen
               </button>
               <button className="menu-toggle" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
                 {/* Twee lijnen die bij openen naar het midden schuiven en tot een kruis draaien */}
@@ -79,7 +79,7 @@ export function Header() {
           </nav>
         </div>
       </header>
-      <DemoDialog open={demoOpen} onClose={() => setDemoOpen(false)} />
+      <AanmeldDialog open={aanmeldOpen} onClose={() => setAanmeldOpen(false)} />
 
       {/* Buiten de header: de backdrop-filter van de header zou dit fixed menu anders insluiten */}
       <nav className="mobile-menu" data-open={zichtbaar} data-sluit={(zichtbaar && !open) || undefined} aria-label="Mobiel menu" hidden={!zichtbaar}>

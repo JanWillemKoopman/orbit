@@ -98,5 +98,5 @@ export const secties = {
 
 export const afsluiter = {
   title: 'Laat AI schrijven. Zonder je reputatie op het spel te zetten.',
-  description: 'Bekijk in een demo hoe de feiten van een van je klanten eruitzien.',
+  description: 'Probeer Orbit gratis en zie hoe de feiten van een van je eigen klanten eruitzien.',
 }

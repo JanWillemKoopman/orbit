@@ -105,5 +105,5 @@ export const secties = {
 
 export const afsluiter = {
   title: 'Zet je bureau in Orbit.',
-  description: 'Bekijk in een demo hoe het werkoverzicht, de rollen en de kosten werken voor een bureau met jouw aantal klanten.',
+  description: 'Probeer Orbit gratis: onboard je eerste klant en zie hoe het werkoverzicht, de rollen en de kosten werken.',
 }

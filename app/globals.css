@@ -264,6 +264,12 @@ img, svg { display: block; max-width: 100%; }
 .header-contact { padding: 0 8px; white-space: nowrap; }
 /* Op mobiel staat "Log in" al in het menu */
 @media (max-width: 768px) { .header-contact { display: none; } }
+/* Op de smalste telefoons (320 px) past "Gratis uitproberen" alleen met iets minder lucht naast de knop */
+@media (max-width: 359px) {
+  .site-header .container { gap: 8px; }
+  .header-actions { gap: 4px; }
+  .header-demo { padding-inline: 10px; }
+}
 
 .menu-toggle {
   display: none; width: 32px; height: 32px; margin-right: -6px; align-items: center; justify-content: center; border-radius: 8px; color: var(--text-primary);
@@ -724,6 +730,15 @@ img, svg { display: block; max-width: 100%; }
 .demo-submit:disabled { opacity: 0.6; cursor: default; }
 .demo-success { margin: 0; padding: 20px; border-radius: 12px; background: var(--bg-level-2); font-size: 15px; line-height: 1.5; color: var(--accent); text-align: left; }
 .demo-error { margin: 0; font-size: 13px; color: #ff8a80; }
+/* Aanmeldformulier (components/AanmeldForm): voor- en achternaam naast elkaar, op een smal scherm onder elkaar */
+.aanmeld-namen { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 399px) { .aanmeld-namen { grid-template-columns: 1fr; } }
+.aanmeld-privacy { margin: 0; font-size: 12px; line-height: 1.4; color: var(--text-quaternary); text-align: center; }
+.aanmeld-demo { margin: 20px 0 0; padding-top: 20px; border-top: 1px solid var(--border-translucent); font-size: 14px; letter-spacing: -0.01em; color: var(--text-tertiary); text-align: center; }
+.signup-card > .aanmeld-demo { margin: 20px 0 0; }
+.aanmeld-demo a { color: var(--text-primary); font-weight: var(--weight-medium); transition: color var(--speed-quick) var(--ease-out-quad); }
+@media (hover: hover) { .aanmeld-demo a:hover { color: var(--accent); } }
+:root:has(.licht-thema) .aanmeld-demo a:hover { color: var(--text-secondary); }
 .demo-dialog {
   width: min(520px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; overflow: auto;
   border: 1px solid var(--border-translucent); border-radius: 20px; background: var(--bg-level-1); color: var(--text-primary);
@@ -816,6 +831,9 @@ img, svg { display: block; max-width: 100%; }
 .as-bericht:nth-child(1) { animation-delay: 0.08s; }
 .as-bericht:nth-child(2) { animation-delay: 0.32s; }
 .as-demo { width: 100%; margin-top: 8px; opacity: 0; animation: as-in var(--speed-regular) var(--ease-out-quad) 0.5s forwards; }
+.as-demo-link { margin: 12px 0 0; text-align: center; font-size: 13px; letter-spacing: -0.01em; color: var(--text-tertiary); opacity: 0; animation: as-in var(--speed-regular) var(--ease-out-quad) 0.6s forwards; }
+.as-demo-link button { color: var(--text-primary); font-weight: var(--weight-medium); transition: color var(--speed-quick) var(--ease-out-quad); }
+@media (hover: hover) { .as-demo-link button:hover { color: var(--text-secondary); } }
 .as-sectie { margin-top: 18px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-quaternary); }
 .as-opties { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .as-optie {
@@ -851,7 +869,7 @@ img, svg { display: block; max-width: 100%; }
 @keyframes as-in { from { opacity: 0; transform: translateY(4px) scale(0.99); } to { opacity: 1; transform: none; } }
 @keyframes as-open { from { opacity: 0; transform: translateY(8px) scale(0.97); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .as-knop, .as-venster, .as-bericht, .as-demo { animation: none; opacity: 1; }
+  .as-knop, .as-venster, .as-bericht, .as-demo, .as-demo-link { animation: none; opacity: 1; }
   .as-knop { transition: none; }
 }
 @media (prefers-reduced-motion: reduce) and (max-width: 640px) {

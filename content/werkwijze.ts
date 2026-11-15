@@ -116,7 +116,5 @@ export const stappen: Stap[] = [
   },
 ]
 
-export const afsluiter = {
-  title: 'Bekijk het werkproces in een demo.',
-  description: 'We lopen de tien stappen met je door en bespreken welke klant geschikt is om mee te beginnen.',
-}
+// De afsluiter: dezelfde als op de homepage en /agencies (content/aanmelden.ts).
+export { afsluiter } from './aanmelden'

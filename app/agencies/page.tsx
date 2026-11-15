@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import { paginaMeta } from '@/lib/seo'
-import { CtaAchtergrond } from '@/components/CtaAchtergrond'
-import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
+import { Prefooter } from '@/components/Prefooter'
 import { Intro, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
 import { Icon } from '@/components/product/ui'
 import { AlleKlanten, GripOpKosten, Huisstijlen, HuisstijlVertaald, KijkerInHuisstijl, KlantDoetMee } from '@/components/agencies/Visuals'
 import { DemoLink } from '@/components/agencies/DemoLink'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
-import { afsluiter, hero, meta, overzicht, secties, statement, usp, verder, whitelabel } from '@/content/agencies'
+import { hero, meta, overzicht, secties, statement, usp, verder, whitelabel } from '@/content/agencies'
 import '../werkwijze/werkwijze.css'
 import '../beheer/beheer.css'
 import '../pagina.css'
@@ -132,15 +131,7 @@ export default function AgenciesPage() {
         </Sectie>
       </div>
 
-      {/* Afsluiter */}
-      <section className="home-prefooter container pd-afsluiter" aria-labelledby="a3-afsluiter">
-        <CtaAchtergrond />
-        <h2 id="a3-afsluiter">{afsluiter.title}</h2>
-        <p>{afsluiter.description}</p>
-        <div className="home-prefooter-actions">
-          <PrefooterKnoppen />
-        </div>
-      </section>
+      <Prefooter />
     </div>
   )
 }

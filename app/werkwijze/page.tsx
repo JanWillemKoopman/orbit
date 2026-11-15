@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { ogBeeld, paginaMeta } from '@/lib/seo'
-import { CtaAchtergrond } from '@/components/CtaAchtergrond'
-import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { afsluiter, hero, intro, meta, overzicht, stappen, type Stap } from '@/content/werkwijze'
+import { Prefooter } from '@/components/Prefooter'
+import { hero, intro, meta, overzicht, stappen, type Stap } from '@/content/werkwijze'
 import { PaginaHero } from '@/components/product/Blokken'
 import { StappenBalk } from '@/components/werkwijze/StappenBalk'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
@@ -71,15 +70,7 @@ export default function WerkwijzePage() {
         </div>
       </div>
 
-      {/* Afsluiter */}
-      <section className="home-prefooter container pd-afsluiter" aria-labelledby="pd-afsluiter">
-        <CtaAchtergrond />
-        <h2 id="pd-afsluiter">{afsluiter.title}</h2>
-        <p>{afsluiter.description}</p>
-        <div className="home-prefooter-actions">
-          <PrefooterKnoppen />
-        </div>
-      </section>
+      <Prefooter />
     </div>
   )
 }

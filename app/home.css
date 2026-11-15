@@ -549,6 +549,14 @@
 .home-prefooter { display: flex; flex-direction: column; align-items: center; gap: 40px; padding-block: 96px 224px; }
 .home-prefooter h2 { max-width: 900px; text-align: center; font-size: 72px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium); text-wrap: balance; }
 .home-prefooter-actions { display: flex; justify-content: center; gap: 12px; }
+/* De afsluiter met kop, zin en knop (components/Prefooter.tsx en de productpagina's) */
+.pd-afsluiter { padding-block: 160px 200px; gap: 24px; }
+.pd-afsluiter p { max-width: 560px; text-align: center; font-size: 17px; line-height: 1.6; color: var(--text-tertiary); }
+.pd-afsluiter .home-prefooter-actions { margin-top: 16px; }
+@media (max-width: 640px) {
+  .pd-afsluiter { padding-block: 72px 96px; }
+  .pd-afsluiter p { font-size: 15px; }
+}
 
 /* Breekpunten ------------------------------------------------------------ */
 @media (max-width: 1280px) {

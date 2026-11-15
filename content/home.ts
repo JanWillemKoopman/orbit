@@ -125,9 +125,8 @@ export const resultaat = {
 }
 
 export type FeatureLink = { label: string; href: string }
-export const prefooter = {
-  title: 'Built for the future. Available today.',
-}
+// De afsluiter onderaan de homepage: dezelfde als op /werkwijze en /agencies (content/aanmelden.ts).
+export { afsluiter as prefooter } from './aanmelden'
 
 // Het vragenblok onderaan de homepage. Elke vraag klapt open; de volgorde hier is de volgorde op
 // de pagina. De antwoorden noemen alleen wat Orbit nu al doet.

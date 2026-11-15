@@ -100,5 +100,5 @@ export const secties = {
 
 export const afsluiter = {
   title: 'Zie hoe AI jouw klant meet.',
-  description: 'Bekijk in een demo hoe een onderzoek, een meting en een pagina eruitzien voor een van je eigen klanten.',
+  description: 'Probeer Orbit gratis en zie hoe een onderzoek, een meting en een pagina eruitzien voor een van je eigen klanten.',
 }

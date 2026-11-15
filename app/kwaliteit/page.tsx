@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { ogBeeld, paginaMeta } from '@/lib/seo'
-import { CtaAchtergrond } from '@/components/CtaAchtergrond'
-import { PrefooterKnoppen } from '@/components/PrefooterKnoppen'
-import { afsluiter, hero, meta, secties } from '@/content/kwaliteit'
+import { Prefooter } from '@/components/Prefooter'
+import { hero, meta, secties } from '@/content/kwaliteit'
 import { Beeld, Intro, PaginaHero, Raster, RasterCel, Sectie } from '@/components/product/Blokken'
 import * as P from '@/components/product/Visuals'
 import * as V from '@/components/kennis/Visuals'
@@ -112,15 +111,7 @@ export default function KwaliteitPage() {
         </Sectie>
       </div>
 
-      {/* Afsluiter */}
-      <section className="home-prefooter container pd-afsluiter" aria-labelledby="pd-afsluiter">
-        <CtaAchtergrond />
-        <h2 id="pd-afsluiter">{afsluiter.title}</h2>
-        <p>{afsluiter.description}</p>
-        <div className="home-prefooter-actions">
-          <PrefooterKnoppen />
-        </div>
-      </section>
+      <Prefooter />
     </div>
   )
 }
