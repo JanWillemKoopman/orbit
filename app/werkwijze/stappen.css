@@ -73,13 +73,9 @@
   .ww-titel { font-size: 32px; line-height: 1.1; }
   .ww-tekst { margin-top: 24px; }
   .ww-tekst .ww-aanloop { margin-bottom: 16px; font-size: 18px; line-height: 1.4; }
-  .ww-balk-in { height: 44px; }
-  .ww-balk-lijst { gap: 2px; }
-  .ww-balk-lijst a { padding: 0 1px; }
-  .ww-balk-lijst i { width: 10px; }
-}
-@media (max-width: 380px) {
-  .ww-balk-lijst i { width: 7px; }
+  /* Op mobiel geen stappenbalk: de genummerde koppen wijzen de weg al */
+  .ww-balk { display: none; }
+  .ww-stap { scroll-margin-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ww-balk-in, .ww-balk-lijst i { transition: none; }
