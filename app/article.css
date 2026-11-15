@@ -305,7 +305,8 @@
    fractie naar links, zodat de rechte stam van de B optisch op die rand staat (zoals de koppen op linear.app). */
 .blog-kop { max-width: 976px; margin-inline: auto; text-align: left; }
 .blog-kop h1 { margin-left: -0.04em; }
-.blog-kop .blog-subline { margin-left: 0; }
+/* De subtekst is kort: gelijke regels, zodat er geen los woord op de laatste regel staat. */
+.blog-kop .blog-subline { margin-left: 0; text-wrap: balance; }
 @media (max-width: 639px) { .kb-hero .blog-subline { font-size: 17px; } .blog-overzicht { margin-top: 48px; } }
 
 /* Blogoverzicht: twee kaarten naast elkaar, opgebouwd als de kaarten op linear.app/now, met een dunne lijn
