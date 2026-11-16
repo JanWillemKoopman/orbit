@@ -51,7 +51,7 @@ export const uitgelichtStappen: MaandStap[] = [
 ]
 
 // Vier voordelen voor marketingbureaus, direct onder de AI-logo's en boven de twee beelden.
-// Erboven een kop (links) en een korte uitleg (rechts); per voordeel een vinkje met titel.
+// Erboven een kop (links) en een korte uitleg (rechts); per voordeel een eigen icoon met titel.
 export const uspIntro = {
   title: 'Ontwikkeld voor marketingbureaus',
   description: 'Van de eerste meting in Google Search en AI-assistenten tot overtuigende content en inzicht in de resultaten. Orbit automatiseert onderzoek, planning en schrijfwerk samen in één platform.',
@@ -60,21 +60,27 @@ export const uspIntro = {
 // Per voordeel een titel met uitleg, op desktop en mobiel. Het type Usp (korte en lange titel) gebruikt /agencies nog.
 export type Usp = { kort: string; titel: string; uitleg: string }
 
-export const usps: { titel: string; uitleg: string }[] = [
+export type UspIcoon = 'terugkerend' | 'productie' | 'impact' | 'copy'
+
+export const usps: { titel: string; uitleg: string; icoon: UspIcoon }[] = [
   {
     titel: 'GEO/SEO als vaste dienst',
+    icoon: 'terugkerend',
     uitleg: 'Maak van vindbaarheid terugkerende omzet. Verkoop GEO en SEO onder je eigen naam, met standaard een 100% white-label platform in de huisstijl van jouw bureau.',
   },
   {
     titel: 'Verhoog productie',
+    icoon: 'productie',
     uitleg: 'Lever meer content met het team dat je al hebt. Orbit versnelt het onderzoek en schrijfwerk, zodat je specialisten meer tijd hebben voor strategie en creatie.',
   },
   {
     titel: 'Inzicht in impact',
+    icoon: 'impact',
     uitleg: 'Maak je waarde zichtbaar in elk klantgesprek. Met een nulmeting en nametingen laat je zien hoe het verkeer en de zichtbaarheid van je klant in AI-antwoorden zich ontwikkelen.',
   },
   {
     titel: 'Copywriterniveau',
+    icoon: 'copy',
     uitleg: 'Lever teksten die klinken als het merk van je klant, zijn aanbod overtuigend neerzetten en zijn onderbouwd met bronnen. Content waar je graag je bureaunaam onder zet.',
   },
 ]

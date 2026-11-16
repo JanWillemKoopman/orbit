@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { paginaMeta, standaard } from '@/lib/seo'
 import Link from 'next/link'
-import { Fragment } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import { Prefooter } from '@/components/Prefooter'
-import { faq, hero, kwaliteit, resultaat, showcase, statement, uitgelicht, uitgelichtStappen, uspIntro, usps } from '@/content/home'
+import { faq, hero, kwaliteit, resultaat, showcase, statement, uitgelicht, uitgelichtStappen, uspIntro, usps, type UspIcoon } from '@/content/home'
 import { AppFrame } from '@/components/home/AppFrame'
 import { Showcase } from '@/components/home/Showcase'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
@@ -166,6 +166,15 @@ export default function HomePage() {
   )
 }
 
+// Per voordeel een eigen icoon in het limegroene rondje: terugkerende omzet (pijlen in een kring),
+// productie (bliksem), impact (stijgende staven) en copywriterniveau (pen). Paden in een 16x16-raster.
+const uspIconen: Record<UspIcoon, ReactNode> = {
+  terugkerend: <><path d="M13 7.5A5 5 0 0 0 4 4.5L2.75 5.75" /><path d="M2.75 2.75v3h3" /><path d="M3 8.5a5 5 0 0 0 9 3l1.25-1.25" /><path d="M13.25 13.25v-3h-3" /></>,
+  productie: <path d="M8.75 1.75L3.25 9h4.5l-.5 5.25L12.75 7h-4.5l.5-5.25z" />,
+  impact: <><path d="M3 13.25V9.5" /><path d="M8 13.25V6.5" /><path d="M13 13.25V2.75" /></>,
+  copy: <><path d="M10.5 2.75l2.75 2.75-7.5 7.5H3v-2.75l7.5-7.5z" /><path d="M8.75 4.5l2.75 2.75" /></>,
+}
+
 // Kop, uitleg en de vier voordelen voor bureaus: per voordeel een titel met uitleg, op elke breedte.
 function UspBlok({ id }: { id: string }) {
   return (
@@ -180,7 +189,7 @@ function UspBlok({ id }: { id: string }) {
         {usps.map((usp) => (
           <li className="process-step" key={usp.titel}>
             <span className="process-number usp-vink" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.25l2.75 2.75 5.75-6" /></svg>
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">{uspIconen[usp.icoon]}</svg>
             </span>
             <h3 className="process-title">{usp.titel}</h3>
             <p className="process-description usp-uitleg">{usp.uitleg}</p>
