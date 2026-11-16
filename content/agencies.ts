@@ -62,8 +62,8 @@ export const usp: { titel: string; tekst: string; demo: string; punten: Usp[] } 
   ],
 }
 
-// White label: de sectie die het verschil maakt voor een bureau en daarom vooraan staat. Een intro, het
-// grote beeld met drie huisstijlen en twee cellen: hoe de huisstijl tot stand komt en wat de klant ziet.
+// White label: de sectie die het verschil maakt voor een bureau en daarom vooraan staat. Een intro en het
+// grote beeld met drie huisstijlen.
 export const whitelabel = {
   id: 'whitelabel',
   label: 'White label',
@@ -75,18 +75,6 @@ export const whitelabel = {
     tekst: 'Hier zie je hetzelfde werkscherm in de huisstijl van drie bureaus. De indeling blijft gelijk, de vormgeving past zich aan.',
     alt: 'Hetzelfde werkoverzicht drie keer, in de huisstijl van drie bureaus: warm donker met een schreefletter, wit met fel oranje en marineblauw met geel.',
   },
-  cellen: [
-    {
-      titel: 'Wij richten je huisstijl in',
-      tekst: 'Logo, kleuren, lettertypes en vormen halen we van je website. Daarna controleren we of alle tekst goed leesbaar blijft.',
-      alt: 'De huisstijl van bureau zonnig, overgenomen van de website: het logo, vier kleuren, het lettertype Montserrat en ronde vormen. De huisstijl staat aan en elke tekst is op leesbaarheid nagerekend.',
-    },
-    {
-      titel: 'Je klant ziet jouw merk',
-      tekst: 'Een klant die meekijkt, ziet Orbit in de huisstijl van je bureau, met je logo bovenaan het menu.',
-      alt: 'Het scherm van een klant die meekijkt, in de huisstijl van bureau zonnig: het logo van het bureau boven het menu, de zichtbaarheid in AI van Lindeman Warmte en twee taken die op de klant wachten.',
-    },
-  ],
 }
 
 // Het werkoverzicht: een intro met een link naar /werkwijze en het grote scherm met twaalf klanten.
