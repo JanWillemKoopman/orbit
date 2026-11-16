@@ -51,7 +51,7 @@ export const mainNav: NavItem[] = [
   workflow,
   agencies,
   blog,
-  { label: 'Over ons', items: overOnsMenu },
+  { label: 'Over Orbit', items: overOnsMenu },
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
@@ -59,7 +59,7 @@ export const mainNav: NavItem[] = [
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
 export type NavGroep = { title?: string; links: NavLink[] }
 const informatieEnMeer: NavGroep[] = [
-  { title: 'Over ons', links: links(overOnsMenu) },
+  { title: 'Over Orbit', links: links(overOnsMenu) },
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
 export const mobileNav: NavGroep[] = [
@@ -82,7 +82,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       title: group.label,
       links: [
         ...footerLinks(group.items),
-        ...(group.label === 'Over ons' ? [blog] : []),
+        ...(group.label === 'Over Orbit' ? [blog] : []),
       ],
     })),
   { title: 'Demo', links: [{ href: '/demo', label: 'Demo aanvragen' }] },
