@@ -348,11 +348,3 @@
   .blog-raster { grid-template-columns: minmax(0, 1fr); }
   .blog-kaart:nth-child(2n)::before { content: none; }
 }
-
-/* Brief (/brief): een blogartikel zonder titel en cover; de tekst begint direct en de pagina eindigt rustig. */
-.brief { padding-top: 96px; padding-bottom: 120px; }
-.brief .prose { margin-top: 0; }
-.brief .prose h2:first-child { margin-top: 0; }
-@media (max-width: 640px) {
-  .brief { padding-top: 48px; padding-bottom: 80px; }
-}
