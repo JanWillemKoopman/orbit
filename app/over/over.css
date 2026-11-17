@@ -11,12 +11,8 @@
 }
 .ov-intro-zonder-foto { grid-template-columns: minmax(0, 1fr); }
 .ov-intro-tekst { max-width: 560px; }
-.ov-label {
-  font-family: var(--font-mono); font-size: 12px; line-height: 1.5; letter-spacing: 0.02em; text-transform: uppercase;
-  color: var(--text-tertiary);
-}
 .ov-titel {
-  margin-top: 20px; margin-left: -2px;
+  margin-left: -2px;
   font-size: 56px; line-height: 1.05; letter-spacing: -0.022em; font-weight: var(--weight-medium);
   color: var(--text-primary); text-wrap: balance;
 }
@@ -42,7 +38,7 @@
   display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 64px; align-items: start;
   margin-top: 128px; padding-top: 48px; border-top: 1px solid var(--border-translucent);
 }
-.ov-intro + .ov-sectie { margin-top: 144px; }
+.ov-secties { margin-top: 16px; margin-bottom: 112px; }
 .ov-h2 {
   max-width: 460px;
   font-size: 32px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
@@ -64,23 +60,14 @@
 .ov-beeld .fv-hero-top { display: none; }
 .ov-beeld .fv-btn-primary { background: var(--button-invert-bg); color: var(--bg-primary); }
 
-/* Het deel over bureaus: een iets lichter vlak met een dunne rand */
+/* De rol van de marketeer: een iets lichter vlak met een dunne rand */
 .ov-sectie.ov-vlak {
   padding: 56px; border-top: 0; border-radius: 12px;
   background: var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--border-translucent);
 }
 
-/* De keuzes: een rustige lijst met een lijn tussen de onderdelen */
-.ov-keuzelijst { list-style: none; margin: 0; padding: 0; }
-.ov-keuzelijst li + li { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border-translucent); }
-.ov-keuzelijst h3 {
-  font-size: 20px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-semibold); color: var(--text-primary);
-}
-.ov-keuzelijst h3 + p { margin-top: 10px; }
-
 /* De afsluiter: het limegroene blok met de vaste maten uit globals.css, een kleinere kop en ruimte voor
-   twee alinea's. De keuzes erboven houden afstand. */
-.ov-keuzes { margin-bottom: 112px; }
+   twee alinea's. */
 .ov .ov-afsluiter { gap: 20px; }
 .ov .ov-afsluiter h2 { max-width: 760px; font-size: 48px; line-height: 1.1; margin-bottom: 8px; }
 .ov .ov-afsluiter p { max-width: 36em; font-size: 17px; }
@@ -91,10 +78,9 @@
   .ov-intro-tekst { max-width: 640px; }
   .ov-portret { max-width: 720px; }
   .ov-sectie { grid-template-columns: minmax(0, 1fr); margin-top: 96px; padding-top: 40px; }
-  .ov-intro + .ov-sectie { margin-top: 112px; }
+  .ov-secties { margin-top: 0; margin-bottom: 72px; }
   .ov-h2 { max-width: 640px; font-size: 32px; }
   .ov-sectie.ov-vlak { padding: 48px 40px; }
-  .ov-keuzes { margin-bottom: 72px; }
   .ov .ov-afsluiter h2 { font-size: 40px; }
 }
 
@@ -104,13 +90,11 @@
   .ov-titel + .ov-intro-alinea { margin-top: 24px; }
   .ov-intro-alinea, .ov-tekst p { font-size: 16px; }
   .ov-sectie { margin-top: 80px; padding-top: 32px; }
-  .ov-intro + .ov-sectie { margin-top: 88px; }
+  .ov-secties { margin-bottom: 56px; }
   .ov-h2 { font-size: 28px; }
   .ov-sectie.ov-vlak { padding: 32px 24px; border-radius: 8px; }
-  .ov-keuzelijst h3 { font-size: 17px; }
   .ov-beeld { margin-top: 40px; overflow: hidden; }
   .ov-beeld-inner { width: 600px; max-width: none; zoom: 0.56; }
-  .ov-keuzes { margin-bottom: 56px; }
   .ov .ov-afsluiter h2 { font-size: 32px; }
   .ov .ov-afsluiter p { font-size: 15px; }
 }

@@ -8,13 +8,13 @@ export const meta = {
     'Maak kennis met Jan-Willem Koopman en lees waarom hij Orbit ontwikkelde: software voor marketingbureaus om AI-zichtbaarheid te meten en content te maken.',
 }
 
-// Sectie 1: de introductie, met het portret ernaast (op mobiel eronder).
+// De introductie bovenaan, met het portret ernaast (op mobiel eronder).
 export const intro = {
-  label: 'Over Orbit',
-  titel: 'Ik ben Jan-Willem, de maker van Orbit.',
+  titel: 'Met een klein team kun je meer dan ooit',
   alineas: [
-    'Ik werk ruim tien jaar als data-analist in de marketing, onder andere bij Randstad Groep Nederland en tegenwoordig bij Van den Udenhout. In die jaren heb ik me verdiept in marketingdata, SEO en het meten van wat marketing oplevert.',
-    'Met de komst van AI ben ik steeds meer zelf software gaan bouwen. Die ervaring komt samen in Orbit: een platform waarmee marketingbureaus de AI-zichtbaarheid van hun klanten meten, content maken en de resultaten volgen.',
+    'Een goed marketingbureau hoeft geen groot team te hebben. Met de juiste technologie kun je veel werk verzetten dat tot voor kort simpelweg te veel tijd kostte. Onderzoek waarvoor je dagen nodig had, een contentplan uitwerken, de eerste versies van teksten schrijven: AI neemt je steeds meer uit handen.',
+    'Ik zie daarin een mooie kans voor bureaus. Je kunt meer voor je klanten doen en diensten aanbieden waar je eerder de capaciteit niet voor had. Als je dat goed organiseert, houd je er ook een gezonde marge aan over.',
+    'Dat is waarom ik Orbit bouw. Mijn naam is Jan-Willem Koopman. Ik werk inmiddels tien jaar in het analyticswerkveld bij verschillende bedrijven en ben de oprichter en ontwikkelaar van het platform.',
   ],
 }
 
@@ -28,66 +28,51 @@ export const foto = {
   onderschrift: 'Jan-Willem Koopman — oprichter en ontwikkelaar van Orbit',
 }
 
-// Sectie 2: de aanleiding.
-export const aanleiding = {
-  titel: 'Ik wilde verder kunnen dan alleen meten.',
+export type Verwijzing = { label: string; href: string }
+export type Sectie = { id: string; titel: string; alineas: string[]; link?: Verwijzing }
+
+// De secties onder de introductie, in volgorde.
+export const klant: Sectie = {
+  id: 'ov-klant',
+  titel: 'Je klant wil weten of hij wordt gevonden',
   alineas: [
-    'Als data-analist wil ik weten wat je met een uitkomst kunt doen. Dat geldt ook voor AI-zichtbaarheid. Je kunt meten of ChatGPT een bedrijf noemt, maar daarmee weet een marketeer nog niet welke pagina hij moet verbeteren of wat hij moet schrijven.',
-    'Daar begon het idee voor Orbit. Ik wilde de stap van meting naar uitvoering makkelijker maken: onderzoeken waar kansen liggen, bepalen welke content nodig is en die vervolgens ook kunnen maken.',
-    'Wat begon als een idee voor een meettool, groeide zo uit tot een platform waarin onderzoek, planning, schrijven en opnieuw meten met elkaar verbonden zijn. Daar ben ik behoorlijk trots op.',
+    'Stel dat iemand een AI-assistent vraagt om een goede leverancier, een vergelijking of advies over een aankoop. Dan wil je als ondernemer weten: staat mijn bedrijf ertussen? En hoe zorg ik dat mijn aanbod goed naar voren komt?',
+    'Als marketingbureau wil je daar een bruikbaar antwoord op geven. Ook als je zelfstandig werkt of maar een paar collega’s hebt. Je zou daarvoor niet zelf software hoeven bouwen of bij iedere klant het hele onderzoek opnieuw moeten doen.',
+    'Met Orbit wil ik dat werk makkelijker maken, zodat je AI-zichtbaarheid als een volwaardige dienst kunt aanbieden.',
   ],
 }
 
-// Sectie 3: wat Orbit doet, met één productbeeld (de maand van een klant, van meten tot hermeten).
-export const watOrbitDoet = {
-  titel: 'Van een bedrijfswebsite naar een plan en nieuwe content.',
+// Met één productbeeld: de maand van een klant, van meten tot hermeten.
+export const meten: Sectie & { beeldAlt: string } = {
+  id: 'ov-meten',
+  titel: 'Weten waar je staat is het begin',
   alineas: [
-    'Je begint met de naam en website van een klant. Orbit onderzoekt het bedrijf, het aanbod en de concurrenten. Daarna meet het hoe vaak het bedrijf wordt genoemd bij vragen die potentiële klanten aan AI zouden kunnen stellen.',
-    'Uit die meting volgen voorstellen voor nieuwe of verbeterde pagina’s. Orbit maakt een contentplan en schrijft de teksten met informatie over het bedrijf. Ontbreken bijvoorbeeld prijzen of praktijkvoorbeelden, dan zet het vragen klaar die je aan je klant kunt voorleggen.',
-    'Je team beoordeelt de teksten en publiceert ze op de website. Daarna meet Orbit opnieuw hoe de AI-zichtbaarheid zich ontwikkelt. Met Google Search Console kun je ook volgen hoeveel zoekverkeer de gepubliceerde pagina’s krijgen.',
+    'Wat mij interesseert, is wat je vervolgens met een meting doet. Als een bedrijf nauwelijks voorkomt in AI-antwoorden, waar begin je dan? Mist er informatie op de website? Welke vragen van potentiële klanten worden nog niet goed beantwoord?',
+    'Orbit helpt om dat uit te zoeken en er werk van te maken. Het onderzoek en de metingen vormen de basis voor een contentplan. Vervolgens schrijft het platform teksten met informatie over het bedrijf en de kennis die je klant zelf toevoegt. Je team beoordeelt de inhoud, publiceert de pagina’s en volgt daarna hoe de zichtbaarheid verandert.',
+    'Ik vind het belangrijk dat je daarbij zorgvuldig met de cijfers omgaat. AI geeft niet iedere keer hetzelfde antwoord. En als de zichtbaarheid na een publicatie stijgt, weet je nog niet zeker of dat door die pagina komt. Je moet je klant kunnen laten zien wat je hebt gedaan, wat je terugziet in de metingen en waarom je een bepaalde vervolgstap adviseert.',
   ],
-  link: { label: 'Bekijk de werkwijze in tien stappen', href: '/werkwijze' },
+  link: { label: 'Bekijk hoe Orbit werkt', href: '/werkwijze' },
   beeldAlt:
     'Voorbeeld uit Orbit: de maand van een klant in vijf stappen, van meten en plannen tot schrijven, publiceren en hermeten, met vragen die nog bij de klant liggen.',
 }
 
-// Sectie 4: waarom voor marketingbureaus.
-export const bureaus = {
-  titel: 'Speciaal gebouwd voor marketingbureaus.',
+// In een iets lichter vlak: de rol van de marketeer.
+export const vakkennis: Sectie = {
+  id: 'ov-vakkennis',
+  titel: 'Je vakkennis wordt belangrijker',
   alineas: [
-    'Een bureau werkt voor meerdere klanten tegelijk. Dan heb je overzicht nodig: welke teksten zijn klaar, waar ontbreekt nog informatie en wat moet er deze maand gebeuren? Daarom kun je in Orbit al je klanten vanuit één omgeving beheren.',
-    'Je kunt het platform in de huisstijl van je bureau gebruiken, klanten toegang geven tot hun eigen omgeving en rapportages delen met je bureaunaam erop. Zo past Orbit binnen de dienstverlening die je al aanbiedt.',
-    'Mijn doel is dat je team meer klanten kan helpen doordat een groot deel van het onderzoek en schrijfwerk al wordt gedaan. Je kunt AI-zichtbaarheid als nieuwe maandelijkse dienst aanbieden of opnemen in je bestaande SEO- en contentwerk.',
-  ],
-  link: { label: 'Lees wat Orbit voor je bureau kan doen', href: '/agencies' },
-}
-
-// Sectie 5: de keuzes van de oprichter.
-export const keuzes = {
-  titel: 'Waar ik bij het bouwen op let.',
-  onderdelen: [
-    {
-      titel: 'Cijfers die je kunt uitleggen',
-      tekst: 'Mijn achtergrond als analist zie je terug in de metingen. Orbit gebruikt vaste vragen, herhaalt belangrijke vragen en toont onzekerheidsmarges. Een kleine schommeling is niet meteen een resultaat. Ook een stijging na publicatie bewijst op zichzelf niet dat de nieuwe pagina de oorzaak is.',
-    },
-    {
-      titel: 'Teksten met kennis van het bedrijf',
-      tekst: 'Een goede tekst heeft informatie nodig die bij je klant hoort. Daarom gebruikt Orbit bedrijfsinformatie, documenten en antwoorden van de ondernemer. Ik heb controles ingebouwd op onder meer bedragen, termijnen en garanties. Je team beoordeelt de tekst voordat die wordt gepubliceerd.',
-    },
-    {
-      titel: 'Duidelijke kosten',
-      tekst: 'Voor het platform vraag ik een kleine vergoeding, waarover we vooraf afspraken maken. Het gebruik van AI en zoekdata betaal je rechtstreeks aan de aanbieders, zonder opslag van Orbit. Je ziet wat je uitgeeft en bepaalt zelf wat je voor jouw dienstverlening rekent.',
-    },
+    'Je kent het vast: een tekst leest prima, maar zou net zo goed over de concurrent kunnen gaan. Het verhaal klopt in grote lijnen, alleen ontbreekt precies datgene wat dit bedrijf bijzonder maakt.',
+    'Daar blijft een goede marketeer nodig. Iemand die doorvraagt bij de ondernemer, begrijpt welke klanten hij wil bereiken en kan beoordelen of de inhoud overtuigt. Hoe meer uitvoerend werk je aan AI kunt overlaten, hoe meer aandacht je daaraan kunt besteden.',
+    'Zo zie ik de rol van Orbit binnen een bureau. Het platform doet veel van het voorbereidende werk. Jij bepaalt de richting en wat goed genoeg is om namens je klant te publiceren.',
+    'Mijn ambitie is dat je daardoor meer klanten kunt helpen zonder voor iedere nieuwe opdracht evenveel extra uren nodig te hebben. Met een dienst die je onder je eigen merk aanbiedt, waar je achter staat en waar je aan verdient.',
   ],
 }
 
-// Sectie 6: de persoonlijke afsluiting. De knop opent hetzelfde aanmeldformulier als "Gratis uitproberen".
+// De afsluiter onderaan: het limegroene blok met de knoppen Gratis uitproberen en Contact opnemen.
 export const afsluiting = {
-  titel: 'Benieuwd of Orbit bij jouw bureau past?',
+  titel: 'Probeer het met een klant die je kent',
   alineas: [
-    'Probeer het met een klant die je goed kent. Je laat gratis één bedrijf onderzoeken, meet één onderwerp in ChatGPT en laat een eerste tekst schrijven. Zo kun je zelf beoordelen of de aanpak en de teksten aansluiten op jouw werk.',
-    'Wil je eerst iets vragen of bespreken hoe je Orbit zou gebruiken? Mail me gerust. Je hebt rechtstreeks contact met degene die het platform bouwt.',
+    'De beste manier om Orbit te beoordelen is door ermee te werken. Laat gratis één bedrijf onderzoeken, meet één onderwerp in ChatGPT en laat een eerste tekst schrijven. Dan zie je snel waar het je werk uit handen neemt en wat je zelf nog wilt toevoegen.',
+    'Liever eerst even kennismaken? Neem gerust contact op. Je spreekt rechtstreeks met mij.',
   ],
-  knop: 'Probeer Orbit gratis',
-  mail: { label: 'Mail Jan-Willem', href: 'mailto:go@outerorbit.nl' },
 }
