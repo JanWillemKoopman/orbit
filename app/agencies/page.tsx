@@ -6,7 +6,7 @@ import { Icon } from '@/components/product/ui'
 import { AlleKlanten, GripOpKosten, Huisstijlen, KlantDoetMee } from '@/components/agencies/Visuals'
 import { DemoLink } from '@/components/agencies/DemoLink'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
-import { hero, meta, overzicht, secties, statement, usp, verder, whitelabel } from '@/content/agencies'
+import { afsluiter, hero, meta, overzicht, secties, statement, usp, verder, whitelabel } from '@/content/agencies'
 import '../werkwijze/werkwijze.css'
 import '../beheer/beheer.css'
 import '../pagina.css'
@@ -124,7 +124,7 @@ export default function AgenciesPage() {
         </Sectie>
       </div>
 
-      <Prefooter />
+      <Prefooter tekst={afsluiter} />
     </div>
   )
 }
