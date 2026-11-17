@@ -41,7 +41,7 @@ export const overOnsMenu: NavMenuItem[] = [
 ]
 
 // Losse pagina's in de header, zonder uitklapmenu. Werkwijze en Voor bureaus stonden eerder in een
-// uitklapmenu "Product"; ze staan nu zelf in de balk. De kennisbank en product updates staan
+// uitklapmenu "Product"; ze staan nu zelf in de balk. De blog staat niet in het hoofdmenu, alleen in de footer. De kennisbank en product updates staan
 // (voorlopig) nergens in het menu; hun pagina's bestaan nog wel, maar worden niet geïndexeerd.
 const workflow = { href: '/werkwijze', label: 'Werkwijze' }
 const agencies = { href: '/agencies', label: 'Voor bureaus' }
@@ -50,12 +50,11 @@ const blog = { href: '/blog', label: 'Blog' }
 export const mainNav: NavItem[] = [
   workflow,
   agencies,
-  blog,
   { label: 'Over Orbit', items: overOnsMenu },
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
-// Werkwijze, Voor bureaus en Blog hebben geen uitklapmenu en staan los, in een groep zonder label.
+// Werkwijze en Voor bureaus hebben geen uitklapmenu en staan los, in een groep zonder label.
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
 export type NavGroep = { title?: string; links: NavLink[] }
 const informatieEnMeer: NavGroep[] = [
@@ -63,7 +62,7 @@ const informatieEnMeer: NavGroep[] = [
   { title: 'Account', links: [{ href: site.loginUrl, label: 'Inloggen' }] },
 ]
 export const mobileNav: NavGroep[] = [
-  { links: [workflow, agencies, blog] },
+  { links: [workflow, agencies] },
   ...informatieEnMeer,
 ]
 

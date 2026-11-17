@@ -20,14 +20,14 @@ import type { Usp } from './home'
 // `title` is de korte naam van de pagina; `zoektitel` en `description` staan in de zoekresultaten en bij een
 // gedeelde link. Richtlijn: de titel hooguit 60 tekens, de omschrijving hooguit 158.
 export const meta = {
-  title: 'Agencies',
+  title: 'Voor bureaus',
   zoektitel: 'Verkoop GEO als vaste dienst onder je eigen naam – Orbit',
   description:
     'Bied AI-zichtbaarheid aan als maandelijkse dienst. Orbit werkt in de huisstijl van je bureau, met al je klanten in één overzicht en AI tegen kostprijs.',
 }
 
 export const hero = {
-  eyebrow: 'Agencies',
+  eyebrow: 'Voor bureaus',
   title: 'Bied AI-zichtbaarheid aan als vaste dienst onder je eigen naam.',
 }
 

@@ -4,7 +4,7 @@ export const aanmelden = {
   // De popup herhaalt de knop niet: de kop zegt wat je krijgt, de knop wat je doet.
   eyebrow: 'Gratis uitproberen',
   titel: 'Account aanmaken',
-  intro: 'Onboard je eerste klant, ontdek waar kansen liggen en laat je eerste artikel schrijven.',
+  intro: 'Laat één bedrijf onderzoeken, meet één onderwerp in ChatGPT en ontvang je eerste pagina. Gratis, zonder eigen API key.',
   verstuur: 'Account aanmaken',
   privacy: 'We gebruiken je gegevens alleen om je account aan te maken.',
   bedankt: 'Bedankt! Je aanmelding is binnen. We zetten je account klaar en mailen je zodra je kunt beginnen.',
