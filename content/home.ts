@@ -143,28 +143,28 @@ export const faq: { title: string; items: FaqItem[] } = {
   title: 'Veelgestelde vragen',
   items: [
     {
-      question: 'Wat doet Orbit voor mijn bureau?',
-      answer: 'Orbit meet hoe vaak ChatGPT, Gemini en het AI-overzicht van Google de merken van je klanten aanraden, en wie er in plaats van hen genoemd wordt. Elke vraag waarbij je klant ontbreekt, wordt een pagina-idee in een contentplan. Orbit schrijft die pagina’s en meet daarna wat ze hebben opgeleverd. Zo verkoop je AI-zichtbaarheid als vaste maandelijkse dienst.',
-    },
-    {
-      question: 'AI-antwoorden verschillen per keer. Hoe betrouwbaar is de meting?',
-      answer: 'Orbit stelt geen losse vraag om er een screenshot van te maken. Per onderwerp stelt hij 30 vaste vragen, verdeeld over de hele klantreis, en de vragen die het zwaarst wegen meet hij vaker. Elk cijfer krijgt een marge, dus je ziet of een verschil echt is of toeval. Elk AI-antwoord kun je teruglezen.',
-    },
-    {
-      question: 'Hoe weet ik zeker dat er geen verzonnen feiten op de site van mijn klant komen?',
-      answer: 'Een pagina mag alleen beweren wat in de gecontroleerde kennis over het bedrijf staat. Orbit controleert bedragen, termijnen, garanties en keurmerken. Staat er geen bron bij, dan wordt de zin geel gemarkeerd, met de reden erbij, en kun je de pagina pas goedkeuren als elke gele zin bevestigd is. Twijfel je, dan leg je de zin met één klik aan je klant voor.',
-    },
-    {
-      question: 'Hoe laat ik mijn klant zien wat ons werk oplevert?',
-      answer: 'Na 14 en 28 dagen meet Orbit vanzelf opnieuw, op precies de vragen waarvoor een pagina is geschreven. Met Google Search Console zie je per pagina de klikken en vertoningen. Elke maand krijg je per klant een verslag met de naam van je bureau erop, dat je als pdf doorstuurt.',
-    },
-    {
       question: 'Wat kost Orbit?',
-      answer: 'De kosten bestaan uit twee delen. Over het gebruik van Orbit maak je een afspraak bij de aanmelding. Het AI-gebruik loopt via de eigen sleutel van je bureau, tegen kostprijs en zonder opslag. Het aantal klanten is onbeperkt. Je stelt zelf een maandlimiet in, en bij elke knop die geld kost zie je vooraf ongeveer wat het kost.',
+      answer: 'Je start gratis met je eerste klant: Orbit onderzoekt het bedrijf, meet één onderwerp en schrijft een eerste pagina. Wil je verder, dan bespreken we een samenwerking die past bij jouw bureau, met heldere afspraken over de platformkosten en het aanvullende AI-gebruik.',
     },
     {
-      question: 'Hoe snel kan ik beginnen, en wat moet mijn klant doen?',
-      answer: 'Je installeert niets: je bureau krijgt een uitnodiging per mail. Voor een nieuwe klant vul je de naam en de website in, en binnen ongeveer tien minuten heeft Orbit het bedrijf onderzocht. Je klant kan meekijken, maar alleen bij zijn eigen bedrijf. Vragen die alleen hij kan beantwoorden, beantwoordt hij via een link, zonder account en ook op zijn telefoon.',
+      question: 'Kan ik Orbit onder mijn eigen merk aanbieden?',
+      answer: 'Ja, Orbit kan volledig in de huisstijl van jouw bureau worden ingericht. Zo bied je AI-zichtbaarheid aan als je eigen dienst, met jouw merk voorop en Orbit als software erachter.',
+    },
+    {
+      question: 'Hoeveel tijd bespaart mijn team met Orbit?',
+      answer: 'Orbit neemt het grootste deel van het onderzoek, de metingen, de contentplanning en het schrijfwerk over. Daardoor kan je team meer klanten bedienen en meer content leveren, zonder dat het werk evenredig toeneemt. Ideaal om een nieuwe dienst te starten of meer uit je bestaande team te halen.',
+    },
+    {
+      question: 'Hoe betrouwbaar zijn de AI-metingen?',
+      answer: 'Orbit meet met een vaste set relevante vragen, herhaalt de belangrijkste vragen en houdt rekening met schommelingen in AI-antwoorden. Je kunt de antwoorden terugzien en ziet bij iedere score een onzekerheidsmarge. Zo heb je een onderbouwd beeld van de zichtbaarheid van je klant en herken je welke veranderingen betekenisvol zijn.',
+    },
+    {
+      question: 'Welke AI-platformen meet Orbit?',
+      answer: 'Orbit meet standaard in ChatGPT, met Gemini en Google AI Overviews als aanvullende meetkanalen. Je ziet per kanaal bij welke vragen je klant wordt genoemd en welke concurrenten daar zichtbaar zijn.',
+    },
+    {
+      question: 'Hoe laat ik mijn klanten zien wat het oplevert?',
+      answer: 'Met een overzichtelijk maandverslag op naam van jouw bureau laat je zien welke pagina’s zijn gepubliceerd en hoe de AI-zichtbaarheid zich ontwikkelt. Orbit meet na publicatie opnieuw, zodat je veranderingen kunt bespreken aan de hand van concrete cijfers. Je kunt klanten ook toegang geven om zelf hun voortgang te volgen.',
     },
   ],
 }

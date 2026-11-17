@@ -103,7 +103,5 @@ export const secties = {
   },
 }
 
-export const afsluiter = {
-  title: 'Zet je bureau in Orbit.',
-  description: 'Probeer Orbit gratis: onboard je eerste klant en zie hoe het werkoverzicht, de rollen en de kosten werken.',
-}
+// De afsluiter: op alle pagina's dezelfde (content/aanmelden.ts).
+export { afsluiter } from './aanmelden'

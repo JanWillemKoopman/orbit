@@ -96,7 +96,5 @@ export const secties = {
   },
 }
 
-export const afsluiter = {
-  title: 'Laat AI schrijven. Zonder je reputatie op het spel te zetten.',
-  description: 'Probeer Orbit gratis en zie hoe de feiten van een van je eigen klanten eruitzien.',
-}
+// De afsluiter: op alle pagina's dezelfde (content/aanmelden.ts).
+export { afsluiter } from './aanmelden'

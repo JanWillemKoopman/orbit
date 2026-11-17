@@ -41,11 +41,10 @@ export const overOnsMenu: NavMenuItem[] = [
 ]
 
 // Losse pagina's in de header, zonder uitklapmenu. Werkwijze en Voor bureaus stonden eerder in een
-// uitklapmenu "Product"; ze staan nu zelf in de balk. De blog staat niet in het hoofdmenu, alleen in de footer. De kennisbank en product updates staan
+// uitklapmenu "Product"; ze staan nu zelf in de balk. De blog staat niet in het hoofdmenu en niet in de footer. De kennisbank en product updates staan
 // (voorlopig) nergens in het menu; hun pagina's bestaan nog wel, maar worden niet geïndexeerd.
 const workflow = { href: '/werkwijze', label: 'Werkwijze' }
 const agencies = { href: '/agencies', label: 'Voor bureaus' }
-const blog = { href: '/blog', label: 'Blog' }
 
 export const mainNav: NavItem[] = [
   workflow,
@@ -68,8 +67,7 @@ export const mobileNav: NavGroep[] = [
 
 // Footer: volgt het hoofdmenu. Werkwijze en Voor bureaus staan los in de header en vormen in de footer
 // samen de kolom Product, zoals linear.app zijn productpagina's onder één kop zet. Elke groep uit
-// mainNav wordt een kolom met hetzelfde label; Blog staat onder Over ons, zoals "Blog" onder Company
-// op linear.app. Contact staat niet onder Over ons; daarna volgen de kolom Demo en de kolom Contact
+// mainNav wordt een kolom met hetzelfde label. De blog staat niet in de footer. Contact staat niet onder Over ons; daarna volgen de kolom Demo en de kolom Contact
 // met e-mail, telefoon en adres (Footer.tsx).
 const nietInFooterGroep = new Set(['/contact'])
 const footerLinks = (items: NavMenuItem[]): NavLink[] => links(items).filter((l) => !nietInFooterGroep.has(l.href))
@@ -79,10 +77,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     .filter((item): item is { label: string; items: NavMenuItem[] } => 'items' in item)
     .map((group) => ({
       title: group.label,
-      links: [
-        ...footerLinks(group.items),
-        ...(group.label === 'Over Orbit' ? [blog] : []),
-      ],
+      links: footerLinks(group.items),
     })),
   { title: 'Demo', links: [{ href: '/demo', label: 'Demo aanvragen' }] },
 ]

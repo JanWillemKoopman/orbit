@@ -12,8 +12,8 @@ export const aanmelden = {
   demoLink: 'Plan een demo',
 }
 
-// De afsluiter onderaan de homepage, /werkwijze en /agencies: op alle drie dezelfde kop en zin, met
-// daaronder alleen de knop Gratis uitproberen. Pas hem hier aan, dan verandert hij op alle drie.
+// De afsluiter onderaan elke pagina: overal dezelfde kop en zin, met daaronder alleen de knop
+// Gratis uitproberen. Pas hem hier aan, dan verandert hij overal.
 export const afsluiter = {
   title: 'Probeer Orbit met een eigen klant',
   description: 'Laat één bedrijf onderzoeken, meet één onderwerp in ChatGPT en ontvang je eerste pagina. Gratis, zonder eigen API key.',
