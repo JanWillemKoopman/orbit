@@ -21,9 +21,9 @@ import type { Usp } from './home'
 // gedeelde link. Richtlijn: de titel hooguit 60 tekens, de omschrijving hooguit 158.
 export const meta = {
   title: 'Voor bureaus',
-  zoektitel: 'Verkoop GEO als vaste dienst onder je eigen naam – Orbit',
+  zoektitel: 'AI-zichtbaarheid als vaste dienst van je bureau – Orbit',
   description:
-    'Bied AI-zichtbaarheid aan als maandelijkse dienst. Orbit werkt in de huisstijl van je bureau, met al je klanten in één overzicht en AI tegen kostprijs.',
+    'Meet de zichtbaarheid van je klanten in AI, plan content en laat teksten schrijven. Een maandelijkse dienst, in de huisstijl van je bureau.',
 }
 
 export const hero = {
@@ -113,7 +113,7 @@ export const secties = [
       'Vragen beantwoorden kan zonder account, via een link',
       'Alleen je team kan betaald werk starten',
     ],
-    alt: 'Het onderdeel Wat mogen kijkers van een bureau: vragen beantwoorden, materiaal toevoegen, gele zinnen bevestigen en een pagina goedkeuren staan aan, een pagina zelf bewerken staat uit. Ervoor een telefoon waarop de klant zonder account een vraag over zijn prijs beantwoordt.',
+    alt: 'De instellingen voor wat je klant mag: vragen beantwoorden, materiaal toevoegen, gele zinnen bevestigen en een pagina goedkeuren staan aan, een pagina zelf bewerken staat uit. Ervoor een telefoon waarop de klant zonder account een vraag over zijn prijs beantwoordt.',
   },
   {
     id: 'kosten',
@@ -126,7 +126,7 @@ export const secties = [
       'Inzicht in de AI-kosten per klant, met een maandelijks kostenoverzicht',
       'Zelf een maandlimiet instellen en vooraf de geschatte kosten bekijken',
     ],
-    alt: 'Het tabblad Kosten van een bureau: deze maand € 158,60 van een limiet van € 250, volgende maand ongeveer € 164, en de kosten per bedrijf, van € 24,60 voor Lindeman Warmte tot € 13,10 voor Kringloop De Ruil. Ervoor de schatting bij Start de maand: 20 pagina’s voor 4 bedrijven, ongeveer € 11,80.',
+    alt: 'Het tabblad Kosten van een bureau: de AI-kosten van deze maand naast de maandlimiet, een verwachting voor volgende maand en de kosten per bedrijf. Ervoor de geschatte kosten voordat je nieuwe pagina’s voor meerdere bedrijven tegelijk laat schrijven.',
   },
 ]
 
