@@ -40,11 +40,11 @@ export const overOnsMenu: NavMenuItem[] = [
   { href: '/contact', label: 'Contact opnemen', description: ['Een vraag of een demo?', 'We reageren binnen één werkdag'] },
 ]
 
-// Losse pagina's in de header, zonder uitklapmenu. Workflow en Agencies stonden eerder in een
+// Losse pagina's in de header, zonder uitklapmenu. Werkwijze en Voor bureaus stonden eerder in een
 // uitklapmenu "Product"; ze staan nu zelf in de balk. De kennisbank en product updates staan
 // (voorlopig) nergens in het menu; hun pagina's bestaan nog wel, maar worden niet geïndexeerd.
-const workflow = { href: '/werkwijze', label: 'Workflow' }
-const agencies = { href: '/agencies', label: 'Agencies' }
+const workflow = { href: '/werkwijze', label: 'Werkwijze' }
+const agencies = { href: '/agencies', label: 'Voor bureaus' }
 const blog = { href: '/blog', label: 'Blog' }
 
 export const mainNav: NavItem[] = [
@@ -55,7 +55,7 @@ export const mainNav: NavItem[] = [
 ]
 
 // Mobiel menu, gegroepeerd zoals op linear.app: een grijs label boven grote witte links.
-// Workflow, Agencies en Blog hebben geen uitklapmenu en staan los, in een groep zonder label.
+// Werkwijze, Voor bureaus en Blog hebben geen uitklapmenu en staan los, in een groep zonder label.
 const links = (items: NavMenuItem[]) => items.map(({ href, label }) => ({ href, label }))
 export type NavGroep = { title?: string; links: NavLink[] }
 const informatieEnMeer: NavGroep[] = [
@@ -67,7 +67,7 @@ export const mobileNav: NavGroep[] = [
   ...informatieEnMeer,
 ]
 
-// Footer: volgt het hoofdmenu. Workflow en Agencies staan los in de header en vormen in de footer
+// Footer: volgt het hoofdmenu. Werkwijze en Voor bureaus staan los in de header en vormen in de footer
 // samen de kolom Product, zoals linear.app zijn productpagina's onder één kop zet. Elke groep uit
 // mainNav wordt een kolom met hetzelfde label; Blog staat onder Over ons, zoals "Blog" onder Company
 // op linear.app. Contact staat niet onder Over ons; daarna volgen de kolom Demo en de kolom Contact

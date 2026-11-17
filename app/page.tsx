@@ -111,7 +111,7 @@ export default function HomePage() {
           </div>
           <DuoSlider bijschriften={[kwaliteitSecties.weten.beeld, kwaliteitSecties.probleem.beeld]}>
             <figure className="lp-beeld lp-beeld-scherm">
-              <div className="lp-beeld-stage" role="img" aria-label="Feiten en kennis van Lindeman Warmte als tabel: per feit de bron en of het in een tekst mag. Een vermoeden en een verboden woord mogen nooit.">
+              <div className="lp-beeld-stage" role="img" aria-label="De kennis van Lindeman Warmte als tabel: per regel waar de informatie vandaan komt, of die bevestigd is en of Orbit hem mag gebruiken bij het schrijven. Een vermoeden en een verboden woord mogen nooit.">
                 <div className="lp-beeld-inner" aria-hidden="true"><BreinTabel /></div>
               </div>
               <figcaption className="lp-caption">
@@ -120,7 +120,7 @@ export default function HomePage() {
               </figcaption>
             </figure>
             <figure className="lp-beeld lp-beeld-scherm">
-              <div className="lp-beeld-stage" role="img" aria-label="Een alinea over een hybride warmtepomp. Elke harde bewering heeft een nummer met de bron: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina.">
+              <div className="lp-beeld-stage" role="img" aria-label="Een alinea over een hybride warmtepomp. Bij de termijn, het bedrag en de garantie staat een nummer dat laat zien waarop de bewering is gebaseerd: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina.">
                 <div className="lp-beeld-inner" aria-hidden="true"><HerkomstCompositie /></div>
               </div>
               <figcaption className="lp-caption">

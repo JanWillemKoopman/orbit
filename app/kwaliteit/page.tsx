@@ -27,7 +27,7 @@ export default function KwaliteitPage() {
         {/* 1. Het probleem */}
         <Sectie id={s.probleem.id}>
           <Intro id={s.probleem.id} label={s.probleem.label} titel={s.probleem.titel} tekst={s.probleem.tekst} link={s.probleem.link} />
-          <Beeld b={s.probleem.beeld} hoogte={640} alt="Een alinea over een hybride warmtepomp. Elke harde bewering heeft een nummer met de bron: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina. Achter de tekst het document tarieven-2026.pdf met het bedrag gemarkeerd.">
+          <Beeld b={s.probleem.beeld} hoogte={640} alt="Een alinea over een hybride warmtepomp. Bij de termijn, het bedrag en de garantie staat een nummer dat laat zien waarop de bewering is gebaseerd: bevestigd door de klant, uit de tarievenlijst en van de garantiepagina. Achter de tekst het document tarieven-2026.pdf met het bedrag gemarkeerd.">
             <V.HerkomstCompositie />
           </Beeld>
           <Raster>
@@ -43,7 +43,7 @@ export default function KwaliteitPage() {
         {/* 2. Eerst weten */}
         <Sectie id={s.weten.id}>
           <Intro id={s.weten.id} label={s.weten.label} titel={s.weten.titel} tekst={s.weten.tekst} link={s.weten.link} />
-          <Beeld b={s.weten.beeld} breedte={1040} hoogte={640} alt="Feiten en kennis van Lindeman Warmte als tabel: per feit de bron, hoe zeker het is en of het in een tekst mag. Een vermoeden en een verboden woord mogen nooit.">
+          <Beeld b={s.weten.beeld} breedte={1040} hoogte={640} alt="De kennis van Lindeman Warmte als tabel: per regel waar de informatie vandaan komt, of die bevestigd is en of Orbit hem mag gebruiken bij het schrijven. Een vermoeden en een verboden woord mogen nooit.">
             <V.BreinTabel />
           </Beeld>
           <Raster>
