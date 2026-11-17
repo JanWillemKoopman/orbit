@@ -21,13 +21,13 @@ export const meta = {
 
 export const hero = {
   eyebrow: 'Werkwijze',
-  title: 'Tien vaste stappen. Van nieuwe klant tot maandverslag.',
+  title: 'Zo werk je met Orbit, van eerste onderzoek tot maandverslag.',
 }
 
 // Introductie tussen de hero en het overzicht: het vetgedrukte deel in het wit, de rest in grijs.
 export const intro = {
-  strong: 'Eén werkproces voor al je klanten.',
-  rest: 'Orbit doet het onderzoek, het meetwerk en het schrijfwerk. Jouw team bepaalt de koers, keurt goed en voert het gesprek met de klant.',
+  strong: 'Hoe begin je met een klant in Orbit?',
+  rest: 'Hieronder zie je hoe Orbit het bedrijf onderzoekt, de zichtbaarheid in AI meet en teksten schrijft. Je leest ook waar jouw team en je klant bij betrokken zijn.',
 }
 
 // Kop boven het overzicht van de tien stappen, direct onder de introductie.
@@ -37,84 +37,87 @@ export const stappen: Stap[] = [
   {
     nr: 1,
     id: 'klant-toevoegen',
-    titel: 'Klant toevoegen',
-    aanloop: 'Een naam en een website. Tien minuten later ligt er een compleet merkdossier.',
+    titel: 'Voeg je klant toe',
+    aanloop: 'Vul de bedrijfsnaam en website in. Orbit onderzoekt wat je klant aanbiedt en wie de concurrenten zijn.',
     tekst:
-      'Orbit leest de website, brengt het hele aanbod in kaart, zoekt de concurrenten op en test wat AI-assistenten nu al over het merk weten. Werk waar een strateeg normaal dagen mee bezig is, loopt op de achtergrond terwijl jij iets anders doet. Je begint elk nieuw klanttraject dus met een voorsprong, en je eerste gesprek gaat meteen over de inhoud.',
+      'Orbit leest de website en verzamelt informatie over de producten, diensten en het werkgebied. Ook onderzoekt het de concurrenten en wat AI al over het bedrijf weet. Na ongeveer tien minuten kun je het overzicht bekijken en waar nodig aanvullen of corrigeren. Je hoeft het vooronderzoek dus niet vanaf nul te doen en hebt een basis voor het gesprek met je klant.',
   },
   {
     nr: 2,
     id: 'klant-onboarden',
-    titel: 'Onboarding met je klant',
-    aanloop: 'Met het dossier op tafel wordt je kennismaking een strategiesessie.',
+    titel: 'Bespreek wat je klant wil bereiken',
+    aanloop: 'Je klant vertelt waar de groei moet komen en wat het bedrijf bijzonder maakt.',
     tekst:
-      'Samen met je klant leg je vast wat geen website vertelt: op welke diensten hij wil groeien, welke vragen en bezwaren hij in verkoopgesprekken hoort en hoe het merk moet klinken. Brochures en prijslijsten voeg je toe als document. Zo ontstaat één kennisbank per klant, waarin elk feit zijn bron heeft. Aan het eind van het gesprek liggen de onderwerpen vast waarop jullie gaan winnen.',
+      'Welke diensten verdienen meer aandacht? Wat vragen klanten voordat ze kopen? En hoe wil het bedrijf zich presenteren? Die informatie leg je vast in Orbit, eventueel aangevuld met brochures of prijslijsten. Ook geef je aan welke schrijfstijl bij je klant past. Samen kies je de onderwerpen waarvoor het bedrijf gevonden wil worden, zoals ‘bakfiets leasen’ of ‘onderhoud aan een elektrische fiets’.',
   },
   {
     nr: 3,
     id: 'nulmeting',
-    titel: 'De nulmeting',
-    aanloop: 'Dertig vragen per onderwerp, gesteld zoals een echte klant ze aan AI stelt.',
+    titel: 'Meet hoe vaak AI je klant noemt',
+    aanloop: 'Orbit stelt per onderwerp standaard dertig vragen die een potentiële klant zou kunnen stellen.',
     tekst:
-      'Van de eerste oriëntatie tot het moment van kiezen: Orbit leest elk antwoord na. Wordt je klant genoemd, op welke plek, en welke concurrent krijgt de aanbeveling? De vragen die commercieel het zwaarst wegen, stelt Orbit meerdere keren, en elk cijfer krijgt een marge. Je presenteert dus geen screenshot, maar een meting die standhoudt bij een kritische klant.',
+      'Bijvoorbeeld: ‘Welke fietsenmaker in Utrecht repareert e-bikes?’ Orbit controleert of ChatGPT je klant noemt en welke concurrenten in het antwoord staan. Je kunt ook Gemini en de AI-overzichten van Google laten meten. Belangrijke vragen worden in ChatGPT herhaald, omdat antwoorden kunnen wisselen. Bij de score staat een onzekerheidsmarge. Deze eerste meting is het vertrekpunt waarmee je latere resultaten vergelijkt.',
   },
   {
     nr: 4,
     id: 'contentplan',
-    titel: 'Het contentplan',
-    aanloop: 'Elke vraag waarop je klant ontbreekt, wordt een pagina-idee met het bewijs erbij.',
+    titel: 'Kies welke pagina’s je gaat maken',
+    aanloop: 'De meting laat zien welke onderwerpen kansen bieden. Orbit stelt daar passende pagina’s bij voor.',
     tekst:
-      'Orbit kiest de vorm die past: een dienstpagina, een artikel, een gids, veelgestelde vragen of een vergelijking. Jij bepaalt de prioriteiten, het aantal pagina’s per maand en de verhouding tussen nieuwe en verbeterde pagina’s, zoals je het met je klant hebt afgesproken. Werk je voor tien klanten? Dan start je de maand voor allemaal tegelijk. Zo groeit je klantenportefeuille zonder dat je team mee hoeft te groeien.',
+      'Bij ieder voorstel zie je welke vragen de pagina moet beantwoorden en waarom het onderwerp relevant is. Dat kan een artikel zijn, maar ook een dienstpagina of een verbetering van bestaande content. Jij bepaalt wat voorrang krijgt en hoeveel pagina’s je per maand wilt maken. Orbit zet die in een planning. Voor meerdere klanten kun je het werk voor de nieuwe maand tegelijk starten.',
   },
   {
     nr: 5,
     id: 'voorbereiding',
-    titel: 'De voorbereiding',
-    aanloop: 'Andere tools beginnen meteen te schrijven. Orbit doet eerst onderzoek.',
+    titel: 'Orbit bereidt elke pagina voor',
+    aanloop: 'Voor het schrijven onderzoekt Orbit wat de pagina moet vertellen en welke informatie nog ontbreekt.',
     tekst:
-      'Per pagina legt Orbit de kennisbank van je klant naast actuele bronnen, en zet in een briefing wat erop moet om de vraag beter te beantwoorden dan de concurrent. Orbit weet ook wat het niet weet. Prijzen, garanties en praktijkvoorbeelden verzint het niet: dat worden gerichte vragen aan je klant, hooguit acht per pagina. Zo wordt elke pagina uniek, en voorkom je fouten waar jouw bureau op wordt aangekeken.',
+      'Orbit gebruikt de verzamelde bedrijfsinformatie en onderzoekt het onderwerp verder. Waar beschikbaar bekijkt het ook de pagina’s waarnaar AI in de meting verwees. Vervolgens bepaalt Orbit de opbouw en inhoud van de tekst. Ontbreken bijvoorbeeld prijzen, levertijden of een praktijkvoorbeeld? Dan zet het gerichte vragen klaar voor je klant. Zo kan de pagina straks vertellen hoe dit bedrijf werkt, met informatie die je niet uit algemeen onderzoek haalt.',
   },
   {
     nr: 6,
     id: 'klant-vult-aan',
-    titel: 'Je klant vult aan',
-    aanloop: 'Je klant beantwoordt de vragen via een link. Zonder account, gewoon op zijn telefoon.',
+    titel: 'Vraag je klant om de ontbrekende informatie',
+    aanloop: 'Stuur de vragen naar je klant via een link. Antwoorden kan zonder account, ook op de telefoon.',
     tekst:
-      'Je stuurt de link door naar wie het weet: de ondernemer, de verkoper of de planner. Geef je een datum mee, dan staat er een herinnering voor je klaar. Wat eenmaal beantwoord is, bewaart Orbit en vraagt het nooit opnieuw. Zo komt de kennis uit het bedrijf zelf op de pagina’s, en juist die kennis maakt het verschil bij AI-assistenten. Nabellen hoeft niet meer.',
+      'De ondernemer, verkoper of planner vult aan wat alleen het bedrijf zelf weet. Denk aan de kosten van een onderhoudsbeurt of hoe een installatie verloopt. De antwoorden worden bewaard, zodat Orbit ze ook voor volgende pagina’s kan gebruiken. Een vraag die niet relevant is, kun je overslaan. Zodra alle vragen voor een pagina zijn beantwoord of overgeslagen, kan Orbit verder met schrijven.',
   },
   {
     nr: 7,
     id: 'orbit-schrijft',
-    titel: 'Orbit schrijft',
-    aanloop: 'Op het juiste moment schrijft Orbit de pagina. In de stem van het merk, op basis van feiten.',
+    titel: 'Orbit schrijft de tekst',
+    aanloop: 'Orbit schrijft met de informatie van je klant en de schrijfstijl die jullie hebben gekozen.',
     tekst:
-      'Elke pagina rust op de kennisbank, de antwoorden van je klant en de briefing, in de toon en de aanspreekvorm die jullie hebben vastgelegd. Na een automatische eindredactie wordt elk bedrag, elke termijn en elk keurmerk gecontroleerd tegen wat je klant heeft bevestigd. Je krijgt een complete pagina: tekst, titel, omschrijving voor Google, veelgestelde vragen en voorstellen voor interne links. Content waar je de naam van je bureau onder zet.',
+      'De tekst beantwoordt de vragen waarvoor de pagina is gepland, met het aanbod, de uitleg en de voorbeelden van je klant. Daarna kijkt Orbit de tekst na en controleert het onder meer de onderbouwing van bedragen, termijnen en garanties. Naast de tekst krijg je een titel, een omschrijving voor zoekmachines en veelgestelde vragen. Orbit kan ook links opnemen naar andere pagina’s op de website. Vervolgens staat de tekst klaar voor jouw beoordeling.',
   },
   {
     nr: 8,
     id: 'goedkeuren-en-live',
-    titel: 'Goedkeuren en publiceren',
-    aanloop: 'Jij houdt de regie. Orbit wijst aan waar je moet kijken.',
+    titel: 'Kijk de tekst na en publiceer',
+    aanloop: 'Je leest de tekst, past aan wat nodig is en bepaalt wanneer hij op de website komt.',
     tekst:
-      'Zinnen die nog een blik verdienen zijn gemarkeerd, met de reden erbij. Twijfel je, dan leg je de zin met één klik aan je klant voor. Na je akkoord kopieer je de tekst in het formaat van elk CMS en zet je de pagina live. Je geeft het adres door en Orbit controleert of de tekst er echt staat. Er gaat dus niets online zonder jouw goedkeuring, en vanaf dat moment loopt de meting.',
+      'Heeft Orbit een bewering niet kunnen onderbouwen, bijvoorbeeld over een prijs of garantie? Dan staat erbij wat je moet controleren. Je kunt de tekst aanpassen, een wijziging laten schrijven of je klant om bevestiging vragen. Na goedkeuring plaats jij of je klant de tekst op de website. Je geeft het webadres door aan Orbit. Het platform controleert de publicatie en plant de vervolgmetingen in.',
   },
   {
     nr: 9,
     id: 'effect-meting',
-    titel: 'De effectmeting',
-    aanloop: 'Twee en vier weken na publicatie stelt Orbit dezelfde vragen opnieuw.',
+    titel: 'Bekijk wat er na publicatie verandert',
+    aanloop: 'Na twee en vier weken herhaalt Orbit de vragen waarvoor de pagina is geschreven.',
     tekst:
-      'Het resultaat staat naast de stand van vóór de pagina. Wordt je klant vaker genoemd? Haalt de AI de nieuwe pagina aan als bron? Je ziet het per pagina, met de marge erbij, zodat je weet of een verschil echt is. Met Google Search Console gekoppeld volg je daarnaast de klikken en vertoningen vanaf de publicatiedag. Zo onderbouw je wat je werk oplevert, in AI en in Google.',
+      'Je ziet of je klant bij deze vragen vaker wordt genoemd dan vóór de publicatie. Orbit geeft ook aan wanneer er te weinig gegevens zijn om een duidelijke verandering vast te stellen. Een stijging is een aanwijzing; ook andere ontwikkelingen kunnen meespelen. Koppel je Google Search Console, dan zie je daarnaast hoe vaak de gepubliceerde pagina’s in Google verschijnen en hoeveel mensen doorklikken.',
   },
   {
     nr: 10,
     id: 'maandverslag',
-    titel: 'Het maandverslag',
-    aanloop: 'Elke maand ligt er per klant een verslag klaar. Met de naam van je bureau erop.',
+    titel: 'Bespreek de maand met je klant',
+    aanloop: 'Orbit zet de metingen, gepubliceerde pagina’s en planning bij elkaar in een verslag met jouw bureaunaam.',
     tekst:
-      'Daarin staat hoe de zichtbaarheid in AI zich ontwikkelt, welke pagina’s live gingen met hun effect en wat er volgende maand gepland staat. Je slaat het op als pdf en stuurt het door. Geen spreadsheets en geen avonden rapporteren. Je klant ziet elke maand wat hij voor zijn geld krijgt, en jij hebt het gesprek over de verlenging al voorbereid. Daarna begint de ronde opnieuw, met de kansen uit de laatste meting.',
+      'Je hoeft de voortgang niet zelf uit verschillende overzichten te verzamelen. Het verslag laat zien hoe de AI-zichtbaarheid zich ontwikkelt, welke pagina’s zijn gepubliceerd en wat er voor de volgende maand gepland staat. Sla het op als pdf om met je klant te delen. Zo heb je de informatie bij de hand om resultaten te bespreken en prioriteiten bij te stellen. Met nieuwe metingen en pagina’s werk je de volgende maand verder.',
   },
 ]
 
-// De afsluiter: dezelfde als op de homepage en /agencies (content/aanmelden.ts).
-export { afsluiter } from './aanmelden'
+// De afsluiter van deze pagina: een eigen kop en zin, met daaronder de knop Gratis uitproberen.
+export const afsluiter = {
+  title: 'Ontdek hoe Orbit werkt voor jouw klant',
+  description: 'Probeer het zelf: laat Orbit één bedrijf onderzoeken, de zichtbaarheid voor één onderwerp meten in ChatGPT en een eerste tekst schrijven. Gratis.',
+}

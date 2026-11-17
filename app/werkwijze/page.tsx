@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ogBeeld, paginaMeta } from '@/lib/seo'
 import { Prefooter } from '@/components/Prefooter'
-import { hero, intro, meta, overzicht, stappen, type Stap } from '@/content/werkwijze'
+import { afsluiter, hero, intro, meta, overzicht, stappen, type Stap } from '@/content/werkwijze'
 import { PaginaHero } from '@/components/product/Blokken'
 import { StappenBalk } from '@/components/werkwijze/StappenBalk'
 import { CitaatScroll } from '@/components/home/CitaatScroll'
@@ -70,7 +70,7 @@ export default function WerkwijzePage() {
         </div>
       </div>
 
-      <Prefooter />
+      <Prefooter tekst={afsluiter} />
     </div>
   )
 }

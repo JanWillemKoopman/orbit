@@ -133,7 +133,7 @@ export const resultaat = {
 }
 
 export type FeatureLink = { label: string; href: string }
-// De afsluiter onderaan de homepage: dezelfde als op /werkwijze en /agencies (content/aanmelden.ts).
+// De afsluiter onderaan de homepage: dezelfde als op de andere pagina's (content/aanmelden.ts). /werkwijze heeft een eigen tekst.
 export { afsluiter as prefooter } from './aanmelden'
 
 // Het vragenblok onderaan de homepage. Elke vraag klapt open; de volgorde hier is de volgorde op

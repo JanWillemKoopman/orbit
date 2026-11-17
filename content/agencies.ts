@@ -170,5 +170,5 @@ export const verder = {
   ],
 }
 
-// De afsluiter: dezelfde als op de homepage en /werkwijze (content/aanmelden.ts).
+// De afsluiter: dezelfde als op de homepage en de andere pagina's (content/aanmelden.ts). /werkwijze heeft een eigen tekst.
 export { afsluiter } from './aanmelden'
