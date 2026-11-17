@@ -79,7 +79,7 @@ export default function HomePage() {
                     <p>{u.tekst}</p>
                   </div>
                   <Link href={u.href} className="home-link hu-link">
-                    Leer meer<span className="sr-only"> over {u.titel.toLowerCase()}</span> <span className="feature-plus" aria-hidden="true">→</span>
+                    {u.link} <span className="feature-plus" aria-hidden="true">→</span>
                   </Link>
                 </figcaption>
               </figure>

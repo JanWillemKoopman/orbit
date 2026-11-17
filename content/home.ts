@@ -2,10 +2,10 @@
 import type { MaandStap } from '@/components/product/Visuals'
 
 export const hero = {
-  title: ['Automatiseer content productie.', 'Maak je klanten zichtbaar in AI\u00a0&\u00a0Search.'],
-  description: 'AI-software voor marketingbureaus met groeiambitie.',
+  title: ['Schrijf meer content voor je klanten.', 'Werk aan hun vindbaarheid in AI\u00a0en\u00a0Google.'],
+  description: 'Meten, plannen en schrijven in één platform voor marketingbureaus.',
   // Regel onder de knoppen: het eerste woord in het wit, de rest in grijs.
-  link: { label: 'Lees', titel: 'Zo werkt Orbit', href: '/werkwijze' },
+  link: { label: 'Bekijk', titel: 'hoe Orbit werkt', href: '/werkwijze' },
 }
 
 // Citaat onder de twee beelden, boven de drie nagebouwde schermen. De tekst staat tussen aanhalingstekens
@@ -13,9 +13,9 @@ export const hero = {
 // rond portret. Zet `foto` op het pad van de foto in /public (bijvoorbeeld '/images/jan-willem-koopman.jpg');
 // zolang dat leeg is, staan de initialen in de cirkel.
 export const statement = {
-  citaat: 'AI geeft een marketing team de mogelijkheid om veel meer ondernemers zichtbaar te maken in Chatbots en Zoekmachines. Met Orbit wil ik die ontwikkeling versnellen. Zodat bureaus kunnen groeien op de kracht van hun kennis, met de persoonlijke aandacht die hun klanten aan hen bindt.',
+  citaat: 'Ik bouw Orbit om bureaus te helpen meer voor hun klanten te doen. Onderzoek en schrijven kosten veel tijd. Een groot deel daarvan kan AI overnemen. Zo houd je als marketeer meer tijd over om met je klant mee te denken.',
   naam: 'Jan-Willem Koopman',
-  functie: 'Founder',
+  functie: 'oprichter van Orbit',
   foto: '',
 }
 
@@ -23,18 +23,20 @@ export const statement = {
 // account van het bureau (/beheer), rechts de maand van één klant van meten tot hermeten (/werkwijze).
 // De links wijzen direct naar de pagina en niet naar de oude adressen /agency en /product, die alleen
 // nog doorsturen.
-export type Uitgelicht = { titel: string; tekst: string; href: string; alt: string }
+export type Uitgelicht = { titel: string; tekst: string; link: string; href: string; alt: string }
 
 export const uitgelicht: Uitgelicht[] = [
   {
-    titel: 'Al je klanten in één platform',
-    tekst: 'Beheer merken, metingen en content vanuit één centrale omgeving. Houd overzicht terwijl je bureau groeit.',
+    titel: 'Al je klanten in één overzicht',
+    tekst: 'Zie welke teksten klaarstaan, waar antwoorden ontbreken en wat je team moet oppakken. Voor al je klanten bij elkaar.',
+    link: 'Bekijk het klantenoverzicht',
     href: '/werkwijze',
     alt: 'Het werkoverzicht van Bureau Noordwind: bedrijven onder elkaar met hun zichtbaarheid in AI, de maandmeting en wat er klaarstaat om te starten.',
   },
   {
-    titel: 'De hele workflow. Van meten tot nameten.',
-    tekst: 'Meet de zichtbaarheid, ontdek kansen en werk ze uit tot een contentplan en nieuwe teksten. Volg de publicatie en meet daarna opnieuw hoe je klant ervoor staat. Alles in één platform.',
+    titel: 'Van eerste meting tot nieuwe content.',
+    tekst: 'Orbit meet waar je klant wordt genoemd en stelt pagina\u2019s voor over gemiste onderwerpen. Die komen in een contentplan. Orbit schrijft de teksten, jij publiceert ze en daarna volgt een nieuwe meting.',
+    link: 'Bekijk de werkwijze',
     href: '/werkwijze',
     alt: "De maand van een klant: meten is klaar, twintig pagina's zijn gepland, elf zijn geschreven en zeven gepubliceerd. Hermeten volgt. Er wachten twee vragen op de klant.",
   },
@@ -53,8 +55,8 @@ export const uitgelichtStappen: MaandStap[] = [
 // Vier voordelen voor marketingbureaus, direct onder de AI-logo's en boven de twee beelden.
 // Erboven een kop (links) en een korte uitleg (rechts); per voordeel een eigen icoon met titel.
 export const uspIntro = {
-  title: 'Ontwikkeld voor marketingbureaus',
-  description: 'Van de eerste meting in Google Search en AI-assistenten tot overtuigende content en inzicht in de resultaten. Orbit automatiseert onderzoek, planning en schrijfwerk samen in één platform.',
+  title: 'Meer werk verzetten voor je klanten',
+  description: 'Orbit onderzoekt je klanten, meet hun zichtbaarheid in AI en schrijft content op basis van de gevonden kansen. Je team beoordeelt de teksten en houdt tijd over voor advies.',
 }
 
 // Per voordeel een titel met uitleg, op desktop en mobiel. Het type Usp (korte en lange titel) gebruikt /agencies nog.
@@ -64,48 +66,48 @@ export type UspIcoon = 'terugkerend' | 'productie' | 'impact' | 'copy'
 
 export const usps: { titel: string; uitleg: string; icoon: UspIcoon }[] = [
   {
-    titel: 'GEO/SEO als vaste dienst',
+    titel: 'Een maandelijkse dienst erbij',
     icoon: 'terugkerend',
-    uitleg: 'Maak van vindbaarheid terugkerende omzet. Verkoop GEO en SEO onder je eigen naam, met standaard een 100% white-label platform in de huisstijl van jouw bureau.',
+    uitleg: 'Bied AI-zichtbaarheid aan onder je eigen naam, met elke maand metingen, nieuwe content en een rapportage voor je klant.',
   },
   {
-    titel: 'Verhoog productie',
+    titel: 'Meer content met hetzelfde team',
     icoon: 'productie',
-    uitleg: 'Lever meer content met het team dat je al hebt. Orbit versnelt het onderzoek en schrijfwerk, zodat je specialisten meer tijd hebben voor strategie en creatie.',
+    uitleg: 'Orbit neemt onderzoek en schrijfwerk uit handen. Je team bepaalt de richting, beoordeelt de teksten en adviseert de klant.',
   },
   {
-    titel: 'Inzicht in impact',
+    titel: 'Resultaten om te bespreken',
     icoon: 'impact',
-    uitleg: 'Maak je waarde zichtbaar in elk klantgesprek. Met een nulmeting en nametingen laat je zien hoe het verkeer en de zichtbaarheid van je klant in AI-antwoorden zich ontwikkelen.',
+    uitleg: 'Laat zien hoe de AI-zichtbaarheid verandert en hoeveel Google-verkeer je gepubliceerde pagina\u2019s krijgen. Handig voor je volgende klantgesprek.',
   },
   {
-    titel: 'Copywriterniveau',
+    titel: 'Teksten die bij je klant passen',
     icoon: 'copy',
-    uitleg: 'Lever teksten die klinken als het merk van je klant, zijn aanbod overtuigend neerzetten en zijn onderbouwd met bronnen. Content waar je graag je bureaunaam onder zet.',
+    uitleg: 'Orbit schrijft met de kennis, voorbeelden en schrijfstijl van je klant. Zo krijgt elke tekst de inhoud die het bedrijf onderscheidt.',
   },
 ]
 
 // Eigen regel onder de vier voordelen: een smal limegroen blok over white label, dat alle vier ondersteunt.
 // Rechts een tekstlink naar /agencies, zoals de link onder de hero: het eerste woord in het wit, de rest in grijs.
 export const whiteLabel = {
-  titel: 'White label',
-  tekst: 'De interface volledig in de huisstijl van jouw bureau. White label is standaard inbegrepen, zodat je klanten jouw merk ervaren bij elke stap.',
-  link: { label: 'Lees', titel: 'Orbit voor marketingbureau\u2019s', href: '/agencies' },
+  titel: 'In de huisstijl van je bureau',
+  tekst: 'Je klanten werken in een omgeving met jouw logo, kleuren en lettertypes. White label is standaard inbegrepen.',
+  link: { label: 'Bekijk', titel: 'Orbit voor bureaus', href: '/agencies' },
 }
 
 // Sectie over de kwaliteit van de content, onder de drie nagebouwde schermen: kop (links) en uitleg
 // (rechts), daaronder twee beelden van de pagina Kwaliteit naast elkaar. De bijschriften van de beelden
 // komen uit content/kwaliteit.ts, zodat ze op beide pagina's hetzelfde zijn.
 export const kwaliteit = {
-  title: 'AI-teksten die kloppen',
-  description: 'Orbit schrijft alleen met feiten die ergens vandaan komen: van de website, van je klant of uit een document. Wat niet te onderbouwen is, valt meteen op. Zo lever je AI-teksten zonder elke zin zelf na te lopen.',
-  link: { label: 'Zo bewaakt Orbit de kwaliteit', href: '/kwaliteit' },
+  title: 'AI-teksten op basis van klantkennis',
+  description: 'Orbit gebruikt informatie van de website, documenten en antwoorden van je klant. Bedragen, termijnen en garanties worden op onderbouwing gecontroleerd. Zinnen die aandacht nodig hebben, worden gemarkeerd voordat je de tekst goedkeurt.',
+  link: { label: 'Bekijk hoe Orbit teksten controleert', href: '/kwaliteit' },
 }
 
 // Het blok met drie nagebouwde schermen onder de tussenzin: alleen het bijschrift linksonder.
 export const showcase = {
-  title: 'Van kans tot ingeplande pagina',
-  description: 'Je clusters, de vragen die de schrijver nog aan je heeft en de planning van je content staan bij elkaar. Zo zie je in één oogopslag wat er loopt en wat er van jou nodig is.',
+  title: 'Weet wat er klaarstaat en wat nog nodig is',
+  description: 'Welke onderwerpen pak je op? Welke informatie ontbreekt nog? En wanneer verschijnt de volgende pagina? Orbit houdt de planning en openstaande vragen bij, zodat je team verder kan.',
 }
 
 // Sectie over resultaten, direct boven de veelgestelde vragen: kop (links) en uitleg (rechts) en twee
@@ -114,17 +116,17 @@ export const showcase = {
 // publicatiedag. Alles wat hier staat, doet Orbit nu al. Verkeer betekent hier klikken uit Google;
 // conversie en omzet meet Orbit niet en staan er daarom niet in.
 export const resultaat = {
-  title: 'Laat elke maand zien wat je werk oplevert',
-  description: 'Je klant betaalt niet voor teksten, maar voor resultaat. Orbit volgt elke pagina die je publiceert, in AI-assistenten én in Google. Zo gaat het maandgesprek over wat je bereikt hebt, niet over wat je gedaan hebt.',
+  title: 'Laat zien hoe je klant ervoor staat',
+  description: 'Bespreek welke pagina\u2019s zijn gepubliceerd en hoe de zichtbaarheid zich ontwikkelt. Orbit vergelijkt AI-metingen voor en na publicatie. Koppel Google Search Console om ook het zoekverkeer naar je Orbit-pagina\u2019s te volgen.',
   beelden: [
     {
-      titel: 'Het klantgesprek is voorbereid voordat je het plant',
-      tekst: 'Elke maand staat per klant klaar welke pagina\'s er live gingen en wat er volgende maand op de planning staat. Je klant ziet in één oogopslag dat het afgesproken werk geleverd is. Met de naam van je bureau erop, als pdf te versturen.',
+      titel: 'Je maandrapport staat klaar',
+      tekst: 'Per klant zie je wat er is gepubliceerd, hoe de AI-zichtbaarheid zich ontwikkelt en wat er volgende maand gepland staat. Het verslag draagt de naam van je bureau. Sla het op als pdf en stuur het naar je klant.',
       alt: 'De maandrapportage van september: twintig pagina\'s gepubliceerd, alle twintig uit het contentplan, elk met de datum waarop hij live ging. Volgende maand staan twintig pagina\'s gepland.',
     },
     {
-      titel: 'Eerder werk blijft meetellen',
-      tekst: 'AI-assistenten noemen je klant vaker, en pagina\'s van maanden geleden leveren nog steeds bezoekers op. Orbit telt per pagina de klikken vanaf zijn eigen publicatiedag, alleen voor pagina\'s die met Orbit geschreven zijn. Zo zie je wat deze maand toevoegt bovenop alles wat er al staat.',
+      titel: 'Volg ook je eerdere pagina\u2019s',
+      tekst: 'Ook na de publicatiemaand blijf je zien hoeveel Google-verkeer je Orbit-pagina\u2019s krijgen. De telling begint voor elke pagina op de publicatiedag. Zo ontdek je welke onderwerpen bezoekers blijven trekken en welke pagina\u2019s aandacht nodig hebben.',
       alt: 'De resultaten: zichtbaarheid in AI 41 procent, de ronde ervoor 32 procent. 24.694 klikken uit Google in september, 110 procent meer dan in januari. Een grafiek met een stip per maand laat de klikken met kleine dipjes stijgen van 11.740 in januari naar 24.694 in september.',
     },
   ],
