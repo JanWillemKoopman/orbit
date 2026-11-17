@@ -1,54 +1,123 @@
 /* ==========================================================================
-   Over (/over). Maten overgenomen van linear.app/about: titel 64px, foto over de volle
-   breedte, daaronder een tweekoloms verhaal met links de kop en rechts de tekst.
+   Over (/over). Redactioneel opgebouwd naar linear.app/about: een introductie met portret, daarna
+   secties met de kop links en de tekst rechts op leesbreedte (±65 tekens), gescheiden door een
+   1px-lijn. Alle tekst staat er direct, zonder animatie.
    ========================================================================== */
-.ov-hero { padding-top: 200px; }
-.ov-title {
-  max-width: 1000px; margin-left: -2px;
-  font-size: 64px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
-}
-.ov-title span { display: block; }
-.ov-description { margin-top: 32px; max-width: 640px; font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
 
-.ov-foto { margin-top: 80px; }
-.ov-foto-frame {
-  position: relative; aspect-ratio: 16 / 9; overflow: hidden;
-  border-radius: 8px; background: var(--bg-level-1);
-  box-shadow: inset 0 0 0 1px var(--border-translucent);
+/* ── Introductie ─────────────────────────────────────────────────────────── */
+.ov-intro {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 64px; align-items: center;
+  padding-top: 168px;
 }
-.ov-foto-frame img { width: 100%; height: 100%; object-fit: cover; }
-.ov-foto-placeholder {
-  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
-  color: var(--text-quaternary); font-size: 14px; letter-spacing: -0.011em;
-  background:
-    radial-gradient(60% 70% at 50% 40%, rgba(255, 255, 255, 0.05), transparent 70%),
-    linear-gradient(180deg, var(--bg-level-2), var(--bg-level-1));
+.ov-intro-zonder-foto { grid-template-columns: minmax(0, 1fr); }
+.ov-intro-tekst { max-width: 560px; }
+.ov-label {
+  font-family: var(--font-mono); font-size: 12px; line-height: 1.5; letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--text-tertiary);
 }
-.ov-foto-placeholder svg { opacity: 0.8; }
+.ov-titel {
+  margin-top: 20px; margin-left: -2px;
+  font-size: 56px; line-height: 1.05; letter-spacing: -0.022em; font-weight: var(--weight-medium);
+  color: var(--text-primary); text-wrap: balance;
+}
+.ov-intro-alinea {
+  font-size: 17px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-secondary); text-wrap: pretty;
+}
+.ov-titel + .ov-intro-alinea { margin-top: 32px; }
+.ov-intro-alinea + .ov-intro-alinea { margin-top: 20px; }
 
-.ov-verhaal { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 144px; }
-.ov-verhaal h2 {
-  font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
+.ov-portret { margin: 0; }
+.ov-portret-frame { position: relative; overflow: hidden; border-radius: 8px; background: var(--bg-level-1); }
+.ov-portret-frame::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--border-translucent); pointer-events: none;
 }
-.ov-verhaal h2 span { display: block; }
-.ov-tekst { max-width: 560px; }
-.ov-lead { font-size: 21px; line-height: 1.5; letter-spacing: -0.012em; color: var(--text-secondary); text-wrap: pretty; }
-.ov-tekst p + p, .ov-lead + p { margin-top: 24px; }
-.ov-tekst p:not(.ov-lead) { font-size: 15px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-tertiary); }
-.ov-lead + p { margin-top: 32px; }
+.ov-portret img { display: block; width: 100%; height: auto; }
+.ov-portret figcaption {
+  margin-top: 14px; font-size: 13px; line-height: 1.5; letter-spacing: -0.01em; color: var(--text-tertiary);
+}
+
+/* ── Tekstsecties: kop links, tekst rechts ───────────────────────────────── */
+.ov-sectie {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 64px; align-items: start;
+  margin-top: 128px; padding-top: 48px; border-top: 1px solid var(--border-translucent);
+}
+.ov-intro + .ov-sectie { margin-top: 144px; }
+.ov-h2 {
+  max-width: 460px;
+  font-size: 32px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
+  color: var(--text-primary); text-wrap: balance;
+}
+.ov-tekst { max-width: 36em; font-size: 17px; }
+.ov-tekst p {
+  font-size: 17px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-secondary); text-wrap: pretty;
+}
+.ov-tekst p + p { margin-top: 20px; }
+.ov-link { margin-top: 24px; }
+@media (hover: hover) { .ov-link:hover .feature-plus { transform: translateX(3px); } }
+
+/* Het productbeeld bij "wat Orbit doet": de maand van één klant, zonder kopregel. Vaste compositiebreedte,
+   op kleine schermen verkleind met zoom zoals op de homepage. */
+.ov-beeld { margin-top: 48px; }
+.ov-beeld-inner { width: 600px; max-width: 100%; }
+.ov-beeld .fv-surface { width: 100%; max-width: none; box-shadow: 0 7px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
+.ov-beeld .fv-hero-top { display: none; }
+.ov-beeld .fv-btn-primary { background: var(--button-invert-bg); color: var(--bg-primary); }
+
+/* Het deel over bureaus: een iets lichter vlak met een dunne rand */
+.ov-sectie.ov-vlak {
+  padding: 56px; border-top: 0; border-radius: 12px;
+  background: var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--border-translucent);
+}
+
+/* De keuzes: een rustige lijst met een lijn tussen de onderdelen */
+.ov-keuzelijst { list-style: none; margin: 0; padding: 0; }
+.ov-keuzelijst li + li { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border-translucent); }
+.ov-keuzelijst h3 {
+  font-size: 20px; line-height: 1.33; letter-spacing: -0.012em; font-weight: var(--weight-semibold); color: var(--text-primary);
+}
+.ov-keuzelijst h3 + p { margin-top: 10px; }
+
+/* De afsluiter: het limegroene blok met de vaste maten uit globals.css, een kleinere kop en ruimte voor
+   twee alinea's. De keuzes erboven houden afstand. */
+.ov-keuzes { margin-bottom: 112px; }
+.ov .ov-afsluiter { gap: 20px; }
+.ov .ov-afsluiter h2 { max-width: 760px; font-size: 48px; line-height: 1.1; margin-bottom: 8px; }
+.ov .ov-afsluiter p { max-width: 36em; font-size: 17px; }
+.ov .ov-afsluiter .home-prefooter-actions { margin-top: 20px; }
 
 @media (max-width: 1024px) {
-  .ov-hero { padding-top: 160px; }
-  .ov-title { font-size: 56px; line-height: 1.1; }
-  .ov-verhaal { grid-template-columns: 1fr; gap: 40px; margin-top: 112px; }
-  .ov-verhaal h2 { font-size: 40px; line-height: 1.1; }
+  .ov-intro { grid-template-columns: minmax(0, 1fr); gap: 56px; padding-top: 136px; }
+  .ov-intro-tekst { max-width: 640px; }
+  .ov-portret { max-width: 720px; }
+  .ov-sectie { grid-template-columns: minmax(0, 1fr); margin-top: 96px; padding-top: 40px; }
+  .ov-intro + .ov-sectie { margin-top: 112px; }
+  .ov-h2 { max-width: 640px; font-size: 32px; }
+  .ov-sectie.ov-vlak { padding: 48px 40px; }
+  .ov-keuzes { margin-bottom: 72px; }
+  .ov .ov-afsluiter h2 { font-size: 40px; }
 }
+
 @media (max-width: 640px) {
-  .ov-hero { padding-top: 120px; }
-  .ov-title { font-size: 40px; }
-  .ov-title span { display: inline; }
-  .ov-foto { margin-top: 48px; }
-  .ov-foto-frame { aspect-ratio: 4 / 3; }
-  .ov-verhaal { margin-top: 80px; }
-  .ov-lead { font-size: 19px; }
+  .ov-intro { gap: 40px; padding-top: 112px; }
+  .ov-titel { font-size: 40px; line-height: 1.1; }
+  .ov-titel + .ov-intro-alinea { margin-top: 24px; }
+  .ov-intro-alinea, .ov-tekst p { font-size: 16px; }
+  .ov-sectie { margin-top: 80px; padding-top: 32px; }
+  .ov-intro + .ov-sectie { margin-top: 88px; }
+  .ov-h2 { font-size: 28px; }
+  .ov-sectie.ov-vlak { padding: 32px 24px; border-radius: 8px; }
+  .ov-keuzelijst h3 { font-size: 17px; }
+  .ov-beeld { margin-top: 40px; overflow: hidden; }
+  .ov-beeld-inner { width: 600px; max-width: none; zoom: 0.56; }
+  .ov-keuzes { margin-bottom: 56px; }
+  .ov .ov-afsluiter h2 { font-size: 32px; }
+  .ov .ov-afsluiter p { font-size: 15px; }
+}
+@media (max-width: 400px) {
+  .ov-beeld-inner { zoom: 0.5; }
+}
+@media (max-width: 360px) {
+  .ov-titel { font-size: 34px; }
+  .ov-beeld-inner { zoom: 0.44; }
 }
