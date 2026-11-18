@@ -64,7 +64,7 @@ export default function OverPage() {
       <section className="home-prefooter container pd-afsluiter ov-afsluiter" aria-labelledby="ov-afsluiter-titel">
         <CtaAchtergrond />
         <h2 id="ov-afsluiter-titel">{afsluiting.titel}</h2>
-        {afsluiting.alineas.map((p) => <p key={p}>{p}</p>)}
+        <p>{afsluiting.tekst}</p>
         <div className="home-prefooter-actions">
           <PrefooterKnoppen />
         </div>

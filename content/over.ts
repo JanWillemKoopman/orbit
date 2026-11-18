@@ -71,8 +71,5 @@ export const vakkennis: Sectie = {
 // De afsluiter onderaan: het limegroene blok met de knoppen Gratis uitproberen en Contact opnemen.
 export const afsluiting = {
   titel: 'Probeer het met een klant die je kent',
-  alineas: [
-    'De beste manier om Orbit te beoordelen is door ermee te werken. Laat gratis één bedrijf onderzoeken, meet één onderwerp in ChatGPT en laat een eerste tekst schrijven. Dan zie je snel waar het je werk uit handen neemt en wat je zelf nog wilt toevoegen.',
-    'Liever eerst even kennismaken? Neem gerust contact op. Je spreekt rechtstreeks met mij.',
-  ],
+  tekst: 'Gratis, met één klant. Zo zie je zelf wat Orbit je uit handen neemt.',
 }
