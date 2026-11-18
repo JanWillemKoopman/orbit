@@ -1,107 +1,36 @@
 /* ==========================================================================
-   Over (/over). Redactioneel opgebouwd naar linear.app/about: een introductie met portret, daarna
-   secties met de kop links en de tekst rechts op leesbreedte (±65 tekens), gescheiden door een
-   1px-lijn. Alle tekst staat er direct, zonder animatie.
+   Over (/over). Opgemaakt als een blogartikel: de klassen .article, .article-blog en .prose uit
+   article.css doen het werk. Hier alleen wat de pagina afwijkend nodig heeft.
    ========================================================================== */
 
-/* ── Introductie ─────────────────────────────────────────────────────────── */
-.ov-intro {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 64px; align-items: center;
-  padding-top: 168px;
-}
-.ov-intro-zonder-foto { grid-template-columns: minmax(0, 1fr); }
-.ov-intro-tekst { max-width: 560px; }
-.ov-titel {
-  margin-left: -2px;
-  font-size: 56px; line-height: 1.05; letter-spacing: -0.022em; font-weight: var(--weight-medium);
-  color: var(--text-primary); text-wrap: balance;
-}
-.ov-intro-alinea {
-  font-size: 17px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-secondary); text-wrap: pretty;
-}
-.ov-titel + .ov-intro-alinea { margin-top: 32px; }
-.ov-intro-alinea + .ov-intro-alinea { margin-top: 20px; }
+/* Ruimte onder de header, gelijk aan de bovenkant van een blogartikel met kruimelpad. */
+.ov-artikel { padding-top: 136px; }
+.ov-artikel .article-title { margin-top: 0; }
+.ov-artikel .prose { margin-top: 64px; margin-bottom: 128px; }
 
-.ov-portret { margin: 0; }
-.ov-portret-frame { position: relative; overflow: hidden; border-radius: 8px; background: var(--bg-level-1); }
-.ov-portret-frame::after {
-  content: ''; position: absolute; inset: 0; border-radius: inherit;
-  box-shadow: inset 0 0 0 1px var(--border-translucent); pointer-events: none;
-}
-.ov-portret img { display: block; width: 100%; height: auto; }
-.ov-portret figcaption {
-  margin-top: 14px; font-size: 13px; line-height: 1.5; letter-spacing: -0.01em; color: var(--text-tertiary);
-}
+/* Een sectie is een wrapper in de tekstkolom: zijn kinderen volgen het ritme van .prose. */
+.ov-artikel .prose > .ov-sectie { margin-top: 56px; }
+.ov-artikel .prose > blockquote + .ov-sectie { margin-top: 44px; }
+.ov-sectie > h2 { margin-top: 0; }
+.ov-sectie > * + * { margin-top: 20px; }
+.ov-sectie > h2 + * { margin-top: 12px; }
 
-/* ── Tekstsecties: kop links, tekst rechts ───────────────────────────────── */
-.ov-sectie {
-  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 64px; align-items: start;
-  margin-top: 128px; padding-top: 48px; border-top: 1px solid var(--border-translucent);
-}
-.ov-secties { margin-top: 16px; margin-bottom: 112px; }
-.ov-h2 {
-  max-width: 460px;
-  font-size: 32px; line-height: 1.1; letter-spacing: -0.022em; font-weight: var(--weight-medium);
-  color: var(--text-primary); text-wrap: balance;
-}
-.ov-tekst { max-width: 36em; font-size: 17px; }
-.ov-tekst p {
-  font-size: 17px; line-height: 1.6; letter-spacing: -0.011em; color: var(--text-secondary); text-wrap: pretty;
-}
-.ov-tekst p + p { margin-top: 20px; }
-.ov-link { margin-top: 24px; }
-@media (hover: hover) { .ov-link:hover .feature-plus { transform: translateX(3px); } }
-
-/* Het productbeeld bij "wat Orbit doet": de maand van één klant, zonder kopregel. Vaste compositiebreedte,
-   op kleine schermen verkleind met zoom zoals op de homepage. */
-.ov-beeld { margin-top: 48px; }
-.ov-beeld-inner { width: 600px; max-width: 100%; }
-.ov-beeld .fv-surface { width: 100%; max-width: none; box-shadow: 0 7px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
-.ov-beeld .fv-hero-top { display: none; }
-.ov-beeld .fv-btn-primary { background: var(--button-invert-bg); color: var(--bg-primary); }
-
-/* De rol van de marketeer: een iets lichter vlak met een dunne rand */
-.ov-sectie.ov-vlak {
-  padding: 56px; border-top: 0; border-radius: 12px;
-  background: var(--bg-level-1); box-shadow: inset 0 0 0 1px var(--border-translucent);
-}
-
-/* De afsluiter: het limegroene blok met de vaste maten uit globals.css, een kleinere kop en ruimte voor
-   twee alinea's. */
+/* De afsluiter: het limegroene blok met de vaste maten uit globals.css en een kleinere kop. */
 .ov .ov-afsluiter { gap: 20px; }
 .ov .ov-afsluiter h2 { max-width: 760px; font-size: 48px; line-height: 1.1; margin-bottom: 8px; }
 .ov .ov-afsluiter p { max-width: 36em; font-size: 17px; }
 .ov .ov-afsluiter .home-prefooter-actions { margin-top: 20px; }
 
 @media (max-width: 1024px) {
-  .ov-intro { grid-template-columns: minmax(0, 1fr); gap: 56px; padding-top: 136px; }
-  .ov-intro-tekst { max-width: 640px; }
-  .ov-portret { max-width: 720px; }
-  .ov-sectie { grid-template-columns: minmax(0, 1fr); margin-top: 96px; padding-top: 40px; }
-  .ov-secties { margin-top: 0; margin-bottom: 72px; }
-  .ov-h2 { max-width: 640px; font-size: 32px; }
-  .ov-sectie.ov-vlak { padding: 48px 40px; }
   .ov .ov-afsluiter h2 { font-size: 40px; }
 }
-
+@media (max-width: 768px) {
+  .ov-artikel .prose > .ov-sectie { margin-top: 44px; }
+  .ov-artikel .prose > blockquote + .ov-sectie { margin-top: 32px; }
+}
 @media (max-width: 640px) {
-  .ov-intro { gap: 40px; padding-top: 112px; }
-  .ov-titel { font-size: 40px; line-height: 1.1; }
-  .ov-titel + .ov-intro-alinea { margin-top: 24px; }
-  .ov-intro-alinea, .ov-tekst p { font-size: 16px; }
-  .ov-sectie { margin-top: 80px; padding-top: 32px; }
-  .ov-secties { margin-bottom: 56px; }
-  .ov-h2 { font-size: 28px; }
-  .ov-sectie.ov-vlak { padding: 32px 24px; border-radius: 8px; }
-  .ov-beeld { margin-top: 40px; overflow: hidden; }
-  .ov-beeld-inner { width: 600px; max-width: none; zoom: 0.56; }
+  .ov-artikel { padding-top: 104px; }
+  .ov-artikel .prose { margin-top: 40px; margin-bottom: 80px; }
   .ov .ov-afsluiter h2 { font-size: 32px; }
   .ov .ov-afsluiter p { font-size: 15px; }
-}
-@media (max-width: 400px) {
-  .ov-beeld-inner { zoom: 0.5; }
-}
-@media (max-width: 360px) {
-  .ov-titel { font-size: 34px; }
-  .ov-beeld-inner { zoom: 0.44; }
 }
